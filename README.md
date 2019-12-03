@@ -9,31 +9,30 @@
  
 **2. Features**
 
- - support SCANLAB's RTC5, RTC6, RTC6 Ethernet product. 
- - support RTC control with 3x3 matrix operation.
+ - support SCANLAB's RTC5, RTC6, RTC6 Ethernet multiple products. 
+ - support RTC control with 3x3 matrix stack operation.
  - support RTC field correction with easy to use.
- - support unlimited vector data to RTC controller automatically.
- - support RTC's MOTF(marking on the fly) option.
+ - support unlimited vector data by RTC controller automatically.
+ - support RTC's MOTF(marking on the fly) option and sky-writing functions are enabled.
  - support many kinds of commerical laser sources (to the future...)
  - support laser power control with varios methods (like as analog, digital, frequency, pulse width modulation)
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, spiral, trepan, group for multiple entities and layers.
  - support powerful undo/redo actions.
- - support dxf file format importer and sirius custom file format (based on json format)
- - support single document data with multiple views.
+ - support dxf file format importer and sirius custom file format.
+ - support 1 source(single document data), multiple view windows.
  - support customizable and extensible laser source and marker interface.
  - support laser path visualizer and simulator.
- - support all vector data are explodable to every lines and arcs.
- - support group entity with repeat and reversible laser process.
- - support vary laser parameters with special entity called 'Pen'
- - frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing option
+ - support all vector data are explodable by every lines and arcs.
+ - support group entity with repeatable and reversible laser process.
+ - support vary laser parameters with special entity called 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
  
   
 **3. How to use ?**
 
- - Develop environment : .NET dll library with x32/x64 
- - Add spirallab.sirius.dll as UserControl into Microsoft Visual Studio.
- - There are 2 forms each Sirius.EditorForm) and viewer(Sirius.ViewerForm.
- - There are multiple demo program in DEMOS directory
+ - Development Environment : .NET dll library with x32/x64 
+ - Add spirallab.sirius.dll file as user control into Microsoft Visual Studio.
+ - There are 2 winforms controls (Sirius.EditorForm and Sirius.ViewerForm)
+ - There are multiple demo programs in DEMOS directory
 
 ![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
  *The program running about 10 minutes in evalution copy mode !*
