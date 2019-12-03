@@ -1,11 +1,11 @@
 # SpiralLab.Sirius Library
 
-1. Descriptions                                
+**1. Descriptions**
 
  SuperEasy library for Control for Scanner and Lasers
  
  
-2. Features
+**2. Features**
 
  - support SCANLAB's RTC5, RTC6, RTC6 Ethernet product. 
  - support RTC control with 3x3 matrix operation.
@@ -26,16 +26,17 @@
  - frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing option
  
   
-3. How to use ?
+**3. How to use ?**
 
  - Develop environment : .NET dll library with x32/x64 
  - Add spirallab.sirius.dll as UserControl into Microsoft Visual Studio.
  - There are 2 forms each Sirius.EditorForm) and viewer(Sirius.ViewerForm.
  - There are multiple demo program in DEMOS directory
- * The program running about 10 minutes in evalution copy mode !
+ 
+ *The program running about 10 minutes in evalution copy mode !*
 
  
-4. Author                                    
+**4. Author**
 
  - hong chan, choi (labspiral@gmail.com)                           
  - homepage : http://sepwind.blogspot.com                        
@@ -43,6 +44,6 @@
  - Please send email to me to use commerically.
   
                                                                                                                                
-5. Version history       
+**5. Version history**
 
  - 2019.12.3 first release
