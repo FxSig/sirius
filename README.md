@@ -3,7 +3,9 @@
 **1. Descriptions**
 
  SuperEasy library for Control for Scanner and Lasers
- 
+
+![sirius1](https://user-images.githubusercontent.com/58460570/70033764-74db8080-15f3-11ea-9e54-75b868e7d5ae.png)  
+
  
 **2. Features**
 
@@ -32,8 +34,10 @@
  - Add spirallab.sirius.dll as UserControl into Microsoft Visual Studio.
  - There are 2 forms each Sirius.EditorForm) and viewer(Sirius.ViewerForm.
  - There are multiple demo program in DEMOS directory
- 
+
+![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
  *The program running about 10 minutes in evalution copy mode !*
+ 
 
  
 **4. Author**
@@ -43,7 +47,11 @@
  - git repository : https://github.com/labspiral/sirius.git
  - Please send email to me to use commerically.
   
-                                                                                                                               
+![sirius2](https://user-images.githubusercontent.com/58460570/70033762-7442ea00-15f3-11ea-8788-2aae70ceacf8.png)
+
+
 **5. Version history**
 
  - 2019.12.3 first release
+ 
+
