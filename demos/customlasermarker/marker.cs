@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
@@ -74,6 +75,8 @@ namespace SpiralLab.Sirius
         }
         private List<(double dx, double dy, double angle)> offsets;
 
+        public Form Form { get; set; }
+
         private Stopwatch timer;
         private Thread thread;
 
@@ -82,6 +85,7 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.ElaspedTime = TimeSpan.Zero;
             this.offsets = new List<(double dx, double dy, double angle)>();
+            this.Form = null; /// 윈폼을 만들어 삽입
         }
 
         /// <summary>

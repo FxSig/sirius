@@ -97,7 +97,6 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }
 
-
         private static void DrawByMarker(IRtc rtc, ILaser laser, IMarker marker)
         {
             #region load from sirius file
