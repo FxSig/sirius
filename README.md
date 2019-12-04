@@ -3,8 +3,9 @@
 **1. Descriptions**
 
  SuperEasy library for Control for Scanner and Lasers
+ 
+[![](http://img.youtube.com/vi/pc70q_jc1Yw/0.jpg)](http://www.youtube.com/watch?v=pc70q_jc1Yw "SpiralLab.Sirius Library Demo")
 
-![sirius1](https://user-images.githubusercontent.com/58460570/70033764-74db8080-15f3-11ea-9e54-75b868e7d5ae.png)  
 
  
 **2. Features**
@@ -26,6 +27,8 @@
  - support group entity with repeatable and reversible laser process.
  - support vary laser parameters with special entity called 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
  
+ ![sirius1](https://user-images.githubusercontent.com/58460570/70033764-74db8080-15f3-11ea-9e54-75b868e7d5ae.png)  
+ 
   
 **3. How to use ?**
 
@@ -37,7 +40,6 @@
 ![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
  *The program running about 10 minutes in evalution copy mode !*
  
-
  
 **4. Author**
 
@@ -51,6 +53,6 @@
 
 **5. Version history**
 
- - 2019.12.3 first release
+ - 2019.12.3  v0.1 first release
  
 
