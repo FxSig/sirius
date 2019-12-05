@@ -29,7 +29,7 @@ namespace editor_viewer
 
             #region RTC 초기화
             //IRtc rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
-            IRtc rtc = new RtcGCode(0, "output.txt"); ///가상 rtc 제어기 생성
+            IRtc rtc = new RtcVirtual(0, "output.txt"); ///가상 rtc 제어기 생성
             //IRtc rtc = new Rtc5(0); ///rtc 5 제어기 생성
             double fov = 60.0;    /// scanner field of view : 60mm            
             double kfactor = Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov

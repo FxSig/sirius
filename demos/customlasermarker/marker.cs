@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
 
-    public class YourMarker: SpiralLab.Sirius.IMarker
+    public class YourMarker: IMarker
     {
         public event MarkerProgressEventHandler OnProgress;
         public event MarkerFinishedEventHandler OnFinished;
@@ -186,6 +188,7 @@ namespace SpiralLab.Sirius
             this.Laser.CtlReset();
             return true;
         }
+
         #region 쓰레드 작업
         public void WorkerThread()
         {
@@ -204,18 +207,6 @@ namespace SpiralLab.Sirius
         {
             /// 가공을 위한 RTC 버퍼 초기화
             Rtc.ListBegin(this.Laser);
-
-            ///4. 원점으로 이동된 회전 위치를 다시 복원
-            Rtc.MatrixStack.Push(clonedDoc.RotateOrigin.X, clonedDoc.RotateOrigin.Y);
-
-            ///3. 문서에 설정된 회전량 적용
-            Rtc.MatrixStack.Push(clonedDoc.RotateAngle);
-
-            ///2. 회전을 위해 회점 중심을 원점으로 이동
-            Rtc.MatrixStack.Push(-clonedDoc.RotateOrigin.X, -clonedDoc.RotateOrigin.Y);
-
-            ///1. 문서의 원점 위치를 설정
-            Rtc.MatrixStack.Push(-clonedDoc.Origin.X, -clonedDoc.Origin.Y);
             return true;
         }
         private bool MainWork()
@@ -225,9 +216,16 @@ namespace SpiralLab.Sirius
             ///지정된 오프셋 개수 만큼 가공            
             for (int i = 0; i < this.offsets.Count; i++)
             {
-                var xyt = offsets[i];
                 ///오프셋 정보를 행렬로 변환하여 RTC 행렬 스택에 Push
+                var xyt = offsets[i];
                 Rtc.MatrixStack.Push(xyt.dx, xyt.dy, xyt.angle);
+
+                var matrix = Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///4. 원점으로 이동된 회전 위치를 다시 복원
+                    Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///3. 문서에 설정된 회전량 적용
+                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.RotateOrigin)) *  ///2. 회전을 위해 회점 중심을 원점으로 이동
+                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin));   ///1. 문서의 원점 위치를 이동
+                Rtc.MatrixStack.Push(matrix);
+
                 foreach (var layer in this.clonedDoc.Layers)    ///레이어 순회
                 {
                     if (layer.IsMarkerable)
@@ -247,6 +245,7 @@ namespace SpiralLab.Sirius
                 }
                 ///위에서 Push 된 행렬스택에서 반드시 Pop 하여야 한다 !
                 Rtc.MatrixStack.Pop();
+                Rtc.MatrixStack.Pop();
                 if (!success)
                     break;
             }
@@ -254,11 +253,6 @@ namespace SpiralLab.Sirius
         }
         private bool PostWork()
         {
-            ///prework 에서 호출한 MatrixStack push 만큼 pop 하여 스택이 깨지지 않도록 시도
-            Rtc.MatrixStack.Pop();
-            Rtc.MatrixStack.Pop();
-            Rtc.MatrixStack.Pop();
-            Rtc.MatrixStack.Pop();
             Rtc.ListEnd();
 
             if (!Rtc.CtlGetStatus(RtcStatus.Aborted))
