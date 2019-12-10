@@ -19,7 +19,7 @@
  - support laser power control with varios methods (like as analog, digital, frequency, pulse width modulation)
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, spiral, trepan, group for multiple entities and layers.
  - support powerful undo/redo actions.
- - support dxf file format importer and sirius custom file format.
+ - support Dxf/HPGL file format importer and sirius custom file format.
  - support 1 source(single document data), multiple view windows.
  - support customizable and extensible laser source and marker interface.
  - support laser path visualizer and simulator.
@@ -54,5 +54,7 @@
 **5. Version history**
 
  - 2019.12.3  v0.1 first release
+ - 2019.12.10 v0.2 support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
+ 
  
 
