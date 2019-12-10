@@ -112,15 +112,15 @@ namespace SpiralLab.Sirius
             var marker = new MarkerDefault(0);
             marker.Name = "marker #2";
             marker.OnFinished += Marker_OnFinished;
-            marker.Offsets.Add((-20.0, 20.0, -90));
-            marker.Offsets.Add((0.0, 20.0, 0.0));
-            marker.Offsets.Add((20.0, 20.0, 90.0));
-            marker.Offsets.Add((-20.0, 0.0, -180.0));
-            marker.Offsets.Add((0.0, 0.0, 0.0));
-            marker.Offsets.Add((20.0, 0.0f, 180.0));
-            marker.Offsets.Add((-20.0, -20.0, -270.0));
-            marker.Offsets.Add((0.0, -20.0, 0.0));
-            marker.Offsets.Add((20.0, -20.0, 270.0));
+            marker.Offsets.Add((-20.0f, 20.0f, -90f));
+            marker.Offsets.Add((0.0f, 20.0f, 0.0f));
+            marker.Offsets.Add((20.0f, 20.0f, 90.0f));
+            marker.Offsets.Add((-20.0f, 0.0f, -180.0f));
+            marker.Offsets.Add((0.0f, 0.0f, 0.0f));
+            marker.Offsets.Add((20.0f, 0.0f, 180.0f));
+            marker.Offsets.Add((-20.0f, -20.0f, -270.0f));
+            marker.Offsets.Add((0.0f, -20.0f, 0.0f));
+            marker.Offsets.Add((20.0f, -20.0f, 270.0f));
             marker.Ready(doc, rtc, laser);   //layer cloned 
             marker.Start();
         }

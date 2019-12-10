@@ -142,7 +142,7 @@ namespace SpiralLab.Sirius
             foundedPowerX = watt;
             return true;
         }
-        public bool ListPower(IRtc rtc, Pen pen)
+        public bool ListPower(IRtc rtc, IPen pen)
         {
             if (this.IsError)
                 return false;

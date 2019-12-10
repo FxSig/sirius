@@ -70,12 +70,14 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// x,y,angle 에 대한 오프셋 배열 정보
         /// </summary>
-        public List<(double dx, double dy, double angle)> Offsets
+        public List<(float dx, float dy, float angle)> Offsets
         {
             get { return this.offsets; }
             set { this.offsets = value; }
         }
-        private List<(double dx, double dy, double angle)> offsets;
+        private List<(float dx, float dy, float angle)> offsets;
+
+        public float ScannerRotateAngle { get; set; }
 
         public Form Form { get; set; }
 
@@ -86,7 +88,7 @@ namespace SpiralLab.Sirius
         {
             this.Index = index;
             this.ElaspedTime = TimeSpan.Zero;
-            this.offsets = new List<(double dx, double dy, double angle)>();
+            this.offsets = new List<(float dx, float dy, float angle)>();
             this.Form = null; /// 윈폼을 만들어 삽입
         }
 
@@ -216,15 +218,18 @@ namespace SpiralLab.Sirius
             ///지정된 오프셋 개수 만큼 가공            
             for (int i = 0; i < this.offsets.Count; i++)
             {
-                ///오프셋 정보를 행렬로 변환하여 RTC 행렬 스택에 Push
                 var xyt = offsets[i];
-                Rtc.MatrixStack.Push(xyt.dx, xyt.dy, xyt.angle);
 
-                var matrix = Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///4. 원점으로 이동된 회전 위치를 다시 복원
+                var matrix1 = Matrix3x2.CreateRotation(this.ScannerRotateAngle) *   ///7. 스캐너 회전량 적용
+                    Matrix3x2.CreateTranslation(xyt.dx, xyt.dy) * /// 6. 오프셋 이동량
+                    Matrix3x2.CreateRotation(xyt.angle);  /// 5. 오프셋 회전량
+                this.Rtc.MatrixStack.Push(matrix1);
+
+                var matrix2 = Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///4. 원점으로 이동된 회전 위치를 다시 복원
                     Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///3. 문서에 설정된 회전량 적용
                     Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.RotateOrigin)) *  ///2. 회전을 위해 회점 중심을 원점으로 이동
                     Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin));   ///1. 문서의 원점 위치를 이동
-                Rtc.MatrixStack.Push(matrix);
+                this.Rtc.MatrixStack.Push(matrix2);
 
                 foreach (var layer in this.clonedDoc.Layers)    ///레이어 순회
                 {
