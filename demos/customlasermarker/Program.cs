@@ -34,6 +34,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {

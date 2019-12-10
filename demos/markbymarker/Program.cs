@@ -32,6 +32,7 @@
 using System;
 using System.Diagnostics;
 using System.Numerics;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {

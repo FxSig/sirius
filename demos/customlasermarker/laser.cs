@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-    public class YourCustomLaser : SpiralLab.Sirius.ILaser
+    public class YourCustomLaser : ILaser
     {
         /// <summary>
         /// 식별 번호

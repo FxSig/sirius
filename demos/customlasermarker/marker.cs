@@ -23,10 +23,11 @@ namespace SpiralLab.Sirius
         /// 가공에 걸린 시간
         /// 시간 / 오프셋 개수 = 오프셋 하나당 가공에 걸린 시간
         /// </summary>
-        public TimeSpan ElaspedTime { get; private set; }
+        public TimeSpan ElaspedTime { get; set; }
 
-        public IRtc Rtc { get; private set; }
-        public ILaser Laser { get; private set; }
+        public IRtc Rtc { get; set; }
+        public ILaser Laser { get; set; }
+        public IMotion Motion { get; set; }
         public bool IsReady
         {
             get
@@ -76,7 +77,6 @@ namespace SpiralLab.Sirius
             set { this.offsets = value; }
         }
         private List<(float dx, float dy, float angle)> offsets;
-
         public float ScannerRotateAngle { get; set; }
 
         public Form Form { get; set; }
@@ -100,20 +100,21 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="doc">가공 데이타가 있는 문서 객체</param>
         /// <returns></returns>
-        public bool Ready(IDocument doc, IRtc rtc, ILaser laser)
+        public bool Ready(IDocument doc, IRtc rtc, ILaser laser, IMotion motion=null)
         {
             if (doc == null || rtc == null || laser == null)
                 return false;
 
             this.Rtc = rtc;
             this.Laser = laser;
+            this.Motion = motion;
             this.clonedDoc = (IDocument)doc.Clone();
             Debug.Assert(clonedDoc != null);
             this.OnProgress?.Invoke(this, 0);
             return true;
         }
 
-        public bool Start()
+        public bool Start(object args=null)
         {
             if (Rtc.CtlGetStatus(RtcStatus.Busy))
             {
@@ -155,7 +156,6 @@ namespace SpiralLab.Sirius
                 return false;
             }
 
-            Rtc.CtlReset();
             timer = Stopwatch.StartNew();
             this.OnProgress?.Invoke(this, 0);
             this.IsFinished = false;
@@ -171,6 +171,7 @@ namespace SpiralLab.Sirius
             Logger.Log(Logger.Type.Warn, $"marker [{this.Index}]: trying to stop ...");
             Rtc.CtlAbort();
             Rtc.CtlLaserOff();
+            Motion?.Stop();
             if (this.thread != null)
             {
                 if (!this.thread.Join(2*1000))
@@ -187,14 +188,16 @@ namespace SpiralLab.Sirius
         {
             ///RTC및 레이저 소스의 에러 해제 시도
             this.Rtc.CtlReset();
-            this.Laser.CtlReset();
+            this.Laser?.CtlReset();
+            this.Motion?.Reset();
             return true;
         }
 
         #region 쓰레드 작업
-        public void WorkerThread()
+        private void WorkerThread()
         {
             var matrixStack = (MatrixStack)this.Rtc.MatrixStack.Clone();
+            this.Rtc.MatrixStack.LoadIdentity();
             bool success =
                 PreWork() &&
                 MainWork() &&
@@ -219,17 +222,15 @@ namespace SpiralLab.Sirius
             for (int i = 0; i < this.offsets.Count; i++)
             {
                 var xyt = offsets[i];
-
-                var matrix1 = Matrix3x2.CreateRotation(this.ScannerRotateAngle) *   ///7. 스캐너 회전량 적용
+                var matrix =
+                    Matrix3x2.CreateRotation(this.ScannerRotateAngle) *   ///7. 스캐너 회전량 적용
                     Matrix3x2.CreateTranslation(xyt.dx, xyt.dy) * /// 6. 오프셋 이동량
-                    Matrix3x2.CreateRotation(xyt.angle);  /// 5. 오프셋 회전량
-                this.Rtc.MatrixStack.Push(matrix1);
-
-                var matrix2 = Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///4. 원점으로 이동된 회전 위치를 다시 복원
-                    Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///3. 문서에 설정된 회전량 적용
-                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.RotateOrigin)) *  ///2. 회전을 위해 회점 중심을 원점으로 이동
-                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin));   ///1. 문서의 원점 위치를 이동
-                this.Rtc.MatrixStack.Push(matrix2);
+                    Matrix3x2.CreateRotation(xyt.angle) *  /// 5. 오프셋 회전량
+                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin)) * ///4. 문서의 원점 위치를 이동
+                    Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///3. 회전 중심 위치 원복
+                    Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///2. 문서에 설정된 회전량 적용
+                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.RotateOrigin));  ///1. 회전을 위해 회점 중심을 원점으로 이동
+                this.Rtc.MatrixStack.Push(matrix);
 
                 foreach (var layer in this.clonedDoc.Layers)    ///레이어 순회
                 {
@@ -249,7 +250,6 @@ namespace SpiralLab.Sirius
                         break;
                 }
                 ///위에서 Push 된 행렬스택에서 반드시 Pop 하여야 한다 !
-                Rtc.MatrixStack.Pop();
                 Rtc.MatrixStack.Pop();
                 if (!success)
                     break;
