@@ -14,7 +14,7 @@
  - support RTC control with 3x3 matrix stack operation.
  - support RTC field correction with easy to use.
  - support unlimited vector data by RTC controller automatically.
- - support RTC's MOTF(marking on the fly) option and sky-writing functions are enabled.
+ - support RTC's MOTF(marking on the fly), XL-SCAN(SyncAXIS) and sky-writing functions.
  - support many kinds of commerical laser sources (to the future...)
  - support laser power control with varios methods (like as analog, digital, frequency, pulse width modulation)
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, spiral, trepan, group for multiple entities and layers.
@@ -34,6 +34,7 @@
 
  - Development Environment : .NET dll library with x32/x64 
  - Add spirallab.sirius.dll file as user control into Microsoft Visual Studio.
+ - spirallab.sirius.motf.dll, spirallab.sirius.syncaxis.dll are optional
  - There are 2 winforms controls (Sirius.EditorForm and Sirius.ViewerForm)
  - There are multiple demo programs in DEMOS directory
 
@@ -53,8 +54,10 @@
 
 **5. Version history**
 
- - 2019.12.3  v0.1 first release
+ - 2019.12.11 v0.3 support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
  - 2019.12.10 v0.2 support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
+ - 2019.12.3  v0.1 first release
+ 
  
  
 

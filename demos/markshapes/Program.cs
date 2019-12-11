@@ -25,6 +25,7 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Numerics;
 
 namespace SpiralLab.Sirius
@@ -37,11 +38,12 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            IRtc rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
-            //IRtc rtc = new Rtc5(0); ///rtc 5 제어기 생성
-            double fov = 60.0;    /// scanner field of view : 60mm            
-            double kfactor = Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
-            rtc.Initialize(kfactor, LaserMode.Yag1, "cor_1to1.ct5");    /// 스캐너 보정 파일 지정 : correction file
+            var rtc = new RtcVirtual(0); ///create Rtc for dummy
+            //var rtc = new Rtc5(0); ///create Rtc5 controller
+            float fov = 60.0f;    /// scanner field of view : 60mm            
+            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
@@ -76,7 +78,7 @@ namespace SpiralLab.Sirius
                         DrawRectangle(laser, rtc, 10, 10);
                         break;
                     case ConsoleKey.D:
-                        DrawCircleWithDots(laser, rtc, 10, 1.0);
+                        DrawCircleWithDots(laser, rtc, 10, 1.0f);
                         break;
                 }
                 rtc.ListExecute(true);
@@ -86,7 +88,7 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }        
         /// <summary>
-        /// 지정된 반지름을 갖는 원 그리기
+        /// draw circle
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="radius"></param>
@@ -94,11 +96,11 @@ namespace SpiralLab.Sirius
         {
             rtc.ListBegin(laser);
             rtc.ListJump(new Vector2((float)radius, 0));
-            rtc.ListArc(new Vector2(0, 0), 360.0);
+            rtc.ListArc(new Vector2(0, 0), 360.0f);
             rtc.ListEnd();
         }
         /// <summary>
-        /// 지정된 크기의 직사각형 그리기
+        /// draw rectangle
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="width"></param>
@@ -114,15 +116,15 @@ namespace SpiralLab.Sirius
             rtc.ListEnd();
         }
         /// <summary>
-        /// 원(호)를 따라 매 1도마다 점 찍기
+        /// draw cicle with dots
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="radius"></param>
         /// <param name="durationMsec"></param>
-        private static void DrawCircleWithDots(ILaser laser, IRtc rtc, double radius, double durationMsec)
+        private static void DrawCircleWithDots(ILaser laser, IRtc rtc, float radius, float durationMsec)
         {
             rtc.ListBegin(laser);
-            for (double angle=0; angle<360; angle+=1)
+            for (float angle =0; angle<360; angle+=1)
             {
                 double x = radius * Math.Sin(angle * Math.PI / 180.0);
                 double y = radius * Math.Cos(angle * Math.PI / 180.0);

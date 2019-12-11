@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +23,11 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             //Rtc 2개 생성
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             var rtc1 = new RtcVirtual(0, "output1.txt");
-            rtc1.Initialize(1000, LaserMode.Yag1, null);
+            rtc1.Initialize(1000, LaserMode.Yag1, correctionFile);
             var rtc2 = new RtcVirtual(1, "output2.txt");
-            rtc2.Initialize(1000, LaserMode.Yag1, null);
+            rtc2.Initialize(1000, LaserMode.Yag1, correctionFile);
 
             //Laser 2개 생성
             var laser1 = new LaserVirtual(0, "Virtual Laser1", 20);

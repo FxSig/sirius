@@ -27,6 +27,7 @@
 
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Numerics;
 
 namespace SpiralLab.Sirius
@@ -61,11 +62,12 @@ namespace SpiralLab.Sirius
             Console.ReadKey(false);
 
             #region initialize RTC 
-            IRtc rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
-            //IRtc rtc = new Rtc5(0); ///rtc 5 제어기 생성
-            double fov = 60.0;    /// scanner field of view : 60mm            
-            double kfactor = Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
-            rtc.Initialize(kfactor, LaserMode.Yag1, "cor_1to1.ct5");    /// 스캐너 보정 파일 지정 : correction file
+            var rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
+            //var rtc = new Rtc5(0); ///rtc 5 제어기 생성
+            float fov = 60.0f;    /// scanner field of view : 60mm            
+            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays

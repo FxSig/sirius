@@ -31,8 +31,8 @@ namespace editor_viewer
             //IRtc rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
             IRtc rtc = new RtcVirtual(0, "output.txt"); ///가상 rtc 제어기 생성
             //IRtc rtc = new Rtc5(0); ///rtc 5 제어기 생성
-            double fov = 60.0;    /// scanner field of view : 60mm            
-            double kfactor = Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            float fov = 60.0f;    /// scanner field of view : 60mm            
+            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             rtc.Initialize(kfactor, LaserMode.Yag1, "cor_1to1.ct5");    /// 스캐너 보정 파일 지정 : correction file
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s

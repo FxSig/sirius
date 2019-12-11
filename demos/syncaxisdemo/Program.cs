@@ -16,10 +16,9 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * IRtc 인터페이스와 함께 행렬 사용
  * 
- * IRtc 인터페이스 및 행렬 사용법
- * 행렬을 사용하여 회전하면서 직선, 사각형의 가공을 실시한다.
+ * IRtc 인터페이스를 직접 사용하는 방법
+ * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -39,12 +38,8 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0); ///create Rtc for dummy
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            float fov = 60.0f;    /// scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
+            var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///rtc6 with XL SCAN
+            rtc.Initialize(0.0f, LaserMode.Yag1, string.Empty); 
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
@@ -59,8 +54,9 @@ namespace SpiralLab.Sirius
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
                 Console.WriteLine("");
-                Console.WriteLine("'R' : draw rectangle with rotate");
-                Console.WriteLine("'L' : draw lines with rotate");
+                Console.WriteLine("'C' : draw circle (scanner only)");
+                Console.WriteLine("'R' : draw rectangle (stage only)");
+                Console.WriteLine("'L' : draw circle with lines (stage + scanner)");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -71,59 +67,81 @@ namespace SpiralLab.Sirius
                 var timer = new Stopwatch();
                 switch (key.Key)
                 {
+                    case ConsoleKey.C:
+                        DrawCircle(laser, rtc, 10);
+                        break;
                     case ConsoleKey.R:
-                        DrawRectangle(laser, rtc, 10, 10, 0, 360);
+                        DrawRectangle(laser, rtc, 10, 10);
                         break;
                     case ConsoleKey.L:
-                        DrawLinesWithRotate(laser, rtc, 0, 360);
+                        DrawCircleWithLines(laser, rtc, 10);
                         break;
                 }
-                rtc.ListExecute(true);
+
                 Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
             rtc.Dispose();
         }
-       
+        /// <summary>
+        /// 지정된 반지름을 갖는 원 그리기
+        /// </summary>
+        /// <param name="rtc"></param>
+        /// <param name="radius"></param>
+        private static void DrawCircle(ILaser laser, IRtc rtc, double radius)
+        {
+            rtc.ListBegin(laser, MotionType.ScannerOnly);
+            rtc.ListJump(new Vector2((float)radius, 0));
+            rtc.ListArc(new Vector2(0, 0), 360.0f);
+            rtc.ListEnd();
+            rtc.ListExecute(true);
+        }
         /// <summary>
         /// 지정된 크기의 직사각형 그리기
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        private static void DrawRectangle(ILaser laser, IRtc rtc, double width, double height, double angleStart, double angleEnd)
+        private static void DrawRectangle(ILaser laser, IRtc rtc, double width, double height)
         {
-            rtc.ListBegin(laser);
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
-            {
-                rtc.MatrixStack.Push(angle);
-                rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
-                rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
-                rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
-                rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
-                rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
-                rtc.MatrixStack.Pop();
-            }
-
+            rtc.MatrixStack.Push(width * 1.5f, height * 1.5f);///transit safety area
+            rtc.ListBegin(laser, MotionType.StageOnly);
+            rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
+            rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
+            rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
+            rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
+            rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
             rtc.ListEnd();
-        }       
+            rtc.ListExecute(true);
+            rtc.MatrixStack.Pop();
+        }
         /// <summary>
-        /// 행렬을 이용해 직선을 그릴때 1도마다 직선을 회전시켜 그리기
+        /// 직선으로 원 그리기
         /// </summary>
         /// <param name="rtc"></param>
-        /// <param name="angleStart"></param>
-        /// <param name="angleEnd"></param>
-        private static void DrawLinesWithRotate(ILaser laser, IRtc rtc, double angleStart, double angleEnd)
+        /// <param name="radius"></param>
+        /// <param name="durationMsec"></param>
+        private static void DrawCircleWithLines(ILaser laser, IRtc rtc, float radius)
         {
-            rtc.ListBegin(laser);
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
+            rtc.MatrixStack.Push(radius * 2f, radius * 2f);///transit safety area
+            rtc.ListBegin(laser, MotionType.StageAndScanner);
+            double x = radius * Math.Sin(0 * Math.PI / 180.0);
+            double y = radius * Math.Cos(0 * Math.PI / 180.0);
+            rtc.ListJump(new Vector2((float)x, (float)y));
+
+            for (float angle = 10; angle < 360; angle += 10)
             {
-                rtc.MatrixStack.Push(angle);
-                rtc.ListJump(new Vector2(-10, 0));
-                rtc.ListMark(new Vector2(10, 0));
-                rtc.MatrixStack.Pop();
+                x = radius * Math.Sin(angle * Math.PI / 180.0);
+                y = radius * Math.Cos(angle * Math.PI / 180.0);
+                rtc.ListMark(new Vector2((float)x, (float)y));
             }
+            x = radius * Math.Sin(0 * Math.PI / 180.0);
+            y = radius * Math.Cos(0 * Math.PI / 180.0);
+            rtc.ListMark(new Vector2((float)x, (float)y));
+
             rtc.ListEnd();
+            rtc.ListExecute(true);
+            rtc.MatrixStack.Pop();
         }
     }
 }
