@@ -54,6 +54,7 @@
 
 **5. Version history**
 
+ - 2019.12.12 v0.4 new sirius text entity  (support font format : *.cxf)
  - 2019.12.11 v0.3 support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
  - 2019.12.10 v0.2 support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
  - 2019.12.3  v0.1 first release
