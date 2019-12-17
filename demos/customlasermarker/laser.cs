@@ -8,7 +8,7 @@ using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-    public class YourCustomLaser : ILaser
+    public class YourCustomLaser : SpiralLab.Sirius.ILaser
     {
         /// <summary>
         /// 식별 번호
@@ -33,7 +33,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 레이저 파워를 제어하는 방법
         /// </summary>
-        public PowerXFactor PowerXFactor { get; set; }
+        public SpiralLab.Sirius.PowerXFactor PowerXFactor { get; set; }
 
         /// <summary>
         /// 최대 파워를 위한 X 요소값
@@ -54,7 +54,7 @@ namespace SpiralLab.Sirius
             get { return false; }
         }
         public bool IsError { get; set; }
-
+        public SpiralLab.Sirius.IPen CurrentPen { get; set; }
         public Form Form { get { return form; } }
         private YourLaserForm form;
 
@@ -108,17 +108,17 @@ namespace SpiralLab.Sirius
             return true;
         }
 
-        public bool CtlPower(IRtc rtc, float powerWatt)
+        public bool CtlPower(IRtc rtc, IPen pen)
         {
             if (this.IsBusy)
                 return false;
             if (this.IsError)
                 return false;
             bool success = true;
-            if (powerWatt == this.CurrentPowerWatt)
+            if (pen.Power == CurrentPowerWatt)
                 return true;
             /// powerWatt 출력을 내기 위한  x factor (normalPowerX) 검색
-            this.LookUpPowerX(powerWatt, out float powerX);
+            this.LookUpPowerX(pen.Power, out float powerX);
             if (this.PowerXFactor == PowerXFactor.ByUser)
             {
                 ///do it yourself
@@ -129,9 +129,10 @@ namespace SpiralLab.Sirius
 
             if (success)
             {
-                this.CurrentPowerWatt = powerWatt;
+                this.CurrentPowerWatt = pen.Power;
                 this.CurrentPowerX = powerX;
-                Logger.Log(Logger.Type.Warn, $"set laser power to {powerWatt}W");
+                this.CurrentPen = pen;
+                Logger.Log(Logger.Type.Warn, $"set laser power to {pen.Power}W");
             }
             return success;
         }
@@ -176,6 +177,7 @@ namespace SpiralLab.Sirius
             {
                 this.CurrentPowerWatt = pen.Power;
                 this.CurrentPowerX = powerX;
+                this.CurrentPen = pen;
             }
             return success;
         }

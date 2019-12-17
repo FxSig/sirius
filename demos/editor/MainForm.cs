@@ -40,7 +40,11 @@ namespace SpiralLab.Sirius
             #region 레이저 소스 초기화
             ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
             laser.Initialize();
-            laser.CtlPower(rtc, 8.0f);
+            var pen = new PenDefault
+            {
+                Power = 10.0f,
+            };
+            laser.CtlPower(rtc, pen);
             #endregion
 
             this.siriusEditorForm1.Laser = laser;

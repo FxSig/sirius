@@ -1,5 +1,4 @@
-﻿using SpiralLab.Sirius;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
-namespace editor_viewer
+namespace SpiralLab.Sirius
 {
     public partial class FormMain : Form
     {
@@ -43,7 +43,11 @@ namespace editor_viewer
             #region 레이저 소스 초기화
             ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
             laser.Initialize();
-            laser.CtlPower(rtc, 8.0f);
+            var pen = new PenDefault
+            {
+                Power = 10.0f,
+            };
+            laser.CtlPower(rtc, pen);
             #endregion
             this.siriusEditorForm1.Laser = laser;
 

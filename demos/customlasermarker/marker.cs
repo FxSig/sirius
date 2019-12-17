@@ -223,7 +223,7 @@ namespace SpiralLab.Sirius
             {
                 var xyt = offsets[i];
                 var matrix =
-                    Matrix3x2.CreateRotation(this.ScannerRotateAngle) *   ///7. 스캐너 회전량 적용
+                    Matrix3x2.CreateRotation((float)(this.ScannerRotateAngle * Math.PI / 180.0)) *   ///7. 스캐너 회전량 적용
                     Matrix3x2.CreateTranslation(xyt.dx, xyt.dy) * /// 6. 오프셋 이동량
                     Matrix3x2.CreateRotation(xyt.angle) *  /// 5. 오프셋 회전량
                     Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin)) * ///4. 문서의 원점 위치를 이동

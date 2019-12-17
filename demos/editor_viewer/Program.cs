@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace editor_viewer
+namespace SpiralLab.Sirius
 {
     static class Program
     {

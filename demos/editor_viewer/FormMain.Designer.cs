@@ -1,4 +1,4 @@
-﻿namespace editor_viewer
+﻿namespace SpiralLab.Sirius
 {
     partial class FormMain
     {

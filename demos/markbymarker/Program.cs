@@ -22,8 +22,7 @@
  * 3. 벡터 가공 장치(Rtc) 
  * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
  * 
- * 마커는 
- * 
+ * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -56,9 +55,13 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
-            ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
+            ILaser laser = new LaserVirtual(0, "virtual", 10.0f);
             laser.Initialize();
-            laser.CtlPower(rtc, 8.0f);
+            var pen = new PenDefault
+            {
+                Power = 10.0f,
+            };
+            laser.CtlPower(rtc, pen);
             #endregion
 
             #region create entity at 0,0 location
