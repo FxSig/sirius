@@ -4,9 +4,9 @@
 
  SuperEasy library for Control for Scanner and Lasers
  
-[![](http://img.youtube.com/vi/pc70q_jc1Yw/0.jpg)](http://www.youtube.com/watch?v=pc70q_jc1Yw "SpiralLab.Sirius Library Demo")
+ ![sirius](https://user-images.githubusercontent.com/58460570/70974494-38c41780-20eb-11ea-8567-afe02fab5441.png)
 
-
+ 
  
 **2. Features**
 
@@ -41,6 +41,8 @@
 
 ![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
  *The program running about 10 minutes in evalution copy mode !*
+ 
+ [![](http://img.youtube.com/vi/pc70q_jc1Yw/0.jpg)](http://www.youtube.com/watch?v=pc70q_jc1Yw "SpiralLab.Sirius Library Demo")
  
  
 **4. Author**
