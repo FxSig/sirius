@@ -20,6 +20,7 @@
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, spiral, trepan, group for multiple entities and layers.
  - support powerful undo/redo actions.
  - support Dxf/HPGL file format importer and sirius custom file format.
+ - support Datmatrix/QR Code  and 1D barcodes format( mark with dots or lines)
  - support 1 source(single document data), multiple view windows.
  - support customizable and extensible laser source and marker interface.
  - support laser path visualizer and simulator.
@@ -54,6 +55,11 @@
 
 **5. Version history**
 
+ - 2019.12.17 v0.5 
+  added) wobbel and raster operation (bitmap) in Rtc
+  added) barcode entities : DataMatrix, QR code, Code-39, Code-128, EAN-8, EAN-13, UPC-A, UPC-E
+  fixed) calculation boundrect and rotate (by angle value)
+ 
  - 2019.12.12 v0.4 new sirius text entity  (support font format : *.cxf)
  - 2019.12.11 v0.3 support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
  - 2019.12.10 v0.2 support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
