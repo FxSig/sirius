@@ -57,7 +57,7 @@ namespace SpiralLab.Sirius
             #region initialize Laser source
             ILaser laser = new LaserVirtual(0, "virtual", 10.0f);
             laser.Initialize();
-            var pen = new PenDefault
+            var pen = new Pen
             {
                 Power = 10.0f,
             };

@@ -54,7 +54,7 @@ namespace SpiralLab.Sirius
             get { return false; }
         }
         public bool IsError { get; set; }
-        public SpiralLab.Sirius.IPen CurrentPen { get; set; }
+        public SpiralLab.Sirius.Pen CurrentPen { get; set; }
         public Form Form { get { return form; } }
         private YourLaserForm form;
 
@@ -108,7 +108,7 @@ namespace SpiralLab.Sirius
             return true;
         }
 
-        public bool CtlPower(IRtc rtc, IPen pen)
+        public bool CtlPower(IRtc rtc, Pen pen)
         {
             if (this.IsBusy)
                 return false;
@@ -144,7 +144,7 @@ namespace SpiralLab.Sirius
             foundedPowerX = watt;
             return true;
         }
-        public bool ListPower(IRtc rtc, IPen pen)
+        public bool ListPower(IRtc rtc, Pen pen)
         {
             if (this.IsError)
                 return false;

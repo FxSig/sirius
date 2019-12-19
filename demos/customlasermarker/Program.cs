@@ -60,7 +60,7 @@ namespace SpiralLab.Sirius
             #region initialize Laser source
             ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f, PowerXFactor.ByUser);
             laser.Initialize();
-            var pen = new PenDefault
+            var pen = new Pen
             {
                 Power = 10.0f,
             };

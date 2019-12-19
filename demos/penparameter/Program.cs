@@ -54,7 +54,7 @@ namespace SpiralLab.Sirius
             var layer = new Layer("default");
             doc.Layers.Add(layer);
             layer.Add(
-                new PenDefault()
+                new Pen()
                 {
                     Frequency = 100 * 1000,
                     PulseWidth = 2,

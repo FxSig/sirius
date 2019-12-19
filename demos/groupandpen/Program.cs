@@ -58,7 +58,7 @@ namespace SpiralLab.Sirius
             ///첫번째 그룹 객체 생성
             var group1 = new Group();
             group1.Add(
-               new PenDefault()
+               new Pen()
                {
                    Frequency = 100 * 1000,
                    PulseWidth = 2,
@@ -79,7 +79,7 @@ namespace SpiralLab.Sirius
             /// 두번째 그룹 객체 생성
             var group2 = new Group();
             group2.Add(
-               new PenDefault()
+               new Pen()
                {
                    Frequency = 50 * 1000,
                    PulseWidth = 2,

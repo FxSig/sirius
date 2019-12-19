@@ -34,7 +34,7 @@
   ----
 **3. How to use ?**
 
- - Development Environment : .NET dll library with x32/x64 
+ - Development Environment : .NET dll library with x64 (x32 avaiable in the future)
  - Add spirallab.sirius.dll file as user control into Microsoft Visual Studio.
  - spirallab.sirius.motf.dll, spirallab.sirius.syncaxis.dll are optional
  - There are 2 winforms controls (Sirius.EditorForm and Sirius.ViewerForm)
@@ -57,6 +57,7 @@
 **5. Version history**
 
 
+* 2019.12.19 v0.6 added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
 * 2019.12.17 v0.5 added 1/2D  barcode entities / support wobbel and raster operation in RTC
 * 2019.12.12 v0.4 new sirius text entity  (support font format : *.cxf)
 * 2019.12.11 v0.3 support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
