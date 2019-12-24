@@ -15,10 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
- *
  * 
- * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
- * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -38,9 +35,8 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var motf = new Rtc5MOTF(0); ///rtc5용 MOTF 제어기 생성
-            var rtc = motf as Rtc5;///rtc5 제어기 생성
-            
+            IRtc rtc = new Rtc53D(0); ///rtc5용 VarioScan 제어기 생성
+
             float fov = 60.0f;    /// scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
@@ -48,6 +44,8 @@ namespace SpiralLab.Sirius
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
+
+            var rtc3D = rtc as IRtc3D;
             #endregion
 
             #region initialize Laser (virtial)
@@ -59,9 +57,14 @@ namespace SpiralLab.Sirius
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
                 Console.WriteLine("");
-                Console.WriteLine("'R' : encoder reset");
-                Console.WriteLine("'D' : show dialog");
-                Console.WriteLine("'C' : draw circle with MOTF");
+                Console.WriteLine("'A' : reset z offset");
+                Console.WriteLine("'B' : z offset to 1mm");
+                Console.WriteLine("'C' : z offset to -1mm");
+                Console.WriteLine("'D' : reset z defocus");
+                Console.WriteLine("'E' : z decocus to 1mm");
+                Console.WriteLine("'F' : z decocus to -1mm");
+
+                Console.WriteLine("'S' : show dialog");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -72,14 +75,29 @@ namespace SpiralLab.Sirius
                 var timer = new Stopwatch();
                 switch (key.Key)
                 {
-                    case ConsoleKey.R:
-                        motf.CtlReset();
+                    case ConsoleKey.A:
+                        rtc3D.CtlZOffset(0);
                         break;
-                    case ConsoleKey.D:
-                        motf.Form.Show();
+                    case ConsoleKey.B:
+                        rtc3D.CtlZOffset(1.0f);
                         break;
                     case ConsoleKey.C:
-                        DrawCircleWithPosition(laser, rtc, motf);
+                        rtc3D.CtlZOffset(-1.0f);
+                        break;
+                    case ConsoleKey.D:
+                        rtc3D.CtlZDefocus(0);
+                        break;
+                    case ConsoleKey.E:
+                        rtc3D.CtlZDefocus(1.0f);
+                        break;
+                    case ConsoleKey.F:
+                        rtc3D.CtlZDefocus(-1.0f);
+                        break;
+                    case ConsoleKey.S:
+                        rtc.Form.Show();
+                        break;
+                    case ConsoleKey.Q:
+                        DrawCircleWith3D(laser, rtc, rtc3D);
                         break;
                 }
 
@@ -88,26 +106,15 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-        private static void DrawCircleWithPosition(ILaser laser, IRtc rtc, IRtcMOTF motf)
+        private static void DrawCircleWith3D(ILaser laser, IRtc rtc, IRtc3D rtc3D)
         {
-            ///turn on external /start
-            ///turn on reset encoder when external start
-            var extCtrl = new RtcExternalControlMode();
-            extCtrl.Add(RtcExternalControlMode.Signal.EncoderReset);
-            extCtrl.Add(RtcExternalControlMode.Signal.ExternalStart);
-            extCtrl.Add(RtcExternalControlMode.Signal.ExternalStartAgain);
-            motf.CtlExternalControl(extCtrl);
-
             rtc.ListBegin(laser);
-            motf.ListMOTFBegin();
-            motf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);//wait until encoder x position over 10.0mm
-            rtc.ListJump(new Vector2((float)10, 0)); //draw circle
-            rtc.ListArc(new Vector2(0, 0), 360.0f);
-            motf.ListMOTFEnd(Vector2.Zero);
-
+            //draw circle in z = +1 mm
+            rtc3D.ListJump3D(new Vector3((float)10, 0, 1)); 
+            rtc3D.ListArc3D(new Vector3(0, 0, 1), 360.0f);
             rtc.ListEnd();
-            ///rtc.ListExecute(); /// its not need to call because its started by external trigger
+            rtc.ListExecute(); 
         }
-      
+
     }
 }

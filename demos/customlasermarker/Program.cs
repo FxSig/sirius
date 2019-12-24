@@ -68,7 +68,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region prepare your marker
-            var marker = new YourMarker(0);
+            var marker = new YourCustomMarker(0);
             marker.Name = "custom marker";
             marker.OnFinished += Marker_OnFinished;
             #endregion
@@ -123,7 +123,7 @@ namespace SpiralLab.Sirius
             Debug.Assert(null != doc);
             marker.Ready(doc, rtc, laser);
             marker.Offsets.Clear();
-            marker.Offsets.Add((0, 0, 0));
+            marker.Offsets.Add(Offset.Zero);
             marker.Start();
         }
 

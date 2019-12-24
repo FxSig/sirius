@@ -145,15 +145,15 @@ namespace SpiralLab.Sirius
             var correction = new RtcCorrection2D(0, 3, 3, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차값을 넣는 방법
-            correction.AddRelative(0, 0, new Vector3(-20, 20, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(0, 1, new Vector3(0, 20, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(0, 2, new Vector3(20, 20, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(1, 0, new Vector3(-20, 0, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(1, 1, new Vector3(0, 0, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(1, 2, new Vector3(20, 0, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(2, 0, new Vector3(-20, -20, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(2, 1, new Vector3(0, -20, 0), new Vector3(0.01f, 0.01f, 0));
-            correction.AddRelative(2, 2, new Vector3(20, -20, 0), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 1, new Vector2(0, 20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 2, new Vector2(20, 20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 0, new Vector2(-20, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 1, new Vector2(0, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 2, new Vector2(20, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 0, new Vector2(-20, -20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 1, new Vector2(0, -20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.01f, 0.01f));
             #endregion
 
             #region inputs absolute position values : 절대적인 오차값을 넣는 방법

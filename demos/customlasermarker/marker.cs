@@ -12,7 +12,7 @@ using SpiralLab.Sirius;
 namespace SpiralLab.Sirius
 {
 
-    public class YourMarker: IMarker
+    public class YourCustomMarker: IMarker
     {
         public event MarkerProgressEventHandler OnProgress;
         public event MarkerFinishedEventHandler OnFinished;
@@ -40,7 +40,7 @@ namespace SpiralLab.Sirius
                     return false;
                 if (this.Laser.IsError)
                     return false;
-                if (!this.IsBusy)
+                if (this.IsBusy)
                     return false;
                 return true;
             }
@@ -58,7 +58,9 @@ namespace SpiralLab.Sirius
         {
             get
             {
-                return !Rtc.CtlGetStatus(RtcStatus.NoError) || Laser.IsError;
+                return 
+                    !Rtc.CtlGetStatus(RtcStatus.NoError) || 
+                    Laser.IsError;
             }
         }
         /// <summary>
@@ -71,12 +73,12 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// x,y,angle 에 대한 오프셋 배열 정보
         /// </summary>
-        public List<(float dx, float dy, float angle)> Offsets
+        public List<Offset> Offsets
         {
             get { return this.offsets; }
             set { this.offsets = value; }
         }
-        private List<(float dx, float dy, float angle)> offsets;
+        private List<Offset> offsets;
         public float ScannerRotateAngle { get; set; }
 
         public Form Form { get; set; }
@@ -84,12 +86,12 @@ namespace SpiralLab.Sirius
         private Stopwatch timer;
         private Thread thread;
 
-        public YourMarker(uint index)
+        public YourCustomMarker(uint index)
         {
             this.Index = index;
             this.ElaspedTime = TimeSpan.Zero;
-            this.offsets = new List<(float dx, float dy, float angle)>();
-            this.Form = null; /// 윈폼을 만들어 삽입
+            this.offsets = new List<Offset>();
+            this.Form = new YourMarkerForm(this); /// 윈폼을 만들어 삽입
         }
 
         /// <summary>
@@ -147,7 +149,7 @@ namespace SpiralLab.Sirius
             }
             if (this.offsets.Count <= 0)
             {
-                this.offsets.Add((0, 0, 0));
+                this.offsets.Add(Offset.Zero);
                 Logger.Log(Logger.Type.Warn, $"marker [{this.Index}]: no offset information ...");
             }
             if (null == this.clonedDoc || 0 == this.clonedDoc.Layers.Count)
@@ -171,7 +173,7 @@ namespace SpiralLab.Sirius
             Logger.Log(Logger.Type.Warn, $"marker [{this.Index}]: trying to stop ...");
             Rtc.CtlAbort();
             Rtc.CtlLaserOff();
-            Motion?.Stop();
+            Motion?.StopAll();
             if (this.thread != null)
             {
                 if (!this.thread.Join(2*1000))
@@ -189,7 +191,7 @@ namespace SpiralLab.Sirius
             ///RTC및 레이저 소스의 에러 해제 시도
             this.Rtc.CtlReset();
             this.Laser?.CtlReset();
-            this.Motion?.Reset();
+            this.Motion?.ResetAll();
             return true;
         }
 
@@ -224,8 +226,8 @@ namespace SpiralLab.Sirius
                 var xyt = offsets[i];
                 var matrix =
                     Matrix3x2.CreateRotation((float)(this.ScannerRotateAngle * Math.PI / 180.0)) *   ///7. 스캐너 회전량 적용
-                    Matrix3x2.CreateTranslation(xyt.dx, xyt.dy) * /// 6. 오프셋 이동량
-                    Matrix3x2.CreateRotation(xyt.angle) *  /// 5. 오프셋 회전량
+                    Matrix3x2.CreateTranslation(xyt.X, xyt.Y) * /// 6. 오프셋 이동량
+                    Matrix3x2.CreateRotation(xyt.Angle) *  /// 5. 오프셋 회전량
                     Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin)) * ///4. 문서의 원점 위치를 이동
                     Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///3. 회전 중심 위치 원복
                     Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///2. 문서에 설정된 회전량 적용

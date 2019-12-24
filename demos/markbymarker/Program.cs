@@ -31,7 +31,6 @@
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Numerics;
 using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
@@ -118,15 +117,15 @@ namespace SpiralLab.Sirius
             var marker = new MarkerDefault(0);
             marker.Name = "marker #2";
             marker.OnFinished += Marker_OnFinished;
-            marker.Offsets.Add((-20.0f, 20.0f, -90f));
-            marker.Offsets.Add((0.0f, 20.0f, 0.0f));
-            marker.Offsets.Add((20.0f, 20.0f, 90.0f));
-            marker.Offsets.Add((-20.0f, 0.0f, -180.0f));
-            marker.Offsets.Add((0.0f, 0.0f, 0.0f));
-            marker.Offsets.Add((20.0f, 0.0f, 180.0f));
-            marker.Offsets.Add((-20.0f, -20.0f, -270.0f));
-            marker.Offsets.Add((0.0f, -20.0f, 0.0f));
-            marker.Offsets.Add((20.0f, -20.0f, 270.0f));
+            marker.Offsets.Add(new Offset(-20.0f, 20.0f, -90f));
+            marker.Offsets.Add(new Offset(0.0f, 20.0f, 0.0f));
+            marker.Offsets.Add(new Offset(20.0f, 20.0f, 90.0f));
+            marker.Offsets.Add(new Offset(-20.0f, 0.0f, -180.0f));
+            marker.Offsets.Add(new Offset(0.0f, 0.0f, 0.0f));
+            marker.Offsets.Add(new Offset(20.0f, 0.0f, 180.0f));
+            marker.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
+            marker.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
+            marker.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
             marker.Ready(doc, rtc, laser);   //layer cloned 
             marker.Start();
         }

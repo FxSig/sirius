@@ -55,8 +55,7 @@ namespace SpiralLab.Sirius
         }
         public bool IsError { get; set; }
         public SpiralLab.Sirius.Pen CurrentPen { get; set; }
-        public Form Form { get { return form; } }
-        private YourLaserForm form;
+        public Form Form { get; set; }
 
         private bool disposed = false;
 
@@ -67,7 +66,7 @@ namespace SpiralLab.Sirius
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
             this.PowerXFactor = powerXFactor;
-            this.form = new YourLaserForm();
+            this.Form = new LaserForm(this);
         }
         ~YourCustomLaser()
         {

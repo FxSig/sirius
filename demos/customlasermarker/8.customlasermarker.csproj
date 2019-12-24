@@ -27,6 +27,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,11 +50,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="spirallab.core, Version=0.2.7276.29234, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.core, Version=0.4.7297.18483, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.core.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius, Version=0.5.7276.29721, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius, Version=0.7.7297.18483, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
     </Reference>
@@ -77,13 +78,13 @@
     <Compile Include="laserform.Designer.cs">
       <DependentUpon>laserform.cs</DependentUpon>
     </Compile>
-    <Compile Include="marker.cs" />
     <Compile Include="markerform.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="markerform.Designer.cs">
       <DependentUpon>markerform.cs</DependentUpon>
     </Compile>
+    <Compile Include="marker.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

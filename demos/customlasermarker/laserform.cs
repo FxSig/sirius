@@ -10,11 +10,13 @@ using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
-    public partial class YourLaserForm : System.Windows.Forms.Form
+    public partial class LaserForm : Form
     {
-        public YourLaserForm()
+        ILaser laser;
+        public LaserForm(YourCustomLaser laser)
         {
             InitializeComponent();
+            this.laser = laser;
         }
     }
 }
