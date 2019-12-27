@@ -251,6 +251,7 @@
             this.Name = "YourMarkerForm";
             this.Text = "Laser Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.YourLaserForm_FormClosing);
+            this.VisibleChanged += new System.EventHandler(this.YourMarkerForm_VisibleChanged);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.panReady.ResumeLayout(false);

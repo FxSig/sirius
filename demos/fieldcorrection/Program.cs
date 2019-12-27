@@ -36,6 +36,7 @@ namespace SpiralLab.Sirius
 {
     class Program
     {
+        static float kfactor = 0.0f;
         static void Main(string[] args)
         {
             SpiralLab.Core.Initialize();
@@ -44,7 +45,7 @@ namespace SpiralLab.Sirius
             var rtc = new RtcVirtual(0); ///가상 rtc 제어기 생성
             //var rtc = new Rtc5(0); ///rtc 5 제어기 생성
             float fov = 60.0f;    /// scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    ///default correction file
             rtc.CtlFrequency(50 * 1000, 2); ///laser frequency : 50KHz, pulse width : 2usec
@@ -142,7 +143,8 @@ namespace SpiralLab.Sirius
 
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
-            var correction = new RtcCorrection2D(0, 3, 3, srcFile, targetFile);
+
+            var correction = new RtcCorrection2D(0, kfactor, 3, 3, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차값을 넣는 방법
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));

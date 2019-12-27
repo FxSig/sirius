@@ -21,10 +21,9 @@ namespace SpiralLab.Sirius
             Debug.Assert(marker != null);
             this.marker = marker;
             this.marker = marker;
-            this.marker.OnProgress += Marker_OnProgress;   ;
+            this.marker.OnProgress += Marker_OnProgress; 
             this.marker.OnFinished += Marker_OnFinished;
 
-            this.timer1.Enabled = true;
             this.KeyPreview = true;
             this.KeyDown += YourLaserForm_KeyDown; ;
         }
@@ -122,6 +121,11 @@ namespace SpiralLab.Sirius
         private void btnManualOff_Click(object sender, EventArgs e)
         {
             this.marker.Rtc.CtlLaserOff();
+        }
+
+        private void YourMarkerForm_VisibleChanged(object sender, EventArgs e)
+        {
+            this.timer1.Enabled = this.Visible;
         }
     }
 }
