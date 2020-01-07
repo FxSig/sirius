@@ -69,7 +69,6 @@ namespace SpiralLab.Sirius
         public bool IsFinished { get; set; }
         private IDocument clonedDoc;
 
-
         /// <summary>
         /// x,y,angle 에 대한 오프셋 배열 정보
         /// </summary>
@@ -82,6 +81,7 @@ namespace SpiralLab.Sirius
         public float ScannerRotateAngle { get; set; }
 
         public Form Form { get; set; }
+        public object Tag { get; set; }
 
         private Stopwatch timer;
         private Thread thread;
@@ -228,10 +228,10 @@ namespace SpiralLab.Sirius
                     Matrix3x2.CreateRotation((float)(this.ScannerRotateAngle * Math.PI / 180.0)) *   ///7. 스캐너 회전량 적용
                     Matrix3x2.CreateTranslation(xyt.X, xyt.Y) * /// 6. 오프셋 이동량
                     Matrix3x2.CreateRotation(xyt.Angle) *  /// 5. 오프셋 회전량
-                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Origin)) * ///4. 문서의 원점 위치를 이동
-                    Matrix3x2.CreateTranslation(clonedDoc.RotateOrigin) * ///3. 회전 중심 위치 원복
-                    Matrix3x2.CreateRotation(clonedDoc.RotateAngle) *  ///2. 문서에 설정된 회전량 적용
-                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.RotateOrigin));  ///1. 회전을 위해 회점 중심을 원점으로 이동
+                    Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Dimension.Center)) * ///4. 문서의 원점 위치를 이동
+                    Matrix3x2.CreateTranslation(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.X) * ///3. 회전 중심 위치 원복
+                    Matrix3x2.CreateRotation(clonedDoc.RotateOffset.Angle) *  ///2. 문서에 설정된 회전량 적용
+                    Matrix3x2.CreateTranslation(-clonedDoc.RotateOffset.X, -clonedDoc.RotateOffset.X);  ///1. 회전을 위해 회점 중심을 원점으로 이동
                 this.Rtc.MatrixStack.Push(matrix);
 
                 foreach (var layer in this.clonedDoc.Layers)    ///레이어 순회

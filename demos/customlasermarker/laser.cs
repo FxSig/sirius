@@ -56,7 +56,7 @@ namespace SpiralLab.Sirius
         public bool IsError { get; set; }
         public SpiralLab.Sirius.Pen CurrentPen { get; set; }
         public Form Form { get; set; }
-
+        public object Tag { get; set; }
         private bool disposed = false;
 
 
@@ -124,7 +124,7 @@ namespace SpiralLab.Sirius
                 ///vary the laser power by communcation betweeen laser source
             }
             else
-                success = rtc.CtlLaserControl(this, powerX);
+                success = rtc.CtlLaserControl(this.PowerXFactor, powerX);
 
             if (success)
             {

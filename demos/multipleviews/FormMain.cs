@@ -23,10 +23,21 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             //Rtc 2개 생성
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             var rtc1 = new RtcVirtual(0, "output1.txt");
-            rtc1.Initialize(1000, LaserMode.Yag1, correctionFile);
             var rtc2 = new RtcVirtual(1, "output2.txt");
+            //var rtc = new Rtc5(0); ///create Rtc5 controller
+            //var rtc = new Rtc6(0); ///create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
+            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
+            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
+            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
+            //var rtc = new Rtc6SyncAxis(0); 
+            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            rtc1.Initialize(1000, LaserMode.Yag1, correctionFile);
             rtc2.Initialize(1000, LaserMode.Yag1, correctionFile);
 
             //Laser 2개 생성
@@ -39,11 +50,9 @@ namespace SpiralLab.Sirius
             var marker1 = new MarkerDefault(0);
             var marker2 = new MarkerDefault(1);
 
-
             //두개의 문서 생성
             var doc1 = new DocumentDefault();
             var doc2 = new DocumentDefault();
-
 
             //뷰어에 문서 소스 설정
             this.formViewer = new FormViewer();
@@ -69,7 +78,6 @@ namespace SpiralLab.Sirius
             this.formViewer.Viewer2.OnDocumentSourceChanged += Viewer2_OnDocumentSourceChanged;
             this.formEditor2.Editor.OnDocumentSourceChanged += Viewer2_OnDocumentSourceChanged;
 
-
             // 뷰어1 와 하드웨어 연결
             this.formViewer.Viewer1.Rtc = rtc1;
             this.formViewer.Viewer1.Laser = laser1;
@@ -80,7 +88,6 @@ namespace SpiralLab.Sirius
             this.formViewer.Viewer2.Laser = laser2;
             this.formViewer.Viewer2.Marker = marker2;
 
-
             // 에디터1 와 하드웨어 연결
             this.formEditor1.Editor.Rtc = rtc1;
             this.formEditor1.Editor.Laser = laser1;
@@ -90,8 +97,6 @@ namespace SpiralLab.Sirius
             this.formEditor2.Editor.Rtc = rtc2;
             this.formEditor2.Editor.Laser = laser2;
             this.formEditor2.Editor.Marker = marker2;
-
-
 
             // 뷰어를 초기화면에 출력
             SwitchForm(panel3, this.formViewer);

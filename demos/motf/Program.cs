@@ -38,9 +38,17 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var motf = new Rtc5MOTF(0); ///rtc5용 MOTF 제어기 생성
-            var rtc = motf as Rtc5;///rtc5 제어기 생성
-            
+            //var rtc = new RtcVirtual(0); ///create Rtc for dummy
+            //var rtc = new Rtc5(0); ///create Rtc5 controller
+            //var rtc = new Rtc6(0); ///create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
+            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
+            var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
+            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
+            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+
             float fov = 60.0f;    /// scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
@@ -69,17 +77,17 @@ namespace SpiralLab.Sirius
                 if (key.Key == ConsoleKey.Q)
                     break;
                 Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
-                var timer = new Stopwatch();
+                var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
                     case ConsoleKey.R:
-                        motf.CtlReset();
+                        rtc.CtlReset();
                         break;
                     case ConsoleKey.D:
-                        motf.Form.Show();
+                        rtc.Form.Show();
                         break;
                     case ConsoleKey.C:
-                        DrawCircleWithPosition(laser, rtc, motf);
+                        DrawCircleWithPosition(laser, rtc);
                         break;
                 }
 
@@ -88,8 +96,9 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-        private static void DrawCircleWithPosition(ILaser laser, IRtc rtc, IRtcMOTF motf)
+        private static void DrawCircleWithPosition(ILaser laser, IRtc rtc)
         {
+            var motf = rtc as IRtcMOTF;
             ///turn on external /start
             ///turn on reset encoder when external start
             var extCtrl = new RtcExternalControlMode();

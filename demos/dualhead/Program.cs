@@ -17,8 +17,8 @@
  * 
  *
  * 
- * IRtc 인터페이스를 직접 사용하는 방법
- * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다
+ * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
+ * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -38,25 +38,34 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0); ///create Rtc for dummy
+            //var rtc = new RtcVirtual(0); ///create Rtc for dummy
             //var rtc = new Rtc5(0); ///create Rtc5 controller
             //var rtc = new Rtc6(0); ///create Rtc6 controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
             //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
             //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
+            var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
             //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
             //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
             //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
-
 
             float fov = 60.0f;    /// scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
+            //rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, correctionFile); //initialize 시점에 로딩됨
+            rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table2, correctionFile);
+            rtc.CtlSelectCorrection(CorrectionTableIndex.Table1, CorrectionTableIndex.Table2);
+
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
+
+            var rtcDualHead = rtc as Rtc5DualHead;
+            /// offset in primary scanner 
+            rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Offset(10, 0, 0));
+            /// offset in secondary scanner 
+            rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Offset(-10, 0, 0));
             #endregion
 
             #region initialize Laser (virtial)
@@ -67,10 +76,9 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
-                Console.WriteLine("");                
+                Console.WriteLine("");
+                Console.WriteLine("'D' : show dialog");
                 Console.WriteLine("'C' : draw circle");
-                Console.WriteLine("'R' : draw rectangle");
-                Console.WriteLine("'D' : draw circle with dots");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -81,67 +89,30 @@ namespace SpiralLab.Sirius
                 var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
-                    case ConsoleKey.C: 
-                        DrawCircle(laser, rtc, 10);
-                        break;
                     case ConsoleKey.R:
-                        DrawRectangle(laser, rtc, 10, 10);
+                        rtc.CtlReset();
                         break;
                     case ConsoleKey.D:
-                        DrawCircleWithDots(laser, rtc, 10, 1.0f);
+                        rtc.Form.Show();
+                        break;
+                    case ConsoleKey.C:
+                        DrawCircle(laser, rtc);
                         break;
                 }
-                rtc.ListExecute(true);
-                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds/1000.0:F3}s");     
+
+                Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
             rtc.Dispose();
-        }        
-        /// <summary>
-        /// draw circle
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="radius"></param>
-        private static void DrawCircle(ILaser laser, IRtc rtc, double radius)
+        }
+        private static void DrawCircle(ILaser laser, IRtc rtc)
         {
+            float radius = 20.0f;
             rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2((float)radius, 0));
+            rtc.ListJump(new Vector2(radius, 0));
             rtc.ListArc(new Vector2(0, 0), 360.0f);
             rtc.ListEnd();
         }
-        /// <summary>
-        /// draw rectangle
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        private static void DrawRectangle(ILaser laser, IRtc rtc, double width, double height)
-        {
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
-            rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
-            rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
-            rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
-            rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
-            rtc.ListEnd();
-        }
-        /// <summary>
-        /// draw cicle with dots
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="radius"></param>
-        /// <param name="durationMsec"></param>
-        private static void DrawCircleWithDots(ILaser laser, IRtc rtc, float radius, float durationMsec)
-        {
-            rtc.ListBegin(laser);
-            for (float angle =0; angle<360; angle+=1)
-            {
-                double x = radius * Math.Sin(angle * Math.PI / 180.0);
-                double y = radius * Math.Cos(angle * Math.PI / 180.0);
-                rtc.ListJump(new Vector2((float)x, (float)y));
-                rtc.ListLaserOn(durationMsec);                
-            }            
-            rtc.ListEnd();
-        }        
+
     }
 }

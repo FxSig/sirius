@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.902
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.fieldcorrection", "demos\fieldcorrection\4.fieldcorrection.csproj", "{86B03BA5-B828-4B15-909C-7A844408E103}"
 EndProject
@@ -32,6 +32,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19.syncaxis", "demos\syncaxisdemo\19.syncaxis.csproj", "{51DB3B7A-69F8-49AC-A6C0-A6600BD67537}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "17.varioscan", "demos\varioscan\17.varioscan.csproj", "{03357092-0C89-4D28-830C-27E5D99E1C0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16.dualhead", "demos\dualhead\16.dualhead.csproj", "{F9DD3542-8677-4764-B73E-2437607B3121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -223,6 +225,18 @@ Global
 		{03357092-0C89-4D28-830C-27E5D99E1C0E}.Release|x64.Build.0 = Release|Any CPU
 		{03357092-0C89-4D28-830C-27E5D99E1C0E}.Release|x86.ActiveCfg = Release|Any CPU
 		{03357092-0C89-4D28-830C-27E5D99E1C0E}.Release|x86.Build.0 = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|x64.Build.0 = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Debug|x86.Build.0 = Debug|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|x64.ActiveCfg = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|x64.Build.0 = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|x86.ActiveCfg = Release|Any CPU
+		{F9DD3542-8677-4764-B73E-2437607B3121}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

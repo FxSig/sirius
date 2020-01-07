@@ -38,7 +38,18 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///rtc6 with XL SCAN
+            //var rtc = new RtcVirtual(0); ///create Rtc for dummy
+            //var rtc = new Rtc5(0); ///create Rtc5 controller
+            //var rtc = new Rtc6(0); ///create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
+            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
+            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
+            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
+            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
+            //var rtc = new Rtc6SyncAxis(0); 
+            var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+
             rtc.Initialize(0.0f, LaserMode.Yag1, string.Empty); 
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
@@ -64,7 +75,7 @@ namespace SpiralLab.Sirius
                 if (key.Key == ConsoleKey.Q)
                     break;
                 Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
-                var timer = new Stopwatch();
+                var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
                     case ConsoleKey.C:

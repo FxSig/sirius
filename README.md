@@ -56,14 +56,14 @@
 ----
 **5. Version history**
 
-
+* 2020.01.07 v0.8 added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
 * 2019.12.24 v0.7 added IRtc3D interface, added Group entity (with MOTF), fixed ICorrection2D, added ICorrection3D interface. 
 * 2019.12.19 v0.6 added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
 * 2019.12.17 v0.5 added 1/2D  barcode entities / support wobbel and raster operation in RTC
 * 2019.12.12 v0.4 new sirius text entity  (support font format : *.cxf)
 * 2019.12.11 v0.3 support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
 * 2019.12.10 v0.2 support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
-* 2019.12.3  v0.1 first release
+* 2019.12.03 v0.1 first release
 
  
  [![](http://img.youtube.com/vi/pc70q_jc1Yw/0.jpg)](http://www.youtube.com/watch?v=pc70q_jc1Yw "SpiralLab.Sirius Library Demo")
