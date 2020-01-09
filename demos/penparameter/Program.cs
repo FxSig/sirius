@@ -15,7 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
- * 레이저및 스캐너의 가공 파라메터를 일컬어 통상 "펜(Pen)" 파라메터라 하며, 이 펜 객체(Entity)를 사용해 다양한 가공 조건을 설정한다.
+ * 레이저및 스캐너의 가공 파라메터를 일컬어 통상 "펜(Pen)" 파라메터라 하며, 이 펜 객체(Entity)를 사용해 다양한 가공 조건 (속도및 지연값등)을 설정한다.
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -60,26 +60,33 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region create entities
+            /// 문서 생성
             var doc = new DocumentDefault("Unnamed");
+            /// 레이어 생성및 문서에 추가
             var layer = new Layer("default");
             doc.Layers.Add(layer);
+            /// 펜 개체(Entity) 생성및 레이어에 추가
             layer.Add(
                 new Pen()
                 {
-                    Frequency = 100 * 1000,
-                    PulseWidth = 2,
-                    LaserOnDelay = 0,
-                    LaserOffDelay = 0,
-                    ScannerJumpDelay = 100,
-                    ScannerMarkDelay = 200,
-                    ScannerPolygonDelay = 0,
-                    JumpSpeed =500,
-                    MarkSpeed = 500,
+                    Frequency = 100 * 1000, ///주파수 Hz
+                    PulseWidth = 2, ///펄스폭 usec
+                    LaserOnDelay = 0, /// 레이저 시작 지연 usec
+                    LaserOffDelay = 0, /// 레이저 끝 지연 usec
+                    ScannerJumpDelay = 100, /// 스캐너 점프 지연 usec
+                    ScannerMarkDelay = 200, /// 스캐너 마크 지연 usec
+                    ScannerPolygonDelay = 0, /// 스캐너 폴리곤 지연 usec
+                    JumpSpeed =500, /// 스캐너 점프 속도 mm/s
+                    MarkSpeed = 500, /// 스캐너 마크 속도 mm/s
                 }
             );
+            /// 선 개체 레이어에 추가
             layer.Add(new Line(0, 0, 10, 20));
+            /// 원 개체 레이어에 추가
             layer.Add(new Circle(0, 0, 10));
+            /// 나선 개체 레이어에 추가
             layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
+            /// 문서를 지정된 파일에 저장
             var ds = new DocumentSerializer();
             ds.Save(doc, "test.sirius");
             #endregion
@@ -120,13 +127,16 @@ namespace SpiralLab.Sirius
         {
             bool success = true;
             rtc.ListBegin(laser);
+            /// 레이어 순회
             foreach (var layer in doc.Layers)
             {
+                /// 레이어 내의 개체들을 순회
                 foreach (var entity in layer)
                 {
                     var markerable = entity as IMarkerable;
+                    /// 해당 개체가 레이저 가공이 가능한지 여부를 판별
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);
+                        success &= markerable.Mark(rtc);    /// 레이저 가공 실시
                     if (!success)
                         break;
                 }

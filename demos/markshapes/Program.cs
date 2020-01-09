@@ -60,14 +60,15 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser (virtial)
-            ILaser laser = new LaserVirtual(0, "virtual", 20);
+            ILaser laser = new LaserVirtual(0, "virtual", 20);  /// 최대 출력 20W 의 가상 레이저 소스 생성
             #endregion
 
             ConsoleKeyInfo key;
             do
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
-                Console.WriteLine("");                
+                Console.WriteLine("");
+                Console.WriteLine("'S' : get status");
                 Console.WriteLine("'C' : draw circle");
                 Console.WriteLine("'R' : draw rectangle");
                 Console.WriteLine("'D' : draw circle with dots");
@@ -77,21 +78,34 @@ namespace SpiralLab.Sirius
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
-                Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                 var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
-                    case ConsoleKey.C: 
+                    case ConsoleKey.S:  ///RTC의 상태 확인
+                        if (rtc.CtlGetStatus(RtcStatus.Busy))
+                            Console.WriteLine($"\r\nRtc is busy!");
+                        else if (!rtc.CtlGetStatus(RtcStatus.PowerOK))
+                            Console.WriteLine($"\r\nScanner power is not ok");
+                        else if (!rtc.CtlGetStatus(RtcStatus.PositionAckOK))
+                            Console.WriteLine($"\r\nScanner position is not acked");
+                        else if (!rtc.CtlGetStatus(RtcStatus.NoError))
+                            Console.WriteLine($"\r\nRtc status has an error");
+                        else
+                            Console.WriteLine($"\r\nIt's okay");
+                        break;
+                    case ConsoleKey.C:  /// 원 모양 가공
+                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         DrawCircle(laser, rtc, 10);
                         break;
-                    case ConsoleKey.R:
+                    case ConsoleKey.R:  /// 사각형 모양 가공
+                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         DrawRectangle(laser, rtc, 10, 10);
                         break;
-                    case ConsoleKey.D:
+                    case ConsoleKey.D:  ///점으로 이루어진 원 모양 가공
+                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         DrawCircleWithDots(laser, rtc, 10, 1.0f);
                         break;
                 }
-                rtc.ListExecute(true);
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds/1000.0:F3}s");     
             } while (true);
 
@@ -108,6 +122,7 @@ namespace SpiralLab.Sirius
             rtc.ListJump(new Vector2((float)radius, 0));
             rtc.ListArc(new Vector2(0, 0), 360.0f);
             rtc.ListEnd();
+            rtc.ListExecute(true);
         }
         /// <summary>
         /// draw rectangle
@@ -124,6 +139,7 @@ namespace SpiralLab.Sirius
             rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
             rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
             rtc.ListEnd();
+            rtc.ListExecute(true);
         }
         /// <summary>
         /// draw cicle with dots
@@ -142,6 +158,7 @@ namespace SpiralLab.Sirius
                 rtc.ListLaserOn(durationMsec);                
             }            
             rtc.ListEnd();
+            rtc.ListExecute(true);
         }        
     }
 }

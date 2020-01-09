@@ -81,10 +81,10 @@ namespace SpiralLab.Sirius
                 var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
-                    case ConsoleKey.R:
+                    case ConsoleKey.R:  /// 회전하는 사각형 모양 가공 (가로 10, 세로 10 크기, 0 ~360 각도의 회전 형상)
                         DrawRectangle(laser, rtc, 10, 10, 0, 360);
                         break;
-                    case ConsoleKey.L:
+                    case ConsoleKey.L:  ///회전하는 직선 모양 가공
                         DrawLinesWithRotate(laser, rtc, 0, 360);
                         break;
                 }
@@ -106,15 +106,16 @@ namespace SpiralLab.Sirius
             rtc.ListBegin(laser);
             for (double angle = angleStart; angle <= angleEnd; angle += 1)
             {
+                ///회전 각도를 행렬 스택에 push
                 rtc.MatrixStack.Push(angle);
                 rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
                 rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
                 rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
                 rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
                 rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
+                ///이전에 push 된 행렬값을 pop 하여 삭제
                 rtc.MatrixStack.Pop();
             }
-
             rtc.ListEnd();
         }       
         /// <summary>

@@ -95,7 +95,7 @@ namespace SpiralLab.Sirius
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes != MessageBox.Show($"Do you want really want to start ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (DialogResult.Yes != MessageBox.Show($"Do you really want to start ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 return;
 
             if (0 == this.marker.Offsets.Count)
@@ -112,7 +112,7 @@ namespace SpiralLab.Sirius
 
         private void btnManualOn_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes != MessageBox.Show($"Do you want really want to manual laser on ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+            if (DialogResult.Yes != MessageBox.Show($"Do you really want to manual laser on ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 return;
 
             this.marker.Rtc.CtlLaserOn();

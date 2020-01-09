@@ -68,10 +68,13 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region create entities for scanner field correction
+            /// 신규 문서(Document) 생성
             var doc = new DocumentDefault("3x3 scanner field correction");
+            /// 레이어를 생성해서 문서에 추가
             var layer = new Layer("default");
             doc.Layers.Add(layer);
-            /// create spiral shapes = 9 counts (3x3)  
+            /// 나선모양 개체(Entities)를 레이어에 추가
+            /// 각 개체의 간격은 20mm 로 총 9개를 생성
             layer.Add(new Spiral(-20.0f, 20.0f, 0.2f, 2.0f, 5, true));
             layer.Add(new Spiral(0.0f, 20.0f, 0.2f, 2.0f, 5, true));
             layer.Add(new Spiral(20.0f, 20.0f, 0.2f, 2.0f, 5, true));
@@ -81,6 +84,7 @@ namespace SpiralLab.Sirius
             layer.Add(new Spiral(-20.0f, -20.0f, 0.2f, 2.0f, 5, true));
             layer.Add(new Spiral(0.0f, -20.0f, 0.2f, 2.0f, 5, true));
             layer.Add(new Spiral(20.0f, -20.0f, 0.2f, 2.0f, 5, true));
+            /// 해당 문서를 파일에 저장
             var ds = new DocumentSerializer();
             ds.Save(doc, "test.sirius");
             #endregion
@@ -103,6 +107,7 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.F:
                         Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         var timer = Stopwatch.StartNew();
+                        ///9개의 나선모양들을 가공
                         if (DrawForFieldCorrection(laser, rtc, doc))
                             rtc.ListExecute(true);
                         Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
@@ -127,13 +132,16 @@ namespace SpiralLab.Sirius
         {
             bool success = true;
             rtc.ListBegin(laser);
+            ///레이어 순회
             foreach (var layer in doc.Layers)
             {
+                /// 해당 레이어의 개체들을 순회
                 foreach (var entity in layer)
                 {
                     var markerable = entity as IMarkerable;
+                    ///해당 개체가 레이저 가공이 가능한지를 판별
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);
+                        success &= markerable.Mark(rtc);    ///개체 가공
                     if (!success)
                         break;
                 }
@@ -150,13 +158,15 @@ namespace SpiralLab.Sirius
         /// <returns></returns>
         private static string CreateFieldCorrection(IRtc rtc)
         {
-
+            ///현재 스캐너 보정 파일
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            ///신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
-
+            /// 2차원 스캐너 보정용 IRtcCorrection 객체 생성
+            /// 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             var correction = new RtcCorrection2D(0, kfactor, 3, 3, srcFile, targetFile);
 
-            #region inputs relative error deviation : 상대적인 오차값을 넣는 방법
+            #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 1, new Vector2(0, 20), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 2, new Vector2(20, 20), new Vector2(0.01f, 0.01f));
@@ -168,7 +178,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.01f, 0.01f));
             #endregion
 
-            #region inputs absolute position values : 절대적인 오차값을 넣는 방법
+            #region inputs absolute position values : 오차값의 절대적인 위치 정보를 넣는 방법
             //correction.AddAbsolute(0, 0, new Vector3(-20, 20, 0), new Vector3(-20.01f, 20.01f, 0));
             //correction.AddAbsolute(0, 1, new Vector3(0, 20, 0), new Vector3(0.01f, 20.01f, 0));
             //correction.AddAbsolute(0, 2, new Vector3(20, 20, 0), new Vector3(20.01f, 20.01f, 0));
@@ -180,8 +190,11 @@ namespace SpiralLab.Sirius
             //correction.AddAbsolute(2, 2, new Vector3(20, -20, 0), new Vector3(20.01f, -20.01f, 0));
             #endregion
 
+            ///신규 보정 파일 생성 실시
             bool success = correction.Convert();
+            /// 보정 파일을 테이블 1번으로 로딩
             success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, targetFile);
+            /// 테이블1 번을 1번 스캐너(Primary Head)에 지정
             success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
             if (success)
                 return correction.ResultMessage;

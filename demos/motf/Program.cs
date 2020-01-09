@@ -56,6 +56,8 @@ namespace SpiralLab.Sirius
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
             rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
+
+            var rtcMOTF = rtc as IRtcMOTF;
             #endregion
 
             #region initialize Laser (virtial)
@@ -81,7 +83,10 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.R:
-                        rtc.CtlReset();
+                        /// X,Y 엔코더값을 0,0 으로 리셋합니다.
+                        rtcMOTF.CtlEncoderReset();
+                        /// X,Y 엔코더값을 0,0 으로 리셋한후, 가상의 엔코더를 100mm/s 으로 동작시킵니다.
+                        //rtcMOTF.CtlEncoderReset(0,0, 100, 100);
                         break;
                     case ConsoleKey.D:
                         rtc.Form.Show();
@@ -99,6 +104,7 @@ namespace SpiralLab.Sirius
         private static void DrawCircleWithPosition(ILaser laser, IRtc rtc)
         {
             var motf = rtc as IRtcMOTF;
+            /// RTC 15핀 커넥터에 있는 /START , /STOP 입력핀을 시작, 중지 트리거로 사용합니다.
             ///turn on external /start
             ///turn on reset encoder when external start
             var extCtrl = new RtcExternalControlMode();
@@ -107,14 +113,23 @@ namespace SpiralLab.Sirius
             extCtrl.Add(RtcExternalControlMode.Signal.ExternalStartAgain);
             motf.CtlExternalControl(extCtrl);
 
+
             rtc.ListBegin(laser);
+            ///직선을 그립니다. (엔코더 입력과 무관합니다)
+            rtc.ListJump(new Vector2(0, 0));
+            rtc.ListMark(new Vector2(10, 0));
+            /// ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
             motf.ListMOTFBegin();
+            /// 엔코더 X 값이  10mm 가 넘을때(Over) 까지 리스트 명령을 대기
             motf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);//wait until encoder x position over 10.0mm
-            rtc.ListJump(new Vector2((float)10, 0)); //draw circle
+            ///엔코더 X 값이 위 조건을 만족한이후 원 을 그린다
+            rtc.ListJump(new Vector2((float)10, 0)); 
             rtc.ListArc(new Vector2(0, 0), 360.0f);
+            /// MOTF 중지및 0,0 위치(스캐너 중심 위치)로 jump 실시
             motf.ListMOTFEnd(Vector2.Zero);
 
             rtc.ListEnd();
+            ///외부 트리거(/START)에 의해 시작되므로 execute 호출은 하지 않는다
             ///rtc.ListExecute(); /// its not need to call because its started by external trigger
         }
       

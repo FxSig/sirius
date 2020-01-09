@@ -17,8 +17,8 @@
  * 
  *
  * 
- * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
- * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
+ * IRtc5DualHead 인터페이스를 통해 구현된 듀얼헤드 제어를 사용하는 방법
+ * 각 헤드 (Primary, Secondary)의 오프셋를 설정하는 방법
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -53,8 +53,10 @@ namespace SpiralLab.Sirius
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
-            //rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, correctionFile); //initialize 시점에 로딩됨
+
+            /// secondary 헤드용 보정 테이블 로드
             rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table2, correctionFile);
+            /// primary 및 secondary 헤드에 각각 보정 테이블 선택
             rtc.CtlSelectCorrection(CorrectionTableIndex.Table1, CorrectionTableIndex.Table2);
 
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
@@ -63,8 +65,10 @@ namespace SpiralLab.Sirius
 
             var rtcDualHead = rtc as Rtc5DualHead;
             /// offset in primary scanner 
+            /// 마스터 헤드의 오프셋을 설정
             rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Offset(10, 0, 0));
             /// offset in secondary scanner 
+            /// 슬레이브 헤드의 오프셋을 설정
             rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Offset(-10, 0, 0));
             #endregion
 

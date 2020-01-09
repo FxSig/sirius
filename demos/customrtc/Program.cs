@@ -17,7 +17,7 @@
  * 
  *
  * RTC 의 기능을 변경및 개조를 위해 새로운 사용자 정의 RTC 를 생성하고 이를 응용하는 방법
- * 
+ * 주의) 좌표값과 행렬스택을 서로 연산한 최종 좌표값을 사용해야 한다
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -39,7 +39,7 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcCustom(0); ///your custom rtc controller
+            var rtc = new RtcCustom(0); ///your custom rtc controller 생성
             float fov = 60.0f;    /// scanner field of view : 60mm                                
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");

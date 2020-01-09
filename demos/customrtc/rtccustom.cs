@@ -10,6 +10,8 @@ namespace SpiralLab.Sirius
 {
     /// <summary>
     /// custom user rtc class
+    /// IRtc 로 부터 상속받아 이를 구현
+    /// initialize, listbegin, listjump, listmark, listarc, listend, listexecute 함수들이 핵심 기능을 수행
     /// </summary>
     public class RtcCustom
         : IRtc

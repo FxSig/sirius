@@ -15,14 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
- *
- * 지금까지 소개한 
- * 1. 가공 데이타(Document)
- * 2. 레이저 소스(Laser)
- * 3. 벡터 가공 장치(Rtc) 
- * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
- * 
- * 마커는 
+ * customized 된 마커(Marker)를 사용자가 직접 구현한다
  * 
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
@@ -78,8 +71,10 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region prepare your marker
+            /// 사용자 정의 마커 생성
             var marker = new YourCustomMarker(0);
             marker.Name = "custom marker";
+            ///가공 완료 이벤트 핸들러 등록
             marker.OnFinished += Marker_OnFinished;
             #endregion
 
@@ -131,9 +126,12 @@ namespace SpiralLab.Sirius
             #endregion
 
             Debug.Assert(null != doc);
+            /// 마커 가공 준비
             marker.Ready(doc, rtc, laser);
+            /// 하나의 오프셋 정보 추가
             marker.Offsets.Clear();
             marker.Offsets.Add(Offset.Zero);
+            /// 가공 시작
             marker.Start();
         }
 

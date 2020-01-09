@@ -17,8 +17,8 @@
  * 
  *
  * 
- * IRtc 인터페이스를 직접 사용하는 방법
- * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다
+ * IRtcSyncAxis 인터페이스를 직접 사용하는 방법
+ * XL-SCAN + ACS + ExcelliSCAN 조합의 OTF 솔류션을 사용할 경우 구현
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -50,6 +50,7 @@ namespace SpiralLab.Sirius
             //var rtc = new Rtc6SyncAxis(0); 
             var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
 
+            /// 스캐너 보정파일(ct5)은 xml 에서 설정됨
             rtc.Initialize(0.0f, LaserMode.Yag1, string.Empty); 
             rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
             rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
@@ -101,6 +102,7 @@ namespace SpiralLab.Sirius
         /// <param name="radius"></param>
         private static void DrawCircle(ILaser laser, IRtc rtc, double radius)
         {
+            /// 스캐너만 구동하여 원 그리기
             rtc.ListBegin(laser, MotionType.ScannerOnly);
             rtc.ListJump(new Vector2((float)radius, 0));
             rtc.ListArc(new Vector2(0, 0), 360.0f);
@@ -115,7 +117,10 @@ namespace SpiralLab.Sirius
         /// <param name="height"></param>
         private static void DrawRectangle(ILaser laser, IRtc rtc, double width, double height)
         {
+            ///스테이지의 원점은 통상 0,0 이기 때문에 - 영역에서는 모션구동이 불가능하므로
+            ///+ 영역에서 처리되도록 안전한 위치로 이동하는 코드
             rtc.MatrixStack.Push(width * 1.5f, height * 1.5f);///transit safety area
+            /// 스테이지만 구동하여 원 그리기
             rtc.ListBegin(laser, MotionType.StageOnly);
             rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
             rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
@@ -134,7 +139,11 @@ namespace SpiralLab.Sirius
         /// <param name="durationMsec"></param>
         private static void DrawCircleWithLines(ILaser laser, IRtc rtc, float radius)
         {
+            ///스테이지의 원점은 통상 0,0 이기 때문에 - 영역에서는 모션구동이 불가능하므로
+            ///+ 영역에서 처리되도록 안전한 위치로 이동하는 코드
             rtc.MatrixStack.Push(radius * 2f, radius * 2f);///transit safety area
+
+            /// 스테이지 + 스캐너 동시 구동하여 원 그리기
             rtc.ListBegin(laser, MotionType.StageAndScanner);
             double x = radius * Math.Sin(0 * Math.PI / 180.0);
             double y = radius * Math.Cos(0 * Math.PI / 180.0);

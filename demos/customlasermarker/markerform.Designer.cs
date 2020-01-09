@@ -56,7 +56,7 @@
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pgbProgress,
             this.lblTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 487);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 347);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(380, 28);
             this.statusStrip1.TabIndex = 13;
@@ -87,7 +87,7 @@
             this.listBox1.Location = new System.Drawing.Point(7, 51);
             this.listBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(367, 274);
+            this.listBox1.Size = new System.Drawing.Size(367, 214);
             this.listBox1.TabIndex = 12;
             // 
             // panReady
@@ -117,10 +117,10 @@
             // 
             this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnReset.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(122, 351);
+            this.btnReset.Location = new System.Drawing.Point(202, 307);
             this.btnReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(80, 125);
+            this.btnReset.Size = new System.Drawing.Size(80, 28);
             this.btnReset.TabIndex = 16;
             this.btnReset.Text = "&Reset";
             this.btnReset.UseVisualStyleBackColor = true;
@@ -130,10 +130,10 @@
             // 
             this.btnManualOff.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnManualOff.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManualOff.Location = new System.Drawing.Point(7, 415);
+            this.btnManualOff.Location = new System.Drawing.Point(7, 307);
             this.btnManualOff.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnManualOff.Name = "btnManualOff";
-            this.btnManualOff.Size = new System.Drawing.Size(80, 60);
+            this.btnManualOff.Size = new System.Drawing.Size(80, 28);
             this.btnManualOff.TabIndex = 15;
             this.btnManualOff.Text = "Manual O&ff";
             this.btnManualOff.UseVisualStyleBackColor = true;
@@ -143,10 +143,10 @@
             // 
             this.btnManualOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnManualOn.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnManualOn.Location = new System.Drawing.Point(7, 351);
+            this.btnManualOn.Location = new System.Drawing.Point(7, 271);
             this.btnManualOn.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnManualOn.Name = "btnManualOn";
-            this.btnManualOn.Size = new System.Drawing.Size(80, 60);
+            this.btnManualOn.Size = new System.Drawing.Size(80, 28);
             this.btnManualOn.TabIndex = 14;
             this.btnManualOn.Text = "Manual &On";
             this.btnManualOn.UseVisualStyleBackColor = true;
@@ -156,10 +156,10 @@
             // 
             this.btnStop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStop.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStop.Location = new System.Drawing.Point(294, 350);
+            this.btnStop.Location = new System.Drawing.Point(294, 307);
             this.btnStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(80, 125);
+            this.btnStop.Size = new System.Drawing.Size(80, 28);
             this.btnStop.TabIndex = 11;
             this.btnStop.Text = "S&top";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -169,10 +169,10 @@
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnStart.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnStart.Location = new System.Drawing.Point(208, 350);
+            this.btnStart.Location = new System.Drawing.Point(202, 271);
             this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(80, 125);
+            this.btnStart.Size = new System.Drawing.Size(172, 28);
             this.btnStart.TabIndex = 10;
             this.btnStart.Text = "&Start";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -235,7 +235,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 515);
+            this.ClientSize = new System.Drawing.Size(380, 375);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.panReady);

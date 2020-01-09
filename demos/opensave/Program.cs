@@ -39,11 +39,17 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region create entities 
+            ///신규 문서(Document) 생성
             var doc1 = new DocumentDefault("Unnamed");
+            /// 레이어 생성
             var layer = new Layer("default");
+            /// 레이어를 문서해 추가
             doc1.Layers.Add(layer);
+            ///레이어에 선 형상 개체(Entity) 생성및 추가
             layer.Add(new Line(0, 10, 20,20));
+            ///레이어에 원 형상 개체(Entity) 생성및 추가
             layer.Add(new Circle(0, 0, 10));
+            ///레이어에 나선 형상 개체(Entity) 생성및 추가
             layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
             #endregion
 
@@ -51,11 +57,13 @@ namespace SpiralLab.Sirius
             Console.ReadKey(false);
             string filename = "default.sirius";
 
+            /// 문서(Document) 저장하기
             var ds = new DocumentSerializer();
             ds.Save(doc1, filename);
 
             Console.WriteLine("press any key to open ...");
             Console.ReadKey(false);
+            /// 문서(Document) 불러오기
             var doc2 = DocumentSerializer.OpenSirius(filename);
 
             Console.WriteLine("press any key to rtc initialize ...");
@@ -95,18 +103,27 @@ namespace SpiralLab.Sirius
             Console.ReadKey(false);
         }
 
+        /// <summary>
+        /// 지정된 문서(Document)를 지정된 RTC 제어기로 가공하기
+        /// </summary>
+        /// <param name="laser"></param>
+        /// <param name="rtc"></param>
+        /// <param name="doc"></param>
         static void DoBegin(ILaser laser, IRtc rtc, IDocument doc)
         {
             var timer = Stopwatch.StartNew();
             bool success = true;
             rtc.ListBegin(laser);
+            ///레이어를 순회
             foreach (var layer in doc.Layers)
             {
+                ///레이어 내의 개체(Entity)들을 순회
                 foreach (var entity in layer)
                 {
                     var markerable = entity as IMarkerable;
+                    ///레이저 가공이 가능한 개체(markerable)인지를 판단
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);
+                        success &= markerable.Mark(rtc);    /// 해당 개체(Entity) 가공 
                     if (!success)
                         break;
                 }

@@ -61,14 +61,16 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region create entities
+            /// 신규 문서 생성
             var doc = new DocumentDefault("Unnamed");
+            /// 레이어 생성후 문서에 추가
             var layer = new Layer("default");
             doc.Layers.Add(layer);
            
             ///첫번째 그룹 객체 생성
             var group1 = new Group();
             group1.Add(
-               new Pen()
+               new Pen()    /// 그룹내에 펜 개체 생성하여 추가
                {
                    Frequency = 100 * 1000,
                    PulseWidth = 2,
@@ -81,15 +83,24 @@ namespace SpiralLab.Sirius
                    MarkSpeed = 500,
                }
             );
+            /// 그룹내에 선 개체 생성하여 추가
             group1.Add(new Line(0, 0, 10, 20));
+            /// 그룹내에 원 개체 생성하여 추가
             group1.Add(new Circle(0, 0, 10));
+            /// 그룹내에 나선 개체 생성하여 추가
             group1.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
+            /// 그룹의 반복 회수 설정
             group1.RepeatCount = 10;    /// 10회 가공
+            /// 반복 가공시 개체들을 반복회수(10) 를 먼저 실시
+            group1.RepeatMode = GroupRepeatMode.EntityFirst;
+            /// 반복 가공시 역 방향 가공할지 여부
+            group1.IsReverseMark = false;
+
 
             /// 두번째 그룹 객체 생성
             var group2 = new Group();
             group2.Add(
-               new Pen()
+               new Pen()    /// 그룹내에 펜 개체 생성하여 추가
                {
                    Frequency = 50 * 1000,
                    PulseWidth = 2,
@@ -98,8 +109,8 @@ namespace SpiralLab.Sirius
                    ScannerJumpDelay = 100,
                    ScannerMarkDelay = 200,
                    ScannerPolygonDelay = 0,
-                   JumpSpeed = 100,
-                   MarkSpeed = 100,
+                   JumpSpeed = 500,
+                   MarkSpeed = 500,
                }
             );
             group1.Add(new Line(0, 0, 5, 10));
@@ -108,6 +119,7 @@ namespace SpiralLab.Sirius
             group1.RepeatCount = 20;    /// 20 회 가공
             layer.Add(group2);
 
+            /// 해당 문서 데이타를 지정된 파일에 저장
             var ds = new DocumentSerializer();
             ds.Save(doc, "test.sirius");
             #endregion
@@ -142,7 +154,7 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }
         /// <summary>
-        /// 레이어 안에 있는 모든 객체들을 마킹하기 (3x3 의 나선 객체가 마킹됨)
+        /// 레이어 안에 있는 모든 객체들을 마킹하기
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="doc"></param>

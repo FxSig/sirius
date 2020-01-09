@@ -15,7 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
- * 
+ * 3D 가공용 (varioscan/excelliSHIFT) IRtc3D 인터페이스를 사용한다
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
  */
@@ -65,6 +65,8 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("옵셋(Offset)은 스캐너의 초점이 해당 Z 위치로 이동되며, 이때 위치 보정을 위한 3D correction 파일이 적용된다.");
+                Console.WriteLine("디포커스(Defocus)은 스캐너의 초점이 해당 Z 위치로 이동되나, 이때 위치 보정을 위한 3D correction 파일은 미 사용된다.");
                 Console.WriteLine("");
                 Console.WriteLine("'A' : reset z offset");
                 Console.WriteLine("'B' : z offset to 1mm");
@@ -72,7 +74,6 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'D' : reset z defocus");
                 Console.WriteLine("'E' : z decocus to 1mm");
                 Console.WriteLine("'F' : z decocus to -1mm");
-
                 Console.WriteLine("'S' : show dialog");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
@@ -85,24 +86,31 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.A:
+                        /// z 축의 오프셋 값을 0으로 설정
                         rtc3D.CtlZOffset(0);
                         break;
                     case ConsoleKey.B:
+                        /// z 축의 오프셋 값을 1으로 설정
                         rtc3D.CtlZOffset(1.0f);
                         break;
                     case ConsoleKey.C:
+                        /// z 축의 오프셋 값을 -1으로 설정
                         rtc3D.CtlZOffset(-1.0f);
                         break;
                     case ConsoleKey.D:
+                        /// z 축의 defocus 값을 0으로 설정
                         rtc3D.CtlZDefocus(0);
                         break;
                     case ConsoleKey.E:
+                        /// z 축의 defocus 값을 1으로 설정
                         rtc3D.CtlZDefocus(1.0f);
                         break;
                     case ConsoleKey.F:
+                        /// z 축의 defocus 값을 -1으로 설정
                         rtc3D.CtlZDefocus(-1.0f);
                         break;
                     case ConsoleKey.S:
+                        /// IRtc3D 의 폼 대화상자를 출력
                         rtc.Form.Show();
                         break;
                     case ConsoleKey.Q:

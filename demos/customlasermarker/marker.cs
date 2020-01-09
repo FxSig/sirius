@@ -11,23 +11,48 @@ using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-
+    /// <summary>
+    /// 사용자 정의 커스텀 마커
+    /// </summary>
     public class YourCustomMarker: IMarker
     {
+        /// <summary>
+        /// 진행 이벤트 핸들러
+        /// </summary>
         public event MarkerProgressEventHandler OnProgress;
+        /// <summary>
+        /// 가공 완료 이벤트 핸들러
+        /// </summary>
         public event MarkerFinishedEventHandler OnFinished;
+        /// <summary>
+        /// 식별 번호
+        /// </summary>
         public uint Index { get; set; }
+        /// <summary>
+        /// 이름
+        /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// 가공에 걸린 시간
         /// 시간 / 오프셋 개수 = 오프셋 하나당 가공에 걸린 시간
         /// </summary>
         public TimeSpan ElaspedTime { get; set; }
-
+        /// <summary>
+        /// 지정된 Rtc
+        /// </summary>
         public IRtc Rtc { get; set; }
+        /// <summary>
+        /// 지정된 Laser
+        /// </summary>
         public ILaser Laser { get; set; }
+        /// <summary>
+        /// 지정된 Motion (현재 미사용)
+        /// </summary>
         public IMotion Motion { get; set; }
+
+        /// <summary>
+        /// 가공 준비 완료 여부
+        /// </summary>
         public bool IsReady
         {
             get
@@ -45,6 +70,9 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
+        /// <summary>
+        /// 가공중 여부
+        /// </summary>
         public bool IsBusy
         {
             get {
@@ -54,6 +82,9 @@ namespace SpiralLab.Sirius
                     (this.thread != null) ? this.thread.IsAlive : false;
             }
         }
+        /// <summary>
+        /// 에러 발생 여부
+        /// </summary>
         public bool IsError
         {
             get
@@ -67,6 +98,10 @@ namespace SpiralLab.Sirius
         /// 가공 완료 여부
         /// </summary>
         public bool IsFinished { get; set; }
+
+        /// <summary>
+        /// 복제된 문서 객체
+        /// </summary>
         private IDocument clonedDoc;
 
         /// <summary>
@@ -78,9 +113,18 @@ namespace SpiralLab.Sirius
             set { this.offsets = value; }
         }
         private List<Offset> offsets;
+        /// <summary>
+        /// 장착된 스캐너가 회전되어 있는 경우 해당 최종 마킹시에는 해당 각도 만큼 회전되어 가공해야 하므로 이를 설정
+        /// 예 : 90, 180, 270 , ...
+        /// </summary>
         public float ScannerRotateAngle { get; set; }
-
+        /// <summary>
+        /// 마커의 상태나 사용자 인터페이스가 연결된 윈폼
+        /// </summary>
         public Form Form { get; set; }
+        /// <summary>
+        /// 부가 정보
+        /// </summary>
         public object Tag { get; set; }
 
         private Stopwatch timer;
@@ -91,7 +135,7 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.ElaspedTime = TimeSpan.Zero;
             this.offsets = new List<Offset>();
-            this.Form = new YourMarkerForm(this); /// 윈폼을 만들어 삽입
+            this.Form = new YourMarkerForm(this); /// 사용자가 직접 디자인한 폼을 만들어 삽입
         }
 
         /// <summary>
@@ -110,6 +154,7 @@ namespace SpiralLab.Sirius
             this.Rtc = rtc;
             this.Laser = laser;
             this.Motion = motion;
+            ///모든 문서 데이타 복제 (마커의 내부 가공 쓰레드가 직접 접근하면 cross-thread 상태가 되므로 복제 실시)
             this.clonedDoc = (IDocument)doc.Clone();
             Debug.Assert(clonedDoc != null);
             this.OnProgress?.Invoke(this, 0);
@@ -220,38 +265,43 @@ namespace SpiralLab.Sirius
         {
             bool success = true;
             float progress = 0;
-            ///지정된 오프셋 개수 만큼 가공            
+            ///지정된 오프셋 개수 만큼 가공
             for (int i = 0; i < this.offsets.Count; i++)
             {
                 var xyt = offsets[i];
+                /// 문서에 설정된 Dimension 정보 처리 : 회전중심, 회전량, 원점 중심 등
                 var matrix =
                     Matrix3x2.CreateRotation((float)(this.ScannerRotateAngle * Math.PI / 180.0)) *   ///7. 스캐너 회전량 적용
                     Matrix3x2.CreateTranslation(xyt.X, xyt.Y) * /// 6. 오프셋 이동량
-                    Matrix3x2.CreateRotation(xyt.Angle) *  /// 5. 오프셋 회전량
+                    Matrix3x2.CreateRotation((float)(xyt.Angle * Math.PI / 180.0)) *  /// 5. 오프셋 회전량
                     Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Dimension.Center)) * ///4. 문서의 원점 위치를 이동
                     Matrix3x2.CreateTranslation(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.X) * ///3. 회전 중심 위치 원복
-                    Matrix3x2.CreateRotation(clonedDoc.RotateOffset.Angle) *  ///2. 문서에 설정된 회전량 적용
+                    Matrix3x2.CreateRotation((float)(clonedDoc.RotateOffset.Angle * Math.PI / 180.0)) *  ///2. 문서에 설정된 회전량 적용
                     Matrix3x2.CreateTranslation(-clonedDoc.RotateOffset.X, -clonedDoc.RotateOffset.X);  ///1. 회전을 위해 회점 중심을 원점으로 이동
                 this.Rtc.MatrixStack.Push(matrix);
-
-                foreach (var layer in this.clonedDoc.Layers)    ///레이어 순회
+                ///문서의 레이어 순회
+                foreach (var layer in this.clonedDoc.Layers)   
                 {
+                    /// 레이어의 가공 여부 플레그 확인
                     if (layer.IsMarkerable)
                     {
-                        foreach (var entity in layer)   ///레이어에 있는 각 엔티티 순회
+                        ///레이어에 있는 모든 개체 순회
+                        foreach (var entity in layer)   
                         {
                             var markerable = entity as IMarkerable;
+                            /// 개체가 레이저 가공이 가능한지 여부 판단
                             if (null != markerable)
                                 success &= markerable.Mark(this.Rtc, this.Laser);
                             if (!success)
                                 break;
+                            /// 진행률 이벤트 (progress : 가 0~100 의 범위로 계산되도록 개선 필요)
                             this.OnProgress?.Invoke(this, progress++);
                         }
                     }
                     if (!success)
                         break;
                 }
-                ///위에서 Push 된 행렬스택에서 반드시 Pop 하여야 한다 !
+                ///위에서 Push 된 행렬스택에서 Pop 하여 초기 행렬스택 상태가 되도록으로 처리
                 Rtc.MatrixStack.Pop();
                 if (!success)
                     break;
@@ -261,9 +311,9 @@ namespace SpiralLab.Sirius
         private bool PostWork()
         {
             Rtc.ListEnd();
-
             if (!Rtc.CtlGetStatus(RtcStatus.Aborted))
                 Rtc.ListExecute(true);
+            /// 가공완료
             timer.Stop();
             this.ElaspedTime = timer.Elapsed;
             this.IsFinished = true;
