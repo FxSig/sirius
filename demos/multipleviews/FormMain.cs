@@ -72,21 +72,8 @@ namespace SpiralLab.Sirius
             this.formEditor2.Editor.AliasName = "Right Editor";
 
             //소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지가능하도록 이벤트 핸들러 등록
-            this.formViewer.Viewer1.OnDocumentSourceChanged += Viewer1_OnDocumentSourceChanged;
-            this.formEditor1.Editor.OnDocumentSourceChanged += Viewer1_OnDocumentSourceChanged;
-
-            this.formViewer.Viewer2.OnDocumentSourceChanged += Viewer2_OnDocumentSourceChanged;
-            this.formEditor2.Editor.OnDocumentSourceChanged += Viewer2_OnDocumentSourceChanged;
-
-            // 뷰어1 와 하드웨어 연결
-            this.formViewer.Viewer1.Rtc = rtc1;
-            this.formViewer.Viewer1.Laser = laser1;
-            this.formViewer.Viewer1.Marker = marker1;
-
-            //뷰어2 와 하드웨어 연결
-            this.formViewer.Viewer2.Rtc = rtc2;
-            this.formViewer.Viewer2.Laser = laser2;
-            this.formViewer.Viewer2.Marker = marker2;
+            this.formEditor1.Editor.OnDocumentSourceChanged += Editor1_OnDocumentSourceChanged;
+            this.formEditor2.Editor.OnDocumentSourceChanged += Editor2_OnDocumentSourceChanged;
 
             // 에디터1 와 하드웨어 연결
             this.formEditor1.Editor.Rtc = rtc1;
@@ -102,14 +89,14 @@ namespace SpiralLab.Sirius
             SwitchForm(panel3, this.formViewer);
         }
 
-        private void Viewer1_OnDocumentSourceChanged(object sender, IDocument doc)
+        private void Editor1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             /// 변경된 문서 소스 업데이트
             this.formViewer.Viewer1.Document = doc;
             this.formEditor1.Editor.Document = doc;
         }
 
-        private void Viewer2_OnDocumentSourceChanged(object sender, IDocument doc)
+        private void Editor2_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             /// 변경된 문서 소스 업데이트
             this.formViewer.Viewer2.Document = doc;

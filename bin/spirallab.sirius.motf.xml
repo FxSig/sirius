@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>spirallab.sirius.motf</name>
+    </assembly>
+    <members>
+        <member name="T:SpiralLab.Sirius.Rtc5MOTF">
+            <summary>
+            RTC5 + MOTF(Marking On The Fly) 제어기
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5MOTF.EncXCountsPerMm">
+            <summary>
+            단위 mm 당 엔코더 X 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5MOTF.EncYCountsPerMm">
+            <summary>
+            단위 mm 당 엔코더 Y 개수
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MOTF.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MOTF.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별 번호 (0,1,2...)</param>
+            <param name="outputFileName">명령 내용을 파일로 저장할경우 지정</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode)">
+            <summary>
+            외부 트리거 사용시 설정
+            </summary>
+            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.CtlEncoderReset(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            encoder reset with assigned offset posotion 
+            초기화시 엔코더의 오프셋(초기값) 값을 설정 가능
+            외부 엔코더 입력 대신 내부 엔코더를 사용해 가상 엔코더 활성화 가능
+            </summary>
+            <param name="offsetX">X 초기화 위치 (mm)</param>
+            <param name="offsetY">Y 초기화 위치(mm)</param>
+            <param name="encX_simulated_speed">RTC 내부 가상 엔코더 X 의 속도 (mm/s)</param>
+            <param name="encY_simulated_speed">RTC 내부 가상 엔코더 Y 의 속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+            <summary>
+            current encoder value 
+            현재 엔코더 값 얻기
+            </summary>
+            <param name="encX">X 엔코더 값 (counts)</param>
+            <param name="encY">Y 엔코더 값 (counts)</param>
+            <param name="encX_mm">X 엔코더의 위치 (mm)</param>
+            <param name="encY_mm">Y 엔코더의 위치 (mm)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.ListMOTFBegin(System.Boolean)">
+            <summary>
+            MOTF 리스트 명령 시작
+            엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
+            초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
+            해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            wait list execution until specific encoder value matched user-assigned condition
+            지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
+            (단축 동기화 용)
+            </summary>
+            <param name="enc">엔코더 축 지정</param>
+            <param name="position">위치값 (mm)</param>
+            <param name="cond">조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            wait list execution until both encoders value matched user-assigned condition
+            두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            </summary>
+            <param name="positionX">X 축 위치 (mm)</param>
+            <param name="rangeX">조건 범위 (mm)</param>
+            <param name="positionY">Y 축 위치 (mm)</param>
+            <param name="rangeY">조건 범위 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MOTF.ListMOTFEnd(System.Numerics.Vector2)">
+            <summary>
+            MOTF 리스트 명령 끝
+            종료시 스캐너를 지정된 위치로 점프 시킴
+            </summary>
+            <param name="vPosition">점프 위치</param>
+            <returns></returns>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcMOTFForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcMOTFForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcMOTFForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+    </members>
+</doc>

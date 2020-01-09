@@ -25,7 +25,6 @@ namespace SpiralLab.Sirius
 
             /// 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
-            siriusViewerForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
             #region RTC 초기화
             var rtc = new RtcVirtual(0); ///create Rtc for dummy
