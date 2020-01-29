@@ -90,7 +90,7 @@ namespace SpiralLab.Sirius
             /// 그룹내에 나선 개체 생성하여 추가
             group1.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
             /// 그룹의 반복 회수 설정
-            group1.RepeatCount = 10;    /// 10회 가공
+            group1.Repeat = 10;    /// 10회 가공
             /// 반복 가공시 개체들을 반복회수(10) 를 먼저 실시
             group1.RepeatMode = GroupRepeatMode.EntityFirst;
             /// 반복 가공시 역 방향 가공할지 여부
@@ -116,7 +116,7 @@ namespace SpiralLab.Sirius
             group1.Add(new Line(0, 0, 5, 10));
             group1.Add(new Circle(0, 0, 50));
             group1.Add(new Spiral(-10.0f, 0.0f, 0.5f, 2.0f, 10, true));
-            group1.RepeatCount = 20;    /// 20 회 가공
+            group1.Repeat = 20;    /// 20 회 가공
             layer.Add(group2);
 
             /// 해당 문서 데이타를 지정된 파일에 저장

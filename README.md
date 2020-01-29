@@ -46,7 +46,7 @@
  ----
 **4. Author**
 
- - hong chan, choi (labspiral@gmail.com)                           
+ - e-mail : labspiral@gmail.com
  - homepage : http://sepwind.blogspot.com                        
  - git repository : https://github.com/labspiral/sirius.git
  - Please send email to me to use commerically.
@@ -56,6 +56,7 @@
 ----
 **5. Version history**
 
+* 2020.01.29 v0.9 added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
 * 2020.01.07 v0.8 added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
 * 2019.12.24 v0.7 added IRtc3D interface, added Group entity (with MOTF), fixed ICorrection2D, added ICorrection3D interface. 
 * 2019.12.19 v0.6 added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
