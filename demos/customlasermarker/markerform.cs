@@ -6,32 +6,41 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
-    public partial class YourMarkerForm : System.Windows.Forms.Form
+    public partial class YourMarkerForm : System.Windows.Forms.UserControl
     {
-        IMarker marker;
-        public YourMarkerForm(YourCustomMarker marker)
+        public IMarker Marker
+        {
+            get { return this.marker; }
+            set
+            {
+                if (null == value)
+                {
+                    this.marker.OnProgress -= Marker_OnProgress;
+                    this.marker.OnFinished -= Marker_OnFinished;
+                    this.timer1.Enabled = false;
+                }
+                else
+                {
+                    this.marker = value;
+                    this.marker.OnProgress += Marker_OnProgress;
+                    this.marker.OnFinished += Marker_OnFinished;
+                    this.timer1.Enabled = true;
+                }
+            }
+        }
+        private IMarker marker;
+
+        public YourMarkerForm()
         {
             InitializeComponent();
-
-            Debug.Assert(marker != null);
-            this.marker = marker;
-            this.marker = marker;
-            this.marker.OnProgress += Marker_OnProgress; 
-            this.marker.OnFinished += Marker_OnFinished;
-
-            this.KeyPreview = true;
-            this.KeyDown += YourLaserForm_KeyDown; ;
         }
 
-        private void YourLaserForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Escape) { this.Close(); }
-        }
 
         private void Marker_OnFinished(IMarker sender, TimeSpan span)
         {
@@ -63,12 +72,6 @@ namespace SpiralLab.Sirius
             }
         }
 
-        private void YourLaserForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            this.timer1.Enabled = false;
-            this.marker.OnProgress -= Marker_OnProgress;
-            this.marker.OnFinished -= Marker_OnFinished;
-        }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -98,8 +101,6 @@ namespace SpiralLab.Sirius
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to start ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 return;
 
-            if (0 == this.marker.Offsets.Count)
-                this.marker.Offsets.Add(Offset.Zero);///기본 오프셋 추가
             listBox1.Items.Add($"{DateTime.Now.ToString()} : trying to start ...");
             marker?.Start();
         }
@@ -115,12 +116,21 @@ namespace SpiralLab.Sirius
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to manual laser on ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
                 return;
 
-            this.marker.Rtc.CtlLaserOn();
+            if (null != marker.MarkerArg)
+            {
+                this.marker.MarkerArg.Rtc?.CtlMove(0, 0);
+                Thread.Sleep(100);
+                this.marker.MarkerArg.Rtc?.CtlLaserOn();
+            }
         }
 
         private void btnManualOff_Click(object sender, EventArgs e)
         {
-            this.marker.Rtc.CtlLaserOff();
+            if (null != marker.MarkerArg)
+            {
+                this.marker.MarkerArg.Rtc?.CtlLaserOff();
+                this.marker.MarkerArg.Rtc?.CtlMove(0, 0);
+            }
         }
 
         private void YourMarkerForm_VisibleChanged(object sender, EventArgs e)

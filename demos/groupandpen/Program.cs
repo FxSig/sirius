@@ -35,42 +35,34 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0);
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            var rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
-            float fov = 60.0f;    /// scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            float fov = 60.0f;    // scanner field of view : 60mm                                
+            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    ///default correction file
-            rtc.CtlFrequency(50 * 1000, 2); ///laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); ///scanner and laser delays
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    //default correction file
+            rtc.CtlFrequency(50 * 1000, 2); //laser frequency : 50KHz, pulse width : 2usec
+            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            rtc.CtlDelay(10, 100, 200, 200, 0); //scanner and laser delays
             #endregion
 
-            #region initialize Laser (virtial)
+            #region initialize Laser (virtual)
             ILaser laser = new LaserVirtual(0, "virtual", 20);
             #endregion
 
             #region create entities
-            /// 신규 문서 생성
+            // 신규 문서 생성
             var doc = new DocumentDefault("Unnamed");
-            /// 레이어 생성후 문서에 추가
-            var layer = new Layer("default");
-            doc.Layers.Add(layer);
-           
-            ///첫번째 그룹 객체 생성
+            // 레이어 생성후 문서에 추가
+            var layer = new Layer("default");          
+            //첫번째 그룹 객체 생성
             var group1 = new Group();
             group1.Add(
-               new Pen()    /// 그룹내에 펜 개체 생성하여 추가
+               new PenDefault()    // 그룹내에 펜 개체 생성하여 추가
                {
                    Frequency = 100 * 1000,
                    PulseWidth = 2,
@@ -83,24 +75,19 @@ namespace SpiralLab.Sirius
                    MarkSpeed = 500,
                }
             );
-            /// 그룹내에 선 개체 생성하여 추가
+            // 그룹내에 선 개체 생성하여 추가
             group1.Add(new Line(0, 0, 10, 20));
-            /// 그룹내에 원 개체 생성하여 추가
+            // 그룹내에 원 개체 생성하여 추가
             group1.Add(new Circle(0, 0, 10));
-            /// 그룹내에 나선 개체 생성하여 추가
+            // 그룹내에 나선 개체 생성하여 추가
             group1.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
-            /// 그룹의 반복 회수 설정
-            group1.Repeat = 10;    /// 10회 가공
-            /// 반복 가공시 개체들을 반복회수(10) 를 먼저 실시
-            group1.RepeatMode = GroupRepeatMode.EntityFirst;
-            /// 반복 가공시 역 방향 가공할지 여부
-            group1.IsReverseMark = false;
+            // 그룹의 반복 회수 설정 (10회 가공)
+            group1.Repeat = 10;   
 
-
-            /// 두번째 그룹 객체 생성
+            // 두번째 그룹 객체 생성
             var group2 = new Group();
             group2.Add(
-               new Pen()    /// 그룹내에 펜 개체 생성하여 추가
+               new PenDefault()    // 그룹내에 펜 개체 생성하여 추가
                {
                    Frequency = 50 * 1000,
                    PulseWidth = 2,
@@ -116,12 +103,16 @@ namespace SpiralLab.Sirius
             group1.Add(new Line(0, 0, 5, 10));
             group1.Add(new Circle(0, 0, 50));
             group1.Add(new Spiral(-10.0f, 0.0f, 0.5f, 2.0f, 10, true));
-            group1.Repeat = 20;    /// 20 회 가공
+            group1.Repeat = 20;    // 20 회 가공
             layer.Add(group2);
 
-            /// 해당 문서 데이타를 지정된 파일에 저장
-            var ds = new DocumentSerializer();
-            ds.Save(doc, "test.sirius");
+            //레이어의 모든 개채들 내부 데이타 계산및 갱신
+            layer.Regen();
+            // 문서에 레이어 추가
+            doc.Layers.Add(layer);
+
+            // 해당 문서 데이타를 지정된 파일에 저장
+            DocumentSerializer.Save(doc, "test.sirius");
             #endregion
 
             ConsoleKeyInfo key;
@@ -136,6 +127,7 @@ namespace SpiralLab.Sirius
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine("");
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
@@ -161,6 +153,12 @@ namespace SpiralLab.Sirius
         private static bool DrawForFieldCorrection(ILaser laser, IRtc rtc, IDocument doc)
         {
             bool success = true;
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
             rtc.ListBegin(laser);
             foreach (var layer in doc.Layers)
             {
@@ -168,7 +166,7 @@ namespace SpiralLab.Sirius
                 {
                     var markerable = entity as IMarkerable;
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);
+                        success &= markerable.Mark(markerArg);
                 }
             }
             if (success)

@@ -46,9 +46,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.syncaxis, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="spirallab.sirius.rtc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.sirius.syncaxis.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

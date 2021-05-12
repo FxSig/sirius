@@ -34,8 +34,6 @@
             // siriusEditorForm1
             // 
             this.siriusEditorForm1.AliasName = "NoName";
-            this.siriusEditorForm1.Correction2D = null;
-            this.siriusEditorForm1.Correction3D = null;
             this.siriusEditorForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusEditorForm1.Document = null;
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -45,7 +43,6 @@
             this.siriusEditorForm1.Location = new System.Drawing.Point(0, 0);
             this.siriusEditorForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusEditorForm1.Marker = null;
-            this.siriusEditorForm1.Motion = null;
             this.siriusEditorForm1.Name = "siriusEditorForm1";
             this.siriusEditorForm1.Progress = 0;
             this.siriusEditorForm1.Rtc = null;

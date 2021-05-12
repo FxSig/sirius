@@ -22,25 +22,19 @@ namespace SpiralLab.Sirius
 
             SpiralLab.Core.Initialize();
 
-            //Rtc 2개 생성
+            //Rtc 제어기 객체 2개 생성
             var rtc1 = new RtcVirtual(0, "output1.txt");
             var rtc2 = new RtcVirtual(1, "output2.txt");
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             rtc1.Initialize(1000, LaserMode.Yag1, correctionFile);
             rtc2.Initialize(1000, LaserMode.Yag1, correctionFile);
 
-            //Laser 2개 생성
+            //Laser 소스 객체 2개 생성
             var laser1 = new LaserVirtual(0, "Virtual Laser1", 20);
             laser1.Initialize();
             var laser2 = new LaserVirtual(1, "Virtual Laser2", 20);
@@ -91,18 +85,23 @@ namespace SpiralLab.Sirius
 
         private void Editor1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
-            /// 변경된 문서 소스 업데이트
+            // 변경된 문서 소스 업데이트
             this.formViewer.Viewer1.Document = doc;
             this.formEditor1.Editor.Document = doc;
         }
 
         private void Editor2_OnDocumentSourceChanged(object sender, IDocument doc)
         {
-            /// 변경된 문서 소스 업데이트
+            // 변경된 문서 소스 업데이트
             this.formViewer.Viewer2.Document = doc;
             this.formEditor2.Editor.Document = doc;
         }
 
+        /// <summary>
+        /// 폼(Form) 전환
+        /// </summary>
+        /// <param name="destination">폼이 놓여질 대상 패널</param>
+        /// <param name="target">화면에 출력될 폼</param>
         public void SwitchForm(Panel destination, Form target)
         {
             destination.SuspendLayout();

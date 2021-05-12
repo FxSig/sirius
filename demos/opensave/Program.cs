@@ -39,59 +39,52 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region create entities 
-            ///신규 문서(Document) 생성
+            //신규 문서(Document) 생성
             var doc1 = new DocumentDefault("Unnamed");
-            /// 레이어 생성
+            // 레이어 생성
             var layer = new Layer("default");
-            /// 레이어를 문서해 추가
-            doc1.Layers.Add(layer);
-            ///레이어에 선 형상 개체(Entity) 생성및 추가
+            //레이어에 선 형상 개체(Entity) 생성및 추가
             layer.Add(new Line(0, 10, 20,20));
-            ///레이어에 원 형상 개체(Entity) 생성및 추가
+            //레이어에 원 형상 개체(Entity) 생성및 추가
             layer.Add(new Circle(0, 0, 10));
-            ///레이어에 나선 형상 개체(Entity) 생성및 추가
+            //레이어에 나선 형상 개체(Entity) 생성및 추가
             layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
+            // 레이어를 문서에 추가
+            doc1.Layers.Add(layer);
             #endregion
 
             Console.WriteLine("press any key to save ...");
             Console.ReadKey(false);
             string filename = "default.sirius";
 
-            /// 문서(Document) 저장하기
-            var ds = new DocumentSerializer();
-            ds.Save(doc1, filename);
+            // 문서(Document) 저장하기
+            DocumentSerializer.Save(doc1, filename);
 
             Console.WriteLine("press any key to open ...");
             Console.ReadKey(false);
-            /// 문서(Document) 불러오기
+            // 문서(Document) 불러오기
             var doc2 = DocumentSerializer.OpenSirius(filename);
 
             Console.WriteLine("press any key to rtc initialize ...");
             Console.ReadKey(false);
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0, "output2.txt");
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            var rtc = new Rtc5(0, "output.txt"); //create Rtc5 controller with list commands output file
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
-            float fov = 60.0f;    /// scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            float fov = 60.0f;    // scanner field of view : 60mm            
+            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    /// 스캐너 보정 파일 지정 : correction file
-            rtc.CtlFrequency(50 * 1000, 2); /// laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); /// scanner and laser delays
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // 스캐너 보정 파일 지정 : correction file
+            rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
+            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
             #endregion
 
-            #region initialize Laser (virtial)
+            #region initialize Laser (virtual)
             ILaser laser = new LaserVirtual(0, "virtual", 20);
             #endregion
 
@@ -113,17 +106,23 @@ namespace SpiralLab.Sirius
         {
             var timer = Stopwatch.StartNew();
             bool success = true;
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
             rtc.ListBegin(laser);
-            ///레이어를 순회
+            //레이어를 순회
             foreach (var layer in doc.Layers)
             {
-                ///레이어 내의 개체(Entity)들을 순회
+                //레이어 내의 개체(Entity)들을 순회
                 foreach (var entity in layer)
                 {
                     var markerable = entity as IMarkerable;
-                    ///레이저 가공이 가능한 개체(markerable)인지를 판단
+                    //레이저 가공이 가능한 개체(markerable)인지를 판단
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);    /// 해당 개체(Entity) 가공 
+                        success &= markerable.Mark(markerArg);    // 해당 개체(Entity) 가공 
                     if (!success)
                         break;
                 }

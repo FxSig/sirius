@@ -24,8 +24,8 @@
  * 
  * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로
  *  상태 (IsReady, IsBusy, IsError)및 오프셋 가공( List<Offset> )을 처리할수있다.
- *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)한후 가공에 사용하며, 가공시에는 내부에 쓰레드를 만든후 가공이 시작되므로
- *  다른 함수호출들이  block 되지 않도록 처리해 준다.
+ *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
+ *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
  *  
  * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
  * 
@@ -46,45 +46,39 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0);
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            var rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
-            float fov = 60.0f;    /// scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            float fov = 60.0f;    // scanner field of view : 60mm                                
+            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    ///default correction file
-            rtc.CtlFrequency(50 * 1000, 2); ///laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); ///scanner and laser delays
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    //default correction file
+            rtc.CtlFrequency(50 * 1000, 2); //laser frequency : 50KHz, pulse width : 2usec
+            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            rtc.CtlDelay(10, 100, 200, 200, 0); //scanner and laser delays
             #endregion
 
             #region initialize Laser source
             ILaser laser = new LaserVirtual(0, "virtual", 10.0f);
             laser.Initialize();
-            var pen = new Pen
-            {
-                Power = 10.0f,
-            };
-            laser.CtlPower(rtc, pen);
+            laser.CtlPower(rtc, 5);
             #endregion
 
             #region create entity at 0,0 location
             var doc = new DocumentDefault("3x3 scanner field correction");
+            //레이어 생성
             var layer = new Layer("default");
-            doc.Layers.Add(layer);
+            // 나선 개체 추가
             layer.Add(new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true));
-
-            var ds = new DocumentSerializer();
-            ds.Save(doc, "test.sirius");
+            //레이어의 모든 개채들 내부 데이타 계산및 갱신
+            layer.Regen();
+            //문서에 레이어 추가
+            doc.Layers.Add(layer);
+            //문서 저장
+            DocumentSerializer.Save(doc, "test.sirius");
             #endregion
 
             ConsoleKeyInfo key;
@@ -100,14 +94,15 @@ namespace SpiralLab.Sirius
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine("");
                 switch (key.Key)
                 {
                     case ConsoleKey.M:
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawByMarker(doc, rtc, laser);
                         break;
                     case ConsoleKey.O:
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawByMarkerWithOffset(doc, rtc, laser);
                         break;
                 }
@@ -121,14 +116,23 @@ namespace SpiralLab.Sirius
         {
             var marker = new MarkerDefault(0);            
             marker.Name = "marker #1";
-            ///가공 완료 이벤트 핸들러 등록
+            //가공 완료 이벤트 핸들러 등록
             marker.OnFinished += Marker_OnFinished;
-            /// 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
-            marker.Ready(doc, rtc, laser);
-            /// 하나의 오프셋 정보(0,0및 회전각도 0) 를 추가한다.
-            marker.Offsets.Clear();
-            marker.Offsets.Add(Offset.Zero);
-            /// 가공을 시작한다. 
+
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
+            // 하나의 오프셋 정보(0,0 및 회전각도 0) 를 추가한다.
+            markerArg.Offsets.Clear();
+            markerArg.Offsets.Add(Offset.Zero);
+
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
+            marker.Ready(markerArg);
+
+            // 가공을 시작한다. 
             marker.Start();
         }
 
@@ -136,22 +140,29 @@ namespace SpiralLab.Sirius
         {
             var marker = new MarkerDefault(0);
             marker.Name = "marker #2";
-            ///가공 완료 이벤트 핸들러 등록
+            //가공 완료 이벤트 핸들러 등록
             marker.OnFinished += Marker_OnFinished;
-            /// 9개의 오프셋 정보를 추가한다
-            marker.Offsets.Clear();
-            marker.Offsets.Add(new Offset(-20.0f, 20.0f, -90f));
-            marker.Offsets.Add(new Offset(0.0f, 20.0f, 0.0f));
-            marker.Offsets.Add(new Offset(20.0f, 20.0f, 90.0f));
-            marker.Offsets.Add(new Offset(-20.0f, 0.0f, -180.0f));
-            marker.Offsets.Add(new Offset(0.0f, 0.0f, 0.0f));
-            marker.Offsets.Add(new Offset(20.0f, 0.0f, 180.0f));
-            marker.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
-            marker.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
-            marker.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
-            /// 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
-            marker.Ready(doc, rtc, laser);
-            /// 가공을 시작한다. 
+
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
+            // 9개의 오프셋 정보를 추가한다
+            markerArg.Offsets.Clear();
+            markerArg.Offsets.Add(new Offset(-20.0f, 20.0f, -90f));
+            markerArg.Offsets.Add(new Offset(0.0f, 20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 20.0f, 90.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, 0.0f, -180.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, 0.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 0.0f, 180.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
+            marker.Ready(markerArg);
+            // 가공을 시작한다. 
             marker.Start();
         }
             

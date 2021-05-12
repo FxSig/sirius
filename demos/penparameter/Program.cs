@@ -34,61 +34,57 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0);
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            var rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
-            float fov = 60.0f;    /// scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            float fov = 60.0f;    // scanner field of view : 60mm                                
+            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    ///default correction file
-            rtc.CtlFrequency(50 * 1000, 2); ///laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); ///scanner and laser delays
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    //default correction file
+            rtc.CtlFrequency(50 * 1000, 2); //laser frequency : 50KHz, pulse width : 2usec
+            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            rtc.CtlDelay(10, 100, 200, 200, 0); //scanner and laser delays
             #endregion
 
-            #region initialize Laser (virtial)
+            #region initialize Laser (virtual)
             ILaser laser = new LaserVirtual(0, "virtual", 20);
             #endregion
 
             #region create entities
-            /// 문서 생성
+            // 문서 생성
             var doc = new DocumentDefault("Unnamed");
-            /// 레이어 생성및 문서에 추가
+            // 레이어 생성및 문서에 추가
             var layer = new Layer("default");
-            doc.Layers.Add(layer);
-            /// 펜 개체(Entity) 생성및 레이어에 추가
-            layer.Add(
-                new Pen()
-                {
-                    Frequency = 100 * 1000, ///주파수 Hz
-                    PulseWidth = 2, ///펄스폭 usec
-                    LaserOnDelay = 0, /// 레이저 시작 지연 usec
-                    LaserOffDelay = 0, /// 레이저 끝 지연 usec
-                    ScannerJumpDelay = 100, /// 스캐너 점프 지연 usec
-                    ScannerMarkDelay = 200, /// 스캐너 마크 지연 usec
-                    ScannerPolygonDelay = 0, /// 스캐너 폴리곤 지연 usec
-                    JumpSpeed =500, /// 스캐너 점프 속도 mm/s
-                    MarkSpeed = 500, /// 스캐너 마크 속도 mm/s
-                }
-            );
-            /// 선 개체 레이어에 추가
+            // 펜 개체(Entity) 생성및 레이어에 추가            
+            var pen = new PenDefault()
+            {
+                Frequency = 100 * 1000, //주파수 Hz
+                PulseWidth = 2, //펄스폭 usec
+                LaserOnDelay = 0, // 레이저 시작 지연 usec
+                LaserOffDelay = 0, // 레이저 끝 지연 usec
+                ScannerJumpDelay = 100, // 스캐너 점프 지연 usec
+                ScannerMarkDelay = 200, // 스캐너 마크 지연 usec
+                ScannerPolygonDelay = 0, // 스캐너 폴리곤 지연 usec
+                JumpSpeed = 500, // 스캐너 점프 속도 mm/s
+                MarkSpeed = 500, // 스캐너 마크 속도 mm/s
+            };
+            layer.Add(pen);
+            // 선 개체 레이어에 추가
             layer.Add(new Line(0, 0, 10, 20));
-            /// 원 개체 레이어에 추가
+            // 원 개체 레이어에 추가
             layer.Add(new Circle(0, 0, 10));
-            /// 나선 개체 레이어에 추가
-            layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
-            /// 문서를 지정된 파일에 저장
-            var ds = new DocumentSerializer();
-            ds.Save(doc, "test.sirius");
+            // 나선 개체 레이어에 추가
+            layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));            
+            //레이어의 모든 개채들 내부 데이타 계산및 갱신
+            layer.Regen();
+            // 문서에 레이어 추가
+            doc.Layers.Add(layer);
+
+            // 문서를 지정된 파일에 저장
+            DocumentSerializer.Save(doc, "test.sirius");
             #endregion
 
             ConsoleKeyInfo key;
@@ -103,6 +99,7 @@ namespace SpiralLab.Sirius
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine("");
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
@@ -126,17 +123,23 @@ namespace SpiralLab.Sirius
         private static bool DrawForFieldCorrection(ILaser laser, IRtc rtc, IDocument doc)
         {
             bool success = true;
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
             rtc.ListBegin(laser);
-            /// 레이어 순회
+            // 레이어 순회
             foreach (var layer in doc.Layers)
             {
-                /// 레이어 내의 개체들을 순회
+                // 레이어 내의 개체들을 순회
                 foreach (var entity in layer)
                 {
                     var markerable = entity as IMarkerable;
-                    /// 해당 개체가 레이저 가공이 가능한지 여부를 판별
+                    // 해당 개체가 레이저 가공이 가능한지 여부를 판별
                     if (null != markerable)
-                        success &= markerable.Mark(rtc);    /// 레이저 가공 실시
+                        success &= markerable.Mark(markerArg);    // 레이저 가공 실시
                     if (!success)
                         break;
                 }

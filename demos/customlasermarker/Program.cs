@@ -24,6 +24,7 @@
 
 using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Numerics;
 using System.Windows.Forms;
@@ -39,17 +40,11 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            var rtc = new RtcVirtual(0);
-            //var rtc = new Rtc5(0); ///create Rtc5 controller
-            //var rtc = new Rtc6(0); ///create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.200"); ///create Rtc6 ethernet controller
-            //var rtc = new Rtc53D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc63D(0); ///create Rtc5 + 3D option controller
-            //var rtc = new Rtc5DualHead(0); ///create Rtc5 + Dual head option controller
-            //var rtc = new Rtc5MOTF(0); ///create Rtc5 + MOTF option controller
-            //var rtc = new Rtc6MOTF(0); ///create Rtc6 + MOTF option controller
-            //var rtc = new Rtc6SyncAxis(0); 
-            //var rtc = new Rtc6SyncAxis(0, "syncAXISConfig.xml"); ///create Rtc6 + XL-SCAN (ACS+SYNCAXIS) option controller
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            var rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "configuration", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
 
             float fov = 60.0f;    /// scanner field of view : 60mm                                
             float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
@@ -61,13 +56,9 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
-            ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f, PowerXFactor.ByUser);
+            ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f);
             laser.Initialize();
-            var pen = new Pen
-            {
-                Power = 10.0f,
-            };
-            laser.CtlPower(rtc, pen);
+            laser.CtlPower(rtc, 10);
             #endregion
 
             #region prepare your marker
@@ -84,22 +75,18 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
                 Console.WriteLine("");
                 Console.WriteLine("'M' : mark by your custom marker");
-                Console.WriteLine("'L' : pop up your custom laser form");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine("");
                 switch (key.Key)
                 {
                     case ConsoleKey.M:
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawByMarker(rtc, laser, marker);
-                        break;
-                    case ConsoleKey.L:
-                        Console.WriteLine("\r\nLASER FORM");
-                        PopUpLaserForm(laser);
                         break;
                 }
 
@@ -127,18 +114,20 @@ namespace SpiralLab.Sirius
 
             Debug.Assert(null != doc);
             /// 마커 가공 준비
-            marker.Ready(doc, rtc, laser);
+            marker.Ready( new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            });
             /// 하나의 오프셋 정보 추가
-            marker.Offsets.Clear();
-            marker.Offsets.Add(Offset.Zero);
+            marker.MarkerArg.Offsets.Clear();
+            marker.MarkerArg.Offsets.Add(Offset.Zero);
             /// 가공 시작
             marker.Start();
         }
 
-        private static void PopUpLaserForm(ILaser laser)
-        {
-            laser.Form.ShowDialog();
-        }
+       
 
         private static void Marker_OnFinished(IMarker sender, TimeSpan span)
         {

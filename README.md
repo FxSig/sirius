@@ -11,22 +11,22 @@
  ----
 **2. Features**
 
- - support SCANLAB's RTC5, RTC6, RTC6 Ethernet multiple products. 
+ - support SCANLAB's RTC5, RTC6, RTC6 Ethernet, XL-SCAN(SyncAXIS) multiple products. 
  - support RTC control with 3x3 matrix stack operation.
  - support RTC field correction with easy to use.
  - support unlimited vector data by RTC controller automatically.
- - support RTC's MOTF(marking on the fly), XL-SCAN(SyncAXIS) and sky-writing functions.
- - support many kinds of commerical laser sources (to the future...)
+ - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) options.
+ - support many kinds of commerical laser sources (support customizable ILaser interface)
  - support laser power control with varios methods (like as analog, digital, frequency, pulse width modulation)
- - support entities : line, arc, LW polyline, rectangle, circle, true type font, spiral, trepan, group for multiple entities and layers.
+ - support entities : line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, group for multiple entities and layers.
  - support powerful undo/redo actions.
  - support Dxf/HPGL file format importer and sirius custom file format.
- - support 2D barcodes (DataMatrix, QR Code), 1D barcodes format (mark with dots or lines)
+ - support 2D barcodes (DataMatrix, QR Code), 1D barcodes format (mark with dots, lines, outlines, hatch or custom patter each cells)
  - support 1 source(single document data), multiple view windows.
- - support customizable and extensible laser source and marker interface.
+ - support customizable and extensible marker interface.
  - support laser path visualizer and simulator.
- - support all vector data are explodable by every lines and arcs.
- - support group entity with repeatable and reversible laser process.
+ - support all vector data are explodable by every sub entities.
+ - support group entity with repeatable support each x,y, angle offsets.
  - support vary laser parameters with special entity called 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
  
  ![sirius1](https://user-images.githubusercontent.com/58460570/70033764-74db8080-15f3-11ea-9e54-75b868e7d5ae.png)  
@@ -34,10 +34,9 @@
   ----
 **3. How to use ?**
 
- - Development Environment : .NET dll library with x64 (x32 avaiable in the future)
- - Add spirallab.sirius.dll file as user control into Microsoft Visual Studio.
- - spirallab.sirius.motf.dll, spirallab.sirius.syncaxis.dll are optional
- - There are 2 winforms controls (Sirius.EditorForm and Sirius.ViewerForm)
+ - Development Environment : .NET dll library with x64
+ - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
+ - spirallab.sirius.dll file support user control : Sirius.EditorForm and Sirius.ViewerForm
  - There are multiple demo programs in DEMOS directory
 
 ![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
@@ -55,6 +54,14 @@
 
 ----
 **5. Version history**
+
+* 2021.05.12 v1.3 added CharacterSet demo project : added character set interface with MOTF
+                  added sirius text arc entity, text arc entity
+                  added WPF demo project
+                  fixed barcode (QR/Datamatrix/1D ...) cell with dot/line/outline/hatch or imported pattern
+                  merged separated dll into single spiral.sirius.rtc.dll
+                  fixed similary properties at sirius text and text entity 
+                  fixed location/rotate bugs each entities
 
 * 2020.01.29 v0.9 added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
 * 2020.01.07 v0.8 added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs

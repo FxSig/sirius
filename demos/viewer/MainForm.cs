@@ -15,15 +15,17 @@ namespace SpiralLab.Sirius
         public MainForm()
         {
             InitializeComponent();
-
+            // 라이브러리 초기화
             SpiralLab.Core.Initialize();
 
+            // 문서 생성후 뷰어에 지정
             var doc = new DocumentDefault();
             siriusViewerForm1.Document = doc;
         }
 
         public bool Open(string fileName)
         {
+            // 문서 파일 오픈후 뷰어에 지정
             var doc = DocumentSerializer.OpenSirius(fileName);
             siriusViewerForm1.Document = doc;
             return true;
