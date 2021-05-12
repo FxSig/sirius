@@ -7,7 +7,11 @@
  
  ![sirius](https://user-images.githubusercontent.com/58460570/70974494-38c41780-20eb-11ea-8567-afe02fab5441.png)
 
+ ![barcode](https://user-images.githubusercontent.com/58460570/117915869-130f6200-b321-11eb-928f-7c4f08c1af70.png)
  
+ ![text with arc](https://user-images.githubusercontent.com/58460570/117915901-215d7e00-b321-11eb-8055-5502aad8bf85.png)
+
+
  ----
 **2. Features**
 
@@ -40,7 +44,7 @@
  - There are multiple demo programs in DEMOS directory
 
 ![sirius3](https://user-images.githubusercontent.com/58460570/70033763-74db8080-15f3-11ea-926d-447ac6739d72.png)
- *The program running about 10 minutes in evalution copy mode !*
+ *The program running about 3 hours in evalution copy mode !*
  
  ----
 **4. Author**
@@ -56,13 +60,14 @@
 ----
 **5. Version history**
 
-* 2021.05.12 v1.3 added CharacterSet demo project : added character set interface with MOTF
-                  added sirius text arc entity, text arc entity
+* 2021.05.12 v1.3 added CharacterSet, 3D, MOTF, Dual head demo project 
+                  added Sirius Text Arc entity, Text Arc entity
                   added WPF demo project
                   fixed barcode (QR/Datamatrix/1D ...) cell with dot/line/outline/hatch or imported pattern
                   merged separated dll into single spiral.sirius.rtc.dll
-                  fixed similary properties at sirius text and text entity 
+                  fixed to be similary properties at sirius text and text entity 
                   fixed location/rotate bugs each entities
+                  fixed minor bugs
 
 * 2020.01.29 v0.9 added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
 * 2020.01.07 v0.8 added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
