@@ -48,7 +48,8 @@
  - e-mail : labspiral@gmail.com
  - homepage : http://sepwind.blogspot.com                        
  - git repository : https://github.com/labspiral/sirius.git
- - Please send email to me to use commerically.
+ - phone : +82-10-9619-3896
+ - Please contact to me to use commerically.
   
 ![sirius2](https://user-images.githubusercontent.com/58460570/70033762-7442ea00-15f3-11ea-8788-2aae70ceacf8.png)
 
