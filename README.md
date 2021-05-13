@@ -50,7 +50,7 @@
 **4. Author**
 
  - e-mail : labspiral@gmail.com
- - homepage : http://sepwind.blogspot.com                        
+ - homepage : http://spirallab.co.kr                     
  - git repository : https://github.com/labspiral/sirius.git
  - phone : +82-10-9619-3896
  - Please contact to me to use commerically.
