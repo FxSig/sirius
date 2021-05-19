@@ -27,7 +27,7 @@
  *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
  *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
  *  
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -84,7 +84,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'M' : draw entities by marker");
                 Console.WriteLine("'O' : draw entities by marker with offsets");

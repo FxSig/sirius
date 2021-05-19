@@ -17,7 +17,7 @@
  * 
  * customized 된 마커(Marker)를 사용자가 직접 구현한다
  * 
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -72,7 +72,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'M' : mark by your custom marker");
                 Console.WriteLine("'Q' : quit");

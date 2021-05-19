@@ -19,7 +19,7 @@
  * 
  * IRtc 인터페이스를 직접 사용하는 방법
  * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -60,7 +60,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'S' : get status");
                 Console.WriteLine("'L' : draw line");

@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
  * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -67,7 +67,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'R' : encoder reset");
                 Console.WriteLine("'N' : MOTF With Follow Only");

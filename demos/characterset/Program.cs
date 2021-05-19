@@ -20,7 +20,7 @@
  * IRtcCharacterSet 인터페이스를 사용하는 방법
  * RTC5 카드를 초기화 하고 리스트 버퍼3에 문자를 등록하고 이를 사용해 시간, 날짜, 시리얼 번호를 마킹한다
  * MOTF 와 연동하여 텍스트 마킹 내용이 RTC에 의해 처리되는 외부 제어 방식
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -62,7 +62,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'C' : create character set");
                 Console.WriteLine("'T' : mark to text");

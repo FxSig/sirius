@@ -60,6 +60,31 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.HPGL">
+            <summary>
+            group entity (container)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HPGL.IsEnableFastRendering">
+            <summary>
+            opengl 의 고속 렌더링을 지원하여 렌더링 속도를 올리기 위한 내부 옵션
+            false : 모두 새로 그림
+            true : openg의 buffer를 이용한 버퍼 그리기 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.HPGL.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.HPGL.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotfBegin">
             <summary>
             Motf Begin 엔티티 객체
@@ -134,6 +159,24 @@
             </summary>
             <param name="rtc"></param>
             <param name="laser"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.PenReturn">
+            <summary>
+            Pen Return 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PenReturn.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PenReturn.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PenMotf">
@@ -459,10 +502,23 @@
             동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.PenStack">
+            <summary>
+            펜(IPen) 개체의 스택
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.MarkerArgDefault.#ctor">
             <summary>
             생성자
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerArgDefault.#ctor(SpiralLab.Sirius.IDocument,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser)">
+            <summary>
+            생성자
+            </summary>
+            <param name="doc"></param>
+            <param name="rtc"></param>
+            <param name="laser"></param>
         </member>
         <member name="T:SpiralLab.Sirius.IMarkerArg">
             <summary>
@@ -495,6 +551,27 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Offsets">
             <summary>
             동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">
+            <summary>
+            가공중 펜 개체의 스택
+            이전 펜의 가공 파라메터로 복귀하는 기능을 사용할 경우 펜 개체를 추적하기 위한 스택 자료구조
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.StartTime">
+            <summary>
+            가공 시작 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.EndTime">
+            <summary>
+            가공 완료 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ConcurrentList`1">
@@ -871,6 +948,13 @@
             sirius 파일 가져오기
             </summary>
             <param name="fileName">파일이름</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActImportHPGL(System.String)">
+            <summary>
+            HPGL 파일 가져오기
+            </summary>
+            <param name="fileName"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActDocumentPropertyChanged(SpiralLab.Sirius.IDocument,System.String,System.Object,System.Object)">
@@ -1850,8 +1934,7 @@
             <summary>
             laser processing
             </summary>
-            <param name="rtc"></param>
-            <param name="laser"></param>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Points">
@@ -3102,8 +3185,7 @@
             <summary>
             laser processing
             </summary>
-            <param name="rtc"></param>
-            <param name="laser"></param>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.InsertVertex">

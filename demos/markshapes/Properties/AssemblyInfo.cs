@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("testcase for spirallab.sirius")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("sepwind.blogspot.com")]
+[assembly: AssemblyCompany("spirallab.co.kr")]
 [assembly: AssemblyProduct("testcase")]
-[assembly: AssemblyCopyright("sepwind")]
+[assembly: AssemblyCopyright("labspiral")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -18,7 +18,7 @@
  *
  * SyncAxis 를 이용한 MOTF
  * ExcelliSCAN + ACS Controller 조합의 고정밀 가공기법
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -55,7 +55,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'F1' : draw rectangle 2D with scanner only");
                 Console.WriteLine("'F2' : draw rectangle 2D with stage only");

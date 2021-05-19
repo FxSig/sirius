@@ -17,7 +17,7 @@
  * 
  * 여러 객체(Entity)를을 묶어 하나의 그룹(Group) 으로 관리가 가능한다. 
  * 이는 데이타가 매우 많거나 반복(repeat)가공이 필요할 경우 유용하다.
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -118,7 +118,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com(https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com(http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'D' : draw group entities with pen");
                 Console.WriteLine("'Q' : quit");

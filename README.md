@@ -50,7 +50,7 @@
 **4. Author**
 
  - e-mail : labspiral@gmail.com
- - homepage : http://sepwind.blogspot.com                        
+ - homepage : http://spirallab.co.kr                        
  - git repository : https://github.com/labspiral/sirius.git
  - phone : +82-10-9619-3896
  - Please contact to me to use commerically.
@@ -60,6 +60,7 @@
 ----
 **5. Version history**
 
+* 2021.05.19 v1.3 added HPGL entity
 * 2021.05.12 v1.3 added CharacterSet, 3D, MOTF, Dual head demo project 
                   added Sirius Text Arc entity, Text Arc entity
                   added WPF demo project

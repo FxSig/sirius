@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcDualHead 인터페이스를 직접 사용하는 방법
  * RTC5 + DualHead 카드를 초기화 하고 각 헤드별 오프셋을 처리한다
- * Author : hong chan, choi / sepwind @gmail.com(https://sepwind.blogspot.com)
+ * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -68,7 +68,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (https://sepwind.blogspot.com)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'D' : draw circle with dual head offset");
                 Console.WriteLine("'Q' : quit");
