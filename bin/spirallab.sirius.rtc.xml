@@ -4,82 +4,6 @@
         <name>spirallab.sirius.rtc</name>
     </assembly>
     <members>
-        <member name="T:SpiralLab.Sirius.LaserVirtual">
-            <summary>
-            레이저 소스 (가상)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.#ctor(System.UInt32,System.String,System.Single)">
-            <summary>
-            생성자
-            </summary>
-            <param name="index">식별번호</param>
-            <param name="name">이름</param>
-            <param name="maxPowerWatt">최대 파워 (W)</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlReset">
-            <summary>
-            리셋
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlPower(SpiralLab.Sirius.IRtc,System.Single)">
-            <summary>
-            파워 변경
-            </summary>
-            <param name="rtc">IRtc 인터페이스</param>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.ListPower(SpiralLab.Sirius.IRtc,System.Single)">
-            <summary>
-            파워 변경 (RTC의 리스트 명령으로 처리시)
-            </summary>
-            <param name="rtc">IRtc 인터페이스</param>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
         <member name="F:SpiralLab.Sirius.MathHelper.DegToRad">
             <summary>
             각도 -> 라디안 변환 상수
@@ -204,101 +128,6 @@
             <param name="cy">회전 중심 Y (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
-        <member name="T:SpiralLab.Sirius.AutoLaserControl">
-            <summary>
-            자동 레이저 제어
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AutoLaserControl.Disable">
-            <summary>
-            사용중지
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AutoLaserControl.ByPosition">
-            <summary>
-            미지원
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AutoLaserControl.BySpeed">
-            <summary>
-            스캐너 속도에 따른 레이저 출력 보정
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AutoLaserControl.ByEncoder">
-            <summary>
-            미지원
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.LaserControl">
-            <summary>
-            레이저 제어용 신호 종류
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.None">
-            <summary>
-            None
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.Analog1">
-            <summary>
-            아나로그1 출력
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.Analog2">
-            <summary>
-            아나로그2 출력
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.ExtDO8Bit">
-            <summary>
-            확장 8비트 DO 출력
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.ExtDO16">
-            <summary>
-            확장 16비트 DO 출력
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.PulseWidth">
-            <summary>
-            펄스폭 출력 
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.Frequency">
-            <summary>
-            주파수 출력
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControl.SpotDistance">
-            <summary>
-            주파수 출력 방식과 동일하나 RTC6 + excelliSCAN 조합에서 지원하는 Spot Distance Control 전용
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.LaserControlMode">
-            <summary>
-            레이저 제어 모드
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControlMode.SetVelocity">
-            <summary>
-            스캐너 명령 속도
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControlMode.ActualVelocity">
-            <summary>
-            스캐너 실제 속도 (iDRIVE 스캐너만 사용가능)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControlMode.EncoderSpeed">
-            <summary>
-            외부 엔코더 입력 속도
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.LaserControlMode.ActualVelocityAndEncoderSpeed">
-            <summary>
-            ActualVelocity + EncoderSpeed 복합 속도
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.MeasurementChannel">
             <summary>
             Measurement 관련 채널 목록
@@ -414,6 +243,12 @@
             Z 축 bits/mm 값
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Rtc5.AutoLaserControlByPositionFileName" -->
+        <member name="P:SpiralLab.Sirius.Rtc5.AutoLaserControlByPositionTableNo">
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.EncXCountsPerMm">
             <summary>
             단위 mm 당 엔코더 X 개수
@@ -449,6 +284,26 @@
             현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
+            <summary>
+            픽셀 라인 준비
+            </summary>
+            <param name="usec">픽셀 주기 (usec)</param>
+            <param name="vDelta">픽셀 간격 (mm)</param>
+            <param name="pixelCount">픽셀 개수</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListPixel(System.Single,System.Single,SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            픽셀 출력
+            </summary>
+            <param name="usec">각 픽셀의 펄스 출력 시간 (usec)</param>
+            <param name="analogVoltage">아나로그 출력 (0~10V)</param>
+            <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
         <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode,System.UInt32)">
             <summary>
             외부 트리거 사용시 설정
@@ -639,6 +494,12 @@
             Z 축 bits/mm 값
             </summary>
         </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Rtc6.AutoLaserControlByPositionFileName" -->
+        <member name="P:SpiralLab.Sirius.Rtc6.AutoLaserControlByPositionTableNo">
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.EncXCountsPerMm">
             <summary>
             단위 mm 당 엔코더 X 개수
@@ -674,6 +535,26 @@
             현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
+            <summary>
+            픽셀 라인 준비
+            </summary>
+            <param name="usec">픽셀 주기 (usec)</param>
+            <param name="vDelta">픽셀 간격 (mm)</param>
+            <param name="pixelCount">픽셀 개수</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListPixel(System.Single,System.Single,SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            픽셀 출력
+            </summary>
+            <param name="usec">각 픽셀의 펄스 출력 시간 (usec)</param>
+            <param name="analogVoltage">아나로그 출력 (0~10V)</param>
+            <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
         <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode,System.UInt32)">
             <summary>
             외부 트리거 사용시 설정

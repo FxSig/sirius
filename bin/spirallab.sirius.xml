@@ -24,6 +24,24 @@
             엔티티 회전
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.AlcVectorEnd">
+            <summary>
+            ALC by Vector Dependent End 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcVectorEnd.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcVectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Barcode1D">
             <summary>
             barcode 1d entity
@@ -85,6 +103,42 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.AlcVectorBegin">
+            <summary>
+            ALC by Vector Dependent Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcVectorBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcVectorBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Bitmap">
+            <summary>
+            bitmap entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Bitmap.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Bitmap.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotfBegin">
             <summary>
             Motf Begin 엔티티 객체
@@ -138,8 +192,7 @@
             <summary>
             laser processing
             </summary>
-            <param name="rtc"></param>
-            <param name="laser"></param>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotfWait">
@@ -2392,6 +2445,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.plugin_16px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.point">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3267,8 +3325,7 @@
             <summary>
             laser processing
             </summary>
-            <param name="rtc"></param>
-            <param name="laser"></param>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.Sirius.Line.LineVectorAngle">
@@ -4480,6 +4537,18 @@
             문서(Document)가 다른이름으로 저장될때 발생하는 이벤트
             Document.Action.ActSave(파일이름) 가 호출되어야 함
             파일이름(FileName ) 속성 변경이 호출되어야 함
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMarker">
+            <summary>
+            문서(Document)에서 Marker 팝업 창을 띄울때 발생하는 이벤트
+            미 등록시 자체 Marker Form 이 팝업됨
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnLaser">
+            <summary>
+            문서(Document)에서 Laser 팝업 창을 띄울때 발생하는 이벤트
+            
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
             <summary>

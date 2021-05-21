@@ -94,11 +94,11 @@ namespace SpiralLab.Sirius
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             rtcSyncAxis.ListBegin(laser, motionType);
 
-            rtc.ListJump(50, 50);
-            rtc.ListMark(100, 50);
-            rtc.ListMark(100, 100);
-            rtc.ListMark(50, 100);
-            rtc.ListMark(50, 50);
+            rtc.ListJump(new Vector2(50, 50));
+            rtc.ListMark(new Vector2(100, 50));
+            rtc.ListMark(new Vector2(100, 100));
+            rtc.ListMark(new Vector2(50, 100));
+            rtc.ListMark(new Vector2(50, 50));
 
             rtc.ListEnd();
             rtc.ListExecute(true);

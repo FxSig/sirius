@@ -129,14 +129,14 @@ namespace SpiralLab.Sirius
 
             var rtcCharSet = rtc as IRtcCharacterSet;
             rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(0, 0);
+            rtc.ListJump(new Vector2(0, 0));
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,
                 Laser = laser,
             };
             date.Mark(markerArg);
-            rtc.ListJump(10, 0);
+            rtc.ListJump(new Vector2(10, 0));
             rtc.ListEnd();
             rtc.ListExecute(false);
         }
@@ -164,7 +164,7 @@ namespace SpiralLab.Sirius
 
             var rtcCharSet = rtc as IRtcCharacterSet;
             rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(0, 0);
+            rtc.ListJump(new Vector2(0, 0));
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,
@@ -198,7 +198,7 @@ namespace SpiralLab.Sirius
 
             var rtcCharSet = rtc as IRtcCharacterSet;
             rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(0, 0);
+            rtc.ListJump(new Vector2(0, 0));
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,

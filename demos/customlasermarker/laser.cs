@@ -26,6 +26,11 @@ namespace SpiralLab.Sirius
         /// </summary>
         public float MaxPowerWatt { get; }
 
+        /// <summary>
+        /// 레이저 파워 보정기
+        /// </summary>
+        public ICompensator<float> PowerCompensator { get; set; }
+
         public bool IsReady
         {
             get { return !this.IsError; }
@@ -44,6 +49,7 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
+            this.PowerCompensator = new CompensatorDefault<float>();
         }
         ~YourCustomLaser()
         {

@@ -124,8 +124,8 @@ namespace SpiralLab.Sirius
         private static void DrawCircle(ILaser laser, IRtc rtc, float radius)
         {
             rtc.ListBegin(laser);
-            rtc.ListJump(radius, 0);
-            rtc.ListArc(0, 0, 360.0f);
+            rtc.ListJump(new Vector2(radius, 0));
+            rtc.ListArc(new Vector2(0, 0), 360.0f);
             rtc.ListEnd();
             rtc.ListExecute(true);
         }
@@ -141,8 +141,8 @@ namespace SpiralLab.Sirius
         private static void DrawLine(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
             rtc.ListBegin(laser);
-            rtc.ListJump(x1, y1);
-            rtc.ListMark(x2, y2);
+            rtc.ListJump(new Vector2(x1, y1));
+            rtc.ListMark(new Vector2(x2, y2));
             rtc.ListEnd();
             rtc.ListExecute(true);
         }
@@ -155,11 +155,11 @@ namespace SpiralLab.Sirius
         private static void DrawRectangle(ILaser laser, IRtc rtc, float width, float height)
         {
             rtc.ListBegin(laser);
-            rtc.ListJump(-width / 2, height / 2);
-            rtc.ListMark(width / 2, height / 2);
-            rtc.ListMark(width / 2, -height / 2);
-            rtc.ListMark(-width / 2, -height / 2);
-            rtc.ListMark(-width / 2, height / 2);
+            rtc.ListJump(new Vector2(-width / 2, height / 2));
+            rtc.ListMark(new Vector2(width / 2, height / 2));
+            rtc.ListMark(new Vector2(width / 2, -height / 2));
+            rtc.ListMark(new Vector2(-width / 2, -height / 2));
+            rtc.ListMark(new Vector2(-width / 2, height / 2));
             rtc.ListEnd();
             rtc.ListExecute(true);
         }
@@ -176,7 +176,7 @@ namespace SpiralLab.Sirius
             {
                 double x = radius * Math.Sin(angle * Math.PI / 180.0);
                 double y = radius * Math.Cos(angle * Math.PI / 180.0);
-                rtc.ListJump((float)x, (float)y);
+                rtc.ListJump(new Vector2((float)x, (float)y));
                 //지정된 짧은 시간동안 레이저 출사
                 rtc.ListLaserOn(durationMsec);                
             }            
@@ -199,9 +199,9 @@ namespace SpiralLab.Sirius
             for (int i=0; i< counts; i++)
             {
                 //줄의 시작위치로 점프
-                rtc.ListJump(0, i * gap);
+                rtc.ListJump(new Vector2(0, i * gap));
                 // pixel의 최대 주기시간 (200us), 출력 채널(analog 1), 가로세로 간격 (gap), 총 pixel 개수
-                rtcExt.ListPixelLine(200, ExtensionChannel.ExtAO1, new Vector2(gap, 0), (uint)counts);
+                rtcExt.ListPixelLine(200, new Vector2(gap, 0), (uint)counts, ExtensionChannel.ExtAO1);
                 for (int j = 0; j < counts; j++)
                     rtcExt.ListPixel(20, 5); // 20usec, 5V
             }
