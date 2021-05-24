@@ -78,6 +78,67 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.VectorEnd">
+            <summary>
+            VectorEndn 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.VectorEnd.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.VectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.VectorBegin">
+            <summary>
+            Vector Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.VectorBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.VectorBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Raster">
+            <summary>
+            raster entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Raster.IsEnableFastRendering">
+            <summary>
+            opengl 의 고속 렌더링을 지원하여 렌더링 속도를 올리기 위한 내부 옵션
+            false : 모두 새로 그림
+            true : openg의 buffer를 이용한 버퍼 그리기 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Raster.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Raster.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.HPGL">
             <summary>
             group entity (container)
@@ -398,7 +459,7 @@
             <summary>
             laser processing
             </summary>
-            <param name="rtc"></param>
+            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.Sirius.CxfHelper.CapitalHeight">
@@ -521,6 +582,25 @@
             <param name="rtc"></param>
             <param name="info"></param>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.BitmapHelper">
+            <summary>
+            비트맵 유틸리티 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapHelper.EncodeTo(System.Drawing.Bitmap)">
+            <summary>
+            인코딩 : Bitmap 이미지 데이타 -> base64 문자열 포맷
+            </summary>
+            <param name="bitmap">비트맵 이미지</param>
+            <returns>압축후 Base64로 인코딩된 문자열</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapHelper.DecodeFrom(System.String)">
+            <summary>
+            base64 문자열 -> Bitmap 이미지 생성
+            </summary>
+            <param name="base64String">압축후 Base64로 인코딩된 문자열</param>
+            <returns>비트맵 이미지</returns>
         </member>
         <member name="T:SpiralLab.Sirius.MarkerArgDefault">
             <summary>
@@ -2160,6 +2240,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.hpgl">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_about_16">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -2490,6 +2575,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.raster">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.redo">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -2601,6 +2691,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.trepan">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.vector">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -3904,6 +3999,21 @@
             리셋
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.RasterDirection">
+            <summary>
+            Dot 의 래스터 가공시 가공 방향
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RasterDirection.LeftToRight">
+            <summary>
+            좌에서 우로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RasterDirection.RightToLeft">
+            <summary>
+            우에서 좌로
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IMarkerable">
             <summary>

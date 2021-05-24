@@ -59,7 +59,7 @@
 
 ----
 **5. Version history**
-* 2021.05.21 v1.5 added Bitmap entity, added ICompensator interface each analog digital io.
+* 2021.05.21 v1.5 added Bitmap entity, added ICompensator interface each analog digital io. added Raster entity, AlcVectorBegin/End entity
 * 2021.05.20 v1.4 added IRtcAutoLaserControl interface, support position, speed, vector define automatic laser control, xy coordinate with Vector2/3 struct
 * 2021.05.19 v1.3 added HPGL entity
 * 2021.05.12 v1.3 added CharacterSet, 3D, MOTF, Dual head demo project 
