@@ -761,6 +761,11 @@
             Bulge 값 (1/4 atan)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LwPolyLineVertex.Ramp">
+            <summary>
+            Bulge 값 (1/4 atan)
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.LwPolyLineVertex.#ctor(System.Single,System.Single,System.Single)">
             <summary>
             constructor
@@ -768,6 +773,15 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="bulge"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.LwPolyLineVertex.#ctor(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="bulge"></param>
+            <param name="rampFactor"></param>
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyLineVertex.Equals(SpiralLab.Sirius.LwPolyLineVertex)">
             <summary>
@@ -779,6 +793,12 @@
         <member name="M:SpiralLab.Sirius.LwPolyLineVertex.ToString">
             <summary>
             문자열
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.LwPolyLineVertex.Clone">
+            <summary>
+            복제
             </summary>
             <returns></returns>
         </member>
@@ -986,6 +1006,41 @@
             엔티티 정렬(순서) 기준
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.EntitySort.TopToBottom">
+            <summary>
+            위 -> 아래
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EntitySort.BottomToTop">
+            <summary>
+            아래 -> 위
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EntitySort.LeftToRight">
+            <summary>
+            좌 -> 우
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EntitySort.RightToLeft">
+            <summary>
+            우 -> 좌
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.SortMethod">
+            <summary>
+            정렬 기준점
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.SortMethod.ByCenter">
+            <summary>
+            엔티티 중심 위치 기준
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.SortMethod.ByBoundRect">
+            <summary>
+            외곽 영역 기준
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Action">
             <summary>
             액션 객체 (사용자의 모든 이벤트를 기록하여 undo/redo 처리하기 위한 행위 객체)
@@ -1170,6 +1225,15 @@
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="align">정렬 기준</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntitySort(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,SpiralLab.Sirius.EntitySort)">
+            <summary>
+            엔티티 정렬하기
+            </summary>
+            <param name="entities">대상 엔티티 리스트</param>
+            <param name="layer">레이어</param>
+            <param name="sort">정렬 방법</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityTransit(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Single,System.Single)">
