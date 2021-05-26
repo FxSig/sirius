@@ -234,30 +234,29 @@
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData2D">
             <summary>
-            2차원 스캐너 필드 보정 데이타 
+            2차원 보정 데이타 구조체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData2D.Logical">
+        <member name="P:SpiralLab.Sirius.CorrectionData2D.Reference">
             <summary>
-            논리적인 좌표값 x,y (mm)
+            이론상의 좌표값
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData2D.Measured">
             <summary>
-            실제 측정된 좌표값 x,y (mm)
-            머신 비전등을 이용해 측정
+            실제 측정된 좌표값
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData2D.#ctor(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             생성자
             </summary>
-            <param name="logical">논리적인 좌표값</param>
+            <param name="reference">이론상의 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData2D.LogicalToString">
+        <member name="M:SpiralLab.Sirius.CorrectionData2D.ReferenceToString">
             <summary>
-            논리 좌표 문자열 출력
+            이론값 문자열 출력
             </summary>
             <returns></returns>
         </member>
@@ -272,7 +271,7 @@
             3차원 보정 데이타 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData3D.Logical">
+        <member name="P:SpiralLab.Sirius.CorrectionData3D.Reference">
             <summary>
             논리적인 좌표값 x,y (mm)
             </summary>
@@ -286,10 +285,10 @@
             <summary>
             생성자
             </summary>
-            <param name="logical">논리적인 좌표값</param>
+            <param name="reference">논리적인 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData3D.LogicalToString">
+        <member name="M:SpiralLab.Sirius.CorrectionData3D.ReferenceToString">
             <summary>
             논리 좌표 문자열 출력
             </summary>
@@ -522,6 +521,16 @@
             k factor = bits / mm
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IRtc.LaserMode">
+            <summary>
+            레이저 1,2 핀의 타이밍 모드 종류
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IRtc.CorrectionFiles">
             <summary>
             보정 파일 테이블 목록 (최대 4개의 테이블을 로드할수있음 : 0,1,2,3)
@@ -568,6 +577,9 @@
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
+            <summary>
+            출사 강제 종료 여부
+            </summary>
             <summary>
             RTC 카드 초기화
             </summary>

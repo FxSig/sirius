@@ -163,6 +163,11 @@
             bits/mm 값
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.IsMOTF">
             <summary>
             MOTF 옵션 여부
@@ -414,6 +419,11 @@
             bits/mm 값
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsMOTF">
             <summary>
             MOTF 옵션 여부
@@ -641,6 +651,11 @@
             bits/mm 값
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.IsMOTF">
             <summary>
             MOTF 옵션 여부
@@ -812,7 +827,7 @@
             변환 결과 로그 메시지
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection3D.kfactor">
+        <member name="F:SpiralLab.Sirius.RtcCorrection3D.kFactor">
             <summary>
             bits/mm
             </summary>
@@ -841,7 +856,7 @@
             <param name="row">행</param>
             <param name="col">열</param>
             <param name="reference">기준 좌표(mm)</param>
-            <param name="absolute">측정 절대 좌표 (mm)</param>
+            <param name="measured">측정 절대 좌표 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcCorrection3D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
@@ -852,7 +867,7 @@
             <param name="row">행</param>
             <param name="col">열</param>
             <param name="reference">기준 좌표값 (mm)</param>
-            <param name="relative">측정 상대 좌표 (mm)</param>
+            <param name="error">측정 상대 좌표 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcCorrection3D.Clear">
@@ -913,7 +928,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcCorrection2D.Data">
             <summary>
-            입력 데이타를 각각의 행과 열의 위치에 저장하기위한 2차원 배열
+            절대 위치, 실측 데이타의 2차원 배열
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcCorrection2D.exeFileName">
@@ -932,7 +947,7 @@
             <param name="srcCtbFile">입력 보정 파일</param>
             <param name="targetCtbFile">출력 보정 파일</param>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddAbsolute(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             측정 데이타 입력
             좌상단부터 우상단 방향으로 순서 
@@ -941,10 +956,11 @@
             4 5 6
             7 8 9
             </summary>
+            <param name="reference">절대좌표</param>
             <param name="measured">측정좌표</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddRelative(System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             측정 데이타 입력 
             좌상단부터 우상단 방향으로 순서 
@@ -953,7 +969,7 @@
             4 5 6
             7 8 9
             </summary>
-            <param name="logical">논리적인 좌표</param>
+            <param name="reference">논리적인 좌표</param>
             <param name="error">에러량</param>
             <returns></returns>
         </member>
@@ -1015,6 +1031,11 @@
         <member name="P:SpiralLab.Sirius.RtcVirtual.KFactor">
             <summary>
             bits/mm 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.IsMOTF">

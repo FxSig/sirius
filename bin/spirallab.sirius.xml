@@ -707,6 +707,40 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Correction2DForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ConcurrentList`1">
             <summary>
             리스트 제네릭 컨테이너를 쓰레드 안전 (thread safe) 하도록 한 동기화 리스트 객체
@@ -2590,6 +2624,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.paste_array">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.penreturn">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -4722,6 +4761,16 @@
             <summary>
             문서(Document)에서 Laser 팝업 창을 띄울때 발생하는 이벤트
             
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnCorrection2D">
+            <summary>
+            문서(Document)에서 스캐너 보정 2D 팝업 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnCorrection3D">
+            <summary>
+            문서(Document)에서 스캐너 보정 3D 팝업 창을 띄울때 발생하는 이벤트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
