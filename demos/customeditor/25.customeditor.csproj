@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B5606A31-1F51-46E4-A4DC-66DE583BD69D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>SpiralLab.Sirius</RootNamespace>
+    <AssemblyName>customeditor</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SharpGL, Version=3.1.1.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpGL.3.1.1\lib\net472\SharpGL.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.SceneGraph, Version=3.1.1.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpGL.SceneGraph.3.1.1\lib\net472\SharpGL.SceneGraph.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpGL.WinForms, Version=3.1.1.0, Culture=neutral, PublicKeyToken=27fc851303210b27, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SharpGL.WinForms.3.1.1\lib\net472\SharpGL.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.sirius, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.sirius.rtc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing.Common, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Drawing.Common.4.7.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HatchForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HatchForm.Designer.cs">
+      <DependentUpon>HatchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MultiSelectTreeview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PasteForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PasteForm.Designer.cs">
+      <DependentUpon>PasteForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PropertyForm.Designer.cs">
+      <DependentUpon>PropertyForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomEditorForm.Designer.cs">
+      <DependentUpon>CustomEditorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomViewerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomViewerForm.Designer.cs">
+      <DependentUpon>CustomViewerForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HatchForm.resx">
+      <DependentUpon>HatchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PasteForm.resx">
+      <DependentUpon>PasteForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PropertyForm.resx">
+      <DependentUpon>PropertyForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomEditorForm.resx">
+      <DependentUpon>CustomEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomViewerForm.resx">
+      <DependentUpon>CustomViewerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resource\add_camera_24px.png" />
+    <Content Include="resource\aperture_24px.png" />
+    <Content Include="resource\aperture_30px.png" />
+    <Content Include="resource\available_updates_filled_50px.png" />
+    <Content Include="resource\barcode_24px.png" />
+    <Content Include="resource\bottom.png" />
+    <Content Include="resource\box_important_64px.png" />
+    <Content Include="resource\center.png" />
+    <Content Include="resource\circuit_50px.png" />
+    <Content Include="resource\construction_worker_30px.png" />
+    <Content Include="resource\customer_50px.png" />
+    <Content Include="resource\data_matrix_code_50px.png" />
+    <Content Include="resource\date.png" />
+    <Content Include="resource\detective_24px.png" />
+    <Content Include="resource\elderly_person_filled_50px.png" />
+    <Content Include="resource\ellipse.png" />
+    <Content Include="resource\error_64px.png" />
+    <Content Include="resource\exercise_filled_50px.png" />
+    <Content Include="resource\explode.png" />
+    <Content Include="resource\fire_element_48px.png" />
+    <Content Include="resource\fire_extinguisher_48px.png" />
+    <Content Include="resource\flash_off_24px.png" />
+    <Content Include="resource\flash_on_24px.png" />
+    <Content Include="resource\flash_on_48px.png" />
+    <Content Include="resource\font_rotate.ico" />
+    <Content Include="resource\font_rotate.png" />
+    <Content Include="resource\font_size_16px.png" />
+    <Content Include="resource\hand_move.png" />
+    <Content Include="resource\hatch.png" />
+    <Content Include="resource\hour.png" />
+    <Content Include="resource\hpgl.ico" />
+    <Content Include="resource\hpgl.png" />
+    <Content Include="resource\icons8_about_16.png" />
+    <Content Include="resource\icons8_aperture.ico" />
+    <Content Include="resource\icons8_aperture_16.png" />
+    <Content Include="resource\icons8_arrow_pointing_left.ico" />
+    <Content Include="resource\icons8_arrow_pointing_left_32.png" />
+    <Content Include="resource\icons8_aspect_ratio.ico" />
+    <Content Include="resource\icons8_aspect_ratio_16.png" />
+    <Content Include="resource\icons8_chevron_down.ico" />
+    <Content Include="resource\icons8_chevron_down_32.png" />
+    <Content Include="resource\icons8_chevron_left.ico" />
+    <Content Include="resource\icons8_chevron_left_32.png" />
+    <Content Include="resource\icons8_chevron_right.ico" />
+    <Content Include="resource\icons8_chevron_right_32.png" />
+    <Content Include="resource\icons8_chevron_up.ico" />
+    <Content Include="resource\icons8_chevron_up.png" />
+    <Content Include="resource\icons8_chevron_up_32.png" />
+    <Content Include="resource\icons8_circled_dot_16.png" />
+    <Content Include="resource\icons8_circled_left_2_filled_16.png" />
+    <Content Include="resource\icons8_circle_16.png" />
+    <Content Include="resource\icons8_construction_worker.ico" />
+    <Content Include="resource\icons8_construction_worker_16.png" />
+    <Content Include="resource\icons8_coordinate_system.ico" />
+    <Content Include="resource\icons8_coordinate_system_16.png" />
+    <Content Include="resource\icons8_copy_16.png" />
+    <Content Include="resource\icons8_cutting_coupon_16.png" />
+    <Content Include="resource\icons8_define_location_16.png" />
+    <Content Include="resource\icons8_delete_file_16.png" />
+    <Content Include="resource\icons8_division.ico" />
+    <Content Include="resource\icons8_division_16.png" />
+    <Content Include="resource\icons8_file_16.png" />
+    <Content Include="resource\icons8_fountain_pen_16.png" />
+    <Content Include="resource\icons8_generic_text_16.png" />
+    <Content Include="resource\icons8_grid.ico" />
+    <Content Include="resource\icons8_grid_16.png" />
+    <Content Include="resource\icons8_grid_view.ico" />
+    <Content Include="resource\icons8_grid_view_16.png" />
+    <Content Include="resource\icons8_halfcircle.png" />
+    <Content Include="resource\icons8_import_16.png" />
+    <Content Include="resource\icons8_information_16.png" />
+    <Content Include="resource\icons8_insert.ico" />
+    <Content Include="resource\icons8_insert_16.png" />
+    <Content Include="resource\icons8_journey.ico" />
+    <Content Include="resource\icons8_journey_16.png" />
+    <Content Include="resource\icons8_key.ico" />
+    <Content Include="resource\icons8_key_16.png" />
+    <Content Include="resource\icons8_laser_beam_16.png" />
+    <Content Include="resource\icons8_layers_16.png" />
+    <Content Include="resource\icons8_lightning_bolt.ico" />
+    <Content Include="resource\icons8_lightning_bolt_16.png" />
+    <Content Include="resource\icons8_line_16.png" />
+    <Content Include="resource\icons8_marker_pen_16.png" />
+    <Content Include="resource\icons8_opened_folder_16.png" />
+    <Content Include="resource\icons8_paper_16.png" />
+    <Content Include="resource\icons8_paste_16.png" />
+    <Content Include="resource\icons8_pencil_16.png" />
+    <Content Include="resource\icons8_polyline.ico" />
+    <Content Include="resource\icons8_polyline_16.png" />
+    <Content Include="resource\icons8_polyline_32.png" />
+    <Content Include="resource\icons8_purchase_order_16.png" />
+    <Content Include="resource\icons8_rectangle_stroked_16.png" />
+    <Content Include="resource\icons8_rotate_16.png" />
+    <Content Include="resource\icons8_rotate_left_16.png" />
+    <Content Include="resource\icons8_rotate_right_16.png" />
+    <Content Include="resource\icons8_ruler.ico" />
+    <Content Include="resource\icons8_ruler_16.png" />
+    <Content Include="resource\icons8_save_16.png" />
+    <Content Include="resource\icons8_save_as_16.png" />
+    <Content Include="resource\icons8_settings_16.png" />
+    <Content Include="resource\icons8_small_lens.ico" />
+    <Content Include="resource\icons8_small_lens_16.png" />
+    <Content Include="resource\icons8_spring_in_motion_16.png" />
+    <Content Include="resource\icons8_timer_16.png" />
+    <Content Include="resource\icons8_track_and_field.ico" />
+    <Content Include="resource\icons8_track_and_field_16.png" />
+    <Content Include="resource\icons8_tune.ico" />
+    <Content Include="resource\icons8_tune_16.png" />
+    <Content Include="resource\icons8_under_construction_16.png" />
+    <Content Include="resource\icons8_zoom_in_16.png" />
+    <Content Include="resource\icons8_zoom_out_filled_16.png" />
+    <Content Include="resource\icons8_zoom_to_extents_filled_16.png" />
+    <Content Include="resource\image_16px.png" />
+    <Content Include="resource\import_50px.png" />
+    <Content Include="resource\Journey_32px.png" />
+    <Content Include="resource\journey_80px.png" />
+    <Content Include="resource\laser_beam_24px.png" />
+    <Content Include="resource\left.png" />
+    <Content Include="resource\lightning_bolt_16px.png" />
+    <Content Include="resource\lightning_bolt_26px.png" />
+    <Content Include="resource\live_photos_24px.png" />
+    <Content Include="resource\motfbeginend.png" />
+    <Content Include="resource\motfdelay.png" />
+    <Content Include="resource\motfwait.png" />
+    <Content Include="resource\paste_array.png" />
+    <Content Include="resource\penreturn.png" />
+    <Content Include="resource\play_24px.png" />
+    <Content Include="resource\plugin_16px.png" />
+    <Content Include="resource\point.png" />
+    <Content Include="resource\points.png" />
+    <Content Include="resource\polyline_16px.png" />
+    <Content Include="resource\polyline_80px.png" />
+    <Content Include="resource\private_48px.png" />
+    <Content Include="resource\qr_code_24px.png" />
+    <Content Include="resource\qr_code_26px.png" />
+    <Content Include="resource\raster.ico" />
+    <Content Include="resource\raster.png" />
+    <Content Include="resource\redo.png" />
+    <Content Include="resource\reset_16px.png" />
+    <Content Include="resource\reset_24px.png" />
+    <Content Include="resource\right.png" />
+    <Content Include="resource\rotate_left.png" />
+    <Content Include="resource\rotate_right.png" />
+    <Content Include="resource\running_24px.png" />
+    <Content Include="resource\serial.png" />
+    <Content Include="resource\sleeping_in_bed_50px.png" />
+    <Content Include="resource\small_lens_32px.png" />
+    <Content Include="resource\sort_down_24px.png" />
+    <Content Include="resource\sort_up_24px.png" />
+    <Content Include="resource\spiral.png" />
+    <Content Include="resource\start_48px.png" />
+    <Content Include="resource\stop_16px.png" />
+    <Content Include="resource\stop_24px.png" />
+    <Content Include="resource\stop_48px.png" />
+    <Content Include="resource\table_26px.png" />
+    <Content Include="resource\thick_arrow_pointing_down_26px.png" />
+    <Content Include="resource\thick_arrow_pointing_up_26px.png" />
+    <Content Include="resource\top.png" />
+    <Content Include="resource\trepan.png" />
+    <Content Include="resource\vector.png" />
+    <Content Include="resource\wheel_30px.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

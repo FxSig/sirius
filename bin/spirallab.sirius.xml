@@ -42,6 +42,17 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.Ellipse">
+            <summary>
+            타원 (ellipse) 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Ellipse.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Barcode1D">
             <summary>
             barcode 1d entity
@@ -2274,6 +2285,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.elderly_person_filled_50px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.ellipse">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>

@@ -234,29 +234,30 @@
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData2D">
             <summary>
-            2차원 보정 데이타 구조체
+            2차원 스캐너 필드 보정 데이타 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData2D.Reference">
+        <member name="P:SpiralLab.Sirius.CorrectionData2D.Logical">
             <summary>
-            이론상의 좌표값
+            논리적인 좌표값 x,y (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData2D.Measured">
             <summary>
-            실제 측정된 좌표값
+            실제 측정된 좌표값 x,y (mm)
+            머신 비전등을 이용해 측정
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData2D.#ctor(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             생성자
             </summary>
-            <param name="reference">이론상의 좌표값</param>
+            <param name="logical">논리적인 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData2D.ReferenceToString">
+        <member name="M:SpiralLab.Sirius.CorrectionData2D.LogicalToString">
             <summary>
-            이론값 문자열 출력
+            논리 좌표 문자열 출력
             </summary>
             <returns></returns>
         </member>
@@ -271,7 +272,7 @@
             3차원 보정 데이타 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData3D.Reference">
+        <member name="P:SpiralLab.Sirius.CorrectionData3D.Logical">
             <summary>
             논리적인 좌표값 x,y (mm)
             </summary>
@@ -285,10 +286,10 @@
             <summary>
             생성자
             </summary>
-            <param name="reference">논리적인 좌표값</param>
+            <param name="logical">논리적인 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData3D.ReferenceToString">
+        <member name="M:SpiralLab.Sirius.CorrectionData3D.LogicalToString">
             <summary>
             논리 좌표 문자열 출력
             </summary>
