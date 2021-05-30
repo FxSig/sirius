@@ -21,6 +21,10 @@
  * C++ 콘솔 프로그램에서 dll 의 COM 인터페이스에 접근하여 사용하는 예제
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  *
+ * ToDo : Register .NET dll into COM object (sirius dll files only support x64)
+ *   execute cmd.exe with admin and path to bin directory and register .dll 
+ *       > "c:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" "spirallab.core.dll"
+ *       > "c:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" "spirallab.sirius.rtc.dll"
  */
 
 #include <windows.h>

@@ -24,7 +24,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 최대 출력 와트
         /// </summary>
-        public float MaxPowerWatt { get; }
+        public float MaxPowerWatt { get; set; }
 
         /// <summary>
         /// 레이저 파워 보정기
