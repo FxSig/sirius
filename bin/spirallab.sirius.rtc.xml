@@ -1973,6 +1973,7 @@
             리스트 명령 - 점프 
             </summary>
             <param name="position">x,y,z 위치 (mm)</param>
+            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListMark(System.Numerics.Vector3,System.Single)">
@@ -1980,6 +1981,7 @@
             리스트 명령 - 마크
             </summary>
             <param name="position">x,y,z 위치 (mm)</param>
+            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListArc(System.Numerics.Vector3,System.Single)">
@@ -2663,6 +2665,16 @@
             <param name="laser">ILaser 인터페이스</param>
             <param name="motionType">MotionType 열거형</param>
             <returns></returns>
+        </member>
+        <member name="T:RTC5Import.RTC5Wrap">
+            <summary>
+            Notice that the construction of the RTC5Import object or an initial
+            call of any RTC5Import method may throw a TypeInitializationException
+            exception, which indicates that the required DLL is missing or the
+            import of a particular DLL function failed. In order to analyze and
+            properly handle such an error condition you need to catch that
+            TypeInitializationException type exception.
+            </summary>
         </member>
         <member name="F:RTC5Import.RTC5Wrap.init_rtc5_dll">
             <summary>
@@ -7062,6 +7074,16 @@
         <member name="F:RTC5Import.RTC5Wrap.stepper_wait">
             <summary>
              void stepper_wait(uint No);
+            </summary>
+        </member>
+        <member name="T:RTC6Import.RTC6Wrap">
+            <summary>
+            Notice that the construction of the RTC6Import object or an initial
+            call of any RTC6Import method may throw a TypeInitializationException
+            exception, which indicates that the required DLL is missing or the
+            import of a particular DLL function failed. In order to analyze and
+            properly handle such an error condition you need to catch that
+            TypeInitializationException type exception.
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.init_rtc6_dll">

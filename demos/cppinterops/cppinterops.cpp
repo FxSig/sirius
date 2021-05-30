@@ -39,21 +39,20 @@ bool static DrawCircle(ILaserPtr laser, IRtcPtr rtc, float radius)
     HRESULT hr = S_OK;
     VARIANT_BOOL vRet = false;
     hr = rtc->ListBegin(laser, ListType::ListType_Auto, &vRet);
-    // list jump/mark/arc
-    //
+    hr = rtc->ListJump_2(radius, 0, 1.0f, &vRet);
+    hr = rtc->ListArc_2(0, 0, 360, &vRet);
     hr = rtc->ListEnd(&vRet);
     hr = rtc->ListExecute(VARIANT_BOOL(true), &vRet);
     return vRet = true;
 }
-
 
 bool static DrawLine(ILaserPtr laser, IRtcPtr rtc, float x1, float y1, float x2, float y2)
 {
     HRESULT hr = S_OK;
     VARIANT_BOOL vRet = false;
     hr = rtc->ListBegin(laser, ListType::ListType_Auto, &vRet);
-    // list jump/mark/arc
-    //
+    hr = rtc->ListJump_2(x1, y1, 1.0f, &vRet);
+    hr = rtc->ListMark_2(x2, y2, 1.0f, &vRet);
     hr = rtc->ListEnd(&vRet);
     hr = rtc->ListExecute(VARIANT_BOOL(true), &vRet);
     return vRet = true;
