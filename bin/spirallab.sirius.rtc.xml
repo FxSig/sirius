@@ -232,6 +232,22 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.SPIStatus">
+            <summary>
+            SPI 레이저 상태 정보
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.SPIG4">
+            <summary>
+            SPI - G3/G3 IR 파이버 레이저 소스 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SPIG4.OnTimer(System.Object)">
+            <summary>
+            쓰레드 타이머
+            </summary>
+            <param name="state"></param>
+        </member>
         <member name="F:SpiralLab.Sirius.MathHelper.DegToRad">
             <summary>
             각도 -> 라디안 변환 상수

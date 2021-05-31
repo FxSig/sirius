@@ -3382,6 +3382,11 @@
             언두(Undo) 스택 최대 개수 제한 (메모리 절약을 위해)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.EType">
+            <summary>
+            엔티티 타입 종류
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IEntity">
             <summary>
             엔티티 인터페이스
@@ -3404,6 +3409,11 @@
         <member name="P:SpiralLab.Sirius.IEntity.Owner">
             <summary>
             부모 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IEntity.EntityType">
+            <summary>
+            엔티티의 타입
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IEntity.Name">
