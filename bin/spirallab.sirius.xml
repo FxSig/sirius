@@ -94,6 +94,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ListData">
+            <summary>
+            list data entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ListData.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ListData.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.VectorEnd">
             <summary>
             VectorEndn 엔티티 객체
@@ -2847,6 +2865,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.wheel_30px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.writedata">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
