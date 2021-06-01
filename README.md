@@ -59,6 +59,8 @@
 
 ----
 **5. Version history**
+
+* 2021.06.01 v1.5 added List Data entity. support JPG, GIF, Png Image Format. added Write Data entity
 * 2021.05.29 v1.5 added Custom Editor/Viewer Demo Project
 * 2021.05.21 v1.5 added Bitmap entity, added ICompensator interface each analog digital io. added Raster entity, AlcVectorBegin/End entity
 * 2021.05.20 v1.4 added IRtcAutoLaserControl interface, support position, speed, vector define automatic laser control, xy coordinate with Vector2/3 struct
