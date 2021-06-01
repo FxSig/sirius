@@ -20,7 +20,7 @@
  * IRtc 인터페이스를 직접 사용하는 방법
  * 자동 레이저 제어 기법을 사용한다
  * 위치 의존적, 속도 의존적, 벡터 정의 기반의 레이저 신호 변조 기법
- * Author : hong chan, choi / sepwind @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 

@@ -1173,7 +1173,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Action.UndoRedoEnable">
             <summary>
-            Undo/Reco 사용 여부
+            Undo/Redo 사용 여부
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Action.NewLayerIndex">
@@ -2334,6 +2334,16 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.construction_worker_30px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.correction2d">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.correction3d">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>

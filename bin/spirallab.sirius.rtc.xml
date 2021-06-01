@@ -1081,7 +1081,7 @@
             SCANLAB 의 보정 유틸리티 실행파일 경로
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.String,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Double,System.Int32,System.Int32,System.Double,System.Double,System.String,System.String)">
             <summary>
             생성자
             </summary>
@@ -1165,7 +1165,7 @@
             bits/mm
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.Interval">
+        <member name="F:SpiralLab.Sirius.RtcCorrection2D.interval">
             <summary>
             간격 (mm)
             </summary>
