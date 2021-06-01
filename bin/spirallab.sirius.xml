@@ -173,6 +173,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Raster.MarkHorizontalLine(System.Int32,System.Boolean,SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            수평방향 가공
+            </summary>
+            <param name="px"></param>
+            <param name="btmToTop"></param>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Raster.MarkVerticalLine(System.Int32,System.Boolean,SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            수직방향 가공
+            </summary>
+            <param name="py"></param>
+            <param name="leftToRight"></param>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.HPGL">
             <summary>
             group entity (container)
@@ -231,6 +249,15 @@
             <summary>
             laser processing
             </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Bitmap.MarkVerticalLine(System.Int32,System.Boolean,SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            수직방향 가공
+            </summary>
+            <param name="py"></param>
+            <param name="leftToRight"></param>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
@@ -635,6 +662,13 @@
             </summary>
             <param name="base64String">압축후 Base64로 인코딩된 문자열</param>
             <returns>비트맵 이미지</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapHelper.ConvertToBitmap(System.String)">
+            <summary>
+            지정된 파일을 Bitmap 이미지로 변경
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MarkerArgDefault">
             <summary>
@@ -4192,6 +4226,16 @@
         <member name="F:SpiralLab.Sirius.RasterDirection.RightToLeft">
             <summary>
             우에서 좌로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RasterDirection.TopToBottom">
+            <summary>
+            상에서 하로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RasterDirection.BottomToTop">
+            <summary>
+            하에서 상으로
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IMarkerable">
