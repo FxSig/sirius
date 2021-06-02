@@ -770,6 +770,11 @@
             가공 완료 시간
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.Progress">
+            <summary>
+            가공 진행율 (0~100%)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
             <summary>
             사용자 정의 데이타
@@ -2848,6 +2853,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.save_24px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.serial">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -4144,19 +4154,12 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.MarkerProgressEventHandler">
+        <member name="T:SpiralLab.Sirius.MarkerEventHandler">
             <summary>
             가공량 통지용 콜백
             </summary>
-            <param name="sender"></param>
-            <param name="progress"></param>
-        </member>
-        <member name="T:SpiralLab.Sirius.MarkerFinishedEventHandler">
-            <summary>
-            가공완료 콜백
-            </summary>
-            <param name="sender"></param>
-            <param name="span"></param>
+            <param name="sender">IMarker 인터페이스</param>
+            <param name="markerArg">IMarkerArg 인터페이스</param>
         </member>
         <member name="T:SpiralLab.Sirius.IMarker">
             <summary>
@@ -4222,7 +4225,7 @@
             데이타에 대한 쓰레드 안전 접근을 처리하게 된다. 또한 가공중 뷰에 의해 원본 데이타가 조작, 수정되더라도 
             준비(Ready) 즉 신규 데이타를 다운로드하지 않으면 아무런 영향이 없게 된다.
             </summary>
-            <param name="doc"></param>
+            <param name="markerArg">IMarkerArg 인터페이스</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.Start">

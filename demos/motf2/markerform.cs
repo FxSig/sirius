@@ -43,8 +43,9 @@ namespace SpiralLab.Sirius
             this.Marker = marker;
         }
 
-        private void Marker_OnFinished(IMarker sender, TimeSpan span)
+        private void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
+            var span = arg.EndTime - arg.StartTime;
             if (listBox1.InvokeRequired)
             {
                 listBox1.BeginInvoke(new MethodInvoker(delegate ()
@@ -58,18 +59,18 @@ namespace SpiralLab.Sirius
             }
         }
 
-        private void Marker_OnProgress(IMarker sender, float progress)
+        private void Marker_OnProgress(IMarker sender, IMarkerArg arg)
         {
             if (statusStrip1.InvokeRequired)
             {
                 statusStrip1.BeginInvoke(new MethodInvoker(delegate ()
                 {
-                    pgbProgress.Value = (int)progress;
+                    pgbProgress.Value = (int)arg.Progress;
                 }));
             }
             else
             {
-                pgbProgress.Value = (int)progress;
+                pgbProgress.Value = (int)arg.Progress;
             }
         }
 

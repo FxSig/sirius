@@ -19,11 +19,11 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 진행 이벤트 핸들러
         /// </summary>
-        public event MarkerProgressEventHandler OnProgress;
+        public event MarkerEventHandler OnProgress;
         /// <summary>
         /// 가공 완료 이벤트 핸들러
         /// </summary>
-        public event MarkerFinishedEventHandler OnFinished;
+        public event MarkerEventHandler OnFinished;
         /// <summary>
         /// 식별 번호
         /// </summary>
@@ -132,7 +132,8 @@ namespace SpiralLab.Sirius
             if (!success)
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: fail to register character into rtc");
 
-            this.OnProgress?.Invoke(this, 0);
+            this.MarkerArg.Progress = 0;
+            this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
         }
 
@@ -183,7 +184,8 @@ namespace SpiralLab.Sirius
                 return false;
             }
 
-            this.OnProgress?.Invoke(this, 0);
+            this.MarkerArg.Progress = 0;
+            this.OnProgress?.Invoke(this, this.MarkerArg);
             this.IsFinished = false;
             this.thread = new Thread(this.WorkerThread);
             this.thread.Name = $"Marker: {this.Name}";
@@ -240,7 +242,7 @@ namespace SpiralLab.Sirius
             if (this.IsFinished)
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
-                this.OnFinished?.Invoke(this, timeSpan);
+                this.OnFinished?.Invoke(this, this.MarkerArg);
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
         }
@@ -287,7 +289,8 @@ namespace SpiralLab.Sirius
                             if (!success)
                                 break;
                             // 진행률 이벤트 (progress : 가 0~100 의 범위로 계산되도록 개선 필요)
-                            this.OnProgress?.Invoke(this, progress++);
+                            this.MarkerArg.Progress++;
+                            this.OnProgress?.Invoke(this, this.MarkerArg);
                         }
                     }
                     if (!success)
@@ -311,7 +314,8 @@ namespace SpiralLab.Sirius
                 rtc.ListExecute(true);
             // 가공완료
             this.IsFinished = true;
-            this.OnProgress?.Invoke(this, 100);
+            this.MarkerArg.Progress = 100;
+            this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
         }
         #endregion

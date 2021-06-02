@@ -19,11 +19,11 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 진행 이벤트 핸들러
         /// </summary>
-        public event MarkerProgressEventHandler OnProgress;
+        public event MarkerEventHandler OnProgress;
         /// <summary>
         /// 가공 완료 이벤트 핸들러
         /// </summary>
-        public event MarkerFinishedEventHandler OnFinished;
+        public event MarkerEventHandler OnFinished;
         /// <summary>
         /// 식별 번호
         /// </summary>
@@ -150,7 +150,8 @@ namespace SpiralLab.Sirius
             if (!success)
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: fail to register character into rtc");
 
-            this.OnProgress?.Invoke(this, 0);
+            this.MarkerArg.Progress = 0;
+            this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
         }
 
@@ -200,8 +201,8 @@ namespace SpiralLab.Sirius
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: document doesn't has any layers");
                 return false;
             }
-
-            this.OnProgress?.Invoke(this, 0);
+            this.MarkerArg.Progress = 0;
+            this.OnProgress?.Invoke(this, this.MarkerArg);
             this.IsFinished = false;
             this.thread = new Thread(this.WorkerThread);
             this.thread.Name = $"Marker: {this.Name}";
@@ -258,7 +259,7 @@ namespace SpiralLab.Sirius
             if (this.IsFinished)
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
-                this.OnFinished?.Invoke(this, timeSpan);
+                this.OnFinished?.Invoke(this, this.MarkerArg);
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
         }
@@ -333,7 +334,8 @@ namespace SpiralLab.Sirius
                         current++;
                         // 진행률 (0~100 의 범위)
                         float progress = (float)current / (float)total * 100.0f;
-                        this.OnProgress?.BeginInvoke(this, progress, null, null);
+                        this.MarkerArg.Progress = progress;
+                        this.OnProgress?.BeginInvoke(this, this.MarkerArg, null, null);
                     }
                     if (!success)
                         break;

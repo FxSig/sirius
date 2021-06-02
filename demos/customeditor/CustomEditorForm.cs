@@ -190,16 +190,16 @@ namespace SpiralLab.Sirius
         }
         IMarker marker;
 
-        private void Marker_OnProgress(IMarker sender, float progress)
+        private void Marker_OnProgress(IMarker sender, IMarkerArg arg)
         {
             if (statusStrip1.InvokeRequired)
             {
-                statusStrip1.Invoke(new MarkerProgressEventHandler(Marker_OnProgress), new object[] { sender, progress });
+                statusStrip1.Invoke(new MarkerEventHandler(Marker_OnProgress), new object[] { sender, arg });
                 return;
             }
             else
             {
-                pgbProgress.Value = (int)progress;
+                pgbProgress.Value = (int)arg.Progress;
             }
         }
         /// <summary>

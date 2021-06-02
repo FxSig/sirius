@@ -166,8 +166,9 @@ namespace SpiralLab.Sirius
             marker.Start();
         }
             
-        private static void Marker_OnFinished(IMarker sender, TimeSpan span)
+        private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
+            var span = arg.EndTime - arg.StartTime;
             Console.WriteLine($"{sender.Name} finished : {span.ToString()}");
         }
 
