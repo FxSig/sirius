@@ -47,6 +47,33 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.StitchedImage">
+            <summary>
+            stitched entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.Images">
+            <summary>
+            좌 상단 부터 인덱시 0 시작 하려고 하였으나..... 좌하단이 되고 말았네
+            0 1 2 3 4
+            5 6 7 8 9
+            ...
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.UpdateImage(System.Int32,System.String)">
+            <summary>
+            인덱스 위치에 이미지 로드
+            </summary>
+            <param name="index">좌 상단 0</param>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Ellipse">
             <summary>
             타원 (ellipse) 엔티티 객체
@@ -668,6 +695,13 @@
             지정된 파일을 Bitmap 이미지로 변경
             </summary>
             <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapHelper.ConvertToBitmap(System.IO.Stream)">
+            <summary>
+            지정된 스트림을 Bitmap 이미지로 변경
+            </summary>
+            <param name="stream">스트림</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MarkerArgDefault">
@@ -2111,6 +2145,15 @@
             <param name="ignoreCase">대소문자 구분여부</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Layers.NameOf(System.String,SpiralLab.Sirius.Layer@,System.Boolean)">
+            <summary>
+            엔티티 이름으로 모든 레이어 검색
+            </summary>
+            <param name="entityName">엔티티 이름</param>
+            <param name="parentLayer">발견된 엔티티가 포함된 레이어</param>
+            <param name="ignoreCase">대소문자 구분여부</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Layers.Clone">
             <summary>
             레이어들을 모두 복제
@@ -2889,6 +2932,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.start_48px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.stitchedimage">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
