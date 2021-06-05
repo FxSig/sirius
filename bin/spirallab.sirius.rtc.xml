@@ -1016,6 +1016,13 @@
             <param name="y">Y 위치 (mm) </param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlBandWidth(System.Single)">
+            <summary>
+            LPF (Low Pass Filter)의 Cut Off 대역폭
+            </summary>
+            <param name="filterBandWidth"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcCorrection3D">
             <summary>
             scanner correction for 3D 
@@ -1769,6 +1776,14 @@
             <param name="value">uint/float</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc.CtlWriteExtDO16(System.UInt16,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 출력의 특정 비트값을 변경
+            </summary>
+            <param name="bitPosition">0~15</param>
+            <param name="onOff">출력</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlReadData``1(SpiralLab.Sirius.ExtensionChannel,``0@,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             확장 포트에서 데이타 읽기
@@ -1875,6 +1890,15 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListJump(System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListMark(System.Numerics.Vector2,System.Single)">
             <summary>
             리스트 명령 - 마크 (Mark : 선분)
@@ -1883,11 +1907,29 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListMark(System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Mark : 선분)
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Numerics.Vector2,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="center">회전 중심 위치 (cx, cy)</param>
+            <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 아크 (Arc : 호)
+            </summary>
+            <param name="cx">회전 중심 위치 (cx)</param>
+            <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
@@ -1919,6 +1961,14 @@
             </summary>
             <param name="ch">확장 커넥터 종류</param>
             <param name="value">값(16비트, 8비트, 2비트(int), 아나로그(float 10V)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListWriteExtDO16(System.UInt16,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 출력의 특정 비트값을 변경
+            </summary>
+            <param name="bitPosition">0~15</param>
+            <param name="onOff">출력</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListEnd">

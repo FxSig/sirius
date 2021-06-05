@@ -47,6 +47,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.WriteDataExt16">
+            <summary>
+            write data ext16 entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.WriteDataExt16.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.WriteDataExt16.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.StitchedImage">
             <summary>
             stitched entity
@@ -126,18 +144,18 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.ListData">
+        <member name="T:SpiralLab.Sirius.WriteData">
             <summary>
-            list data entity
+            write data entity
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ListData.Clone">
+        <member name="M:SpiralLab.Sirius.WriteData.Clone">
             <summary>
             복사본 생성
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.ListData.Mark(SpiralLab.Sirius.IMarkerArg)">
+        <member name="M:SpiralLab.Sirius.WriteData.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
             </summary>
@@ -3001,6 +3019,16 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.writedata2">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.writeext16">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IView">
             <summary>
             뷰 인터페이스 (UI 측의 마우스및 윈도우의 이벤트 연결용)
@@ -4912,6 +4940,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.RtcIO.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcIO.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcIO.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentSourceChanged">
             <summary>
             뷰어가 렌더링할 대상 소스 문서가 변경되었을때를 처리하는 델리게이트
@@ -5002,6 +5047,11 @@
             문서(Document)에서 스캐너 보정 3D 팝업 창을 띄울때 발생하는 이벤트
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnIO">
+            <summary>
+            문서(Document)에서 디지털 입출력 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
             <summary>
             식별 번호
@@ -5045,6 +5095,16 @@
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Marker">
             <summary>
             마커 제어 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.DInputNames">
+            <summary>
+            디지털 입력 (확장포트1) 16개의 이름 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.DOutputNames">
+            <summary>
+            디지털 출력 (확장포트1) 16개의 이름 목록
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">
