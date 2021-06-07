@@ -4888,6 +4888,11 @@
             cxf 폰트 디렉토리 목록 변환기
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.WriteDataExt16StringConverter">
+            <summary>
+            Write Data Ext16 의 목록 변환기
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.UiHelper">
             <summary>
             UI 유틸리티 기능들
