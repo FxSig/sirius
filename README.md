@@ -60,6 +60,7 @@
 ----
 **5. Version history**
 
+* 2021.06.07 v1.6 added Stitched Image entity, added Write Data Ext16 io entity, added Sirius Project
 * 2021.06.01 v1.5 added List Data entity. support JPG, GIF, Png Image Format. added Write Data entity
 * 2021.05.29 v1.5 added Custom Editor/Viewer Demo Project
 * 2021.05.21 v1.5 added Bitmap entity, added ICompensator interface each analog digital io. added Raster entity, AlcVectorBegin/End entity

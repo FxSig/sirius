@@ -727,6 +727,33 @@
             <param name="stream">스트림</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.NativeMethods">
+            <summary>
+            P/Invoke 용 네이티브 코드 집합
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.NativeMethods.GetPrivateProfileString(System.String,System.String,System.String,System.Text.StringBuilder,System.Int32,System.String)">
+            <summary>
+            Ini 파일에서 읽기
+            </summary>
+            <param name="section"></param>
+            <param name="key"></param>
+            <param name="def"></param>
+            <param name="retVal"></param>
+            <param name="size"></param>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.NativeMethods.WritePrivateProfileString(System.String,System.String,System.String,System.String)">
+            <summary>
+            Ini 파일에 쓰기
+            </summary>
+            <param name="Section"></param>
+            <param name="key"></param>
+            <param name="val"></param>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MarkerArgDefault">
             <summary>
             마커 인자 전달 객체
@@ -5095,16 +5122,6 @@
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Marker">
             <summary>
             마커 제어 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.DInputNames">
-            <summary>
-            디지털 입력 (확장포트1) 16개의 이름 목록
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.DOutputNames">
-            <summary>
-            디지털 출력 (확장포트1) 16개의 이름 목록
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">
