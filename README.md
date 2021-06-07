@@ -5,9 +5,15 @@
 
  SuperEasy library for Control for Scanner and Lasers
  
+ ![bitmap](http://www.spirallab.co.kr/wp-content/uploads/2021/05/image-16-930x620.png)
+ 
+ ![path](http://www.spirallab.co.kr/wp-content/uploads/2021/05/image-19-1024x622.png)
+ 
  ![sirius](https://user-images.githubusercontent.com/58460570/70974494-38c41780-20eb-11ea-8567-afe02fab5441.png)
 
  ![barcode](https://user-images.githubusercontent.com/58460570/117915869-130f6200-b321-11eb-928f-7c4f08c1af70.png)
+ 
+ ![stitchedimage](http://www.spirallab.co.kr/wp-content/uploads/2021/06/unnamed-5.png)
  
  ![text with arc](https://user-images.githubusercontent.com/58460570/117915901-215d7e00-b321-11eb-8055-5502aad8bf85.png)
 
