@@ -97,11 +97,6 @@
             최대 출력 에너지 (Watt)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ILaser.PowerCompensator">
-            <summary>
-            레이저 출력 보정 테이블
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsReady">
             <summary>
             준비 상태
@@ -151,6 +146,87 @@
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IPGYLP">
+            <summary>
+            레이저 소스 (IPG YLP)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLP.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLP.Extension1PortOut">
+            <summary>
+            RTC Ext1 포트
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLP.#ctor(System.UInt32,System.String,System.Single,SpiralLab.Sirius.IRtc)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLP.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLP.CtlReset">
+            <summary>
+            리셋
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLP.CtlPower(SpiralLab.Sirius.IRtc,System.Single)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="rtc">IRtc 인터페이스</param>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLP.ListPower(SpiralLab.Sirius.IRtc,System.Single)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="rtc">IRtc 인터페이스</param>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.LaserVirtual">
             <summary>
             레이저 소스 (가상)
@@ -169,11 +245,6 @@
         <member name="P:SpiralLab.Sirius.LaserVirtual.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.PowerCompensator">
-            <summary>
-            레이저 출력 보정 테이블
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsReady">
@@ -2175,6 +2246,11 @@
         <member name="F:SpiralLab.Sirius.DateFormat.Year2Digits">
             <summary>
             마지막 2 자리 연도 표기
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DateFormat.Day">
+            <summary>
+            날짜
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DateFormat.Year4Digits">
