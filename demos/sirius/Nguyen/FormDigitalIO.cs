@@ -23,7 +23,7 @@ namespace SpiralLab.Sirius.Nguyen
 
         private void FormDigitalIO_Load(object sender, EventArgs e)
         {
-            var formMain = Program.MainForm as SpiralLab.Sirius.Nguyen.FormMain;
+            var formMain = Program.MainForm as FormMain;
             this.formDInput.Rtc = formMain.FormEditor.SiriusEditor.Rtc;
             this.formDOutput.Rtc = formMain.FormEditor.SiriusEditor.Rtc;
         }

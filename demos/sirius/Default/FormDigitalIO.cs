@@ -5,8 +5,8 @@ namespace SpiralLab.Sirius.Default
 {
     public partial class FormDigitalIO : Form
     {
-        Form formDInput;
-        Form formDOutput;
+        FormDInput formDInput;
+        FormDOutput formDOutput;
 
         public FormDigitalIO()
         {
@@ -18,6 +18,14 @@ namespace SpiralLab.Sirius.Default
             this.SwitchForm(panLeft, formDInput);
             this.SwitchForm(panRight, formDOutput);
             this.VisibleChanged += FormDigitalIO_VisibleChanged1;
+            this.Load += FormDigitalIO_Load;
+        }
+
+        private void FormDigitalIO_Load(object sender, EventArgs e)
+        {
+            var formMain = Program.MainForm as FormMain;
+            this.formDInput.Rtc = formMain.FormEditor.SiriusEditor.Rtc;
+            this.formDOutput.Rtc = formMain.FormEditor.SiriusEditor.Rtc;
         }
 
         private void FormDigitalIO_VisibleChanged1(object sender, System.EventArgs e)

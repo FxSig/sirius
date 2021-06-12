@@ -16,7 +16,7 @@ namespace SpiralLab.Sirius.FCEU
 
         public Form FormCurrent { get; private set; }
         public FormAuto FormAuto { get; private set; }
-        public FormLaser FormLaser { get; private set; }
+        public FormEditor FormEditor { get; private set; }
         public FormSetup FormSetup { get; private set; }
 
         System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
@@ -27,7 +27,7 @@ namespace SpiralLab.Sirius.FCEU
             InitializeComponent();
 
             this.FormAuto = new FormAuto();
-            this.FormLaser = new FormLaser();
+            this.FormEditor = new FormEditor();
             this.FormSetup = new FormSetup();
 
             this.Load += FormMain_Load;
@@ -51,9 +51,9 @@ namespace SpiralLab.Sirius.FCEU
             // 기본 문서 생성
             var doc = new Sirius.DocumentDefault();
             this.FormAuto.SiriusViewer.Document = doc;
-            this.FormLaser.SiriusEditor.Document = doc;
+            this.FormEditor.SiriusEditor.Document = doc;
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
-            this.FormLaser.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
+            this.FormEditor.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
 
             bool success = true;
             #region RTC 초기화
@@ -82,7 +82,7 @@ namespace SpiralLab.Sirius.FCEU
                 rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
                 rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
                 
-                this.FormLaser.SiriusEditor.Rtc = rtc;
+                this.FormEditor.SiriusEditor.Rtc = rtc;
             //}
             #endregion
 
@@ -109,14 +109,14 @@ namespace SpiralLab.Sirius.FCEU
                 success &= laser.Initialize();
                 success &= laser.CtlPower(10);
 
-                this.FormLaser.SiriusEditor.Laser = laser;
+                this.FormEditor.SiriusEditor.Laser = laser;
             //}
-            this.FormLaser.SiriusEditor.Laser = laser;
+            this.FormEditor.SiriusEditor.Laser = laser;
             #endregion
 
             #region 마커 지정
             var marker = new MarkerDefault(0);
-            this.FormLaser.SiriusEditor.Marker = marker;
+            this.FormEditor.SiriusEditor.Marker = marker;
             #endregion
             return success;
         }
@@ -124,7 +124,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트
             this.FormAuto.SiriusViewer.Document = doc;
-            this.FormLaser.SiriusEditor.Document = doc;
+            this.FormEditor.SiriusEditor.Document = doc;
         }
         public void UpdateVersionInfo()
         {
@@ -202,7 +202,7 @@ namespace SpiralLab.Sirius.FCEU
         }
         private void btnLaser_Click(object sender, EventArgs e)
         {
-            this.SwitchForm(this.panBody, this.FormLaser);
+            this.SwitchForm(this.panBody, this.FormEditor);
         }
         private void btnSetup_Click(object sender, EventArgs e)
         {

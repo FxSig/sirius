@@ -13,13 +13,17 @@ namespace SpiralLab.Sirius.FCEU
             [Description("디지털 입출력")]
             DigitalIO,
 
-            //[Description("모터 셋업")]
-            //Motors,
+            [Description("모터")]
+            Motors,
+
+            [Description("레이저")]
+            Laser,
         }
 
-        //Form formMotors;
         Form formDIO;
-        
+        Form formMotors;
+        Form formLaser;
+
         public FormSetup()
         {
             InitializeComponent();
@@ -31,8 +35,9 @@ namespace SpiralLab.Sirius.FCEU
             this.cbbLeft.SelectedIndexChanged += cbbLeft_SelectedIndexChanged;
             this.cbbRight.SelectedIndexChanged += cbbRight_SelectedIndexChanged;
             this.Load += FormSetup_Load;
-            //this.formMotors = new FormMotor();
-            this.formDIO = new FormDigitalIO();
+            this.formMotors = new FCEU.FormMotor();
+            this.formDIO = new FCEU.FormDigitalIO();
+            this.formLaser = new Nguyen.FormIPG();
         }
 
         private void FormSetup_Load(object sender, EventArgs e)
@@ -66,11 +71,14 @@ namespace SpiralLab.Sirius.FCEU
             Part partEnum = (Part)index;
             switch (partEnum)
             {
-                //case Part.Motors:
-                    //this.SwitchForm(panel, formMotors);
-                    //break;
+                case Part.Motors:
+                    this.SwitchForm(panel, formMotors);
+                    break;
                 case Part.DigitalIO:
                     this.SwitchForm(panel, formDIO);
+                    break;
+                case Part.Laser:
+                    this.SwitchForm(panel, formLaser);
                     break;
             }
         }

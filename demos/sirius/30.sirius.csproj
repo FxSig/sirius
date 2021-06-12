@@ -63,6 +63,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Default\FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Default\FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Default\MessageBoxOk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,12 @@
     <Compile Include="FCEU\FormDOutput.Designer.cs">
       <DependentUpon>FormDOutput.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="FCEU\FormLaser.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,12 @@
     </Compile>
     <Compile Include="FCEU\FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormMotor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormMotor.Designer.cs">
+      <DependentUpon>FormMotor.cs</DependentUpon>
     </Compile>
     <Compile Include="FCEU\FormSetup.cs">
       <SubType>Form</SubType>
@@ -255,6 +273,9 @@
     <Compile Include="Default\FormSetup.Designer.cs">
       <DependentUpon>FormSetup.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Default\FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Default\MessageBoxOk.resx">
       <DependentUpon>MessageBoxOk.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,11 +294,17 @@
     <EmbeddedResource Include="FCEU\FormDOutput.resx">
       <DependentUpon>FormDOutput.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormLaser.resx">
       <DependentUpon>FormLaser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormMotor.resx">
+      <DependentUpon>FormMotor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormSetup.resx">
       <DependentUpon>FormSetup.cs</DependentUpon>
