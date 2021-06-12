@@ -57,8 +57,9 @@ namespace SpiralLab.Sirius
 
             #region initialize Laser source
             ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f);
+            laser.Rtc = rtc;
             laser.Initialize();
-            laser.CtlPower(rtc, 10);
+            laser.CtlPower(10);
             #endregion
 
             #region prepare your marker

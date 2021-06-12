@@ -109,38 +109,40 @@ namespace SpiralLab.Sirius
         /// <param name="rtc"></param>
         private static void MotfWithFollowOnly(ILaser laser, IRtc rtc, bool externalStart)
         {
-            var motf = rtc as IRtcMOTF;
+            var rtcMotf = rtc as IRtcMOTF;
+            var rtcExt = rtc as IRtcExtension;
             //리스트 시작 
             rtc.ListBegin(laser, ListType.Single);
             // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-            motf.ListMOTFBegin();
+            rtcMotf.ListMOTFBegin();
             //0,0 으로 점프
             rtc.ListJump(new Vector2(0, 0));
             //10 초동안 대기
             rtc.ListWait(1000 * 10); 
             // MOTF 중시
-            motf.ListMOTFEnd(Vector2.Zero);
+            rtcMotf.ListMOTFEnd(Vector2.Zero);
             rtc.ListEnd();
 
             if (externalStart)
             {
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = new RtcExternalControlMode();
-                extCtrl.Add(RtcExternalControlMode.Signal.ExternalStart);
-                extCtrl.Add(RtcExternalControlMode.Signal.ExternalStartAgain);
-                motf.CtlExternalControl(extCtrl);
+                var extCtrl = Rtc5ExternalControlMode.Empty;
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
+                rtcExt.CtlExternalControl(extCtrl);
             }
             else
             {
                 //외부 트리거(/START)가 아닌 직접 execute 호출하여 실행
-                motf.CtlExternalControl(RtcExternalControlMode.Empty);
+                rtcExt.CtlExternalControl(Rtc5ExternalControlMode.Empty);
                 rtc.ListExecute();
             }
         }
 
         private static void MotfWithCircleAndWaitEncoder(ILaser laser, IRtc rtc, bool externalStart)
         {
-            var motf = rtc as IRtcMOTF;
+            var rtcMotf = rtc as IRtcMOTF;
+            var rtcExt = rtc as IRtcExtension;
             //리스트 시작 
             rtc.ListBegin(laser, ListType.Single);
             //직선을 그립니다. (엔코더 입력과 무관합니다)
@@ -148,28 +150,28 @@ namespace SpiralLab.Sirius
             rtc.ListMark(new Vector2(0, 10));
             rtc.ListMark(new Vector2(0, 0));
                 // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-                motf.ListMOTFBegin();
+                rtcMotf.ListMOTFBegin();
                 // 엔코더 X 값이 10mm 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
-                motf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
+                rtcMotf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
                 //엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
                 rtc.ListJump(new Vector2((float)10, 0)); 
                 rtc.ListArc(new Vector2(0, 0), 360.0f);
                 // MOTF 중지및 0,0 위치(스캐너 중심 위치)로 jump 실시
-                motf.ListMOTFEnd(Vector2.Zero);
+                rtcMotf.ListMOTFEnd(Vector2.Zero);
             rtc.ListEnd();
 
             if (externalStart)
             {
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = new RtcExternalControlMode();
-                extCtrl.Add(RtcExternalControlMode.Signal.ExternalStart);
-                extCtrl.Add(RtcExternalControlMode.Signal.ExternalStartAgain);
-                motf.CtlExternalControl(extCtrl);
+                var extCtrl = Rtc5ExternalControlMode.Empty;
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
+                rtcExt.CtlExternalControl(extCtrl);
             }
             else
             {
                 //외부 트리거(/START) 미사용
-                motf.CtlExternalControl(RtcExternalControlMode.Empty);
+                rtcExt.CtlExternalControl(Rtc5ExternalControlMode.Empty);
                 rtc.ListExecute();
             }
         }

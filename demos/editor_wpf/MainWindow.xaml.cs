@@ -50,8 +50,9 @@ namespace editor_wpf
 
             #region 레이저 소스 초기화
             ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
+            laser.Rtc = rtc;
             laser.Initialize();
-            laser.CtlPower(rtc, 10);
+            laser.CtlPower(10);
             #endregion
 
             siriusEditorForm.Laser = laser;

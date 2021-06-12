@@ -5,12 +5,12 @@ using System.Windows;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
-[assembly: AssemblyTitle("mmi")]
-[assembly: AssemblyDescription("mmi program")]
+[assembly: AssemblyTitle("sirius")]
+[assembly: AssemblyDescription("sirius program")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("(c)SpiralLab")]
-[assembly: AssemblyProduct("mmi")]
-[assembly: AssemblyCopyright("hcchoi")]
+[assembly: AssemblyProduct("sirius")]
+[assembly: AssemblyCopyright("spirallab.co.kr")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
  

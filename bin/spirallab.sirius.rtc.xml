@@ -112,6 +112,11 @@
             알람 발생 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ILaser.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ILaser.Tag">
             <summary>
             사용자 정의 데이타
@@ -123,108 +128,277 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
+            <summary>
+            출사 중지
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
             <summary>
             리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.ILaser.CtlPower(SpiralLab.Sirius.IRtc,System.Single)">
+        <member name="M:SpiralLab.Sirius.ILaser.CtlPower(System.Single)">
             <summary>
             파워 변경 (즉시 명령)
             </summary>
-            <param name="rtc">IRtc 인터페이스</param>
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.ILaser.ListPower(SpiralLab.Sirius.IRtc,System.Single)">
+        <member name="M:SpiralLab.Sirius.ILaser.ListPower(System.Single)">
             <summary>
             파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
             마커의 내부 쓰레드에 의해 호출됨
             </summary>
-            <param name="rtc">IRtc 인터페이스</param>
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IPGYLP">
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
-            레이저 소스 (IPG YLP)
+            레이저 소스 (IPG YLP  Type E)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.Index">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Index">
             <summary>
             식별 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.Name">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Name">
             <summary>
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.MaxPowerWatt">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.MaxPowerWatt">
             <summary>
             최대 파워 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.IsReady">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsReady">
             <summary>
             상태 (준비완료 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.IsBusy">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsBusy">
             <summary>
             상태 (출사중 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.IsError">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsError">
             <summary>
             상태 (에러 발생 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLP.Tag">
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Rtc">
+            <summary>
+            IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Tag">
             <summary>
             사용자 데이타
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.IPGYLP.Extension1PortOut">
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out">
             <summary>
             RTC Ext1 포트
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLP.#ctor(System.UInt32,System.String,System.Single,SpiralLab.Sirius.IRtc)">
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit">
+            <summary>
+            7bit output power resolution (128 단계 : 하위 1 비트는 삭제됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit.Latch">
+            <summary>
+            LSB
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit.Power0">
+            <summary>
+            Data1
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Power7Bits">
+            <summary>
+            7 bit resolution 으로 동작됨
+            set 동작시 latch 비트가 초기화 됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.PowerWatt">
+            <summary>
+            0~최대파워값(Watt)으로 동작됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext2Out">
+            <summary>
+            Extension2 출력 비트 객체
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode">
+            <summary>
+            알람코드
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Unknown">
+            <summary>
+            Unknown/Invalid status
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Normal">
+            <summary>
+            Normal operation
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Temperature">
+            <summary>
+            Laser temperature is out of the operating temperature range
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.PowerSupply">
+            <summary>
+            External supply voltage is out of the specified range
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.LaserIsNotReady">
+            <summary>
+            Laser is not ready for emission
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.BackReflection">
+            <summary>
+            Laser automatically switched OFF due to high optical power reflected back to the laser
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.System">
+            <summary>
+            Laser protection system detectes internal failure
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Reserved">
+            <summary>
+            Reserved
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension1In">
+            <summary>
+            Extension1 입력 비트 객체
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm1">
+            <summary>
+            IPG Pin 16
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm2">
+            <summary>
+            IPG Pin 21
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm3">
+            <summary>
+            IPG Pin 11
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext1In">
+            <summary>
+            Extension1 입력 비트 객체
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension1Out">
+            <summary>
+            Extension1 출력 비트 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext1Out">
+            <summary>
+            Extension1 출력 비트 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerWatt">
+            <summary>
+            Power Set or Get (Watt)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsEmission">
+            <summary>
+            Laser Emission Is On/Off?
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsGuideLaser">
+            <summary>
+            Guide (Pilot/Red) Laser Is On/Off?
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor(System.UInt32,System.String,System.Single)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
             <param name="maxPowerWatt">최대 파워 (W)</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLP.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLP.CtlReset">
-            <summary>
-            리셋
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLP.CtlPower(SpiralLab.Sirius.IRtc,System.Single)">
-            <summary>
-            파워 변경
-            </summary>
             <param name="rtc">IRtc 인터페이스</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Initialize">
+            <summary>
+            SPI 레이저 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.OnUpdate(System.Object)">
+            <summary>
+            extension1 port 의 입력상태를 읽어 업데이트
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlAbort">
+            <summary>
+            Abort (turn off emmission signal)
+            강제 중지 (Emission 출력 Disable 됨)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlReset">
+            <summary>
+            Reset (turn on emmission signal)
+            리셋 (에러상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlPower(System.Single)">
+            <summary>
+            Output power change to assigned watt with control command
+            파워 변경  (RTC의 컨트롤 명령으로 처리시)
+            </summary>
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLP.ListPower(SpiralLab.Sirius.IRtc,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.ListPower(System.Single)">
             <summary>
+            Output power change to assigned watt with list command
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
-            <param name="rtc">IRtc 인터페이스</param>
             <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Emission(System.Boolean)">
+            <summary>
+            Enable/Disable Emission
+            </summary>
+            <param name="onOff">On/Off</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.GuideLaser(System.Boolean)">
+            <summary>
+            Guide(Pilot/Red) Laser On/Off
+            </summary>
+            <param name="onOff">On/Off</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.LaserVirtual">
@@ -262,6 +436,11 @@
             상태 (에러 발생 여부)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.Tag">
             <summary>
             사용자 데이타
@@ -287,19 +466,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlPower(SpiralLab.Sirius.IRtc,System.Single)">
+        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlPower(System.Single)">
             <summary>
             파워 변경
             </summary>
-            <param name="rtc">IRtc 인터페이스</param>
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.ListPower(SpiralLab.Sirius.IRtc,System.Single)">
+        <member name="M:SpiralLab.Sirius.LaserVirtual.ListPower(System.Single)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
-            <param name="rtc">IRtc 인터페이스</param>
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
@@ -312,6 +489,25 @@
             <summary>
             SPI - G3/G3 IR 파이버 레이저 소스 객체
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SPIG4.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SPIG4.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+            <param name="comPort"></param>
+            <param name="maxPowerWatt"></param>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.OnTimer(System.Object)">
             <summary>
@@ -443,9 +639,331 @@
             <param name="cy">회전 중심 Y (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
-        <member name="T:SpiralLab.Sirius.MeasurementChannel">
+        <member name="T:SpiralLab.Sirius.Rtc4ExternalControlMode">
             <summary>
-            Measurement 관련 채널 목록
+            RTC4 외부 트리거 모드 비트 플래그용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartDelayOff">
+            <summary>
+            /START 지연 끄기 (CtlExternalControlDelay 함수에 의해 지연된 값)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartIsNotDisabledByExternalStop">
+            <summary>
+            /START 가 /STOP 에 의해 비활성화 되지 않음
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Rtc4">
+            <summary>
+            RTC4 객체
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4.Count">
+            <summary>
+            카드 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Index">
+            <summary>
+            RTC 제어기 식별 번호 (1,2,3,...)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.MatrixStack">
+            <summary>
+            행렬 스택
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.KFactor">
+            <summary>
+            bits/mm 값 (2^16)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Fpk">
+            <summary>
+            First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.IsMOTF">
+            <summary>
+            MOTF 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Is2ndHead">
+            <summary>
+            듀얼 헤드 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Is3D">
+            <summary>
+            3D 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.IsScanAhead">
+            <summary>
+            Scan Ahead 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.IsUFPM">
+            <summary>
+            UFPM(Ultra Fast Pulse Modulation) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.IsSyncAxis">
+            <summary>
+            SyncAxis (XLScan) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.CorrectionFiles">
+            <summary>
+            스캐너 보정 파일 목록 (최대 4개 로드 가능)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadTable">
+            <summary>
+            첫번째 스캐너 헤드 보정 테이블 번호 (1~4)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadTable">
+            <summary>
+            두번째 스캐너 헤드 보정 테이블 번호 (1~4)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadOffset">
+            <summary>
+            첫번째 스캐너 헤드 X,Y 오프셋 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadAngle">
+            <summary>
+            첫번째 스캔 헤드 회전 (각도)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadOffset">
+            <summary>
+            두번째 스캐너 헤드 X,Y 오프셋 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadAngle">
+            <summary>
+            두번째 스캔 헤드 회전 (각도)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.ZOffset">
+            <summary>
+            Z 이동량 오프셋 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.ZDefocus">
+            <summary>
+            Z 디포커스 값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.KZFactor">
+            <summary>
+            Z 축 bits/mm 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncXCountsPerMm">
+            <summary>
+            단위 mm 당 엔코더 X 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncYCountsPerMm">
+            <summary>
+            단위 mm 당 엔코더 Y 개수
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc4.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">카드번호 (0,1,2,...)</param>
+            <param name="outputFileName">출력 로그 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlExternalControl(SpiralLab.Sirius.IRtcExternalControlMode,System.UInt32)">
+            <summary>
+            외부 트리거 사용시 설정
+            </summary>
+            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
+            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlExternalStartCounts(System.UInt32@)">
+            <summary>
+            외부 /START 실행된 회수 조회
+            </summary>
+            <param name="counts">회수값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
+            <summary>
+            픽셀 라인 준비
+            </summary>
+            <param name="usec">픽셀 주기 (usec)</param>
+            <param name="vDelta">픽셀 간격 (mm)</param>
+            <param name="pixelCount">픽셀 개수</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListPixel(System.Single,System.Single,SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            픽셀 출력
+            </summary>
+            <param name="usec">각 픽셀의 펄스 출력 시간 (usec)</param>
+            <param name="analogVoltage">아나로그 출력 (0~10V)</param>
+            <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc4.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderReset(System.Single,System.Single)">
+            <summary>
+            encoder reset with assigned offset posotion 
+            초기화시 엔코더의 오프셋(초기값) 값을 설정 가능
+            </summary>
+            <param name="offsetX">X 초기화 위치 (mm)</param>
+            <param name="offsetY">Y 초기화 위치(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderSpeed(System.Single,System.Single)">
+            <summary>
+            외부 엔코더 입력 대신 내부 엔코더를 사용해 가상 엔코더 활성화 가능
+            </summary>
+            <param name="encX_simulated_speed">mm/s</param>
+            <param name="encY_simulated_speed">mm/s</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+            <summary>
+            current encoder value 
+            현재 엔코더 값 얻기
+            </summary>
+            <param name="encX">X 엔코더 값 (counts)</param>
+            <param name="encY">Y 엔코더 값 (counts)</param>
+            <param name="encX_mm">X 엔코더의 위치 (mm)</param>
+            <param name="encY_mm">Y 엔코더의 위치 (mm)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFBegin(System.Boolean)">
+            <summary>
+            MOTF 리스트 명령 시작
+            엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
+            초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
+            해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            wait list execution until specific encoder value matched user-assigned condition
+            지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
+            (단축 동기화 용)
+            </summary>
+            <param name="enc">엔코더 축 지정</param>
+            <param name="position">위치값 (mm)</param>
+            <param name="cond">조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            wait list execution until both encoders value matched user-assigned condition
+            두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            </summary>
+            <param name="positionX">X 축 위치 (mm)</param>
+            <param name="rangeX">조건 범위 (mm)</param>
+            <param name="positionY">Y 축 위치 (mm)</param>
+            <param name="rangeY">조건 범위 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFEnd(System.Numerics.Vector2)">
+            <summary>
+            MOTF 리스트 명령 끝
+            종료시 스캐너를 지정된 위치로 점프 시킴
+            </summary>
+            <param name="vPosition">점프 위치</param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Rtc5LaserControlSignal">
+            <summary>
+            RTC5 용 레이저 제어 신호 비트 플래그용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStop">
+            <summary>
+            /STOP 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.TrackDelay">
+            <summary>
+            Track 지연 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStartAgain">
+            <summary>
+            /START 핀 재 사용 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.EncoderReset">
+            <summary>
+            엔코더 리셋(초기화) 여부
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Rtc5ExternalControlMode">
+            <summary>
+            RTC5 외부 트리거 모드 비트 플래그용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStop">
+            <summary>
+            /STOP 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.TrackDelay">
+            <summary>
+            Track 지연 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStartAgain">
+            <summary>
+            /START 핀 재 사용 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.EncoderReset">
+            <summary>
+            엔코더 리셋(초기화) 여부
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc5">
@@ -476,6 +994,12 @@
         <member name="P:SpiralLab.Sirius.Rtc5.KFactor">
             <summary>
             bits/mm 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.LaserMode">
+            <summary>
+            레이저 모드(CO2, Yag1,2,3,4, ...)
+            Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Fpk">
@@ -604,6 +1128,66 @@
             현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">카드번호 (0,1,2,...)</param>
+            <param name="outputFileName">로그 출력 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlFrequency(System.Single,System.Single)">
+            <summary>
+            주파수와 펄스폭 설정
+            </summary>
+            <param name="frequencyHz">주파수 (Hz)</param>
+            <param name="pulseWidthUsec">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlDelay(System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            스캐너/ 레이저 지연값 설정
+            </summary>
+            <param name="laserOnUSec">레이저 온 지연 (usec)</param>
+            <param name="laserOffUSec">레이저 오프 지연 (usec)</param>
+            <param name="scannerJumpUSec">스캐너 점프 지연 (usec)</param>
+            <param name="scannerMarkUSec">스캐너 마크 지연 (usec)</param>
+            <param name="scannerPolygonUSec">스캐너 폴리곤(코너) 지연 (usec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlFirstPulseKiller(System.Single)">
+            <summary>
+            FPK(First Pulse Killer) 시간 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
+            <summary>
+            레이저 출력 신호 레벨 설정
+            </summary>
+            <param name="laserControlSignal">RTC 모델에 맞는 ILaserControlSignal 구현된 인스턴스</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalControl(SpiralLab.Sirius.IRtcExternalControlMode,System.UInt32)">
+            <summary>
+            외부 트리거 사용시 설정
+            </summary>
+            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
+            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalStartCounts(System.UInt32@)">
+            <summary>
+            외부 /START 실행된 회수 조회
+            </summary>
+            <param name="counts">회수값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
             <summary>
             픽셀 라인 준비
@@ -624,21 +1208,6 @@
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode,System.UInt32)">
-            <summary>
-            외부 트리거 사용시 설정
-            </summary>
-            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
-            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalStartCounts(System.UInt32@)">
-            <summary>
-            외부 /START 실행된 회수 조회
-            </summary>
-            <param name="counts">회수값</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlEncoderReset(System.Single,System.Single)">
             <summary>
             encoder reset with assigned offset posotion 
@@ -703,6 +1272,66 @@
             </summary>
             <param name="vPosition">점프 위치</param>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Rtc6LaserControlSignal">
+            <summary>
+            RTC6 용 레이저 제어 신호 비트 플래그용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStop">
+            <summary>
+            /STOP 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.TrackDelay">
+            <summary>
+            Track 지연 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStartAgain">
+            <summary>
+            /START 핀 재 사용 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.EncoderReset">
+            <summary>
+            엔코더 리셋(초기화) 여부
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Rtc6ExternalControlMode">
+            <summary>
+            RTC6 외부 트리거 모드 비트 플래그용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStop">
+            <summary>
+            /STOP 핀 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.TrackDelay">
+            <summary>
+            Track 지연 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStartAgain">
+            <summary>
+            /START 핀 재 사용 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.EncoderReset">
+            <summary>
+            엔코더 리셋(초기화) 여부
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6">
             <summary>
@@ -860,6 +1489,33 @@
             현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">카드번호 (0,1,2,...)</param>
+            <param name="outputFileName">로그출력 파일 이름</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalControl(SpiralLab.Sirius.IRtcExternalControlMode,System.UInt32)">
+            <summary>
+            외부 트리거 사용시 설정
+            </summary>
+            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
+            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalStartCounts(System.UInt32@)">
+            <summary>
+            외부 /START 실행된 회수 조회
+            </summary>
+            <param name="counts">회수값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
             <summary>
             픽셀 라인 준비
@@ -880,21 +1536,6 @@
             <returns></returns>
         </member>
         <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode,System.UInt32)">
-            <summary>
-            외부 트리거 사용시 설정
-            </summary>
-            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
-            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalStartCounts(System.UInt32@)">
-            <summary>
-            외부 /START 실행된 회수 조회
-            </summary>
-            <param name="counts">회수값</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 엔코더를 사용해 가상 엔코더 활성화 가능
@@ -906,6 +1547,11 @@
         <member name="T:SpiralLab.Sirius.Rtc6Ethernet">
             <summary>
             RTC6 이더넷 제품용 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6Ethernet.#ctor(System.UInt32,System.String,System.String,System.String)">
@@ -1014,6 +1660,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ConfigXMLFile">
             <summary>
             XML 환경 설정 파일
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.#ctor(System.UInt32,System.String,System.String)">
@@ -1405,12 +2056,24 @@
             두번째 스캐너 헤드 보정 테이블 번호 (1~4)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.#ctor(System.UInt32,System.String)">
             <summary>
             생성자
             </summary>
             <param name="index">식별 번호 (1,2,3,...)</param>
             <param name="outputFileName">RTC 데이타 상세 로그 출력 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlExternalStartCounts(System.UInt32@)">
+            <summary>
+            외부 /START 실행된 회수 조회
+            </summary>
+            <param name="counts">회수값</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData2D">
             <summary>
@@ -1598,6 +2261,11 @@
             <param name="cy">회전 기준 ㅛ 위치 (mm)</param>
             <param name="angle">회전 각도</param>
         </member>
+        <member name="T:SpiralLab.Sirius.ListType">
+            <summary>
+            리스트 타입
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.ListType.Single">
             <summary>
             single buffered list
@@ -1680,6 +2348,29 @@
             <summary>
             스캔 헤드의 사용가능 온도 도달 여부
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ILaserControlSignal">
+            <summary>
+            레이저 제어 신호의 레벨 설정(Laser1, 2, On 등의 신호 레벨 : Active Low/High)
+            RTC5 이상만 지원됨
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaserControlSignal.ToUInt">
+            <summary>
+            비트 구조체를 32비트 값으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.IRtcExternalControlMode">
+            <summary>
+            RTC 외부 제어 모드 값 (Rtc4,5 의 비트 플래그가 다르므로 각 버전별 상속 구현)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
+            <summary>
+            비트 구조체를 32 비트값으로 변환
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IRtc">
             <summary>
@@ -1812,6 +2503,11 @@
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlFrequency(System.Single,System.Single)">
+            <summary>
+            FPK(First Pulse Killer) 시간 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
             <summary>
             주파수와 펄스폭 설정
             </summary>
@@ -2113,6 +2809,16 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListJump(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프 
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="z">z 위치 (mm)</param>
+            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListMark(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 마크
@@ -2121,11 +2827,31 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListMark(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="z">z 위치 (mm)</param>
+            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListArc(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
             <param name="center">중심 위치 (cx, cy, cz) (mm)</param>
+            <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListArc(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 아크(호) 
+            </summary>
+            <param name="cx">중심 위치 (cx) (mm)</param>
+            <param name="cy">중심 위치 (cy) (mm)</param>
+            <param name="cz">중심 위치 (cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
             <returns></returns>
         </member>
@@ -2200,6 +2926,11 @@
             T 타입은 float
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.IRtcAutoLaserControl">
+            <summary>
+            RTC 의 ALC(Automatic Laser Control 기능의 인터페이스
+            </summary>
+        </member>
         <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionFileName" -->
         <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionTableNo">
             <summary>
@@ -2236,6 +2967,26 @@
         <member name="T:SpiralLab.Sirius.CharacterSet">
             <summary>
             문자 집합 (최대 4개까지 지원)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CharacterSet._0">
+            <summary>
+            0
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CharacterSet._1">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CharacterSet._2">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CharacterSet._3">
+            <summary>
+            3
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.DateFormat">
@@ -2457,11 +3208,26 @@
             RTC 확장 기능 인터페이스
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlFirstPulseKiller(System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
             <summary>
-            FPK(First Pulse Killer) 시간 설정
+            레이저 출력 신호 레벨 설정
             </summary>
-            <param name="usec">usec</param>
+            <param name="laserControlSignal">RTC 모델에 맞는 ILaserControlSignal 구현된 인스턴스</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlExternalControl(SpiralLab.Sirius.IRtcExternalControlMode,System.UInt32)">
+            <summary>
+            외부 트리거 사용시 설정
+            </summary>
+            <param name="mode">RTC (RTC5,6 경우 15핀) /START, /STOP 등의 트리거 사용여부 설정</param>
+            <param name="maxStartCounts">/START 트리거 최대 허용 개수 설정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlExternalStartCounts(System.UInt32@)">
+            <summary>
+            외부 /START 실행된 회수 조회
+            </summary>
+            <param name="counts">회수값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
@@ -2510,34 +3276,14 @@
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.RtcExternalControlMode">
+        <member name="T:SpiralLab.Sirius.MeasurementChannel">
             <summary>
-            RTC 외부 트리거 모드 정보
+            Measurement 관련 채널 목록
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.RtcExternalControlMode.Signal.ExternalStart">
+        <member name="T:SpiralLab.Sirius.IRtcMeasurement">
             <summary>
-            /START 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcExternalControlMode.Signal.ExternalStop">
-            <summary>
-            /STOP 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcExternalControlMode.Signal.TrackDelay">
-            <summary>
-            Track 지연 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcExternalControlMode.Signal.ExternalStartAgain">
-            <summary>
-            /START 핀 재 사용 여부
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcExternalControlMode.Signal.EncoderReset">
-            <summary>
-            엔코더 리셋(초기화) 여부
+            RTC Measurement (계측 데이타) 인터페이스
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.RtcEncoder">
@@ -2599,22 +3345,6 @@
                                     mm  
             * 주의 사항 (한축의 엔코더만 사용할 경우에도 임의의 값을 설정하는것을 추천)
             </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlExternalControl(SpiralLab.Sirius.RtcExternalControlMode,System.UInt32)">
-            <summary>
-            외부 트리거 설정
-            (주의) ListEnd 가 호출된 이후에 설정을 한다
-            </summary>
-            <param name="mode">RTC 15핀 입력으로 /START, /STOP 등의 트리거 사용여부 설정</param>
-            <param name="maxExternalStartCounts">/START 트리거 최대 허용 개수 제한 (0=무제한)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlExternalStartCounts(System.UInt32@)">
-            <summary>
-            외부 /START 실행된 회수 조회
-            </summary>
-            <param name="counts">회수값</param>
-            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderReset(System.Single,System.Single)">
             <summary>
@@ -2741,6 +3471,26 @@
             스캔 헤드 번호 (멀티 헤드 사용시)
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice1">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice2">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice3">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice4">
+            <summary>
+            4
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcSyncAxis">
             <summary>
             RTC SYNCAXIS 인터페이스
@@ -2807,6 +3557,1522 @@
             <param name="laser">ILaser 인터페이스</param>
             <param name="motionType">MotionType 열거형</param>
             <returns></returns>
+        </member>
+        <member name="T:RTC4Import.RTC4Wrap">
+            <summary>
+            Static RTC4 Wrapper class.
+            Notice that the construction of the RTC4Wrap object or an initial
+            call of any RTC4Wrap method may throw a TypeInitializationException
+            exception, which indicates that the required DLL is missing or the
+            import of a particular DLL function failed. In order to analyze and
+            properly handle such an error condition you need to catch that
+            TypeInitializationException type exception.
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.getmemory">
+            <summary>
+             short getmemory(ushort adr);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_waveform">
+            <summary>
+             n_get_waveform(ushort n, ushort channel, ushort istop, short[] memptr);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_waveform">
+            <summary>
+             get_waveform(ushort channel, ushort istop, short[] memptr);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_measurement_status">
+            <summary>
+             n_measurement_status(ushort n, out ushort busy, out ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.measurement_status">
+            <summary>
+             measurement_status(out ushort busy, out ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_load_varpolydelay">
+            <summary>
+             short n_load_varpolydelay(ushort n, string stbfilename, ushort tableno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_varpolydelay">
+            <summary>
+             short load_varpolydelay(string stbfilename, ushort tableno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_load_program_file">
+            <summary>
+             short n_load_program_file(ushort n, string name);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_program_file">
+            <summary>
+             short load_program_file(string name);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_load_correction_file">
+            <summary>
+             short n_load_correction_file(ushort n, string filename, short cortable, double kx, double ky, double phi, double xoffset, double yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_correction_file">
+            <summary>
+             short load_correction_file(string filename, short cortable, double kx, double ky, double phi, double xoffset, double yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_load_z_table">
+            <summary>
+             short n_load_z_table(ushort n, double a, double b, double c);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_z_table">
+            <summary>
+             short load_z_table(double a, double b, double c);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_list_nop">
+            <summary>
+             n_list_nop(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.list_nop">
+            <summary>
+             list_nop();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_end_of_list">
+            <summary>
+             n_set_end_of_list(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_end_of_list">
+            <summary>
+             set_end_of_list();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_jump_abs_3d">
+            <summary>
+             n_jump_abs_3d(ushort n, short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.jump_abs_3d">
+            <summary>
+             jump_abs_3d(short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_jump_abs">
+            <summary>
+             n_jump_abs(ushort n, short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.jump_abs">
+            <summary>
+             jump_abs(short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_mark_abs_3d">
+            <summary>
+             n_mark_abs_3d(ushort n, short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.mark_abs_3d">
+            <summary>
+             mark_abs_3d(short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_mark_abs">
+            <summary>
+             n_mark_abs(ushort n, short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.mark_abs">
+            <summary>
+             mark_abs(short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_jump_rel_3d">
+            <summary>
+             n_jump_rel_3d(ushort n, short dx, short dy, short dz);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.jump_rel_3d">
+            <summary>
+             jump_rel_3d(short dx, short dy, short dz);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_jump_rel">
+            <summary>
+             n_jump_rel(ushort n, short dx, short dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.jump_rel">
+            <summary>
+             jump_rel(short dx, short dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_mark_rel_3d">
+            <summary>
+             n_mark_rel_3d(ushort n, short dx, short dy, short dz);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.mark_rel_3d">
+            <summary>
+             mark_rel_3d(short dx, short dy, short dz);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_mark_rel">
+            <summary>
+             n_mark_rel(ushort n, short dx, short dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.mark_rel">
+            <summary>
+             mark_rel(short dx, short dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_8bit_port_list">
+            <summary>
+             n_write_8bit_port_list(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_8bit_port_list">
+            <summary>
+             write_8bit_port_list(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_1_list">
+            <summary>
+             n_write_da_1_list(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_1_list">
+            <summary>
+             write_da_1_list(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_2_list">
+            <summary>
+             n_write_da_2_list(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_2_list">
+            <summary>
+             write_da_2_list(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_matrix_list">
+            <summary>
+             n_set_matrix_list(ushort n, ushort i, ushort j, double mij);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_matrix_list">
+            <summary>
+             set_matrix_list(ushort i, ushort j, double mij);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_defocus_list">
+            <summary>
+             n_set_defocus_list(ushort n, short value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_defocus_list">
+            <summary>
+             set_defocus_list(short value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_control_mode_list">
+            <summary>
+             n_set_control_mode_list(ushort n, ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_control_mode_list">
+            <summary>
+             set_control_mode_list(ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_offset_list">
+            <summary>
+             n_set_offset_list(ushort n, short xoffset, short yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_offset_list">
+            <summary>
+             set_offset_list(short xoffset, short yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_long_delay">
+            <summary>
+             n_long_delay(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.long_delay">
+            <summary>
+             long_delay(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_laser_on_list">
+            <summary>
+             n_laser_on_list(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.laser_on_list">
+            <summary>
+             laser_on_list(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_jump_speed">
+            <summary>
+             n_set_jump_speed(ushort n, double speed);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_jump_speed">
+            <summary>
+             set_jump_speed(double speed);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_mark_speed">
+            <summary>
+             n_set_mark_speed(ushort n, double speed);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_mark_speed">
+            <summary>
+             set_mark_speed(double speed);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_laser_delays">
+            <summary>
+             n_set_laser_delays(ushort n, short ondelay, short offdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_laser_delays">
+            <summary>
+             set_laser_delays(short ondelay, short offdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_scanner_delays">
+            <summary>
+             n_set_scanner_delays(ushort n, ushort jumpdelay, ushort markdelay, ushort polydelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_scanner_delays">
+            <summary>
+             set_scanner_delays(ushort jumpdelay, ushort markdelay, ushort polydelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_list_jump">
+            <summary>
+             n_set_list_jump(ushort n, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_list_jump">
+            <summary>
+             set_list_jump(ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_input_pointer">
+            <summary>
+             n_set_input_pointer(ushort n, ushort pointer);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_input_pointer">
+            <summary>
+             set_input_pointer(ushort pointer);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_list_call">
+            <summary>
+             n_list_call(ushort n, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.list_call">
+            <summary>
+             list_call(ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_list_return">
+            <summary>
+             n_list_return(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.list_return">
+            <summary>
+             list_return();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_z_out_list">
+            <summary>
+             n_z_out_list(ushort n, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.z_out_list">
+            <summary>
+             z_out_list(short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_standby_list">
+            <summary>
+             n_set_standby_list(ushort n, ushort half_period, ushort pulse);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_standby_list">
+            <summary>
+             set_standby_list(ushort half_period, ushort pulse);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_timed_jump_abs">
+            <summary>
+             n_timed_jump_abs(ushort n, short x, short y, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.timed_jump_abs">
+            <summary>
+             timed_jump_abs(short x, short y, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_timed_mark_abs">
+            <summary>
+             n_timed_mark_abs(ushort n, short x, short y, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.timed_mark_abs">
+            <summary>
+             timed_mark_abs(short x, short y, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_timed_jump_rel">
+            <summary>
+             n_timed_jump_rel(ushort n, short dx, short dy, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.timed_jump_rel">
+            <summary>
+             timed_jump_rel(short dx, short dy, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_timed_mark_rel">
+            <summary>
+             n_timed_mark_rel(ushort n, short dx, short dy, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.timed_mark_rel">
+            <summary>
+             timed_mark_rel(short dx, short dy, double time);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_laser_timing">
+            <summary>
+             n_set_laser_timing(ushort n, ushort halfperiod, ushort pulse1, ushort pulse2, ushort timebase);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_laser_timing">
+            <summary>
+             set_laser_timing(ushort halfperiod, ushort pulse1, ushort pulse2, ushort timebase);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_wobbel_xy">
+            <summary>
+             n_set_wobbel_xy(ushort n, ushort long_wob, ushort trans_wob, double frequency);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_wobbel_xy">
+            <summary>
+             set_wobbel_xy(ushort long_wob, ushort trans_wob, double frequency);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_wobbel">
+            <summary>
+             n_set_wobbel(ushort n, ushort amplitude, double frequency);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_wobbel">
+            <summary>
+             set_wobbel(ushort amplitude, double frequency);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_fly_x">
+            <summary>
+             n_set_fly_x(ushort n, double kx);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_fly_x">
+            <summary>
+             set_fly_x(double kx);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_fly_y">
+            <summary>
+             n_set_fly_y(ushort n, double ky);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_fly_y">
+            <summary>
+             set_fly_y(double ky);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_fly_rot">
+            <summary>
+             n_set_fly_rot(ushort n, double resolution);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_fly_rot">
+            <summary>
+             set_fly_rot(double resolution);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_fly_return">
+            <summary>
+             n_fly_return(ushort n, short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.fly_return">
+            <summary>
+             fly_return(short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_calculate_fly">
+            <summary>
+             n_calculate_fly(ushort n, ushort direction, double distance);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.calculate_fly">
+            <summary>
+             calculate_fly(ushort direction, double distance);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_io_port_list">
+            <summary>
+             n_write_io_port_list(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_io_port_list">
+            <summary>
+             write_io_port_list(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_select_cor_table_list">
+            <summary>
+             n_select_cor_table_list(ushort n, ushort heada, ushort headb);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.select_cor_table_list">
+            <summary>
+             select_cor_table_list(ushort heada, ushort headb);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_wait">
+            <summary>
+             n_set_wait(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_wait">
+            <summary>
+             set_wait(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_simulate_ext_start">
+            <summary>
+             n_simulate_ext_start(ushort n, short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.simulate_ext_start">
+            <summary>
+             simulate_ext_start(short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_x_list">
+            <summary>
+             n_write_da_x_list(ushort n, ushort x, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_x_list">
+            <summary>
+             write_da_x_list(ushort x, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_pixel_line">
+            <summary>
+             n_set_pixel_line(ushort n, ushort pixelmode, ushort pixelperiod, double dx, double dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_pixel_line">
+            <summary>
+             set_pixel_line(ushort pixelmode, ushort pixelperiod, double dx, double dy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_pixel">
+            <summary>
+             n_set_pixel(ushort n, ushort pulswidth, ushort davalue, ushort adchannel);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_pixel">
+            <summary>
+             set_pixel(ushort pulswidth, ushort davalue, ushort adchannel);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_extstartpos_list">
+            <summary>
+             n_set_extstartpos_list(ushort n, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_extstartpos_list">
+            <summary>
+             set_extstartpos_list(ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_laser_signal_on_list">
+            <summary>
+             n_laser_signal_on_list(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.laser_signal_on_list">
+            <summary>
+             laser_signal_on_list();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_laser_signal_off_list">
+            <summary>
+             n_laser_signal_off_list(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.laser_signal_off_list">
+            <summary>
+             laser_signal_off_list();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_firstpulse_killer_list">
+            <summary>
+             n_set_firstpulse_killer_list(ushort n, ushort fpk);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_firstpulse_killer_list">
+            <summary>
+             set_firstpulse_killer_list(ushort fpk);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_io_cond_list">
+            <summary>
+             n_set_io_cond_list(ushort n, ushort mask_1, ushort mask_0, ushort mask_set);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_io_cond_list">
+            <summary>
+             set_io_cond_list(ushort mask_1, ushort mask_0, ushort mask_set);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_clear_io_cond_list">
+            <summary>
+             n_clear_io_cond_list(ushort n, ushort mask_1, ushort mask_0, ushort mask_clear);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.clear_io_cond_list">
+            <summary>
+             clear_io_cond_list(ushort mask_1, ushort mask_0, ushort mask_clear);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_list_jump_cond">
+            <summary>
+             n_list_jump_cond(ushort n, ushort mask_1, ushort mask_0, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.list_jump_cond">
+            <summary>
+             list_jump_cond(ushort mask_1, ushort mask_0, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_list_call_cond">
+            <summary>
+             n_list_call_cond(ushort n, ushort mask_1, ushort mask_0, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.list_call_cond">
+            <summary>
+             list_call_cond(ushort mask_1, ushort mask_0, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_save_and_restart_timer">
+            <summary>
+             n_save_and_restart_timer(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.save_and_restart_timer">
+            <summary>
+             save_and_restart_timer();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_ext_start_delay_list">
+            <summary>
+             n_set_ext_start_delay_list(ushort n, short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_ext_start_delay_list">
+            <summary>
+             set_ext_start_delay_list(short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_trigger">
+            <summary>
+             n_set_trigger(ushort n, ushort sampleperiod, ushort channel1, ushort channel2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_trigger">
+            <summary>
+             set_trigger(ushort sampleperiod, ushort signal1, ushort signal2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_arc_rel">
+            <summary>
+             n_arc_rel(ushort n, short dx, short dy, double angle);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.arc_rel">
+            <summary>
+             arc_rel(short dx, short dy, double angle);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_arc_abs">
+            <summary>
+             n_arc_abs(ushort n, short x, short y, double angle);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.arc_abs">
+            <summary>
+             arc_abs(short x, short y, double angle);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.drilling">
+            <summary>
+             drilling(short pulsewidth, short relencoderdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.regulation">
+            <summary>
+             regulation();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.flyline">
+            <summary>
+             flyline(short encoderdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_input_pointer">
+            <summary>
+             ushort n_get_input_pointer(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_input_pointer">
+            <summary>
+             ushort get_input_pointer();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.select_rtc">
+            <summary>
+             select_rtc(ushort cardno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.rtc4_count_cards">
+            <summary>
+             ushort rtc4_count_cards();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_status">
+            <summary>
+             n_get_status(ushort n, out ushort busy, out ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_status">
+            <summary>
+             get_status(out ushort busy, out ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_read_status">
+            <summary>
+             ushort n_read_status(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.read_status">
+            <summary>
+             ushort read_status();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_startstop_info">
+            <summary>
+             ushort n_get_startstop_info(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_startstop_info">
+            <summary>
+             ushort get_startstop_info();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_marking_info">
+            <summary>
+             ushort n_get_marking_info(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_marking_info">
+            <summary>
+             ushort get_marking_info();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_dll_version">
+            <summary>
+             ushort get_dll_version();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_start_list_1">
+            <summary>
+             n_set_start_list_1(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_start_list_1">
+            <summary>
+             set_start_list_1();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_start_list_2">
+            <summary>
+             n_set_start_list_2(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_start_list_2">
+            <summary>
+             set_start_list_2();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_start_list">
+            <summary>
+             n_set_start_list(ushort n, ushort listno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_start_list">
+            <summary>
+             set_start_list(ushort listno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_execute_list_1">
+            <summary>
+             n_execute_list_1(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.execute_list_1">
+            <summary>
+             execute_list_1();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_execute_list_2">
+            <summary>
+             n_execute_list_2(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.execute_list_2">
+            <summary>
+             execute_list_2();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_execute_list">
+            <summary>
+             n_execute_list(ushort n, ushort listno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.execute_list">
+            <summary>
+             execute_list(ushort listno);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_8bit_port">
+            <summary>
+             n_write_8bit_port(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_8bit_port">
+            <summary>
+             write_8bit_port(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_io_port">
+            <summary>
+             n_write_io_port(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_io_port">
+            <summary>
+             write_io_port(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_auto_change">
+            <summary>
+             n_auto_change(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.auto_change">
+            <summary>
+             auto_change();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_auto_change_pos">
+            <summary>
+             n_auto_change_pos(ushort n, ushort start);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.auto_change_pos">
+            <summary>
+             auto_change_pos(ushort start);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.aut_change">
+            <summary>
+             aut_change();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_start_loop">
+            <summary>
+             n_start_loop(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.start_loop">
+            <summary>
+             start_loop();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_quit_loop">
+            <summary>
+             n_quit_loop(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.quit_loop">
+            <summary>
+             quit_loop();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_list_mode">
+            <summary>
+             n_set_list_mode(ushort n, ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_list_mode">
+            <summary>
+             set_list_mode(ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_stop_execution">
+            <summary>
+             n_stop_execution(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.stop_execution">
+            <summary>
+             stop_execution();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_read_io_port">
+            <summary>
+             ushort n_read_io_port(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.read_io_port">
+            <summary>
+             ushort read_io_port();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_1">
+            <summary>
+             n_write_da_1(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_1">
+            <summary>
+             write_da_1(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_2">
+            <summary>
+             n_write_da_2(ushort n, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_2">
+            <summary>
+             write_da_2(ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_max_counts">
+            <summary>
+             n_set_max_counts(ushort n, int counts);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_max_counts">
+            <summary>
+             set_max_counts(int counts);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_counts">
+            <summary>
+             int n_get_counts(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_counts">
+            <summary>
+             int get_counts();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_matrix">
+            <summary>
+             n_set_matrix(ushort n, double m11, double m12, double m21, double m22);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_matrix">
+            <summary>
+             set_matrix(double m11, double m12, double m21, double m22);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_offset">
+            <summary>
+             n_set_offset(ushort n, short xoffset, short yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_offset">
+            <summary>
+             set_offset(short xoffset, short yoffset);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_goto_xyz">
+            <summary>
+             n_goto_xyz(ushort n, short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.goto_xyz">
+            <summary>
+             goto_xyz(short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_goto_xy">
+            <summary>
+             n_goto_xy(ushort n, short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.goto_xy">
+            <summary>
+             goto_xy(short x, short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_hex_version">
+            <summary>
+             ushort n_get_hex_version(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_hex_version">
+            <summary>
+             ushort get_hex_version();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_disable_laser">
+            <summary>
+             n_disable_laser(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.disable_laser">
+            <summary>
+             disable_laser();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_enable_laser">
+            <summary>
+             n_enable_laser(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.enable_laser">
+            <summary>
+             enable_laser();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_stop_list">
+            <summary>
+             n_stop_list(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.stop_list">
+            <summary>
+             stop_list();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_restart_list">
+            <summary>
+             n_restart_list(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.restart_list">
+            <summary>
+             restart_list();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_xyz_pos">
+            <summary>
+             n_get_xyz_pos(ushort n, out short x, out short y, out short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_xyz_pos">
+            <summary>
+             get_xyz_pos(out short x, out short y, out short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_xy_pos">
+            <summary>
+             n_get_xy_pos(ushort n, out short x, out short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_xy_pos">
+            <summary>
+             get_xy_pos(out short x, out short y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_select_list">
+            <summary>
+             n_select_list(ushort n, ushort list_2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.select_list">
+            <summary>
+             select_list(ushort list_2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_z_out">
+            <summary>
+             n_z_out(ushort n, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.z_out">
+            <summary>
+             z_out(short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_firstpulse_killer">
+            <summary>
+             n_set_firstpulse_killer(ushort n, ushort fpk);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_firstpulse_killer">
+            <summary>
+             set_firstpulse_killer(ushort fpk);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_standby">
+            <summary>
+             n_set_standby(ushort n, ushort half_period, ushort pulse);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_standby">
+            <summary>
+             set_standby(ushort half_period, ushort pulse);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_laser_signal_on">
+            <summary>
+             n_laser_signal_on(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.laser_signal_on">
+            <summary>
+             laser_signal_on();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_laser_signal_off">
+            <summary>
+             n_laser_signal_off(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.laser_signal_off">
+            <summary>
+             laser_signal_off();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_delay_mode">
+            <summary>
+             n_set_delay_mode(ushort n, ushort varpoly, ushort directmove3d, ushort edgelevel, ushort minjumpdelay, ushort jumplengthlimit);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_delay_mode">
+            <summary>
+             set_delay_mode(ushort varpoly, ushort directmove3d, ushort edgelevel, ushort minjumpdelay, ushort jumplengthlimit);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_piso_control">
+            <summary>
+             n_set_piso_control(ushort n, ushort l1, ushort l2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_piso_control">
+            <summary>
+             set_piso_control(ushort l1, ushort l2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_select_status">
+            <summary>
+             n_select_status(ushort n, ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.select_status">
+            <summary>
+             select_status(ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_encoder">
+            <summary>
+             n_get_encoder(ushort n, out short zx, out short zy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_encoder">
+            <summary>
+             get_encoder(out short zx, out short zy);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_select_cor_table">
+            <summary>
+             n_select_cor_table(ushort n, ushort heada, ushort headb);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.select_cor_table">
+            <summary>
+             select_cor_table(ushort heada, ushort headb);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_execute_at_pointer">
+            <summary>
+             n_execute_at_pointer(ushort n, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.execute_at_pointer">
+            <summary>
+             execute_at_pointer(ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_head_status">
+            <summary>
+             ushort n_get_head_status(ushort n, ushort head);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_head_status">
+            <summary>
+             ushort get_head_status(ushort head);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_simulate_encoder">
+            <summary>
+             n_simulate_encoder(ushort n, ushort channel);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.simulate_encoder">
+            <summary>
+             simulate_encoder(ushort channel);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_hi">
+            <summary>
+             n_set_hi(ushort n, double galvogainx, double galvogainy, short galvooffsetx, short galvooffsety, short head);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_hi">
+            <summary>
+             set_hi(double galvogainx, double galvogainy, short galvooffsetx, short galvooffsety, short head);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_release_wait">
+            <summary>
+             n_release_wait(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.release_wait">
+            <summary>
+             release_wait();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_wait_status">
+            <summary>
+             ushort n_get_wait_status(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_wait_status">
+            <summary>
+             ushort get_wait_status();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_control_mode">
+            <summary>
+             n_set_control_mode(ushort n, ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_control_mode">
+            <summary>
+             set_control_mode(ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_laser_mode">
+            <summary>
+             n_set_laser_mode(ushort n, ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_laser_mode">
+            <summary>
+             set_laser_mode(ushort mode);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_ext_start_delay">
+            <summary>
+             n_set_ext_start_delay(ushort n, short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_ext_start_delay">
+            <summary>
+             set_ext_start_delay(short delay, short encoder);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_home_position">
+            <summary>
+             n_home_position(ushort n, short xhome, short yhome);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.home_position">
+            <summary>
+             home_position(short xhome, short yhome);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_rot_center">
+            <summary>
+             n_set_rot_center(ushort n, int center_x, int center_y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_rot_center">
+            <summary>
+             set_rot_center(int center_x, int center_y);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_dsp_start">
+            <summary>
+             n_dsp_start(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.dsp_start">
+            <summary>
+             dsp_start();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_write_da_x">
+            <summary>
+             n_write_da_x(ushort n, ushort x, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.write_da_x">
+            <summary>
+             write_da_x(ushort x, ushort value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_read_ad_x">
+            <summary>
+             ushort n_read_ad_x(ushort n, ushort x);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.read_ad_x">
+            <summary>
+             ushort read_ad_x(ushort x);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_read_pixel_ad">
+            <summary>
+             ushort n_read_pixel_ad(ushort n, ushort pos);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.read_pixel_ad">
+            <summary>
+             ushort read_pixel_ad(ushort pos);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_z_distance">
+            <summary>
+             short n_get_z_distance(ushort n, short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_z_distance">
+            <summary>
+             short get_z_distance(short x, short y, short z);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_io_status">
+            <summary>
+             ushort n_get_io_status(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_io_status">
+            <summary>
+             ushort get_io_status();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_time">
+            <summary>
+             double n_get_time(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_time">
+            <summary>
+             double get_time();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_defocus">
+            <summary>
+             n_set_defocus(ushort n, short value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_defocus">
+            <summary>
+             set_defocus(short value);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_softstart_mode">
+            <summary>
+             n_set_softstart_mode(ushort n, ushort mode, ushort number, ushort restartdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_softstart_mode">
+            <summary>
+             set_softstart_mode(ushort mode, ushort number, ushort resetdelay);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_softstart_level">
+            <summary>
+             n_set_softstart_level(ushort n, ushort index, ushort level);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_softstart_level">
+            <summary>
+             set_softstart_level(ushort index, ushort level);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_control_command">
+            <summary>
+             n_control_command(ushort n, ushort head, ushort axis, ushort data);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.control_command">
+            <summary>
+             control_command(ushort head, ushort axis, ushort data);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_cor">
+            <summary>
+             short load_cor(string filename);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.load_pro">
+            <summary>
+             short load_pro(string filename);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_serial_number">
+            <summary>
+             ushort n_get_serial_number(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_serial_number">
+            <summary>
+             ushort get_serial_number();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_serial_number_32">
+            <summary>
+             int n_get_serial_number_32(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_serial_number_32">
+            <summary>
+             int get_serial_number_32();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_rtc_version">
+            <summary>
+             ushort n_get_rtc_version(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_rtc_version">
+            <summary>
+             ushort get_rtc_version();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_hi_data">
+            <summary>
+             get_hi_data(out ushort x1, out ushort x2, out ushort y1, out ushort y2);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_auto_cal">
+            <summary>
+             short n_auto_cal(ushort n, ushort head, ushort command);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.auto_cal">
+            <summary>
+             short auto_cal(ushort head, ushort command);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_list_space">
+            <summary>
+             ushort n_get_list_space(ushort n);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_list_space">
+            <summary>
+             ushort get_list_space();
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.teachin">
+            <summary>
+             short teachin(string filename, short xin, short yin, short zin, double ll0, out short xout, out short yout, out short zout);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_get_value">
+            <summary>
+             short n_get_value(ushort n, ushort signal);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.get_value">
+            <summary>
+             short get_value(ushort signal);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_set_io_bit">
+            <summary>
+             n_set_io_bit(ushort n, ushort mask1);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_io_bit">
+            <summary>
+             set_io_bit(ushort mask1);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_clear_io_bit">
+            <summary>
+             n_clear_io_bit(ushort n, ushort mask0);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.clear_io_bit">
+            <summary>
+             clear_io_bit(ushort mask0);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.set_duty_cycle_table">
+            <summary>
+             set_duty_cycle_table(ushort index, ushort dutycycle);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.n_move_to">
+            <summary>
+             n_move_to(ushort n, ushort position);
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.move_to">
+            <summary>
+             move_to(ushort position);
+            </summary>
         </member>
         <member name="T:RTC5Import.RTC5Wrap">
             <summary>

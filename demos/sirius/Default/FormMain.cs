@@ -12,29 +12,12 @@ namespace SpiralLab.Sirius.Default
 {
     public partial class FormMain : Form
     {
-        /// <summary>
-        /// 현재 활성 폼
-        /// </summary>
+        public static string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "default.ini");
         public Form FormCurrent { get; private set; }
-        /// <summary>
-        /// 오토 화면 (뷰어 + a) 
-        /// </summary>
         public FormAuto FormAuto { get; private set; }
-        /// <summary>
-        /// 레시피 화면
-        /// </summary>
         public FormRecipe FormRecipe { get; private set; }
-        /// <summary>
-        /// 레이저(편집기)화면
-        /// </summary>
         public FormLaser FormLaser { get; private set; }
-        /// <summary>
-        /// 셋업 화면
-        /// </summary>
         public FormSetup FormSetup { get; private set; }
-        /// <summary>
-        /// 이력 조회 화면
-        /// </summary>
         public FormHistory FormHistory { get; private set; }
 
         System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
@@ -54,25 +37,20 @@ namespace SpiralLab.Sirius.Default
             this.FormClosing += FormMain_FormClosing;
         }
 
+
         private void FormMain_Load(object sender, EventArgs e)
         {
             this.SiriusLibInit();
             this.SwitchForm(this.panBody, this.FormAuto);
         }
-
-        /// <summary>
-        /// 외부 설정 파일(ini)에 의해 시리우스 라이브러리 초기화
-        /// </summary>
-        /// <returns></returns>
         private bool SiriusLibInit()
         {
-            #region 시리우스 문서 생성
+            // 기본 문서 생성
             var doc = new Sirius.DocumentDefault();
             this.FormAuto.SiriusViewer.Document = doc;
             this.FormLaser.SiriusEditor.Document = doc;
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
-            this.FormLaser.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged; 
-            #endregion
+            this.FormLaser.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
 
             bool success = true;
             #region RTC 초기화
@@ -80,21 +58,21 @@ namespace SpiralLab.Sirius.Default
             //var rtcCounts = NativeMethods.ReadIni<int>(Program.ConfigFileName, "RTC", "COUNTS");
             //for (uint i = 0; i < rtcCounts; i++)
             //{
-                var rtcTypeName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"RTC{i}", "TYPE");
+                var rtcTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "TYPE");
                 Type rtcType = Type.GetType(rtcTypeName.Trim());
                 if (null == rtcType)
                 {
                     var mb = new Default.MessageBoxOk();
-                    mb.ShowDialog("Critical", $"Can't create rtc instance : {rtcType.ToString()} at {Program.ConfigFileName}");
+                    mb.ShowDialog("Critical", $"Can't create rtc instance : {rtcType.ToString()} at {ConfigFileName}");
                     success &= false;
                 }
                 var rtc = Activator.CreateInstance(rtcType) as IRtc;
-                var rtcName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"RTC{i}", "NAME");
+                var rtcName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "NAME");
                 rtc.Name = rtcName;
                 rtc.Index = i;
-                var kFactor = NativeMethods.ReadIni<float>(Program.ConfigFileName, $"RTC{i}", "KFACTOR");
-                var ct5FileName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"RTC{i}", "CORRECTION");
-                var laserModeTypeName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"RTC{i}", "LASERMODE");
+                var kFactor = NativeMethods.ReadIni<float>(ConfigFileName, $"RTC{i}", "KFACTOR");
+                var ct5FileName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "CORRECTION");
+                var laserModeTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "LASERMODE");
                 LaserMode laserMode = (LaserMode)Enum.Parse(typeof(LaserMode), laserModeTypeName.Trim());
                 success &= rtc.Initialize(kFactor, laserMode, ct5FileName);  
                 rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
@@ -109,23 +87,24 @@ namespace SpiralLab.Sirius.Default
             //var laserCounts = NativeMethods.ReadIni<int>(Program.ConfigFileName, "LASER", "COUNTS");
             //for (uint i = 0; i < laserCounts; i++)
             //{
-                var laserTypeName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"LASER{i}", "TYPE");
+                var laserTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"LASER{i}", "TYPE");
                 Type laserType = Type.GetType(laserTypeName.Trim());
                 if (null == laserType)
                 {
                     var mb = new Default.MessageBoxOk();
-                    mb.ShowDialog("Critical", $"Can't create laser instance : {laserType.ToString()} at {Program.ConfigFileName}");
+                    mb.ShowDialog("Critical", $"Can't create laser instance : {laserType.ToString()} at {ConfigFileName}");
                     success &= false;
                 }
                 var laser = Activator.CreateInstance(laserType) as ILaser;
                 //ILaser laser = new Sirius.LaserVirtual(0, "virtual", 20.0f);
-                var laserName = NativeMethods.ReadIni<string>(Program.ConfigFileName, $"LASER{i}", "NAME");
+                var laserName = NativeMethods.ReadIni<string>(ConfigFileName, $"LASER{i}", "NAME");
+                laser.Rtc = rtc;
                 laser.Index = i;
                 laser.Name = laserName;
-                var maxPower = NativeMethods.ReadIni<float>(Program.ConfigFileName, $"LASER{i}", "MAXPOWER");
+                var maxPower = NativeMethods.ReadIni<float>(ConfigFileName, $"LASER{i}", "MAXPOWER");
                 laser.MaxPowerWatt = maxPower;
                 success &= laser.Initialize();
-                success &= laser.CtlPower(rtc, 10);
+                success &= laser.CtlPower(10);
 
                 this.FormLaser.SiriusEditor.Laser = laser;
             //}
@@ -154,7 +133,7 @@ namespace SpiralLab.Sirius.Default
         {
             this.SwitchForm(this.panBody, this.FormAuto);
             timer1.Tick += Timer1_Tick;
-            timer1.Interval = 1000;
+            timer1.Interval = 200;
             timer1.Enabled = true;
         }
 
@@ -244,7 +223,7 @@ namespace SpiralLab.Sirius.Default
                 return;
             }
             this.timer1.Enabled = false;
-            Logger.Log(Logger.Type.Warn, $"program is terminating by the user");
+            Logger.Log(Logger.Type.Warn, $"mmi is terminating by the user");
         }
         private void btnExit_Click(object sender, EventArgs e)
         {

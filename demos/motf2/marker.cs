@@ -356,6 +356,7 @@ namespace SpiralLab.Sirius
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
             var rtcMOTF = rtc as IRtcMOTF;
+            var rtcExt = rtc as IRtcExtension;
             success &= rtcMOTF.ListMOTFEnd(Vector2.Zero);
             success &= rtc.ListEnd();
 
@@ -364,15 +365,15 @@ namespace SpiralLab.Sirius
                 if (this.IsExternalTrigger)
                 {
                     //MOTF 용 외부 트리거 설정
-                    var extMode = new RtcExternalControlMode();
-                    extMode.Add(RtcExternalControlMode.Signal.ExternalStart);
-                    extMode.Add(RtcExternalControlMode.Signal.ExternalStartAgain);
-                    rtcMOTF.CtlExternalControl(extMode);
+                    var extMode = new Rtc5ExternalControlMode();
+                    extMode.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
+                    extMode.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
+                    rtcExt.CtlExternalControl(extMode);
                 }
                 else
                 {
                     //외부 트리거 미사용
-                    rtcMOTF.CtlExternalControl(RtcExternalControlMode.Empty);
+                    rtcExt.CtlExternalControl(Rtc5ExternalControlMode.Empty);
                     success &= rtc.ListExecute(true);
                 }
             }

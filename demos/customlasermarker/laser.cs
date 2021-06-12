@@ -26,11 +26,6 @@ namespace SpiralLab.Sirius
         /// </summary>
         public float MaxPowerWatt { get; set; }
 
-        /// <summary>
-        /// 레이저 파워 보정기
-        /// </summary>
-        public ICompensator<float> PowerCompensator { get; set; }
-
         public bool IsReady
         {
             get { return !this.IsError; }
@@ -40,6 +35,9 @@ namespace SpiralLab.Sirius
             get { return false; }
         }
         public bool IsError { get; set; }
+
+        public IRtc Rtc { get; set; }
+
         public object Tag { get; set; }
         private bool disposed = false;
 
@@ -49,7 +47,6 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
-            this.PowerCompensator = new CompensatorDefault<float>();
         }
         ~YourCustomLaser()
         {
@@ -81,7 +78,10 @@ namespace SpiralLab.Sirius
             //rs-232 or tcp/ip communcation for you laser source
             return true;
         }
-
+        public bool CtlAbort()
+        {
+            return true;
+        }
         public bool CtlReset()
         {
             //error reset on laser source by communcation.            
@@ -89,14 +89,11 @@ namespace SpiralLab.Sirius
             return true;
         }
 
-        public bool CtlPower(IRtc rtc, float watt)
+        public bool CtlPower(float watt)
         {
-            if (this.IsBusy)
-                return false;
-            if (this.IsError)
-                return false;
+ 
             bool success = true;
-            success = rtc.CtlWriteData<float>(ExtensionChannel.ExtAO1, 5); // 아나로그로 제어되는 레이저 소스
+            success = Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO1, 5); // 아나로그로 제어되는 레이저 소스
 
             if (success)
             {
@@ -105,13 +102,11 @@ namespace SpiralLab.Sirius
             return success;
         }
       
-        public bool ListPower(IRtc rtc, float watt)
+        public bool ListPower(float watt)
         {
-            if (this.IsError)
-                return false;
             bool success = true;
             float voltage = watt / MaxPowerWatt * 10.0f;
-            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, voltage); // 아나로그로 제어되는 레이저 소스
+            success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, voltage); // 아나로그로 제어되는 레이저 소스
             return success;
         }
     }

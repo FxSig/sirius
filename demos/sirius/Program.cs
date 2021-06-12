@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,37 +11,44 @@ namespace SpiralLab.Sirius
 {
     public static class Program
     {
-        /// <summary>
-        /// 설정 파일
-        /// </summary>
-        public static string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "sirius.ini");
+        
+        public static Form MainForm = null;
         [STAThread]
         static void Main()
         {
+            Mutex mutex = new Mutex(true, "SpiralLab.Sirius", out bool createdNew);
+            if (!createdNew)
+            {
+                var mb = new Default.MessageBoxOk();
+                mb.ShowDialog("Critical", $"Another program now executing...");
+                return;
+            }
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
             //sirius library 초기화
             SpiralLab.Core.Initialize();
-            //설정 파일에서 실행 프로젝트 객체를 읽고       
-            var projectName = NativeMethods.ReadIni<string>(ConfigFileName, "PROJECT", "MainForm");
+            var configFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "sirius.ini");
+            //설정 파일에서 실행 프로젝트 객체 생성
+            var projectName = NativeMethods.ReadIni<string>(configFileName, "PROJECT", "MainForm");
             Type projectType = Type.GetType(projectName.Trim());
             if (null == projectType)
             {
                 var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Can't create project : {projectType.ToString()} at {ConfigFileName}");
+                mb.ShowDialog("Critical", $"Can't create target project : {projectType.ToString()} at {configFileName}");
                 return;
             }
-            //프로젝트 객체를 생성
-            Form mainForm = Activator.CreateInstance(projectType) as Form ;
-            if (null == mainForm)
+            //메인 폼 생성
+            Program.MainForm = Activator.CreateInstance(projectType) as Form ;
+            if (null == Program.MainForm)
             {
                 var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Can't create project : {projectName} at {ConfigFileName}");
+                mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
                 return;
             }
-            //실행
-            Application.Run(mainForm);
+            Application.Run(MainForm);
+            mutex.ReleaseMutex();
         }
     }
 }

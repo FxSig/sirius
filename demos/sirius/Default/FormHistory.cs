@@ -18,6 +18,20 @@ namespace SpiralLab.Sirius.Default
 
         }
 
-  
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+        }
+
+        private void FormAuto_VisibleChanged(object sender, EventArgs e)
+        {
+        }
+        private void FormAuto_Load(object sender, EventArgs e)
+        {
+          
+        }
+        private void tmUpdate_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

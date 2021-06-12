@@ -32,6 +32,7 @@ namespace SpiralLab.Sirius.Default
             }
         }
 
+
         public void SwitchForm(Panel destination, Form target)
         {
             destination.SuspendLayout();

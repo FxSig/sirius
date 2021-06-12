@@ -285,6 +285,7 @@
             this.btnServo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnServo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnServo.UseVisualStyleBackColor = false;
+            this.btnServo.Click += new System.EventHandler(this.btnServo_Click);
             // 
             // btnMotorStop
             // 
@@ -306,6 +307,7 @@
             this.btnMotorStop.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMotorStop.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMotorStop.UseVisualStyleBackColor = true;
+            this.btnMotorStop.Click += new System.EventHandler(this.btnMotorStop_Click);
             // 
             // btnJog
             // 
@@ -325,6 +327,7 @@
             this.btnJog.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnJog.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnJog.UseVisualStyleBackColor = true;
+            this.btnJog.Click += new System.EventHandler(this.btnJog_Click);
             // 
             // btnMotorReset
             // 
@@ -345,6 +348,7 @@
             this.btnMotorReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMotorReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMotorReset.UseVisualStyleBackColor = true;
+            this.btnMotorReset.Click += new System.EventHandler(this.btnMotorReset_Click);
             // 
             // btnMotorHome
             // 
@@ -364,6 +368,7 @@
             this.btnMotorHome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMotorHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMotorHome.UseVisualStyleBackColor = true;
+            this.btnMotorHome.Click += new System.EventHandler(this.btnMotorHome_Click);
             // 
             // dgvIndexTable
             // 
@@ -490,6 +495,7 @@
             this.btnWriteAll.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnWriteAll.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnWriteAll.UseVisualStyleBackColor = true;
+            this.btnWriteAll.Click += new System.EventHandler(this.btnWriteAll_Click);
             // 
             // btnMoveToIndex
             // 
@@ -510,6 +516,7 @@
             this.btnMoveToIndex.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnMoveToIndex.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMoveToIndex.UseVisualStyleBackColor = true;
+            this.btnMoveToIndex.Click += new System.EventHandler(this.btnMoveToIndex_Click);
             // 
             // btnCopyPosition
             // 
@@ -530,6 +537,7 @@
             this.btnCopyPosition.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnCopyPosition.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnCopyPosition.UseVisualStyleBackColor = true;
+            this.btnCopyPosition.Click += new System.EventHandler(this.btnCopyPosition_Click);
             // 
             // buttonCalculator
             // 

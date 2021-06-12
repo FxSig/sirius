@@ -273,8 +273,9 @@ namespace SpiralLab.Sirius
             this.Rtc = rtc;
 
             ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
+            laser.Rtc = rtc;
             success &= laser.Initialize();
-            success &= laser.CtlPower(rtc, 10);
+            success &= laser.CtlPower(10);
             this.Laser = laser;
 
             var marker = new MarkerDefault(0);

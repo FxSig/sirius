@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -74,8 +75,124 @@
     <Compile Include="Default\MessageBoxYesNo.Designer.cs">
       <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\FormAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormAuto.Designer.cs">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormDigitalIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormDigitalIO.Designer.cs">
+      <DependentUpon>FormDigitalIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormDInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormDInput.Designer.cs">
+      <DependentUpon>FormDInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormDOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormDOutput.Designer.cs">
+      <DependentUpon>FormDOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormLaser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormLaser.Designer.cs">
+      <DependentUpon>FormLaser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\FormSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormSetup.Designer.cs">
+      <DependentUpon>FormSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\MessageBoxOk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\MessageBoxOk.Designer.cs">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\MessageBoxYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\MessageBoxYesNo.Designer.cs">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FCEU\User.cs" />
+    <Compile Include="FCEU\VisionTcpClient.cs" />
     <Compile Include="helper.cs" />
     <Compile Include="nativemethods.cs" />
+    <Compile Include="Nguyen\FormAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormAuto.Designer.cs">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormDigitalIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormDigitalIO.Designer.cs">
+      <DependentUpon>FormDigitalIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormDInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormDInput.Designer.cs">
+      <DependentUpon>FormDInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormDOutput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormDOutput.Designer.cs">
+      <DependentUpon>FormDOutput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormIPG.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormIPG.Designer.cs">
+      <DependentUpon>FormIPG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\FormSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\FormSetup.Designer.cs">
+      <DependentUpon>FormSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\MessageBoxOk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\MessageBoxOk.Designer.cs">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Nguyen\MessageBoxYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Nguyen\MessageBoxYesNo.Designer.cs">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Default\FormDigitalIO.cs">
@@ -142,6 +259,63 @@
       <DependentUpon>MessageBoxOk.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Default\MessageBoxYesNo.resx">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormAuto.resx">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormDigitalIO.resx">
+      <DependentUpon>FormDigitalIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormDInput.resx">
+      <DependentUpon>FormDInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormDOutput.resx">
+      <DependentUpon>FormDOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormLaser.resx">
+      <DependentUpon>FormLaser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormSetup.resx">
+      <DependentUpon>FormSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\MessageBoxOk.resx">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\MessageBoxYesNo.resx">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormAuto.resx">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormDigitalIO.resx">
+      <DependentUpon>FormDigitalIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormDInput.resx">
+      <DependentUpon>FormDInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormDOutput.resx">
+      <DependentUpon>FormDOutput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormIPG.resx">
+      <DependentUpon>FormIPG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\FormSetup.resx">
+      <DependentUpon>FormSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\MessageBoxOk.resx">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Nguyen\MessageBoxYesNo.resx">
       <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
