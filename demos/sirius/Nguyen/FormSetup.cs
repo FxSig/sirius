@@ -18,7 +18,7 @@ namespace SpiralLab.Sirius.Nguyen
         }
 
         FormIPG formIPG;
-        Form formDIO;
+        FormDigitalIO formDIO;
         
         public FormSetup()
         {
