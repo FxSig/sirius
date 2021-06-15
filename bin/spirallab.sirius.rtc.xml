@@ -648,39 +648,85 @@
             모터 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.MotorIndex">
+        <member name="P:SpiralLab.Sirius.IMotor.No">
             <summary>
-            식별번호
+            모터 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.MotorName">
+        <member name="P:SpiralLab.Sirius.IMotor.Name">
             <summary>
-            이름
+            모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsMotorReady">
+        <member name="P:SpiralLab.Sirius.IMotor.Position">
             <summary>
-            준비 상태
+            위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsMotorBusy">
+        <member name="P:SpiralLab.Sirius.IMotor.IsHomed">
+            <summary>
+            원점 초기화 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsDriving">
             <summary>
             출사중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsMotorError">
+        <member name="P:SpiralLab.Sirius.IMotor.IsAlarm">
             <summary>
             알람 발생 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.MotorTag">
+        <member name="P:SpiralLab.Sirius.IMotor.IsOrg">
+            <summary>
+            origin
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsCw">
+            <summary>
+            + limit
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsCcw">
+            <summary>
+            - limit
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.MotorInitialize">
+        <member name="M:SpiralLab.Sirius.IMotor.HomeSearch">
             <summary>
-            초기화
+            원점 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.MoveAbs(System.Single)">
+            <summary>
+            절대 위치 이동
+            </summary>
+            <param name="position">위치값(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.MoveRel(System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.MoveStop">
+            <summary>
+            정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.Reset">
+            <summary>
+            알람 해제
             </summary>
             <returns></returns>
         </member>

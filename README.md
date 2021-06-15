@@ -66,6 +66,7 @@
 ----
 **5. Version history**
 
+* 2021.06.15 v16 added) IMotor interface, Z position in layer property. Z motor control program in ""8.customlasermarker" demo
 * 2021.06.14 v1.6 Supported spline in dxf file
 * 2021.06.10 v1.6 
  added) support Rtc4 

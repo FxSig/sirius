@@ -89,6 +89,7 @@
       <DependentUpon>markerform.cs</DependentUpon>
     </Compile>
     <Compile Include="marker.cs" />
+    <Compile Include="motor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

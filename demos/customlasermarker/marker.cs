@@ -1,27 +1,51 @@
-﻿using System;
+﻿/*
+ *                                                             ,--,      ,--,                              
+ *              ,-.----.                                     ,---.'|   ,---.'|                              
+ *    .--.--.   \    /  \     ,---,,-.----.      ,---,       |   | :   |   | :      ,---,           ,---,.  
+ *   /  /    '. |   :    \ ,`--.' |\    /  \    '  .' \      :   : |   :   : |     '  .' \        ,'  .'  \ 
+ *  |  :  /`. / |   |  .\ :|   :  :;   :    \  /  ;    '.    |   ' :   |   ' :    /  ;    '.    ,---.' .' | 
+ *  ;  |  |--`  .   :  |: |:   |  '|   | .\ : :  :       \   ;   ; '   ;   ; '   :  :       \   |   |  |: | 
+ *  |  :  ;_    |   |   \ :|   :  |.   : |: | :  |   /\   \  '   | |__ '   | |__ :  |   /\   \  :   :  :  / 
+ *   \  \    `. |   : .   /'   '  ;|   |  \ : |  :  ' ;.   : |   | :.'||   | :.'||  :  ' ;.   : :   |    ;  
+ *    `----.   \;   | |`-' |   |  ||   : .  / |  |  ;/  \   \'   :    ;'   :    ;|  |  ;/  \   \|   :     \ 
+ *    __ \  \  ||   | ;    '   :  ;;   | |  \ '  :  | \  \ ,'|   |  ./ |   |  ./ '  :  | \  \ ,'|   |   . | 
+ *   /  /`--'  /:   ' |    |   |  '|   | ;\  \|  |  '  '--'  ;   : ;   ;   : ;   |  |  '  '--'  '   :  '; | 
+ *  '--'.     / :   : :    '   :  |:   ' | \.'|  :  :        |   ,/    |   ,/    |  :  :        |   |  | ;  
+ *    `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
+ *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
+ *                `---`            `---'                                                        `----'   
+ * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
+ * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
+ * marker with x,y, angle offsets
+ * Description : 
+ * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 사용자 정의 커스텀 마커
+    /// 마커 객체 (사용자 버전)
     /// </summary>
     public class YourCustomMarker : IMarker
     {
         /// <summary>
-        /// 진행 이벤트 핸들러
+        /// 진행률 이벤트 핸들러
         /// </summary>
         public event MarkerEventHandler OnProgress;
         /// <summary>
-        /// 가공 완료 이벤트 핸들러
+        /// 완료 이벤트 핸들러
         /// </summary>
         public event MarkerEventHandler OnFinished;
         /// <summary>
@@ -32,7 +56,10 @@ namespace SpiralLab.Sirius
         /// 이름
         /// </summary>
         public string Name { get; set; }
-        public object Tag { get; set; }
+
+        /// <summary>
+        /// 가공 준비 상태
+        /// </summary>
         public virtual bool IsReady
         {
             get
@@ -52,6 +79,9 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
+        /// <summary>
+        /// 출사중 여부
+        /// </summary>
         public virtual bool IsBusy
         {
             get
@@ -66,6 +96,9 @@ namespace SpiralLab.Sirius
                 return busy;
             }
         }
+        /// <summary>
+        /// 에러 여부
+        /// </summary>
         public virtual bool IsError
         {
             get
@@ -78,21 +111,35 @@ namespace SpiralLab.Sirius
                 return error;
             }
         }
+        /// <summary>
+        /// 가공 완료 여부
+        /// </summary>
         public virtual bool IsFinished { get; set; }
-
+        /// <summary>
+        /// 마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
+        /// </summary>
         public IMarkerArg MarkerArg { get; private set; }
+        /// <summary>
+        /// 사용자 정의 데이타
+        /// </summary>
+        public object Tag { get; set; }
 
         protected IDocument clonedDoc;
         protected Thread thread;
 
+        /// <summary>
+        /// 생성자
+        /// </summary>
+        /// <param name="index"></param>
         public YourCustomMarker(uint index)
         {
             this.Index = index;
+            this.MarkerArg = new MarkerArgDefault();
         }
 
         /// <summary>
         /// 마커는 내부 쓰레드에 의해 가공 데이타를 처리하게 되는데, 이때 가공 데이타(IDocument)에 
-        /// 크로스 쓰레드 상태가 될수 있으므로, 준비(Prepare)시에는 가공 데이타를 모두 복제(Clone) 하여 가공시
+        /// 크로스 쓰레드 상태가 될수있으므로, 준비(Prepare)시에는 가공 데이타를 모두 복제(Clone) 하여 가공시
         /// 데이타에 대한 쓰레드 안전 접근을 처리하게 된다. 또한 가공중 뷰에 의해 원본 데이타가 조작, 수정되더라도 
         /// 준비(Ready) 즉 신규 데이타를 다운로드하지 않으면 아무런 영향이 없게 된다.
         /// </summary>
@@ -109,7 +156,7 @@ namespace SpiralLab.Sirius
             this.clonedDoc = (IDocument)this.MarkerArg.Document.Clone();
             Debug.Assert(clonedDoc != null);
             var rtc = this.MarkerArg.Rtc;
-
+            //character set 모두 삭제
             RtcCharacterSetHelper.Clear(rtc);
             // 재등록
             bool success = true;
@@ -125,7 +172,7 @@ namespace SpiralLab.Sirius
                             success &= siriusText.RegisterCharacterSetIntoRtc(rtc);
                         var text = entity as Text;
                         if (null != text)
-                            success &= siriusText.RegisterCharacterSetIntoRtc(rtc);
+                            success &= text.RegisterCharacterSetIntoRtc(rtc);
                     }
                 }
             }
@@ -136,13 +183,17 @@ namespace SpiralLab.Sirius
             this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
         }
-
-        public bool Start()
+        /// <summary>
+        /// 가공 시작
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool Start()
         {
             if (null == this.MarkerArg || null == this.MarkerArg.Rtc || null == this.MarkerArg.Laser)
                 return false;
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
+            var motorZ = this.MarkerArg.MotorZ;
 
             if (rtc.CtlGetStatus(RtcStatus.Busy))
             {
@@ -169,6 +220,14 @@ namespace SpiralLab.Sirius
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: laser source has a error status !");
                 return false;
             }
+            if (null != motorZ)
+            {
+                if (motorZ.IsAlarm || motorZ.IsDriving || motorZ.IsCcw || motorZ.IsCw | !motorZ.IsHomed)
+                {
+                    Logger.Log(Logger.Type.Error, $"marker [{this.Index}]:  motor z invalid status");
+                    return false;
+                }
+            }
             if (null != this.thread && this.thread.IsAlive)
             {
                 return false;
@@ -193,8 +252,11 @@ namespace SpiralLab.Sirius
             this.thread.Start();
             return true;
         }
-
-        public bool Stop()
+        /// <summary>
+        /// 가공 강제 정지
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool Stop()
         {
             if (null == this.MarkerArg)
                 return false;
@@ -213,8 +275,11 @@ namespace SpiralLab.Sirius
             }
             return false;
         }
-
-        public bool Reset()
+        /// <summary>
+        /// 리셋
+        /// </summary>
+        /// <returns></returns>
+        public virtual bool Reset()
         {
             if (null == this.MarkerArg)
                 return false;
@@ -222,9 +287,8 @@ namespace SpiralLab.Sirius
             this.MarkerArg.Laser?.CtlReset();
             return true;
         }
-
         #region 쓰레드 작업
-        private void WorkerThread()
+        protected virtual void WorkerThread()
         {
             MarkerArg.StartTime = DateTime.Now;
             var rtc = this.MarkerArg.Rtc;
@@ -246,57 +310,85 @@ namespace SpiralLab.Sirius
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
         }
-        private bool PreWork()
+        protected virtual bool PreWork()
         {
-            // 가공을 위한 RTC 버퍼 초기화
-            var rtc = this.MarkerArg.Rtc;
-            var laser = this.MarkerArg.Laser;
-            rtc.ListBegin(laser);
+
             return true;
         }
-        private bool MainWork()
+        protected virtual bool MainWork()
         {
             bool success = true;
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
+            var motorZ = this.MarkerArg.MotorZ;
+            float oldZPosition = 0;
+            if (null != motorZ)
+                oldZPosition = motorZ.Position;
             var offsets = this.MarkerArg.Offsets;
             var scannerRotateAngle = this.MarkerArg.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
-            float progress = 0;
-            //지정된 오프셋 개수 만큼 가공
             for (int i = 0; i < offsets.Count; i++)
             {
                 var xyt = offsets[i];
-                // 문서에 설정된 Dimension 정보 처리 : 회전중심, 회전량, 원점 중심 등
-                rtc.MatrixStack.Push(scannerRotateAngle); // 스캐너의 기구적 회전량
-                rtc.MatrixStack.Push(xyt.X, xyt.Y); // 오프셋 이동량
-                rtc.MatrixStack.Push(xyt.Angle);  // 오프셋 회전량
-                rtc.MatrixStack.Push(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y, clonedDoc.RotateOffset.Angle);  // 회전을 위해 회점 중심을 원점으로 이동);
+                //직접 계산하느니
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(this.ScannerRotateAngle * MathHelper.DegToRad));   //7. 스캐너 회전량 적용
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(xyt.X, xyt.Y)); // 6. 오프셋 이동량
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(xyt.Angle * MathHelper.DegToRad));  // 5. 오프셋 회전량
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Dimension.Center))); //4. 문서의 원점 위치를 이동
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y)); //3. 회전 중심 위치 원복
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(clonedDoc.RotateOffset.Angle * MathHelper.DegToRad)); //2. 문서에 설정된 회전량 적용);
+                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(-clonedDoc.RotateOffset.X, -clonedDoc.RotateOffset.Y));  //1. 회전을 위해 회점 중심을 원점으로 이동);
+                //or 
+                //간단한 행렬 스택 사용법이 용이
+                rtc.MatrixStack.Push(scannerRotateAngle); // 3. 스캐너의 기구적 회전량
+                rtc.MatrixStack.Push(xyt.X, xyt.Y); // 3. 오프셋 이동량
+                rtc.MatrixStack.Push(xyt.Angle);  // 2. 오프셋 회전량
+                rtc.MatrixStack.Push(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y, clonedDoc.RotateOffset.Angle);  // 1. 회전을 위해 회점 중심을 원점으로 이동);
 
-                //문서의 레이어 순회
-                foreach (var layer in this.clonedDoc.Layers)   
+                for (int j = 0; j < this.clonedDoc.Layers.Count; j++)
                 {
-                    // 레이어의 가공 여부 플레그 확인
+                    var layer = this.clonedDoc.Layers[j];
                     if (layer.IsMarkerable)
                     {
-                        //레이어에 있는 모든 개체 순회
-                        foreach (var entity in layer)   
+                        switch (layer.MotionType)
                         {
-                            var markerable = entity as IMarkerable;
-                            // 개체가 레이저 가공이 가능한지 여부 판단
-                            if (null != markerable)
-                                success &= markerable.Mark(this.MarkerArg);
-                            if (!success)
+                            case MotionType.ScannerOnly:
+                            case MotionType.StageOnly:
+                            case MotionType.StageAndScanner:
+                                if (null != motorZ)
+                                {
+                                    success &= !motorZ.IsAlarm;
+                                    success &= !motorZ.IsDriving;
+                                    success &= motorZ.IsHomed;
+                                    if (success)
+                                        success &= motorZ.MoveAbs(layer.ZPosition);
+                                    if (!success)
+                                        Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: motor Z invalid position/status");
+                                }
+                                if (!success) break;
+                                success &= rtc.ListBegin(laser);
+                                foreach (var entity in layer)
+                                {
+                                    var markerable = entity as IMarkerable;
+                                    if (null != markerable)
+                                        success &= markerable.Mark(this.MarkerArg);
+                                    if (!success)
+                                        break;
+
+                                    float progress = ((float)i / (float)offsets.Count * (float)j / (float)this.clonedDoc.Layers.Count * 100.0f);
+                                    this.MarkerArg.Progress = progress;
+                                    this.OnProgress?.Invoke(this, this.MarkerArg);
+                                }
+                                if (success)
+                                {
+                                    success &= rtc.ListEnd();
+                                    success &= rtc.ListExecute(true);
+                                }
                                 break;
-                            // 진행률 이벤트 (progress : 가 0~100 의 범위로 계산되도록 개선 필요)
-                            this.MarkerArg.Progress++;
-                            this.OnProgress?.Invoke(this, this.MarkerArg);
                         }
                     }
-                    if (!success)
-                        break;
+                    if (!success) break;
                 }
-                //위에서 Push 된 행렬스택에서 Pop 하여 초기 행렬스택 상태가 되도록으로 처리
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
@@ -304,15 +396,15 @@ namespace SpiralLab.Sirius
                 if (!success)
                     break;
             }
+            if (success && null != motorZ)
+            {
+                if (!motorZ.IsAlarm && !motorZ.IsDriving && motorZ.IsHomed)
+                    success &= motorZ.MoveAbs(oldZPosition);
+            }
             return success;
         }
-        private bool PostWork()
+        protected virtual bool PostWork()
         {
-            var rtc = this.MarkerArg.Rtc;
-            rtc.ListEnd();
-            if (!rtc.CtlGetStatus(RtcStatus.Aborted))
-                rtc.ListExecute(true);
-            // 가공완료
             this.IsFinished = true;
             this.MarkerArg.Progress = 100;
             this.OnProgress?.Invoke(this, this.MarkerArg);
