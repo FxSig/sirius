@@ -15,21 +15,12 @@ namespace SpiralLab.Sirius
         public uint No { get; set; }
         public string Name { get; set; }
         public float Position { get; set; }
-
         public bool IsHomed { get; set; }
-
-        public bool IsReady { get; set; }
-
         public bool IsDriving { get; set; }
-
         public bool IsAlarm { get; set; }
-
         public bool IsOrg { get; set; }
-
         public bool IsCw { get; set; }
-
         public bool IsCcw { get; set; }
-
         public object Tag { get; set; }
 
 
@@ -39,18 +30,23 @@ namespace SpiralLab.Sirius
             Name = "Scanner Z Axis";
             Position = -1;
             IsHomed = false;
-            IsReady = false;
             IsDriving = false;
-            IsAlarm = true;
+            IsAlarm = false;
             IsOrg = false;
-            IsCw = IsCcw = false; 
+            IsCw = IsCcw = false;
 
         }
         public bool HomeSearch()
         {
-            IsHomed = true;
-            IsReady = true;
+            IsHomed = false;
+            IsDriving = true;
+            IsCw = IsCcw = false;
+            Thread.Sleep(1000);
             Position = 0;
+            IsAlarm = false;
+            IsOrg = false;
+            IsHomed = true;
+            IsDriving = false;
             return true;
         }
 
