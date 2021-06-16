@@ -465,6 +465,11 @@
             사용자 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.LaserVirtual.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.#ctor(System.UInt32,System.String,System.Single)">
             <summary>
             생성자
@@ -5364,6 +5369,11 @@
             자동 레이저 제어용 신호 종류
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.AutoLaserControlSignal.Disabled">
+            <summary>
+            비활성화
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.AutoLaserControlSignal.Analog1">
             <summary>
             아나로그1 출력 (~10V)
@@ -5421,6 +5431,7 @@
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
+            <param name="compensator">출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
@@ -5430,6 +5441,7 @@
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="startingValue">시작 출력값</param>
+            <param name="compensator">출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAlcByVectorEnd">

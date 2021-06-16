@@ -66,13 +66,17 @@
 ----
 **5. Version history**
 
-* 2021.06.15 v16 added) IMotor interface, Z position in layer property. Z motor control program in ""8.customlasermarker" demo
-* 2021.06.14 v1.6 Supported spline in dxf file
-* 2021.06.10 v1.6 
- added) support Rtc4 
- fixed) modified IRtc, IRtcExtension, ILaser interface
- added) support IPG YLP Type E source (with usercontrol)
- fixed) support LwPolyline with hatch
+ * 2021.06.16 v1.7
+  added) sirius demo project
+  added) IMotor interface. Z position in layer property (Z motor control program in ""8.customlasermarker" demo)
+  added) Auto laser control signal in Layer property
+  added) support Rtc4 
+  fixed) modified IRtc, IRtcExtension, ILaser interface
+  added) support IPG YLP Type E source (with usercontrol)
+  added) Supported spline in dxf file
+  fixed) support LwPolyline with hatch
+  added) Raster Entity
+
 * 2021.06.07 v1.6 added Stitched Image entity, added Write Data Ext16 io entity, added Sirius Project
 * 2021.06.01 v1.5 added List Data entity. support JPG, GIF, Png Image Format. added Write Data entity
 * 2021.05.29 v1.5 added Custom Editor/Viewer Demo Project
