@@ -222,7 +222,7 @@ namespace SpiralLab.Sirius
             }
             if (null != motorZ)
             {
-                if (motorZ.IsAlarm || motorZ.IsDriving || motorZ.IsCcw || motorZ.IsCw | !motorZ.IsHomed)
+                if (!motorZ.IsReady|| motorZ.IsBusy|| motorZ.IsError)
                 {
                     Logger.Log(Logger.Type.Error, $"marker [{this.Index}]:  motor z invalid status");
                     return false;
@@ -357,11 +357,11 @@ namespace SpiralLab.Sirius
                             case MotionType.StageAndScanner:
                                 if (null != motorZ)
                                 {
-                                    success &= !motorZ.IsAlarm;
-                                    success &= !motorZ.IsDriving;
-                                    success &= motorZ.IsHomed;
+                                    success &= motorZ.IsReady;
+                                    success &= !motorZ.IsBusy;
+                                    success &= !motorZ.IsError;
                                     if (success)
-                                        success &= motorZ.MoveAbs(layer.ZPosition);
+                                        success &= motorZ.CtlMoveAbs(layer.ZPosition);
                                     if (!success)
                                         Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: motor Z invalid position/status");
                                 }
@@ -398,8 +398,8 @@ namespace SpiralLab.Sirius
             }
             if (success && null != motorZ)
             {
-                if (!motorZ.IsAlarm && !motorZ.IsDriving && motorZ.IsHomed)
-                    success &= motorZ.MoveAbs(oldZPosition);
+                if (motorZ.IsReady && !motorZ.IsBusy && !motorZ.IsError)
+                    success &= motorZ.CtlMoveAbs(oldZPosition);
             }
             return success;
         }

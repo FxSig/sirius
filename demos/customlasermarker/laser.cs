@@ -11,6 +11,7 @@ namespace SpiralLab.Sirius
     //레이저 소스 (사용자 커스텀 용)
     public class YourCustomLaser : SpiralLab.Sirius.ILaser
     {
+        public object SyncRoot { get; set; }
         /// <summary>
         /// 식별 번호
         /// </summary>
@@ -35,15 +36,13 @@ namespace SpiralLab.Sirius
             get { return false; }
         }
         public bool IsError { get; set; }
-
         public IRtc Rtc { get; set; }
-
         public object Tag { get; set; }
         private bool disposed = false;
 
-
         public YourCustomLaser(uint index, string name, float maxPowerWatt)
         {
+            this.SyncRoot = new object();
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
@@ -80,34 +79,49 @@ namespace SpiralLab.Sirius
         }
         public bool CtlAbort()
         {
-            return true;
+            lock (this.SyncRoot)
+            {
+                return true;
+            }
         }
         public bool CtlReset()
         {
-            //error reset on laser source by communcation.            
-            IsError = false;
-            return true;
+            lock (this.SyncRoot)
+            {
+                //error reset on laser source by communcation.            
+                IsError = false;
+                return true;
+            }
         }
 
         public bool CtlPower(float watt)
         {
- 
-            bool success = true;
-            success = Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO1, 5); // 아나로그로 제어되는 레이저 소스
-
-            if (success)
+            lock (this.SyncRoot)
             {
-                Logger.Log(Logger.Type.Warn, $"set laser power to {watt:F3}W");
+                if (null == this.Rtc)
+                    return false;
+                bool success = true;
+                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO1, 5); // 아나로그로 제어되는 레이저 소스
+
+                if (success)
+                {
+                    Logger.Log(Logger.Type.Warn, $"set laser power to {watt:F3}W");
+                }
+                return success;
             }
-            return success;
         }
       
-        public bool ListPower(float watt)
+        public bool ListPower( float watt)
         {
-            bool success = true;
-            float voltage = watt / MaxPowerWatt * 10.0f;
-            success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, voltage); // 아나로그로 제어되는 레이저 소스
-            return success;
+            lock (this.SyncRoot)
+            {
+                if (null == this.Rtc)
+                    return false;
+                bool success = true;
+                float voltage = watt / MaxPowerWatt * 10.0f;
+                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, voltage); // 아나로그로 제어되는 레이저 소스
+                return success;
+            }
         }
     }
 }

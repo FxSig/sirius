@@ -82,6 +82,11 @@
             레이저 소스 인터페이스
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ILaser.Index">
             <summary>
             식별번호
@@ -158,6 +163,11 @@
         <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
             레이저 소스 (IPG YLP  Type E)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.SyncRoot">
+            <summary>
+            동기화 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Index">
@@ -410,6 +420,11 @@
             레이저 소스 (가상)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.Index">
             <summary>
             식별 번호
@@ -492,6 +507,11 @@
         <member name="T:SpiralLab.Sirius.SPIG4">
             <summary>
             SPI - G3/G3 IR 파이버 레이저 소스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.SyncRoot">
+            <summary>
+            동기화 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.Rtc">
@@ -643,9 +663,103 @@
             <param name="cy">회전 중심 Y (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorVirtual">
+            <summary>
+            Motor Virtual
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.No">
+            <summary>
+            모터 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.Position">
+            <summary>
+            위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="no">축 번호</param>
+            <param name="name">축 이름</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlHomeSearch">
+            <summary>
+            홈(원점) 검색 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveAbs(System.Single)">
+            <summary>
+            절대 위치로 이동
+            </summary>
+            <param name="position">위치 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveRel(System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveStop">
+            <summary>
+            정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlReset">
+            <summary>
+            알람 해제
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IMotor">
             <summary>
             모터 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
+            <summary>
+            동기화 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.No">
@@ -660,37 +774,22 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.Position">
             <summary>
-            위치
+            위치 (mm)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsHomed">
+        <member name="P:SpiralLab.Sirius.IMotor.IsReady">
             <summary>
-            원점 초기화 여부
+            준비상태 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsDriving">
+        <member name="P:SpiralLab.Sirius.IMotor.IsBusy">
             <summary>
-            출사중 여부
+            구동중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsAlarm">
+        <member name="P:SpiralLab.Sirius.IMotor.IsError">
             <summary>
             알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsOrg">
-            <summary>
-            origin
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsCw">
-            <summary>
-            + limit
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsCcw">
-            <summary>
-            - limit
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.Tag">
@@ -698,33 +797,33 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.HomeSearch">
+        <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
             <summary>
-            원점 초기화
+            홈(원점) 검색 시작
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.MoveAbs(System.Single)">
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single)">
             <summary>
             절대 위치 이동
             </summary>
             <param name="position">위치값(mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.MoveRel(System.Single)">
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single)">
             <summary>
             상대 위치 이동
             </summary>
             <param name="distance">거리값(mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.MoveStop">
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
             <summary>
             정지
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.Reset">
+        <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
             <summary>
             알람 해제
             </summary>

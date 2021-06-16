@@ -12,72 +12,57 @@ namespace SpiralLab.Sirius
     //Z Axis Motor
     public class MotorZ : SpiralLab.Sirius.IMotor
     {
+        public object SyncRoot { get; private set; }
         public uint No { get; set; }
         public string Name { get; set; }
-        public float Position { get; set; }
-        public bool IsHomed { get; set; }
-        public bool IsDriving { get; set; }
-        public bool IsAlarm { get; set; }
-        public bool IsOrg { get; set; }
-        public bool IsCw { get; set; }
-        public bool IsCcw { get; set; }
+        public float Position { get; private set; }
+        public bool IsReady { get; private set; }
+        public bool IsBusy { get; private set; }
+        public bool IsError { get; private set; }
         public object Tag { get; set; }
-
 
         public MotorZ()
         {
+            SyncRoot = new object();
             No = 0;
             Name = "Scanner Z Axis";
             Position = -1;
-            IsHomed = false;
-            IsDriving = false;
-            IsAlarm = false;
-            IsOrg = false;
-            IsCw = IsCcw = false;
-
+            IsReady = false;
+            IsBusy = false;
+            IsError = true;
         }
-        public bool HomeSearch()
+        public bool CtlHomeSearch()
         {
-            IsHomed = false;
-            IsDriving = true;
-            IsCw = IsCcw = false;
-            Thread.Sleep(1000);
+            IsReady = true;
+            IsError = false;
             Position = 0;
-            IsAlarm = false;
-            IsOrg = false;
-            IsHomed = true;
-            IsDriving = false;
             return true;
         }
 
-        public bool MoveAbs(float position)
+        public bool CtlMoveAbs(float position)
         {
-            this.IsDriving = true;
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             this.Position = position;
-            this.IsDriving = false;
             return true;
         }
 
-        public bool MoveRel(float distance)
+        public bool CtlMoveRel(float distance)
         {
-            this.IsDriving = true;
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             this.Position += distance;
-            this.IsDriving = false;
             return true;
         }
 
-        public bool MoveStop()
+        public bool CtlMoveStop()
         {
-            this.IsDriving = false;
-            this.IsAlarm = true;
+            this.IsReady = false;
             return true;
         }
 
-        public bool Reset()
+        public bool CtlReset()
         {
-            this.IsAlarm = false;
+            this.IsReady = true;
+            this.IsError = false;
             return true;
         }
     }

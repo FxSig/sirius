@@ -17,10 +17,9 @@
  * 
  * customized 된 마커(Marker)를 사용자가 직접 구현한다
  * 
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
-
 
 using System;
 using System.Diagnostics;
@@ -62,6 +61,10 @@ namespace SpiralLab.Sirius
             laser.CtlPower(10);
             #endregion
 
+            #region motor z axis
+            IMotor motorZ = new MotorZ();
+            #endregion
+
             #region prepare your marker
             /// 사용자 정의 마커 생성
             var marker = new YourCustomMarker(0);
@@ -87,7 +90,7 @@ namespace SpiralLab.Sirius
                 {
                     case ConsoleKey.M:
                         Console.WriteLine("WARNING !!! LASER IS BUSY ...");
-                        DrawByMarker(rtc, laser, marker);
+                        DrawByMarker(rtc, laser, marker, motorZ);
                         break;
                 }
 
@@ -95,8 +98,7 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-
-        private static void DrawByMarker(IRtc rtc, ILaser laser, IMarker marker)
+        private static void DrawByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
         {
             #region load from sirius file
             var dlg = new OpenFileDialog();
@@ -120,6 +122,7 @@ namespace SpiralLab.Sirius
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
+                MotorZ = motor,
             });
             /// 하나의 오프셋 정보 추가
             marker.MarkerArg.Offsets.Clear();
@@ -127,15 +130,10 @@ namespace SpiralLab.Sirius
             /// 가공 시작
             marker.Start();
         }
-
-       
-
         private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
             var span = arg.EndTime - arg.StartTime;
             Console.WriteLine($"{sender.Name} finished : {span.ToString()}");
         }
-
     }
-  
 }
