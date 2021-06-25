@@ -1,0 +1,137 @@
+{
+  "$type": "DocumentDefault",
+  "Version": "1.0.7.0",
+  "Name": "",
+  "Description": "",
+  "FileName": null,
+  "Dimension": {
+    "$type": "BoundRect",
+    "IsEmpty": true,
+    "Left": 0.0,
+    "Right": 0.0,
+    "Top": 0.0,
+    "Bottom": 0.0,
+    "Width": 0.0,
+    "Height": 0.0,
+    "Center": {
+      "$type": "Vector2",
+      "X": 0.0,
+      "Y": 0.0
+    }
+  },
+  "RotateOffset": {
+    "$type": "Offset",
+    "X": 0.0,
+    "Y": 0.0,
+    "Angle": 0.0,
+    "Tag": null
+  },
+  "Blocks": {
+    "$type": "Blocks",
+    "$values": []
+  },
+  "Layers": {
+    "$type": "Layers",
+    "Items": {
+      "$type": "Layer[]",
+      "$values": [
+        {
+          "$type": "Layer",
+          "Name": "NoName0",
+          "Description": null,
+          "Color": {
+            "$type": "AciColor",
+            "IsByLayer": false,
+            "IsByBlock": false,
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "Index": 255
+          },
+          "IsHighlighted": false,
+          "Items": {
+            "$type": "IEntity[]",
+            "$values": [
+              {
+                "$type": "PenDefault",
+                "Name": "Default",
+                "Description": null,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsMarkerable": true,
+                "IsLocked": false,
+                "Repeat": 0,
+                "Power": 5.0,
+                "Frequency": 50000.0,
+                "PulseWidth": 2.0,
+                "DutyCycle": "10.000 %",
+                "LaserOnDelay": 0.0,
+                "LaserOffDelay": 0.0,
+                "ScannerJumpDelay": 0.0,
+                "ScannerMarkDelay": 0.0,
+                "ScannerPolygonDelay": 0.0,
+                "JumpSpeed": 500.0,
+                "MarkSpeed": 500.0,
+                "LaserOnShift": 0.0,
+                "TimeLag": 0.0,
+                "AngularLimit": 0.0,
+                "IsWobbelEnabled": false,
+                "WobbelFrequency": 0,
+                "WobbelWidth": 0.0,
+                "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Spiral",
+                "Name": "Spiral",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "InnerDiameter": 0.5,
+                "OutterDiameter": 1.0,
+                "Revolutions": 5,
+                "Closed": true,
+                "Center": {
+                  "$type": "Vector2",
+                  "X": 0.0,
+                  "Y": 0.0
+                },
+                "RadialPitch": 0.05,
+                "Angle": 0.0
+              }
+            ]
+          },
+          "IsSelected": false,
+          "IsVisible": true,
+          "IsMarkerable": true,
+          "IsDrawPath": false,
+          "IsLocked": false,
+          "MotionType": 0,
+          "Repeat": 1,
+          "ZPosition": 0.0,
+          "AlcPositionFileName": "",
+          "AlcPositionTableNo": 0,
+          "AlcSignal": 2,
+          "AlcMode": 0,
+          "AlcPercentage100": 10.0,
+          "AlcMinValue": 1.0,
+          "AlcMaxValue": 10.0,
+          "Angle": 0.0
+        }
+      ]
+    }
+  }
+}

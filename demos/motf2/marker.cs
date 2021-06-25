@@ -91,6 +91,8 @@ namespace SpiralLab.Sirius
         /// 외부 /START 트리거 사용 유무
         /// </summary>
         public bool IsExternalTrigger { get; set; }
+
+        public IDocument Document { get { return this.clonedDoc; } }
         /// <summary>
         /// 복제된 문서 객체
         /// </summary>

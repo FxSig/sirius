@@ -33,6 +33,8 @@
             this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbPlaceIndex = new System.Windows.Forms.Label();
             this.lbPlaceIndexNumber = new System.Windows.Forms.Label();
             this.lbRealUPH = new System.Windows.Forms.Label();
@@ -40,8 +42,6 @@
             this.lbUPH = new System.Windows.Forms.Label();
             this.lblUph = new System.Windows.Forms.Label();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -73,7 +73,7 @@
             // 
             // siriusViewerForm1
             // 
-            this.siriusViewerForm1.AliasName = "NoName";
+            this.siriusViewerForm1.AliasName = "Laser 1";
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusViewerForm1.Document = null;
             this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -118,6 +118,23 @@
             this.tabPage6.TabIndex = 3;
             this.tabPage6.Text = " Productivity ";
             this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(12, 323);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(603, 9);
+            this.groupBox1.TabIndex = 195;
+            this.groupBox1.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 16);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(402, 292);
+            this.pictureBox1.TabIndex = 194;
+            this.pictureBox1.TabStop = false;
             // 
             // lbPlaceIndex
             // 
@@ -189,23 +206,6 @@
             this.groupBox6.Size = new System.Drawing.Size(603, 9);
             this.groupBox6.TabIndex = 135;
             this.groupBox6.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 16);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(402, 292);
-            this.pictureBox1.TabIndex = 194;
-            this.pictureBox1.TabStop = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(12, 323);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(603, 9);
-            this.groupBox1.TabIndex = 195;
-            this.groupBox1.TabStop = false;
             // 
             // FormAuto
             // 

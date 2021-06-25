@@ -14,13 +14,13 @@ namespace SpiralLab.Sirius.FCEU
     {
         public static string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "fceu.ini");
 
+        public LaserSeq Seq { get; private set; }
         public Form FormCurrent { get; private set; }
         public FormAuto FormAuto { get; private set; }
         public FormEditor FormEditor { get; private set; }
         public FormSetup FormSetup { get; private set; }
 
-        System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
-        VisionTcpClient tcpClient;
+        System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();      
 
         public FormMain()
         {
@@ -33,98 +33,58 @@ namespace SpiralLab.Sirius.FCEU
             this.Load += FormMain_Load;
             this.Shown += FormMain_Shown;
             this.FormClosing += FormMain_FormClosing;
+            lsbErrWarn.DrawItem += LsbErrWarn_DrawItem;
+        }
+
+        private void LsbErrWarn_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (e.Index == -1)
+                return;
+            lsbErrWarn.SuspendLayout();
+            e.DrawBackground();
+            Brush myBrush = Brushes.Black;
+            if (this.lsbErrWarn.Items[e.Index].ToString().Contains("ER:"))
+                myBrush = Brushes.Red;
+            e.Graphics.DrawString(this.lsbErrWarn.Items[e.Index].ToString(), e.Font, myBrush, e.Bounds);
+            //e.DrawFocusRectangle();
+            lsbErrWarn.ResumeLayout();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.SiriusLibInit();
-            this.SwitchForm(this.panBody, this.FormAuto);
-            //this.VisionTcpServerInit();
+            for (int i = 0; i < 20; i++)
+                this.lsbErrWarn.Items.Add(string.Empty);
+            this.SequenceInit();
         }
-        private bool VisionTcpServerInit()
+        private bool SequenceInit()
         {
-            this.tcpClient = new VisionTcpClient(this);
-            return this.tcpClient.Start("192.168.0.1", 9999);
-        }
-        private bool SiriusLibInit()
-        {
-            // 기본 문서 생성
-            var doc = new Sirius.DocumentDefault();
-            this.FormAuto.SiriusViewer.Document = doc;
-            this.FormEditor.SiriusEditor.Document = doc;
-            // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
-            this.FormEditor.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
+            this.Seq = new LaserSeq()
+            {
+                Editor = this.FormEditor.SiriusEditor,
+                Viewer = this.FormAuto.SiriusViewer,
+            };
 
-            bool success = true;
-            #region RTC 초기화
-            uint i = 0;
-            //var rtcCounts = NativeMethods.ReadIni<int>(Program.ConfigFileName, "RTC", "COUNTS");
-            //for (uint i = 0; i < rtcCounts; i++)
-            //{
-                var rtcTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "TYPE");
-                Type rtcType = Type.GetType(rtcTypeName.Trim());
-                if (null == rtcType)
-                {
-                    var mb = new Default.MessageBoxOk();
-                    mb.ShowDialog("Critical", $"Can't create rtc instance : {rtcType.ToString()} at {ConfigFileName}");
-                    success &= false;
-                }
-                var rtc = Activator.CreateInstance(rtcType) as IRtc;
-                var rtcName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "NAME");
-                rtc.Name = rtcName;
-                rtc.Index = i;
-                var kFactor = NativeMethods.ReadIni<float>(ConfigFileName, $"RTC{i}", "KFACTOR");
-                var ct5FileName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "CORRECTION");
-                var laserModeTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"RTC{i}", "LASERMODE");
-                LaserMode laserMode = (LaserMode)Enum.Parse(typeof(LaserMode), laserModeTypeName.Trim());
-                success &= rtc.Initialize(kFactor, laserMode, ct5FileName);  
-                rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-                rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
-                rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
-                
-                this.FormEditor.SiriusEditor.Rtc = rtc;
-            //}
-            #endregion
-
-            #region 레이저 소스 초기화
-            //var laserCounts = NativeMethods.ReadIni<int>(Program.ConfigFileName, "LASER", "COUNTS");
-            //for (uint i = 0; i < laserCounts; i++)
-            //{
-                var laserTypeName = NativeMethods.ReadIni<string>(ConfigFileName, $"LASER{i}", "TYPE");
-                Type laserType = Type.GetType(laserTypeName.Trim());
-                if (null == laserType)
-                {
-                    var mb = new Default.MessageBoxOk();
-                    mb.ShowDialog("Critical", $"Can't create laser instance : {laserType.ToString()} at {ConfigFileName}");
-                    success &= false;
-                }
-                var laser = Activator.CreateInstance(laserType) as ILaser;
-                //ILaser laser = new Sirius.LaserVirtual(0, "virtual", 20.0f);
-                var laserName = NativeMethods.ReadIni<string>(ConfigFileName, $"LASER{i}", "NAME");
-                laser.Rtc = rtc;
-                laser.Index = i;
-                laser.Name = laserName;
-                var maxPower = NativeMethods.ReadIni<float>(ConfigFileName, $"LASER{i}", "MAXPOWER");
-                laser.MaxPowerWatt = maxPower;
-                success &= laser.Initialize();
-                success &= laser.CtlPower(10);
-
-                this.FormEditor.SiriusEditor.Laser = laser;
-            //}
-            this.FormEditor.SiriusEditor.Laser = laser;
-            #endregion
-
-            #region 마커 지정
-            var marker = new MarkerDefault(0);
-            this.FormEditor.SiriusEditor.Marker = marker;
-            #endregion
-            return success;
+            Seq.Editor.OnDocumentSourceChanged -= SiriusEditorForm_OnDocumentSourceChanged;
+            Seq.Editor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
+            return this.Seq.Initialize();
         }
         private void SiriusEditorForm_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트
             this.FormAuto.SiriusViewer.Document = doc;
             this.FormEditor.SiriusEditor.Document = doc;
+        }
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var mb = new MessageBoxYesNo();
+            if (DialogResult.Yes != mb.ShowDialog("Warning !", "Do you really want to exit the program ?"))
+            {
+                e.Cancel = true;
+                return;
+            }
+            Logger.Log(Logger.Type.Warn, $"program is terminating by the user");
+            this.timer1.Enabled = false;
+            this.Seq?.Dispose();
         }
         public void UpdateVersionInfo()
         {
@@ -193,12 +153,12 @@ namespace SpiralLab.Sirius.FCEU
             destination.ResumeLayout();
             lblMenu.Text = $"Menu: {target.Text}";
             this.FormCurrent = target;
+            Logger.Log(Logger.Type.Debug, $"main screen switched to {target.Text}");
         } 
         #endregion
-
         private void btnAuto_Click(object sender, EventArgs e)
         {
-            this.SwitchForm(this.panBody, this.FormAuto);
+            this.SwitchForm(this.panBody, this.FormAuto);            
         }
         private void btnLaser_Click(object sender, EventArgs e)
         {
@@ -207,18 +167,6 @@ namespace SpiralLab.Sirius.FCEU
         private void btnSetup_Click(object sender, EventArgs e)
         {
             this.SwitchForm(this.panBody, this.FormSetup);
-        }
-        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !", "Do you really want to exit the program ?"))
-            {
-                e.Cancel = true;
-                return;
-            }
-            this.tcpClient?.Dispose();
-            this.timer1.Enabled = false;
-            Logger.Log(Logger.Type.Warn, $"mmi is terminating by the user");
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -239,6 +187,38 @@ namespace SpiralLab.Sirius.FCEU
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
+            lblRecipe.Text = $"Recipe : [{Seq.RecipeNo}] ";
+
+            lsbErrWarn.SuspendLayout();
+            int count = 0;
+            lock (Seq.SyncRoot)
+            {
+                foreach (ErrEnum err in Seq.Errors)
+                {
+                    if (0 != err)
+                    {
+                        var name = AttrHelper.Description( err).Description;
+                        var msg = $"ER:{(int)err:0000} {name}";
+                        if (0 != string.Compare((string)this.lsbErrWarn.Items[count], msg))
+                            this.lsbErrWarn.Items[count] = msg;
+                        count++;
+                    }
+                }
+                foreach (WarnEnum warn in Seq.Warns)
+                {
+                    if (0 != warn)
+                    {
+                        var name = AttrHelper.Description(warn).Description;
+                        string msg = $"WR:{(int)warn:0000} {name}";
+                        if (0 != string.Compare((string)this.lsbErrWarn.Items[count], msg))
+                            this.lsbErrWarn.Items[count] = msg;
+                        count++;
+                    }
+                }
+                for (int i = count; i < 20; i++)
+                    this.lsbErrWarn.Items[i] = string.Empty;
+            }
+            lsbErrWarn.ResumeLayout();
         }
         private void panTop_DoubleClick(object sender, EventArgs e)
         {
@@ -251,6 +231,38 @@ namespace SpiralLab.Sirius.FCEU
                     this.WindowState = FormWindowState.Normal;
                     break;
             }
+        }
+
+        //public enum LogType { Info, Warn, Error};
+        //public void Log(string message, LogType type = LogType.Info)
+        //{
+        //    switch(type)
+        //    {
+        //        case LogType.Info:
+        //            this.lstBoxLog.Items.Add($"{DateTime.Now:HH:mm:ss}: " + message);
+        //            break;
+        //        case LogType.Warn:
+        //            this.lstBoxLog.Items.Add($"{DateTime.Now:HH:mm:ss}: [WR] " + message);
+        //            break;
+        //        case LogType.Error:
+        //            this.lstBoxLog.Items.Add($"{DateTime.Now:HH:mm:ss}: [ER] " + message);
+        //            break;
+        //    }
+        //    while (lstBoxLog.Items.Count > 1000)
+        //    {
+        //        lstBoxLog.Items.RemoveAt(0);
+        //    }
+        //    int visibleItems = lstBoxLog.ClientSize.Height / lstBoxLog.ItemHeight;
+        //    lstBoxLog.TopIndex = Math.Max(lstBoxLog.Items.Count - visibleItems + 1, 0);
+        //}
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            Seq.Reset();
+        }
+        private void btnAbort_Click(object sender, EventArgs e)
+        {
+            Seq.Stop();
         }
     }
 }

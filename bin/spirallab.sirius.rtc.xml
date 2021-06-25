@@ -584,7 +584,11 @@
             마진값 상수
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.MathHelper.Epsilon" -->
+        <member name="P:SpiralLab.Sirius.MathHelper.Epsilon">
+            <summary>
+            마진값 상수
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.MatrixStack">
             <summary>
             3x3 matrix with stack 
@@ -1313,7 +1317,18 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc4.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc4.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Ellipse : 타원)
+            </summary>
+            <param name="vCenter">중심</param>
+            <param name="majorHalf">A</param>
+            <param name="minorHalf">B</param>
+            <param name="startAngle">시작 각도</param>
+            <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
+            <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
             Conic 베지어 곡선
@@ -1445,7 +1460,20 @@
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc4.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
+        <member name="M:SpiralLab.Sirius.Rtc4.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            리스트 명령 - 위 ListPixelLine + ListPixel * n 을 통합한 편이용 함수
+            </summary>
+            <param name="vStart">가공 시작점</param>
+            <param name="vEnd">가공 끝점</param>
+            <param name="periodUsec">픽셀 주기 (usec)</param>
+            <param name="usecValues">매 픽셀 가공 시간 배열</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <param name="analogValues">아나로그 값(0~10) 배열</param>
+            <param name="usecCompensator">픽셀 출력시간값 보정기 사용시</param>
+            <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListWobbel(System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
@@ -1554,31 +1582,6 @@
         <member name="T:SpiralLab.Sirius.Rtc5LaserControlSignal">
             <summary>
             RTC5 용 레이저 제어 신호 비트 플래그용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStart">
-            <summary>
-            /START 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStop">
-            <summary>
-            /STOP 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.TrackDelay">
-            <summary>
-            Track 지연 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExternalStartAgain">
-            <summary>
-            /START 핀 재 사용 여부
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.EncoderReset">
-            <summary>
-            엔코더 리셋(초기화) 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5LaserControlSignal.Value">
@@ -2133,7 +2136,18 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Ellipse : 타원)
+            </summary>
+            <param name="vCenter">중심</param>
+            <param name="majorHalf">A</param>
+            <param name="minorHalf">B</param>
+            <param name="startAngle">시작 각도</param>
+            <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
+            <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
             Conic 베지어 곡선
@@ -2265,7 +2279,20 @@
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            리스트 명령 - 위 ListPixelLine + ListPixel * n 을 통합한 편이용 함수
+            </summary>
+            <param name="start">가공 시작점</param>
+            <param name="end">가공 끝점</param>
+            <param name="periodUsec">픽셀 주기 (usec)</param>
+            <param name="usecValues">매 픽셀 가공 시간 배열</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <param name="analogValues">아나로그 값(0~10) 배열</param>
+            <param name="usecCompensator">픽셀 출력시간값 보정기 사용시</param>
+            <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListWobbel(System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
@@ -2326,6 +2353,7 @@
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
@@ -2335,6 +2363,7 @@
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="startingValue">시작 출력값</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListAlcByVectorEnd">
@@ -2535,7 +2564,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            </summary>
+            <param name="positionX">X 축 위치 (mm)</param>
+            <param name="rangeX">조건 범위 (mm)</param>
+            <param name="positionY">Y 축 위치 (mm)</param>
+            <param name="rangeY">조건 범위(mm)</param>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
@@ -2622,31 +2659,6 @@
         <member name="T:SpiralLab.Sirius.Rtc6LaserControlSignal">
             <summary>
             RTC6 용 레이저 제어 신호 비트 플래그용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStart">
-            <summary>
-            /START 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStop">
-            <summary>
-            /STOP 핀 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.TrackDelay">
-            <summary>
-            Track 지연 사용
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExternalStartAgain">
-            <summary>
-            /START 핀 재 사용 여부
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.EncoderReset">
-            <summary>
-            엔코더 리셋(초기화) 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6LaserControlSignal.Value">
@@ -3201,7 +3213,18 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc6.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Ellipse : 타원)
+            </summary>
+            <param name="vCenter">중심</param>
+            <param name="majorHalf">A</param>
+            <param name="minorHalf">B</param>
+            <param name="startAngle">시작 각도</param>
+            <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
+            <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
             Conic 베지어 곡선
@@ -3333,7 +3356,20 @@
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
+        <member name="M:SpiralLab.Sirius.Rtc6.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            리스트 명령 - 위 ListPixelLine + ListPixel * n 을 통합한 편이용 함수
+            </summary>
+            <param name="start">가공 시작점</param>
+            <param name="end">가공 끝점</param>
+            <param name="period">픽셀 주기 (usec)</param>
+            <param name="usecValues">매 픽셀 가공 시간 배열</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <param name="analogValues">아나로그 값(0~10) 배열</param>
+            <param name="usecCompensator">픽셀 출력시간값 보정기 사용시</param>
+            <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListWobbel(System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
@@ -3358,8 +3394,8 @@
             </summary>
             <param name="x">x,y 위치</param>
             <param name="y">x,y 위치</param>
-            <param name="laserOn">usec</param>
-            <param name="laserOff">usec</param>
+            <param name="laserOnUSec">usec</param>
+            <param name="laserOffUSec">usec</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
@@ -3394,6 +3430,7 @@
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
@@ -3403,6 +3440,7 @@
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="startingValue">시작 출력값</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListAlcByVectorEnd">
@@ -3603,7 +3641,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            </summary>
+            <param name="positionX">X 축 위치 (mm)</param>
+            <param name="rangeX">조건 범위 (mm)</param>
+            <param name="positionY">Y 축 위치 (mm)</param>
+            <param name="rangeY">조건 범위 (mm)</param>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
@@ -4167,7 +4213,18 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6SyncAxis.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Ellipse : 타원)
+            </summary>
+            <param name="vCenter">중심</param>
+            <param name="majorHalf">A</param>
+            <param name="minorHalf">B</param>
+            <param name="startAngle">시작 각도</param>
+            <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
+            <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
             Conic 베지어 곡선
@@ -4404,6 +4461,8 @@
             4 5 6
             7 8 9
             </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
             <param name="reference">절대좌표</param>
             <param name="measured">측정좌표</param>
             <returns></returns>
@@ -4417,6 +4476,8 @@
             4 5 6
             7 8 9
             </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
             <param name="reference">논리적인 좌표</param>
             <param name="error">에러량</param>
             <returns></returns>
@@ -5030,6 +5091,7 @@
             <typeparam name="T">값(16비트, 8비트, 2비트 (uint), 아나로그(float 10V)</typeparam>
             <param name="ch">확장 커넥터 종류</param>
             <param name="value">uint/float</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlGetStatus(SpiralLab.Sirius.RtcStatus)">
@@ -5171,7 +5233,18 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.IRtc.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)" -->
+        <member name="M:SpiralLab.Sirius.IRtc.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 마크 (Ellipse : 타원)
+            </summary>
+            <param name="vCenter">중심</param>
+            <param name="majorHalf">A</param>
+            <param name="minorHalf">B</param>
+            <param name="startAngle">시작 각도</param>
+            <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
+            <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
             Conic 베지어 곡선
@@ -5705,7 +5778,7 @@
             <summary>
             레이저 출력 신호 레벨 설정
             </summary>
-            <param name="laserControlSignal">RTC 모델에 맞는 ILaserControlSignal 구현된 인스턴스</param>
+            <param name="laserControlSignal">RTC 모델에 맞는 ILaserControlSignal 구현된 인스턴스 (Rtc5LaserControlSignal, Rtc6LaserControlSignal)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.CtlExternalControl(SpiralLab.Sirius.IRtcExternalControlMode,System.UInt32)">
@@ -5759,7 +5832,20 @@
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.IRtcExtension.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})" -->
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})">
+            <summary>
+            리스트 명령 - 위 ListPixelLine + ListPixel * n 을 통합한 편이용 함수
+            </summary>
+            <param name="vStart">가공 시작점</param>
+            <param name="vEnd">가공 끝점</param>
+            <param name="period">픽셀 주기 (usec)</param>
+            <param name="usecValues">매 픽셀 가공 시간 배열</param>
+            <param name="ext">아나로그 확장 출력 1,2 지정</param>
+            <param name="analogValues">아나로그 값(0~10) 배열</param>
+            <param name="usecCompensator">픽셀 출력시간값 보정기 사용시</param>
+            <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListWobbel(System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
@@ -6085,6 +6171,11 @@
             import of a particular DLL function failed. In order to analyze and
             properly handle such an error condition you need to catch that
             TypeInitializationException type exception.
+            </summary>
+        </member>
+        <member name="F:RTC4Import.RTC4Wrap.Initialized">
+            <summary>
+            dll 초기화 여부
             </summary>
         </member>
         <member name="F:RTC4Import.RTC4Wrap.getmemory">
@@ -7600,6 +7691,11 @@
             import of a particular DLL function failed. In order to analyze and
             properly handle such an error condition you need to catch that
             TypeInitializationException type exception.
+            </summary>
+        </member>
+        <member name="F:RTC5Import.RTC5Wrap.Initialized">
+            <summary>
+            dll 초기화 여부
             </summary>
         </member>
         <member name="F:RTC5Import.RTC5Wrap.init_rtc5_dll">
@@ -12010,6 +12106,11 @@
             import of a particular DLL function failed. In order to analyze and
             properly handle such an error condition you need to catch that
             TypeInitializationException type exception.
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.Initialized">
+            <summary>
+            dll 초기화 여부
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.init_rtc6_dll">

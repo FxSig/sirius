@@ -148,6 +148,9 @@
   <data name="stop_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="spirallab5" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spirallab5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="chevron_down_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron_down_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -159,6 +162,9 @@
   </data>
   <data name="customer_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\customer_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="spiral3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spiral3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="step_out_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\step_out_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -207,6 +213,9 @@
   </data>
   <data name="lens_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lens_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blueprint_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueprint_40px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="search_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -259,6 +268,9 @@
   <data name="stop_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="spirallab" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spirallab.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="memory_slot_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\memory_slot_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -295,8 +307,8 @@
   <data name="database_export_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\database_export_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="spirallab4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spirallab4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shutdown_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shutdown_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -373,6 +385,9 @@
   <data name="question_mark_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question_mark_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="services_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\services_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -412,6 +427,9 @@
   <data name="step_over_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\step_over_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="spirallab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\spirallab2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="hdd_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hdd_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -424,19 +442,7 @@
   <data name="activity_history_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\activity_history_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="spiral3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spiral3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spirallab" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spirallab.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spirallab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spirallab2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spirallab4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spirallab4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="spirallab5" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\spirallab5.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="stop_sign_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\stop_sign_40px1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -135,6 +135,8 @@
     <Compile Include="FCEU\FormSetup.Designer.cs">
       <DependentUpon>FormSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\laser\MarkerFCEU.cs" />
+    <Compile Include="FCEU\laser\MarkerRef.cs" />
     <Compile Include="FCEU\MessageBoxOk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,8 +149,12 @@
     <Compile Include="FCEU\MessageBoxYesNo.Designer.cs">
       <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\seq\def.cs" />
+    <Compile Include="FCEU\seq\seq.cs" />
     <Compile Include="FCEU\User.cs" />
-    <Compile Include="FCEU\VisionTcpClient.cs" />
+    <Compile Include="FCEU\vision\PolylineParser.cs" />
+    <Compile Include="FCEU\vision\Vision Protocol.cs" />
+    <Compile Include="FCEU\vision\VisionTcpClient.cs" />
     <Compile Include="helper.cs" />
     <Compile Include="nativemethods.cs" />
     <Compile Include="Nguyen\FormAuto.cs">
@@ -718,6 +724,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\spirallab5.png" />
+    <None Include="Resources\blueprint_40px1.png" />
+    <None Include="Resources\stop_sign_40px1.png" />
     <Content Include="spirallab.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

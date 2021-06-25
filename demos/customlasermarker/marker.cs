@@ -124,6 +124,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public object Tag { get; set; }
 
+        public IDocument Document { get { return this.clonedDoc; } }
         protected IDocument clonedDoc;
         protected Thread thread;
 
