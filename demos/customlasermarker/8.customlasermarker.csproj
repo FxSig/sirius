@@ -76,6 +76,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="laser.cs" />
+    <Compile Include="laser2.cs" />
     <Compile Include="laserform.cs">
       <SubType>Form</SubType>
     </Compile>

@@ -55,7 +55,8 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
-            ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f);
+            var laser = new YourCustomLaser(0, "custom laser", 20.0f);
+            //var laser = new YourCustomLaser2(0, "custome laser with rs232 comm", 1);
             laser.Rtc = rtc;
             laser.Initialize();
             laser.CtlPower(10);

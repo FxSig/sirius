@@ -77,89 +77,6 @@
             <param name="output">보간된 출력값</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.ILaser">
-            <summary>
-            레이저 소스 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.Index">
-            <summary>
-            식별번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.MaxPowerWatt">
-            <summary>
-            최대 출력 에너지 (Watt)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.IsReady">
-            <summary>
-            준비 상태
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.IsBusy">
-            <summary>
-            출사중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.ILaser.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.Initialize">
-            <summary>
-            초기화 (통신 등)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
-            <summary>
-            출사 중지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.CtlPower(System.Single)">
-            <summary>
-            파워 변경 (즉시 명령)
-            </summary>
-            <param name="watt">출력 에너지(Watt)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.ListPower(System.Single)">
-            <summary>
-            파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
-            마커의 내부 쓰레드에 의해 호출됨
-            </summary>
-            <param name="watt">출력 에너지(Watt)</param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
             레이저 소스 (IPG YLP  Type E)
@@ -415,6 +332,89 @@
             <param name="onOff">On/Off</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ILaser">
+            <summary>
+            레이저 소스 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.MaxPowerWatt">
+            <summary>
+            최대 출력 에너지 (Watt)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsReady">
+            <summary>
+            준비 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsBusy">
+            <summary>
+            출사중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaser.Initialize">
+            <summary>
+            초기화 (통신 등)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
+            <summary>
+            출사 중지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaser.CtlPower(System.Single)">
+            <summary>
+            파워 변경 (즉시 명령)
+            </summary>
+            <param name="watt">출력 에너지(Watt)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaser.ListPower(System.Single)">
+            <summary>
+            파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
+            마커의 내부 쓰레드에 의해 호출됨
+            </summary>
+            <param name="watt">출력 에너지(Watt)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.LaserVirtual">
             <summary>
             레이저 소스 (가상)
@@ -666,11 +666,88 @@
         </member>
         <member name="M:SpiralLab.Sirius.MatrixStack.Push(System.Double,System.Double,System.Double)">
             <summary>
-            특정 위치를 중심으로 회전하기
+            회전후 이동
             </summary>
-            <param name="cx">회전 중심 X (mm)</param>
-            <param name="cy">회전 중심 Y (mm)</param>
+            <param name="dx">이동량 dX (mm)</param>
+            <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.IMotor">
+            <summary>
+            모터 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.No">
+            <summary>
+            모터 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.Position">
+            <summary>
+            위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
+            <summary>
+            홈(원점) 검색 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single)">
+            <summary>
+            절대 위치 이동
+            </summary>
+            <param name="position">위치값(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값(mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
+            <summary>
+            정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
+            <summary>
+            알람 해제
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotorVirtual">
             <summary>
@@ -756,83 +833,6 @@
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorVirtual.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.IMotor">
-            <summary>
-            모터 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.No">
-            <summary>
-            모터 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.Name">
-            <summary>
-            모터 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.Position">
-            <summary>
-            위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotor.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
-            <summary>
-            홈(원점) 검색 시작
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값(mm)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값(mm)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
             <summary>
             알람 해제
             </summary>
@@ -1206,8 +1206,6 @@
         <member name="M:SpiralLab.Sirius.Rtc4.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
-            내부적으로 두개의 리스트 버퍼를 생성하여 첫 리스트 버퍼가 가득차면 자동으로 리스트 명령들을 실행 시작하고 두번째 리스트 버퍼에 다음번 명령들을 넣고 실행을 대기한다. 
-            첫번째 리스트 버퍼의 실행이 끝나면 이어서 하는 방식의 더블 버퍼(double buffer)된 처리방식을 채택하고 있다.
             </summary>
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
@@ -1815,7 +1813,20 @@
             논리적인 마지막 위치값
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Rtc5.AutoLaserControlByPositionFileName" -->
+        <member name="P:SpiralLab.Sirius.Rtc5.AutoLaserControlByPositionFileName">
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 Scale 값이 외부 파일에서 제공됨
+            Null 지정후 CtlAutoLaserControl 호출하면 비활성화됨
+            포맷
+            [PositionCtrlTable No]
+            PositionNo = Value
+            ScaleNo = Value
+            ...
+             N 1-50
+            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
+            Scale : 0- 4
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.AutoLaserControlByPositionTableNo">
             <summary>
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
@@ -2025,8 +2036,6 @@
         <member name="M:SpiralLab.Sirius.Rtc5.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
-            내부적으로 두개의 리스트 버퍼를 생성하여 첫 리스트 버퍼가 가득차면 자동으로 리스트 명령들을 실행 시작하고 두번째 리스트 버퍼에 다음번 명령들을 넣고 실행을 대기한다. 
-            첫번째 리스트 버퍼의 실행이 끝나면 이어서 하는 방식의 더블 버퍼(double buffer)된 처리방식을 채택하고 있다.
             </summary>
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
@@ -2892,7 +2901,20 @@
             논리적인 마지막 위치값
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Rtc6.AutoLaserControlByPositionFileName" -->
+        <member name="P:SpiralLab.Sirius.Rtc6.AutoLaserControlByPositionFileName">
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 Scale 값이 외부 파일에서 제공됨
+            Null 지정후 CtlAutoLaserControl 호출하면 비활성화됨
+            포맷
+            [PositionCtrlTable No]
+            PositionNo = Value
+            ScaleNo = Value
+            ...
+             N 1-50
+            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
+            Scale : 0- 4
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.AutoLaserControlByPositionTableNo">
             <summary>
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
@@ -3102,8 +3124,6 @@
         <member name="M:SpiralLab.Sirius.Rtc6.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
-            내부적으로 두개의 리스트 버퍼를 생성하여 첫 리스트 버퍼가 가득차면 자동으로 리스트 명령들을 실행 시작하고 두번째 리스트 버퍼에 다음번 명령들을 넣고 실행을 대기한다. 
-            첫번째 리스트 버퍼의 실행이 끝나면 이어서 하는 방식의 더블 버퍼(double buffer)된 처리방식을 채택하고 있다.
             </summary>
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
@@ -3362,7 +3382,7 @@
             </summary>
             <param name="start">가공 시작점</param>
             <param name="end">가공 끝점</param>
-            <param name="period">픽셀 주기 (usec)</param>
+            <param name="periodUsec">픽셀 주기 (usec)</param>
             <param name="usecValues">매 픽셀 가공 시간 배열</param>
             <param name="ext">아나로그 확장 출력 1,2 지정</param>
             <param name="analogValues">아나로그 값(0~10) 배열</param>
@@ -3809,6 +3829,7 @@
         <member name="T:SpiralLab.Sirius.Rtc6SyncAxis">
             <summary>
             SCANLAB's XLSCAN (RTC6 + SyncAXIS + ExcelliSCAN + ACS Motion)
+            x64 버전만 지원 가능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Index">
@@ -4094,8 +4115,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
-            리스트 명령 시작 - 버퍼 준비 (Scanner Only + Auto List Handling 처리됨)
-            MOTF를 위해서는 전용 ListBegin 함수를 사용할것
+            리스트 명령 시작 - 버퍼 준비 (Scanner Only 방식으로 고정됨)
+            * 전용 ListBegin 함수를 사용할것을 추천함
             </summary>
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
@@ -4277,6 +4298,113 @@
             <param name="busyWait">모든 리스트 명령의 실행이 완료될때까지 대기</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.RtcCorrection2D">
+            <summary>
+            스캐너 필드 보정 for 2D plane (Z=0)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.RtcCorrection2D.OnResult">
+            <summary>
+            변환 결과에 대한 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Rows">
+            <summary>
+            입력 데이타의 행 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Cols">
+            <summary>
+            입력 데이타의 열 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.SourceCorrectionFile">
+            <summary>
+            입력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.TargetCorrectionFile">
+            <summary>
+            출력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.ResultMessage">
+            <summary>
+            변환 결과 로그 메시지
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcCorrection2D.kFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcCorrection2D.interval">
+            <summary>
+            간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Data">
+            <summary>
+            절대 위치, 실측 데이타의 2차원 배열
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcCorrection2D.exeFileName">
+            <summary>
+            SCANLAB 의 보정 유틸리티 실행파일 경로
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Double,System.Int32,System.Int32,System.Double,System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="kFactor">bits/mm</param>
+            <param name="rows">행 개수</param>
+            <param name="cols">열 개수</param>
+            <param name="interval">간격</param>
+            <param name="srcCtbFile">입력 보정 파일</param>
+            <param name="targetCtbFile">출력 보정 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">절대좌표</param>
+            <param name="measured">측정좌표</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력 
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">논리적인 좌표</param>
+            <param name="error">에러량</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.Clear">
+            <summary>
+            입력 데이타 모두 제거
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.Convert">
+            <summary>
+            변환 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcCorrection3D">
             <summary>
             scanner correction for 3D 
@@ -4381,113 +4509,6 @@
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.RtcCorrection3D.Convert">
-            <summary>
-            변환 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.RtcCorrection2D">
-            <summary>
-            스캐너 필드 보정 for 2D plane (Z=0)
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.RtcCorrection2D.OnResult">
-            <summary>
-            변환 결과에 대한 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Rows">
-            <summary>
-            입력 데이타의 행 개수
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Cols">
-            <summary>
-            입력 데이타의 열 개수
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.SourceCorrectionFile">
-            <summary>
-            입력 보정 파일
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.TargetCorrectionFile">
-            <summary>
-            출력 보정 파일
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.ResultMessage">
-            <summary>
-            변환 결과 로그 메시지
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.kFactor">
-            <summary>
-            bits/mm
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.interval">
-            <summary>
-            간격 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.RtcCorrection2D.Data">
-            <summary>
-            절대 위치, 실측 데이타의 2차원 배열
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.exeFileName">
-            <summary>
-            SCANLAB 의 보정 유틸리티 실행파일 경로
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Double,System.Int32,System.Int32,System.Double,System.String,System.String)">
-            <summary>
-            생성자
-            </summary>
-            <param name="kFactor">bits/mm</param>
-            <param name="rows">행 개수</param>
-            <param name="cols">열 개수</param>
-            <param name="interval">간격</param>
-            <param name="srcCtbFile">입력 보정 파일</param>
-            <param name="targetCtbFile">출력 보정 파일</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
-            <summary>
-            측정 데이타 입력
-            좌상단부터 우상단 방향으로 순서 
-            예 :
-            1 2 3
-            4 5 6
-            7 8 9
-            </summary>
-            <param name="row">행</param>
-            <param name="col">열</param>
-            <param name="reference">절대좌표</param>
-            <param name="measured">측정좌표</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
-            <summary>
-            측정 데이타 입력 
-            좌상단부터 우상단 방향으로 순서 
-            예 :
-            1 2 3
-            4 5 6
-            7 8 9
-            </summary>
-            <param name="row">행</param>
-            <param name="col">열</param>
-            <param name="reference">논리적인 좌표</param>
-            <param name="error">에러량</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.Clear">
-            <summary>
-            입력 데이타 모두 제거
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.Convert">
             <summary>
             변환 
             </summary>
@@ -4791,11 +4812,11 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Double,System.Double,System.Double)">
             <summary>
-            특정 기준점을 중심으로 회전 
+            회전후 이동
             </summary>
-            <param name="cx">회전 기준 X 위치 (mm)</param>
-            <param name="cy">회전 기준 ㅛ 위치 (mm)</param>
-            <param name="angle">회전 각도</param>
+            <param name="dx">이동량 dX (mm)</param>
+            <param name="dy">이동량 dY (mm)</param>
+            <param name="angle">회전 (각도)</param>
         </member>
         <member name="T:SpiralLab.Sirius.ListType">
             <summary>
@@ -5122,8 +5143,6 @@
         <member name="M:SpiralLab.Sirius.IRtc.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
-            내부적으로 두개의 리스트 버퍼를 생성하여 첫 리스트 버퍼가 가득차면 자동으로 리스트 명령들을 실행 시작하고 두번째 리스트 버퍼에 다음번 명령들을 넣고 실행을 대기한다. 
-            첫번째 리스트 버퍼의 실행이 끝나면 이어서 하는 방식의 더블 버퍼(double buffer)된 처리방식을 채택하고 있다.
             </summary>
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
@@ -5488,7 +5507,20 @@
             RTC 의 ALC(Automatic Laser Control 기능의 인터페이스
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionFileName" -->
+        <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionFileName">
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 Scale 값이 외부 파일에서 제공됨
+            Null 지정후 CtlAutoLaserControl 호출하면 비활성화됨
+            포맷
+            [PositionCtrlTable No]
+            PositionNo = Value
+            ScaleNo = Value
+            ...
+             N 1-50
+            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
+            Scale : 0- 4
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionTableNo">
             <summary>
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
@@ -6154,7 +6186,8 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
-            버퍼가 실행가능한 상태가 되면 자동 실행된다.
+            syncAxis 는 버퍼 처리 방식이 전혀 다르므로  IRtc 인터페이스의 ListBegin 를 사용하지 않고, 전용의 ListBegin 을 지원한다
+            내부적으로는 slsc_ListHandlingMode_RepeatWhileBufferFull 방식으로 고정된다.
             주의사항 : 버퍼가 고갈되지 않도록 지속적으로 리스트 명령을 삽입해야 주어야 한다. 그렇지 않으면 버퍼 고갈(buffer underrun) 이 발생된다.
             때문에 리스트 데이타를 넣는동안 디버깅(디버깅 중지) 할때는 매우 조심해야 한다
             </summary>
