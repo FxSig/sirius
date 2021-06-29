@@ -14,11 +14,13 @@ namespace SpiralLab.Sirius.FCEU
     {
         public static string ConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "fceu.ini");
 
-        public LaserSeq Seq { get; private set; }
+        public LaserSequence Seq { get; private set; }
         public Form FormCurrent { get; private set; }
         public FormAuto FormAuto { get; private set; }
+        public FormRecipe FormRecipe { get; private set; }
         public FormEditor FormEditor { get; private set; }
         public FormSetup FormSetup { get; private set; }
+        public FormHistory FormHistory { get; private set; }
 
         System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();      
 
@@ -27,8 +29,10 @@ namespace SpiralLab.Sirius.FCEU
             InitializeComponent();
 
             this.FormAuto = new FormAuto();
+            this.FormRecipe = new FormRecipe();
             this.FormEditor = new FormEditor();
             this.FormSetup = new FormSetup();
+            this.FormHistory = new FormHistory();
 
             this.Load += FormMain_Load;
             this.Shown += FormMain_Shown;
@@ -58,7 +62,8 @@ namespace SpiralLab.Sirius.FCEU
         }
         private bool SequenceInit()
         {
-            this.Seq = new LaserSeq()
+            Logger.OnLogged += Logger_OnLogged;
+            this.Seq = new LaserSequence()
             {
                 Editor = this.FormEditor.SiriusEditor,
                 Viewer = this.FormAuto.SiriusViewer,
@@ -68,6 +73,15 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Editor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
             return this.Seq.Initialize();
         }
+
+        private void Logger_OnLogged(Logger.Type type, string message)
+        {
+            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+            {
+                this.FormHistory.Log(type, message);
+            }));
+        }
+
         private void SiriusEditorForm_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트
@@ -85,6 +99,7 @@ namespace SpiralLab.Sirius.FCEU
             Logger.Log(Logger.Type.Warn, $"program is terminating by the user");
             this.timer1.Enabled = false;
             this.Seq?.Dispose();
+            Logger.OnLogged -= Logger_OnLogged;
         }
         public void UpdateVersionInfo()
         {
@@ -95,7 +110,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             this.SwitchForm(this.panBody, this.FormAuto);
             timer1.Tick += Timer1_Tick;
-            timer1.Interval = 200;
+            timer1.Interval = 250;
             timer1.Enabled = true;
         }
 
@@ -160,6 +175,11 @@ namespace SpiralLab.Sirius.FCEU
         {
             this.SwitchForm(this.panBody, this.FormAuto);            
         }
+
+        private void btnRecipe_Click(object sender, EventArgs e)
+        {
+            this.SwitchForm(this.panBody, this.FormRecipe);
+        }
         private void btnLaser_Click(object sender, EventArgs e)
         {
             this.SwitchForm(this.panBody, this.FormEditor);
@@ -167,6 +187,10 @@ namespace SpiralLab.Sirius.FCEU
         private void btnSetup_Click(object sender, EventArgs e)
         {
             this.SwitchForm(this.panBody, this.FormSetup);
+        }
+        private void btnHistory_Click(object sender, EventArgs e)
+        {
+            this.SwitchForm(this.panBody, this.FormHistory);
         }
         private void btnExit_Click(object sender, EventArgs e)
         {
@@ -187,14 +211,27 @@ namespace SpiralLab.Sirius.FCEU
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
-            lblRecipe.Text = $"Recipe : [{Seq.RecipeNo}] ";
+            var svc = Seq.Service as LaserService;
+            if (svc.RecipeNo < 0)
+                lblRecipe.Text = $"Recipe : (Unknown)";
+            else
+            {
+                string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "recipe.ini");
+                string name = NativeMethods.ReadIni<string>(fileName, $"{svc.RecipeNo}", "NAME");
+                lblRecipe.Text = $"Recipe : [{svc.RecipeNo}] {name}";
+            }
+            if (svc.IsVisionConnected)
+                lblVisionComm.Text = $"Vision : Connected";
+            else
+                lblVisionComm.Text = $"Vision : Disconnected";
 
             lsbErrWarn.SuspendLayout();
             int count = 0;
             lock (Seq.SyncRoot)
-            {
-                foreach (ErrEnum err in Seq.Errors)
+            {                
+                foreach (var keyValue in Seq.Errors)
                 {
+                    ErrEnum err = keyValue.Key;
                     if (0 != err)
                     {
                         var name = AttrHelper.Description( err).Description;
@@ -204,8 +241,9 @@ namespace SpiralLab.Sirius.FCEU
                         count++;
                     }
                 }
-                foreach (WarnEnum warn in Seq.Warns)
+                foreach (var keyValue in Seq.Warns)
                 {
+                    WarnEnum warn = keyValue.Key;
                     if (0 != warn)
                     {
                         var name = AttrHelper.Description(warn).Description;
@@ -264,5 +302,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             Seq.Stop();
         }
+
+
     }
 }

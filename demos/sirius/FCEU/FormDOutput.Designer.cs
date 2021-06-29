@@ -45,7 +45,7 @@
             this.dgvOutput.AllowUserToAddRows = false;
             this.dgvOutput.AllowUserToResizeColumns = false;
             this.dgvOutput.AllowUserToResizeRows = false;
-            this.dgvOutput.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvOutput.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;

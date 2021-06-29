@@ -45,7 +45,7 @@
             this.dgvInput.AllowUserToAddRows = false;
             this.dgvInput.AllowUserToResizeColumns = false;
             this.dgvInput.AllowUserToResizeRows = false;
-            this.dgvInput.BackgroundColor = System.Drawing.SystemColors.ControlLight;
+            this.dgvInput.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
             this.dgvInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -117,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(303, 480);
             this.Controls.Add(this.dgvInput);
             this.DoubleBuffered = true;

@@ -76,6 +76,7 @@
             this.siriusViewerForm1.AliasName = "Laser 1";
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusViewerForm1.Document = null;
+            this.siriusViewerForm1.FileName = "NoName";
             this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusViewerForm1.Index = ((uint)(0u));
             this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
@@ -209,6 +210,7 @@
             // 
             // FormAuto
             // 
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1268, 757);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

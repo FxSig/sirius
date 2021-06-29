@@ -36,6 +36,7 @@
             this.siriusEditorForm1.AliasName = "Laser 1";
             this.siriusEditorForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusEditorForm1.Document = null;
+            this.siriusEditorForm1.FileName = "NoName";
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm1.HidePropertyGrid = false;
             this.siriusEditorForm1.Index = ((uint)(0u));
@@ -52,12 +53,13 @@
             // 
             // FormEditor
             // 
+            this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1268, 757);
             this.Controls.Add(this.siriusEditorForm1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormEditor";
-            this.Text = "Laser";
+            this.Text = "Sirius™";
             this.ResumeLayout(false);
 
         }

@@ -406,6 +406,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.LoggerMessage">
+            <summary>
+            로그 메시지 콜백 델리게이트 
+            </summary>
+            <param name="type">로그 타입</param>
+            <param name="message">로그 메시지</param>
+        </member>
         <member name="T:SpiralLab.Logger">
             <summary>
             로그 엔진
@@ -444,6 +451,11 @@
         <member name="F:SpiralLab.Logger.Type.Fatal">
             <summary>
             치명
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Logger.OnLogged">
+            <summary>
+            로그 메시지 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Object)">
@@ -495,15 +507,6 @@
             <param name="type"></param>
             <param name="ex"></param>
             <param name="message"></param>
-        </member>
-        <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception,System.String,System.Object[])">
-            <summary>
-            로그메시지 기록
-            </summary>
-            <param name="type"></param>
-            <param name="ex"></param>
-            <param name="message"></param>
-            <param name="args"></param>
         </member>
         <member name="M:SpiralLab.Logger.ExceptionToString(System.Exception)">
             <summary>

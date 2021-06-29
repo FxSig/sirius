@@ -581,11 +581,11 @@ namespace SpiralLab.Sirius
                 string ext = Path.GetExtension(ofd.FileName);
                 if (0 == string.Compare(ext, ".dxf", true))
                 {
-                    this.Document.Action.ActImportDxf(ofd.FileName);
+                    this.Document.Action.ActImportDxf(ofd.FileName, out var dummy);
                 }
                 else if (0 == string.Compare(ext, ".sirius", true))
                 {
-                    this.Document.Action.ActImportSirius(ofd.FileName);
+                    this.Document.Action.ActImportSirius(ofd.FileName, out var dummy);
                 }
                 else
                 {
@@ -1010,7 +1010,7 @@ namespace SpiralLab.Sirius
             if (result != DialogResult.OK)
                 return;
 
-            this.Document.Action.ActImportHPGL(ofd.FileName);
+            this.Document.Action.ActImportHPGL(ofd.FileName, out var dummy);
         }
         private void btmImage_Click(object sender, EventArgs e)
         {

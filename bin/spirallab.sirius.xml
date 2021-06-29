@@ -421,6 +421,11 @@
             Pen Return 엔티티 객체
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.PenReturn.#ctor">
+            <summary>
+            생성자 (중복펜 파라메터 사용시 이전 설정 값으로 자동 전환되는 유틸리티 펜 개체)
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.PenReturn.Clone">
             <summary>
             복사본 생성
@@ -1431,25 +1436,36 @@
             <param name="fileName">파일이름</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActImportDxf(System.String)">
+        <member name="M:SpiralLab.Sirius.Action.ActImportDxf(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             dxf 파일 가져오기
             </summary>
             <param name="fileName">파일이름</param>
+            <param name="importedEntity">생성된 개체</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActImportSirius(System.String)">
+        <member name="M:SpiralLab.Sirius.Action.ActImportSirius(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             sirius 파일 가져오기
             </summary>
             <param name="fileName">파일이름</param>
+            <param name="importedEntity">생성된 개체</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActImportHPGL(System.String)">
+        <member name="M:SpiralLab.Sirius.Action.ActImportHPGL(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             HPGL 파일 가져오기
             </summary>
             <param name="fileName"></param>
+            <param name="importedEntity">생성된 개체</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActImportHPGLByCpp(System.String,SpiralLab.Sirius.IEntity@)">
+            <summary>
+            HPGL 파일 가져오기 (신규 버전)
+            </summary>
+            <param name="fileName"></param>
+            <param name="importedEntity">생성된 개체</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActDocumentPropertyChanged(SpiralLab.Sirius.IDocument,System.String,System.Object,System.Object)">
@@ -3992,6 +4008,11 @@
             호(Arc) 렌더링시 그리는 각도의 최소 단위 (속도 향상)
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.ClosedPathDistance">
+            <summary>
+            폐곡선 판단 거리 상수값
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.UndoStackSize">
             <summary>
             언두(Undo) 스택 최대 개수 제한 (메모리 절약을 위해)
@@ -5520,6 +5541,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.SiriusPreviewForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SiriusPreviewForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.SiriusPreviewForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.PropertyForm.components">
             <summary>
             Required designer variable.
@@ -5608,6 +5646,18 @@
             </summary>
             <param name="sender"></param>
         </member>
+        <member name="T:SpiralLab.Sirius.SiriusDocumentPenNew">
+            <summary>
+            편집기에서 새로운 펜을 생성할때 발생하는 이벤트
+            </summary>
+            <param name="sender"></param>
+        </member>
+        <member name="T:SpiralLab.Sirius.SiriusDocumentLayerNew">
+            <summary>
+            편집기에서 새로운 레이어를 생성할때 발생하는 이벤트
+            </summary>
+            <param name="sender"></param>
+        </member>
         <member name="T:SpiralLab.Sirius.SiriusEditorForm">
             <summary>
             가공 데이타 (Document)를 화면에 출력및 사용자의 이벤트에 의해 데이타를 변경하는 등의 에디터및 뷰어 기능을 수행
@@ -5644,6 +5694,16 @@
             문서(Document)가 다른이름으로 저장될때 발생하는 이벤트
             Document.Action.ActSave(파일이름) 가 호출되어야 함
             파일이름(FileName ) 속성 변경이 호출되어야 함
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentPenNew">
+            <summary>
+            편집기에서 새로운 펜을 생성할때 발생하는 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentLayerNew">
+            <summary>
+            편집기에서 새로운 레이어를 생성할때 발생하는 이벤트
+            </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMarker">
             <summary>
@@ -5775,6 +5835,20 @@
             반드시 OnSaveAs 호출해 주어야 한다
             </summary>
             <param name="fileName">파일 이름</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnPenNew(SpiralLab.Sirius.IPen)">
+            <summary>
+            OnDocumentPenNew 이벤트 사용시 사용자가 원하는 펜(IPen) 생성후 OnPenNew 함수를 통해 생성된 펜 개체를 전달해 주어야 한다
+            </summary>
+            <param name="pen">IPen 상속 구현 객체</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnLayerNew(SpiralLab.Sirius.Layer)">
+            <summary>
+            OnDocumentLayerNew 이벤트 사용시 사용자가 원하는 레이어(Layer) 생성후 OnLayerNew 함수를 통해 생성된 레이어 개체를 전달해 주어야 한다
+            </summary>
+            <param name="layer">Layer 상속 구현 객체</param>
             <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.SiriusEditorForm.components">

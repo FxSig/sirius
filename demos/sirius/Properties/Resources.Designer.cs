@@ -863,6 +863,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap sirius {
+            get {
+                object obj = ResourceManager.GetObject("sirius", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap slider_32px {
             get {
                 object obj = ResourceManager.GetObject("slider_32px", resourceCulture);
@@ -916,6 +926,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap spirallab {
             get {
                 object obj = ResourceManager.GetObject("spirallab", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap spirallab1 {
+            get {
+                object obj = ResourceManager.GetObject("spirallab1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
