@@ -843,19 +843,17 @@
             RTC4 외부 트리거 모드 비트 플래그용
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStart">
-            <summary>
-            /START 핀 사용
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStart" -->
         <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartDelayOff">
             <summary>
-            /START 지연 끄기 (CtlExternalControlDelay 함수에 의해 지연된 값)
+            = 1 The external start delay (encoder delay) is turned off.
+            = 0 No effect
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartIsNotDisabledByExternalStop">
+        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartAgain">
             <summary>
-            /START 가 /STOP 에 의해 비활성화 되지 않음
+            = 1 The external start input is not disabled by an external stop request
+            = 0 The external start input is disabled by an external stop request
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4ExternalControlMode.Value">
@@ -1582,6 +1580,67 @@
             RTC5 용 레이저 제어 신호 비트 플래그용
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.PulseSwitchSetting">
+            <summary>
+            Pulse Switch Setting (does not apply neither to laser mode 4 nor to laser mode 6):
+            The setting only affects those laser control signals (more precisely: those LASER1 or LASER2 “laser active” modulation pulses in CO2 mode or LASER1 Q-Switch pulses in the YAG modes) that are not yet fully processed at completion of the LASERON signal.
+            = 0: The signals are cut off at the end of the LASERON signal.
+            = 1: The final pulse fully executes despite completion of the LASERON signal.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.PhaseShift">
+            <summary>
+            Phase shift of the laser control signals (does not apply neither to laser mode 4 nor to laser mode 6).
+            = 0: No phase shift.
+            = 1: CO2 mode: The LASER1 signal is exchanged with the LASER2 signal.
+            YAG modes: The LASER1 is shifted back 180° (half a signal period)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.DisableLaserActiveSignal">
+            <summary>
+             Enabling or disabling of laser control signals for “Laser active” operation
+            = 0: The “Laser active” laser control signals are enabled.
+            = 1: The “Laser active” laser control signals are disabled (then the laser output ports are in the high impedance tristate mode).
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.LaserOnSignalLevelLow">
+            <summary>
+            LASERON signal level.
+            = 0: The signal at the LASERON port is set to active-high.
+            = 1: The signal at the LASERON port is set to active-low.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.Laser12SignalLevelLow">
+            <summary>
+            LASER1/LASER2 signal level.
+            = 0: The signals at the LASER1 and LASER2 output ports are set to active-high.
+            = 1: The signals at the LASER1 and LASER2 output ports are set to active-low.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExtPulseSignalRisingEdge">
+            <summary>
+             Determines for laser_on_pulses_list whether external signal pulses (at the LASER connector’s DIGITAL IN1 digital input) are to be counted at rising or falling edges:
+            = 0: At the falling edge.
+            = 1: At the rising edge
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.OutputSynchronization">
+            <summary>
+             = 0: Output synchronization is switched off (default setting).
+            = 1: Output synchronization is switched on
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ConstantLaserPulseLength">
+            <summary>
+            = 0: The constant pulse length mode is switched off (default setting).
+            = 1: The constant pulse length mode is switched on
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.AutomaticMonitoringToStop">
+            <summary>
+            = 1: In case of error, automatic monitoring (laser-signal auto-suppression) automatically generates a /STOP signal (list stops, laser control signals get permanently switched off).
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5LaserControlSignal.Value">
             <summary>
             4바이트 값
@@ -1624,27 +1683,44 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStart">
             <summary>
-            /START 핀 사용
+            = 1: The external start input (by /START, /START2 or /Slave-START) is enabled.
+            = 0: The external start input is disabled.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStop">
             <summary>
-            /STOP 핀 사용
+            = 1: An external list stop (/STOP, /STOP2, /Slave-STOP or simulate_ext_stop) causes explicit cancellation of the external start queue’s entries (/START, /START2, /Slave-START or simulate_ext_start).
+            = 0: No effect.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.TrackDelay">
             <summary>
-            Track 지연 사용
+            = 1: The track delay (defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list) that postpones execution of the list start relative to the triggering input signal or simulate_ext_start or simulate_ext_start_ctrl command (see ”External List Start”, page 240) is deactivated.
+            = 0: No effect.To define and activate the track delay (e.g. for Processing-on-the-fly applications), use the command simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.ExternalStartAgain">
             <summary>
-            /START 핀 재 사용 여부
+            = 1: The external start input is not disabled by an external stop request.
+            = 0: The external start input is disabled by an external stop request
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.DisableSimulateExtCtrl">
+            <summary>
+             Disables simulate_ext_start_ctrl. 
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.EncoderReset">
             <summary>
             엔코더 리셋(초기화) 여부
+            = 1 Encoder resets of the two internal encoder counters (initiated by the Processing-on-the-fly commands set_fly_x, set_fly_y or set_fly_rot) occur after the subsequent start trigger(i.e.the subsequent external start signal or simulate_ext_start or simulate_ext_start_ctrl command, possibly postponed by a track delay defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list, see also bit #2).
+            = 0: Encoder resets occur immediately with each initiating Processing-on-the-fly command.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.TrackDelayConfig">
+            <summary>
+            = 1: Track delay configured by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list is counted beginning with the most recent externally (but not with execute_list_pos etc.) triggered or simulated external list start.The interval between subsequent external list starts (in encoder pulses) is thus constant(see also page 242). For stop_execution or an external stop signal, bit #10 gets reset to “0”. This bit has no effect if the firmware version is 506 or lower(see get_rtc_version).
+            = 0: Track delay configured by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list is counted beginning with the time point an external list start was requested(i.e.with the corresponding simulate_ext_start or simulate_ext_start_ctrl command or external start signal). The interval between subsequent external list starts (in encoder pulses) can thus vary.This is standard for firmware version 506 or lower(see get_rtc_version).
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5ExternalControlMode.Value">
@@ -2670,6 +2746,72 @@
             RTC6 용 레이저 제어 신호 비트 플래그용
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.PulseSwitchSetting">
+            <summary>
+            Pulse Switch Setting (does not concern Laser Mode 4 or Laser Mode 6).
+            The setting only affects those laser control signals (more precisely: those LASER1 or LASER2 “laser active” modulation pulses in CO2 Mode or LASER1 Q-Switch pulses in the YAG modes) that are not yet fully processed at completion of the LASERON signal.
+            = 0: The signals are cut off at the end of the LASERON signal.
+            = 1: The final pulse fully executes despite completion of the LASERON signal.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.PhaseShift">
+            <summary>
+            Phase shift of the laser control signals (does not concern Laser Mode 4 or Laser Mode 6).
+            = 0: No phase shift.
+            = 1: CO2 Mode: The LASER1 signal is exchanged with the LASER2 signal. YAG modes: The LASER1 is shifted back 180° (half a signal period).
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.DisableLaserActiveSignal">
+            <summary>
+            Enabling or disabling of laser control signals for “Laser active” operation.
+            = 0: The “Laser active” laser control signals are enabled.
+            = 1: The “Laser active” laser control signals are disabled (then the laser output ports are in the high impedance tristate mode).
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.LaserOnSignalLevelLow">
+            <summary>
+             LASERON signal level.
+            = 0: The signal at the LASERON port is set to active-HIGH.
+            = 1: The signal at the LASERON port is set to active-LOW.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.Laser12SignalLevelLow">
+            <summary>
+             LASER1/LASER2 signal level.
+            = 0: The signals at the LASER1 and LASER2 output ports are set to active-HIGH.
+            = 1: The signals at the LASER1 and LASER2 output ports are set to active-LOW
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ExtPulseSignalRisingEdge">
+            <summary>
+            Determines for laser_on_pulses_list whether external signal pulses (at the
+            LASER connector’s DIGITAL IN1 digital input) are to be counted at rising or falling edges:
+            = 0: At the falling edge.
+            = 1: At the rising edge.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.OutputSynchronization">
+            <summary>
+            = 0: Output synchronization is switched off (default setting).
+            = 1: Output synchronization is switched on.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.ConstantLaserPulseLength">
+            <summary>
+            = 0: The “constant pulse length” mode is switched off (default setting).
+            = 1: The “constant pulse length” mode is switched on.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.AutomaticMonitoringToStop">
+            <summary>
+            = 1: In case of error, automatic monitoring (automatic suppression of laser control signals) automatically generates a /STOP signal (list stops, laser control signals get permanently switched off).
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6LaserControlSignal.Bit.StopToAllMasterSlave">
+            <summary>
+            = 1: In case of error according to Bit #28, the stop_execution is forwarded as /Master-STOP 
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6LaserControlSignal.Value">
             <summary>
             4바이트 값
@@ -2712,27 +2854,41 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStart">
             <summary>
-            /START 핀 사용
+            = 1: The external start input (by /START, /START2 or /Slave-START) is enabled.
+            = 0: The external start input is disabled
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStop">
             <summary>
-            /STOP 핀 사용
+            = 1: An external stop (/STOP, /STOP2, /Slave-STOP or simulate_ext_stop) causes explicit cancellation of the external start queue’s entries (/START, /START2, /Slave-START             or simulate_ext_start).
+            = 0: No effect
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.TrackDelay">
             <summary>
             Track 지연 사용
+            = 1: The track delay (defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list) that postpones execution of the start relative to the triggering input signal or simulate_ext_start or simulate_ext_start_ctrl command (see Section ”External Start”, page 268) is deactivated.
+            = 0: No effect.To define and activate the track delay (for example, for Processing-on-the-fly applications), use simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.ExternalStartAgain">
             <summary>
             /START 핀 재 사용 여부
+            = 1: The external start input is not disabled by an external stop request. 
+            = 0: The external start input is disabled by an external stop request.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.EncoderReset">
             <summary>
             엔코더 리셋(초기화) 여부
+            = 1: Encoder resets of the two internal encoder counters occur with an external start signal or simulate_ext_start or simulate_ext_start_ctrl, postponed by a track delay defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list, see also Bit #2).
+            = 0: Encoder resets occur immediately with each initiating Processing-on-the-fly command.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6ExternalControlMode.Bit.TrackDelayConfig">
+            <summary>
+            = 1: Track delay configured by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list is counted beginning with the most recent externally (but not with execute_list_pos etc.) triggered or simulated external list start.The interval between subsequent external list starts (in encoder pulses) is thus constant(see also page 242). For stop_execution or an external stop signal, bit #10 gets reset to “0”. This bit has no effect if the firmware version is 506 or lower(see get_rtc_version).
+            = 0: Track delay configured by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list is counted beginning with the time point an external list start was requested(i.e.with the corresponding simulate_ext_start or simulate_ext_start_ctrl command or external start signal). The interval between subsequent external list starts (in encoder pulses) can thus vary.This is standard for firmware version 506 or lower(see get_rtc_version).
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6ExternalControlMode.Value">
