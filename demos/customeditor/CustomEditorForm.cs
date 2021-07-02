@@ -37,13 +37,6 @@ using System.Numerics;
 
 namespace SpiralLab.Sirius
 {
-    /// <summary>
-    /// 뷰어가 렌더링할 대상 소스 문서가 변경되었을때를 처리하는 델리게이트
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="doc"></param>
-    public delegate void SiriusDocumentSourceChanged(object sender, IDocument doc);
-
     public partial class CustomEditorForm : Form
     {
         /// <summary>
