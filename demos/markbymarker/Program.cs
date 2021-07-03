@@ -27,7 +27,7 @@
  *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
  *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
  *  
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -70,15 +70,15 @@ namespace SpiralLab.Sirius
 
             #region create entity at 0,0 location
             var doc = new DocumentDefault("3x3 scanner field correction");
-            //레이어 생성
+            // 레이어 생성
             var layer = new Layer("default");
             // 나선 개체 추가
             layer.Add(new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true));
-            //레이어의 모든 개채들 내부 데이타 계산및 갱신
+            // 레이어의 모든 개채들 내부 데이타 계산및 갱신
             layer.Regen();
-            //문서에 레이어 추가
+            // 문서에 레이어 추가
             doc.Layers.Add(layer);
-            //문서 저장
+            // 문서 저장
             DocumentSerializer.Save(doc, "test.sirius");
             #endregion
 
@@ -112,8 +112,7 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-
-        private static void DrawByMarker(IDocument doc, IRtc rtc, ILaser laser)
+        private static bool DrawByMarker(IDocument doc, IRtc rtc, ILaser laser)
         {
             var marker = new MarkerDefault(0);            
             marker.Name = "marker #1";
@@ -129,15 +128,14 @@ namespace SpiralLab.Sirius
             // 하나의 오프셋 정보(0,0 및 회전각도 0) 를 추가한다.
             markerArg.Offsets.Clear();
             markerArg.Offsets.Add(Offset.Zero);
-
+            bool success = true;
             // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
-            marker.Ready(markerArg);
-
+            success &= marker.Ready(markerArg);
             // 가공을 시작한다. 
-            marker.Start();
+            success &= marker.Start();
+            return success;
         }
-
-        private static void DrawByMarkerWithOffset(IDocument doc, IRtc rtc, ILaser laser)
+        private static bool DrawByMarkerWithOffset(IDocument doc, IRtc rtc, ILaser laser)
         {
             var marker = new MarkerDefault(0);
             marker.Name = "marker #2";
@@ -161,17 +159,17 @@ namespace SpiralLab.Sirius
             markerArg.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
             markerArg.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
             markerArg.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
+            bool success = true;
             // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.
-            marker.Ready(markerArg);
+            success &= marker.Ready(markerArg);
             // 가공을 시작한다. 
-            marker.Start();
+            success &= marker.Start();
+            return success;
         }
-            
         private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
             var span = arg.EndTime - arg.StartTime;
             Console.WriteLine($"{sender.Name} finished : {span.ToString()}");
         }
-
     }
 }

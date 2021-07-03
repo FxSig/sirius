@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 어셈블리에 대한 일반 정보는 다음 특성 집합을 통해 
 // 제어됩니다. 어셈블리와 관련된 정보를 수정하려면
 // 이러한 특성 값을 변경하세요.
-[assembly: AssemblyTitle("testcase for spirallab.sirius")]
+[assembly: AssemblyTitle("editor_customepen")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("spirallab.co.kr")]
-[assembly: AssemblyProduct("testcase")]
-[assembly: AssemblyCopyright("spirallab.co.kr")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("editor_customepen")]
+[assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 이 프로젝트가 COM에 노출되는 경우 다음 GUID는 typelib의 ID를 나타냅니다.
-[assembly: Guid("f1b75dc5-865b-4d32-bc6d-9e103dc9cacc")]
+[assembly: Guid("d630d123-9932-4901-a733-4ef20e96a8e2")]
 
 // 어셈블리의 버전 정보는 다음 네 가지 값으로 구성됩니다.
 //

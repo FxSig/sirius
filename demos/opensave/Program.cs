@@ -20,7 +20,7 @@
  * 
  * 문서(document) 는 레이어, 블럭 , 환경 설정 및 가공에 필요한 다양한 객체(Entity : 선, 호, 원, 폴리라인, 레이저 파라메터 등) 정보를 가지고 있다.
  * 이 가공 객체(Entity)를 생성하고, 저장이 가능하며 또한 레이저 가공을 시도한다.
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -105,34 +105,36 @@ namespace SpiralLab.Sirius
         static void DoBegin(ILaser laser, IRtc rtc, IDocument doc)
         {
             var timer = Stopwatch.StartNew();
-            bool success = true;
             var markerArg = new MarkerArgDefault()
             {
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
             };
-            rtc.ListBegin(laser);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
             //레이어를 순회
             foreach (var layer in doc.Layers)
             {
+                success &= layer.Mark(markerArg);
+                // or 
                 //레이어 내의 개체(Entity)들을 순회
-                foreach (var entity in layer)
-                {
-                    var markerable = entity as IMarkerable;
-                    //레이저 가공이 가능한 개체(markerable)인지를 판단
-                    if (null != markerable)
-                        success &= markerable.Mark(markerArg);    // 해당 개체(Entity) 가공 
-                    if (!success)
-                        break;
-                }
+                //foreach (var entity in layer)
+                //{
+                //    var markerable = entity as IMarkerable;
+                //    //레이저 가공이 가능한 개체(markerable)인지를 판단
+                //    if (null != markerable)
+                //        success &= markerable.Mark(markerArg);    // 해당 개체(Entity) 가공 
+                //    if (!success)
+                //        break;
+                //}
                 if (!success)
                     break;
             }
             if (success)
             {
-                rtc.ListEnd();
-                rtc.ListExecute(true);
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
             }
             Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
         }

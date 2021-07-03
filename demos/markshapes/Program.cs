@@ -19,7 +19,7 @@
  * 
  * IRtc 인터페이스를 직접 사용하는 방법
  * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -30,7 +30,6 @@ using System.Numerics;
 
 namespace SpiralLab.Sirius
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -115,98 +114,123 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
-        }        
+        }
         /// <summary>
         /// draw circle
         /// </summary>
+        /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="radius"></param>
-        private static void DrawCircle(ILaser laser, IRtc rtc, float radius)
+        private static bool DrawCircle(ILaser laser, IRtc rtc, float radius)
         {
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(radius, 0));
-            rtc.ListArc(new Vector2(0, 0), 360.0f);
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(radius, 0));
+            success &= rtc.ListArc(new Vector2(0, 0), 360.0f);
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(true);
+            return success;
         }
 
         /// <summary>
         /// draw rectangle
         /// </summary>
+        /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="x1"></param>
         /// <param name="y1"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        private static void DrawLine(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        private static bool DrawLine(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(x1, y1));
-            rtc.ListMark(new Vector2(x2, y2));
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(x1, y1));
+            success &= rtc.ListMark(new Vector2(x2, y2));
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(true);
+            return success;
         }
         /// <summary>
         /// draw rectangle
         /// </summary>
+        /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        private static void DrawRectangle(ILaser laser, IRtc rtc, float width, float height)
+        private static bool DrawRectangle(ILaser laser, IRtc rtc, float width, float height)
         {
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(-width / 2, height / 2));
-            rtc.ListMark(new Vector2(width / 2, height / 2));
-            rtc.ListMark(new Vector2(width / 2, -height / 2));
-            rtc.ListMark(new Vector2(-width / 2, -height / 2));
-            rtc.ListMark(new Vector2(-width / 2, height / 2));
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(-width / 2, height / 2));
+            success &= rtc.ListMark(new Vector2(width / 2, height / 2));
+            success &= rtc.ListMark(new Vector2(width / 2, -height / 2));
+            success &= rtc.ListMark(new Vector2(-width / 2, -height / 2));
+            success &= rtc.ListMark(new Vector2(-width / 2, height / 2));
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(true);
+            return success;
         }
         /// <summary>
         /// draw cicle with dots
         /// </summary>
+        /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="radius"></param>
         /// <param name="durationMsec"></param>
-        private static void DrawCircleWithDots(ILaser laser, IRtc rtc, float radius, float durationMsec)
+        private static bool DrawCircleWithDots(ILaser laser, IRtc rtc, float radius, float durationMsec)
         {
-            rtc.ListBegin(laser);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
             for (float angle =0; angle<360; angle+=1)
             {
                 double x = radius * Math.Sin(angle * Math.PI / 180.0);
                 double y = radius * Math.Cos(angle * Math.PI / 180.0);
-                rtc.ListJump(new Vector2((float)x, (float)y));
+                success &= rtc.ListJump(new Vector2((float)x, (float)y));
                 //지정된 짧은 시간동안 레이저 출사
-                rtc.ListLaserOn(durationMsec);                
-            }            
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+                success &= rtc.ListLaserOn(durationMsec);
+                if (!success)
+                    break;
+            }
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(true);
+            return success;
         }
         /// <summary>
         /// draw square area with pixels
         /// </summary>
-        /// <param name=""></param>
-        private static void DrawSquareAreaWithPixels(ILaser laser, IRtc rtc, float size, float gap)
+        /// <param name="laser"></param>
+        /// <param name="rtc"></param>
+        /// <param name="size"></param>
+        /// <param name="gap"></param>
+        private static bool DrawSquareAreaWithPixels(ILaser laser, IRtc rtc, float size, float gap)
         {
             // pixel operation 은 IRtcExtension 인터페이스에서 제공
             var rtcExt = rtc as IRtcExtension;
             if (null == rtcExt)
-                return;
-
+                return false;
             int counts = (int)(size / gap);
-            rtc.ListBegin(laser);
-            for (int i=0; i< counts; i++)
+            bool success = true;
+            success &= rtc.ListBegin(laser);
+            for (int i = 0; i < counts; i++)
             {
                 //줄의 시작위치로 점프
-                rtc.ListJump(new Vector2(0, i * gap));
+                success &= rtc.ListJump(new Vector2(0, i * gap));
                 // pixel의 최대 주기시간 (200us), 출력 채널(analog 1), 가로세로 간격 (gap), 총 pixel 개수
-                rtcExt.ListPixelLine(200, new Vector2(gap, 0), (uint)counts, ExtensionChannel.ExtAO1);
+                success &= rtcExt.ListPixelLine(200, new Vector2(gap, 0), (uint)counts, ExtensionChannel.ExtAO1 );
                 for (int j = 0; j < counts; j++)
-                    rtcExt.ListPixel(20, 5); // 20usec, 5V
+                    success &= rtcExt.ListPixel(20, 5); // 20usec, 5V
+                if (!success)
+                    break;
             }
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(true);
+            return success;
         }
     }
 }

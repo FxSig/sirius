@@ -20,7 +20,7 @@
  * IRtcCharacterSet 인터페이스를 사용하는 방법
  * RTC5 카드를 초기화 하고 리스트 버퍼3에 문자를 등록하고 이를 사용해 시간, 날짜, 시리얼 번호를 마킹한다
  * MOTF 와 연동하여 텍스트 마킹 내용이 RTC에 의해 처리되는 외부 제어 방식
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -31,7 +31,6 @@ using System.Numerics;
 
 namespace SpiralLab.Sirius
 {
-
     class Program
     {
         static void Main(string[] args)
@@ -136,9 +135,9 @@ namespace SpiralLab.Sirius
             rtcCharSet.CtlCharacterBegin('2');
             rtc.ListJump(new Vector2(0, 10 ));
             rtc.ListMark(new Vector2(0 + 5, 10+ 0) );
-            rtc.ListMark(new Vector2(0 + 5 + 0, 10 + 0 - 5) );
+            rtc.ListMark(new Vector2(0 + 5 + 0, 10 + 0 - 5 ));
             rtc.ListMark(new Vector2(0 + 5 + 0 - 5, 10 + 0 - 5 + 0));
-            rtc.ListMark(new Vector2(0 + 5 + 0 - 5 + 0, 10 + 0 - 5 + 0 - 5) );
+            rtc.ListMark(new Vector2(0 + 5 + 0 - 5 + 0, 10 + 0 - 5 + 0 - 5 ));
             rtc.ListMark(new Vector2(0 + 5 + 0 - 5 + 0 + 5, 10 + 0 - 5 + 0 - 5 + 0));
             rtc.ListJump(new Vector2(0 + 5 + 0 - 5 + 0 + 5 + 5, 10 + 0 - 5 + 0 - 5 + 0 + 0));
             rtcCharSet.CtlCharacterEnd();
@@ -146,7 +145,7 @@ namespace SpiralLab.Sirius
             rtcCharSet.CtlCharacterBegin('3');
             rtc.ListJump(new Vector2(0, 10 ));
             rtc.ListMark(new Vector2(0 + 5, 10 + 0 ));
-            rtc.ListMark(new Vector2(0 + 5 + 0, 10 + 0 - 5 ));
+            rtc.ListMark(new Vector2(0 + 5 + 0, 10 + 0 - 5) );
             rtc.ListMark(new Vector2(0 + 5 + 0 - 5, 10 + 0 - 5 + 0 ));
             rtc.ListJump(new Vector2(0 + 5 + 0 - 5 + 5, 10 + 0 - 5 + 0 + 0));
             rtc.ListMark(new Vector2(0 + 5 + 0 - 5 + 5 + 0, 10 + 0 - 5 + 0 + 0 - 5 ));
@@ -155,8 +154,8 @@ namespace SpiralLab.Sirius
             rtcCharSet.CtlCharacterEnd();
 
             rtcCharSet.CtlCharacterBegin('4');
-            rtc.ListJump(new Vector2(0, 10 ));
-            rtc.ListMark(new Vector2(0 + 0, 10 -5 ));
+            rtc.ListJump(new Vector2(0, 10) );
+            rtc.ListMark(new Vector2(0 + 0, 10 -5) );
             rtc.ListMark(new Vector2(0 + 0 + 5, 10 - 5 + 0));
             rtc.ListJump(new Vector2(0 + 0 + 5 + 0, 10 - 5 + 0 + 5));
             rtc.ListMark(new Vector2(0 + 0 + 5 + 0 + 0, 10 - 5 + 0 + 5 - 10 ));
@@ -167,7 +166,7 @@ namespace SpiralLab.Sirius
             rtc.ListJump(new Vector2(5, 10));
             rtc.ListMark(new Vector2(5 -5, 10 + 0 ));
             rtc.ListMark(new Vector2(5 - 5 + 0, 10 + 0 - 5 ));
-            rtc.ListMark(new Vector2(5 - 5 + 0 + 5, 10 + 0 - 5 + 0 ));
+            rtc.ListMark(new Vector2(5 - 5 + 0 + 5, 10 + 0 - 5 + 0) );
             rtc.ListMark(new Vector2(5 - 5 + 0 + 5 + 0, 10 + 0 - 5 + 0 - 5 ));
             rtc.ListMark(new Vector2(5 - 5 + 0 + 5 + 0 - 5, 10 + 0 - 5 + 0 - 5 + 0 ));
             rtc.ListJump(new Vector2(5 - 5 + 0 + 5 + 0 - 5 + 10, 10 + 0 - 5 + 0 - 5 + 0 + 0));
@@ -175,8 +174,8 @@ namespace SpiralLab.Sirius
 
             rtcCharSet.CtlCharacterBegin('6');
             rtc.ListJump(new Vector2(5, 10 ));
-            rtc.ListMark(new Vector2(5 -5, 10 + 0 ));
-            rtc.ListMark(new Vector2(5 - 5 + 0, 10 + 0 - 5 ));
+            rtc.ListMark(new Vector2(5 -5, 10 + 0) );
+            rtc.ListMark(new Vector2(5 - 5 + 0, 10 + 0 - 5) );
             rtc.ListMark(new Vector2(5 - 5 + 0 + 0, 10 + 0 - 5 - 5 ));
             rtc.ListMark(new Vector2(5 - 5 + 0 + 0 + 5, 10 + 0 - 5 - 5 + 0));
             rtc.ListMark(new Vector2(5 - 5 + 0 + 0 + 5 + 0, 10 + 0 - 5 - 5 + 0 + 5));
@@ -188,7 +187,7 @@ namespace SpiralLab.Sirius
             rtc.ListJump(new Vector2( 0, 10 ));
             rtc.ListMark(new Vector2( 0 + 5, 10 + 0 ));
             rtc.ListMark(new Vector2( 0 + 5 + 0, 10 + 0 - 5 ));
-            rtc.ListMark(new Vector2( 0 + 5 + 0 + 0, 10 + 0 - 5 - 5 ));
+            rtc.ListMark(new Vector2( 0 + 5 + 0 + 0, 10 + 0 - 5 - 5) );
             rtc.ListJump(new Vector2(0 + 5 + 0 + 0 + 5, 10 + 0 - 5 - 5 + 0));
             rtcCharSet.CtlCharacterEnd();
 
@@ -207,7 +206,7 @@ namespace SpiralLab.Sirius
 
             rtcCharSet.CtlCharacterBegin('9');
             rtc.ListJump(new Vector2(5, 10 ));
-            rtc.ListMark(new Vector2(5 - 5, 10 + 0 ));
+            rtc.ListMark(new Vector2(5 - 5, 10 + 0) );
             rtc.ListMark(new Vector2(5 - 5 + 0, 10 + 0 - 5 ));
             rtc.ListMark(new Vector2(5 - 5 + 0 + 5, 10 + 0 - 5 + 0));
             rtc.ListMark(new Vector2(5 - 5 + 0 + 5 + 0, 10 + 0 - 5 + 0 + 5));
@@ -218,16 +217,16 @@ namespace SpiralLab.Sirius
             rtcCharSet.CtlCharacterEnd();
 
             rtcCharSet.CtlCharacterBegin(';');
-            rtc.ListJump(new Vector2(0, 2 ));
-            rtc.ListMark(new Vector2(0 + 2, 2 + 0 ));
-            rtc.ListMark(new Vector2(0 + 2 + 0, 2 + 0 + 2 ));
-            rtc.ListMark(new Vector2(0 + 2 + 0 - 2, 2 + 0 + 2 + 0 ));
+            rtc.ListJump(new Vector2(0, 2) );
+            rtc.ListMark(new Vector2(0 + 2, 2 + 0) );
+            rtc.ListMark(new Vector2(0 + 2 + 0, 2 + 0 + 2) );
+            rtc.ListMark(new Vector2(0 + 2 + 0 - 2, 2 + 0 + 2 + 0) );
             rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0, 2 + 0 + 2 + 0 - 2 ));
             rtc.ListJump(new Vector2(0 + 2 + 0 - 2 + 0 + 0, 2 + 0 + 2 + 0 - 2 + 4 ));
             rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2, 2 + 0 + 2 + 0 - 2 + 4 + 0 ));
             rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2 + 0, 2 + 0 + 2 + 0 - 2 + 4 + 0 + 2 ));
             rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2 + 0 - 2, 2 + 0 + 2 + 0 - 2 + 4 + 0 + 2+ 0));
-            rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2 + 0 - 2 + 0, 2 + 0 + 2 + 0 - 2 + 4 + 0 + 2 + 0 - 2 ));
+            rtc.ListMark(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2 + 0 - 2 + 0, 2 + 0 + 2 + 0 - 2 + 4 + 0 + 2 + 0 - 2) );
             rtc.ListJump(new Vector2(0 + 2 + 0 - 2 + 0 + 0 + 2 + 0 - 2 + 0 + 5, 2 + 0 + 2 + 0 - 2 + 4 + 0 + 2 + 0 - 2 - 6));
             rtcCharSet.CtlCharacterEnd();
 
@@ -236,7 +235,7 @@ namespace SpiralLab.Sirius
             rtcCharSet.CtlCharacterEnd();
 
             rtcCharSet.CtlCharacterBegin('-');
-            rtc.ListJump(new Vector2(0, 5 ));
+            rtc.ListJump(new Vector2(0, 5) );
             rtc.ListMark(new Vector2(0 + 5, 5 + 0 ));
             rtc.ListJump(new Vector2(0 + 5 + 5, 5 + 0 - 5));
             rtcCharSet.CtlCharacterEnd();
@@ -247,17 +246,21 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static void MarkToText(ILaser laser, IRtc rtc)
+        private static bool MarkToText(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
-
+                return false;
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(-10, 0));
-            rtcCharSet.ListText("123 456");
-            rtc.ListEnd();
-            rtc.ListExecute();
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(new Vector2(-10, 0));
+            success &= rtcCharSet.ListText("123 456");
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute();
+            }
+            return success;
         }
 
         /// <summary>
@@ -265,64 +268,75 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static void MarkToDate(ILaser laser, IRtc rtc)
+        private static bool MarkToDate(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
-
+                return false;
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(-10, 0));
-            rtcCharSet.ListDate(DateFormat.MonthDigit, true);
-            rtc.ListJump(new Vector2(10, 0));
-            rtcCharSet.ListDate(DateFormat.Day, true);
-            rtc.ListEnd();
-            rtc.ListExecute();
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(new Vector2(-10, 0));
+            success &= rtcCharSet.ListDate(DateFormat.MonthDigit, true);
+            success &= rtc.ListJump(new Vector2(10, 0));
+            success &= rtcCharSet.ListDate(DateFormat.Day, true);
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute();
+            }
+            return success;
         }
         /// <summary>
         /// 내부 리스트 메모리에 등록된 폰트를 이용한 시간 마킹
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static void MarkToTime(ILaser laser, IRtc rtc)
+        private static bool MarkToTime(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
-
+                return false;
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(-10, 0));
-            rtcCharSet.ListTime(TimeFormat.Hours24, true);
-            rtc.ListJump(new Vector2(10, 0));
-            rtcCharSet.ListTime(TimeFormat.Minutes, true);
-            rtc.ListJump(new Vector2(30, 0));
-            rtcCharSet.ListTime(TimeFormat.Seconds, true);
-            rtc.ListEnd();
-            rtc.ListExecute();
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(new Vector2(-10, 0));
+            success &= rtcCharSet.ListTime(TimeFormat.Hours24, true);
+            success &= rtc.ListJump(new Vector2(10, 0));
+            success &= rtcCharSet.ListTime(TimeFormat.Minutes, true);
+            success &= rtc.ListJump(new Vector2(30, 0));
+            success &= rtcCharSet.ListTime(TimeFormat.Seconds, true);
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute();
+            }
+            return success;
         }
         /// <summary>
         /// 내부 리스트 메모리에 등록된 폰트를 이용한 시리얼 번호
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static void MarkToSerial(ILaser laser, IRtc rtc)
+        private static bool MarkToSerial(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
-
+                return false;
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
             //초기값: 1000, 증가값: 1
             rtcCharSet.CtlSerialReset(1000, 1);
-
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(-10,-20));
-            rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
-            rtc.ListJump(new Vector2(-10, 0));
-            rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
-            rtc.ListJump(new Vector2(-10, 20));
-            rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
-            rtc.ListEnd();
-            rtc.ListExecute();
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(new Vector2(-10,-20));
+            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            success &= rtc.ListJump(new Vector2(-10, 0));
+            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            success &= rtc.ListJump(new Vector2(-10, 20));
+            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute();
+            }
+            return success;
         }
     }
 }

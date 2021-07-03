@@ -111,7 +111,7 @@ namespace SpiralLab.Sirius
                 if (value.Equals(this.doc))
                     return;
                 this.doc = value;
-                if (0 == this.doc.Layers.Count)  //default layer create
+                if (0 == this.doc.Layers.Count)  //default layer create if no exist
                     this.doc.Action.ActNew();
                 List<IView> oldViews = new List<IView>();
                 if (null != this.Document)

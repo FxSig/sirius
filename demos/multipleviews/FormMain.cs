@@ -69,6 +69,12 @@ namespace SpiralLab.Sirius
             this.formEditor1.Editor.OnDocumentSourceChanged += Editor1_OnDocumentSourceChanged;
             this.formEditor2.Editor.OnDocumentSourceChanged += Editor2_OnDocumentSourceChanged;
 
+            // 기본 펜 개체 생성
+            var pen1 = new PenDefault();
+            doc1.Action.ActEntityAdd(pen1);
+            var pen2 = new PenDefault();
+            doc2.Action.ActEntityAdd(pen2);
+
             // 에디터1 와 하드웨어 연결
             this.formEditor1.Editor.Rtc = rtc1;
             this.formEditor1.Editor.Laser = laser1;

@@ -38,10 +38,6 @@
     <Reference Include="spirallab.core">
       <HintPath>..\..\packages\sirius.rtc\spirallab.core.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
-    </Reference>
     <Reference Include="spirallab.sirius.rtc">
       <HintPath>..\..\packages\sirius.rtc\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
@@ -61,6 +57,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\spirallab.sirius.csproj">
+      <Project>{eb052dd6-6210-411c-919d-9e151f04f4d1}</Project>
+      <Name>spirallab.sirius</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

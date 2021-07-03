@@ -116,100 +116,99 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 선 그리기 = 지령 속도 기반 레이저 신호 (아나로그 ~10V) 제어
         /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        private static void DrawLine1(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        private static bool DrawLine1(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
             var alc = rtc as IRtcAutoLaserControl;
             if (null == alc)
-                return;
+                return false;
+            bool success = true;
             alc.AutoLaserControlByPositionFileName = string.Empty;
-            alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
 
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(x1, y1));
-            rtc.ListMark(new Vector2(x2, y2));
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(x1, y1));
+            success &= rtc.ListMark(new Vector2(x2, y2));
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
 
         /// <summary>
         /// 선 그리기 = 위치 의존적 + 지령 속도 기반 레이저 신호 (아나로그 ~10V) 제어
         /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        private static void DrawLine2(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        private static bool DrawLine2(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
             var alc = rtc as IRtcAutoLaserControl;
             if (null == alc)
-                return;
+                return false;
+            bool success = true;
             alc.AutoLaserControlByPositionFileName = "your power scale file.txt";
-            alc.AutoLaserControlByPositionTableNo = 0;
-            alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
+            alc.AutoLaserControlByPositionTableNo = 1;
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
 
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(x1, y1));
-            rtc.ListMark(new Vector2(x2, y2));
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(x1, y1));
+            success &= rtc.ListMark(new Vector2(x2, y2));
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
 
         /// <summary>
         /// 선 그리기 = 실제 속도 기반 레이저 신호 (주파수 변조) 제어
         /// intelliDRIVE 기반 스캐너 필요
         /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        private static void DrawLine3(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        private static bool DrawLine3(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
             var alc = rtc as IRtcAutoLaserControl;
             if (null == alc)
-                return;
+                return false;
+            bool success = true;
             alc.AutoLaserControlByPositionFileName = string.Empty;
             //target frequency : 100KHz
             //lower cut off frequency : 50KHz
             //upper cut off frequency : 120KHz
-            alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000,  50*1000, 120 * 1000);
-            rtc.ListBegin(laser);
-            rtc.ListJump(new Vector2(x1, y1));
-            rtc.ListMark(new Vector2(x2, y2));
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000,  50*1000, 120 * 1000);
+            success &= rtc.ListBegin(laser);
+            success &= rtc.ListJump(new Vector2(x1, y1));
+            success &= rtc.ListMark(new Vector2(x2, y2));
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
 
         /// <summary>
         /// 선 그리기 = 벡터 위치 기반 레이저 신호(아나로그) 제어
         /// intelliDRIVE 기반 스캐너 필요
         /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        private static void DrawLine4(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        private static bool DrawLine4(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
             var alc = rtc as IRtcAutoLaserControl;
             if (null == alc)
-                return;
+                return false;
+            bool success = true;
             alc.AutoLaserControlByPositionFileName = string.Empty;
-            alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000, 50 * 1000, 120 * 1000);
-            rtc.ListBegin(laser);
-            alc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 10F); // 아나로그 신호로 시작 (기준값 : 10V)
-            rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 10V * 0.5 = 5V 로 시작
-            rtc.ListMark(new Vector2(x2, y2), 1.0F); //끝 위치로 마크 10V * 1.0 = 10V 로 끝
-            alc.ListAlcByVectorEnd();
-            rtc.ListEnd();
-            rtc.ListExecute(true);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000, 50 * 1000, 120 * 1000);
+            success &= rtc.ListBegin(laser);
+            success &= alc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 10F); // 아나로그 신호로 시작 (기준값 : 10V)
+            success &= rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 10V * 0.5 = 5V 로 시작
+            success &= rtc.ListMark(new Vector2(x2, y2), 1.0F); //끝 위치로 마크 10V * 1.0 = 10V 로 끝
+            success &= alc.ListAlcByVectorEnd();
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
-
     }
 }

@@ -24,7 +24,7 @@ namespace SpiralLab.Sirius
             siriusEditorForm1.Document = doc;
 
             // 기본 펜 생성후 문서에 추가
-            var pen = new PenDefault();
+            var pen = new CustomPen();
             doc.Action.ActEntityAdd(pen);
 
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
@@ -60,6 +60,15 @@ namespace SpiralLab.Sirius
             var marker = new MarkerDefault(0);
             #endregion
             this.siriusEditorForm1.Marker =  marker;
+
+            this.siriusEditorForm1.OnDocumentPenNew += SiriusEditorForm1_OnDocumentPenNew; 
+        }
+
+        private void SiriusEditorForm1_OnDocumentPenNew(object sender)
+        {
+            // 사용자 정의 펜 엔티티를 생성
+            var pen = new CustomPen();
+            this.siriusEditorForm1.OnPenNew(pen);
         }
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)

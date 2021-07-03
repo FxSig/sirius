@@ -12,11 +12,11 @@ namespace SpiralLab.Sirius
 {
     public partial class LaserForm : UserControl
     {
-        ILaser laser;
+        public ILaser Laser { get; private set; }
         public LaserForm(YourCustomLaser laser)
         {
             InitializeComponent();
-            this.laser = laser;
+            this.Laser = laser;
         }
     }
 }

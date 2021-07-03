@@ -9,7 +9,9 @@ using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-    //Z Axis Motor
+    /// <summary>
+    /// Z Axis Motor
+    /// </summary>
     public class MotorZ : SpiralLab.Sirius.IMotor
     {
         public object SyncRoot { get; private set; }

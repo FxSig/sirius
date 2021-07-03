@@ -119,12 +119,12 @@ namespace SpiralLab.Sirius
         /// 마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
         /// </summary>
         public IMarkerArg MarkerArg { get; private set; }
+        public IDocument Document { get { return this.clonedDoc; } }
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
         public object Tag { get; set; }
 
-        public IDocument Document { get { return this.clonedDoc; } }
         protected IDocument clonedDoc;
         protected Thread thread;
 
@@ -331,20 +331,9 @@ namespace SpiralLab.Sirius
             for (int i = 0; i < offsets.Count; i++)
             {
                 var xyt = offsets[i];
-                //직접 계산하느니
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(this.ScannerRotateAngle * MathHelper.DegToRad));   //7. 스캐너 회전량 적용
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(xyt.X, xyt.Y)); // 6. 오프셋 이동량
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(xyt.Angle * MathHelper.DegToRad));  // 5. 오프셋 회전량
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(Vector2.Negate(clonedDoc.Dimension.Center))); //4. 문서의 원점 위치를 이동
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y)); //3. 회전 중심 위치 원복
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateRotation(clonedDoc.RotateOffset.Angle * MathHelper.DegToRad)); //2. 문서에 설정된 회전량 적용);
-                //this.Rtc.MatrixStack.Push(Matrix3x2.CreateTranslation(-clonedDoc.RotateOffset.X, -clonedDoc.RotateOffset.Y));  //1. 회전을 위해 회점 중심을 원점으로 이동);
-                //or 
-                //간단한 행렬 스택 사용법이 용이
                 rtc.MatrixStack.Push(scannerRotateAngle); // 3. 스캐너의 기구적 회전량
-                rtc.MatrixStack.Push(xyt.X, xyt.Y); // 3. 오프셋 이동량
-                rtc.MatrixStack.Push(xyt.Angle);  // 2. 오프셋 회전량
-                rtc.MatrixStack.Push(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y, clonedDoc.RotateOffset.Angle);  // 1. 회전을 위해 회점 중심을 원점으로 이동);
+                rtc.MatrixStack.Push(xyt.X + clonedDoc.RotateOffset.X, xyt.Y + clonedDoc.RotateOffset.Y); // 2. 오프셋 이동량
+                rtc.MatrixStack.Push(xyt.Angle + clonedDoc.RotateOffset.Angle);  // 1. 오프셋 회전량
 
                 for (int j = 0; j < this.clonedDoc.Layers.Count; j++)
                 {
@@ -390,7 +379,6 @@ namespace SpiralLab.Sirius
                     }
                     if (!success) break;
                 }
-                rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();

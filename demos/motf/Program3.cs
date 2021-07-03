@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcExtension 인터페이스를 직접 사용하는 방법
  * RTC5 + RtcExtension 카드를 초기화 하고 다양한 확장 기능을 테스트
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -85,45 +85,45 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-        private static void DrawCircle(ILaser laser, IRtc rtc)
+        private static bool DrawCircle(ILaser laser, IRtc rtc)
         {
+            bool success = true;
             var rtcExt = rtc as IRtcExtension;
-
             //리스트 시작
-            rtc.ListBegin(laser);
-
+            success &= rtc.ListBegin(laser);
             //아나로그1 에 5V 출력
-            rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 1);
+            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 1);
             //1 초 동안 대기
-            rtc.ListWait(1000);
+            success &= rtc.ListWait(1000);
             //아나로그1 에 0V 출력
-            rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 0);
-
+            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 0);
             //점프
-            rtc.ListJump(new Vector2(10, 0));
+            success &= rtc.ListJump(new Vector2(10, 0));
             //레이저 출력 15핀에 있는 출력 2접점중 첫번째 비트 켜기 
-            rtc.ListWriteData<int>(ExtensionChannel.ExtDO2, 0x01);
+            success &= rtc.ListWriteData<int>(ExtensionChannel.ExtDO2, 0x01);
             //레이저 출력 시작
-            rtc.ListLaserOn();
+            success &= rtc.ListLaserOn();
             //0.5 초 동안 대기
-            rtc.ListWait(500);
+            success &= rtc.ListWait(500);
             //레이저 출력 중지
-            rtc.ListLaserOff();
+            success &= rtc.ListLaserOff();
             //레이저 출력 15핀에 있는 출력 2접점중 첫번째 비트 끄기
-            rtc.ListWriteData<int>(ExtensionChannel.ExtDO2, 0x00);
-
+            success &= rtc.ListWriteData<int>(ExtensionChannel.ExtDO2, 0x00);
             //점프
-            rtc.ListJump(new Vector2(-10, 0));
+            success &= rtc.ListJump(new Vector2(-10, 0));
             //매 100us 마다 X 방향으로 0.1 mm 이동하면서 아나로그 1번 출력으로 픽셀 출력(Raster Operation)을 준비 (100개)
-            rtcExt.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO1);
+            success &= rtcExt.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO1);
             for (int i = 0; i < 100; i++)
-                rtcExt.ListPixel(10, 5); //10us 펄스 생성및 아나로그1 에 5V 출력
-
-            //리스트 종료
-            rtc.ListEnd();
-            //나머지 데이타 가공 완료 대기
-            rtc.ListExecute(true); 
+                success &= rtcExt.ListPixel(10, 5); //10us 펄스 생성및 아나로그1 에 5V 출력
+            
+            if (success)
+            {
+                //리스트 종료
+                success &= rtc.ListEnd();
+                //나머지 데이타 가공 완료 대기
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
-      
     }
 }

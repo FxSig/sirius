@@ -30,14 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panFooter = new System.Windows.Forms.Panel();
+            this.btnHistory = new System.Windows.Forms.Button();
+            this.btnRecipe = new System.Windows.Forms.Button();
+            this.btnSetup = new System.Windows.Forms.Button();
             this.btnLaser = new System.Windows.Forms.Button();
+            this.btnExit = new System.Windows.Forms.Button();
+            this.btnAuto = new System.Windows.Forms.Button();
             this.panTop = new System.Windows.Forms.Panel();
             this.lblVersion = new System.Windows.Forms.Label();
+            this.btnMaximize = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panHeader = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnAbort = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.lsbErrWarn = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
@@ -46,20 +55,11 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
-            this.btnAbort = new System.Windows.Forms.Button();
-            this.btnReset = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnHistory = new System.Windows.Forms.Button();
-            this.btnRecipe = new System.Windows.Forms.Button();
-            this.btnSetup = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnAuto = new System.Windows.Forms.Button();
-            this.btnMaximize = new System.Windows.Forms.Button();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
-            this.panMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panFooter
@@ -76,6 +76,57 @@
             this.panFooter.Name = "panFooter";
             this.panFooter.Size = new System.Drawing.Size(1280, 87);
             this.panFooter.TabIndex = 7;
+            // 
+            // btnHistory
+            // 
+            this.btnHistory.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHistory.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHistory.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistory.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_48px;
+            this.btnHistory.Location = new System.Drawing.Point(364, 8);
+            this.btnHistory.Name = "btnHistory";
+            this.btnHistory.Size = new System.Drawing.Size(82, 72);
+            this.btnHistory.TabIndex = 13;
+            this.btnHistory.Text = "&History";
+            this.btnHistory.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnHistory.UseVisualStyleBackColor = true;
+            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
+            // 
+            // btnRecipe
+            // 
+            this.btnRecipe.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRecipe.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRecipe.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRecipe.Image = global::Spirallab.Sirius.Properties.Resources.micro_sd_48px;
+            this.btnRecipe.Location = new System.Drawing.Point(100, 8);
+            this.btnRecipe.Name = "btnRecipe";
+            this.btnRecipe.Size = new System.Drawing.Size(82, 72);
+            this.btnRecipe.TabIndex = 12;
+            this.btnRecipe.Text = "&Recipe";
+            this.btnRecipe.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnRecipe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRecipe.UseVisualStyleBackColor = true;
+            this.btnRecipe.Click += new System.EventHandler(this.btnRecipe_Click);
+            // 
+            // btnSetup
+            // 
+            this.btnSetup.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSetup.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSetup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSetup.Image = global::Spirallab.Sirius.Properties.Resources.adjust_48px;
+            this.btnSetup.Location = new System.Drawing.Point(276, 8);
+            this.btnSetup.Name = "btnSetup";
+            this.btnSetup.Size = new System.Drawing.Size(82, 72);
+            this.btnSetup.TabIndex = 11;
+            this.btnSetup.Text = "&Setup";
+            this.btnSetup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSetup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSetup.UseVisualStyleBackColor = true;
+            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
             // 
             // btnLaser
             // 
@@ -94,6 +145,41 @@
             this.btnLaser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnLaser.UseVisualStyleBackColor = true;
             this.btnLaser.Click += new System.EventHandler(this.btnLaser_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExit.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.Image = global::Spirallab.Sirius.Properties.Resources.shutdown_48px;
+            this.btnExit.Location = new System.Drawing.Point(1186, 8);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(82, 72);
+            this.btnExit.TabIndex = 8;
+            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnAuto
+            // 
+            this.btnAuto.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAuto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAuto.Image = global::Spirallab.Sirius.Properties.Resources.collage_48px;
+            this.btnAuto.Location = new System.Drawing.Point(12, 8);
+            this.btnAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnAuto.Name = "btnAuto";
+            this.btnAuto.Size = new System.Drawing.Size(82, 72);
+            this.btnAuto.TabIndex = 3;
+            this.btnAuto.Text = "&Auto";
+            this.btnAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAuto.UseVisualStyleBackColor = true;
+            this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
             // 
             // panTop
             // 
@@ -123,6 +209,18 @@
             this.lblVersion.Size = new System.Drawing.Size(43, 16);
             this.lblVersion.TabIndex = 3;
             this.lblVersion.Text = "Ver 1.0";
+            // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.Image = global::Spirallab.Sirius.Properties.Resources.full_screen_24px;
+            this.btnMaximize.Location = new System.Drawing.Point(1238, 5);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(29, 23);
+            this.btnMaximize.TabIndex = 2;
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
             // lblTime
             // 
@@ -171,6 +269,42 @@
             this.label2.TabIndex = 14;
             this.label2.Text = "SPIRALLAB";
             // 
+            // btnAbort
+            // 
+            this.btnAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAbort.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAbort.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAbort.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAbort.Image = global::Spirallab.Sirius.Properties.Resources.stop_sign_40px;
+            this.btnAbort.Location = new System.Drawing.Point(1172, 19);
+            this.btnAbort.Name = "btnAbort";
+            this.btnAbort.Size = new System.Drawing.Size(82, 82);
+            this.btnAbort.TabIndex = 13;
+            this.btnAbort.Text = "Abort";
+            this.btnAbort.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnAbort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAbort.UseVisualStyleBackColor = true;
+            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
+            // 
+            // btnReset
+            // 
+            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReset.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Image = global::Spirallab.Sirius.Properties.Resources.reset_48px;
+            this.btnReset.Location = new System.Drawing.Point(1084, 19);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(82, 82);
+            this.btnReset.TabIndex = 12;
+            this.btnReset.Text = "Reset";
+            this.btnReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // lsbErrWarn
             // 
             this.lsbErrWarn.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -181,6 +315,16 @@
             this.lsbErrWarn.Name = "lsbErrWarn";
             this.lsbErrWarn.Size = new System.Drawing.Size(415, 100);
             this.lsbErrWarn.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Spirallab.Sirius.Properties.Resources.spirallab1;
+            this.pictureBox1.Location = new System.Drawing.Point(49, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // splitter1
             // 
@@ -269,150 +413,6 @@
             this.panBody.Size = new System.Drawing.Size(1280, 732);
             this.panBody.TabIndex = 18;
             // 
-            // btnAbort
-            // 
-            this.btnAbort.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAbort.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAbort.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAbort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAbort.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAbort.Image = global::Spirallab.Sirius.Properties.Resources.stop_sign_40px;
-            this.btnAbort.Location = new System.Drawing.Point(1172, 19);
-            this.btnAbort.Name = "btnAbort";
-            this.btnAbort.Size = new System.Drawing.Size(82, 82);
-            this.btnAbort.TabIndex = 13;
-            this.btnAbort.Text = "Abort";
-            this.btnAbort.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAbort.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAbort.UseVisualStyleBackColor = true;
-            this.btnAbort.Click += new System.EventHandler(this.btnAbort_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnReset.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnReset.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Image = global::Spirallab.Sirius.Properties.Resources.reset_48px;
-            this.btnReset.Location = new System.Drawing.Point(1084, 19);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(82, 82);
-            this.btnReset.TabIndex = 12;
-            this.btnReset.Text = "Reset";
-            this.btnReset.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnReset.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::Spirallab.Sirius.Properties.Resources.spirallab1;
-            this.pictureBox1.Location = new System.Drawing.Point(49, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // btnHistory
-            // 
-            this.btnHistory.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHistory.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHistory.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistory.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_48px;
-            this.btnHistory.Location = new System.Drawing.Point(364, 8);
-            this.btnHistory.Name = "btnHistory";
-            this.btnHistory.Size = new System.Drawing.Size(82, 72);
-            this.btnHistory.TabIndex = 13;
-            this.btnHistory.Text = "&History";
-            this.btnHistory.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnHistory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnHistory.UseVisualStyleBackColor = true;
-            this.btnHistory.Click += new System.EventHandler(this.btnHistory_Click);
-            // 
-            // btnRecipe
-            // 
-            this.btnRecipe.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRecipe.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRecipe.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecipe.Image = global::Spirallab.Sirius.Properties.Resources.micro_sd_48px;
-            this.btnRecipe.Location = new System.Drawing.Point(100, 8);
-            this.btnRecipe.Name = "btnRecipe";
-            this.btnRecipe.Size = new System.Drawing.Size(82, 72);
-            this.btnRecipe.TabIndex = 12;
-            this.btnRecipe.Text = "&Recipe";
-            this.btnRecipe.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnRecipe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRecipe.UseVisualStyleBackColor = true;
-            this.btnRecipe.Click += new System.EventHandler(this.btnRecipe_Click);
-            // 
-            // btnSetup
-            // 
-            this.btnSetup.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSetup.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSetup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetup.Image = global::Spirallab.Sirius.Properties.Resources.adjust_48px;
-            this.btnSetup.Location = new System.Drawing.Point(276, 8);
-            this.btnSetup.Name = "btnSetup";
-            this.btnSetup.Size = new System.Drawing.Size(82, 72);
-            this.btnSetup.TabIndex = 11;
-            this.btnSetup.Text = "&Setup";
-            this.btnSetup.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSetup.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSetup.UseVisualStyleBackColor = true;
-            this.btnSetup.Click += new System.EventHandler(this.btnSetup_Click);
-            // 
-            // btnExit
-            // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Image = global::Spirallab.Sirius.Properties.Resources.shutdown_48px;
-            this.btnExit.Location = new System.Drawing.Point(1186, 8);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(82, 72);
-            this.btnExit.TabIndex = 8;
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // btnAuto
-            // 
-            this.btnAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAuto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Image = global::Spirallab.Sirius.Properties.Resources.collage_48px;
-            this.btnAuto.Location = new System.Drawing.Point(12, 8);
-            this.btnAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(82, 72);
-            this.btnAuto.TabIndex = 3;
-            this.btnAuto.Text = "&Auto";
-            this.btnAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAuto.UseVisualStyleBackColor = true;
-            this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
-            // 
-            // btnMaximize
-            // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::Spirallab.Sirius.Properties.Resources.full_screen_24px;
-            this.btnMaximize.Location = new System.Drawing.Point(1238, 5);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(29, 23);
-            this.btnMaximize.TabIndex = 2;
-            this.btnMaximize.UseVisualStyleBackColor = true;
-            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -439,9 +439,9 @@
             this.panTop.PerformLayout();
             this.panHeader.ResumeLayout(false);
             this.panHeader.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panMenu.ResumeLayout(false);
             this.panMenu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

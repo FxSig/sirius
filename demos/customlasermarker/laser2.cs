@@ -10,7 +10,9 @@ using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-    //레이저 소스 (RS-232 통신과 같이 통신 지연을 가지고 파워 제어가 필요한 레이저 소스)
+    /// <summary>
+    /// 레이저 소스 (RS-232 통신과 같이 통신 지연을 가지고 파워 제어가 필요한 레이저 소스)
+    /// </summary>
     public class YourCustomLaser2 : SpiralLab.Sirius.ILaser
     {
         /// <summary>

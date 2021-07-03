@@ -55,8 +55,9 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
-            var laser = new YourCustomLaser(0, "custom laser", 20.0f);
-            //var laser = new YourCustomLaser2(0, "custome laser with rs232 comm", 1);
+            ILaser laser = new YourCustomLaser(0, "custom laser", 20.0f);
+            //or
+            //ILaser laser2 = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
             laser.Rtc = rtc;
             laser.Initialize();
             laser.CtlPower(10);
@@ -99,7 +100,7 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-        private static void DrawByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
+        private static bool DrawByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
         {
             #region load from sirius file
             var dlg = new OpenFileDialog();
@@ -107,7 +108,7 @@ namespace SpiralLab.Sirius
             dlg.Title = "Open to data file";
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
-                return;
+                return false;
             string ext = Path.GetExtension(dlg.FileName);
             IDocument doc = null;
             if (0 == string.Compare(ext, ".dxf", true))
@@ -117,7 +118,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             Debug.Assert(null != doc);
-            /// 마커 가공 준비
+            // 마커 가공 준비
             marker.Ready( new MarkerArgDefault()
             {
                 Document = doc,
@@ -125,11 +126,11 @@ namespace SpiralLab.Sirius
                 Laser = laser,
                 MotorZ = motor,
             });
-            /// 하나의 오프셋 정보 추가
+            // 하나의 오프셋 정보 추가
             marker.MarkerArg.Offsets.Clear();
             marker.MarkerArg.Offsets.Add(Offset.Zero);
-            /// 가공 시작
-            marker.Start();
+            // 가공 시작
+            return marker.Start();
         }
         private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {

@@ -22,7 +22,7 @@
  * 3x3 (9개) 영역에 대한 스캐너 필드 왜곡 보정을 실시한다.
  * 나선 모양을 객체(Spiral Entity)를 생성하여 매 9개 위치에 각각 레이저를 출사한다.
  * 머신 비전등의 계측 장치로 측정된 9개의 위치 * 2 (상하부) 오차값을 사용한 새로운 스캐너 보정파일 생성한다.
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -36,7 +36,7 @@ namespace SpiralLab.Sirius
 {
     class Program2
     {
-        static float kfactor = 0.0f;
+        static double kfactor = Math.Pow(2, 20) / 60.0;
         static void Main2(string[] args)
         {
             SpiralLab.Core.Initialize();
@@ -77,7 +77,6 @@ namespace SpiralLab.Sirius
             //신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
 
-
             // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
             var correction = new RtcCorrection3D(kfactor, 3, 3, 5, -5, srcFile, targetFile);
@@ -108,14 +107,12 @@ namespace SpiralLab.Sirius
 
             //신규 보정 파일 생성 실시
             bool success = correction.Convert();
+            //var rtc = ...
             // 보정 파일을 테이블 1번으로 로딩
             //success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, targetFile);
             // 테이블1 번을 1번 스캐너(Primary Head)에 지정
             //success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
-            if (success)
-                return correction.ResultMessage;
-            else
-                return "fail to convert new correction file !";
+            return correction.ResultMessage;
         }
     }
 }

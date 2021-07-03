@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcDualHead 인터페이스를 직접 사용하는 방법
  * RTC5 + DualHead 카드를 초기화 하고 각 헤드별 오프셋을 처리한다
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -99,33 +99,38 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-        private static void DrawCircle(ILaser laser, IRtc rtc)
+        private static bool DrawCircle(ILaser laser, IRtc rtc)
         {
+            bool success = true;
             var rtcDualHead = rtc as IRtcDualHead;
             
             //리스트 시작
-            rtc.ListBegin(laser);
-
+            success &= rtc.ListBegin(laser);
             //리스트 명령으로 오프셋 및 회전 처리 방법
             //rtcDualHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
             //rtcDualHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
             for (int i = 0; i < 10; i++)
             {
                 //직선을 그립니다. 
-                rtc.ListJump(new Vector2(0, 0));
-                rtc.ListMark(new Vector2(10, 0));
+                success &= rtc.ListJump(new Vector2(0, 0));
+                success &= rtc.ListMark(new Vector2(10, 0));
 
-                rtc.ListJump(new Vector2((float)10, 0));
-                rtc.ListArc(new Vector2(0, 0), 360.0f);
+                success &= rtc.ListJump(new Vector2((float)10, 0));
+                success &= rtc.ListArc(new Vector2(0, 0), 360.0f);
+                if (!success)
+                    break;
             }
             //리스트 명령으로 오프셋 및 회전 처리 방법
             //rtcDualHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
             //rtcDualHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
             //리스트 종료
-            rtc.ListEnd();
-            //나머지 데이타 가공 완료 대기
-            rtc.ListExecute(true); 
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                //나머지 데이타 가공 완료 대기
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
-      
     }
 }

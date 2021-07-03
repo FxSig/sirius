@@ -40,8 +40,6 @@ namespace SpiralLab.Sirius
         {
             InitializeComponent();
         }
-
-
         private void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
             var span = arg.EndTime - arg.StartTime;
@@ -57,7 +55,6 @@ namespace SpiralLab.Sirius
                 listBox1.Items.Add($"{DateTime.Now.ToString()} : finished. {span.TotalSeconds:F3} sec");
             }
         }
-
         private void Marker_OnProgress(IMarker sender, IMarkerArg arg)
         {
             if (statusStrip1.InvokeRequired)
@@ -72,8 +69,6 @@ namespace SpiralLab.Sirius
                 pgbProgress.Value = (int)arg.Progress;
             }
         }
-
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (this.marker.IsReady)
@@ -91,12 +86,10 @@ namespace SpiralLab.Sirius
             else
                 panError.BackColor = Color.Maroon;
         }
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             this.marker.Reset();
         }
-
         private void btnStart_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to start ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -105,13 +98,11 @@ namespace SpiralLab.Sirius
             listBox1.Items.Add($"{DateTime.Now.ToString()} : trying to start ...");
             marker?.Start();
         }
-
         private void btnStop_Click(object sender, EventArgs e)
         {
             listBox1.Items.Add($"{DateTime.Now.ToString()} : trying to stop ...");
             marker?.Stop();
         }
-
         private void btnManualOn_Click(object sender, EventArgs e)
         {
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to manual laser on ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -124,7 +115,6 @@ namespace SpiralLab.Sirius
                 this.marker.MarkerArg.Rtc?.CtlLaserOn();
             }
         }
-
         private void btnManualOff_Click(object sender, EventArgs e)
         {
             if (null != marker.MarkerArg)
@@ -133,7 +123,6 @@ namespace SpiralLab.Sirius
                 this.marker.MarkerArg.Rtc?.CtlMove(0, 0);
             }
         }
-
         private void YourMarkerForm_VisibleChanged(object sender, EventArgs e)
         {
             this.timer1.Enabled = this.Visible;

@@ -21,7 +21,7 @@
  * 3x3 (9개) 영역에 대한 스캐너 필드 왜곡 보정을 실시한다.
  * 나선 모양을 객체(Spiral Entity)를 생성하여 매 9개 위치에 각각 레이저를 출사한다.
  * 머신 비전등의 계측 장치로 측정된 9개의 위치 오차값을 사용한 새로운 스캐너 보정파일 생성한다.
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -34,7 +34,7 @@ namespace SpiralLab.Sirius
 {
     class Program
     {
-        static float kfactor = 0.0f;
+        static double kfactor = Math.Pow(2, 20) / 60f;
         static void Main(string[] args)
         {
             SpiralLab.Core.Initialize();
@@ -92,27 +92,25 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region inputs absolute position values : 오차값의 절대적인 위치 정보를 넣는 방법
-            //correction.AddAbsolute(new Vector3(-20.01f, 20.01f, 0));
-            //correction.AddAbsolute(new Vector3(0.01f, 20.01f, 0));
-            //correction.AddAbsolute(new Vector3(20.01f, 20.01f, 0));
-            //correction.AddAbsolute(new Vector3(-20.01f, 0.01f, 0));
-            //correction.AddAbsolute(new Vector3(0.01f, 0.01f, 0));
-            //correction.AddAbsolute(new Vector3(20.01f, 0.01f, 0));
-            //correction.AddAbsolute(new Vector3(-20.01f, -20.01f, 0));
-            //correction.AddAbsolute(new Vector3(0.01f, -20.01f, 0));
-            //correction.AddAbsolute(new Vector3(20.01f, -20.01f, 0));
+            //correction.AddAbsolute(0, 0, new Vector2(-20, 20), new Vector2(-20.01f, 20.01f));
+            //correction.AddAbsolute(0, 1, new Vector2(0, 20), new Vector2(0.01f, 20.01f));
+            //correction.AddAbsolute(0, 2, new Vector2(20, 20), new Vector2(20.01f, 20.01f));
+            //correction.AddAbsolute(1, 0, new Vector2(-20, 0), new Vector2(-20.01f, 0.01f));
+            //correction.AddAbsolute(1, 1, new Vector2(0, 0), new Vector2(0.01f, 0.01f));
+            //correction.AddAbsolute(1, 2, new Vector2(20, 0), new Vector2(20.01f, 0.01f));
+            //correction.AddAbsolute(2, 0, new Vector2(-20, -20), new Vector2(-20.01f, -20.01f));
+            //correction.AddAbsolute(2, 1, new Vector2(0, -20), new Vector2(0.01f, -20.01f));
+            //correction.AddAbsolute(2, 2, new Vector2(20, -20), new Vector2(20.01f, -20.01f));
             #endregion
 
             //신규 보정 파일 생성 실시
             bool success = correction.Convert();
+            //var rtc = ...;
             // 보정 파일을 테이블 1번으로 로딩
             //success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, targetFile);
             // 테이블1 번을 1번 스캐너(Primary Head)에 지정
             //success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
-            if (success)
-                return correction.ResultMessage;
-            else
-                return "fail to convert new correction file !";
+            return correction.ResultMessage;
         }
     }
 }

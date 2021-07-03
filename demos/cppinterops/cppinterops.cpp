@@ -21,18 +21,14 @@
  * C++ 콘솔 프로그램에서 dll 의 COM 인터페이스에 접근하여 사용하는 예제
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  *
- * ToDo : Register .NET dll into COM object (sirius dll files only support x64)
- *   execute cmd.exe with admin and path to bin directory and register .dll 
- *       > "c:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" "spirallab.core.dll"
- *       > "c:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe" "spirallab.sirius.rtc.dll"
  */
 
 #include <windows.h>
 #include <tchar.h>
 
  //tlb 파일의 경로를 변경해 사용
-#import "..\..\bin\spirallab.core.tlb" raw_interfaces_only
-#import "..\..\bin\spirallab.sirius.rtc.tlb" raw_interfaces_only
+#import "..\..\packages\sirius.rtc\spirallab.core.tlb" raw_interfaces_only
+#import "..\..\packages\sirius.rtc\spirallab.sirius.rtc.tlb" raw_interfaces_only
 
 using namespace spirallab_core;
 using namespace spirallab_sirius_rtc;
@@ -44,10 +40,10 @@ bool static DrawCircle(ILaserPtr laser, IRtcPtr rtc, float radius)
     VARIANT_BOOL vRet = false;
     hr = rtc->ListBegin(laser, ListType::ListType_Auto, &vRet);
     hr = rtc->ListJump_2(radius, 0, 1.0f, &vRet);
-    hr = rtc->ListArc_2(0, 0, 360, &vRet);
+    hr = rtc->ListArc_2(0,0, 360, &vRet);
     hr = rtc->ListEnd(&vRet);
     hr = rtc->ListExecute(VARIANT_BOOL(true), &vRet);
-    return vRet = true;
+    return vRet == true;
 }
 
 bool static DrawLine(ILaserPtr laser, IRtcPtr rtc, float x1, float y1, float x2, float y2)
@@ -59,9 +55,8 @@ bool static DrawLine(ILaserPtr laser, IRtcPtr rtc, float x1, float y1, float x2,
     hr = rtc->ListMark_2(x2, y2, 1.0f, &vRet);
     hr = rtc->ListEnd(&vRet);
     hr = rtc->ListExecute(VARIANT_BOOL(true), &vRet);
-    return vRet = true;
+    return vRet == true;
 }
-
 
 int _tmain(int argc, _TCHAR* argv[])
 {

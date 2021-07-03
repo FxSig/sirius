@@ -6,12 +6,12 @@ using System.Windows;
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
 [assembly: AssemblyTitle("sirius")]
-[assembly: AssemblyDescription("sirius program")]
+[assembly: AssemblyDescription("powered by siriuslib")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("(c)SpiralLab")]
-[assembly: AssemblyProduct("sirius")]
-[assembly: AssemblyCopyright("spirallab.co.kr")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyProduct("sirius demo program")]
+[assembly: AssemblyCopyright("(c)SpiralLab")]
+[assembly: AssemblyTrademark("(c)SpiralLab")]
 [assembly: AssemblyCulture("")]
  
 

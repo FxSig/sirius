@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
  * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -101,80 +101,81 @@ namespace SpiralLab.Sirius
 
             rtc.Dispose();
         }
-
         /// <summary>
         /// 스캐너가 0,0 을 지속적으로 포인팅 한다 (스테이지나 컨베이어를 손으로 밀어보면서 테스트)
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static void MotfWithFollowOnly(ILaser laser, IRtc rtc, bool externalStart)
+        /// <param name="externalStart"></param>
+        private static bool MotfWithFollowOnly(ILaser laser, IRtc rtc, bool externalStart)
         {
             var rtcMotf = rtc as IRtcMOTF;
-            var rtcExt = rtc as IRtcExtension;
+            var rtcExtension = rtc as IRtcExtension;
+            bool success = true;
             //리스트 시작 
-            rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListBegin(laser, ListType.Single);
             // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-            rtcMotf.ListMOTFBegin();
-            //0,0 으로 점프
-            rtc.ListJump(new Vector2(0, 0));
+            success &= rtcMotf.ListMOTFBegin();
+            // 0,0 으로 점프
+            success &= rtc.ListJump(new Vector2(0, 0));
             //10 초동안 대기
-            rtc.ListWait(1000 * 10); 
+            success &= rtc.ListWait(1000 * 10);
             // MOTF 중시
-            rtcMotf.ListMOTFEnd(Vector2.Zero);
-            rtc.ListEnd();
-
+            success &= rtcMotf.ListMOTFEnd(Vector2.Zero);
+            success &= rtc.ListEnd();
             if (externalStart)
             {
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = Rtc5ExternalControlMode.Empty;
+                var extCtrl = new Rtc5ExternalControlMode();
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
-                rtcExt.CtlExternalControl(extCtrl);
+                rtcExtension.CtlExternalControl(extCtrl);
             }
             else
             {
                 //외부 트리거(/START)가 아닌 직접 execute 호출하여 실행
-                rtcExt.CtlExternalControl(Rtc5ExternalControlMode.Empty);
-                rtc.ListExecute();
+                rtcExtension.CtlExternalControl(Rtc5ExternalControlMode.Empty);
+                if (success)
+                    success &= rtc.ListExecute();
             }
+            return success;
         }
-
-        private static void MotfWithCircleAndWaitEncoder(ILaser laser, IRtc rtc, bool externalStart)
+        private static bool MotfWithCircleAndWaitEncoder(ILaser laser, IRtc rtc, bool externalStart)
         {
             var rtcMotf = rtc as IRtcMOTF;
-            var rtcExt = rtc as IRtcExtension;
-            //리스트 시작 
-            rtc.ListBegin(laser, ListType.Single);
-            //직선을 그립니다. (엔코더 입력과 무관합니다)
-            rtc.ListJump(new Vector2(0, 0));
-            rtc.ListMark(new Vector2(0, 10));
-            rtc.ListMark(new Vector2(0, 0));
-                // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-                rtcMotf.ListMOTFBegin();
-                // 엔코더 X 값이 10mm 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
-                rtcMotf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
-                //엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
-                rtc.ListJump(new Vector2((float)10, 0)); 
-                rtc.ListArc(new Vector2(0, 0), 360.0f);
-                // MOTF 중지및 0,0 위치(스캐너 중심 위치)로 jump 실시
-                rtcMotf.ListMOTFEnd(Vector2.Zero);
-            rtc.ListEnd();
-
+            var rtcExtension = rtc as IRtcExtension;
+            bool success = true;
+            // 리스트 시작 
+            success &= rtc.ListBegin(laser, ListType.Single);
+            // 직선을 그립니다. (엔코더 입력과 무관합니다)
+            success &= rtc.ListJump(new Vector2(0, 0));
+            success &= rtc.ListMark(new Vector2(0, 10));
+            // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
+            success &= rtcMotf.ListMOTFBegin();
+            // 엔코더 X 값이 10mm 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
+            success &= rtcMotf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
+            // 엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
+            success &= rtc.ListJump(new Vector2((float)10, 0));
+            success &= rtc.ListArc(new Vector2(0, 0), 360.0f);
+            // MOTF 중지및 0,0 위치(스캐너 중심 위치)로 jump 실시
+            success &= rtcMotf.ListMOTFEnd(Vector2.Zero);
+            success &= rtc.ListEnd();
             if (externalStart)
             {
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = Rtc5ExternalControlMode.Empty;
+                var extCtrl = new Rtc5ExternalControlMode();
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
-                rtcExt.CtlExternalControl(extCtrl);
+                rtcExtension.CtlExternalControl(extCtrl);
             }
             else
             {
-                //외부 트리거(/START) 미사용
-                rtcExt.CtlExternalControl(Rtc5ExternalControlMode.Empty);
-                rtc.ListExecute();
+                // 외부 트리거(/START) 미사용
+                rtcExtension.CtlExternalControl(Rtc5ExternalControlMode.Empty);
+                if (success)
+                    success &= rtc.ListExecute();
             }
+            return success;
         }
-
     }
 }

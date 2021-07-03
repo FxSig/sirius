@@ -20,7 +20,7 @@
  * 
  * IRtc 인터페이스 및 행렬 사용법
  * 행렬을 사용하여 회전하면서 직선, 사각형의 가공을 실시한다.
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -82,7 +82,6 @@ namespace SpiralLab.Sirius
                         DrawLinesWithRotate(laser, rtc, 0, 360);
                         break;
                 }
-                rtc.ListExecute(true);
                 Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
@@ -95,22 +94,28 @@ namespace SpiralLab.Sirius
         /// <param name="rtc"></param>
         /// <param name="width"></param>
         /// <param name="height"></param>
-        private static void DrawRectangle(ILaser laser, IRtc rtc, double width, double height, double angleStart, double angleEnd)
+        private static bool DrawRectangle(ILaser laser, IRtc rtc, double width, double height, double angleStart, double angleEnd)
         {
-            rtc.ListBegin(laser);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
             for (double angle = angleStart; angle <= angleEnd; angle += 1)
             {
                 //회전 각도를 행렬 스택에 push
                 rtc.MatrixStack.Push(angle);
-                rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
-                rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
-                rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
-                rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
-                rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
+                success &= rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
+                success &= rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
+                success &= rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
+                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
+                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
                 //이전에 push 된 행렬값을 pop 하여 삭제
                 rtc.MatrixStack.Pop();
             }
-            rtc.ListEnd();
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }       
         /// <summary>
         /// 행렬을 이용해 직선을 그릴때 1도마다 직선을 회전시켜 그리기
@@ -118,19 +123,25 @@ namespace SpiralLab.Sirius
         /// <param name="rtc"></param>
         /// <param name="angleStart"></param>
         /// <param name="angleEnd"></param>
-        private static void DrawLinesWithRotate(ILaser laser, IRtc rtc, double angleStart, double angleEnd)
+        private static bool DrawLinesWithRotate(ILaser laser, IRtc rtc, double angleStart, double angleEnd)
         {
-            rtc.ListBegin(laser);
+            bool success = true;
+            success &= rtc.ListBegin(laser);
             rtc.MatrixStack.Push(2, 4); // dx =2, dy=4 만큼 이동
             for (double angle = angleStart; angle <= angleEnd; angle += 1)
             {
                 rtc.MatrixStack.Push(angle);
-                rtc.ListJump(new Vector2(-10, 0));
-                rtc.ListMark(new Vector2(10, 0));
+                success &= rtc.ListJump(new Vector2(-10, 0));
+                success &= rtc.ListMark(new Vector2(10, 0));
                 rtc.MatrixStack.Pop();
             }
             rtc.MatrixStack.Pop();
-            rtc.ListEnd();
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            return success;
         }
     }
 }

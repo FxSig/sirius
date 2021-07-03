@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  * 레이저및 스캐너의 가공 파라메터를 일컬어 통상 "펜(Pen)" 파라메터라 하며, 이 펜 객체(Entity)를 사용해 다양한 가공 조건 (속도및 지연값등)을 설정한다.
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -105,8 +105,7 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.D:
                         Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         var timer = Stopwatch.StartNew();
-                        if (DrawForFieldCorrection(laser, rtc, doc))
-                            rtc.ListExecute(true);
+                        DrawForFieldCorrection(laser, rtc, doc);
                         Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
                         break;
                 }
@@ -129,25 +128,31 @@ namespace SpiralLab.Sirius
                 Rtc = rtc,
                 Laser = laser,
             };
-            rtc.ListBegin(laser);
+            success &= rtc.ListBegin(laser);
             // 레이어 순회
             foreach (var layer in doc.Layers)
             {
-                // 레이어 내의 개체들을 순회
-                foreach (var entity in layer)
-                {
-                    var markerable = entity as IMarkerable;
-                    // 해당 개체가 레이저 가공이 가능한지 여부를 판별
-                    if (null != markerable)
-                        success &= markerable.Mark(markerArg);    // 레이저 가공 실시
-                    if (!success)
-                        break;
-                }
+                //레이어 가공
+                success &= layer.Mark(markerArg);
+                // or
+                // 직접 하나씩 처리방법. 레이어 내의 개체들을 순회
+                //foreach (var entity in layer)
+                //{
+                //    var markerable = entity as IMarkerable;
+                //    // 해당 개체가 레이저 가공이 가능한지 여부를 판별
+                //    if (null != markerable)
+                //        success &= markerable.Mark(markerArg);    // 레이저 가공 실시
+                //    if (!success)
+                //        break;
+                //}
                 if (!success)
                     break;
             }
             if (success)
-                rtc.ListEnd();
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
             return success;
         }        
     }

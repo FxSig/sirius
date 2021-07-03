@@ -93,7 +93,6 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
-
         public bool CtlPower(float watt)
         {
             lock (this.SyncRoot)
@@ -110,7 +109,6 @@ namespace SpiralLab.Sirius
                 return success;
             }
         }
-      
         public bool ListPower( float watt)
         {
             lock (this.SyncRoot)

@@ -22,7 +22,7 @@
  * 시리얼 번호, 날짜, 시간등을 마킹한다
  * 리스트 버퍼가 실행될때마다 시리얼 번호, 날짜, 시간이 RTC 내부에서 자동 처리된다.
  * RTC 인터페이스가 아닌 엔티티(SiriusText)에서 제공하는 Mark 함수를 이용한 자동마킹
- * Author : hong chan, choi / labspiral @gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
 
@@ -106,10 +106,10 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }        
 
-        private static void MarkToDate(ILaser laser, IRtc rtc)
+        private static bool MarkToDate(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
+                return false;
 
             date.FontName = "normal.cxf";
             date.Width = 3.0f;
@@ -127,24 +127,29 @@ namespace SpiralLab.Sirius
             date.Regen();
             date.RegisterCharacterSetIntoRtc(rtc);
 
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(0, 0));
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(Vector2.Zero);
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,
                 Laser = laser,
             };
-            date.Mark(markerArg);
-            rtc.ListJump(new Vector2(10, 0));
-            rtc.ListEnd();
-            rtc.ListExecute(false);
+            success &= date.Mark(markerArg);
+            success &= rtc.ListJump(new Vector2(10, 0));
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(false);
+            }
+            return success;
         }
 
-        private static void MarkToTime(ILaser laser, IRtc rtc)
+        private static bool MarkToTime(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
+                return false;
 
             time.FontName = "normal.cxf";
             time.Width = 3.0f;
@@ -162,23 +167,28 @@ namespace SpiralLab.Sirius
             time.Regen();
             time.RegisterCharacterSetIntoRtc(rtc);
 
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(0, 0));
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(Vector2.Zero);
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,
                 Laser = laser,
             };
-            time.Mark(markerArg);
-            rtc.ListEnd();
-            rtc.ListExecute(false);
+            success &= time.Mark(markerArg);
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(false);
+            }
+            return success;
         }
 
-        private static void MarkToSerial(ILaser laser, IRtc rtc)
+        private static bool MarkToSerial(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return;
+                return false;
 
             serial.FontName = "normal.cxf";
             serial.Width = 2.0f;
@@ -196,17 +206,22 @@ namespace SpiralLab.Sirius
             serial.Regen();
             serial.RegisterCharacterSetIntoRtc(rtc);
 
+            bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
-            rtc.ListBegin(laser, ListType.Single);
-            rtc.ListJump(new Vector2(0, 0));
+            success &= rtc.ListBegin(laser, ListType.Single);
+            success &= rtc.ListJump(new Vector2(0, 0));
             var markerArg = new MarkerArgDefault()
             {
                 Rtc = rtc,
                 Laser = laser,
             };
-            serial.Mark(markerArg);
-            rtc.ListEnd();
-            rtc.ListExecute(false);
+            success &= serial.Mark(markerArg);
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(false);
+            }
+            return success;
         }
 
     }
