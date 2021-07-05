@@ -288,11 +288,9 @@ namespace SpiralLab.Sirius
             for (int i = 0; i < offsets.Count; i++)
             {
                 var xyt = offsets[i];
-                // 문서에 설정된 Dimension 정보 처리 : 회전중심, 회전량, 원점 중심 등
-                rtc.MatrixStack.Push(scannerRotateAngle); // 스캐너의 기구적 회전량
-                rtc.MatrixStack.Push(xyt.X, xyt.Y); // 오프셋 이동량
-                rtc.MatrixStack.Push(xyt.Angle);  // 오프셋 회전량
-                rtc.MatrixStack.Push(clonedDoc.RotateOffset.X, clonedDoc.RotateOffset.Y, clonedDoc.RotateOffset.Angle);  // 회전을 위해 회점 중심을 원점으로 이동);
+                rtc.MatrixStack.Push(scannerRotateAngle); // 3. 스캐너의 기구적 회전량
+                rtc.MatrixStack.Push(xyt.X + clonedDoc.RotateOffset.X, xyt.Y + clonedDoc.RotateOffset.Y); // 2. 오프셋 이동량
+                rtc.MatrixStack.Push(xyt.Angle + clonedDoc.RotateOffset.Angle);  // 1. 오프셋 회전량
 
                 int total = 0;
                 foreach (var layer in this.clonedDoc.Layers)
@@ -345,7 +343,6 @@ namespace SpiralLab.Sirius
                 if (!success)
                     break;
                 //위에서 Push 된 행렬스택에서 Pop 하여 초기 행렬스택 상태가 되도록
-                rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();

@@ -66,6 +66,17 @@
 ----
 **5. Version history**
 
+ * 2021.07.05 v1.7.1
+  fixed) multiple Rtc initializing bug
+  fixed) datamatrix/QR code with invert cell and quite zone
+  fixed) document rotate offset 
+  fixed) support group entity's' hatch if closed figure
+  added) event handler in SiriusEditor 
+  added) demo code with rs232 laser power control
+  added) demo code with custome laser pen
+  added) transit entity by keyboard shortcut (CTRL+ALT+SHIFT + key)
+  added) internal hpgl parser dll
+
  * 2021.06.16 v1.7
   added) sirius demo project
   added) IMotor interface. Z position in layer property (Z motor control program in ""8.customlasermarker" demo)

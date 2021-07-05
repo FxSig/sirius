@@ -797,6 +797,17 @@
             가공 데이타 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.MarkTargets">
+            <summary>
+            가공 대상에 대한 옵션
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.RepeatSelectedButBoundRect">
+            <summary>
+            MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
+            외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Rtc">
             <summary>
             RTC 객체
@@ -869,6 +880,32 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MarkTargets">
+            <summary>
+            가공 대상 종류
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkTargets.All">
+            <summary>
+             전체 가공
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkTargets.Selected">
+            <summary>
+            선택된 엔티티만 가공
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkTargets.SelectedButBoundRect">
+            <summary>
+            선택된 엔티티의 외곽(사각) 영역만 가공
+            이때 반복회수는 별도로 지정 가능함
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkTargets.Custom">
+            <summary>
+            사용자 지정된 방식으로 가공
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IMarkerArg">
             <summary>
             마커 인자 인터페이스
@@ -878,6 +915,17 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Document">
             <summary>
             가공 데이타 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.MarkTargets">
+            <summary>
+            가공 대상에 대한 옵션
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.RepeatSelectedButBoundRect">
+            <summary>
+            MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
+            외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Rtc">
@@ -1628,6 +1676,13 @@
             <param name="layer">레이어</param>
             <param name="x">X 위치</param>
             <param name="y">Y 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityPasteClone(SpiralLab.Sirius.Layer)">
+            <summary>
+            클립보드에 있는 엔티티 를 복제하여 위치를 변경하지 않고 같은 위치에 붙여넣기 함 (신규 엔티티가 생성됨)
+            </summary>
+            <param name="layer">레이어</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityPasteArray(SpiralLab.Sirius.Layer,System.Collections.Generic.List{System.Numerics.Vector2},System.Single,System.Single)">
@@ -3193,6 +3248,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.paste_clone">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.penreturn">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3801,6 +3861,16 @@
             중심 X,Y 위치
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.BoundRect.IsMarkerable">
+            <summary>
+            레이저 가공 유무
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BoundRect.Repeat">
+            <summary>
+            반복 가공 회수 (기본값 1)
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.BoundRect.ToString">
             <summary>
             문자열
@@ -3870,6 +3940,13 @@
             화면에 그리기
             </summary>
             <param name="gl">Openg 렌더링 객체</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.BoundRect.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            지정된 Rtc 인터페이스와 Laser 인터페이스를 이용한 엔티티 가공
+            </summary>
+            <param name="markerArg">IMarkerArg 인터페이스</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BoundRect.Transit(System.Numerics.Vector2)">
             <summary>
