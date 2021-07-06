@@ -72,76 +72,75 @@
      - points vertex list 
      - group's offset
    - fixed) bitmap pixel calculation bug
-
-  - fixed) multiple Rtc initializing bug
-  - fixed) datamatrix/QR code with invert cell and quite zone
-  - fixed) document rotate offset 
-  - fixed) support group entity's' hatch if closed figure
-  - added) event handler in SiriusEditor 
-  - added) demo code with rs232 laser power control
-  - added) demo code with custome laser pen
-  - added) transit entity by keyboard shortcut (CTRL+ALT+SHIFT + key)
-  - added) internal hpgl parser dll
+   - fixed) multiple Rtc initializing bug
+   - fixed) datamatrix/QR code with invert cell and quite zone
+   - fixed) document rotate offset 
+   - fixed) support group entity's' hatch if closed figure
+   - added) event handler in SiriusEditor 
+   - added) demo code with rs232 laser power control
+   - added) demo code with custome laser pen
+   - added) transit entity by keyboard shortcut (CTRL+ALT+SHIFT + key)
+   - added) internal hpgl parser dll
 
  * 2021.06.16 v1.7
-  - added) sirius demo project
-  - added) IMotor interface. Z position in layer property (Z motor control program in ""8.customlasermarker" demo)
-  - added) Auto laser control signal in Layer property
-  - added) support Rtc4 
-  - fixed) modified IRtc, IRtcExtension, ILaser interface
-  - added) support IPG YLP Type E source (with usercontrol)
-  - added) Supported spline in dxf file
-  - fixed) support LwPolyline with hatch
-  - added) Raster Entity
+   - added) sirius demo project
+   - added) IMotor interface. Z position in layer property (Z motor control program in ""8.customlasermarker" demo)
+   - added) Auto laser control signal in Layer property
+   - added) support Rtc4 
+   - fixed) modified IRtc, IRtcExtension, ILaser interface
+   - added) support IPG YLP Type E source (with usercontrol)
+   - added) Supported spline in dxf file
+   - fixed) support LwPolyline with hatch
+   - added) Raster Entity
 
 * 2021.06.07 v1.6 
-  - added) Stitched Image entity, added Write Data Ext16 io entity, added Sirius Project
+   - added) Stitched Image entity, added Write Data Ext16 io entity, added Sirius Project
 
 * 2021.06.01 v1.5 
-  - added) List Data entity. support JPG, GIF, Png Image Format. added Write Data entity
-  - added) Custom Editor/Viewer Demo Project
-  - added) Bitmap entity, added ICompensator interface each analog digital io. added Raster entity, AlcVectorBegin/End entity
+   - added) List Data entity. support JPG, GIF, Png Image Format. added Write Data entity
+   - added) Custom Editor/Viewer Demo Project
+   - added) Bitmap entity, added ICompensator interface each analog digital io. added Raster entity, AlcVectorBegin/End entity
 
 * 2021.05.20 v1.4 
-  - added) IRtcAutoLaserControl interface, support position, speed, vector define automatic laser control
-  - fixed) xy coordinate with Vector2/3 struct
+   - added) IRtcAutoLaserControl interface, support position, speed, vector define automatic laser control
+   - fixed) xy coordinate with Vector2/3 struct
 
 * 2021.05.19 v1.3 
-  - added) HPGL entity
+   - added) HPGL entity
 
 * 2021.05.12 v1.3 
-  - added) CharacterSet, 3D, MOTF, Dual head demo project 
-  - added) Sirius Text Arc entity, Text Arc entity
-  - added) WPF demo project
-  - fixed) barcode (QR/Datamatrix/1D ...) cell with dot/line/outline/hatch or imported pattern
-  - merged) separated dll into single spiral.sirius.rtc.dll
-  - fixed) to be similary properties at sirius text and text entity 
-  - fixed) location/rotate bugs each entities
-  - fixed) minor bugs
+   - added) CharacterSet, 3D, MOTF, Dual head demo project 
+   - added) Sirius Text Arc entity, Text Arc entity
+   - added) WPF demo project
+   - fixed) barcode (QR/Datamatrix/1D ...) cell with dot/line/outline/hatch or imported pattern
+   - merged) separated dll into single spiral.sirius.rtc.dll
+   - fixed) to be similary properties at sirius text and text entity 
+   - fixed) location/rotate bugs each entities
+   - fixed) minor bugs
 
 * 2020.01.29 v0.9 
-  - added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
+   - added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
 
 * 2020.01.07 v0.8 
-  - added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
+   - added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
 
 * 2019.12.24 v0.7 
-  - added IRtc3D interface, added Group entity (with MOTF), fixed ICorrection2D, added ICorrection3D interface. 
+   - added IRtc3D interface, added Group entity (with MOTF), fixed ICorrection2D, added ICorrection3D interface. 
 
 * 2019.12.19 v0.6 
-  - added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
+   - added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
 
 * 2019.12.17 v0.5 
-  - added 1/2D  barcode entities / support wobbel and raster operation in RTC
+   - added 1/2D  barcode entities / support wobbel and raster operation in RTC
 
 * 2019.12.12 
-  - v0.4 new sirius text entity  (support font format : *.cxf)
+   - v0.4 new sirius text entity  (support font format : *.cxf)
 
 * 2019.12.11 v0.3 
-  - support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
+   - support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
 
 * 2019.12.10 v0.2 
-  - support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
+   - support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
 
 * 2019.12.03 v0.1 
-  - first release
+   - first release
