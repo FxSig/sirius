@@ -5549,6 +5549,11 @@
             LW 폴리라인 버텍스 변환기
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PointsEditor">
+            <summary>
+            points 배열 변환기 (points)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.FontStringConverter">
             <summary>
             ttf 폰트 디렉토리 목록 변환기
@@ -5613,6 +5618,114 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PathOptimizerForm">
+            <summary>
+            Path optimizer
+            by hcchoi
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.ResultLength">
+            <summary>
+            최적 경로의 총 길이
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.ResultOrder">
+            <summary>
+            입력 경로의 총 길이
+            </summary>
+            <summary>
+            최적 경로에 대한 결과 = 인덱스 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.OriginalLength">
+            <summary>
+            원본 경로의 총길이
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.components">
+            <summary>
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.Dispose(System.Boolean)">
+            <summary>
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.InitializeComponent">
+            <summary>
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TSPChromosome">
+            <summary>
+            The chromosome is to solve TSP task (Travailing Salesman Problem).
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPChromosome.#ctor(System.Double[0:,0:])">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPChromosome.#ctor(SpiralLab.Sirius.TSPChromosome)">
+            <summary>
+            Copy Constructor
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPChromosome.CreateNew">
+            <summary>
+            Create new random chromosome (factory method)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPChromosome.Clone">
+            <summary>
+            Clone the chromosome
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPChromosome.Crossover(Accord.Genetic.IChromosome)">
+            <summary>
+            Crossover operator
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TSPFitnessFunction">
+            <summary>
+            Fitness function for TSP task (Travaling Salasman Problem)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPFitnessFunction.Evaluate(Accord.Genetic.IChromosome)">
+            <summary>
+            Evaluate chromosome - calculates its fitness value
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPFitnessFunction.Translate(Accord.Genetic.IChromosome)">
+            <summary>
+            Translate genotype to phenotype 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TSPFitnessFunction.PathLength(Accord.Genetic.IChromosome)">
+            <summary>
+            Calculate path length represented by the specified chromosome 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PointsForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PointsForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PointsForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

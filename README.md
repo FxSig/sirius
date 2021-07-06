@@ -67,6 +67,9 @@
 **5. Version history**
 
  * 2021.07.05 v1.7.1
+  added) path optimizer 
+   - points vertex list 
+   - group's offset
   fixed) multiple Rtc initializing bug
   fixed) datamatrix/QR code with invert cell and quite zone
   fixed) document rotate offset 
