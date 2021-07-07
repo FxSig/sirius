@@ -7,6 +7,7 @@
         <member name="T:SpiralLab.Sirius.ICompensator`1">
             <summary>
             Compensator 인터페이스
+            내부의 보간 테이블을 적용해 입력값을 가지고 새로운 출력값을 연산하는 연산기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICompensator`1.SyncRoot">
@@ -675,6 +676,7 @@
         <member name="T:SpiralLab.Sirius.IMotor">
             <summary>
             모터 인터페이스
+            스캐너 Z 축을 제어하기 위한 모터 인터페이스 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
@@ -4509,7 +4511,7 @@
             SCANLAB 의 보정 유틸리티 실행파일 경로
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Double,System.Int32,System.Int32,System.Double,System.String,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.String,System.String)">
             <summary>
             생성자
             </summary>
@@ -4626,7 +4628,7 @@
             SCANLAB 의 보정 유틸리티 실행파일 경로
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Double,System.Int32,System.Int32,System.Double,System.Double,System.String,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.String,System.String)">
             <summary>
             생성자
             </summary>
@@ -4913,6 +4915,7 @@
             3x3 행렬 스택 인터페이스
             스택 자료구조에 3*3 행렬구조체를 push/pop 하여 저장하고, 스택내의 모든 행렬을 곱셈 연산하는등의 유틸리티 클래스
             스택내에 있는 행렬들의 곱셈을 빈번히 계산하지 않고 변경점이 있을때만 계산을 하기 위해 만들어짐
+            가장 마지막에 삽입된 행렬값부터 적용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMatrixStack.ToResult">

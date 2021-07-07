@@ -1085,6 +1085,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.MultiSelectTreeview">
             <summary>
+            멀티 선택이 가능한 트리뷰 사용자 컨트롤
             original author : https://www.codeproject.com/Articles/20581/Multiselect-Treeview-Implementation
             revisied by labspiral@gmail.com
             </summary>
@@ -2820,6 +2821,21 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.cor2d">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.cor3d">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.correction">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.correction2d">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3441,6 +3457,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.spiral">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.spirallab_logo">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -4117,6 +4138,11 @@
             폐곡선 판단 거리 상수값
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
+            <summary>
+            FreeType 폰트 분석시 베지어 곡선 구간을 미분할 최소 거리값 (mm)
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.UndoStackSize">
             <summary>
             언두(Undo) 스택 최대 개수 제한 (메모리 절약을 위해)
@@ -4704,6 +4730,11 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ArrayForm">
+            <summary>
+            붙혀넣기시 배열 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.ArrayForm.components">
             <summary>
             Required designer variable.
@@ -4719,6 +4750,11 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.DimensionForm">
+            <summary>
+            문서 정보 (IDocument 의 속성정보) 편집 폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DimensionForm.components">
@@ -4738,6 +4774,31 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.HatchForm">
+            <summary>
+            해치 폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Mode">
+            <summary>
+            해치 모드
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Angle">
+            <summary>
+            해치 각도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Interval">
+            <summary>
+            해치 간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Exclude">
+            <summary>
+            해치 제외 길이 (mm)
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.HatchForm.components">
             <summary>
             Required designer variable.
@@ -4753,6 +4814,11 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.OffsetsForm">
+            <summary>
+            그룹 엔티티의 오프셋 편집용 폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.OffsetsForm.components">
@@ -4772,6 +4838,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.LwPolyLineVertexForm">
+            <summary>
+            LW 폴리라인 편집 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.LwPolyLineVertexForm.components">
             <summary>
             Required designer variable.
@@ -4789,6 +4860,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.InsertVertexForm">
+            <summary>
+            정점 편집 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.InsertVertexForm.components">
             <summary>
             Required designer variable.
@@ -4804,6 +4880,26 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PasteForm">
+            <summary>
+            복사후 붙혀넣기 폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PasteForm.Clipboard">
+            <summary>
+            클립보드 엔티티 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PasteForm.Result">
+            <summary>
+            붙혀넣기 결과로 생성된 좌표 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PasteForm.Position">
+            <summary>
+            기준 위치
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PasteForm.components">
@@ -5616,6 +5712,11 @@
             RTC 의 Position Dep. 용 보정 파일
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.AboutForm">
+            <summary>
+            About 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.AboutForm.components">
             <summary>
             Required designer variable.
@@ -5631,6 +5732,26 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MarkerForm">
+            <summary>
+            마커 폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerForm.Marker">
+            <summary>
+            마커 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerForm.Offsets">
+            <summary>
+            오프셋 리스트 (바인딩 용)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerForm.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MarkerForm.components">
@@ -5652,7 +5773,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.PathOptimizerForm">
             <summary>
-            Path optimizer
+            경로 최적화용 폼
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PathOptimizerForm.ResultLength">
@@ -5672,6 +5793,12 @@
             <summary>
             원본 경로의 총길이
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.#ctor(System.Collections.Generic.List{System.Numerics.Vector2})">
+            <summary>
+            생성자
+            </summary>
+            <param name="xyPosition">X,Y 위치 데이타 리스트</param>
         </member>
         <member name="F:SpiralLab.Sirius.PathOptimizerForm.components">
             <summary>
@@ -5740,6 +5867,11 @@
             Calculate path length represented by the specified chromosome 
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PointsForm">
+            <summary>
+            점들의 집합 엔티티 편집용 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.PointsForm.components">
             <summary>
             Required designer variable.
@@ -5755,6 +5887,11 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.SiriusPreviewForm">
+            <summary>
+            PLT, DXF 파일 미리보기용 폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SiriusPreviewForm.components">
@@ -5773,6 +5910,17 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PropertyForm">
+            <summary>
+            속성 편집용 공통 폼
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PropertyForm.#ctor(System.Object)">
+            <summary>
+            생성자
+            </summary>
+            <param name="obj"></param>
         </member>
         <member name="F:SpiralLab.Sirius.PropertyForm.components">
             <summary>
@@ -5793,8 +5941,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.RotateForm">
             <summary>
-            사용자 입력 각도 만큼의 회전 기능
-            Top-Most 창
+            사용자 입력 각도 만큼의 회전 편집폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RotateForm.components">
@@ -5812,6 +5959,11 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.RtcIOForm">
+            <summary>
+            RTC 카드의 입출력 상태 폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcIOForm.components">
@@ -6086,7 +6238,12 @@
         </member>
         <member name="T:SpiralLab.Sirius.SiriusIPGYLPTypeE">
             <summary>
-            IPG YLP TypeE Fiber Laser 
+            IPG YLP TypeE Fiber Laser 제어용 사용자 컨트롤
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusIPGYLPTypeE.Laser">
+            <summary>
+            레이저 객체
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusIPGYLPTypeE.#ctor">

@@ -36,7 +36,7 @@ namespace SpiralLab.Sirius
 {
     class Program2
     {
-        static double kfactor = Math.Pow(2, 20) / 60.0;
+        static float kfactor = (float)Math.Pow(2, 20) / 60.0f;
         static void Main2(string[] args)
         {
             SpiralLab.Core.Initialize();
@@ -47,6 +47,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'C' : create new field correction for 3D");
+                Console.WriteLine("'F' : create new field correction for 3D with WinForms");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -60,6 +61,9 @@ namespace SpiralLab.Sirius
                         string result = CreateFieldCorrection();
                         Console.WriteLine("");
                         Console.WriteLine(result);
+                        break;
+                    case ConsoleKey.F:
+                        CreateFieldCorrectionWithWinForms();
                         break;
                 }
 
@@ -113,6 +117,45 @@ namespace SpiralLab.Sirius
             // 테이블1 번을 1번 스캐너(Primary Head)에 지정
             //success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
             return correction.ResultMessage;
+        }
+
+        private static void CreateFieldCorrectionWithWinForms()
+        {
+            //현재 스캐너 보정 파일
+            var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            //신규로 생성할 스캐너 보정 파일
+            var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
+
+            // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
+            // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
+            var correction = new RtcCorrection3D(kfactor, 3, 3, 5, -5, srcFile, targetFile);
+
+            #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
+            correction.AddRelative(0, 0, new Vector3(-20, 20, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(0, 1, new Vector3(0, 20, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(0, 2, new Vector3(20, 20, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(1, 0, new Vector3(-20, 0, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(1, 1, new Vector3(0, 0, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(1, 2, new Vector3(20, 0, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(2, 0, new Vector3(-20, -20, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(2, 1, new Vector3(0, -20, 5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(2, 2, new Vector3(20, -20, 5), new Vector3(0.01f, 0.01f, 0));
+
+            // Z= -5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
+            correction.AddRelative(0, 0, new Vector3(-20, 20, -5), new Vector3(0.01f, -0.02f, 0));
+            correction.AddRelative(0, 1, new Vector3(0, 20, -5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(0, 2, new Vector3(20, 20, -5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(1, 0, new Vector3(-20, 0, -5), new Vector3(-0.01f, 0.01f, 0));
+            correction.AddRelative(1, 1, new Vector3(0, 0, -5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(1, 2, new Vector3(20, 0, -5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(2, 0, new Vector3(-20, -20, -5), new Vector3(0.01f, 0.01f, 0));
+            correction.AddRelative(2, 1, new Vector3(0, -20, -5), new Vector3(0.01f, -0.01f, 0));
+            correction.AddRelative(2, 2, new Vector3(20, -20, -5), new Vector3(0.01f, 0.01f, 0));
+            #endregion
+
+            var form = new Correction3DForm(correction);
+            form.ShowDialog();
         }
     }
 }

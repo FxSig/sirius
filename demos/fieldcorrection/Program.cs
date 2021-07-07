@@ -34,7 +34,7 @@ namespace SpiralLab.Sirius
 {
     class Program
     {
-        static double kfactor = Math.Pow(2, 20) / 60f;
+        static float kfactor = (float)Math.Pow(2, 20) / 60.0f;
         static void Main(string[] args)
         {
             SpiralLab.Core.Initialize();
@@ -45,6 +45,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'C' : create new field correction for 2D");
+                Console.WriteLine("'F' : create new field correction for 2D with WinForms");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -57,6 +58,9 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.C:
                         string result = CreateFieldCorrection();
                         Console.WriteLine(result);
+                        break;
+                    case ConsoleKey.F:
+                        CreateFieldCorrectionWithWinForms();                        
                         break;
                 }
 
@@ -111,6 +115,33 @@ namespace SpiralLab.Sirius
             // 테이블1 번을 1번 스캐너(Primary Head)에 지정
             //success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
             return correction.ResultMessage;
+        }
+
+        private static void CreateFieldCorrectionWithWinForms()
+        {
+            //현재 스캐너 보정 파일
+            var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            //신규로 생성할 스캐너 보정 파일
+            var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
+
+            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
+            // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
+            var correction = new RtcCorrection2D(kfactor, 3, 3, 20, srcFile, targetFile);
+
+            #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 1, new Vector2(0, 20), new Vector2(0.002f, 0.001f));
+            correction.AddRelative(0, 2, new Vector2(20, 20), new Vector2(-0.0051f, 0.01f));
+            correction.AddRelative(1, 0, new Vector2(-20, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 1, new Vector2(0, 0), new Vector2(0.0f, 0.0f));
+            correction.AddRelative(1, 2, new Vector2(20, 0), new Vector2(-0.01f, 0.01f));
+            correction.AddRelative(2, 0, new Vector2(-20, -20), new Vector2(0.01f, 0.002f));
+            correction.AddRelative(2, 1, new Vector2(0, -20), new Vector2(0.005f, -0.003f));
+            correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.002f, -0.008f));
+            #endregion
+
+            var form = new Correction2DForm(correction);
+            form.ShowDialog();
         }
     }
 }
