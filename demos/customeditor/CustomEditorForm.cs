@@ -34,8 +34,9 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Numerics;
+using SpiralLab.Sirius;
 
-namespace SpiralLab.Sirius
+namespace CustomEditor
 {
     public partial class CustomEditorForm : Form
     {
@@ -640,7 +641,7 @@ namespace SpiralLab.Sirius
         }
         private void btnPoint_Click(object sender, EventArgs e)
         {
-            var point = new Point(0,0);
+            var point = new SpiralLab.Sirius.Point(0,0);
             var form = new PropertyForm(point);
             if (DialogResult.OK != form.ShowDialog())
                 return;
@@ -706,7 +707,7 @@ namespace SpiralLab.Sirius
         }
         private void btnRectangle_Click(object sender, EventArgs e)
         {
-            var rectangle = new Rectangle(0, 0, 10, 10);
+            var rectangle = new SpiralLab.Sirius.Rectangle(0, 0, 10, 10);
             var form = new PropertyForm(rectangle);
             if (DialogResult.OK != form.ShowDialog())
                 return;
@@ -769,7 +770,7 @@ namespace SpiralLab.Sirius
         }
         private void btnTimer_Click(object sender, EventArgs e)
         {
-            var timer = new Timer();
+            var timer = new SpiralLab.Sirius.Timer();
             var form = new PropertyForm(timer);
             if (DialogResult.OK != form.ShowDialog())
                 return;
@@ -953,7 +954,7 @@ namespace SpiralLab.Sirius
         private void btnPasteArray_Click(object sender, EventArgs e)
         {
             var form = new PasteForm();
-            form.Clipboard = Action.ClipBoard;
+            form.Clipboard = SpiralLab.Sirius.Action.ClipBoard;
             DialogResult result = form.ShowDialog();
             if (result == DialogResult.OK)
             {
@@ -1014,8 +1015,8 @@ namespace SpiralLab.Sirius
             if (result != DialogResult.OK)
                 return;
 
-            var text = new Bitmap(ofd.FileName);
-            this.Document.Action.ActEntityAdd(text);
+            var bitmap = new SpiralLab.Sirius.Bitmap(ofd.FileName);
+            this.Document.Action.ActEntityAdd(bitmap);
         }
         private void textToolStripMenuItem1_Click(object sender, EventArgs e)
         {
@@ -1139,26 +1140,20 @@ namespace SpiralLab.Sirius
             Document.Action.ActEntityUngroup(Document.Action.SelectedEntity);
             trvEntity.ResumeLayout();
         }
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new AboutForm();
-            form.ShowDialog();
-        }
-
 
         private void slowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, Action.LaserPathSimSpped.Slow);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Slow);
         }
 
         private void normalToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, Action.LaserPathSimSpped.Normal);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Normal);
         }
 
         private void fastToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, Action.LaserPathSimSpped.Fast);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Fast);
         }
         private void stopToolStripMenuItem_Click(object sender, EventArgs e)
         {

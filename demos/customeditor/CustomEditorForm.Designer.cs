@@ -1,4 +1,4 @@
-﻿namespace SpiralLab.Sirius
+﻿namespace CustomEditor
 {
     partial class CustomEditorForm
     {
@@ -133,7 +133,6 @@
             this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pasteArrayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.groupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem13 = new System.Windows.Forms.ToolStripSeparator();
@@ -195,7 +194,7 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.GLcontrol = new SharpGL.OpenGLControl();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.trvEntity = new SpiralLab.MultiSelectTreeview();
+            this.trvEntity = new SpiralLab.Sirius.MultiSelectTreeview();
             this.statusStrip2 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblWH = new System.Windows.Forms.ToolStripStatusLabel();
@@ -258,14 +257,14 @@
             this.ddbSimulate});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(784, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(761, 25);
             this.toolStrip1.TabIndex = 10;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // btnDocumentInfo
             // 
             this.btnDocumentInfo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDocumentInfo.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_coordinate_system_16;
+            this.btnDocumentInfo.Image = global::CustomEditor.Properties.Resources.icons8_coordinate_system_16;
             this.btnDocumentInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDocumentInfo.Name = "btnDocumentInfo";
             this.btnDocumentInfo.Size = new System.Drawing.Size(23, 22);
@@ -281,7 +280,7 @@
             // btnNew
             // 
             this.btnNew.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnNew.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_file_16;
+            this.btnNew.Image = global::CustomEditor.Properties.Resources.icons8_file_16;
             this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(23, 22);
@@ -292,7 +291,7 @@
             // btnOpen
             // 
             this.btnOpen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnOpen.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_opened_folder_16;
+            this.btnOpen.Image = global::CustomEditor.Properties.Resources.icons8_opened_folder_16;
             this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpen.Name = "btnOpen";
             this.btnOpen.Size = new System.Drawing.Size(23, 22);
@@ -303,7 +302,7 @@
             // btnSave
             // 
             this.btnSave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSave.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_save_16;
+            this.btnSave.Image = global::CustomEditor.Properties.Resources.icons8_save_16;
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(23, 22);
@@ -314,7 +313,7 @@
             // btnSaveAs
             // 
             this.btnSaveAs.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSaveAs.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_save_as_16;
+            this.btnSaveAs.Image = global::CustomEditor.Properties.Resources.icons8_save_as_16;
             this.btnSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSaveAs.Name = "btnSaveAs";
             this.btnSaveAs.Size = new System.Drawing.Size(23, 22);
@@ -330,7 +329,7 @@
             // btnCopy
             // 
             this.btnCopy.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCopy.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_copy_16;
+            this.btnCopy.Image = global::CustomEditor.Properties.Resources.icons8_copy_16;
             this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopy.Name = "btnCopy";
             this.btnCopy.Size = new System.Drawing.Size(23, 22);
@@ -341,7 +340,7 @@
             // btnCut
             // 
             this.btnCut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCut.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_cutting_coupon_16;
+            this.btnCut.Image = global::CustomEditor.Properties.Resources.icons8_cutting_coupon_16;
             this.btnCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCut.Name = "btnCut";
             this.btnCut.Size = new System.Drawing.Size(23, 22);
@@ -352,7 +351,7 @@
             // btnPaste
             // 
             this.btnPaste.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPaste.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_paste_16;
+            this.btnPaste.Image = global::CustomEditor.Properties.Resources.icons8_paste_16;
             this.btnPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPaste.Name = "btnPaste";
             this.btnPaste.Size = new System.Drawing.Size(23, 22);
@@ -363,7 +362,7 @@
             // btnPasteArray
             // 
             this.btnPasteArray.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPasteArray.Image = global::SpiralLab.Sirius.Properties.Resources.paste_array;
+            this.btnPasteArray.Image = global::CustomEditor.Properties.Resources.paste_array;
             this.btnPasteArray.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPasteArray.Name = "btnPasteArray";
             this.btnPasteArray.Size = new System.Drawing.Size(23, 22);
@@ -379,7 +378,7 @@
             // btnUndo
             // 
             this.btnUndo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnUndo.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_circled_left_2_filled_16;
+            this.btnUndo.Image = global::CustomEditor.Properties.Resources.icons8_circled_left_2_filled_16;
             this.btnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Size = new System.Drawing.Size(23, 22);
@@ -390,7 +389,7 @@
             // btnReDo
             // 
             this.btnReDo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnReDo.Image = global::SpiralLab.Sirius.Properties.Resources.redo;
+            this.btnReDo.Image = global::CustomEditor.Properties.Resources.redo;
             this.btnReDo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReDo.Name = "btnReDo";
             this.btnReDo.Size = new System.Drawing.Size(23, 22);
@@ -406,7 +405,7 @@
             // btnZoomOut
             // 
             this.btnZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnZoomOut.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_out_filled_16;
+            this.btnZoomOut.Image = global::CustomEditor.Properties.Resources.icons8_zoom_out_filled_16;
             this.btnZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomOut.Name = "btnZoomOut";
             this.btnZoomOut.Size = new System.Drawing.Size(23, 22);
@@ -417,7 +416,7 @@
             // btnZoomIn
             // 
             this.btnZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnZoomIn.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_in_16;
+            this.btnZoomIn.Image = global::CustomEditor.Properties.Resources.icons8_zoom_in_16;
             this.btnZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(23, 22);
@@ -428,7 +427,7 @@
             // btnZoomFit
             // 
             this.btnZoomFit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnZoomFit.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_to_extents_filled_16;
+            this.btnZoomFit.Image = global::CustomEditor.Properties.Resources.icons8_zoom_to_extents_filled_16;
             this.btnZoomFit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomFit.Name = "btnZoomFit";
             this.btnZoomFit.Size = new System.Drawing.Size(23, 22);
@@ -440,7 +439,7 @@
             // 
             this.btnPan.CheckOnClick = true;
             this.btnPan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPan.Image = global::SpiralLab.Sirius.Properties.Resources.hand_move;
+            this.btnPan.Image = global::CustomEditor.Properties.Resources.hand_move;
             this.btnPan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPan.Name = "btnPan";
             this.btnPan.Size = new System.Drawing.Size(23, 22);
@@ -456,7 +455,7 @@
             // btnExplode
             // 
             this.btnExplode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnExplode.Image = global::SpiralLab.Sirius.Properties.Resources.explode;
+            this.btnExplode.Image = global::CustomEditor.Properties.Resources.explode;
             this.btnExplode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExplode.Name = "btnExplode";
             this.btnExplode.Size = new System.Drawing.Size(23, 22);
@@ -467,7 +466,7 @@
             // btnHatch
             // 
             this.btnHatch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnHatch.Image = global::SpiralLab.Sirius.Properties.Resources.hatch;
+            this.btnHatch.Image = global::CustomEditor.Properties.Resources.hatch;
             this.btnHatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHatch.Name = "btnHatch";
             this.btnHatch.Size = new System.Drawing.Size(23, 22);
@@ -478,7 +477,7 @@
             // btnDelete
             // 
             this.btnDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnDelete.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_delete_file_16;
+            this.btnDelete.Image = global::CustomEditor.Properties.Resources.icons8_delete_file_16;
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(23, 22);
@@ -494,7 +493,7 @@
             // btnRotateCCW
             // 
             this.btnRotateCCW.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRotateCCW.Image = global::SpiralLab.Sirius.Properties.Resources.rotate_left;
+            this.btnRotateCCW.Image = global::CustomEditor.Properties.Resources.rotate_left;
             this.btnRotateCCW.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRotateCCW.Name = "btnRotateCCW";
             this.btnRotateCCW.Size = new System.Drawing.Size(23, 22);
@@ -505,7 +504,7 @@
             // btnRotateCW
             // 
             this.btnRotateCW.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRotateCW.Image = global::SpiralLab.Sirius.Properties.Resources.rotate_right;
+            this.btnRotateCW.Image = global::CustomEditor.Properties.Resources.rotate_right;
             this.btnRotateCW.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRotateCW.Name = "btnRotateCW";
             this.btnRotateCW.Size = new System.Drawing.Size(23, 22);
@@ -528,7 +527,7 @@
             this.mnuRight,
             this.mnuTop,
             this.mnuBottom});
-            this.ddbAlignment.Image = global::SpiralLab.Sirius.Properties.Resources.right;
+            this.ddbAlignment.Image = global::CustomEditor.Properties.Resources.right;
             this.ddbAlignment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbAlignment.Name = "ddbAlignment";
             this.ddbAlignment.Size = new System.Drawing.Size(29, 22);
@@ -537,7 +536,7 @@
             // 
             // mnuOrigin
             // 
-            this.mnuOrigin.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_define_location_16;
+            this.mnuOrigin.Image = global::CustomEditor.Properties.Resources.icons8_define_location_16;
             this.mnuOrigin.Name = "mnuOrigin";
             this.mnuOrigin.Size = new System.Drawing.Size(113, 22);
             this.mnuOrigin.Text = "Origin";
@@ -550,7 +549,7 @@
             // 
             // mnuLeft
             // 
-            this.mnuLeft.Image = global::SpiralLab.Sirius.Properties.Resources.left;
+            this.mnuLeft.Image = global::CustomEditor.Properties.Resources.left;
             this.mnuLeft.Name = "mnuLeft";
             this.mnuLeft.Size = new System.Drawing.Size(113, 22);
             this.mnuLeft.Text = "Left";
@@ -558,7 +557,7 @@
             // 
             // mnuRight
             // 
-            this.mnuRight.Image = global::SpiralLab.Sirius.Properties.Resources.right;
+            this.mnuRight.Image = global::CustomEditor.Properties.Resources.right;
             this.mnuRight.Name = "mnuRight";
             this.mnuRight.Size = new System.Drawing.Size(113, 22);
             this.mnuRight.Text = "mnu";
@@ -566,7 +565,7 @@
             // 
             // mnuTop
             // 
-            this.mnuTop.Image = global::SpiralLab.Sirius.Properties.Resources.top;
+            this.mnuTop.Image = global::CustomEditor.Properties.Resources.top;
             this.mnuTop.Name = "mnuTop";
             this.mnuTop.Size = new System.Drawing.Size(113, 22);
             this.mnuTop.Text = "Top";
@@ -574,7 +573,7 @@
             // 
             // mnuBottom
             // 
-            this.mnuBottom.Image = global::SpiralLab.Sirius.Properties.Resources.bottom;
+            this.mnuBottom.Image = global::CustomEditor.Properties.Resources.bottom;
             this.mnuBottom.Name = "mnuBottom";
             this.mnuBottom.Size = new System.Drawing.Size(113, 22);
             this.mnuBottom.Text = "Bottom";
@@ -588,7 +587,7 @@
             this.mnuTopBottom,
             this.mnuLeftRight,
             this.mnuRightLeft});
-            this.ddbSort.Image = global::SpiralLab.Sirius.Properties.Resources.Journey_32px;
+            this.ddbSort.Image = global::CustomEditor.Properties.Resources.Journey_32px;
             this.ddbSort.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSort.Name = "ddbSort";
             this.ddbSort.Size = new System.Drawing.Size(29, 22);
@@ -632,7 +631,7 @@
             this.mnuFast,
             this.toolStripMenuItem15,
             this.mnuStop});
-            this.ddbSimulate.Image = global::SpiralLab.Sirius.Properties.Resources.start_48px;
+            this.ddbSimulate.Image = global::CustomEditor.Properties.Resources.start_48px;
             this.ddbSimulate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSimulate.Name = "ddbSimulate";
             this.ddbSimulate.Size = new System.Drawing.Size(29, 22);
@@ -669,7 +668,7 @@
             // 
             // mnuStop
             // 
-            this.mnuStop.Image = global::SpiralLab.Sirius.Properties.Resources.stop_16px1;
+            this.mnuStop.Image = global::CustomEditor.Properties.Resources.stop_16px1;
             this.mnuStop.Name = "mnuStop";
             this.mnuStop.Size = new System.Drawing.Size(115, 22);
             this.mnuStop.Text = "Stop";
@@ -681,7 +680,7 @@
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
             this.splitter1.Location = new System.Drawing.Point(0, 25);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(784, 1);
+            this.splitter1.Size = new System.Drawing.Size(761, 1);
             this.splitter1.TabIndex = 11;
             this.splitter1.TabStop = false;
             // 
@@ -693,10 +692,9 @@
             this.entityToolStripMenuItem,
             this.zoomToolStripMenuItem,
             this.editToolStripMenuItem,
-            this.toolStripMenuItem3,
-            this.aboutToolStripMenuItem});
+            this.toolStripMenuItem3});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(107, 120);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(107, 98);
             // 
             // fileToolStripMenuItem
             // 
@@ -714,7 +712,7 @@
             // 
             // newToolStripMenuItem
             // 
-            this.newToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_file_16;
+            this.newToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_file_16;
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
             this.newToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
@@ -723,7 +721,7 @@
             // 
             // openToolStripMenuItem
             // 
-            this.openToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_opened_folder_16;
+            this.openToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_opened_folder_16;
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
             this.openToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
@@ -732,7 +730,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Image = global::SpiralLab.Sirius.Properties.Resources.import_50px;
+            this.btnImport.Image = global::CustomEditor.Properties.Resources.import_50px;
             this.btnImport.Name = "btnImport";
             this.btnImport.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.I)));
@@ -743,7 +741,7 @@
             // 
             // saveToolStripMenuItem
             // 
-            this.saveToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_save_16;
+            this.saveToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_save_16;
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
@@ -752,7 +750,7 @@
             // 
             // saveAsToolStripMenuItem
             // 
-            this.saveAsToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_save_as_16;
+            this.saveAsToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_save_as_16;
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
@@ -767,7 +765,7 @@
             // 
             // infoToolStripMenuItem
             // 
-            this.infoToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_coordinate_system_16;
+            this.infoToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_coordinate_system_16;
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
@@ -798,7 +796,7 @@
             // 
             // layerToolStripMenuItem
             // 
-            this.layerToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_layers_16;
+            this.layerToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_layers_16;
             this.layerToolStripMenuItem.Name = "layerToolStripMenuItem";
             this.layerToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.layerToolStripMenuItem.Text = "Layer";
@@ -811,7 +809,7 @@
             // 
             // pointToolStripMenuItem
             // 
-            this.pointToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.point;
+            this.pointToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.point;
             this.pointToolStripMenuItem.Name = "pointToolStripMenuItem";
             this.pointToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.pointToolStripMenuItem.Text = "Point";
@@ -819,7 +817,7 @@
             // 
             // lineToolStripMenuItem
             // 
-            this.lineToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_line_16;
+            this.lineToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_line_16;
             this.lineToolStripMenuItem.Name = "lineToolStripMenuItem";
             this.lineToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.lineToolStripMenuItem.Text = "Line";
@@ -827,7 +825,7 @@
             // 
             // arcToolStripMenuItem
             // 
-            this.arcToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_halfcircle;
+            this.arcToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_halfcircle;
             this.arcToolStripMenuItem.Name = "arcToolStripMenuItem";
             this.arcToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.arcToolStripMenuItem.Text = "Arc";
@@ -835,7 +833,7 @@
             // 
             // circleToolStripMenuItem
             // 
-            this.circleToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_circle_16;
+            this.circleToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_circle_16;
             this.circleToolStripMenuItem.Name = "circleToolStripMenuItem";
             this.circleToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.circleToolStripMenuItem.Text = "Circle";
@@ -843,7 +841,7 @@
             // 
             // rectangleToolStripMenuItem
             // 
-            this.rectangleToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_rectangle_stroked_16;
+            this.rectangleToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_rectangle_stroked_16;
             this.rectangleToolStripMenuItem.Name = "rectangleToolStripMenuItem";
             this.rectangleToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.rectangleToolStripMenuItem.Text = "Rectangle";
@@ -851,7 +849,7 @@
             // 
             // lWPolylineToolStripMenuItem
             // 
-            this.lWPolylineToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_polyline_16;
+            this.lWPolylineToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_polyline_16;
             this.lWPolylineToolStripMenuItem.Name = "lWPolylineToolStripMenuItem";
             this.lWPolylineToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.lWPolylineToolStripMenuItem.Text = "LW Polyline";
@@ -859,7 +857,7 @@
             // 
             // spiralToolStripMenuItem
             // 
-            this.spiralToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.spiral;
+            this.spiralToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.spiral;
             this.spiralToolStripMenuItem.Name = "spiralToolStripMenuItem";
             this.spiralToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.spiralToolStripMenuItem.Text = "Spiral";
@@ -867,11 +865,16 @@
             // 
             // siriusTextToolStripMenuItem
             // 
-            this.siriusTextToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.font_size_16px;
+            this.siriusTextToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.font_size_16px;
             this.siriusTextToolStripMenuItem.Name = "siriusTextToolStripMenuItem";
             this.siriusTextToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.siriusTextToolStripMenuItem.Text = "Sirius Text";
             this.siriusTextToolStripMenuItem.Click += new System.EventHandler(this.siriusTextToolStripMenuItem_Click);
+            // 
+            // textToolStripMenuItem
+            // 
+            this.textToolStripMenuItem.Name = "textToolStripMenuItem";
+            this.textToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             // 
             // toolStripMenuItem1
             // 
@@ -880,14 +883,14 @@
             // 
             // penToolStripMenuItem
             // 
-            this.penToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_pencil_16;
+            this.penToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_pencil_16;
             this.penToolStripMenuItem.Name = "penToolStripMenuItem";
             this.penToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.penToolStripMenuItem.Text = "Pen";
             // 
             // timerToolStripMenuItem
             // 
-            this.timerToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_timer_16;
+            this.timerToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_timer_16;
             this.timerToolStripMenuItem.Name = "timerToolStripMenuItem";
             this.timerToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.timerToolStripMenuItem.Text = "Timer";
@@ -912,7 +915,7 @@
             // 
             // iNToolStripMenuItem
             // 
-            this.iNToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_in_16;
+            this.iNToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_zoom_in_16;
             this.iNToolStripMenuItem.Name = "iNToolStripMenuItem";
             this.iNToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
             this.iNToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
@@ -921,7 +924,7 @@
             // 
             // outToolStripMenuItem
             // 
-            this.outToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_out_filled_16;
+            this.outToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_zoom_out_filled_16;
             this.outToolStripMenuItem.Name = "outToolStripMenuItem";
             this.outToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
             this.outToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
@@ -930,7 +933,7 @@
             // 
             // fitToolStripMenuItem
             // 
-            this.fitToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_zoom_to_extents_filled_16;
+            this.fitToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_zoom_to_extents_filled_16;
             this.fitToolStripMenuItem.Name = "fitToolStripMenuItem";
             this.fitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.fitToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
@@ -944,7 +947,7 @@
             // 
             // panToolStripMenuItem
             // 
-            this.panToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.hand_move;
+            this.panToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.hand_move;
             this.panToolStripMenuItem.Name = "panToolStripMenuItem";
             this.panToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.panToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
@@ -971,7 +974,7 @@
             // 
             // undoToolStripMenuItem
             // 
-            this.undoToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_circled_left_2_filled_16;
+            this.undoToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_circled_left_2_filled_16;
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
             this.undoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -980,7 +983,7 @@
             // 
             // redoToolStripMenuItem
             // 
-            this.redoToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.redo;
+            this.redoToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.redo;
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
             this.redoToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -994,7 +997,7 @@
             // 
             // deleteToolStripMenuItem
             // 
-            this.deleteToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_delete_file_16;
+            this.deleteToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_delete_file_16;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
             this.deleteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -1016,7 +1019,7 @@
             // 
             // originToolStripMenuItem
             // 
-            this.originToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_define_location_16;
+            this.originToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_define_location_16;
             this.originToolStripMenuItem.Name = "originToolStripMenuItem";
             this.originToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
             this.originToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
@@ -1030,7 +1033,7 @@
             // 
             // leftToolStripMenuItem
             // 
-            this.leftToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.left;
+            this.leftToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.left;
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
             this.leftToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
             this.leftToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
@@ -1039,7 +1042,7 @@
             // 
             // rightToolStripMenuItem
             // 
-            this.rightToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.right;
+            this.rightToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.right;
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
             this.rightToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
             this.rightToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
@@ -1048,7 +1051,7 @@
             // 
             // topToolStripMenuItem
             // 
-            this.topToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.top;
+            this.topToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.top;
             this.topToolStripMenuItem.Name = "topToolStripMenuItem";
             this.topToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
             this.topToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
@@ -1057,7 +1060,7 @@
             // 
             // bottomToolStripMenuItem
             // 
-            this.bottomToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.bottom;
+            this.bottomToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.bottom;
             this.bottomToolStripMenuItem.Name = "bottomToolStripMenuItem";
             this.bottomToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
             this.bottomToolStripMenuItem.Size = new System.Drawing.Size(178, 22);
@@ -1110,7 +1113,7 @@
             // 
             // copyToolStripMenuItem
             // 
-            this.copyToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_copy_16;
+            this.copyToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_copy_16;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
             this.copyToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -1119,7 +1122,7 @@
             // 
             // cutToolStripMenuItem
             // 
-            this.cutToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_cutting_coupon_16;
+            this.cutToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_cutting_coupon_16;
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
             this.cutToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -1128,7 +1131,7 @@
             // 
             // pasteToolStripMenuItem
             // 
-            this.pasteToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_paste_16;
+            this.pasteToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.icons8_paste_16;
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
             this.pasteToolStripMenuItem.Size = new System.Drawing.Size(195, 22);
@@ -1137,7 +1140,7 @@
             // 
             // pasteArrayToolStripMenuItem
             // 
-            this.pasteArrayToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.paste_array;
+            this.pasteArrayToolStripMenuItem.Image = global::CustomEditor.Properties.Resources.paste_array;
             this.pasteArrayToolStripMenuItem.Name = "pasteArrayToolStripMenuItem";
             this.pasteArrayToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.V)));
@@ -1149,14 +1152,6 @@
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
             this.toolStripMenuItem3.Size = new System.Drawing.Size(103, 6);
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Image = global::SpiralLab.Sirius.Properties.Resources.customer_50px;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(106, 22);
-            this.aboutToolStripMenuItem.Text = "&About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // contextMenuStrip2
             // 
@@ -1191,14 +1186,14 @@
             // 
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(63, 19);
+            this.lblName.Size = new System.Drawing.Size(63, 17);
             this.lblName.Text = "NoName";
             // 
             // pgbProgress
             // 
             this.pgbProgress.AutoSize = false;
             this.pgbProgress.Name = "pgbProgress";
-            this.pgbProgress.Size = new System.Drawing.Size(100, 18);
+            this.pgbProgress.Size = new System.Drawing.Size(67, 16);
             this.pgbProgress.Step = 1;
             // 
             // lblXPos
@@ -1206,7 +1201,7 @@
             this.lblXPos.AutoSize = false;
             this.lblXPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXPos.Name = "lblXPos";
-            this.lblXPos.Size = new System.Drawing.Size(80, 19);
+            this.lblXPos.Size = new System.Drawing.Size(80, 17);
             this.lblXPos.Text = "X: 0.000";
             // 
             // lblYPos
@@ -1214,7 +1209,7 @@
             this.lblYPos.AutoSize = false;
             this.lblYPos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYPos.Name = "lblYPos";
-            this.lblYPos.Size = new System.Drawing.Size(80, 19);
+            this.lblYPos.Size = new System.Drawing.Size(80, 17);
             this.lblYPos.Text = "Y: 0.000";
             // 
             // lblEntityCount
@@ -1222,21 +1217,21 @@
             this.lblEntityCount.AutoSize = false;
             this.lblEntityCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEntityCount.Name = "lblEntityCount";
-            this.lblEntityCount.Size = new System.Drawing.Size(80, 19);
+            this.lblEntityCount.Size = new System.Drawing.Size(80, 17);
             this.lblEntityCount.Text = "Selected: 0";
             // 
             // lblRenderTime
             // 
             this.lblRenderTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRenderTime.Name = "lblRenderTime";
-            this.lblRenderTime.Size = new System.Drawing.Size(81, 19);
+            this.lblRenderTime.Size = new System.Drawing.Size(81, 17);
             this.lblRenderTime.Text = "Render: 0 ms";
             // 
             // lblFileName
             // 
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(57, 19);
+            this.lblFileName.Size = new System.Drawing.Size(57, 17);
             this.lblFileName.Text = "NoName";
             // 
             // statusStrip1
@@ -1250,9 +1245,9 @@
             this.lblEntityCount,
             this.lblRenderTime,
             this.lblFileName});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 537);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 596);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(784, 24);
+            this.statusStrip1.Size = new System.Drawing.Size(761, 22);
             this.statusStrip1.SizingGrip = false;
             this.statusStrip1.TabIndex = 7;
             this.statusStrip1.Text = "statusStrip1";
@@ -1289,14 +1284,14 @@
             this.toolStrip2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStrip2.Location = new System.Drawing.Point(0, 26);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(784, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(761, 25);
             this.toolStrip2.TabIndex = 13;
             this.toolStrip2.Text = "toolStrip2";
             // 
             // btnPoint
             // 
             this.btnPoint.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPoint.Image = global::SpiralLab.Sirius.Properties.Resources.point;
+            this.btnPoint.Image = global::CustomEditor.Properties.Resources.point;
             this.btnPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPoint.Name = "btnPoint";
             this.btnPoint.Size = new System.Drawing.Size(23, 22);
@@ -1307,7 +1302,7 @@
             // btnPoints
             // 
             this.btnPoints.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnPoints.Image = global::SpiralLab.Sirius.Properties.Resources.points;
+            this.btnPoints.Image = global::CustomEditor.Properties.Resources.points;
             this.btnPoints.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPoints.Name = "btnPoints";
             this.btnPoints.Size = new System.Drawing.Size(23, 22);
@@ -1318,7 +1313,7 @@
             // btnRaster
             // 
             this.btnRaster.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRaster.Image = global::SpiralLab.Sirius.Properties.Resources.raster;
+            this.btnRaster.Image = global::CustomEditor.Properties.Resources.raster;
             this.btnRaster.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRaster.Name = "btnRaster";
             this.btnRaster.Size = new System.Drawing.Size(23, 22);
@@ -1329,7 +1324,7 @@
             // btnLine
             // 
             this.btnLine.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLine.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_line_16;
+            this.btnLine.Image = global::CustomEditor.Properties.Resources.icons8_line_16;
             this.btnLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLine.Name = "btnLine";
             this.btnLine.Size = new System.Drawing.Size(23, 22);
@@ -1340,7 +1335,7 @@
             // btnArc
             // 
             this.btnArc.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnArc.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_halfcircle;
+            this.btnArc.Image = global::CustomEditor.Properties.Resources.icons8_halfcircle;
             this.btnArc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnArc.Name = "btnArc";
             this.btnArc.Size = new System.Drawing.Size(23, 22);
@@ -1351,7 +1346,7 @@
             // btnCircle
             // 
             this.btnCircle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnCircle.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_circle_16;
+            this.btnCircle.Image = global::CustomEditor.Properties.Resources.icons8_circle_16;
             this.btnCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCircle.Name = "btnCircle";
             this.btnCircle.Size = new System.Drawing.Size(23, 22);
@@ -1362,7 +1357,7 @@
             // btnEllipse
             // 
             this.btnEllipse.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnEllipse.Image = global::SpiralLab.Sirius.Properties.Resources.ellipse;
+            this.btnEllipse.Image = global::CustomEditor.Properties.Resources.ellipse;
             this.btnEllipse.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEllipse.Name = "btnEllipse";
             this.btnEllipse.Size = new System.Drawing.Size(23, 22);
@@ -1372,7 +1367,7 @@
             // btnTrepan
             // 
             this.btnTrepan.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnTrepan.Image = global::SpiralLab.Sirius.Properties.Resources.trepan;
+            this.btnTrepan.Image = global::CustomEditor.Properties.Resources.trepan;
             this.btnTrepan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTrepan.Name = "btnTrepan";
             this.btnTrepan.Size = new System.Drawing.Size(23, 22);
@@ -1382,7 +1377,7 @@
             // btnRectangle
             // 
             this.btnRectangle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnRectangle.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_rectangle_stroked_16;
+            this.btnRectangle.Image = global::CustomEditor.Properties.Resources.icons8_rectangle_stroked_16;
             this.btnRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRectangle.Name = "btnRectangle";
             this.btnRectangle.Size = new System.Drawing.Size(23, 22);
@@ -1393,7 +1388,7 @@
             // btnLWPolyline
             // 
             this.btnLWPolyline.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLWPolyline.Image = global::SpiralLab.Sirius.Properties.Resources.polyline_16px;
+            this.btnLWPolyline.Image = global::CustomEditor.Properties.Resources.polyline_16px;
             this.btnLWPolyline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLWPolyline.Name = "btnLWPolyline";
             this.btnLWPolyline.Size = new System.Drawing.Size(23, 22);
@@ -1404,7 +1399,7 @@
             // btnSpiral
             // 
             this.btnSpiral.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnSpiral.Image = global::SpiralLab.Sirius.Properties.Resources.spiral;
+            this.btnSpiral.Image = global::CustomEditor.Properties.Resources.spiral;
             this.btnSpiral.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSpiral.Name = "btnSpiral";
             this.btnSpiral.Size = new System.Drawing.Size(23, 22);
@@ -1422,7 +1417,7 @@
             this.mnuSiriusTime,
             this.mnuSiriusDate,
             this.mnuSiriusSerial});
-            this.ddbSiriusText.Image = global::SpiralLab.Sirius.Properties.Resources.font_size_16px;
+            this.ddbSiriusText.Image = global::CustomEditor.Properties.Resources.font_size_16px;
             this.ddbSiriusText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSiriusText.Name = "ddbSiriusText";
             this.ddbSiriusText.Size = new System.Drawing.Size(29, 22);
@@ -1431,7 +1426,7 @@
             // 
             // mnuSiriusText
             // 
-            this.mnuSiriusText.Image = global::SpiralLab.Sirius.Properties.Resources.font_size_16px;
+            this.mnuSiriusText.Image = global::CustomEditor.Properties.Resources.font_size_16px;
             this.mnuSiriusText.Name = "mnuSiriusText";
             this.mnuSiriusText.Size = new System.Drawing.Size(123, 22);
             this.mnuSiriusText.Text = "Text";
@@ -1440,7 +1435,7 @@
             // 
             // mnuSiriusTextArc
             // 
-            this.mnuSiriusTextArc.Image = global::SpiralLab.Sirius.Properties.Resources.font_rotate;
+            this.mnuSiriusTextArc.Image = global::CustomEditor.Properties.Resources.font_rotate;
             this.mnuSiriusTextArc.Name = "mnuSiriusTextArc";
             this.mnuSiriusTextArc.Size = new System.Drawing.Size(123, 22);
             this.mnuSiriusTextArc.Text = "Text (Arc)";
@@ -1453,7 +1448,7 @@
             // 
             // mnuSiriusTime
             // 
-            this.mnuSiriusTime.Image = global::SpiralLab.Sirius.Properties.Resources.hour;
+            this.mnuSiriusTime.Image = global::CustomEditor.Properties.Resources.hour;
             this.mnuSiriusTime.Name = "mnuSiriusTime";
             this.mnuSiriusTime.Size = new System.Drawing.Size(123, 22);
             this.mnuSiriusTime.Text = "Time";
@@ -1462,7 +1457,7 @@
             // 
             // mnuSiriusDate
             // 
-            this.mnuSiriusDate.Image = global::SpiralLab.Sirius.Properties.Resources.date;
+            this.mnuSiriusDate.Image = global::CustomEditor.Properties.Resources.date;
             this.mnuSiriusDate.Name = "mnuSiriusDate";
             this.mnuSiriusDate.Size = new System.Drawing.Size(123, 22);
             this.mnuSiriusDate.Text = "Date";
@@ -1471,7 +1466,7 @@
             // 
             // mnuSiriusSerial
             // 
-            this.mnuSiriusSerial.Image = global::SpiralLab.Sirius.Properties.Resources.serial;
+            this.mnuSiriusSerial.Image = global::CustomEditor.Properties.Resources.serial;
             this.mnuSiriusSerial.Name = "mnuSiriusSerial";
             this.mnuSiriusSerial.Size = new System.Drawing.Size(123, 22);
             this.mnuSiriusSerial.Text = "Serial";
@@ -1488,7 +1483,7 @@
             this.mnuTextTime,
             this.mnuTextDate,
             this.mnuTextSerial});
-            this.ddbText.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_generic_text_16;
+            this.ddbText.Image = global::CustomEditor.Properties.Resources.icons8_generic_text_16;
             this.ddbText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbText.Name = "ddbText";
             this.ddbText.Size = new System.Drawing.Size(29, 22);
@@ -1497,7 +1492,7 @@
             // 
             // mnuText
             // 
-            this.mnuText.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_generic_text_16;
+            this.mnuText.Image = global::CustomEditor.Properties.Resources.icons8_generic_text_16;
             this.mnuText.Name = "mnuText";
             this.mnuText.Size = new System.Drawing.Size(123, 22);
             this.mnuText.Text = "Text";
@@ -1519,7 +1514,7 @@
             // mnuTextTime
             // 
             this.mnuTextTime.Enabled = false;
-            this.mnuTextTime.Image = global::SpiralLab.Sirius.Properties.Resources.hour;
+            this.mnuTextTime.Image = global::CustomEditor.Properties.Resources.hour;
             this.mnuTextTime.Name = "mnuTextTime";
             this.mnuTextTime.Size = new System.Drawing.Size(123, 22);
             this.mnuTextTime.Text = "Time";
@@ -1529,7 +1524,7 @@
             // mnuTextDate
             // 
             this.mnuTextDate.Enabled = false;
-            this.mnuTextDate.Image = global::SpiralLab.Sirius.Properties.Resources.date;
+            this.mnuTextDate.Image = global::CustomEditor.Properties.Resources.date;
             this.mnuTextDate.Name = "mnuTextDate";
             this.mnuTextDate.Size = new System.Drawing.Size(123, 22);
             this.mnuTextDate.Text = "Date";
@@ -1539,7 +1534,7 @@
             // mnuTextSerial
             // 
             this.mnuTextSerial.Enabled = false;
-            this.mnuTextSerial.Image = global::SpiralLab.Sirius.Properties.Resources.serial;
+            this.mnuTextSerial.Image = global::CustomEditor.Properties.Resources.serial;
             this.mnuTextSerial.Name = "mnuTextSerial";
             this.mnuTextSerial.Size = new System.Drawing.Size(123, 22);
             this.mnuTextSerial.Text = "Serial";
@@ -1549,7 +1544,7 @@
             // btnBarcode1D
             // 
             this.btnBarcode1D.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnBarcode1D.Image = global::SpiralLab.Sirius.Properties.Resources.barcode_24px;
+            this.btnBarcode1D.Image = global::CustomEditor.Properties.Resources.barcode_24px;
             this.btnBarcode1D.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBarcode1D.Name = "btnBarcode1D";
             this.btnBarcode1D.Size = new System.Drawing.Size(23, 22);
@@ -1563,7 +1558,7 @@
             this.ddbBarcode.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuDataMatrix,
             this.mnuQRCode});
-            this.ddbBarcode.Image = global::SpiralLab.Sirius.Properties.Resources.data_matrix_code_50px;
+            this.ddbBarcode.Image = global::CustomEditor.Properties.Resources.data_matrix_code_50px;
             this.ddbBarcode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbBarcode.Name = "ddbBarcode";
             this.ddbBarcode.Size = new System.Drawing.Size(29, 22);
@@ -1572,7 +1567,7 @@
             // 
             // mnuDataMatrix
             // 
-            this.mnuDataMatrix.Image = global::SpiralLab.Sirius.Properties.Resources.data_matrix_code_50px;
+            this.mnuDataMatrix.Image = global::CustomEditor.Properties.Resources.data_matrix_code_50px;
             this.mnuDataMatrix.Name = "mnuDataMatrix";
             this.mnuDataMatrix.Size = new System.Drawing.Size(131, 22);
             this.mnuDataMatrix.Text = "DataMatrix";
@@ -1581,7 +1576,7 @@
             // 
             // mnuQRCode
             // 
-            this.mnuQRCode.Image = global::SpiralLab.Sirius.Properties.Resources.qr_code_24px;
+            this.mnuQRCode.Image = global::CustomEditor.Properties.Resources.qr_code_24px;
             this.mnuQRCode.Name = "mnuQRCode";
             this.mnuQRCode.Size = new System.Drawing.Size(131, 22);
             this.mnuQRCode.Text = "QR Code";
@@ -1590,7 +1585,7 @@
             // btnHPGL
             // 
             this.btnHPGL.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnHPGL.Image = global::SpiralLab.Sirius.Properties.Resources.hpgl;
+            this.btnHPGL.Image = global::CustomEditor.Properties.Resources.hpgl;
             this.btnHPGL.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHPGL.Name = "btnHPGL";
             this.btnHPGL.Size = new System.Drawing.Size(23, 22);
@@ -1601,7 +1596,7 @@
             // btmImage
             // 
             this.btmImage.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btmImage.Image = global::SpiralLab.Sirius.Properties.Resources.image_16px;
+            this.btmImage.Image = global::CustomEditor.Properties.Resources.image_16px;
             this.btmImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btmImage.Name = "btmImage";
             this.btmImage.Size = new System.Drawing.Size(23, 22);
@@ -1620,7 +1615,7 @@
             this.mnuPen,
             this.toolStripMenuItem16,
             this.mnuPenReturn});
-            this.ddbPen.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_pencil_16;
+            this.ddbPen.Image = global::CustomEditor.Properties.Resources.icons8_pencil_16;
             this.ddbPen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbPen.Name = "ddbPen";
             this.ddbPen.Size = new System.Drawing.Size(29, 22);
@@ -1642,7 +1637,7 @@
             // 
             // mnuPenReturn
             // 
-            this.mnuPenReturn.Image = global::SpiralLab.Sirius.Properties.Resources.penreturn;
+            this.mnuPenReturn.Image = global::CustomEditor.Properties.Resources.penreturn;
             this.mnuPenReturn.Name = "mnuPenReturn";
             this.mnuPenReturn.Size = new System.Drawing.Size(136, 22);
             this.mnuPenReturn.Text = "Pen Return";
@@ -1652,7 +1647,7 @@
             // btnTimer
             // 
             this.btnTimer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnTimer.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_timer_16;
+            this.btnTimer.Image = global::CustomEditor.Properties.Resources.icons8_timer_16;
             this.btnTimer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(23, 22);
@@ -1667,7 +1662,7 @@
             this.mnuMOTFBeginEnd,
             this.mnuOTFExtStartDelay,
             this.mnuMOTFWait});
-            this.ddbMotf.Image = global::SpiralLab.Sirius.Properties.Resources.wheel_30px;
+            this.ddbMotf.Image = global::CustomEditor.Properties.Resources.wheel_30px;
             this.ddbMotf.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbMotf.Name = "ddbMotf";
             this.ddbMotf.Size = new System.Drawing.Size(29, 22);
@@ -1676,7 +1671,7 @@
             // 
             // mnuMOTFBeginEnd
             // 
-            this.mnuMOTFBeginEnd.Image = global::SpiralLab.Sirius.Properties.Resources.motfbeginend;
+            this.mnuMOTFBeginEnd.Image = global::CustomEditor.Properties.Resources.motfbeginend;
             this.mnuMOTFBeginEnd.Name = "mnuMOTFBeginEnd";
             this.mnuMOTFBeginEnd.Size = new System.Drawing.Size(187, 22);
             this.mnuMOTFBeginEnd.Text = "MOTF Begin/End";
@@ -1685,7 +1680,7 @@
             // 
             // mnuOTFExtStartDelay
             // 
-            this.mnuOTFExtStartDelay.Image = global::SpiralLab.Sirius.Properties.Resources.motfdelay;
+            this.mnuOTFExtStartDelay.Image = global::CustomEditor.Properties.Resources.motfdelay;
             this.mnuOTFExtStartDelay.Name = "mnuOTFExtStartDelay";
             this.mnuOTFExtStartDelay.Size = new System.Drawing.Size(187, 22);
             this.mnuOTFExtStartDelay.Text = "MOTF Ext Start Delay";
@@ -1694,7 +1689,7 @@
             // 
             // mnuMOTFWait
             // 
-            this.mnuMOTFWait.Image = global::SpiralLab.Sirius.Properties.Resources.motfwait;
+            this.mnuMOTFWait.Image = global::CustomEditor.Properties.Resources.motfwait;
             this.mnuMOTFWait.Name = "mnuMOTFWait";
             this.mnuMOTFWait.Size = new System.Drawing.Size(187, 22);
             this.mnuMOTFWait.Text = "MOTF Wait";
@@ -1710,7 +1705,7 @@
             // 
             this.btnLayer.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.btnLayer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.btnLayer.Image = global::SpiralLab.Sirius.Properties.Resources.icons8_layers_16;
+            this.btnLayer.Image = global::CustomEditor.Properties.Resources.icons8_layers_16;
             this.btnLayer.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLayer.Name = "btnLayer";
             this.btnLayer.Size = new System.Drawing.Size(23, 22);
@@ -1722,7 +1717,7 @@
             this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuVectorBeginEnd});
-            this.toolStripDropDownButton1.Image = global::SpiralLab.Sirius.Properties.Resources.vector;
+            this.toolStripDropDownButton1.Image = global::CustomEditor.Properties.Resources.vector;
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
@@ -1749,8 +1744,8 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(784, 486);
-            this.splitContainer1.SplitterDistance = 552;
+            this.splitContainer1.Size = new System.Drawing.Size(761, 545);
+            this.splitContainer1.SplitterDistance = 535;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 14;
             // 
@@ -1766,7 +1761,7 @@
             this.GLcontrol.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.GLcontrol.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.GLcontrol.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.GLcontrol.Size = new System.Drawing.Size(552, 486);
+            this.GLcontrol.Size = new System.Drawing.Size(535, 545);
             this.GLcontrol.TabIndex = 3;
             // 
             // splitContainer2
@@ -1784,8 +1779,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ppgEntity);
-            this.splitContainer2.Size = new System.Drawing.Size(229, 486);
-            this.splitContainer2.SplitterDistance = 155;
+            this.splitContainer2.Size = new System.Drawing.Size(223, 545);
+            this.splitContainer2.SplitterDistance = 172;
             this.splitContainer2.TabIndex = 2;
             // 
             // trvEntity
@@ -1796,7 +1791,7 @@
             this.trvEntity.Location = new System.Drawing.Point(0, 0);
             this.trvEntity.Name = "trvEntity";
             this.trvEntity.SelectedNodes = ((System.Collections.Generic.List<System.Windows.Forms.TreeNode>)(resources.GetObject("trvEntity.SelectedNodes")));
-            this.trvEntity.Size = new System.Drawing.Size(229, 131);
+            this.trvEntity.Size = new System.Drawing.Size(223, 148);
             this.trvEntity.TabIndex = 3;
             this.trvEntity.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.trvEntity_ItemDrag);
             this.trvEntity.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvEntity_AfterSelect);
@@ -1814,9 +1809,9 @@
             this.lblCenter,
             this.toolStripStatusLabel1,
             this.lblBound});
-            this.statusStrip2.Location = new System.Drawing.Point(0, 131);
+            this.statusStrip2.Location = new System.Drawing.Point(0, 148);
             this.statusStrip2.Name = "statusStrip2";
-            this.statusStrip2.Size = new System.Drawing.Size(229, 24);
+            this.statusStrip2.Size = new System.Drawing.Size(223, 24);
             this.statusStrip2.SizingGrip = false;
             this.statusStrip2.TabIndex = 2;
             this.statusStrip2.Text = "statusStrip2";
@@ -1883,21 +1878,21 @@
             this.ppgEntity.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ppgEntity.Location = new System.Drawing.Point(0, 0);
             this.ppgEntity.Name = "ppgEntity";
-            this.ppgEntity.Size = new System.Drawing.Size(229, 327);
+            this.ppgEntity.Size = new System.Drawing.Size(223, 369);
             this.ppgEntity.TabIndex = 1;
             this.ppgEntity.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgEntity_PropertyValueChanged);
             // 
             // CustomEditorForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(761, 618);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.toolStrip2);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CustomEditorForm";
             this.Text = "(c)SpiralLab - Custom Editor";
@@ -1976,7 +1971,6 @@
         private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem spiralToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pointToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem textToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem timerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnImport;
@@ -2015,7 +2009,7 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         public SharpGL.OpenGLControl GLcontrol;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private MultiSelectTreeview trvEntity;
+        private SpiralLab.Sirius.MultiSelectTreeview trvEntity;
         private System.Windows.Forms.StatusStrip statusStrip2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel2;
         private System.Windows.Forms.ToolStripStatusLabel lblWH;

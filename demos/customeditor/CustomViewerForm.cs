@@ -33,8 +33,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpGL;
 using System.Diagnostics;
+using SpiralLab.Sirius;
 
-namespace SpiralLab.Sirius
+namespace CustomEditor
 {
     public partial class CustomViewerForm : Form
     {
