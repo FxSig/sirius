@@ -116,7 +116,23 @@
             인덱스 위치에 이미지 로드
             </summary>
             <param name="index">좌 상단 0</param>
-            <param name="fileName"></param>
+            <param name="fileName">파일이름</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.UpdateImage(System.Int32,System.Byte[])">
+            <summary>
+            인덱스 위치에 이미지 로드
+            </summary>
+            <param name="index">좌 상단 0</param>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.UpdateImage(System.Int32,System.IO.Stream)">
+            <summary>
+            인덱스 위치에 이미지 로드
+            </summary>
+            <param name="index">좌 상단 0</param>
+            <param name="stream">스트림</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.StitchedImage.Clone">
@@ -3474,6 +3490,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.stop_sign_48px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.swap_24px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
