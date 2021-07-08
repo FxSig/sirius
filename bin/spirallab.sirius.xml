@@ -3351,6 +3351,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.reference">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.refresh_24px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -5667,6 +5672,11 @@
             offsets 배열 변환기 (group)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.GroupEditor">
+            <summary>
+            그룹 편집기 (group)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.LwPolyLineVertexEditor">
             <summary>
             LW 폴리라인 버텍스 변환기
@@ -5865,6 +5875,28 @@
         <member name="M:SpiralLab.Sirius.TSPFitnessFunction.PathLength(Accord.Genetic.IChromosome)">
             <summary>
             Calculate path length represented by the specified chromosome 
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.GroupForm">
+            <summary>
+            그룹 엔티티 편집용 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GroupForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.GroupForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.GroupForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PointsForm">
