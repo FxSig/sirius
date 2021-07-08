@@ -55,7 +55,7 @@ namespace SpiralLab.Sirius.FCEU
             }
             var form2D = new Correction2DForm(correction2D);
             form2D.OnApply += Form2D_OnApply;
-            form2D.ShowDialog();
+            form2D.ShowDialog(this);
         }
 
         private void Form2D_OnApply(object sender, EventArgs e)

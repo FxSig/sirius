@@ -102,7 +102,7 @@ namespace SpiralLab.Sirius
             };
             marker.Ready(markerArg);
             var form = new MotfMarkerForm(marker);
-            form.ShowDialog();
+            form.ShowDialog(this);
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {

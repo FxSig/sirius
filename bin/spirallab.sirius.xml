@@ -2886,6 +2886,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.emergency_stop_button_48px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.energy_isolation_48px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
