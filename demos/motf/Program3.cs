@@ -112,9 +112,9 @@ namespace SpiralLab.Sirius
             //점프
             success &= rtc.ListJump(new Vector2(-10, 0));
             //매 100us 마다 X 방향으로 0.1 mm 이동하면서 아나로그 1번 출력으로 픽셀 출력(Raster Operation)을 준비 (100개)
-            success &= rtcExt.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO1);
+            success &= rtcExt.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO2);
             for (int i = 0; i < 100; i++)
-                success &= rtcExt.ListPixel(10, 5); //10us 펄스 생성및 아나로그1 에 5V 출력
+                success &= rtcExt.ListPixel(10, 0.5f); //10us 펄스 생성및 아나로그2 에 5V 출력
             
             if (success)
             {

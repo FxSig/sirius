@@ -220,10 +220,10 @@ namespace SpiralLab.Sirius
             {
                 //줄의 시작위치로 점프
                 success &= rtc.ListJump(new Vector2(0, i * gap));
-                // pixel의 최대 주기시간 (200us), 출력 채널(analog 1), 가로세로 간격 (gap), 총 pixel 개수
-                success &= rtcExt.ListPixelLine(200, new Vector2(gap, 0), (uint)counts, ExtensionChannel.ExtAO1 );
+                // pixel의 최대 주기시간 (200us), 출력 채널(analog 2), 가로세로 간격 (gap), 총 pixel 개수
+                success &= rtcExt.ListPixelLine(200, new Vector2(gap, 0), (uint)counts, ExtensionChannel.ExtAO2);
                 for (int j = 0; j < counts; j++)
-                    success &= rtcExt.ListPixel(20, 5); // 20usec, 5V
+                    success &= rtcExt.ListPixel(20, 0.5f); // 20usec, 5V
                 if (!success)
                     break;
             }

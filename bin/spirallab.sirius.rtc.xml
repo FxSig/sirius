@@ -1454,7 +1454,7 @@
             반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 ListPixel 함수가 호출되어야 함
             </summary>
             <param name="usec">현재 픽셀의 출력 주기(lower than usec in ListPixelLine ) </param>
-            <param name="analogVoltage">0~10V (확장 채널로 Analog 출력을 사용했을 경우) </param>
+            <param name="weight">ExtensionChannel 출력의 가중치 값(0~1), 아나로그 10V</param>
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
@@ -2362,7 +2362,7 @@
             반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 ListPixel 함수가 호출되어야 함
             </summary>
             <param name="usec">현재 픽셀의 출력 주기(lower than usec in ListPixelLine ) </param>
-            <param name="analogVoltage">0~10V (확장 채널로 Analog 출력을 사용했을 경우) </param>
+            <param name="weight">ExtensionChannel 출력의 가중치 값(0~1), 내부적으로는 float : 아나로그 10V</param>
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
@@ -3530,7 +3530,7 @@
             반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 ListPixel 함수가 호출되어야 함
             </summary>
             <param name="usec">현재 픽셀의 출력 주기(lower than usec in ListPixelLine ) </param>
-            <param name="analogVoltage">0~10V (확장 채널로 Analog 출력을 사용했을 경우) </param>
+            <param name="weight">ExtensionChannel 출력의 가중치 값(0~1), 내부적으로는 int: 16비트, 8비트, float : 아나로그 10V</param>
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
@@ -6019,9 +6019,9 @@
             반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 ListPixel 함수가 호출되어야 함
             </summary>
             <param name="usec">현재 픽셀의 출력 주기(lower than usec in ListPixelLine ) </param>
-            <param name="analogVoltage">0~10V (확장 채널로 Analog 출력을 사용했을 경우) </param>
+            <param name="weight">ExtensionChannel 출력의 가중치 값(0~1)</param>
             <param name="compensator">아나로그 출력값 보정기 사용시 지정</param>
-            <returns></returns>
+            <returns></returns>        
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListPixels(System.Numerics.Vector2,System.Numerics.Vector2,System.Single,System.Single[],SpiralLab.Sirius.ExtensionChannel,System.Single[],SpiralLab.Sirius.ICompensator{System.Single},SpiralLab.Sirius.ICompensator{System.Single})">
             <summary>
