@@ -35,7 +35,10 @@
             // 
             this.siriusViewerForm1.AliasName = "NoName";
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siriusViewerForm1.Document = null;
+            this.siriusViewerForm1.FileName = "NoName";
             this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siriusViewerForm1.Index = ((uint)(0u));
             this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
             this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusViewerForm1.Name = "siriusViewerForm1";
@@ -50,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(908, 608);
             this.Controls.Add(this.siriusViewerForm1);
             this.Name = "MainForm";
-            this.Text = "Your Sirius Viewer - DEMO";
+            this.Text = "Sirius Viewer Demos - (c)SpiralLab";
             this.ResumeLayout(false);
 
         }
