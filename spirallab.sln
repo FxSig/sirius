@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30.sirius", "demos\sirius\3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "27.editor_custompen", "demos\editor_custompen\27.editor_custompen.csproj", "{D630D123-9932-4901-A733-4EF20E96A8E2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15.syncaxis", "demos\syncaxis\15.syncaxis.csproj", "{903D7E83-2AB9-4274-B134-C356AA37F4FC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -324,6 +326,18 @@ Global
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Release|x64.Build.0 = Release|Any CPU
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Release|x86.ActiveCfg = Release|Any CPU
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Release|x86.Build.0 = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|x64.Build.0 = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Debug|x86.Build.0 = Debug|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|x64.ActiveCfg = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|x64.Build.0 = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|x86.ActiveCfg = Release|Any CPU
+		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
