@@ -11,7 +11,8 @@ using SpiralLab.Sirius;
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 레이저 소스 (RS-232 통신과 같이 통신 지연을 가지고 파워 제어가 필요한 레이저 소스)
+    /// 레이저 소스 (사용자 커스텀 버전(
+    /// RS-232 통신과 같이 통신 지연을 가지고 있는 레이저 소스 예제
     /// </summary>
     public class YourCustomLaser2 : SpiralLab.Sirius.ILaser
     {
@@ -23,31 +24,40 @@ namespace SpiralLab.Sirius
         /// 식별 번호
         /// </summary>
         public uint Index { get; set; }
-
         /// <summary>
         /// 이름
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// 최대 출력 와트
         /// </summary>
         public float MaxPowerWatt { get; set; }
 
+        /// <summary>
+        /// 준비 상태 
+        /// </summary>
         public bool IsReady
         {
             get { return !this.IsError; }
         }
+        /// <summary>
+        /// 가공중 상태
+        /// </summary>
         public bool IsBusy
         {
             get { return false; }
         }
+        /// <summary>
+        /// 에러 상태
+        /// </summary>
         public bool IsError { get; set; }
+        // <summary>
+        /// IRtc 객체
+        /// </summary>
         public IRtc Rtc { get; set; }
         public object Tag { get; set; }
 
         private SerialPort serialPort;
-
         private bool disposed = false;
 
         public YourCustomLaser2(uint index, string name, float maxPowerWatt, int comPort)
@@ -103,22 +113,37 @@ namespace SpiralLab.Sirius
             }
             return true;
         }
+        /// <summary>
+        /// 가공 중지
+        /// </summary>
+        /// <returns></returns>
         public bool CtlAbort()
         {
             lock (this.SyncRoot)
             {
+                //this.serialPort.Write
                 return true;
             }
         }
+        /// <summary>
+        /// 에러 해제 시도
+        /// </summary>
+        /// <returns></returns>
         public bool CtlReset()
         {
             lock (this.SyncRoot)
             {
+                //this.serialPort.Write
                 IsError = false;
                 return true;
             }
         }
-
+        /// <summary>
+        /// 지정된 출력(watt)으로 레이저 파워 변경
+        /// 컨트롤 명령 (즉시 명령)
+        /// </summary>
+        /// <param name="watt">Watt</param>
+        /// <returns></returns>
         public bool CtlPower(float watt)
         {
             if (!this.serialPort.IsOpen)
@@ -128,14 +153,17 @@ namespace SpiralLab.Sirius
             success &= this.CommandToChangePower(watt);
             return success;
         }
-      
+
         /// <summary>
+        /// 지정된 출력(watt)으로 레이저 파워 변경
+        /// 리스트 명령 (RTC 버퍼에 삽입되는 명령)
+        /// 
         /// IPen 객체가 가공(Mark 함수)을 최초에 시작하며 이때 함수가 호출된다.
         /// 만약 여러개의 IPen 을 사용하고, RS232 통신과 같이 통신 지연 시간이 필요하면 
         /// 통신 완료후 다음 리스트 명령들이 실행가능하도록, 지금까지 삽입된 모든 List 명령을 실행 완료후
         /// 파워 변경 통신을 시도하고, 이후에 신규 RTC 버퍼를 시작한다
         /// </summary>
-        /// <param name="watt"></param>
+        /// <param name="watt">Watt</param>
         /// <returns></returns>
         public bool ListPower( float watt)
         {

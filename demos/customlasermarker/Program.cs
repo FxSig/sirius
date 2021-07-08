@@ -68,10 +68,10 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region prepare your marker
-            /// 사용자 정의 마커 생성
+            // 사용자 정의 마커 생성
             var marker = new YourCustomMarker(0);
             marker.Name = "custom marker";
-            ///가공 완료 이벤트 핸들러 등록
+            //가공 완료 이벤트 핸들러 등록
             marker.OnFinished += Marker_OnFinished;
             #endregion
 

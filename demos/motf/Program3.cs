@@ -92,11 +92,11 @@ namespace SpiralLab.Sirius
             //리스트 시작
             success &= rtc.ListBegin(laser);
             //아나로그1 에 5V 출력
-            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 1);
+            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, 0.5f);
             //1 초 동안 대기
             success &= rtc.ListWait(1000);
             //아나로그1 에 0V 출력
-            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO1, 0);
+            success &= rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, 0);
             //점프
             success &= rtc.ListJump(new Vector2(10, 0));
             //레이저 출력 15핀에 있는 출력 2접점중 첫번째 비트 켜기 

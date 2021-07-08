@@ -77,18 +77,6 @@
   <ItemGroup>
     <Compile Include="laser.cs" />
     <Compile Include="laser2.cs" />
-    <Compile Include="laserform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="laserform.Designer.cs">
-      <DependentUpon>laserform.cs</DependentUpon>
-    </Compile>
-    <Compile Include="markerform.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="markerform.Designer.cs">
-      <DependentUpon>markerform.cs</DependentUpon>
-    </Compile>
     <Compile Include="marker.cs" />
     <Compile Include="motor.cs" />
     <Compile Include="Program.cs" />
@@ -108,14 +96,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="laserform.resx">
-      <DependentUpon>laserform.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="markerform.resx">
-      <DependentUpon>markerform.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
