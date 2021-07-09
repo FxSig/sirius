@@ -129,12 +129,12 @@
             동기화 객체
             </summary>
         </member>
-        <member name="T:SpiralLab.MemoryDBHelper">
+        <member name="T:SpiralLab.MemoryDB">
             <summary>
             메모리 데이터 베이스
             </summary>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.#ctor(SpiralLab.IMemory,System.String,System.UInt32)">
+        <member name="M:SpiralLab.MemoryDB.#ctor(SpiralLab.IMemory,System.String,System.UInt32)">
             <summary>
             메모리 데이터 베이스 생성자
             </summary>
@@ -142,40 +142,40 @@
             <param name="dbFileName">데이터베이스 파일 이름 (예:test.db)</param>
             <param name="maxDataSize">데이타(Json 변환포맷) 최대 크기 (bytes)</param>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.Finalize">
+        <member name="M:SpiralLab.MemoryDB.Finalize">
             <summary>
             종결자
             </summary>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.Dispose">
+        <member name="M:SpiralLab.MemoryDB.Dispose">
             <summary>
             자원 해제
             </summary>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.Initialize">
+        <member name="M:SpiralLab.MemoryDB.Initialize">
             <summary>
             초기화 및 동기화
             </summary>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.PrepareTable">
+        <member name="M:SpiralLab.MemoryDB.PrepareTable">
             <summary>
             데이터 베이스 테이블 준비 (없으면 생성)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.ReverseSync">
+        <member name="M:SpiralLab.MemoryDB.ReverseSync">
             <summary>
             DB 에 저장되어 있는 모든 속성 데이타를 실제 메모리 객체에 반영(동기화)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.ForwardSync">
+        <member name="M:SpiralLab.MemoryDB.ForwardSync">
             <summary>
             속성들을 모두 조회하여 DB 에 없으면 삽입한다 (동기화)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.MemoryDBHelper.Update(System.Reflection.PropertyInfo@)">
+        <member name="M:SpiralLab.MemoryDB.Update(System.Reflection.PropertyInfo@)">
             <summary>
             속성 값이 변경될 경우 DB 에 업데이트
             </summary>
