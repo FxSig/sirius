@@ -92,7 +92,7 @@ namespace SpiralLab.Sirius.Nguyen
             float interval = 10.0f;
             float upper = 5;
             float lower = -5;
-            var correction3D = new RtcCorrection3D(rtc.KFactor, rows, cols, upper, lower, rtc.CorrectionFiles[0], string.Empty);
+            var correction3D = new RtcCorrection3D(rtc.KFactor, rows, cols, interval, upper, lower, rtc.CorrectionFiles[0], string.Empty);
             float left = -interval * (float)(int)(cols / 2);
             float top = interval * (float)(int)(rows / 2);
             var rand = new Random();

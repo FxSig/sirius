@@ -4628,13 +4628,14 @@
             SCANLAB 의 보정 유틸리티 실행파일 경로
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.String,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection3D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.String,System.String)">
             <summary>
             생성자
             </summary>
             <param name="kFactor">bits/mm</param>
             <param name="rows">행 개수</param>
             <param name="cols">열 개수</param>
+            <param name="interval">간격</param>
             <param name="zUpper">최상단 위치 (mm)</param>
             <param name="zLower">최하단 위치 (mm)</param>
             <param name="srcCtbFile">입력 보정 파일</param>
@@ -4887,6 +4888,16 @@
         <member name="P:SpiralLab.Sirius.ICorrection.Cols">
             <summary>
             입력 데이타의 열 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection.Interval">
+            <summary>
+            보정 간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection.KFactor">
+            <summary>
+            K 값 (bits/mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection.SourceCorrectionFile">

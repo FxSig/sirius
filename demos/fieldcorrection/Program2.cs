@@ -83,7 +83,8 @@ namespace SpiralLab.Sirius
 
             // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
-            var correction = new RtcCorrection3D(kfactor, 3, 3, 5, -5, srcFile, targetFile);
+            float interval = 20;
+            var correction = new RtcCorrection3D(kfactor, 3, 3, interval, 5, -5, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
@@ -128,7 +129,8 @@ namespace SpiralLab.Sirius
 
             // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
-            var correction = new RtcCorrection3D(kfactor, 3, 3, 5, -5, srcFile, targetFile);
+            float interval = 20;
+            var correction = new RtcCorrection3D(kfactor, 3, 3, interval, 5, -5, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
