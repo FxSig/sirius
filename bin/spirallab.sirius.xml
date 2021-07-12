@@ -3319,6 +3319,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.pltdxf">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.plugin_16px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -4254,6 +4259,12 @@
             사용자 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.IEntity.Regen">
+            <summary>
+            데이타 변경시 혹은 내부 벡터및 외각(boundrect)영역 재 계산이 필요할 경우 등 
+            내부데이타 refresh 발생시 호출되어야 하는 함수 (regenerate)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IExplodable">
             <summary>
             Explodable 인터페이스
@@ -4640,12 +4651,6 @@
         <member name="P:SpiralLab.Sirius.IDrawable.Angle">
             <summary>
             회전량
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IDrawable.Regen">
-            <summary>
-            데이타 변경시 혹은 내부 벡터및 외각(boundrect)영역 재 계산이 필요할 경우 등 
-            내부데이타 refresh 발생시 호출되어야 하는 함수 (regenerate)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Draw(SpiralLab.Sirius.IView)">

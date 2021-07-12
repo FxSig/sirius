@@ -39,14 +39,16 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "24.editor_wpf", "demos\edit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2EAB30E8-DE1F-4D08-9A34-24E8312DC2A9}"
 	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
 		README.md = README.md
+		sirius.cs = sirius.cs
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16.autolasercontrol", "demos\autolasercontrol\16.autolasercontrol.csproj", "{DC232EFB-EEC0-4FB6-A8D8-1DE4E0B05EF0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25.customeditor", "demos\customeditor\25.customeditor.csproj", "{B5606A31-1F51-46E4-A4DC-66DE583BD69D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "26.cppinterops", "demos\cppinterops\cppinterops.vcxproj", "{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20.cppinterops", "demos\cppinterops\cppinterops.vcxproj", "{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30.sirius", "demos\sirius\30.sirius.csproj", "{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}"
 EndProject

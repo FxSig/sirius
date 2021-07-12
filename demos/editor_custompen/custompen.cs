@@ -388,5 +388,8 @@ namespace SpiralLab.Sirius
                 markerArg.PenStack.Push(this); //현재 사용중인 펜 엔티티를 펜 스텍에 삽입한다 (이는 PenReturn 을 사용할때 이전 펜 상태로 복구하는데 필요하다)
             return success;
         }
+
+        public virtual void Regen()
+        { }
     }
 }
