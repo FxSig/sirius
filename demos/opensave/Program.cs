@@ -136,7 +136,7 @@ namespace SpiralLab.Sirius
                 success &= rtc.ListEnd();
                 success &= rtc.ListExecute(true);
             }
-            Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
         }
     }
 }

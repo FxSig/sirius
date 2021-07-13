@@ -53,7 +53,7 @@
             this.ClientSize = new System.Drawing.Size(908, 608);
             this.Controls.Add(this.siriusViewerForm1);
             this.Name = "MainForm";
-            this.Text = "Sirius Viewer Demos - (c)SpiralLab";
+            this.Text = "Your Sirius Viewer - (c)SpiralLab";
             this.ResumeLayout(false);
 
         }

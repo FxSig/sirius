@@ -53,7 +53,7 @@
             this.btnRecipeChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecipeChange.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecipeChange.Image = global::Spirallab.Sirius.Properties.Resources.clone_24px;
-            this.btnRecipeChange.Location = new System.Drawing.Point(944, 691);
+            this.btnRecipeChange.Location = new System.Drawing.Point(929, 688);
             this.btnRecipeChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRecipeChange.Name = "btnRecipeChange";
             this.btnRecipeChange.Size = new System.Drawing.Size(68, 64);
@@ -66,9 +66,7 @@
             // 
             // splitContainer1
             // 
-            this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -79,7 +77,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.dgvRecipe);
-            this.splitContainer1.Size = new System.Drawing.Size(1023, 684);
+            this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
             this.splitContainer1.SplitterDistance = 700;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 10;
@@ -121,7 +119,7 @@
             this.dgvRecipe.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecipe.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRecipe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRecipe.Size = new System.Drawing.Size(321, 684);
+            this.dgvRecipe.Size = new System.Drawing.Size(322, 768);
             this.dgvRecipe.TabIndex = 8;
             // 
             // dataGridViewTextBoxColumn1
@@ -154,15 +152,15 @@
             this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusViewerForm1.Name = "siriusViewerForm1";
             this.siriusViewerForm1.Progress = 0;
-            this.siriusViewerForm1.Size = new System.Drawing.Size(700, 684);
+            this.siriusViewerForm1.Size = new System.Drawing.Size(700, 768);
             this.siriusViewerForm1.TabIndex = 11;
             // 
             // FormRecipe
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.btnRecipeChange);
+            this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormRecipe";

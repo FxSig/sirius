@@ -85,17 +85,18 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'M' : draw entities by marker");
                 Console.WriteLine("'O' : draw entities by marker with offsets");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 switch (key.Key)
                 {
                     case ConsoleKey.M:

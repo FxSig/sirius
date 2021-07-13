@@ -59,8 +59,9 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'S' : get status");
                 Console.WriteLine("'L' : draw line");
                 Console.WriteLine("'C' : draw circle");
@@ -68,45 +69,44 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'D' : draw circle with dots");
                 Console.WriteLine("'P' : draw square area with pixel operation");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine($"{Environment.NewLine}");
                 var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
                     case ConsoleKey.S:  //RTC의 상태 확인
                         if (rtc.CtlGetStatus(RtcStatus.Busy))
-                            Console.WriteLine($"\r\nRtc is busy!");
-                        else if (!rtc.CtlGetStatus(RtcStatus.PowerOK))
-                            Console.WriteLine($"\r\nScanner power is not ok");
-                        else if (!rtc.CtlGetStatus(RtcStatus.PositionAckOK))
-                            Console.WriteLine($"\r\nScanner position is not acked");
-                        else if (!rtc.CtlGetStatus(RtcStatus.NoError))
-                            Console.WriteLine($"\r\nRtc status has an error");
-                        else
-                            Console.WriteLine($"\r\nIt's okay");
+                            Console.WriteLine($"Rtc is busy!");
+                        if (!rtc.CtlGetStatus(RtcStatus.PowerOK))
+                            Console.WriteLine($"Scanner power is not ok");
+                        if (!rtc.CtlGetStatus(RtcStatus.PositionAckOK))
+                            Console.WriteLine($"Scanner position is not acked");
+                        if (!rtc.CtlGetStatus(RtcStatus.NoError))
+                            Console.WriteLine($"Rtc status has an error");                        
                         break;
                     case ConsoleKey.L:  // 선 모양 가공
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawLine(laser, rtc, -10,-10, 10, 10);
                         break;
                     case ConsoleKey.C:  // 원 모양 가공
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawCircle(laser, rtc, 10);
                         break;
                     case ConsoleKey.R:  // 사각형 모양 가공
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawRectangle(laser, rtc, 10, 10);
                         break;
                     case ConsoleKey.D:  //점으로 이루어진 원 모양 가공
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawCircleWithDots(laser, rtc, 10, 1.0f);
                         break;
                     case ConsoleKey.P:  // 픽셀 이루어진 사각 모양 가공
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawSquareAreaWithPixels(laser, rtc, 10, 0.2f);
                         break;
                 }

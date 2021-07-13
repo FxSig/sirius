@@ -58,7 +58,10 @@
             // 
             this.siriusViewerForm1.AliasName = "NoName";
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siriusViewerForm1.Document = null;
+            this.siriusViewerForm1.FileName = "NoName";
             this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siriusViewerForm1.Index = ((uint)(0u));
             this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
             this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusViewerForm1.Name = "siriusViewerForm1";
@@ -70,7 +73,10 @@
             // 
             this.siriusViewerForm2.AliasName = "NoName";
             this.siriusViewerForm2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siriusViewerForm2.Document = null;
+            this.siriusViewerForm2.FileName = "NoName";
             this.siriusViewerForm2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siriusViewerForm2.Index = ((uint)(0u));
             this.siriusViewerForm2.Location = new System.Drawing.Point(0, 0);
             this.siriusViewerForm2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusViewerForm2.Name = "siriusViewerForm2";
@@ -87,7 +93,7 @@
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormViewer";
-            this.Text = "FormViewer";
+            this.Text = "Viewer - (c)SpiralLab";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();

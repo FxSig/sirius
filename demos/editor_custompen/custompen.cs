@@ -341,7 +341,7 @@ namespace SpiralLab.Sirius
                 Name = this.Name,
                 Description = this.Description,
                 Owner = this.Owner,
-                IsSelected = false,
+                IsSelected = this.IsSelected,
                 isMarkerable = this.IsMarkerable,
                 isLocked = this.IsLocked,
                 power = this.Power,

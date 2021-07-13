@@ -50,8 +50,8 @@ namespace SpiralLab.Sirius.Nguyen
                             left + col * interval,
                             top - row * interval),
                         new Vector2(
-                            rand.Next(50) / 1000.0f - 0.1f,
-                            rand.Next(50) / 1000.0f - 0.1f)
+                            rand.Next(20) / 1000.0f - 0.01f,
+                            rand.Next(20) / 1000.0f - 0.01f)
                         );
                 }
             }
@@ -130,7 +130,7 @@ namespace SpiralLab.Sirius.Nguyen
             }
             var form3D = new Correction3DForm(correction3D);
             form3D.OnApply += Form3D_OnApply;
-            form3D.ShowDialog();
+            form3D.ShowDialog(this);
         }
 
         private void Form3D_OnApply(object sender, EventArgs e)

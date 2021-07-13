@@ -48,12 +48,21 @@ namespace SpiralLab.Sirius.FCEU
                 seq.Viewer.Document = doc;
                 seq.Editor.Document = doc;
 
-                //기본 펜 생성
+                //사용자 정의 펜 생성
+                //var pen = new FCEUPen();
+                //seq.Editor.OnDocumentPenNew += SiriusEditorForm1_OnDocumentPenNew;
+                //기본 펜 생성 
                 var pen = new PenDefault();
+                
                 doc.Action.ActEntityAdd(pen);
-
             }));
         }
+        //private void SiriusEditorForm1_OnDocumentPenNew(object sender)
+        //{
+        //    // 사용자 정의 펜 엔티티를 생성
+        //    var pen = new FCEUPen();
+        //    seq.Editor.OnPenNew(pen);
+        //}
         public bool RecipeChange(int no)
         {
             if (seq.IsBusy)
@@ -408,10 +417,10 @@ namespace SpiralLab.Sirius.FCEU
                     }));
                     group.Regen();
                     //x 정렬 오름차순
-                    group.Sort(delegate (IEntity e1, IEntity e2)
-                    {
-                        return e1.BoundRect.Center.X.CompareTo(e2.BoundRect.Center.X);
-                    });
+                    //group.Sort(delegate (IEntity e1, IEntity e2)
+                    //{
+                    //    return e1.BoundRect.Center.X.CompareTo(e2.BoundRect.Center.X);
+                    //});
                     seq.Warn(WarnEnum.VisionDataOpen, true);
                 }
                 Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()

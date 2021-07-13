@@ -115,23 +115,24 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com(http://spirallab.co.kr)");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'D' : draw group entities with pen");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
-                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         var timer = Stopwatch.StartNew();
                         DrawForFieldCorrection(laser, rtc, doc);
-                        Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+                        Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
                         break;
                 }
             } while (true);

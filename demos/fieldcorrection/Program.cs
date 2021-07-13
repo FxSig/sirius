@@ -29,6 +29,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
@@ -37,6 +38,9 @@ namespace SpiralLab.Sirius
         static float kfactor = (float)Math.Pow(2, 20) / 60.0f;
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             SpiralLab.Core.Initialize();
 
             ConsoleKeyInfo key;

@@ -48,6 +48,7 @@
  - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
  - spirallab.sirius.dll file support user control : Sirius.EditorForm and Sirius.ViewerForm
  - There are multiple demo programs in DEMOS directory
+ - (For x64) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x64.dll $(TargetDir)freetype6.dll"
 
 ![stitched image](http://www.spirallab.co.kr/wp-content/uploads/2021/06/unnamed-5-1-2.png)
 

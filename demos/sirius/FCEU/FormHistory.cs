@@ -8,9 +8,20 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
 using System.Numerics;
+using System.Reflection;
 
 namespace SpiralLab.Sirius.FCEU
 {
+    public static class ListViewExtensions
+    {
+        public static void SetDoubleBuffered(this ListView listView, bool value)
+        {
+            listView.GetType()
+                .GetProperty("DoubleBuffered", BindingFlags.Instance | BindingFlags.NonPublic)
+                .SetValue(listView, value);
+        }
+    }
+
     public partial class FormHistory: Form
     {
         private System.Collections.Specialized.StringCollection folderCol;
@@ -21,6 +32,8 @@ namespace SpiralLab.Sirius.FCEU
 
             this.VisibleChanged += FormHistory_VisibleChanged;
             folderCol = new System.Collections.Specialized.StringCollection();
+
+            listView1.SetDoubleBuffered(true);
             CreateHeadersAndFillListView();
 
         }

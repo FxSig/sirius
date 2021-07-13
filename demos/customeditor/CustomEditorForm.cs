@@ -530,7 +530,7 @@ namespace CustomEditor
             ofd.Filter = "sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
             ofd.Title = "Open File";
             ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog();
+            DialogResult result = ofd.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 string ext = Path.GetExtension(ofd.FileName);
@@ -569,7 +569,7 @@ namespace CustomEditor
             ofd.Filter = "Sirius data files (*.sirius)|*.sirius|DXF cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
             ofd.Title = "Import File";
             ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog();
+            DialogResult result = ofd.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 string ext = Path.GetExtension(ofd.FileName);
@@ -604,7 +604,7 @@ namespace CustomEditor
             sfd.Filter = "sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
             sfd.Title = "Save As ...";
             sfd.FileName = string.Empty;
-            DialogResult result = sfd.ShowDialog();
+            DialogResult result = sfd.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 this.Document.Action.ActSave(sfd.FileName);
@@ -643,7 +643,7 @@ namespace CustomEditor
         {
             var point = new SpiralLab.Sirius.Point(0,0);
             var form = new PropertyForm(point);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
             this.Document.Action.ActEntityAdd(point);
@@ -658,7 +658,7 @@ namespace CustomEditor
                 new Vertex(3,4),
             });
             var form = new PropertyForm(point);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
             this.Document.Action.ActEntityAdd(point);
@@ -667,7 +667,7 @@ namespace CustomEditor
         {
             var raster = new Raster();
             var form = new PropertyForm(raster);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
             this.Document.Action.ActEntityAdd(raster);
@@ -676,7 +676,7 @@ namespace CustomEditor
         {
             var line = new Line(0, 0, 10, 10);
             var form = new PropertyForm(line);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
             this.Document.Action.ActEntityAdd(line);
@@ -685,7 +685,7 @@ namespace CustomEditor
         {
             var arc = new Arc(0, 0, 10, 0, 90);
             var form = new PropertyForm(arc);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(arc);
         }
@@ -693,7 +693,7 @@ namespace CustomEditor
         {
             var circle = new Circle(0, 0, 10);
             var form = new PropertyForm(circle);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(circle);
         }
@@ -701,7 +701,7 @@ namespace CustomEditor
         {
             var trepan = new Trepan(0, 0, 10, 2);
             var form = new PropertyForm(trepan);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(trepan);
         }
@@ -709,7 +709,7 @@ namespace CustomEditor
         {
             var rectangle = new SpiralLab.Sirius.Rectangle(0, 0, 10, 10);
             var form = new PropertyForm(rectangle);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(rectangle);
         }
@@ -723,7 +723,7 @@ namespace CustomEditor
             poly.Add(new LwPolyLineVertex(77.5310f, 89.7724f, 0));
             poly.IsClosed = true;
             var form = new PropertyForm(poly);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(poly);
         }
@@ -731,7 +731,7 @@ namespace CustomEditor
         {
             IPen pen = new PenDefault();
             var form = new PropertyForm(pen);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(pen);
         }
@@ -740,14 +740,14 @@ namespace CustomEditor
             {
                 var motf = new MotfBegin();
                 var form = new PropertyForm(motf);
-                if (DialogResult.OK != form.ShowDialog())
+                if (DialogResult.OK != form.ShowDialog(this))
                     return;
                 this.Document.Action.ActEntityAdd(motf);
             }
             {
                 var motf = new MotfEnd();
                 var form = new PropertyForm(motf);
-                if (DialogResult.OK != form.ShowDialog())
+                if (DialogResult.OK != form.ShowDialog(this))
                     return;
                 this.Document.Action.ActEntityAdd(motf);
             }
@@ -756,7 +756,7 @@ namespace CustomEditor
         {
             var motf = new MotfExternalStartDelay();
             var form = new PropertyForm(motf);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(motf);
         }
@@ -764,7 +764,7 @@ namespace CustomEditor
         {
             var motf = new MotfWait();
             var form = new PropertyForm(motf);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(motf);
         }
@@ -772,7 +772,7 @@ namespace CustomEditor
         {
             var timer = new SpiralLab.Sirius.Timer();
             var form = new PropertyForm(timer);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(timer);
         }
@@ -781,14 +781,14 @@ namespace CustomEditor
             {
                 var vec = new VectorBegin();
                 var form = new PropertyForm(vec);
-                if (DialogResult.OK != form.ShowDialog())
+                if (DialogResult.OK != form.ShowDialog(this))
                     return;
                 this.Document.Action.ActEntityAdd(vec);
             }
             {
                 var vec = new VectorEnd();
                 var form = new PropertyForm(vec);
-                if (DialogResult.OK != form.ShowDialog())
+                if (DialogResult.OK != form.ShowDialog(this))
                     return;
                 this.Document.Action.ActEntityAdd(vec);
             }
@@ -797,7 +797,7 @@ namespace CustomEditor
         {
             var spiral = new Spiral(2, 10, 10, true);
             var form = new PropertyForm(spiral);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(spiral);
         }
@@ -805,7 +805,7 @@ namespace CustomEditor
         {
             var text = new SiriusText("HELLO");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -813,7 +813,7 @@ namespace CustomEditor
         {
             var text = new SiriusTextTime();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -821,7 +821,7 @@ namespace CustomEditor
         {
             var text = new SiriusTextDate();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -829,7 +829,7 @@ namespace CustomEditor
         {
             var text = new SiriusTextSerial();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -837,7 +837,7 @@ namespace CustomEditor
         {
             var text = new SiriusText("HELLO");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -903,7 +903,7 @@ namespace CustomEditor
             form.PropertyGrid.PropertyValueChanged += Document_PropertyValueChanged;
             try
             {
-                if (DialogResult.OK != form.ShowDialog())
+                if (DialogResult.OK != form.ShowDialog(this))
                     return;
             }
             finally
@@ -927,7 +927,7 @@ namespace CustomEditor
         private void btnHatch_Click(object sender, EventArgs e)
         {
             var form = new HatchForm();
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
             this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, form.Angle, form.Interval, form.Exclude);
@@ -955,7 +955,7 @@ namespace CustomEditor
         {
             var form = new PasteForm();
             form.Clipboard = SpiralLab.Sirius.Action.ClipBoard;
-            DialogResult result = form.ShowDialog();
+            DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
                 trvEntity.SuspendLayout();
@@ -967,7 +967,7 @@ namespace CustomEditor
         {
             var layer = new Layer($"NoName{this.Document.Action.NewLayerIndex++}");
             var form = new PropertyForm(layer);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(layer);
         }
@@ -975,7 +975,7 @@ namespace CustomEditor
         {
             var bcd = new Barcode1D("123456789");
             var form = new PropertyForm(bcd);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(bcd);
         }
@@ -983,7 +983,7 @@ namespace CustomEditor
         {
             var text = new BarcodeDataMatrix("SIRIUS");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -991,7 +991,7 @@ namespace CustomEditor
         {
             var text = new BarcodeQR("SIRIUS");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1000,7 +1000,7 @@ namespace CustomEditor
             ofd.Filter = "hpgl files (*.plt)|*.plt|All Files (*.*)|*.*";
             ofd.Title = "Import HPGL File";
             ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog();
+            DialogResult result = ofd.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
 
@@ -1011,7 +1011,7 @@ namespace CustomEditor
             ofd.Filter = "image files (*.bmp)|*.bmp|All Files (*.*)|*.*";
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog();
+            DialogResult result = ofd.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
 
@@ -1022,7 +1022,7 @@ namespace CustomEditor
         {
             var text = new Text("HELLO");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1030,7 +1030,7 @@ namespace CustomEditor
         {
             var text = new TextArc("HELLO");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1039,7 +1039,7 @@ namespace CustomEditor
         {
             var text = new TextTime();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1048,7 +1048,7 @@ namespace CustomEditor
         {
             var text = new TextDate();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1057,7 +1057,7 @@ namespace CustomEditor
         {
             var text = new TextSerial();
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1065,7 +1065,7 @@ namespace CustomEditor
         {
             var text = new SiriusTextArc("HELLO");
             var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
@@ -1085,7 +1085,7 @@ namespace CustomEditor
             }
             var pen = new PenReturn();
             //var form = new PropertyForm(pen);
-            //if (DialogResult.OK != form.ShowDialog())
+            //if (DialogResult.OK != form.ShowDialog(this))
             //    return;
             this.Document.Action.ActEntityAdd(pen);
         }
@@ -1094,7 +1094,7 @@ namespace CustomEditor
         {
             var ellipse = new Ellipse(0, 0, 10, 6, 0, 360, 0);
             var form = new PropertyForm(ellipse);
-            if (DialogResult.OK != form.ShowDialog())
+            if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(ellipse);
         }

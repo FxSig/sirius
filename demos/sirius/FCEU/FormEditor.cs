@@ -48,8 +48,8 @@ namespace SpiralLab.Sirius.FCEU
                             left + col * interval,
                             top - row * interval),
                         new Vector2(
-                            rand.Next(50) / 1000.0f - 0.1f,
-                            rand.Next(50) / 1000.0f - 0.1f)
+                            rand.Next(20) / 1000.0f - 0.01f,
+                            rand.Next(20) / 1000.0f - 0.01f)
                         );
                 }
             }

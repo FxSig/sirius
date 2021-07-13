@@ -67,18 +67,19 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'R' : encoder reset");
                 Console.WriteLine("'N' : MOTF With Follow Only");
                 Console.WriteLine("'C' : MOTF With Circle And Wait Encoder");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                 var timer = Stopwatch.StartNew();
                 switch (key.Key)
@@ -96,7 +97,7 @@ namespace SpiralLab.Sirius
                         MotfWithCircleAndWaitEncoder(laser, rtc, false);
                         break;
                 }
-                Console.WriteLine($"processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
             rtc.Dispose();

@@ -61,7 +61,7 @@
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "Custom Pen Entity Demos - (c)SpiralLab";
+            this.Text = "Editor with Custom Pen - (c)SpiralLab";
             this.ResumeLayout(false);
 
         }
