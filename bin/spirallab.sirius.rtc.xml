@@ -845,7 +845,13 @@
             RTC4 외부 트리거 모드 비트 플래그용
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStart" -->
+        <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStart">
+            <summary>
+            /START 핀 사용
+            = 1 The external start input is enabled. The externals tart signal corresponds to the command execute_list_1 or execute_list_1. The external stop signal corresponds to the command stop_execution.
+            = 0 no external start signal
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Rtc4ExternalControlMode.Bit.ExternalStartDelayOff">
             <summary>
             = 1 The external start delay (encoder delay) is turned off.
