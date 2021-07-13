@@ -2096,7 +2096,7 @@
             <summary>
             RTC 카드의 상태 확인
             </summary>
-            <param name="status">RtcStatus 열거형</param>
+            <param name="s">RtcStatus 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlBusyWait">
@@ -3264,7 +3264,7 @@
             <summary>
             RTC 카드의 상태 확인
             </summary>
-            <param name="status">RtcStatus 열거형</param>
+            <param name="s">RtcStatus 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlBusyWait">

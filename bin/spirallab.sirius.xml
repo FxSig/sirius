@@ -847,6 +847,11 @@
             RTC 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.RtcListType">
+            <summary>
+            Rtc 내부 버퍼 처리 방식 (기본값 : Single)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.MotorZ">
             <summary>
             Z 축 제어를 위한 모터 인터페이스 (레이어별 높이 제어후 가공 방식을 사용할 경우 지정)
@@ -965,6 +970,11 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Rtc">
             <summary>
             RTC 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.RtcListType">
+            <summary>
+            Rtc 내부 버퍼 처리 방식 (기본값 : Single)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.MotorZ">
@@ -1096,6 +1106,28 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Correction3DForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.LogForm">
+            <summary>
+            Sirius 의 로그 메시지를 윈폼에 출력하기 위한 로그 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LogForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.LogForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.LogForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -3124,6 +3156,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_log_32">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_marker_pen_16">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3495,6 +3532,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.spirallab_logo">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.spirallablogo">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -4457,9 +4499,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.LwPolyline.ToReverse">
+        <member name="M:SpiralLab.Sirius.LwPolyline.Reverse">
             <summary>
-            정점의 순서 뒤집기
+            정점의 순서 뒤집기 (Bulge 값 내부에서 다시 계산됨)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyline.Mark(SpiralLab.Sirius.IMarkerArg)">
@@ -5775,11 +5817,6 @@
         <member name="T:SpiralLab.Sirius.MarkerForm">
             <summary>
             마커 폼
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MarkerForm.Marker">
-            <summary>
-            마커 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerForm.Offsets">
