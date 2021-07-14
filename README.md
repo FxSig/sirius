@@ -44,11 +44,13 @@
 
 **3. How to use ?**
 
- - Development Environment : .NET dll library with x64
+ - Development Environment : .NET dll library with x32/x64
  - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
- - spirallab.sirius.dll file support user control : Sirius.EditorForm and Sirius.ViewerForm
+ - spirallab.sirius.dll file support user control : SpiralLab.Sirius.EditorForm / SpiralLab.Sirius.ViewerForm
  - There are multiple demo programs in DEMOS directory
- - (For x64) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x64.dll $(TargetDir)freetype6.dll"
+ - There are stand-alone programs in DEMOS\Sirius directory
+ - (x64) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x64.dll $(TargetDir)freetype6.dll"
+ - (x32) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x32.dll $(TargetDir)freetype6.dll"
 
 ![stitched image](http://www.spirallab.co.kr/wp-content/uploads/2021/06/unnamed-5-1-2.png)
 
@@ -92,7 +94,7 @@
 
  * 2021.06.16 v1.7
    - added) sirius demo project
-   - added) IMotor interface. Z position in layer property (Z motor control program in ""8.customlasermarker" demo)
+   - added) IMotor interface. Z position in layer property (Z motor control program in "8.customlasermarker" demo)
    - added) Auto laser control signal in Layer property
    - added) support Rtc4 
    - fixed) modified IRtc, IRtcExtension, ILaser interface
@@ -127,28 +129,37 @@
    - fixed) minor bugs
 
 * 2020.01.29 v0.9 
-   - added Hatch function, repeat count, Demo project for custom RTC, fixed SiriusView crash on design time, fixed minor bugs
+   - added) Hatch function, repeat count, Demo project for custom RTC
+   - fixed) SiriusView crash on design time, fixed minor bugs
 
 * 2020.01.07 v0.8 
-   - added IRtcDualHead interface, enhanced) points editor form, group offset form editor and minor bugs
+   - added IRtcDualHead interface, 
+   - enhanced) points editor form, group offset form editor and minor bugs
 
 * 2019.12.24 v0.7 
-   - added IRtc3D interface, added Group entity (with MOTF), fixed ICorrection2D, added ICorrection3D interface. 
+   - added IRtc3D interface, 
+   - added Group entity (with MOTF), 
+   - fixed ICorrection2D, 
+   - added ICorrection3D interface. 
 
 * 2019.12.19 v0.6 
-   - added points entity (with path optimizer), support 3d (varioscan/z-shift) offset/defocus function in RTC. 
+   - added points entity (with path optimizer), 
+   - support 3d (varioscan/z-shift) offset/defocus function in RTC. 
 
 * 2019.12.17 v0.5 
-   - added 1/2D  barcode entities / support wobbel and raster operation in RTC
+   - added 1/2D  barcode entities 
+   - support wobbel and raster operation in RTC
 
 * 2019.12.12 
-   - v0.4 new sirius text entity  (support font format : *.cxf)
+   - v0.4 new sirius text entity 
+   - support font format : *.cxf
 
 * 2019.12.11 v0.3 
    - support MOTF(Marking On The Fly), XL-SCAN  (SyncAxis) by optional dll.
 
 * 2019.12.10 v0.2 
-   - support HPGL(plt) file / Marker with scanner rotated angle / Spirallab Identifier program / IPen interface
+   - support HPGL(plt) file / Marker with scanner rotated angle 
+   - IPen interface
 
 * 2019.12.03 v0.1 
    - first release
