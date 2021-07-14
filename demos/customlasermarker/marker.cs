@@ -120,6 +120,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public IMarkerArg MarkerArg { get; private set; }
         public IDocument Document { get { return this.clonedDoc; } }
+        public double ScannerRotateAngle { get; set; }
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -326,7 +327,7 @@ namespace SpiralLab.Sirius
             if (null != motorZ)
                 oldZPosition = motorZ.Position;
             var offsets = this.MarkerArg.Offsets;
-            var scannerRotateAngle = this.MarkerArg.ScannerRotateAngle;
+            var scannerRotateAngle = this.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
             for (int i = 0; i < offsets.Count; i++)
             {

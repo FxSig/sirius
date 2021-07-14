@@ -119,6 +119,7 @@ namespace SpiralLab.Sirius
         /// 마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
         /// </summary>
         public IMarkerArg MarkerArg { get; private set; }
+        public double ScannerRotateAngle { get; set; }
         public IDocument Document { get { return this.clonedDoc; } }
         /// <summary>
         /// 사용자 정의 데이타
@@ -136,6 +137,7 @@ namespace SpiralLab.Sirius
         {
             this.Index = index;
             this.MarkerArg = new MarkerArgDefault();
+            this.ScannerRotateAngle = 0;
         }
         /// <summary>
         /// 생성자
@@ -189,9 +191,10 @@ namespace SpiralLab.Sirius
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to register character into rtc");
 
             this.MarkerArg.Progress = 0;
-            var progressReceivers = this.OnProgress?.GetInvocationList();
-            foreach (MarkerEventHandler receiver in progressReceivers)
-                receiver.Invoke(this, this.MarkerArg);
+            var receivers = this.OnProgress?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.Invoke(this, this.MarkerArg);
             return true;
         }
         /// <summary>
@@ -246,9 +249,10 @@ namespace SpiralLab.Sirius
             }
 
             this.MarkerArg.Progress = 0;
-            var progressReceivers = this.OnProgress?.GetInvocationList();
-            foreach (MarkerEventHandler receiver in progressReceivers)
-                receiver.Invoke(this, this.MarkerArg);
+            var receivers = this.OnProgress?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.Invoke(this, this.MarkerArg);
 
             this.IsFinished = false;
             this.thread = new Thread(this.WorkerThread);
@@ -311,9 +315,10 @@ namespace SpiralLab.Sirius
             if (this.IsFinished)
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
-                var finishedReceivers = this.OnFinished?.GetInvocationList();
-                foreach (MarkerEventHandler receiver in finishedReceivers)
-                    receiver.Invoke(this, this.MarkerArg);
+                var receivers = this.OnFinished?.GetInvocationList();
+                if (null != receivers)
+                    foreach (MarkerEventHandler receiver in receivers)
+                        receiver.Invoke(this, this.MarkerArg);
 
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}] {this.Name}: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
@@ -330,7 +335,7 @@ namespace SpiralLab.Sirius
             var rtcAlc = rtc as IRtcAutoLaserControl;
             var laser = this.MarkerArg.Laser;
             var offsets = this.MarkerArg.Offsets;
-            var scannerRotateAngle = this.MarkerArg.ScannerRotateAngle;
+            var scannerRotateAngle = this.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
             for (int i = 0; i < offsets.Count; i++)
             {
@@ -377,9 +382,10 @@ namespace SpiralLab.Sirius
 
                                 float progress = ((float)i / (float)offsets.Count * (float)j / (float)this.clonedDoc.Layers.Count * 100.0f);
                                 this.MarkerArg.Progress = progress;
-                                var progressReceivers = this.OnProgress?.GetInvocationList();
-                                foreach (MarkerEventHandler receiver in progressReceivers)
-                                    receiver.Invoke(this, this.MarkerArg);
+                                var receivers = this.OnProgress?.GetInvocationList();
+                                if (null != receivers)
+                                    foreach (MarkerEventHandler receiver in receivers)
+                                        receiver.Invoke(this, this.MarkerArg);
 
                             }
                             if (success)
@@ -403,10 +409,10 @@ namespace SpiralLab.Sirius
         {
             this.IsFinished = true;
             this.MarkerArg.Progress = 100;
-            var progressReceivers = this.OnProgress?.GetInvocationList();
-            foreach (MarkerEventHandler receiver in progressReceivers)
-                receiver.Invoke(this, this.MarkerArg);
-
+            var receivers = this.OnProgress?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.Invoke(this, this.MarkerArg);
             return true;
         }
         #endregion

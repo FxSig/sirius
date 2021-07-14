@@ -862,13 +862,6 @@
             레이저 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.ScannerRotateAngle">
-            <summary>
-            스캐너가 회전되어 장착되어 있는 경우
-            지정된 각도만큼 내부에서 회전 처리된다 (오프셋 역시 처리됨)
-            사용자가 정면에서 보았을때 직교좌표계가 될수있도록 회전각도를 설정한다.
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Offsets">
             <summary>
             동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
@@ -985,13 +978,6 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Laser">
             <summary>
             레이저 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.ScannerRotateAngle">
-            <summary>
-            스캐너가 회전되어 장착되어 있는 경우
-            지정된 각도만큼 내부에서 회전 처리된다 (오프셋 역시 처리됨)
-            사용자가 정면에서 보았을때 직교좌표계가 될수있도록 회전각도를 설정한다.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Offsets">
@@ -5053,6 +5039,12 @@
             마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarker.ScannerRotateAngle">
+            <summary>
+            스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
+            지정된 각도만큼 내부에서 회전 처리됨
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarker.Document">
             <summary>
             복제된 문서(IDocument) 객체에 대한 접근 (Ready 호출시 복제됨)
@@ -5187,6 +5179,12 @@
         <member name="P:SpiralLab.Sirius.MarkerDefault.MarkerArg">
             <summary>
             마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerDefault.ScannerRotateAngle">
+            <summary>
+            스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
+            지정된 각도만큼 내부에서 회전 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Document">

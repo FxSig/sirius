@@ -106,7 +106,6 @@ namespace SpiralLab.Sirius.FCEU
             markerArg.Document = doc;
             markerArg.Rtc = seq.Rtc;
             markerArg.Laser = seq.Laser;
-            markerArg.ScannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
             {
                 form.Percentage = 50;

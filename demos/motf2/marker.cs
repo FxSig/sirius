@@ -98,6 +98,8 @@ namespace SpiralLab.Sirius
         /// </summary>
         private IDocument clonedDoc;
 
+        public double ScannerRotateAngle { get; set; }
+
         /// <summary>
         /// 부가 정보
         /// </summary>
@@ -282,7 +284,7 @@ namespace SpiralLab.Sirius
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
             var offsets = this.MarkerArg.Offsets;
-            var scannerRotateAngle = this.MarkerArg.ScannerRotateAngle;
+            var scannerRotateAngle = this.ScannerRotateAngle;
             var rtcMOTF = rtc as IRtcMOTF;
             //지정된 오프셋 개수 만큼 가공
             for (int i = 0; i < offsets.Count; i++)

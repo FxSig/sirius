@@ -131,21 +131,26 @@ namespace SpiralLab.Sirius.FCEU
             Editor.Laser = Laser;
             #endregion
 
+            var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             #region 마커 지정 (전용 마커 사용)            
             this.Marker = new MarkerFCEU(0);
             this.Marker.Name = "FCEU Marker";
             this.Marker.OnFinished += Marker_OnFinished;
+            this.Marker.ScannerRotateAngle = scannerRotateAngle;
             Editor.Marker = this.Marker;
 
             this.MarkerSystemTeach = new MarkerDefault(0);
             this.MarkerSystemTeach.Name = "System Teach";
             this.MarkerSystemTeach.OnFinished += SystemTeach_OnFinished;
+
             this.MarkerFieldCorrection = new MarkerDefault(0);
             this.MarkerFieldCorrection.Name = "Field Correction";
             this.MarkerFieldCorrection.OnFinished += FieldCorrection_OnFinished;
+
             this.MarkerRef = new MarkerRef(0);
             this.MarkerRef.Name = "Reference Mark 1/2";
             this.MarkerRef.OnFinished += Ref_OnFinished;
+            this.MarkerRef.ScannerRotateAngle = scannerRotateAngle;
             #endregion
 
             this.VisionComm = new VisionTcpClient("localhost", 9999);
@@ -221,7 +226,6 @@ namespace SpiralLab.Sirius.FCEU
             var markerArg = new MarkerArgDefault();
             markerArg.Rtc = this.Rtc;
             markerArg.Laser = this.Laser;
-            markerArg.ScannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
 
             switch (proc)
             {
@@ -312,7 +316,6 @@ namespace SpiralLab.Sirius.FCEU
                             return false;
                         }
                         markerArg.Document = doc;
-                        markerArg.ScannerRotateAngle = 0;
                         if (false == MarkerSystemTeach.Ready(markerArg))
                         {
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to ready");
@@ -346,7 +349,6 @@ namespace SpiralLab.Sirius.FCEU
                             return false;
                         }
                         markerArg.Document = doc;
-                        markerArg.ScannerRotateAngle = 0;
                         var svc = Service as LaserService;
                         float left = -svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionCols / 2);
                         float top = svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionRows / 2);
