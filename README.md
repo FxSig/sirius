@@ -68,6 +68,13 @@
 
 **5. Version history**
 
+ * 2021.07.14 v1.7.2
+   - added) path optimizer in group's internal items
+   - added) another sirius demo project
+   - fixed) rtc list handling bug when auto-list buffer
+   - fixed) internal hpgl parser try to create polyline as possible (spirallab.hpgl.dll) and 
+   - fixed) bitmap texture crash bug 
+
  * 2021.07.05 v1.7.1
    - added) path optimizer 
      - points vertex list 
@@ -79,7 +86,7 @@
    - fixed) support group entity's' hatch if closed figure
    - added) event handler in SiriusEditor 
    - added) demo code with rs232 laser power control
-   - added) demo code with custome laser pen
+   - added) demo code with custom laser pen
    - added) transit entity by keyboard shortcut (CTRL+ALT+SHIFT + key)
    - added) internal hpgl parser dll
 
