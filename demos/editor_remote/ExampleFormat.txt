@@ -1,0 +1,29 @@
+Entity;Pen1;Frequency;20000;
+Entity;Pen1;JumpSpeed;1000;
+Entity;Pen1;MarkSpeed;1000;
+Entity;Pen1;Power;20;
+
+Entity;Point1;Markerable;False;
+Entity;Point1;Location;10,0;
+Entity;Point1;Repeat;10;
+
+Entity;Rectangle1;Width;20;
+Entity;Rectangle1;Align;LeftTop;
+Entity;Rectangle1;Angle;90;
+Entity;Rectangle1;IsHatchable;true;
+Entity;Rectangle1;IsHatchable;false;
+Entity;Rectangle1;HatchInterval; 0.2;
+
+Entity;Circle1;Radius;50;
+Entity;Circle1;Center;5,10;
+
+Entity;QR1;Data;HELLO WORLD;
+Entity;QR1;ShapeType;Hatch;
+
+Entity;Stitched Image1;Rows;4;
+Entity;Stitched Image1;Cols;2;
+Entity;Stitched Image1;Width;200;
+Entity;Stitched Image1;Height;100;
+
+Entity;Stitched Image1;ImageIndex;0;
+Entity;Stitched Image1;ImageFileName;Grid0.bmp;

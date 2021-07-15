@@ -1,0 +1,288 @@
+﻿using SpiralLab;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Sockets;
+using System.Reflection;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace SpiralLab.Sirius
+{
+    /// <summary>
+    /// 통신을 통해 연결된 편집기의 개체 속성을 변경하는 예제 TCP 클라이언트
+    /// </summary>
+    public class SiriusTcpClient : IDisposable
+    {
+        public bool IsConnected 
+        { 
+            get  
+            {
+                return isConnected;
+                //if (null == this.client)
+                //    return false;
+                //return this.client.Connected;
+            }
+        }
+        bool terminated = false;
+        TcpClient client;
+        string ipaddress;
+        int port;
+        bool isConnected;
+        Thread thread;
+        SiriusEditorForm editor;
+
+        readonly byte[] ok = Encoding.UTF8.GetBytes("OK;");
+        readonly byte[] ng = Encoding.UTF8.GetBytes("NG;");
+
+        bool disposed = false;
+
+        public SiriusTcpClient(SiriusEditorForm editor, string ipaddress, int port)
+        {
+            this.editor = editor;
+            this.ipaddress = ipaddress;
+            this.port = port;
+        }
+        ~SiriusTcpClient()
+        {
+            if (this.disposed)
+                return;
+            this.Dispose(false);
+        }
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+                return;
+            if (disposing)
+            {
+                terminated = true;
+                this.client?.Dispose();
+                if (null != this.thread)
+                    this.thread.Join(2 * 1000);
+            }
+            this.disposed = true;
+        }
+
+        public bool Start()
+        {
+            terminated = true;
+            if (null != this.thread)
+                this.thread.Join(2 * 1000);
+            this.client = new TcpClient();
+            terminated = false;
+            this.thread = new Thread(this.WorkerThread);
+            this.thread.Name = $"Sirius Client Thread";
+            this.thread.Start();
+            return true;
+        }
+
+        public void WorkerThread()
+        {
+            do
+            {
+                try
+                {
+                    isConnected = false;
+                    this.client?.Dispose();
+                    this.client = new TcpClient();
+                    Logger.Log(Logger.Type.Warn, $"vision tcp client is not connected");
+                    this.client.Connect(this.ipaddress, this.port);
+                    this.client.NoDelay = true;
+                    isConnected = true;
+                    Logger.Log(Logger.Type.Info, $"vision tcp client connected to {this.ipaddress}:{this.port}");
+                    do
+                    {
+                        if (!this.Receive(out var resp))
+                        {
+                            this.client.Close();
+                            break;
+                        }
+                        if (false == this.Parse(resp))
+                            Logger.Log(Logger.Type.Error, $"fail to parse tcp client data format");
+
+                    } while (!terminated && this.client.Connected);
+                }
+                catch (Exception )
+                {
+                    //Logger.Log(Logger.Type.Error, ex);
+                }
+            }
+            while (!terminated);
+        }
+
+        public bool Send(byte[] bytes)
+        {
+            if (!this.client.Connected)
+                return false;
+            try
+            {
+                var nstream = client.GetStream();
+                nstream.WriteAsync(bytes, 0, bytes.Length);
+                return true;
+                
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Logger.Type.Error, ex);
+                return false;
+            }
+        }
+        public bool Receive(out byte[] data)
+        {
+            data = null;
+            if (!this.client.Connected)
+                return false;
+            try
+            {
+                var nstream = client.GetStream();
+                byte[] buffer = new byte[1024];
+                int bytes = nstream.Read(buffer, 0, buffer.Length);
+                if (0 ==  bytes)
+                {
+                    return false;
+                }
+
+                data = buffer;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Log(Logger.Type.Error, ex);
+            }
+            return false;
+        }
+        bool Parse(byte[] data)
+        {
+            bool success = true;
+            string str = Encoding.Default.GetString(data);
+
+            char[] spes = { '\r', '\n', ';' };
+            string[] tokens = str.Split(spes);
+
+            switch( tokens[0])
+            {
+                case "Entity":
+                    success = this.EntityParse(tokens[1], tokens[2], tokens[3]);
+                    break;
+                case "Layer":
+                    //success = this.LayerParse(tokens[1], tokens[2]);
+                    break;
+                default:
+                    success = false;
+                    break;
+            }
+            return success;
+        }
+
+        private bool EntityParse(string name, string propOrMethodName, string param)
+        {
+            editor.Invoke(new MethodInvoker(delegate ()
+            {
+                var doc = editor.Document as DocumentDefault;
+                var entity = doc.Layers.NameOf(name, out Layer parentLayer);
+                if (null == entity)
+                {
+                    this.Send(ng);
+                    return;
+                }
+
+                Type type = entity.GetType();
+                var propInfo = type.GetProperty(propOrMethodName, BindingFlags.Public | BindingFlags.Instance);
+                if (null == propInfo || !propInfo.CanWrite)
+                    return;
+
+                bool success = false;
+                try
+                {
+                    var value = Convert.ChangeType(param, propInfo.PropertyType);
+                    propInfo.SetValue(entity, value, null);
+                    success = true;
+                }
+                catch (Exception ex)
+                {
+                    success = false;
+                }
+
+                string[] tokens = param.Split(new char[] { ',' });
+                if (!success)
+                { 
+                    try
+                    {
+                        switch (propInfo.PropertyType.ToString())
+                        {
+                            case "System.Numerics.Vector2":
+                                {
+                                    var value = (System.Numerics.Vector2)Activator.CreateInstance(propInfo.PropertyType);
+                                    value.X = float.Parse(tokens[0]);
+                                    value.Y = float.Parse(tokens[1]);
+                                    propInfo.SetValue(entity, value, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.BarcodeShapeType":
+                                {
+                                    var shapeType = (SpiralLab.Sirius.BarcodeShapeType)Enum.Parse(typeof(SpiralLab.Sirius.BarcodeShapeType), tokens[0]);
+                                    propInfo.SetValue(entity, shapeType, null);
+                                    success = true;
+                                }
+                                break;
+                            default:
+                                {
+                                    var value = Activator.CreateInstance(propInfo.PropertyType);
+                                    propInfo.SetValue(entity, value, null);
+                                    success = true;
+                                }
+                                break;
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        success = false;
+                    }
+                }
+
+                if (!success)
+                {
+                    try
+                    {
+                        MethodInfo method = type.GetMethod(propOrMethodName);
+                        object value = Convert.ChangeType(param, type);
+                        method.Invoke(entity, new object[] { value });
+                        success = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        success = false;
+                    }
+                }
+
+                if (success)
+                {
+                    entity.Regen();
+                    editor.Refresh();
+                }
+
+                if (success)
+                {
+                    this.Send(ok);
+                }
+                else
+                {
+                    this.Send(ng);
+                }
+            }));
+            return true;
+        }
+    }
+}
