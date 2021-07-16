@@ -306,6 +306,7 @@ namespace SpiralLab.Sirius.FCEU
         }
         public bool ReadDefectFromFile(string fileName, out Group group)
         {
+            group = null;
             ProgressForm form = new ProgressForm();
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
@@ -314,91 +315,79 @@ namespace SpiralLab.Sirius.FCEU
                 form.Show(seq.Editor);
             }));
 
+            if (!File.Exists(fileName))
+            {
+                Program.MainForm.Invoke(new MethodInvoker(delegate ()
+                {
+                    form.Close();
+                }));
+
+                seq.Error(ErrEnum.VisionDataOpen);
+                Logger.Log(Logger.Type.Error, $"fail to open vision defect file : {fileName}");
+                return false;
+            }
+
+            var editor = seq.Editor;
+            var doc = editor.Document; //에디터의 doc 를 대상
+            var docFceu = doc as DocumentFCEU;//해치 정보 조회하기 위해 접근
+
             bool success = true;
             group = new Group();
             group.Name = $"Defects";
             group.IsEnableFastRendering = true;
             group.IsHitTest = false; //선택 않되도록
-            //if (!File.Exists(fileName))
-            //{
-            //      form.Close();
-            //    seq.Error(ErrEnum.VisionDataOpen);
-            //    Logger.Log(Logger.Type.Error, $"fail to open vision defect file : {fileName}");
-            //    return false;
-            //}
             int counts = 0;
             seq.Warn(WarnEnum.VisionDataOpen);
-
+            int max = 1000;
             try
             {
-                //using (var stream = new StreamReader(fileName))
-                //{
-                //    while (!stream.EndOfStream)
-                //    {
-                //        var line = stream.ReadLine();
-                //        if (string.IsNullOrEmpty(line))
-                //            continue;
-
-                //if (line.ElementAt(0) == ';')
-                //    continue;
-                //string[] tokens = line.Split(',');
-                //float x = float.Parse(tokens[0]);
-                //float y = float.Parse(tokens[1]);
-                //float angle = float.Parse(tokens[2]);
-
-                //var poly = new LwPolyline();
-                //poly.Add(new LwPolyLineVertex(55.3005f, 125.1903f, 0));
-                //poly.Add(new LwPolyLineVertex(80.5351f, 161.2085f, 0));
-                //poly.Add(new LwPolyLineVertex(129.8027f, 148.6021f, -1.3108f));
-                //poly.Add(new LwPolyLineVertex(107.5722f, 109.5824f, 0.8155f));
-                //poly.Add(new LwPolyLineVertex(77.5310f, 89.7724f, 0));
-                //poly.IsClosed = true;
-                //poly.IsHatchable = true;
-                //poly.HatchAngle = 90;
-                //poly.HatchInterval = 0.2f;
-                //poly.HatchExclude = 0.1f;
-                //poly.Regen();
-                //Program.MainForm.Invoke(new MethodInvoker(delegate ()
-                //{
-                //    editor.Document.Action.ActEntityAdd(poly);
-                //    editor.View.Render();
-
-                //}));
-                //counts++;
-                //}
-                //}
-
-                
-                var doc = seq.Editor.Document; //에디터의 doc 를 대상
-                var docFceu = doc as DocumentFCEU;//해치 정보 조회하기 위해 접근
-
-                int max = 1000;
-                Random rand = new Random();
-                for (int i = 0; i < max; i++)
+                using (var stream = new StreamReader(fileName))
                 {
-                    var poly = new LwPolyline();
-                    poly.Add(new LwPolyLineVertex(5.300f, 10.190f, 0));
-                    poly.Add(new LwPolyLineVertex(6.535f ,10.208f , 0));
-                    poly.Add(new LwPolyLineVertex(6.572f, 10.582f, -0.815f));
-                    poly.Add(new LwPolyLineVertex(5.531f, 10.772f * 0));
-                    poly.IsClosed = true;
-                    if (null != docFceu)
+                    LwPolyline polyline = null;
+                    while (!stream.EndOfStream)
                     {
-                        poly.IsHatchable = docFceu.IsHatchable;
-                        poly.HatchAngle = docFceu.HatchAngle;
-                        poly.HatchInterval = docFceu.HatchInterval;
-                        poly.HatchExclude = docFceu.HatchExclude;
+                        string line = stream.ReadLine();
+                        if (string.IsNullOrEmpty(line))
+                            continue;
+                        else if (line.StartsWith(";")) //주석
+                            continue;
+                        else if (line.StartsWith("POLYLINE_BEGIN"))
+                        {
+                            Debug.Assert(null == polyline);
+                            polyline = new LwPolyline();
+                        }
+                        else if (line.StartsWith("POLYLINE_END"))
+                        {
+                            Debug.Assert(null != polyline);
+                            Debug.Assert(polyline.Count >= 3);
+                            polyline.IsClosed = true;
+                            polyline.IsHatchable = docFceu.IsHatchable;
+                            polyline.HatchAngle = docFceu.HatchAngle;
+                            polyline.HatchInterval = docFceu.HatchInterval;
+                            polyline.HatchExclude = docFceu.HatchExclude;
+                            polyline.Regen();
+                            group.Add(polyline);
+
+                            counts++;
+                            //// 하나씩 혹은 한번에 전체를 ?
+                            //Program.MainForm.Invoke(new MethodInvoker(delegate ()
+                            //{
+                            //    docFceu.Action.ActEntityAdd(polyline);
+                            //    editor.View.Render();
+                            //    form.Percentage = counts++ / max * 100;
+                            //}));
+
+                            polyline = null;
+                        }
+                        else
+                        {
+                            string[] tokens = line.Split(',');
+                            float x = float.Parse(tokens[0]);
+                            float y = float.Parse(tokens[1]);
+                            polyline.Add(new LwPolyLineVertex(x, y));
+                        }
                     }
-                    poly.Regen();
-                    poly.Transit(new System.Numerics.Vector2( -300* (float)rand.NextDouble()+150, -80 * (float)rand.NextDouble()+ 35));
-                    group.Add(poly);
-
-                    Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
-                    {
-                        form.Percentage = i / max * 100;
-                    }));
                 }
-
                 Logger.Log(Logger.Type.Info, $"success to open defect file : {counts} counts at {fileName}");
             }
             catch (Exception ex)
@@ -429,6 +418,5 @@ namespace SpiralLab.Sirius.FCEU
             }
             return success;
         }
-
     }
 }

@@ -75,6 +75,21 @@ namespace SpiralLab.Sirius
         public virtual string Description { get; set; }
 
         [JsonIgnore]
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Basic")]
+        [DisplayName("Color")]
+        [Description("펜 지정 색상")]
+        public virtual System.Drawing.Color Color
+        {
+            get { return System.Drawing.Color.FromArgb(this.intColor); }
+            set { this.intColor = value.ToArgb(); }
+        }
+        [Browsable(false)]
+        public virtual int intColor { get; set; }
+
+        [JsonIgnore]
         [Browsable(false)]
         public virtual BoundRect BoundRect { get; set; }
 
@@ -317,7 +332,7 @@ namespace SpiralLab.Sirius
         public CustomPen()
         {
             this.Node = new TreeNode();
-            this.Name = "Custom Pen";
+            this.Name = "Custom";
             this.IsSelected = false;
             this.isMarkerable = true;
             this.isLocked = false;
@@ -327,6 +342,7 @@ namespace SpiralLab.Sirius
             this.power = 5.0f;
             this.jumpSpeed = 500;
             this.markSpeed = 500;
+            this.Color = System.Drawing.Color.White;
         }
 
         #region implements ICloneable
@@ -341,6 +357,7 @@ namespace SpiralLab.Sirius
                 Name = this.Name,
                 Description = this.Description,
                 Owner = this.Owner,
+                intColor = this.intColor,
                 IsSelected = this.IsSelected,
                 isMarkerable = this.IsMarkerable,
                 isLocked = this.IsLocked,

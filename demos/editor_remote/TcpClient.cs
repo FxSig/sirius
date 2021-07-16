@@ -230,10 +230,109 @@ namespace SpiralLab.Sirius
                                     success = true;
                                 }
                                 break;
+                            case "System.Numerics.Vector3":
+                                {
+                                    var value = (System.Numerics.Vector3)Activator.CreateInstance(propInfo.PropertyType);
+                                    value.X = float.Parse(tokens[0]);
+                                    value.Y = float.Parse(tokens[1]);
+                                    value.Z = float.Parse(tokens[2]);
+                                    propInfo.SetValue(entity, value, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.Alignment":
+                                {
+                                    var align = (SpiralLab.Sirius.Alignment)Enum.Parse(typeof(SpiralLab.Sirius.Alignment), tokens[0]);
+                                    propInfo.SetValue(entity, align, null);
+                                    success = true;
+                                }
+                                break;
                             case "SpiralLab.Sirius.BarcodeShapeType":
                                 {
                                     var shapeType = (SpiralLab.Sirius.BarcodeShapeType)Enum.Parse(typeof(SpiralLab.Sirius.BarcodeShapeType), tokens[0]);
                                     propInfo.SetValue(entity, shapeType, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.Barcode1DFormat":
+                                {
+                                    var bcd1DFormat = (SpiralLab.Sirius.Barcode1DFormat)Enum.Parse(typeof(SpiralLab.Sirius.Barcode1DFormat), tokens[0]);
+                                    propInfo.SetValue(entity, bcd1DFormat, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.BarcodeQR.ErrorCorrectionLevel":
+                                {
+                                    var errorCorrection = (SpiralLab.Sirius.BarcodeQR.ErrorCorrectionLevel)Enum.Parse(typeof(SpiralLab.Sirius.BarcodeQR.ErrorCorrectionLevel), tokens[0]);
+                                    propInfo.SetValue(entity, errorCorrection, null);
+                                    success = true;
+                                }
+                                break;
+                            //case "ZXing.Datamatrix.Encoder.SymbolShapeHint":
+                                    //var shapeHint = (ZXing.Datamatrix.Encoder.SymbolShapeHint)Enum.Parse(typeof(ZXing.Datamatrix.Encoder.SymbolShapeHint), tokens[0]);
+                                    //propInfo.SetValue(entity, shapeHint, null);
+                                    //success = true;
+                                //break;
+                            case "SpiralLab.Sirius.ExtensionChannel":
+                                {
+                                    var extChannel = (SpiralLab.Sirius.ExtensionChannel)Enum.Parse(typeof(SpiralLab.Sirius.ExtensionChannel), tokens[0]);
+                                    propInfo.SetValue(entity, extChannel, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.RasterDirection":
+                                {
+                                    var direction = (SpiralLab.Sirius.RasterDirection)Enum.Parse(typeof(SpiralLab.Sirius.RasterDirection), tokens[0]);
+                                    propInfo.SetValue(entity, direction, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.HatchMode":
+                                {
+                                    var hatchMode = (SpiralLab.Sirius.HatchMode)Enum.Parse(typeof(SpiralLab.Sirius.HatchMode), tokens[0]);
+                                    propInfo.SetValue(entity, hatchMode, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.DirectionWay":
+                                {
+                                    var direction = (SpiralLab.Sirius.DirectionWay)Enum.Parse(typeof(SpiralLab.Sirius.DirectionWay), tokens[0]);
+                                    propInfo.SetValue(entity, direction, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.DateFormat":
+                                {
+                                    var dateFormat = (SpiralLab.Sirius.DateFormat)Enum.Parse(typeof(SpiralLab.Sirius.DateFormat), tokens[0]);
+                                    propInfo.SetValue(entity, dateFormat, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.SerialFormat":
+                                {
+                                    var serialFormat = (SpiralLab.Sirius.SerialFormat)Enum.Parse(typeof(SpiralLab.Sirius.SerialFormat), tokens[0]);
+                                    propInfo.SetValue(entity, serialFormat, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.TimeFormat":
+                                {
+                                    var timeFormat = (SpiralLab.Sirius.TimeFormat)Enum.Parse(typeof(SpiralLab.Sirius.TimeFormat), tokens[0]);
+                                    propInfo.SetValue(entity, timeFormat, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.LetterSpaceWay":
+                                {
+                                    var letterSpaceWay = (SpiralLab.Sirius.LetterSpaceWay)Enum.Parse(typeof(SpiralLab.Sirius.LetterSpaceWay), tokens[0]);
+                                    propInfo.SetValue(entity, letterSpaceWay, null);
+                                    success = true;
+                                }
+                                break;
+                            case "SpiralLab.Sirius.AutoLaserControlSignal":
+                                {
+                                    var alcSignal = (SpiralLab.Sirius.AutoLaserControlSignal)Enum.Parse(typeof(SpiralLab.Sirius.AutoLaserControlSignal), tokens[0]);
+                                    propInfo.SetValue(entity, alcSignal, null);
                                     success = true;
                                 }
                                 break;

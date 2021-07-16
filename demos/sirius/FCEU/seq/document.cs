@@ -109,7 +109,6 @@ namespace SpiralLab.Sirius
         {
             var clonedDoc = new DocumentFCEU
             {
-                //Version = this.Version,
                 Name = this.Name,
                 Description = this.Description,
                 FileName = this.FileName,

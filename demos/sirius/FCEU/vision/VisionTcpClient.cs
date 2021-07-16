@@ -309,7 +309,9 @@ namespace SpiralLab.Sirius.FCEU
                     #region 불량 정보를 1/2 읽어서 에디터에 표시 (도면 기준)
                     case MessageProtocol.LASER_READ_INSPECT_01:
                         {
-                            if (svc.ReadDefectFromFile("1 file.txt", out var group))
+                            //string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 분할.txt");
+                            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+                            if (svc.ReadDefectFromFile(fileName, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_INSPECT_01_OK);
                                 if (svc.PrepareDefectInEditor(1, group))
@@ -321,7 +323,8 @@ namespace SpiralLab.Sirius.FCEU
                         break;
                     case MessageProtocol.LASER_READ_INSPECT_02:
                         {
-                            if (svc.ReadDefectFromFile("2 file.txt", out var group))
+                            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 없음.txt");
+                            if (svc.ReadDefectFromFile(fileName, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_INSPECT_02_OK);
                                 if (svc.PrepareDefectInEditor(2, group))

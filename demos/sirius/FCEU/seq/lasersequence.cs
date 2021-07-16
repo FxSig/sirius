@@ -254,7 +254,8 @@ namespace SpiralLab.Sirius.FCEU
                         var refLayer = doc.Layers.NameOf($"Ref{index}");
                         var br = refLayer.BoundRect;
                         this.Marker.MarkerArg.Offsets.Clear();
-                        this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
+                        //오프셋 이미 계산되어 전달?
+                        //this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
 
                         this.Warn(WarnEnum.StartingToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark defect1 (right side)");
@@ -286,7 +287,8 @@ namespace SpiralLab.Sirius.FCEU
                         var refLayer = doc.Layers.NameOf($"Ref{index}");
                         var br = refLayer.BoundRect;
                         this.Marker.MarkerArg.Offsets.Clear();
-                        this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
+                        //오프셋 이미 계산되어 전달?
+                        //this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
 
                         this.Warn(WarnEnum.StartingToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark defect2 (left side)");
