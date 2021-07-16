@@ -52,6 +52,55 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IPens">
+            <summary>
+            복수개의 펜 개체를 관리하는 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.Owner">
+            <summary>
+            부모 문서
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.FileName">
+            <summary>
+            파일 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.Count">
+            <summary>
+            내부 펜 개체의 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.Items">
+            <summary>
+            내부 펜 개체 배열 접근
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPens.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Pens">
+            <summary>
+            Pen 인터페이스 (레이저 가공 파라메터를 가지는 펜 인터페이스)
+            장비별로 프로젝트 별로 레이저 가공 기법이 다르므로, 펜(IPen)을 상속받아 Pen 객체를 구현
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Pens.NameOf(System.String,System.Boolean)">
+            <summary>
+            펜 이름으로 검색 (이름이 일치해야 검색 성공)
+            </summary>
+            <param name="penName">검색할 펜 엔티티 이름</param>
+            <param name="ignoreCase">대소문자 구분여부</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Stereolithography">
             <summary>
             Stereolithography 엔티티
@@ -2387,6 +2436,11 @@
             <summary>
             Pen 인터페이스 (레이저 가공 파라메터를 가지는 펜 인터페이스)
             장비별로 프로젝트 별로 레이저 가공 기법이 다르므로, 펜(IPen)을 상속받아 Pen 객체를 구현
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPen.Color">
+            <summary>
+            색상 식별자
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPen.Power">
@@ -6013,6 +6067,28 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.GroupForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PensForm">
+            <summary>
+            펜들의 집합 엔티티 편집용 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PensForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PensForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PensForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

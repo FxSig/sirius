@@ -173,10 +173,12 @@ namespace SpiralLab.Sirius
             switch( tokens[0])
             {
                 case "Entity":
+                    // 엔티티의 속성값 변경
                     success = this.EntityParse(tokens[1], tokens[2], tokens[3]);
                     break;
-                case "Layer":
-                    //success = this.LayerParse(tokens[1], tokens[2]);
+                case "Recipe":
+                    // 문서(Document) 변경 - 레시피 변경
+                    success = this.RecipeParse(tokens[1]);
                     break;
                 default:
                     success = false;
@@ -380,6 +382,34 @@ namespace SpiralLab.Sirius
                 {
                     this.Send(ng);
                 }
+            }));
+            return true;
+        }
+
+        private bool RecipeParse(string name)
+        {
+            if (editor.Marker.IsBusy)
+            {
+                this.Send(ng);
+                return false;
+            }
+            string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", name);
+            if (File.Exists(recipeFileName))
+            {
+                this.Send(ng);
+                return false;
+            }
+
+            var doc = DocumentSerializer.OpenSirius(recipeFileName);
+            if (null == doc)
+            {
+                this.Send(ng);
+                return false;
+            }
+
+            editor.Invoke(new MethodInvoker(delegate ()
+            {
+                editor.Document = doc;
             }));
             return true;
         }
