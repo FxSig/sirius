@@ -2284,6 +2284,11 @@
             파일이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IDocument.ExtensionFilePath">
+            <summary>
+            사용자 정의 외부 확장용 파일의 경로
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IDocument.Action">
             <summary>
             사용자 명령 및 이벤트 액션 객체
