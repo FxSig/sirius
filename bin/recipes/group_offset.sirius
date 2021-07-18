@@ -1,0 +1,293 @@
+{
+  "$type": "DocumentDefault",
+  "Version": "1.0.7.2",
+  "Name": "",
+  "Description": "",
+  "FileName": "D:\\git\\siriuslib\\bin\\recipes\\group_offset.sirius",
+  "Dimension": {
+    "$type": "BoundRect",
+    "IsEmpty": true,
+    "Left": 0.0,
+    "Right": 0.0,
+    "Top": 0.0,
+    "Bottom": 0.0,
+    "Width": 0.0,
+    "Height": 0.0,
+    "Center": {
+      "$type": "Vector2",
+      "X": 0.0,
+      "Y": 0.0
+    },
+    "IsMarkerable": true,
+    "Repeat": 1
+  },
+  "RotateOffset": {
+    "$type": "Offset",
+    "X": 0.0,
+    "Y": 0.0,
+    "Angle": 0.0,
+    "Tag": null
+  },
+  "Blocks": {
+    "$type": "Blocks",
+    "$values": []
+  },
+  "Layers": {
+    "$type": "Layers",
+    "Items": {
+      "$type": "Layer[]",
+      "$values": [
+        {
+          "$type": "Layer",
+          "Name": "NoName1",
+          "Description": null,
+          "Color": {
+            "$type": "AciColor",
+            "IsByLayer": false,
+            "IsByBlock": false,
+            "R": 255,
+            "G": 255,
+            "B": 255,
+            "Index": 255
+          },
+          "IsHighlighted": false,
+          "Items": {
+            "$type": "IEntity[]",
+            "$values": [
+              {
+                "$type": "PenDefault",
+                "Name": "Default",
+                "Description": null,
+                "intColor": -1,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsMarkerable": true,
+                "IsLocked": false,
+                "Repeat": 0,
+                "Power": 5.0,
+                "Frequency": 50000.0,
+                "PulseWidth": 2.0,
+                "DutyCycle": "10.000 %",
+                "LaserOnDelay": 0.0,
+                "LaserOffDelay": 0.0,
+                "ScannerJumpDelay": 0.0,
+                "ScannerMarkDelay": 0.0,
+                "ScannerPolygonDelay": 0.0,
+                "JumpSpeed": 500.0,
+                "MarkSpeed": 500.0,
+                "LaserOnShift": 0.0,
+                "TimeLag": 0.0,
+                "AngularLimit": 0.0,
+                "IsWobbelEnabled": false,
+                "WobbelFrequency": 0,
+                "WobbelWidth": 0.0,
+                "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Group",
+                "Name": "Group",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "Items": {
+                  "$type": "IEntity[]",
+                  "$values": [
+                    {
+                      "$type": "Spiral",
+                      "Name": "Spiral",
+                      "Description": null,
+                      "Color": {
+                        "$type": "AciColor",
+                        "IsByLayer": true,
+                        "IsByBlock": false,
+                        "R": 255,
+                        "G": 255,
+                        "B": 255,
+                        "Index": 256
+                      },
+                      "IsSelected": true,
+                      "IsHighlighted": false,
+                      "IsVisible": true,
+                      "IsMarkerable": true,
+                      "IsDrawPath": false,
+                      "IsLocked": false,
+                      "Repeat": 1,
+                      "InnerDiameter": 2.0,
+                      "OutterDiameter": 10.0,
+                      "Revolutions": 10,
+                      "Closed": true,
+                      "Center": {
+                        "$type": "Vector2",
+                        "X": -16.5,
+                        "Y": -16.5
+                      },
+                      "RadialPitch": 0.4,
+                      "Angle": 0.0
+                    }
+                  ]
+                },
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": [
+                    {
+                      "$type": "Offset",
+                      "X": 11.0,
+                      "Y": 0.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 22.0,
+                      "Y": 0.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 33.0,
+                      "Y": 0.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 33.0,
+                      "Y": 11.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 22.0,
+                      "Y": 11.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 11.0,
+                      "Y": 11.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 0.0,
+                      "Y": 11.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 0.0,
+                      "Y": 22.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 11.0,
+                      "Y": 22.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 22.0,
+                      "Y": 22.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 33.0,
+                      "Y": 22.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 33.0,
+                      "Y": 33.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 22.0,
+                      "Y": 33.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 11.0,
+                      "Y": 33.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 0.0,
+                      "Y": 33.0,
+                      "Angle": 0.0,
+                      "Tag": null
+                    }
+                  ]
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "IsHatchable": false,
+                "HatchMode": 0,
+                "HatchAngle": 90.0,
+                "HatchInterval": 0.2,
+                "HatchExclude": 0.0,
+                "IsHitTest": true,
+                "Repeat": 1,
+                "Width": 43.0,
+                "Height": 43.0,
+                "IsFixedAspectRatio": true,
+                "Align": 4,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 0.0,
+                  "Y": 0.0
+                },
+                "IsEnableFastRendering": false,
+                "Angle": 0.0
+              }
+            ]
+          },
+          "IsSelected": false,
+          "IsVisible": true,
+          "IsMarkerable": true,
+          "IsDrawPath": false,
+          "IsLocked": false,
+          "MotionType": 0,
+          "Repeat": 1,
+          "ZPosition": 0.0,
+          "AlcPositionFileName": "",
+          "AlcPositionTableNo": 0,
+          "AlcSignal": 2,
+          "AlcMode": 0,
+          "AlcPercentage100": 10.0,
+          "AlcMinValue": 1.0,
+          "AlcMaxValue": 10.0,
+          "Angle": 0.0
+        }
+      ]
+    }
+  }
+}

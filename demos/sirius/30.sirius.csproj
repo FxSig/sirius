@@ -176,6 +176,36 @@
     <Compile Include="FCEU\vision\Vision Protocol.cs" />
     <Compile Include="FCEU\vision\VisionTcpClient.cs" />
     <Compile Include="helper.cs" />
+    <Compile Include="Micompan\FormAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Micompan\FormAuto.Designer.cs">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Micompan\FormEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Micompan\FormEditor.Designer.cs">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Micompan\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Micompan\FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Micompan\MessageBoxOk.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Micompan\MessageBoxOk.Designer.cs">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Micompan\MessageBoxYesNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Micompan\MessageBoxYesNo.Designer.cs">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="nativemethods.cs" />
     <Compile Include="Nguyen\FormAuto.cs">
       <SubType>Form</SubType>
@@ -349,6 +379,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\ProgressForm.resx">
       <DependentUpon>ProgressForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Micompan\FormAuto.resx">
+      <DependentUpon>FormAuto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Micompan\FormEditor.resx">
+      <DependentUpon>FormEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Micompan\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Micompan\MessageBoxOk.resx">
+      <DependentUpon>MessageBoxOk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Micompan\MessageBoxYesNo.resx">
+      <DependentUpon>MessageBoxYesNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Nguyen\FormAuto.resx">
       <DependentUpon>FormAuto.cs</DependentUpon>
