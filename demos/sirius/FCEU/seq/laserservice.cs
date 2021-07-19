@@ -9,7 +9,9 @@ using System.Windows.Forms;
 
 namespace SpiralLab.Sirius.FCEU
 {
-    
+    /// <summary>
+    /// 레이저 서비스 객체
+    /// </summary>
     public class LaserService  
         : SpiralLab.IServiceLaser
     {
@@ -220,9 +222,12 @@ namespace SpiralLab.Sirius.FCEU
             // 오토 화면 
             //if (this.formMain.FormCurrent != this.formMain.FormAuto)
             //    return false;
-
+            if (seq.IsBusy)
+            {
+                Logger.Log(Logger.Type.Error, $"trying to prepare defect data into editor but busy");
+                return false;
+            }
             var doc = seq.Editor.Document; //에디터의 doc 를 대상으로
-
             Layer layer = null;
             var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
             var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");

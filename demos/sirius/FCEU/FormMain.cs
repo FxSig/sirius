@@ -303,6 +303,44 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Stop();
         }
 
+        private void btnRIghtDefRefresh_Click(object sender, EventArgs e)
+        {
+            var svc = Seq.Service as LaserService;
+            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
+            var dlg = new OpenFileDialog();
+            dlg.FileName = defFile;
+            dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.Title = "Open Vision Defect File ...";
+            DialogResult result = dlg.ShowDialog();
+            if (result != DialogResult.OK)
+                return;
+            if (svc.ReadDefectFromFile(dlg.FileName, out var group))
+            {
+                if (svc.PrepareDefectInEditor(1, group))
+                {
+                    Logger.Log(Logger.Type.Warn, $"manually defect (right side) file loaded : {dlg.FileName}");
+                }
+            }
+        }
 
+        private void btnLeftDefRefresh_Click(object sender, EventArgs e)
+        {
+            var svc = Seq.Service as LaserService;
+            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
+            var dlg = new OpenFileDialog();
+            dlg.FileName = defFile;
+            dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.Title = "Open Vision Defect File ...";
+            DialogResult result = dlg.ShowDialog();
+            if (result != DialogResult.OK)
+                return;
+            if (svc.ReadDefectFromFile(dlg.FileName, out var group))
+            {
+                if (svc.PrepareDefectInEditor(0, group))
+                {
+                    Logger.Log(Logger.Type.Warn, $"manually defect (left side) file loaded : {dlg.FileName}");
+                }
+            }
+        }
     }
 }

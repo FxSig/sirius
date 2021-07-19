@@ -3,7 +3,7 @@
   "Version": "1.0.7.2",
   "Name": "",
   "Description": "",
-  "FileName": "C:\\Users\\sepwi\\OneDrive\\바탕 화면\\siriuslib\\bin\\recipes\\1\\laser.sirius",
+  "FileName": "C:\\Users\\sepwi\\OneDrive\\바탕 화면\\sirius\\bin\\recipes\\1\\laser.sirius",
   "ExtensionFilePath": "C:\\Users\\sepwi\\OneDrive\\바탕 화면\\siriuslib\\bin\\recipes\\1\\extension.ini",
   "Dimension": {
     "$type": "BoundRect",
@@ -83,6 +83,46 @@
                 "WobbelFrequency": 0,
                 "WobbelWidth": 0.0,
                 "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Rectangle",
+                "Name": "Rectangle",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "Width": 150.0,
+                "Height": 100.0,
+                "Center": {
+                  "$type": "Vector2",
+                  "X": 81.15199,
+                  "Y": 0.0
+                },
+                "Align": 4,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 81.152,
+                  "Y": 0.0
+                },
+                "Angle": 0.0,
+                "IsHatchable": false,
+                "HatchMode": 0,
+                "HatchAngle": 90.0,
+                "HatchInterval": 0.5,
+                "HatchExclude": 0.0
               }
             ]
           },
@@ -148,6 +188,46 @@
                 "WobbelFrequency": 0,
                 "WobbelWidth": 0.0,
                 "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Rectangle",
+                "Name": "Rectangle",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "Width": 150.0,
+                "Height": 100.0,
+                "Center": {
+                  "$type": "Vector2",
+                  "X": -81.15199,
+                  "Y": 0.0
+                },
+                "Align": 4,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": -81.152,
+                  "Y": 0.0
+                },
+                "Angle": 0.0,
+                "IsHatchable": false,
+                "HatchMode": 0,
+                "HatchAngle": 90.0,
+                "HatchInterval": 0.5,
+                "HatchExclude": 0.0
               }
             ]
           },
@@ -213,6 +293,39 @@
                 "WobbelFrequency": 0,
                 "WobbelWidth": 0.0,
                 "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Circle",
+                "Name": "Circle",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "Radius": 10.0,
+                "Center": {
+                  "$type": "Vector2",
+                  "X": 94.03934,
+                  "Y": -0.4822445
+                },
+                "StartAngle": 0.0,
+                "IsHatchable": true,
+                "HatchMode": 0,
+                "HatchAngle": 90.0,
+                "HatchInterval": 1.0,
+                "HatchExclude": 0.0
               }
             ]
           },
@@ -278,6 +391,39 @@
                 "WobbelFrequency": 0,
                 "WobbelWidth": 0.0,
                 "WobbelHeight": 0.0
+              },
+              {
+                "$type": "Circle",
+                "Name": "Circle",
+                "Description": null,
+                "Color": {
+                  "$type": "AciColor",
+                  "IsByLayer": true,
+                  "IsByBlock": false,
+                  "R": 255,
+                  "G": 255,
+                  "B": 255,
+                  "Index": 256
+                },
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "Radius": 10.0,
+                "Center": {
+                  "$type": "Vector2",
+                  "X": -84.3353653,
+                  "Y": 0.130482674
+                },
+                "StartAngle": 0.0,
+                "IsHatchable": true,
+                "HatchMode": 0,
+                "HatchAngle": 0.0,
+                "HatchInterval": 1.0,
+                "HatchExclude": 0.0
               }
             ]
           },
