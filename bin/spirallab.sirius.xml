@@ -5141,6 +5141,12 @@
             <param name="markerArg">IMarkerArg 인터페이스</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IMarker.Clear">
+            <summary>
+            복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IMarker.Start">
             <summary>
             가공 시작
@@ -5289,6 +5295,12 @@
             준비(Ready) 즉 신규 데이타를 다운로드하지 않으면 아무런 영향이 없게 된다.
             </summary>
             <param name="markerArg">가공 인자</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.Clear">
+            <summary>
+            복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Start">
@@ -5874,6 +5886,11 @@
         <member name="T:SpiralLab.Sirius.AlcPositionFileBrowser">
             <summary>
             RTC 의 Position Dep. 용 보정 파일
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.DocExtFileBrowser">
+            <summary>
+            문서 확장 파일 브라우저
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.AboutForm">

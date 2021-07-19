@@ -292,14 +292,14 @@ namespace SpiralLab.Sirius.FCEU
 
                     #region Ref 타켓 마킹
                     case MessageProtocol.LASER_SCANNER_REF_01_IMAGE:
-                        if (seq.Start(LaserSequence.Process.Ref1))
+                        if (seq.Start(LaserSequence.Process.Ref_Right))
                             this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_OK);
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_NG);
                         break;
 
                     case MessageProtocol.LASER_SCANNER_REF_02_IMAGE:
-                        if (seq.Start(LaserSequence.Process.Ref2))
+                        if (seq.Start(LaserSequence.Process.Ref_Left))
                             this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_OK);
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_NG);
@@ -307,42 +307,44 @@ namespace SpiralLab.Sirius.FCEU
                     #endregion
 
                     #region 불량 정보를 1/2 읽어서 에디터에 표시 (도면 기준)
-                    case MessageProtocol.LASER_READ_INSPECT_01:
-                        {
-                            //string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 분할.txt");
-                            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
-                            if (svc.ReadDefectFromFile(fileName, out var group))
-                            {
-                                this.Send(MessageProtocol.LASER_READ_INSPECT_01_OK);
-                                if (svc.PrepareDefectInEditor(1, group))
-                                    this.Send(MessageProtocol.LASER_READ_INSPECT_01_FINISH);
-                            }
-                            else
-                                this.Send(MessageProtocol.LASER_READ_INSPECT_01_NG);
-                        }
-                        break;
-                    case MessageProtocol.LASER_READ_INSPECT_02:
-                        {
-                            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 없음.txt");
-                            if (svc.ReadDefectFromFile(fileName, out var group))
-                            {
-                                this.Send(MessageProtocol.LASER_READ_INSPECT_02_OK);
-                                if (svc.PrepareDefectInEditor(2, group))
-                                    this.Send(MessageProtocol.LASER_READ_INSPECT_02_FINISH);
-                            }
-                            else
-                                this.Send(MessageProtocol.LASER_READ_INSPECT_02_NG);
-                        }
-                        break;
+                    //case MessageProtocol.LASER_READ_INSPECT_01:
+                    //    {
+                    //        //string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 분할.txt");
+                    //        string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.txt");
+                    //        if (svc.ReadDefectFromFile(fileName, out var group))
+                    //        {
+                    //            this.Send(MessageProtocol.LASER_READ_INSPECT_01_OK);
+                    //            if (svc.PrepareDefectInEditor(1, group))
+                    //                this.Send(MessageProtocol.LASER_READ_INSPECT_01_FINISH);
+                    //        }
+                    //        else
+                    //            this.Send(MessageProtocol.LASER_READ_INSPECT_01_NG);
+                    //    }
+                    //    break;
+                    //case MessageProtocol.LASER_READ_INSPECT_02:
+                    //    {
+                    //        string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "동일파일 표현 없음.txt");
+                    //        if (svc.ReadDefectFromFile(fileName, out var group))
+                    //        {
+                    //            this.Send(MessageProtocol.LASER_READ_INSPECT_02_OK);
+                    //            if (svc.PrepareDefectInEditor(2, group))
+                    //                this.Send(MessageProtocol.LASER_READ_INSPECT_02_FINISH);
+                    //        }
+                    //        else
+                    //            this.Send(MessageProtocol.LASER_READ_INSPECT_02_NG);
+                    //    }
+                    //    break;
                     #endregion
 
                     #region 불량 정보를 1/2 읽어서 마커에 ready (자재기준)
                     case MessageProtocol.LASER_READ_HATCHING_01:
                         {
-                            if (svc.ReadDefectFromFile("1 file.txt", out var group))
+                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
+                            if (svc.ReadDefectFromFile(defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_OK);
-                                if (svc.PrepareDefectInMarker(1, group))
+                                if (svc.PrepareDefectInEditor(1, group))
+                                //if (svc.PrepareDefectInMarker(1, group))
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_01_FINISH);
                             }
                             else
@@ -351,10 +353,12 @@ namespace SpiralLab.Sirius.FCEU
                         break;
                     case MessageProtocol.LASER_READ_HATCHING_02:
                         {
-                            if (svc.ReadDefectFromFile("2 file.txt", out var group))
+                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
+                            if (svc.ReadDefectFromFile(defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_OK);
-                                if (svc.PrepareDefectInMarker(2, group))
+                                if (svc.PrepareDefectInEditor(2, group))
+                                //if (svc.PrepareDefectInMarker(2, group))
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_02_FINISH);
                             }
                             else

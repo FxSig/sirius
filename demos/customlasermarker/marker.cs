@@ -186,6 +186,21 @@ namespace SpiralLab.Sirius
             return true;
         }
         /// <summary>
+        /// 복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
+        /// </summary>
+        /// <returns></returns>
+        public bool Clear()
+        {
+            if (this.IsBusy)
+            {
+                Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: trying to clear but busy");
+                return false;
+            }
+            this.clonedDoc.New();
+            Logger.Log(Logger.Type.Info, $"marker [{this.Index}] {this.Name}: cleared");
+            return true;
+        }
+        /// <summary>
         /// 가공 시작
         /// </summary>
         /// <returns></returns>

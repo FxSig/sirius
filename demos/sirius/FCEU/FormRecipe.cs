@@ -58,8 +58,9 @@ namespace SpiralLab.Sirius.FCEU
             this.index = newIndex;
             this.name = newName;
             this.siriusViewerForm1.Document.Action.ActNew();
-            
-            string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{index}", "laser.sirius");
+
+            var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
+            string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{index}", fileName);
             if (!File.Exists(recipeFileName))
                 return;
 

@@ -40,22 +40,21 @@ namespace SpiralLab.Sirius.FCEU
         public void RecipeClear()
         {
             RecipeNo = -1;
-            //var doc = new Sirius.DocumentDefault();
-            var doc = new DocumentFCEU();
+            var doc = new Sirius.DocumentDefault();
 
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
-                seq.Viewer.Document = doc;
                 seq.Editor.Document = doc;
+                //seq.Viewer.Document = doc;
 
                 //사용자 정의 펜 생성
                 //var pen = new FCEUPen();
                 //seq.Editor.OnDocumentPenNew += SiriusEditorForm1_OnDocumentPenNew;
                 //기본 펜 생성 
-                var pen = new PenDefault();
-                
+                var pen = new PenDefault();            
                 doc.Action.ActEntityAdd(pen);
             }));
+
         }
         //private void SiriusEditorForm1_OnDocumentPenNew(object sender)
         //{
@@ -106,6 +105,7 @@ namespace SpiralLab.Sirius.FCEU
             markerArg.Document = doc;
             markerArg.Rtc = seq.Rtc;
             markerArg.Laser = seq.Laser;
+            markerArg.RtcListType = ListType.Auto;            
             Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
             {
                 form.Percentage = 50;
@@ -116,10 +116,10 @@ namespace SpiralLab.Sirius.FCEU
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     Application.DoEvents();
-                    seq.Editor.Document = doc;
+                    seq.Editor.Document = doc; //updated !
                     seq.Editor.FileName = recipeFileName;
-                    Application.DoEvents();
                     //Viewer.Document = doc; 자동 !
+                    Application.DoEvents();
                     Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
                     {
                         form.Percentage = 100;
@@ -131,6 +131,8 @@ namespace SpiralLab.Sirius.FCEU
             }
             else
             {
+                // turn off ready status
+                seq.Marker.Clear();
                 seq.Error(ErrEnum.Recipe);
                 Logger.Log(Logger.Type.Warn, $"fail to change recipe to [{no}]: {recipeName}");
             }
@@ -220,12 +222,29 @@ namespace SpiralLab.Sirius.FCEU
             //    return false;
 
             var doc = seq.Editor.Document; //에디터의 doc 를 대상으로
-            var name = $"Defect{index}";
-            var layer = doc.Layers.NameOf(name);
-            if (null == layer || 0 == layer.Count || !(layer[0] is IPen))
+
+            Layer layer = null;
+            var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
+            var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
+            switch (index)
+            {
+                case 1:
+                    layer = doc.Layers.NameOf(defLayerRight);
+                    break;
+                case 2:
+                    layer = doc.Layers.NameOf(defLayerLeft);
+                    break;
+            }
+            if (null == layer || 0 == layer.Count)
             {
                 seq.Error(ErrEnum.NoDefectLayer);
-                Logger.Log(Logger.Type.Error, $"target layer or pen entity is not exist : {name}");
+                Logger.Log(Logger.Type.Error, $"target layer name is not exist : {defLayerRight} or {defLayerLeft}");
+                return false;
+            }
+            if (!(layer[0] is IPen))
+            {
+                seq.Error(ErrEnum.NoDefectLayer);
+                Logger.Log(Logger.Type.Error, $"target layer is not start with pen entity");
                 return false;
             }
 
@@ -267,43 +286,61 @@ namespace SpiralLab.Sirius.FCEU
             }));
             return true;
         }
-        public bool PrepareDefectInMarker(int index, Group group)
-        {
-            // 오토 화면 
-            //if (this.formMain.FormCurrent != this.formMain.FormAuto)
-            //    return false;
-            if (seq.IsBusy)
-            {
-                seq.Error(ErrEnum.Busy);
-                Logger.Log(Logger.Type.Error, $"trying to change defect info into marker but busy");
-                return false;
-            }
+        //public bool PrepareDefectInMarker(int index, Group group)
+        //{
+        //    // 오토 화면 
+        //    //if (this.formMain.FormCurrent != this.formMain.FormAuto)
+        //    //    return false;
+        //    if (seq.IsBusy)
+        //    {
+        //        seq.Error(ErrEnum.Busy);
+        //        Logger.Log(Logger.Type.Error, $"trying to change defect info into marker but busy");
+        //        return false;
+        //    }
 
-            //마커 doc 의 동기화는? 수정할 수 있는 타이밍이 존재?
-            var doc = seq.Marker.Document; //복제된 doc 를 대상으로
-            var name = $"Defect{index}";
-            var layer = doc.Layers.NameOf(name);
-            if (null == layer || 0 == layer.Count || !(layer[0] is IPen))
-            {
-                seq.Error(ErrEnum.NoDefectLayer);
-                Logger.Log(Logger.Type.Error, $"target layer or pen entity is not exist : {name}");
-                return false;
-            }
-            //Program.MainForm.Invoke(new MethodInvoker(delegate ()
-            //{
-                // 첫번째 객체를 제외하고 모두 삭제
-                var deleteEntities = new List<IEntity>(layer.Count);
-                foreach (var entity in layer)
-                {
-                    if (!(entity is IPen))
-                        deleteEntities.Add(entity);
-                }
-                doc.Action.ActEntityDelete(deleteEntities);
-                doc.Action.ActEntityAdd(group, layer);
-                doc.Action.UndoRedoClear(); //100 undo 개수 제한이 있지만 메모리 소비가 클수있음 ? save memory
-            //}));
-            return true;
-        }
+        //    //var doc = seq.Marker.Document; //복제된 doc 를 대상으로 ??
+        //    var doc = seq.Marker.Document; //에디터의  doc 를 대상으로 ?
+
+        //    Layer layer = null;
+        //    var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
+        //    var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
+        //    switch (index)
+        //    {
+        //        case 1:
+        //            layer = doc.Layers.NameOf(defLayerRight);
+        //            break;
+        //        case 2:
+        //            layer = doc.Layers.NameOf(defLayerLeft);
+        //            break;
+        //    }
+        //    if (null == layer || 0 == layer.Count)
+        //    {
+        //        seq.Error(ErrEnum.NoDefectLayer);
+        //        Logger.Log(Logger.Type.Error, $"target layer name is not exist : {defLayerRight} or {defLayerLeft}");
+        //        return false;
+        //    }
+        //    if (!(layer[0] is IPen))
+        //    {
+        //        seq.Error(ErrEnum.NoDefectLayer);
+        //        Logger.Log(Logger.Type.Error, $"target layer is not start with pen entity");
+        //        return false;
+        //    }
+
+        //    //Program.MainForm.Invoke(new MethodInvoker(delegate ()
+        //    //{
+        //    // 첫번째 객체를 제외하고 모두 삭제
+        //    var deleteEntities = new List<IEntity>(layer.Count);
+        //        foreach (var entity in layer)
+        //        {
+        //            if (!(entity is IPen))
+        //                deleteEntities.Add(entity);
+        //        }
+        //        doc.Action.ActEntityDelete(deleteEntities);
+        //        doc.Action.ActEntityAdd(group, layer);
+        //        doc.Action.UndoRedoClear(); //100 undo 개수 제한이 있지만 메모리 소비가 클수있음 ? save memory
+        //    //}));
+        //    return true;
+        //}
         public bool ReadDefectFromFile(string fileName, out Group group)
         {
             group = null;
@@ -329,7 +366,22 @@ namespace SpiralLab.Sirius.FCEU
 
             var editor = seq.Editor;
             var doc = editor.Document; //에디터의 doc 를 대상
-            var docFceu = doc as DocumentFCEU;//해치 정보 조회하기 위해 접근
+            bool isHatchable = false;
+            float hatchAngle = 90;
+            float hatchInterval = 0.1f;
+            float hatchExclude = 0;
+            string extFileName = doc.ExtensionFilePath;
+            if (!File.Exists(extFileName))
+            {
+                Logger.Log(Logger.Type.Warn, $"doc extension is not exist : {extFileName}");
+            }
+            else
+            {
+                isHatchable = NativeMethods.ReadIni<bool>(extFileName, $"HATCH", "HATCHABLE");
+                hatchAngle = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "ANGLE");
+                hatchInterval = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "INTERVAL");
+                hatchExclude = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "EXCLUDE");
+            }
 
             bool success = true;
             group = new Group();
@@ -338,7 +390,6 @@ namespace SpiralLab.Sirius.FCEU
             group.IsHitTest = false; //선택 않되도록
             int counts = 0;
             seq.Warn(WarnEnum.VisionDataOpen);
-            int max = 1000;
             try
             {
                 using (var stream = new StreamReader(fileName))
@@ -361,10 +412,10 @@ namespace SpiralLab.Sirius.FCEU
                             Debug.Assert(null != polyline);
                             Debug.Assert(polyline.Count >= 3);
                             polyline.IsClosed = true;
-                            polyline.IsHatchable = docFceu.IsHatchable;
-                            polyline.HatchAngle = docFceu.HatchAngle;
-                            polyline.HatchInterval = docFceu.HatchInterval;
-                            polyline.HatchExclude = docFceu.HatchExclude;
+                            polyline.IsHatchable = isHatchable;
+                            polyline.HatchAngle = hatchAngle;
+                            polyline.HatchInterval = hatchInterval;
+                            polyline.HatchExclude = hatchExclude;
                             polyline.Regen();
                             group.Add(polyline);
 

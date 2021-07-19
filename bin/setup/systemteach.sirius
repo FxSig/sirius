@@ -1,9 +1,10 @@
 {
   "$type": "DocumentDefault",
-  "Version": "1.0.7.0",
+  "Version": "1.0.7.2",
   "Name": "",
   "Description": "",
-  "FileName": null,
+  "FileName": "C:\\Users\\sepwi\\OneDrive\\바탕 화면\\siriuslib\\bin\\setup\\systemteach.sirius",
+  "ExtensionFilePath": null,
   "Dimension": {
     "$type": "BoundRect",
     "IsEmpty": true,
@@ -17,7 +18,9 @@
       "$type": "Vector2",
       "X": 0.0,
       "Y": 0.0
-    }
+    },
+    "IsMarkerable": true,
+    "Repeat": 1
   },
   "RotateOffset": {
     "$type": "Offset",
@@ -56,7 +59,8 @@
                 "$type": "PenDefault",
                 "Name": "Default",
                 "Description": null,
-                "IsSelected": false,
+                "intColor": -1,
+                "IsSelected": true,
                 "IsHighlighted": false,
                 "IsMarkerable": true,
                 "IsLocked": false,
@@ -100,8 +104,8 @@
                 "IsDrawPath": false,
                 "IsLocked": false,
                 "Repeat": 1,
-                "InnerDiameter": 0.5,
-                "OutterDiameter": 1.0,
+                "InnerDiameter": 0.1,
+                "OutterDiameter": 0.5,
                 "Revolutions": 5,
                 "Closed": true,
                 "Center": {
@@ -109,7 +113,7 @@
                   "X": 0.0,
                   "Y": 0.0
                 },
-                "RadialPitch": 0.05,
+                "RadialPitch": 0.04,
                 "Angle": 0.0
               }
             ]

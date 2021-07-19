@@ -22,11 +22,7 @@ namespace SpiralLab.Sirius.FCEU
         public float Fov { get; private set; } = 120;
         public IRtc Rtc { get; set; }
         public ILaser Laser { get; set; }
-
         public IMarker Marker { get; set; }
-        public IMarker MarkerSystemTeach { get; set; }
-        public IMarker MarkerFieldCorrection { get; set; }
-        public IMarker MarkerRef { get; set; }
 
         public ConcurrentDictionary<ErrEnum, byte> Errors { get; private set; }
         public ConcurrentDictionary<WarnEnum, byte> Warns { get; private set; }
@@ -139,21 +135,23 @@ namespace SpiralLab.Sirius.FCEU
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
             Editor.Marker = this.Marker;
 
-            this.MarkerSystemTeach = new MarkerDefault(0);
-            this.MarkerSystemTeach.Name = "System Teach";
-            this.MarkerSystemTeach.OnFinished += SystemTeach_OnFinished;
+            //this.MarkerSystemTeach = new MarkerDefault(0);
+            //this.MarkerSystemTeach.Name = "System Teach";
+            //this.MarkerSystemTeach.OnFinished += SystemTeach_OnFinished;
 
-            this.MarkerFieldCorrection = new MarkerDefault(0);
-            this.MarkerFieldCorrection.Name = "Field Correction";
-            this.MarkerFieldCorrection.OnFinished += FieldCorrection_OnFinished;
+            //this.MarkerFieldCorrection = new MarkerDefault(0);
+            //this.MarkerFieldCorrection.Name = "Field Correction";
+            //this.MarkerFieldCorrection.OnFinished += FieldCorrection_OnFinished;
 
-            this.MarkerRef = new MarkerRef(0);
-            this.MarkerRef.Name = "Reference Mark 1/2";
-            this.MarkerRef.OnFinished += Ref_OnFinished;
-            this.MarkerRef.ScannerRotateAngle = scannerRotateAngle;
+            //this.MarkerRef = new MarkerRef(0);
+            //this.MarkerRef.Name = "Reference Mark 1/2";
+            //this.MarkerRef.OnFinished += Ref_OnFinished;
+            //this.MarkerRef.ScannerRotateAngle = scannerRotateAngle;
             #endregion
 
-            this.VisionComm = new VisionTcpClient("localhost", 9999);
+            var visionIp = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"VISION", "IP");
+            var visionPort = NativeMethods.ReadIni<int>(FormMain.ConfigFileName, $"VISION", "PORT");
+            this.VisionComm = new VisionTcpClient(visionIp, visionPort);
             this.VisionComm.Start();
 
             this.thread = new Thread(this.Loop);
@@ -206,14 +204,36 @@ namespace SpiralLab.Sirius.FCEU
 
         public enum Process
         {
-            Defect1,
-            Defect2,
+            /// <summary>
+            /// 기본값
+            /// </summary>
+            Default = 0,
+            /// <summary>
+            /// 우 (해칭 절반)
+            /// </summary>
+            Defect_Right,
+            /// <summary>
+            /// 좌 (해칭 절반)
+            /// </summary>
+            Defect_Left,
+            /// <summary>
+            /// 중심 마크
+            /// </summary>
             SystemTeach,
+            /// <summary>
+            /// 스캐너 보정 마크 (SystemTeach 사용하여 offset 생성)
+            /// </summary>
             FieldCorrection,
-            Ref1,
-            Ref2,
+            /// <summary>
+            /// 우 (도면 절반)
+            /// </summary>
+            Ref_Right,
+            /// <summary>
+            /// 좌 (도면 절반)
+            /// </summary>
+            Ref_Left,
         }
-        public bool Start(Process proc)
+        public bool Start(SpiralLab.Sirius.FCEU.LaserSequence.Process proc)
         {
             if (this.IsBusy)
             {
@@ -221,136 +241,121 @@ namespace SpiralLab.Sirius.FCEU
                 Logger.Log(Logger.Type.Error, $"try to start mark but busy !");
                 return false;
             }
-
             bool success = true;
-            var markerArg = new MarkerArgDefault();
-            markerArg.Rtc = this.Rtc;
-            markerArg.Laser = this.Laser;
-
             switch (proc)
             {
-                case Process.Defect1://right
+                case Process.Defect_Right://right
                     {
-                        if (this.IsBusy)
+                        var doc = Editor.Document;
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
+                        markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
+                        var layer = doc.Layers.NameOf(defLayerRight);
+                        var br = layer.BoundRect;
+                        markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y)); 
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
                         {
-                            formMain.Seq.Error(ErrEnum.Busy);
-                            Logger.Log(Logger.Type.Error, $"try to mark but marker is busy !");
+                            Logger.Log(Logger.Type.Error, $"try to mark defect (right side) but fail to ready");
                             return false;
                         }
-                        var doc = Marker.Document;
-                        int index = 1;
-                        var name = $"Defect{index}";
-
-                        var layer = doc.Layers.NameOf(name);
-                        if (null != doc || null == layer || layer.Count < 2)
-                        {
-                            Logger.Log(Logger.Type.Error, $"try to mark but data is not assigned yet");
-                            return false;
-                        }
-                        Marker.Tag = $"{index}";
-                        //이미 불량 데이타를 읽어 marker cloned doc 에 데이타 기록하였으므로 ready 호출않함
-
-                        //offset
-                        var refLayer = doc.Layers.NameOf($"Ref{index}");
-                        var br = refLayer.BoundRect;
-                        this.Marker.MarkerArg.Offsets.Clear();
-                        //오프셋 이미 계산되어 전달?
-                        //this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
-
                         this.Warn(WarnEnum.StartingToMark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark defect1 (right side)");
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark defect (right side)");
                         success &= Marker.Start();
                     }
                     break;
-                case Process.Defect2://left
+                case Process.Defect_Left://left
                     {
-                        if (this.IsBusy)
+                        var doc = Editor.Document;
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
+                        markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
+                        var layer = doc.Layers.NameOf(defLayerLeft);
+                        var br = layer.BoundRect;
+                        markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
                         {
-                            formMain.Seq.Error(ErrEnum.Busy);
-                            Logger.Log(Logger.Type.Error, $"try to mark but marker is busy !");
+                            Logger.Log(Logger.Type.Error, $"try to mark defect (left side) but fail to ready");
                             return false;
                         }
-                        var doc = Marker.Document;
-                        int index = 2;
-                        var name = $"Defect{index}";
-
-                        var layer = doc.Layers.NameOf(name);
-                        if (null != doc || null == layer || layer.Count < 2)
-                        {
-                            Logger.Log(Logger.Type.Error, $"try to mark but data is not assigned yet");
-                            return false;
-                        }
-                        Marker.Tag = $"{index}";
-                        //이미 불량 데이타를 읽어 marker cloned doc 에 데이타 기록하였으므로 ready 호출않함
-
-                        //offset
-                        var refLayer = doc.Layers.NameOf($"Ref{index}");
-                        var br = refLayer.BoundRect;
-                        this.Marker.MarkerArg.Offsets.Clear();
-                        //오프셋 이미 계산되어 전달?
-                        //this.Marker.MarkerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
-
                         this.Warn(WarnEnum.StartingToMark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark defect2 (left side)");
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark defect (left side)");
                         success &= Marker.Start();
                     }
                     break;
                 case Process.SystemTeach:
                     {
-                        if (this.IsBusy)
-                        {
-                            formMain.Seq.Error(ErrEnum.Busy);
-                            Logger.Log(Logger.Type.Error, $"try to mark system teach but marker is busy !");
-                            return false;
-                        }
-                        var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", "systemteach.sirius");
-                        if (!File.Exists(fileName))
+                        var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
+                        var siriusFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+                        if (!File.Exists(siriusFileName))
                         {
                             Error(ErrEnum.Recipe);
-                            Logger.Log(Logger.Type.Error, $"try to mark system teach but file doesnt exist : {fileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark system teach but file doesn't exist : {siriusFileName}");
                             return false;
                         }
-                        var doc = DocumentSerializer.OpenSirius(fileName);
+                        var doc = DocumentSerializer.OpenSirius(siriusFileName);
                         if (null == doc)
                         {
                             Error(ErrEnum.Recipe);
-                            Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {fileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {siriusFileName}");
                             return false;
                         }
+
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
-                        if (false == MarkerSystemTeach.Ready(markerArg))
+                        markerArg.RtcListType = ListType.Auto;
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
                         {
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to ready");
                             return false;
                         }
+
                         this.Warn(WarnEnum.SystemTeachToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark system teach at center");
-                        success &= MarkerSystemTeach.Start();
+                        success &= Marker.Start();
                     }
                     break;
                 case Process.FieldCorrection:
                     {
-                        if (this.IsBusy)
-                        {
-                            formMain.Seq.Error(ErrEnum.Busy);
-                            Logger.Log(Logger.Type.Error, $"try to mark field correction but marker is busy !");
-                            return false;
-                        }
-                        var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", "systemteach.sirius");
-                        if (!File.Exists(fileName))
+                        var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
+                        var siriusFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+                        if (!File.Exists(siriusFileName))
                         {
                             Error(ErrEnum.Recipe);
-                            Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {fileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {siriusFileName}");
                             return false;
                         }
-                        var doc = DocumentSerializer.OpenSirius(fileName);
+                        var doc = DocumentSerializer.OpenSirius(siriusFileName);
                         if (null == doc)
                         {
                             formMain.Seq.Error(ErrEnum.Recipe);
-                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {fileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {siriusFileName}");
                             return false;
                         }
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        this.Marker.ScannerRotateAngle = 0;
+                        this.Marker.Tag = proc;
+
                         var svc = Service as LaserService;
                         float left = -svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionCols / 2);
                         float top = svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionRows / 2);
@@ -363,52 +368,64 @@ namespace SpiralLab.Sirius.FCEU
                                         top - row * svc.FieldCorrectionInterval));
                             }
                         }
-                        if (false == MarkerFieldCorrection.Ready(markerArg))
+                        if (false == Marker.Ready(markerArg))
                         {
                             Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to ready");
                             return false;
                         }
                         this.Warn(WarnEnum.ScannerFieldCorrectionToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark field correction ");
-                        success &= MarkerFieldCorrection.Start();
+                        success &= Marker.Start();
                     }
                     break;
-                case Process.Ref1:
+                case Process.Ref_Right:
                     {
                         var doc = Editor.Document;
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
-                        int index = 1;
-                        MarkerRef.Tag = $"{index}";
-                        var layer = doc.Layers.NameOf($"Ref{index}");
+                        markerArg.RtcListType = ListType.Auto;
+                        var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                        var layer = doc.Layers.NameOf(refLayerRight);
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
-                        if (false == MarkerRef.Ready(markerArg))
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
                         {
-                            Logger.Log(Logger.Type.Error, $"try to mark ref1 (right) but fail to ready");
+                            Logger.Log(Logger.Type.Error, $"try to mark reference (right side) but fail to ready");
                             return false;
                         }
                         this.Warn(WarnEnum.Reference1Mark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark reference #1");
-                        success &= MarkerRef.Start();
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark reference (right side)");
+                        success &= Marker.Start();
                     }
                     break;
-                case Process.Ref2:
+                case Process.Ref_Left:
                     {
                         var doc = Editor.Document;
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
-                        int index = 2;
-                        MarkerRef.Tag = $"{index}";
-                        var layer = doc.Layers.NameOf($"Ref{index}");
+                        markerArg.RtcListType = ListType.Auto;
+                        var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                        var layer = doc.Layers.NameOf(refLayerLeft);
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
-                        if (false == MarkerRef.Ready(markerArg))
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
                         {
-                            Logger.Log(Logger.Type.Error, $"try to mark ref2 (left) but fail to ready");
+                            Logger.Log(Logger.Type.Error, $"try to mark reference (left side) but fail to ready");
                             return false;
                         }
                         this.Warn(WarnEnum.Reference1Mark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark reference #2");
-                        success &= MarkerRef.Start();
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark reference (left side)");
+                        success &= Marker.Start();
                     }
                     break;
             }
@@ -419,9 +436,6 @@ namespace SpiralLab.Sirius.FCEU
             Rtc.CtlReset();
             Laser.CtlReset();
             Marker.Reset();
-            MarkerSystemTeach.Reset();
-            MarkerFieldCorrection.Reset();
-            MarkerRef.Reset();
             lock (this.SyncRoot)
             {
                 this.Warns.Clear();
@@ -432,29 +446,29 @@ namespace SpiralLab.Sirius.FCEU
         {
             //Rtc.CtlAbort();
             Marker.Stop();
-            MarkerSystemTeach.Stop();
-            MarkerFieldCorrection.Stop();
-            MarkerRef.Stop();
         }
         public void Loop()
         {
             do
             {
                 bool ready = true;
-                ready &= Rtc.CtlGetStatus(RtcStatus.NoError);
-                ready &= !Laser.IsError;
+                //ready &= Rtc.CtlGetStatus(RtcStatus.NoError);
+                //ready &= !Laser.IsError;
+                ready &= Marker.IsReady;
                 ready &= this.formMain.FormCurrent == this.formMain.FormAuto;
                 ready &= !isFieldCorrecting;
                 this.IsReady = ready;
 
                 bool busy = false;
                 busy |= Rtc.CtlGetStatus(RtcStatus.Busy);
-                busy |= Laser.IsBusy;
+                //busy |= Laser.IsBusy;
+                busy |= Marker.IsBusy;
                 this.IsBusy = busy;
 
                 bool error = false;
-                error |= !Rtc.CtlGetStatus(RtcStatus.NoError);
-                error |= Laser.IsError;
+                //error |= !Rtc.CtlGetStatus(RtcStatus.NoError);
+                //error |= Laser.IsError;
+                error |= Marker.IsError;
                 lock(SyncRoot)
                     error |= Errors.Count > 0;
                 this.IsError = error;
@@ -479,52 +493,55 @@ namespace SpiralLab.Sirius.FCEU
                 else
                     this.Warn(WarnEnum.Busy, true);
 
-                Thread.Sleep(5);
+                Thread.Sleep(1);
             } while (!IsTerminated);
         }
 
         private void Marker_OnFinished(IMarker sender, IMarkerArg markerArg)
         {
             var marker = sender as IMarker;
-            switch ((string)marker.Tag)
+            switch ((SpiralLab.Sirius.FCEU.LaserSequence.Process)marker.Tag)
             {
-                case "1":
-                    //await
-                    VisionComm.Send(MessageProtocol.LASER_READ_HATCHING_01_FINISH);
+                case Process.SystemTeach:
+                    if (markerArg.IsSuccess) 
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                     break;
-                case "2":
-                    //await
-                    VisionComm.Send(MessageProtocol.LASER_READ_HATCHING_02_FINISH);
+                case Process.FieldCorrection:
+                    if (markerArg.IsSuccess)
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
+                    break;
+                case Process.Ref_Right:
+                    if (markerArg.IsSuccess)
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_NG);
+                    break;
+                case Process.Ref_Left:
+                    if (markerArg.IsSuccess)
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_NG);
+                    break;
+                case Process.Defect_Right:
+                    if (markerArg.IsSuccess)
+                        VisionComm.Send(MessageProtocol.DO_HATCHING_01_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.DO_HATCHING_01_START_NG);
+                    break;
+                case Process.Defect_Left:
+                    if (markerArg.IsSuccess)
+                        VisionComm.Send(MessageProtocol.DO_HATCHING_02_FINISH);
+                    else
+                        VisionComm.Send(MessageProtocol.DO_HATCHING_02_START_NG);
                     break;
             }
-            marker.Tag = null; //reset
-        }
-        private void SystemTeach_OnFinished(IMarker sender, IMarkerArg markerArg)
-        {
-            var marker = sender as IMarker;
-            //await
-            VisionComm.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_FINISH);
-        }
-        private void FieldCorrection_OnFinished(IMarker sender, IMarkerArg markerArg)
-        {
-            var marker = sender as IMarker;
-            //await
-            VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_FINISH);
-        }
-        private void Ref_OnFinished(IMarker sender, IMarkerArg markerArg)
-        {
-            var marker = sender as IMarker;
-            switch((string)marker.Tag)
-            {
-                case "1":
-                    //await
-                    VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_FINISH);
-                    break;
-                case "2":
-                    //await
-                    VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_FINISH);
-                    break;
-            }
+            marker.Tag = null; //reset to user manual mode or 0
+            var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+            this.Marker.ScannerRotateAngle = scannerRotateAngle;
         }
     }
 }
