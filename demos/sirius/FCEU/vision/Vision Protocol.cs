@@ -49,6 +49,8 @@ public enum MessageProtocol
     LASER_STATUS_ERR = 420,//레이저->제어 (레이저 에러 상태 확인용)
     LASER_STATUS_ERR_OK,//레이저->제어 (에러 없음)
     LASER_STATUS_ERR_NG,//레이저->제어 (에러 있음)
+    LASER_STATUS_RESET = 430, //제어-> 레이저 (에러 상태를 리셋 시도)
+    LASER_STATUS_RESET_OK, //레이저 -> 제어 (수신 성공)
 
     LASER_SCANNER_SYSTEM_TEACH = 450, //제어->레이저  ;스캐너 중심 위치에 특정 패턴(원형)을 가공
     LASER_SCANNER_SYSTEM_TEACH_OK, //레이저->제어

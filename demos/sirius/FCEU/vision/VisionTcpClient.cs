@@ -99,7 +99,7 @@ namespace SpiralLab.Sirius.FCEU
                     this.Send(MessageProtocol.IM_LASER);
                     do
                     {
-                        if (!this.Receive( out var resp))
+                        if (!this.Receive(out var resp))
                         {
                             Logger.Log(Logger.Type.Error, $"vision tcp client fail to receive data !");
                             this.client.Close();
@@ -129,9 +129,8 @@ namespace SpiralLab.Sirius.FCEU
                 Debug.Assert(4 == bytes.Length);
                 //nstream.Write(bytes, 0, bytes.Length);
                 nstream.WriteAsync(bytes, 0, bytes.Length);
-                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()}");
-                return true;
-                
+                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [0x{data:X4}]");
+                return true;                
             }
             catch (Exception ex)
             {
@@ -156,7 +155,7 @@ namespace SpiralLab.Sirius.FCEU
                 }
 
                 data = (MessageProtocol)BitConverter.ToInt32(buffer, 0);
-                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()}");
+                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [0x{data:X4}]");
                 return true;
             }
             catch (Exception ex)
@@ -207,6 +206,10 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_STATUS_ERR_OK);
                         break;
+                    case MessageProtocol.LASER_STATUS_RESET:
+                        seq.Reset();
+                        this.Send(MessageProtocol.LASER_STATUS_RESET_OK);                        
+                        break;
                     #endregion
 
                     #region 시스템 티칭및 스캐너 보정
@@ -216,7 +219,6 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                         break;
-
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_3X3:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 3;
                         svc.FieldCorrectionInterval = seq.Fov / 2;

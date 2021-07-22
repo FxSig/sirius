@@ -26,6 +26,8 @@ namespace SpiralLab.Sirius.FCEU
 
         public ConcurrentDictionary<ErrEnum, byte> Errors { get; private set; }
         public ConcurrentDictionary<WarnEnum, byte> Warns { get; private set; }
+
+
         public SiriusEditorForm Editor { get; set; }
         public SiriusViewerForm Viewer { get; set; }
 
@@ -71,8 +73,9 @@ namespace SpiralLab.Sirius.FCEU
                 return;
             if (disposing)
             {
-                this.VisionComm?.Dispose();
                 IsTerminated = true;
+                this.VisionComm?.Dispose();
+                this.VisionComm = null;
                 this.thread?.Join();
             }
             this.disposed = true;
@@ -174,7 +177,10 @@ namespace SpiralLab.Sirius.FCEU
                     if (!Errors.ContainsKey(err))
                     {
                         if (Errors.Count <= ErrWarnLimit)
+                        {
                             Errors.TryAdd(err, 0);
+                            VisionComm?.Send(MessageProtocol.LASER_STATUS_ERR_NG);
+                        }
                     }
                 }
                 else
@@ -452,8 +458,6 @@ namespace SpiralLab.Sirius.FCEU
             do
             {
                 bool ready = true;
-                //ready &= Rtc.CtlGetStatus(RtcStatus.NoError);
-                //ready &= !Laser.IsError;
                 ready &= Marker.IsReady;
                 ready &= this.formMain.FormCurrent == this.formMain.FormAuto;
                 ready &= !isFieldCorrecting;
@@ -461,16 +465,32 @@ namespace SpiralLab.Sirius.FCEU
 
                 bool busy = false;
                 busy |= Rtc.CtlGetStatus(RtcStatus.Busy);
-                //busy |= Laser.IsBusy;
                 busy |= Marker.IsBusy;
+                if (this.IsBusy != busy)
+                {
+                    if (busy)
+                    {
+                        //busy on
+                        //VisionComm?.Send(MessageProtocol.LASER_STATUS_BUSY_OK);
+                    }
+                    else
+                    {
+                        //busy off
+                    }
+                }
                 this.IsBusy = busy;
 
                 bool error = false;
-                //error |= !Rtc.CtlGetStatus(RtcStatus.NoError);
-                //error |= Laser.IsError;
                 error |= Marker.IsError;
                 lock(SyncRoot)
                     error |= Errors.Count > 0;
+                if (this.IsError != error)
+                {
+                    if (error)
+                    {
+                        //error
+                    }
+                }
                 this.IsError = error;
 
                 if (this.formMain.FormCurrent != this.formMain.FormAuto)

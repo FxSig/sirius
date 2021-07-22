@@ -303,7 +303,7 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Stop();
         }
 
-        private void btnRIghtDefRefresh_Click(object sender, EventArgs e)
+        private void btnRightDefRefresh_Click(object sender, EventArgs e)
         {
             var svc = Seq.Service as LaserService;
             var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
@@ -329,7 +329,7 @@ namespace SpiralLab.Sirius.FCEU
             var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
-            dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Vision Defect File ...";
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)

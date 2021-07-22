@@ -372,7 +372,9 @@ namespace SpiralLab.Sirius.FCEU
             var editor = seq.Editor;
             var doc = editor.Document; //에디터의 doc 를 대상
             bool isHatchable = false;
+            HatchMode hatchMode = HatchMode.Line;
             float hatchAngle = 90;
+            float hatch2Angle = 90;
             float hatchInterval = 0.1f;
             float hatchExclude = 0;
             string extFileName = doc.ExtensionFilePath;
@@ -383,7 +385,9 @@ namespace SpiralLab.Sirius.FCEU
             else
             {
                 isHatchable = NativeMethods.ReadIni<bool>(extFileName, $"HATCH", "HATCHABLE");
+                hatchMode = (HatchMode)NativeMethods.ReadIni<int>(extFileName, $"HATCH", "MODE");
                 hatchAngle = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "ANGLE");
+                hatch2Angle = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "ANGLE2");
                 hatchInterval = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "INTERVAL");
                 hatchExclude = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "EXCLUDE");
             }
@@ -410,13 +414,17 @@ namespace SpiralLab.Sirius.FCEU
                         else if (line.StartsWith("POLYLINE_BEGIN"))
                         {
                             Debug.Assert(null == polyline);
+                            string[] tokens = line.Split(',');
                             polyline = new LwPolyline();
+                            if (tokens.Length > 1)
+                                polyline.Name = tokens[1];
                         }
                         else if (line.StartsWith("POLYLINE_END"))
                         {
                             Debug.Assert(null != polyline);
                             Debug.Assert(polyline.Count >= 3);
                             polyline.IsClosed = true;
+                            polyline.HatchMode = hatchMode;
                             polyline.IsHatchable = isHatchable;
                             polyline.HatchAngle = hatchAngle;
                             polyline.HatchInterval = hatchInterval;

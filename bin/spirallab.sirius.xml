@@ -4,6 +4,19 @@
         <name>spirallab.sirius</name>
     </assembly>
     <members>
+        <member name="T:SpiralLab.Sirius.UndoRedoEntityDivide">
+            <summary>
+            엔티티 나누기
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.UndoRedoEntityDivide.DivideLwPolyline(SpiralLab.Sirius.LwPolyline,SpiralLab.Sirius.BoundRect,System.Collections.Generic.List{SpiralLab.Sirius.LwPolyline}@)">
+            <summary>
+            폴리라인은 bulge 가 모두 분해된 채로 전달되어야 한다
+            </summary>
+            <param name="sourceLwPolyline"></param>
+            <param name="rect"></param>
+            <param name="subLwPolylines"></param>
+        </member>
         <member name="T:SpiralLab.Sirius.UndoRedoEntityReplace">
             <summary>
             엔티티 교체하기
@@ -173,6 +186,12 @@
             ...
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
         <member name="M:SpiralLab.Sirius.StitchedImage.Clear">
             <summary>
             모든 인덱스의 이미지 삭제
@@ -201,12 +220,6 @@
             <param name="index">좌 상단 0</param>
             <param name="stream">스트림</param>
             <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.StitchedImage.Clone">
-            <summary>
-            복사본 생성
-            </summary>
-            <returns>A new color that is a copy of this instance.</returns>
         </member>
         <member name="T:SpiralLab.Sirius.Ellipse">
             <summary>
@@ -1168,6 +1181,28 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.DivideForm">
+            <summary>
+            엔티티 나누기 편집용 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DivideForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DivideForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.DivideForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.LogForm">
             <summary>
             Sirius 의 로그 메시지를 윈폼에 출력하기 위한 로그 폼
@@ -1213,6 +1248,11 @@
             선 해치 (+ 지그재그)
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.HatchMode.CrossLine">
+            <summary>
+            선 해치 (두개의 각도로 구성된)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IHatchable">
             <summary>
             Hatchable 인터페이스
@@ -1220,14 +1260,15 @@
             폐(댣힌) 영역을 가진 엔티티에 대해서만 동작
             </summary>    
         </member>
-        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             해치 인자를 통해 해칭된 그룹 객체를 얻는다
             </summary>
             <param name="mode">해치 모드</param>
             <param name="angle">해치 각도</param>
+            <param name="angle2">Cross Line 모드시 두번재 해치 각도</param>        
             <param name="interval">해치 간격 (mm)</param>
-            <param name="exclude">해치 외부 제외 영역 길이 (mm)</param>
+            <param name="exclude">해치 외부 제외 영역 길이 (mm)</param>        
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.LwPolyLineVertex">
@@ -1272,6 +1313,13 @@
             <param name="y"></param>
             <param name="bulge"></param>
             <param name="rampFactor"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.LwPolyLineVertex.#ctor(System.Numerics.Vector2,System.Single)">
+            <summary>
+            constructor
+            </summary>
+            <param name="v">Vector2</param>
+            <param name="bulge">bulge</param>
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyLineVertex.Equals(SpiralLab.Sirius.LwPolyLineVertex)">
             <summary>
@@ -1763,13 +1811,14 @@
             <param name="layer">대상 레이어</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
+        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
             <summary>
             지정된 엔티티가 닫힌 형태라면 해치 패턴을 추가하고 이를 신규 그룹 개체로 생성한다. 
             </summary>
             <param name="entities">엔티티 리스트</param>
             <param name="mode">해치 모드</param>
             <param name="angle">해치 각도</param>
+            <param name="angle2">크로스 해치 모드 시 두번째 해치 각도</param>
             <param name="interval">해치 간격</param>
             <param name="exclude">해치 외곽 제외 영역</param>
             <param name="layer">대상 레이어</param>
@@ -1842,6 +1891,15 @@
             <param name="targetLayer">대상 레이어</param>
             <param name="targetEntity">대상 엔티티</param>
             <param name="replaceEntity">교체할 엔티티</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityDivide(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Collections.Generic.List{SpiralLab.Sirius.BoundRect})">
+            <summary>
+            지정된 그룹 엔티티를 지정된 사각영역에 포함되어 있는 엔티티들로 골라 분해 복제하고, 대상 그룹은 삭제한다
+            (experimental)
+            </summary>
+            <param name="targets">대상 엔티티 </param>
+            <param name="rects">사각 영역 집합</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.HitTest(System.Windows.Forms.Keys,System.Single,System.Single,System.Single)">
@@ -2494,11 +2552,6 @@
         <member name="P:SpiralLab.Sirius.Layer.Description">
             <summary>
             레이어 설명
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Layer.Color">
-            <summary>
-            레이어 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.BoundRect">
@@ -4265,6 +4318,11 @@
             엔티티 화살표 색상
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.DivideRectColor">
+            <summary>
+            개체 Divide 시도시 미리보기용 사각형들의 색상
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor1">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 색상1
@@ -4753,8 +4811,14 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.Color">
             <summary>
+            Deprecated ! Use Color2 instead
             엔티티 색상
             entity ACI(Autocad Color Index) color
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDrawable.Color2">
+            <summary>
+            엔티티 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.Angle">
@@ -4929,6 +4993,11 @@
         <member name="P:SpiralLab.Sirius.HatchForm.Angle">
             <summary>
             해치 각도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Angle2">
+            <summary>
+            Cross 사용시 두번째 해치 각도
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.HatchForm.Interval">
@@ -5586,6 +5655,18 @@
             <param name="y2"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IntersectLineInRectWithCollision(SpiralLab.Sirius.BoundRect,System.Double,System.Double,System.Double,System.Double,System.Collections.Generic.List{System.Numerics.Vector2}@)">
+            <summary>
+            직선이 사각형 영역 내에 있던가, 혹은 모서리의 일부가 교차(포함)하는지 여부
+            </summary>
+            <param name="br"></param>
+            <param name="startX"></param>
+            <param name="startY"></param>
+            <param name="endX"></param>
+            <param name="endY"></param>
+            <param name="collisions">충돌(교차)시 해당 좌표 배열 (하나 혹은 둘)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IntersectRectInRect(SpiralLab.Sirius.BoundRect,SpiralLab.Sirius.BoundRect,System.Double)">
             <summary>
             두 사각형이 일부라도 교차(교집합) 혹은 포함되는지 여부
@@ -5597,7 +5678,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.CollisionRectWithRect(SpiralLab.Sirius.BoundRect,SpiralLab.Sirius.BoundRect)">
             <summary>
-            두 사각형이 일부라도 교차(교집합) 여부 (포함은 제외?)
+            두 사각형의 외곽 선분들중 일부라도 교차(교집합) 여부 (포함은 제외됨)
             </summary>
             <param name="a"></param>
             <param name="b"></param>

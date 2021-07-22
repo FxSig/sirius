@@ -49,14 +49,14 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
+            this.btnRightDefRefresh = new System.Windows.Forms.Button();
+            this.btnLeftDefRefresh = new System.Windows.Forms.Button();
             this.lblVisionComm = new System.Windows.Forms.Label();
             this.lblRecipe = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.btnLeftDefRefresh = new System.Windows.Forms.Button();
-            this.btnRIghtDefRefresh = new System.Windows.Forms.Button();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -342,7 +342,7 @@
             // panMenu
             // 
             this.panMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panMenu.Controls.Add(this.btnRIghtDefRefresh);
+            this.panMenu.Controls.Add(this.btnRightDefRefresh);
             this.panMenu.Controls.Add(this.btnLeftDefRefresh);
             this.panMenu.Controls.Add(this.lblVisionComm);
             this.panMenu.Controls.Add(this.lblRecipe);
@@ -352,6 +352,26 @@
             this.panMenu.Name = "panMenu";
             this.panMenu.Size = new System.Drawing.Size(1280, 32);
             this.panMenu.TabIndex = 15;
+            // 
+            // btnRightDefRefresh
+            // 
+            this.btnRightDefRefresh.Location = new System.Drawing.Point(679, 3);
+            this.btnRightDefRefresh.Name = "btnRightDefRefresh";
+            this.btnRightDefRefresh.Size = new System.Drawing.Size(145, 25);
+            this.btnRightDefRefresh.TabIndex = 11;
+            this.btnRightDefRefresh.Text = "Right Defect Refresh";
+            this.btnRightDefRefresh.UseVisualStyleBackColor = true;
+            this.btnRightDefRefresh.Click += new System.EventHandler(this.btnRightDefRefresh_Click);
+            // 
+            // btnLeftDefRefresh
+            // 
+            this.btnLeftDefRefresh.Location = new System.Drawing.Point(528, 3);
+            this.btnLeftDefRefresh.Name = "btnLeftDefRefresh";
+            this.btnLeftDefRefresh.Size = new System.Drawing.Size(145, 25);
+            this.btnLeftDefRefresh.TabIndex = 10;
+            this.btnLeftDefRefresh.Text = "Left Defect Refresh";
+            this.btnLeftDefRefresh.UseVisualStyleBackColor = true;
+            this.btnLeftDefRefresh.Click += new System.EventHandler(this.btnLeftDefRefresh_Click);
             // 
             // lblVisionComm
             // 
@@ -405,26 +425,6 @@
             this.panBody.Name = "panBody";
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
-            // 
-            // btnLeftDefRefresh
-            // 
-            this.btnLeftDefRefresh.Location = new System.Drawing.Point(528, 3);
-            this.btnLeftDefRefresh.Name = "btnLeftDefRefresh";
-            this.btnLeftDefRefresh.Size = new System.Drawing.Size(145, 25);
-            this.btnLeftDefRefresh.TabIndex = 10;
-            this.btnLeftDefRefresh.Text = "Left Defect Refresh";
-            this.btnLeftDefRefresh.UseVisualStyleBackColor = true;
-            this.btnLeftDefRefresh.Click += new System.EventHandler(this.btnLeftDefRefresh_Click);
-            // 
-            // btnRIghtDefRefresh
-            // 
-            this.btnRIghtDefRefresh.Location = new System.Drawing.Point(679, 3);
-            this.btnRIghtDefRefresh.Name = "btnRIghtDefRefresh";
-            this.btnRIghtDefRefresh.Size = new System.Drawing.Size(145, 25);
-            this.btnRIghtDefRefresh.TabIndex = 11;
-            this.btnRIghtDefRefresh.Text = "Right Defect Refresh";
-            this.btnRIghtDefRefresh.UseVisualStyleBackColor = true;
-            this.btnRIghtDefRefresh.Click += new System.EventHandler(this.btnRIghtDefRefresh_Click);
             // 
             // FormMain
             // 
@@ -484,7 +484,7 @@
         private System.Windows.Forms.Button btnRecipe;
         private System.Windows.Forms.Label lblVisionComm;
         private System.Windows.Forms.Button btnHistory;
-        private System.Windows.Forms.Button btnRIghtDefRefresh;
+        private System.Windows.Forms.Button btnRightDefRefresh;
         private System.Windows.Forms.Button btnLeftDefRefresh;
         private System.Windows.Forms.ColorDialog colorDialog1;
     }

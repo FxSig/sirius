@@ -70,6 +70,10 @@
 
 **5. Version history**
 
+ * 2021.07.22 v1.7.3
+   - added) hatch mode (cross line = 2nd hatch angle)
+   - added) support divide entities 
+
  * 2021.07.14 v1.7.2
    - added) path optimizer in group's internal items
    - added) another sirius demo project
