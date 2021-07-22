@@ -38,6 +38,7 @@ namespace SpiralLab.Sirius.FCEU
             this.Shown += FormMain_Shown;
             this.FormClosing += FormMain_FormClosing;
             lsbErrWarn.DrawItem += LsbErrWarn_DrawItem;
+            lblProject.Text = $"Project: {Program.ProjectName}";
         }
 
         private void LsbErrWarn_DrawItem(object sender, DrawItemEventArgs e)
@@ -314,7 +315,7 @@ namespace SpiralLab.Sirius.FCEU
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            if (svc.ReadDefectFromFile(dlg.FileName, out var group))
+            if (svc.ReadDefectFromFile(1, dlg.FileName, out var group))
             {
                 if (svc.PrepareDefectInEditor(1, group))
                 {
@@ -334,9 +335,9 @@ namespace SpiralLab.Sirius.FCEU
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            if (svc.ReadDefectFromFile(dlg.FileName, out var group))
+            if (svc.ReadDefectFromFile(2, dlg.FileName, out var group))
             {
-                if (svc.PrepareDefectInEditor(0, group))
+                if (svc.PrepareDefectInEditor(2, group))
                 {
                     Logger.Log(Logger.Type.Warn, $"manually defect (left side) file loaded : {dlg.FileName}");
                 }

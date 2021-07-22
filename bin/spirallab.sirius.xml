@@ -2342,6 +2342,11 @@
             파일이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IDocument.ExtensionData">
+            <summary>
+            사용자 정의 확장 데이타
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IDocument.ExtensionFilePath">
             <summary>
             사용자 정의 외부 확장용 파일의 경로

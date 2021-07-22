@@ -342,7 +342,7 @@ namespace SpiralLab.Sirius.FCEU
                     case MessageProtocol.LASER_READ_HATCHING_01:
                         {
                             var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
-                            if (svc.ReadDefectFromFile(defFile, out var group))
+                            if (svc.ReadDefectFromFile(1, defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_OK);
                                 if (svc.PrepareDefectInEditor(1, group))
@@ -356,7 +356,7 @@ namespace SpiralLab.Sirius.FCEU
                     case MessageProtocol.LASER_READ_HATCHING_02:
                         {
                             var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
-                            if (svc.ReadDefectFromFile(defFile, out var group))
+                            if (svc.ReadDefectFromFile(2, defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_OK);
                                 if (svc.PrepareDefectInEditor(2, group))

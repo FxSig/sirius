@@ -13,6 +13,7 @@ namespace SpiralLab.Sirius
     {
         
         public static Form MainForm = null;
+        public static string ProjectName = null;
         [STAThread]
         static void Main()
         {
@@ -40,6 +41,7 @@ namespace SpiralLab.Sirius
                 return;
             }
             //메인 폼 생성
+            ProjectName = projectName;
             Program.MainForm = Activator.CreateInstance(projectType) as Form ;
             if (null == Program.MainForm)
             {

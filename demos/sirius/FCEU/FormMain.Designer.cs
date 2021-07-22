@@ -57,6 +57,7 @@
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.lblProject = new System.Windows.Forms.Label();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -186,6 +187,7 @@
             // panTop
             // 
             this.panTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.panTop.Controls.Add(this.lblProject);
             this.panTop.Controls.Add(this.lblVersion);
             this.panTop.Controls.Add(this.btnMaximize);
             this.panTop.Controls.Add(this.lblTime);
@@ -426,6 +428,18 @@
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
             // 
+            // lblProject
+            // 
+            this.lblProject.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblProject.AutoSize = true;
+            this.lblProject.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblProject.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblProject.Location = new System.Drawing.Point(964, 9);
+            this.lblProject.Name = "lblProject";
+            this.lblProject.Size = new System.Drawing.Size(102, 16);
+            this.lblProject.TabIndex = 4;
+            this.lblProject.Text = "Project : (Unknown)";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -487,5 +501,6 @@
         private System.Windows.Forms.Button btnRightDefRefresh;
         private System.Windows.Forms.Button btnLeftDefRefresh;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label lblProject;
     }
 }

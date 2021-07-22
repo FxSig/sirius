@@ -239,6 +239,9 @@ namespace SpiralLab.Sirius.FCEU
                 case 2:
                     layer = doc.Layers.NameOf(defLayerLeft);
                     break;
+                default:
+                    Logger.Log(Logger.Type.Error, $"invalid left/right id: {index}");
+                    return false;
             }
             if (null == layer || 0 == layer.Count)
             {
@@ -346,7 +349,15 @@ namespace SpiralLab.Sirius.FCEU
         //    //}));
         //    return true;
         //}
-        public bool ReadDefectFromFile(string fileName, out Group group)
+
+        /// <summary>
+        /// Defect 파일 열고 분석
+        /// </summary>
+        /// <param name="index">1(오른쪽), 2(왼쪽)</param>
+        /// <param name="fileName">비전 검사 결과 파일 이름</param>
+        /// <param name="group">그룹 객체들</param>
+        /// <returns></returns>
+        public bool ReadDefectFromFile(int index, string fileName, out Group group)
         {
             group = null;
             ProgressForm form = new ProgressForm();
@@ -377,19 +388,25 @@ namespace SpiralLab.Sirius.FCEU
             float hatch2Angle = 90;
             float hatchInterval = 0.1f;
             float hatchExclude = 0;
-            string extFileName = doc.ExtensionFilePath;
-            if (!File.Exists(extFileName))
+
+            string extData = doc.ExtensionData;
+            if (string.IsNullOrEmpty(extData))
             {
-                Logger.Log(Logger.Type.Warn, $"doc extension is not exist : {extFileName}");
+                Logger.Log(Logger.Type.Error, $"document extension data (hatch) is empty !");
             }
             else
             {
-                isHatchable = NativeMethods.ReadIni<bool>(extFileName, $"HATCH", "HATCHABLE");
-                hatchMode = (HatchMode)NativeMethods.ReadIni<int>(extFileName, $"HATCH", "MODE");
-                hatchAngle = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "ANGLE");
-                hatch2Angle = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "ANGLE2");
-                hatchInterval = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "INTERVAL");
-                hatchExclude = NativeMethods.ReadIni<float>(extFileName, $"HATCH", "EXCLUDE");
+                var tempFileName = Path.GetTempFileName();
+                using (StreamWriter sw = new StreamWriter(tempFileName))
+                {
+                    sw.Write(extData);
+                }
+                isHatchable = NativeMethods.ReadIni<bool>(tempFileName, $"HATCH", "HATCHABLE");
+                hatchMode = (HatchMode)NativeMethods.ReadIni<int>(tempFileName, $"HATCH", "MODE");
+                hatchAngle = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "ANGLE");
+                hatch2Angle = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "ANGLE2");
+                hatchInterval = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "INTERVAL");
+                hatchExclude = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "EXCLUDE");
             }
 
             bool success = true;
