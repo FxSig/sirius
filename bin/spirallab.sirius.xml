@@ -2605,6 +2605,11 @@
             레이어 별 Z 축 (초점 거리) 위치값(mm) 설정
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Layer.IsALC">
+            <summary>
+            위치 의존적 레이저 출력 보상용 테이블 파일
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Layer.AlcPositionFileName">
             <summary>
             위치 의존적 레이저 출력 보상용 테이블 파일

@@ -140,7 +140,12 @@ namespace CustomEditor
                 this.view.Render();
                 this.view.OnZoomFit();
                 this.RegenTreeView();
-                this.OnDocumentSourceChanged?.Invoke(this, this.doc);
+
+                //this.OnDocumentSourceChanged?.Invoke(this, this.doc);
+                var receivers = this.OnDocumentSourceChanged?.GetInvocationList();
+                if (null != receivers)
+                    foreach (SiriusDocumentSourceChanged receiver in receivers)
+                        receiver.Invoke(this, this.doc);
             }
         }
         IDocument doc;

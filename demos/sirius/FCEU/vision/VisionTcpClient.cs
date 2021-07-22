@@ -129,7 +129,7 @@ namespace SpiralLab.Sirius.FCEU
                 Debug.Assert(4 == bytes.Length);
                 //nstream.Write(bytes, 0, bytes.Length);
                 nstream.WriteAsync(bytes, 0, bytes.Length);
-                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [0x{data:X4}]");
+                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [0x{(int)data:X4}]");
                 return true;                
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace SpiralLab.Sirius.FCEU
                 }
 
                 data = (MessageProtocol)BitConverter.ToInt32(buffer, 0);
-                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [0x{data:X4}]");
+                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [0x{(int)data:X4}]");
                 return true;
             }
             catch (Exception ex)

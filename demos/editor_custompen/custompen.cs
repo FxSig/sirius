@@ -51,6 +51,21 @@ namespace SpiralLab.Sirius
         [Browsable(false)]
         public virtual EType EntityType { get { return EType.UserCustom1; } }
 
+        [JsonIgnore]
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Basic")]
+        [DisplayName("Color")]
+        [Description("펜 지정 색상")]
+        public virtual System.Drawing.Color Color
+        {
+            get { return System.Drawing.Color.FromArgb(this.intColor); }
+            set { this.intColor = value.ToArgb(); }
+        }
+        [Browsable(false)]
+        public virtual int intColor { get; set; }
+
         [Browsable(true)]
         [ReadOnly(false)]
         [Category("Basic")]
@@ -73,21 +88,6 @@ namespace SpiralLab.Sirius
         [DisplayName("Description")]
         [Description("엔티티에 대한 설명")]
         public virtual string Description { get; set; }
-
-        [JsonIgnore]
-        [RefreshProperties(RefreshProperties.All)]
-        [Browsable(true)]
-        [ReadOnly(false)]
-        [Category("Basic")]
-        [DisplayName("Color")]
-        [Description("펜 지정 색상")]
-        public virtual System.Drawing.Color Color
-        {
-            get { return System.Drawing.Color.FromArgb(this.intColor); }
-            set { this.intColor = value.ToArgb(); }
-        }
-        [Browsable(false)]
-        public virtual int intColor { get; set; }
 
         [JsonIgnore]
         [Browsable(false)]
@@ -357,7 +357,6 @@ namespace SpiralLab.Sirius
                 Name = this.Name,
                 Description = this.Description,
                 Owner = this.Owner,
-                intColor = this.intColor,
                 IsSelected = this.IsSelected,
                 isMarkerable = this.IsMarkerable,
                 isLocked = this.IsLocked,

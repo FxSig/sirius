@@ -119,8 +119,16 @@ namespace SpiralLab.Sirius
         /// 마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
         /// </summary>
         public IMarkerArg MarkerArg { get; private set; }
-        public IDocument Document { get { return this.clonedDoc; } }
+
+        /// <summary>
+        /// 스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
+        /// 지정된 각도만큼 내부에서 회전 처리됨
+        /// </summary>
         public double ScannerRotateAngle { get; set; }
+        /// <summary>
+        /// 복제된 문서 객체
+        /// </summary>
+        public IDocument Document { get { return this.clonedDoc; } }
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -137,6 +145,7 @@ namespace SpiralLab.Sirius
         {
             this.Index = index;
             this.MarkerArg = new MarkerArgDefault();
+            this.ScannerRotateAngle = 0;
         }
 
         /// <summary>
@@ -189,7 +198,7 @@ namespace SpiralLab.Sirius
         /// 복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
         /// </summary>
         /// <returns></returns>
-        public bool Clear()
+        public virtual bool Clear()
         {
             if (this.IsBusy)
             {
@@ -342,7 +351,7 @@ namespace SpiralLab.Sirius
             if (null != motorZ)
                 oldZPosition = motorZ.Position;
             var offsets = this.MarkerArg.Offsets;
-            var scannerRotateAngle = this.ScannerRotateAngle;
+            var scannerRotateAngle =  this.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
             for (int i = 0; i < offsets.Count; i++)
             {

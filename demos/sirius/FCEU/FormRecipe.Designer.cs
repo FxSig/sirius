@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRecipeChange = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             this.dgvRecipe = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -82,6 +81,21 @@
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 10;
             // 
+            // siriusViewerForm1
+            // 
+            this.siriusViewerForm1.AliasName = "NoName";
+            this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siriusViewerForm1.Document = null;
+            this.siriusViewerForm1.FileName = "NoName";
+            this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siriusViewerForm1.Index = ((uint)(0u));
+            this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
+            this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.siriusViewerForm1.Name = "siriusViewerForm1";
+            this.siriusViewerForm1.Progress = 0;
+            this.siriusViewerForm1.Size = new System.Drawing.Size(700, 768);
+            this.siriusViewerForm1.TabIndex = 11;
+            // 
             // dgvRecipe
             // 
             this.dgvRecipe.AllowUserToAddRows = false;
@@ -100,14 +114,6 @@
             this.dgvRecipe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRecipe.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecipe.GridColor = System.Drawing.SystemColors.ControlLight;
             this.dgvRecipe.Location = new System.Drawing.Point(0, 0);
@@ -139,21 +145,6 @@
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // siriusViewerForm1
-            // 
-            this.siriusViewerForm1.AliasName = "NoName";
-            this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siriusViewerForm1.Document = null;
-            this.siriusViewerForm1.FileName = "NoName";
-            this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siriusViewerForm1.Index = ((uint)(0u));
-            this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
-            this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.siriusViewerForm1.Name = "siriusViewerForm1";
-            this.siriusViewerForm1.Progress = 0;
-            this.siriusViewerForm1.Size = new System.Drawing.Size(700, 768);
-            this.siriusViewerForm1.TabIndex = 11;
             // 
             // FormRecipe
             // 

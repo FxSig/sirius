@@ -101,7 +101,8 @@ namespace SpiralLab.Sirius.FCEU
             var ct5FileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"RTC", "CORRECTION");
             var laserModeTypeName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"RTC", "LASERMODE");
             LaserMode laserMode = (LaserMode)Enum.Parse(typeof(LaserMode), laserModeTypeName.Trim());
-            success &= Rtc.Initialize(kFactor, laserMode, ct5FileName);
+            var fullCorrectionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", ct5FileName);
+            success &= Rtc.Initialize(kFactor, laserMode, fullCorrectionFilePath);
             Rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
             Rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
             Rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
@@ -136,6 +137,7 @@ namespace SpiralLab.Sirius.FCEU
             this.Marker.Name = "FCEU Marker";
             this.Marker.OnFinished += Marker_OnFinished;
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
+            this.Marker.Tag = SpiralLab.Sirius.FCEU.LaserSequence.Process.Default;
             Editor.Marker = this.Marker;
 
             //this.MarkerSystemTeach = new MarkerDefault(0);
@@ -557,9 +559,9 @@ namespace SpiralLab.Sirius.FCEU
                         VisionComm.Send(MessageProtocol.DO_HATCHING_02_FINISH);
                     else
                         VisionComm.Send(MessageProtocol.DO_HATCHING_02_START_NG);
-                    break;
+                    break;                
             }
-            marker.Tag = null; //reset to user manual mode or 0
+            marker.Tag = SpiralLab.Sirius.FCEU.LaserSequence.Process.Default; //reset to user manual mode or 0
             var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
         }
