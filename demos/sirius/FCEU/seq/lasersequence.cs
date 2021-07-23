@@ -41,6 +41,9 @@ namespace SpiralLab.Sirius.FCEU
 
         public object Tag { get; set; }
 
+        /// <summary>
+        /// 스캐너 보정 진행중
+        /// </summary>
         internal bool isFieldCorrecting;
         SpiralLab.Sirius.FCEU.FormMain formMain;
         Thread thread;
@@ -102,6 +105,7 @@ namespace SpiralLab.Sirius.FCEU
             var laserModeTypeName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"RTC", "LASERMODE");
             LaserMode laserMode = (LaserMode)Enum.Parse(typeof(LaserMode), laserModeTypeName.Trim());
             var fullCorrectionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", ct5FileName);
+            this.Fov = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "FOV");
             success &= Rtc.Initialize(kFactor, laserMode, fullCorrectionFilePath);
             Rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
             Rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
@@ -131,33 +135,22 @@ namespace SpiralLab.Sirius.FCEU
             Editor.Laser = Laser;
             #endregion
 
-            var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             #region 마커 지정 (전용 마커 사용)            
             this.Marker = new MarkerFCEU(0);
             this.Marker.Name = "FCEU Marker";
             this.Marker.OnFinished += Marker_OnFinished;
+            var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
             this.Marker.Tag = SpiralLab.Sirius.FCEU.LaserSequence.Process.Default;
             Editor.Marker = this.Marker;
-
-            //this.MarkerSystemTeach = new MarkerDefault(0);
-            //this.MarkerSystemTeach.Name = "System Teach";
-            //this.MarkerSystemTeach.OnFinished += SystemTeach_OnFinished;
-
-            //this.MarkerFieldCorrection = new MarkerDefault(0);
-            //this.MarkerFieldCorrection.Name = "Field Correction";
-            //this.MarkerFieldCorrection.OnFinished += FieldCorrection_OnFinished;
-
-            //this.MarkerRef = new MarkerRef(0);
-            //this.MarkerRef.Name = "Reference Mark 1/2";
-            //this.MarkerRef.OnFinished += Ref_OnFinished;
-            //this.MarkerRef.ScannerRotateAngle = scannerRotateAngle;
             #endregion
 
+            #region 비전 통신 초기화
             var visionIp = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"VISION", "IP");
             var visionPort = NativeMethods.ReadIni<int>(FormMain.ConfigFileName, $"VISION", "PORT");
             this.VisionComm = new VisionTcpClient(visionIp, visionPort);
-            this.VisionComm.Start();
+            this.VisionComm.Start(); 
+            #endregion
 
             this.thread = new Thread(this.Loop);
             this.thread.Name = $"Sequence Loop";
@@ -246,7 +239,7 @@ namespace SpiralLab.Sirius.FCEU
             if (this.IsBusy)
             {
                 formMain.Seq.Error(ErrEnum.Busy);
-                Logger.Log(Logger.Type.Error, $"try to start mark but busy !");
+                Logger.Log(Logger.Type.Error, $"try to start mark but busy : {proc.ToString()}");
                 return false;
             }
             bool success = true;
@@ -273,6 +266,7 @@ namespace SpiralLab.Sirius.FCEU
                             return false;
                         }
                         this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.DefectMarkRight);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark defect (right side)");
                         success &= Marker.Start();
                     }
@@ -298,6 +292,7 @@ namespace SpiralLab.Sirius.FCEU
                             return false;
                         }
                         this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.DefectMarkLeft);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark defect (left side)");
                         success &= Marker.Start();
                     }
@@ -333,7 +328,7 @@ namespace SpiralLab.Sirius.FCEU
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to ready");
                             return false;
                         }
-
+                        this.Warn(WarnEnum.StartingToMark);
                         this.Warn(WarnEnum.SystemTeachToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark system teach at center");
                         success &= Marker.Start();
@@ -381,6 +376,7 @@ namespace SpiralLab.Sirius.FCEU
                             Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to ready");
                             return false;
                         }
+                        this.Warn(WarnEnum.StartingToMark);
                         this.Warn(WarnEnum.ScannerFieldCorrectionToMark);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark field correction ");
                         success &= Marker.Start();
@@ -396,6 +392,11 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.RtcListType = ListType.Auto;
                         var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
                         var layer = doc.Layers.NameOf(refLayerRight);
+                        if (null == layer)
+                        {
+                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerRight}");
+                            return false;
+                        }
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
@@ -406,7 +407,8 @@ namespace SpiralLab.Sirius.FCEU
                             Logger.Log(Logger.Type.Error, $"try to mark reference (right side) but fail to ready");
                             return false;
                         }
-                        this.Warn(WarnEnum.Reference1Mark);
+                        this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.ReferenceMarkRight);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark reference (right side)");
                         success &= Marker.Start();
                     }
@@ -419,8 +421,13 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                        var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
                         var layer = doc.Layers.NameOf(refLayerLeft);
+                        if (null == layer)
+                        {
+                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerLeft}");
+                            return false;
+                        }
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
@@ -431,7 +438,8 @@ namespace SpiralLab.Sirius.FCEU
                             Logger.Log(Logger.Type.Error, $"try to mark reference (left side) but fail to ready");
                             return false;
                         }
-                        this.Warn(WarnEnum.Reference1Mark);
+                        this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.ReferenceMarkLeft);
                         Logger.Log(Logger.Type.Warn, $"trying to start mark reference (left side)");
                         success &= Marker.Start();
                     }
@@ -462,7 +470,7 @@ namespace SpiralLab.Sirius.FCEU
                 bool ready = true;
                 ready &= Marker.IsReady;
                 ready &= this.formMain.FormCurrent == this.formMain.FormAuto;
-                ready &= !isFieldCorrecting;
+                ready &= !isFieldCorrecting; // 스캐너 보정중에는 ready off
                 this.IsReady = ready;
 
                 bool busy = false;
@@ -515,12 +523,13 @@ namespace SpiralLab.Sirius.FCEU
                 else
                     this.Warn(WarnEnum.Busy, true);
 
-                Thread.Sleep(1);
+                Thread.Sleep(10);
             } while (!IsTerminated);
         }
 
         private void Marker_OnFinished(IMarker sender, IMarkerArg markerArg)
         {
+            this.Warn(WarnEnum.StartingToMark, true);
             var marker = sender as IMarker;
             switch ((SpiralLab.Sirius.FCEU.LaserSequence.Process)marker.Tag)
             {

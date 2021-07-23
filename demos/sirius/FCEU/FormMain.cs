@@ -111,7 +111,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             this.SwitchForm(this.panBody, this.FormAuto);
             timer1.Tick += Timer1_Tick;
-            timer1.Interval = 250;
+            timer1.Interval = 200;
             timer1.Enabled = true;
         }
 
@@ -209,6 +209,8 @@ namespace SpiralLab.Sirius.FCEU
                     break;
             }
         }
+
+        uint tempIndex = 0;
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
@@ -258,7 +260,32 @@ namespace SpiralLab.Sirius.FCEU
                     this.lsbErrWarn.Items[i] = string.Empty;
             }
             lsbErrWarn.ResumeLayout();
+
+            if (Seq.IsBusy)
+            {
+                if (tempIndex % 2 == 0)
+                {
+                    btnAbort.BackColor = Color.Maroon;
+                    btnAbort.ForeColor = Color.White;
+                }
+                else
+                {
+                    btnAbort.BackColor = Color.Red;
+                    btnAbort.ForeColor = Color.White;
+                }
+                tempIndex++;
+            }
+            else
+            {
+                if (btnAbort.BackColor != Color.WhiteSmoke)
+                {
+                    btnAbort.BackColor = Color.WhiteSmoke;
+                    btnAbort.ForeColor = SystemColors.ControlText;
+                }
+                tempIndex = 0;
+            }
         }
+
         private void panTop_DoubleClick(object sender, EventArgs e)
         {
             switch (this.WindowState)
@@ -304,44 +331,6 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Stop();
         }
 
-        private void btnRightDefRefresh_Click(object sender, EventArgs e)
-        {
-            var svc = Seq.Service as LaserService;
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
-            var dlg = new OpenFileDialog();
-            dlg.FileName = defFile;
-            dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.Title = "Open Vision Defect File ...";
-            DialogResult result = dlg.ShowDialog();
-            if (result != DialogResult.OK)
-                return;
-            if (svc.ReadDefectFromFile(1, dlg.FileName, out var group))
-            {
-                if (svc.PrepareDefectInEditor(1, group))
-                {
-                    Logger.Log(Logger.Type.Warn, $"manually defect (right side) file loaded : {dlg.FileName}");
-                }
-            }
-        }
-
-        private void btnLeftDefRefresh_Click(object sender, EventArgs e)
-        {
-            var svc = Seq.Service as LaserService;
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
-            var dlg = new OpenFileDialog();
-            dlg.FileName = defFile;
-            dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.Title = "Open Vision Defect File ...";
-            DialogResult result = dlg.ShowDialog();
-            if (result != DialogResult.OK)
-                return;
-            if (svc.ReadDefectFromFile(2, dlg.FileName, out var group))
-            {
-                if (svc.PrepareDefectInEditor(2, group))
-                {
-                    Logger.Log(Logger.Type.Warn, $"manually defect (left side) file loaded : {dlg.FileName}");
-                }
-            }
-        }
+       
     }
 }

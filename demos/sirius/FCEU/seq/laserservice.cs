@@ -25,7 +25,6 @@ namespace SpiralLab.Sirius.FCEU
                 return seq.VisionComm.IsConnected;
             }
         }
-
         public int FieldCorrectionRows { get; set; }
         public int FieldCorrectionCols { get; set; }
         public float FieldCorrectionInterval { get; set; }
@@ -38,7 +37,6 @@ namespace SpiralLab.Sirius.FCEU
             this.seq = seq;
             this.RecipeClear();
         }
-
         public void RecipeClear()
         {
             RecipeNo = -1;
@@ -87,7 +85,7 @@ namespace SpiralLab.Sirius.FCEU
                 Message = $"Loading Recipe : [{no}] {recipeName}" + Environment.NewLine,
                 Percentage = 0,
             };
-            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 form.Show(seq.Editor);
             }));
@@ -96,7 +94,7 @@ namespace SpiralLab.Sirius.FCEU
             {
                 seq.Error(ErrEnum.Recipe);
                 Logger.Log(Logger.Type.Warn, $"fail to change recipe to [RecipeNo]: {recipeName}");
-                Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     form.Close();
                 }));
@@ -108,7 +106,7 @@ namespace SpiralLab.Sirius.FCEU
             markerArg.Rtc = seq.Rtc;
             markerArg.Laser = seq.Laser;
             markerArg.RtcListType = ListType.Auto;            
-            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 form.Percentage = 50;
             }));
@@ -134,18 +132,18 @@ namespace SpiralLab.Sirius.FCEU
             else
             {
                 // turn off ready status
+                //seq.Editor.Document = null;
                 seq.Marker.Clear();
                 seq.Error(ErrEnum.Recipe);
                 Logger.Log(Logger.Type.Warn, $"fail to change recipe to [{no}]: {recipeName}");
             }
-            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 form.Close();
             }));
             return success;
         }
-
-        public bool ReadScannerFieldCorrection()
+        public bool ReadScannerFieldCorrection(string fileFullPath = "")
         {
             if (seq.isFieldCorrecting)
             {
@@ -154,19 +152,31 @@ namespace SpiralLab.Sirius.FCEU
                 return false;
             }
             //비전에서 기록한 보정 측정 정보
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", "scannerfieldcorrection.txt");
-            if (false == File.Exists(fileName))
+            if (string.IsNullOrEmpty(fileFullPath))
+            {
+                var iniFileName = FormMain.ConfigFileName;
+                string fileName = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
+                fileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+            }
+            if (false == File.Exists(fileFullPath))
             {
                 seq.Error(ErrEnum.VisionFieldCorrectionOpen);
-                Logger.Log(Logger.Type.Error, $"try to open field correction file but failed : {fileName}");
+                Logger.Log(Logger.Type.Error, $"try to open field correction file but failed : {fileFullPath}");
                 return false;
             }
-            // data
+
+            // data read !! format
+            //
+            //
+            //
+
             int rows = 9;
             int cols = 9;
             float interval = 10;
+            string sourceFile = seq.Rtc.CorrectionFiles[0];
+            string targetFile = string.Empty;
 
-            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, seq.Rtc.CorrectionFiles[0], string.Empty);
+            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, sourceFile, targetFile);
             var form2D = new Correction2DForm(correction2D);
             form2D.OnApply += Form2D_OnApply;
             form2D.OnClose += Form2D_OnClose;
@@ -184,7 +194,7 @@ namespace SpiralLab.Sirius.FCEU
             string ct5FileName = form.RtcCorrection.TargetCorrectionFile;
             if (!File.Exists(ct5FileName))
             {
-                Logger.Log(Logger.Type.Error, $"target correction file is not exist : {ct5FileName}");
+                Logger.Log(Logger.Type.Error, $"try to change correction file but not exist : {ct5FileName}");
                 return;
             }
             var mb = new MessageBoxYesNo();
@@ -200,9 +210,9 @@ namespace SpiralLab.Sirius.FCEU
                 var iniFileName = FormMain.ConfigFileName;
                 NativeMethods.WriteIni<string>(iniFileName, $"RTC", "CORRECTION", Path.GetFileName(ct5FileName));
                 seq.Warn(WarnEnum.ScannerFieldCorrectionChanged);
-                Logger.Log(Logger.Type.Warn, $"Correction file has changed to {ct5FileName}");
+                Logger.Log(Logger.Type.Warn, $"correction file has changed to {ct5FileName} at {iniFileName}");
                 var mb2 = new MessageBoxOk();
-                mb2.ShowDialog("Correction", $"Correction file has changed to {ct5FileName}");
+                mb2.ShowDialog("Correction", $"correction file has changed to {ct5FileName} at {iniFileName}");
             }
         }
         private void Form2D_OnClose(object sender, EventArgs e)

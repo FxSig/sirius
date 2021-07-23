@@ -263,6 +263,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap co2_laser_sign_2018 {
+            get {
+                object obj = ResourceManager.GetObject("co2 laser sign 2018", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap collage_48px {
             get {
                 object obj = ResourceManager.GetObject("collage_48px", resourceCulture);

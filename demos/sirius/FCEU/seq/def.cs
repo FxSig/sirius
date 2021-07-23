@@ -76,7 +76,10 @@ namespace SpiralLab.Sirius.FCEU
         ScannerFieldCorrectionToMark,
 
         [Description("우측 기준 도면 마킹을 시작합니다")]
-        Reference1Mark,
+        ReferenceMarkRight,
+
+        [Description("좌측 기준 도면 마킹을 시작합니다")]
+        ReferenceMarkLeft,
 
         [Description("비전 시스템으로 부터 가공 정보을 전달받았습니다")]
         VisionDataOpen,
@@ -87,6 +90,11 @@ namespace SpiralLab.Sirius.FCEU
         [Description("새로운 스캐너 필드 보정 파일이 적용됨")]
         ScannerFieldCorrectionChanged,
 
+        [Description("우측 가공을 시작합니다")]
+        DefectMarkRight,
+
+        [Description("좌측 가공을 시작합니다")]
+        DefectMarkLeft,
 
     }
 

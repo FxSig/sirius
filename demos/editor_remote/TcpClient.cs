@@ -213,6 +213,7 @@ namespace SpiralLab.Sirius
                 }
                 catch (Exception ex)
                 {
+                    Logger.Log(Logger.Type.Error, ex);
                     success = false;
                 }
 
@@ -349,6 +350,7 @@ namespace SpiralLab.Sirius
                     }
                     catch(Exception ex)
                     {
+                        Logger.Log(Logger.Type.Error, ex);
                         success = false;
                     }
                 }
@@ -364,6 +366,7 @@ namespace SpiralLab.Sirius
                     }
                     catch (Exception ex)
                     {
+                        Logger.Log(Logger.Type.Error, ex);
                         success = false;
                     }
                 }

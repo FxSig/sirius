@@ -129,7 +129,7 @@ namespace SpiralLab.Sirius.FCEU
                 Debug.Assert(4 == bytes.Length);
                 //nstream.Write(bytes, 0, bytes.Length);
                 nstream.WriteAsync(bytes, 0, bytes.Length);
-                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [0x{(int)data:X4}]");
+                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [{(int)data}, 0x{(int)data:X4}]");
                 return true;                
             }
             catch (Exception ex)
@@ -155,7 +155,7 @@ namespace SpiralLab.Sirius.FCEU
                 }
 
                 data = (MessageProtocol)BitConverter.ToInt32(buffer, 0);
-                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [0x{(int)data:X4}]");
+                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [{(int)data}, 0x{(int)data:X4}]");
                 return true;
             }
             catch (Exception ex)
@@ -214,73 +214,73 @@ namespace SpiralLab.Sirius.FCEU
 
                     #region 시스템 티칭및 스캐너 보정
                     case MessageProtocol.LASER_SCANNER_SYSTEM_TEACH:
-                        if (seq.Start(LaserSequence.Process.SystemTeach))
-                            this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.SystemTeach))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_3X3:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 3;
                         svc.FieldCorrectionInterval = seq.Fov / 2;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_5X5:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 5;
                         svc.FieldCorrectionInterval = seq.Fov / 4;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_7X7:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 7;
                         svc.FieldCorrectionInterval = seq.Fov / 6;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_9X9:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 9;
                         svc.FieldCorrectionInterval = seq.Fov / 8;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_11X11:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 11;
-                        svc.FieldCorrectionInterval = seq.Fov / 10;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //svc.FieldCorrectionInterval = seq.Fov / 10;
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_13X13:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 13;
                         svc.FieldCorrectionInterval = seq.Fov / 12;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_15X15:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 15;
                         svc.FieldCorrectionInterval = seq.Fov / 14;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_17X17:
                         svc.FieldCorrectionRows = svc.FieldCorrectionCols = 17;
                         svc.FieldCorrectionInterval = seq.Fov / 16;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.FieldCorrection))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         break;
 
@@ -294,16 +294,16 @@ namespace SpiralLab.Sirius.FCEU
 
                     #region Ref 타켓 마킹
                     case MessageProtocol.LASER_SCANNER_REF_01_IMAGE:
-                        if (seq.Start(LaserSequence.Process.Ref_Right))
-                            this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.Ref_Right))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_NG);
                         break;
 
                     case MessageProtocol.LASER_SCANNER_REF_02_IMAGE:
-                        if (seq.Start(LaserSequence.Process.Ref_Left))
-                            this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_OK);
-                        else
+                        //if (seq.Start(LaserSequence.Process.Ref_Left))
+                        //    this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_OK);
+                        //else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_NG);
                         break;
                     #endregion
@@ -346,7 +346,7 @@ namespace SpiralLab.Sirius.FCEU
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_OK);
                                 if (svc.PrepareDefectInEditor(1, group))
-                                //if (svc.PrepareDefectInMarker(1, group))
+                                //if (svc.PrepareDefectInMarker(1, group)) //에디터만 업데이트해 놓으면 추후 start 시 복제됨
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_01_FINISH);
                             }
                             else
@@ -360,12 +360,33 @@ namespace SpiralLab.Sirius.FCEU
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_OK);
                                 if (svc.PrepareDefectInEditor(2, group))
-                                //if (svc.PrepareDefectInMarker(2, group))
+                                //if (svc.PrepareDefectInMarker(2, group)) //에디터만 업데이트해 놓으면 추후 start 시 복제됨
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_02_FINISH);
                             }
                             else
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_NG);
                         }
+                        break;
+                    #endregion
+
+                    #region 불량 정보를 출사 (1: 우, 2: 좌)                        
+                    case MessageProtocol.MOVE_HATCHING_01_POITION_DONE:
+                        this.Send(MessageProtocol.MOVE_HATCHING_01_POITION_DONE_OK);
+                        break;
+                    case MessageProtocol.DO_HATCHING_01_START:
+                        //if (seq.Start(LaserSequence.Process.Defect_Right))
+                        //    this.Send(MessageProtocol.DO_HATCHING_01_START_OK);
+                        //else
+                            this.Send(MessageProtocol.DO_HATCHING_01_START_NG);
+                        break;
+                    case MessageProtocol.MOVE_HATCHING_02_POITION_DONE:
+                        this.Send(MessageProtocol.MOVE_HATCHING_02_POITION_DONE_OK);
+                        break;
+                    case MessageProtocol.DO_HATCHING_02_START:
+                        //if (seq.Start(LaserSequence.Process.Defect_Left))
+                        //    this.Send(MessageProtocol.DO_HATCHING_02_START_OK);
+                        //else
+                            this.Send(MessageProtocol.DO_HATCHING_02_START_NG);
                         break;
                     #endregion
                 }

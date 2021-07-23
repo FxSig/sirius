@@ -96,30 +96,35 @@ public enum MessageProtocol
     LASER_SCANNER_REF_02_IMAGE_FINISH, // 레이저 -> 제어
     LASER_SCANNER_REF_02_IMAGE_FINISH_OK, // 제어 -> 레이저
 
+    //미사용?
     LASER_READ_INSPECT_01 = 600, //제어->레이저 ; 가공 정보 데이타 파일 읽기 (도면 기준이며 화면에 가공 정보를 보여주기 위함)
     LASER_READ_INSPECT_01_OK, //레이저 ->제어
     LASER_READ_INSPECT_01_NG, //레이저 ->제어
     LASER_READ_INSPECT_01_FINISH, // 레이저 -> 제어
     LASER_READ_INSPECT_01_FINISH_OK, // 제어 -> 레이저
 
+    //미사용?
     LASER_READ_INSPECT_02 = 610, //제어->레이저 ; 가공 정보 데이타 파일 읽기  (도면 기준이며 화면에 가공 정보를 보여주기 위함)
     LASER_READ_INSPECT_02_OK, //레이저 ->제어
     LASER_READ_INSPECT_02_NG, //레이저 ->제어
     LASER_READ_INSPECT_02_FINISH, // 레이저 -> 제어
     LASER_READ_INSPECT_02_FINISH_OK, // 제어 -> 레이저
 
+    //우
     LASER_READ_HATCHING_01 = 650, //제어->레이저 ; 가공 정보 데이타 파일 읽기 (자재 기준이며 실제 가공 위치를 조정하기 위함)
     LASER_READ_HATCHING_01_OK, //레이저 ->제어
     LASER_READ_HATCHING_01_NG, //레이저 ->제어
     LASER_READ_HATCHING_01_FINISH, // 레이저 -> 제어
     LASER_READ_HATCHING_01_FINISH_OK, // 제어 -> 레이저
 
+    //좌
     LASER_READ_HATCHING_02 = 660, //제어->레이저 ; 가공 정보 데이타 파일 읽기 (자재 기준이며 실제 가공 위치를 조정하기 위함)
     LASER_READ_HATCHING_02_OK, //레이저 ->제어
     LASER_READ_HATCHING_02_NG, //레이저 ->제어
     LASER_READ_HATCHING_02_FINISH, // 레이저 -> 제어
     LASER_READ_HATCHING_02_FINISH_OK, // 제어 -> 레이저
 
+    //우
     MOVE_HATCHING_01_POITION_DONE = 700, //제어->레이저 (오른쪽 가공 위치로 이동 완료)
     MOVE_HATCHING_01_POITION_DONE_OK, //레이저->제어
     DO_HATCHING_01_START, //제어 -> 레이저 (자재 기준 데이타로 가공)
@@ -128,6 +133,7 @@ public enum MessageProtocol
     DO_HATCHING_01_FINISH, //레이저->제어
     DO_HATCHING_01_FINISH_OK, //제어 -> 레이저
 
+    //좌
     MOVE_HATCHING_02_POITION_DONE = 800, //제어->레이저 (왼쪽 가공 위치로 이동 완료)
     MOVE_HATCHING_02_POITION_DONE_OK, //레이저->제어
     DO_HATCHING_02_START, //제어 -> 레이저 (자재 기준 데이타로 가공)
