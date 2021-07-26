@@ -11,7 +11,7 @@ using SpiralLab.Sirius;
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 레이저 소스 (사용자 커스텀 버전(
+    /// 레이저 소스 (사용자 커스텀 버전)
     /// RS-232 통신과 같이 통신 지연을 가지고 있는 레이저 소스 예제
     /// </summary>
     public class YourCustomLaser2 : SpiralLab.Sirius.ILaser

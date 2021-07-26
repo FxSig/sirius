@@ -127,7 +127,6 @@ namespace SpiralLab.Sirius
                 Laser = laser,
             };
             // 하나의 오프셋 정보(0,0 및 회전각도 0) 를 추가한다.
-            markerArg.Offsets.Clear();
             markerArg.Offsets.Add(Offset.Zero);
             bool success = true;
             // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다.

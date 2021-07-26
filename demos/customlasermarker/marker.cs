@@ -56,7 +56,6 @@ namespace SpiralLab.Sirius
         /// 이름
         /// </summary>
         public string Name { get; set; }
-
         /// <summary>
         /// 가공 준비 상태
         /// </summary>
