@@ -333,6 +333,43 @@
             <param name="onOff">On/Off</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ShutterStatus">
+            <summary>
+            레이저 소스 내부의 셔터 상태 열거형
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ShutterStatus.Unknown">
+            <summary>
+            모름
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ShutterStatus.Closed">
+            <summary>
+            닫힘
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ShutterStatus.Opened">
+            <summary>
+            열림
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ILaserShutter">
+            <summary>
+            레이저 소스 Shutter 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaserShutter.Status">
+            <summary>
+            셔터(Shutter) 상태
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ILaserShutter.CtlShutter(System.Boolean)">
+            <summary>
+            셔터 동작
+            </summary>
+            <param name="open">true=열기 시도, false= 닫기 시도</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.ILaser">
             <summary>
             레이저 소스 인터페이스
@@ -672,6 +709,50 @@
             <param name="dx">이동량 dX (mm)</param>
             <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPowerMeter">
+            <summary>
+            PowerMeter 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.Index">
+            <summary>
+            파워메터 식별자 (0, 1, 2, ...)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Initialize">
+            <summary>
+            장치및 통신 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Start">
+            <summary>
+            데이타 수집 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Stop">
+            <summary>
+            데이타 수집 종료
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Clear">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Size">
+            <summary>
+            수집된 데이타 개수
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IMotor">
             <summary>
@@ -6061,6 +6142,25 @@
             <param name="amplitudeX">size of W (parallel movement) (mm)</param>
             <param name="amplitudeY">size of Y (perpendicular movement) (mm)</param>
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (only intelliDRILL)
+            </summary>
+            <param name="vPosition">x,y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (only intelliDRILL)
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MeasurementChannel">

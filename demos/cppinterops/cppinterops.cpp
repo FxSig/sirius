@@ -17,10 +17,10 @@
  *
  *
  * c++ 환경에서 .NET 어셈블리의 COM 노출 인터페이스를 접근하여 사용하는 방법
- *
  * C++ 콘솔 프로그램에서 dll 의 COM 인터페이스에 접근하여 사용하는 예제
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  *
+ * v1.7 버전 이후로 지원을 종료하였습니다. Editor_remote  프로젝트 방식으로의 사용을 추천합니다 
  */
 
 #include <windows.h>
@@ -57,6 +57,8 @@ bool static DrawLine(ILaserPtr laser, IRtcPtr rtc, float x1, float y1, float x2,
     hr = rtc->ListExecute(VARIANT_BOOL(true), &vRet);
     return vRet == true;
 }
+
+[Obsolete("1.7 버전 이후로 지원을 종료하였습니다")]
 
 int _tmain(int argc, _TCHAR* argv[])
 {

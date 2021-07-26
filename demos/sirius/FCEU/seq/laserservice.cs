@@ -165,10 +165,13 @@ namespace SpiralLab.Sirius.FCEU
                 return false;
             }
 
-            // data read !! format
+            // data read !!
+            // format ?
             //
             //
-            //
+            //svc.FieldCorrectionRows;
+            //svc.FieldCorrectionCols;
+            //svc.FieldCorrectionInterval;
 
             int rows = 9;
             int cols = 9;

@@ -35,6 +35,7 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
+            //read from ReadScannerFieldCorrection(file)
             //svc.FieldCorrectionInterval;
             //svc.FieldCorrectionCols;
             //svc.FieldCorrectionRows;

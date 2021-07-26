@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -62,21 +62,6 @@
             this.splitContainer1.SplitterDistance = 810;
             this.splitContainer1.SplitterWidth = 2;
             this.splitContainer1.TabIndex = 1;
-            // 
-            // siriusViewerForm1
-            // 
-            this.siriusViewerForm1.AliasName = "Laser 1";
-            this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.siriusViewerForm1.Document = null;
-            this.siriusViewerForm1.FileName = "NoName";
-            this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.siriusViewerForm1.Index = ((uint)(0u));
-            this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
-            this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.siriusViewerForm1.Name = "siriusViewerForm1";
-            this.siriusViewerForm1.Progress = 0;
-            this.siriusViewerForm1.Size = new System.Drawing.Size(810, 757);
-            this.siriusViewerForm1.TabIndex = 0;
             // 
             // tabControl2
             // 
@@ -122,6 +107,21 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 194;
             this.pictureBox1.TabStop = false;
+            // 
+            // siriusViewerForm1
+            // 
+            this.siriusViewerForm1.AliasName = "Laser 1";
+            this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.siriusViewerForm1.Document = null;
+            this.siriusViewerForm1.FileName = "NoName";
+            this.siriusViewerForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.siriusViewerForm1.Index = ((uint)(0u));
+            this.siriusViewerForm1.Location = new System.Drawing.Point(0, 0);
+            this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.siriusViewerForm1.Name = "siriusViewerForm1";
+            this.siriusViewerForm1.Progress = 0;
+            this.siriusViewerForm1.Size = new System.Drawing.Size(810, 757);
+            this.siriusViewerForm1.TabIndex = 0;
             // 
             // FormAuto
             // 

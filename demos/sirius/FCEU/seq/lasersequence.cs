@@ -242,6 +242,18 @@ namespace SpiralLab.Sirius.FCEU
                 Logger.Log(Logger.Type.Error, $"try to start mark but busy : {proc.ToString()}");
                 return false;
             }
+            if (!this.Rtc.CtlGetStatus(RtcStatus.PowerOK))
+            {
+                formMain.Seq.Error(ErrEnum.ScannerPower);
+                Logger.Log(Logger.Type.Error, $"try to start mark but invalid scanner power");
+                return false;
+            }
+            if (!this.Rtc.CtlGetStatus(RtcStatus.PositionAckOK))
+            {
+                formMain.Seq.Error(ErrEnum.ScannerPosAck);
+                Logger.Log(Logger.Type.Error, $"try to start mark but invalid scanner position acknowledge");
+                return false;
+            }
             bool success = true;
             switch (proc)
             {
@@ -253,8 +265,15 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
-                        var layer = doc.Layers.NameOf(defLayerRight);
+                        //var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
+                        //var layer = doc.Layers.NameOf(defLayerRight);
+                        var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                        var layer = doc.Layers.NameOf(refLayerRight);
+                        if (null == layer)
+                        {
+                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerRight}");
+                            return false;
+                        }
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y)); 
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
@@ -279,8 +298,15 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
-                        var layer = doc.Layers.NameOf(defLayerLeft);
+                        //var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
+                        //var layer = doc.Layers.NameOf(defLayerLeft);
+                        var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
+                        var layer = doc.Layers.NameOf(refLayerLeft);
+                        if (null == layer)
+                        {
+                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerLeft}");
+                            return false;
+                        }
                         var br = layer.BoundRect;
                         markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
@@ -320,6 +346,7 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        //offset 0,0
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
                         this.Marker.ScannerRotateAngle = scannerRotateAngle;
                         this.Marker.Tag = proc;
@@ -356,7 +383,8 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        this.Marker.ScannerRotateAngle = 0;
+                        //offset 0,0
+                        this.Marker.ScannerRotateAngle = 0; // no rotate
                         this.Marker.Tag = proc;
 
                         var svc = Service as LaserService;
@@ -443,6 +471,10 @@ namespace SpiralLab.Sirius.FCEU
                         Logger.Log(Logger.Type.Warn, $"trying to start mark reference (left side)");
                         success &= Marker.Start();
                     }
+                    break;
+                default:
+                    //this.Warn(WarnEnum.StartingToMark);
+                    //success &= Marker.Start();
                     break;
             }
             return success;
@@ -571,6 +603,7 @@ namespace SpiralLab.Sirius.FCEU
                     break;                
             }
             marker.Tag = SpiralLab.Sirius.FCEU.LaserSequence.Process.Default; //reset to user manual mode or 0
+            //revert scanner angle into marker
             var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
         }

@@ -26,6 +26,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design;
 using System.Drawing.Design;
 using System.Linq;
 using System.Reflection;
@@ -87,6 +88,7 @@ namespace SpiralLab.Sirius
         [Category("Basic")]
         [DisplayName("Description")]
         [Description("엔티티에 대한 설명")]
+        [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
         public virtual string Description { get; set; }
 
         [JsonIgnore]
