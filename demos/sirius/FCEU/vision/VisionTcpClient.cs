@@ -341,7 +341,7 @@ namespace SpiralLab.Sirius.FCEU
                     #region 불량 정보를 1/2 읽어서 마커에 ready (자재기준)
                     case MessageProtocol.LASER_READ_HATCHING_01:
                         {
-                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
+                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_RIGHT");
                             if (svc.ReadDefectFromFile(1, defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_OK);
@@ -355,7 +355,7 @@ namespace SpiralLab.Sirius.FCEU
                         break;
                     case MessageProtocol.LASER_READ_HATCHING_02:
                         {
-                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
+                            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_LEFT");
                             if (svc.ReadDefectFromFile(2, defFile, out var group))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_OK);

@@ -238,22 +238,32 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (this.IsBusy)
             {
-                formMain.Seq.Error(ErrEnum.Busy);
+                Error(ErrEnum.Busy);
                 Logger.Log(Logger.Type.Error, $"try to start mark but busy : {proc.ToString()}");
                 return false;
             }
             if (!this.Rtc.CtlGetStatus(RtcStatus.PowerOK))
             {
-                formMain.Seq.Error(ErrEnum.ScannerPower);
+                Error(ErrEnum.ScannerPower);
                 Logger.Log(Logger.Type.Error, $"try to start mark but invalid scanner power");
                 return false;
             }
             if (!this.Rtc.CtlGetStatus(RtcStatus.PositionAckOK))
             {
-                formMain.Seq.Error(ErrEnum.ScannerPosAck);
+                Error(ErrEnum.ScannerPosAck);
                 Logger.Log(Logger.Type.Error, $"try to start mark but invalid scanner position acknowledge");
                 return false;
             }
+
+            Warn(WarnEnum.FinishToMark, true);
+            Warn(WarnEnum.StoppingToMark, true);
+            Warn(WarnEnum.SystemTeachToMark, true);
+            Warn(WarnEnum.ScannerFieldCorrectionToMark, true);
+            Warn(WarnEnum.ReferenceMarkRight, true);
+            Warn(WarnEnum.ReferenceMarkLeft, true);
+            Warn(WarnEnum.DefectMarkRight, true);
+            Warn(WarnEnum.DefectMarkLeft, true);
+
             bool success = true;
             switch (proc)
             {
@@ -272,6 +282,7 @@ namespace SpiralLab.Sirius.FCEU
                         if (null == layer)
                         {
                             Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerRight}");
+                            Error(ErrEnum.NoEntitiesToMark);
                             return false;
                         }
                         var br = layer.BoundRect;
@@ -304,6 +315,7 @@ namespace SpiralLab.Sirius.FCEU
                         var layer = doc.Layers.NameOf(refLayerLeft);
                         if (null == layer)
                         {
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerLeft}");
                             return false;
                         }
@@ -325,18 +337,17 @@ namespace SpiralLab.Sirius.FCEU
                     break;
                 case Process.SystemTeach:
                     {
-                        var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
-                        var siriusFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+                        var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
                         if (!File.Exists(siriusFileName))
                         {
-                            Error(ErrEnum.Recipe);
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but file doesn't exist : {siriusFileName}");
                             return false;
                         }
                         var doc = DocumentSerializer.OpenSirius(siriusFileName);
                         if (null == doc)
                         {
-                            Error(ErrEnum.Recipe);
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {siriusFileName}");
                             return false;
                         }
@@ -363,18 +374,17 @@ namespace SpiralLab.Sirius.FCEU
                     break;
                 case Process.FieldCorrection:
                     {
-                        var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
-                        var siriusFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+                        var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
                         if (!File.Exists(siriusFileName))
                         {
-                            Error(ErrEnum.Recipe);
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {siriusFileName}");
                             return false;
                         }
                         var doc = DocumentSerializer.OpenSirius(siriusFileName);
                         if (null == doc)
                         {
-                            formMain.Seq.Error(ErrEnum.Recipe);
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {siriusFileName}");
                             return false;
                         }
@@ -422,6 +432,7 @@ namespace SpiralLab.Sirius.FCEU
                         var layer = doc.Layers.NameOf(refLayerRight);
                         if (null == layer)
                         {
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerRight}");
                             return false;
                         }
@@ -453,6 +464,7 @@ namespace SpiralLab.Sirius.FCEU
                         var layer = doc.Layers.NameOf(refLayerLeft);
                         if (null == layer)
                         {
+                            Error(ErrEnum.NoEntitiesToMark);
                             Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerLeft}");
                             return false;
                         }
@@ -492,6 +504,7 @@ namespace SpiralLab.Sirius.FCEU
         }
         public void Stop()
         {
+            this.Warn(WarnEnum.StoppingToMark);
             //Rtc.CtlAbort();
             Marker.Stop();
         }
@@ -501,7 +514,7 @@ namespace SpiralLab.Sirius.FCEU
             {
                 bool ready = true;
                 ready &= Marker.IsReady;
-                ready &= this.formMain.FormCurrent == this.formMain.FormAuto;
+                ready &= this.formMain.FormCurrent == this.formMain.FormAuto; //auto 화면이 아니면 ready off
                 ready &= !isFieldCorrecting; // 스캐너 보정중에는 ready off
                 this.IsReady = ready;
 
@@ -534,6 +547,8 @@ namespace SpiralLab.Sirius.FCEU
                     }
                 }
                 this.IsError = error;
+                if (Laser.IsError)
+                    Error(ErrEnum.LaserError);
 
                 if (this.formMain.FormCurrent != this.formMain.FormAuto)
                     this.Warn(WarnEnum.Auto);
@@ -561,8 +576,13 @@ namespace SpiralLab.Sirius.FCEU
 
         private void Marker_OnFinished(IMarker sender, IMarkerArg markerArg)
         {
-            this.Warn(WarnEnum.StartingToMark, true);
             var marker = sender as IMarker;
+            if (!markerArg.IsSuccess)
+                Error(ErrEnum.FailToMark);
+            else
+                Warn(WarnEnum.FinishToMark);
+            this.Warn(WarnEnum.StartingToMark, true);
+
             switch ((SpiralLab.Sirius.FCEU.LaserSequence.Process)marker.Tag)
             {
                 case Process.SystemTeach:

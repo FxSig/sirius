@@ -10,8 +10,8 @@ namespace SpiralLab.Sirius.FCEU
         [Description("스캐너및 레이저 초기화에 실패하였습니다")]
         Initialize,
 
-        [Description("레이저 레시피 준비에 실패하였습니다")]
-        Recipe,
+        [Description("레이저 레시피 변경에 실패하였습니다")]
+        RecipeChange,
 
         [Description("레이저 가공이 이미 진행중입니다")]
         Busy,
@@ -31,13 +31,13 @@ namespace SpiralLab.Sirius.FCEU
         [Description("레이저 가공에 실패하였습니다")]
         FailToMark,
 
-        [Description("비전 시스템으로 부터 가공 정보을 읽을 수 없습니다")]
-        VisionDataOpen,
+        [Description("비전 시스템으로 부터 불량 가공 정보을 읽을 수 없습니다")]
+        VisionDefectDataOpen,
 
         [Description("비전 시스템으로 부터 스캐너 보정 정보을 읽을 수 없습니다")]
         VisionFieldCorrectionOpen,
 
-        [Description("불량 정보 업데이트용 레이어가 없습니다")]
+        [Description("불량 정보를 업데이트할 수 없습니다")]
         NoDefectLayer,
     }
 
@@ -81,8 +81,8 @@ namespace SpiralLab.Sirius.FCEU
         [Description("좌측 기준 도면 마킹을 시작합니다")]
         ReferenceMarkLeft,
 
-        [Description("비전 시스템으로 부터 가공 정보을 전달받았습니다")]
-        VisionDataOpen,
+        [Description("비전 시스템으로 부터 가공 정보을 읽고 있습니다")]
+        VisionDataOpening,
 
         [Description("스캐너 필드 보정 작업이 진행중입니다")]
         ScannerFieldCorrectioning,
@@ -95,7 +95,6 @@ namespace SpiralLab.Sirius.FCEU
 
         [Description("좌측 가공을 시작합니다")]
         DefectMarkLeft,
-
     }
 
 

@@ -75,7 +75,7 @@ namespace SpiralLab.Sirius.FCEU
             string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{no}", "laser.sirius");
             if (!File.Exists(recipeFileName))
             {
-                seq.Error(ErrEnum.Recipe);
+                seq.Error(ErrEnum.RecipeChange);
                 return false;
             }
             string iniFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "recipe.ini");
@@ -92,7 +92,7 @@ namespace SpiralLab.Sirius.FCEU
             var doc = DocumentSerializer.OpenSirius(recipeFileName);
             if (null == doc)
             {
-                seq.Error(ErrEnum.Recipe);
+                seq.Error(ErrEnum.RecipeChange);
                 Logger.Log(Logger.Type.Warn, $"fail to change recipe to [RecipeNo]: {recipeName}");
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
@@ -134,7 +134,7 @@ namespace SpiralLab.Sirius.FCEU
                 // turn off ready status
                 //seq.Editor.Document = null;
                 seq.Marker.Clear();
-                seq.Error(ErrEnum.Recipe);
+                seq.Error(ErrEnum.RecipeChange);
                 Logger.Log(Logger.Type.Warn, $"fail to change recipe to [{no}]: {recipeName}");
             }
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
@@ -155,8 +155,7 @@ namespace SpiralLab.Sirius.FCEU
             if (string.IsNullOrEmpty(fileFullPath))
             {
                 var iniFileName = FormMain.ConfigFileName;
-                string fileName = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
-                fileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+                fileFullPath = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
             }
             if (false == File.Exists(fileFullPath))
             {
@@ -388,7 +387,7 @@ namespace SpiralLab.Sirius.FCEU
                     form.Close();
                 }));
 
-                seq.Error(ErrEnum.VisionDataOpen);
+                seq.Error(ErrEnum.VisionDefectDataOpen);
                 Logger.Log(Logger.Type.Error, $"fail to open vision defect file : {fileName}");
                 return false;
             }
@@ -428,7 +427,7 @@ namespace SpiralLab.Sirius.FCEU
             group.IsEnableFastRendering = true;
             group.IsHitTest = false; //선택 않되도록
             int counts = 0;
-            seq.Warn(WarnEnum.VisionDataOpen);
+            seq.Warn(WarnEnum.VisionDataOpening);
             try
             {
                 using (var stream = new StreamReader(fileName))
@@ -503,7 +502,7 @@ namespace SpiralLab.Sirius.FCEU
                     //{
                     //    return e1.BoundRect.Center.X.CompareTo(e2.BoundRect.Center.X);
                     //});
-                    seq.Warn(WarnEnum.VisionDataOpen, true);
+                    seq.Warn(WarnEnum.VisionDataOpening, true);
                 }
                 Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
                 {
