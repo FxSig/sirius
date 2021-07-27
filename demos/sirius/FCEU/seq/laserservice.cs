@@ -75,6 +75,7 @@ namespace SpiralLab.Sirius.FCEU
             string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{no}", "laser.sirius");
             if (!File.Exists(recipeFileName))
             {
+                Logger.Log(Logger.Type.Error, $"fail to change recipe to [{no}]: {recipeFileName}");
                 seq.Error(ErrEnum.RecipeChange);
                 return false;
             }
@@ -93,7 +94,7 @@ namespace SpiralLab.Sirius.FCEU
             if (null == doc)
             {
                 seq.Error(ErrEnum.RecipeChange);
-                Logger.Log(Logger.Type.Warn, $"fail to change recipe to [RecipeNo]: {recipeName}");
+                Logger.Log(Logger.Type.Error, $"fail to change recipe to [{no}]: {recipeName}");
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     form.Close();
