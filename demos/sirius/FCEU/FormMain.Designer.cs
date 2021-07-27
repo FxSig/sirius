@@ -55,6 +55,7 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
+            this.lblUser = new System.Windows.Forms.Label();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -353,6 +354,7 @@
             // panMenu
             // 
             this.panMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panMenu.Controls.Add(this.lblUser);
             this.panMenu.Controls.Add(this.lblVisionComm);
             this.panMenu.Controls.Add(this.lblRecipe);
             this.panMenu.Controls.Add(this.lblMenu);
@@ -415,6 +417,20 @@
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
             // 
+            // lblUser
+            // 
+            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUser.AutoSize = true;
+            this.lblUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblUser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Location = new System.Drawing.Point(915, 7);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(115, 16);
+            this.lblUser.TabIndex = 10;
+            this.lblUser.Text = "User : (Unknown)";
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUser.Click += new System.EventHandler(this.lblUser_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -474,5 +490,6 @@
         private System.Windows.Forms.Label lblVisionComm;
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Label lblProject;
+        private System.Windows.Forms.Label lblUser;
     }
 }

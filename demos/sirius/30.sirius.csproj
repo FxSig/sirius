@@ -154,6 +154,12 @@
     <Compile Include="FCEU\FormSetup.Designer.cs">
       <DependentUpon>FormSetup.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\FormUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="FCEU\MessageBoxOk.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormSetup.resx">
       <DependentUpon>FormSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\MessageBoxOk.resx">
       <DependentUpon>MessageBoxOk.cs</DependentUpon>
@@ -806,6 +815,7 @@
   <ItemGroup>
     <None Include="Resources\spirallab.png" />
     <None Include="Resources\sirius.png" />
+    <None Include="Resources\customer_100px.png" />
     <Content Include="spirallab2.ico" />
     <None Include="Resources\spirallab5.png" />
     <Content Include="spirallab.ico" />

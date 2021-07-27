@@ -17,9 +17,17 @@ namespace SpiralLab.Sirius.FCEU
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! System Teach", $"Do you want to mark with system teach ?"))
-                return;
+            if (User.Level ==  UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
+                    return;
+            }
+            {
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes != mb.ShowDialog("Warning !!! System Teach", $"Do you really want to mark with system teach ?"))
+                    return;
+            }
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
@@ -29,7 +37,7 @@ namespace SpiralLab.Sirius.FCEU
         private void button2_Click(object sender, EventArgs e)
         {
             var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Scanner Field Correction", $"Do you want to mark with scanner field correction ?"))
+            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Scanner Field Correction", $"Do you really want to mark with scanner field correction ?"))
                 return;
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
@@ -45,13 +53,19 @@ namespace SpiralLab.Sirius.FCEU
 
         private void button3_Click(object sender, EventArgs e)
         {
+            if (User.Level == UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
+                return;
+            }
+
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
             var iniFileName = FormMain.ConfigFileName;
-            string fileName = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
-            var fullFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "setup", fileName);
+            string fullFilePath = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
 
             var dlg = new OpenFileDialog();
             dlg.Filter = "scanner correction file (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -70,7 +84,7 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "LEFT");
+            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_LEFT");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
             dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -88,10 +102,17 @@ namespace SpiralLab.Sirius.FCEU
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Left Reference Mark", $"Do you want to mark with left reference ?"))
+            if (User.Level == UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
                 return;
-
+            }
+            {
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes != mb.ShowDialog("Warning !!! Left Reference Mark", $"Do you want to mark with left reference ?"))
+                    return;
+            }
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
@@ -99,10 +120,17 @@ namespace SpiralLab.Sirius.FCEU
         }
         private void button9_Click(object sender, EventArgs e)
         {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Left Defect Mark", $"Do you want to mark with left defect ?"))
+            if (User.Level == UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
                 return;
-
+            }
+            {
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes != mb.ShowDialog("Warning !!! Left Defect Mark", $"Do you want to mark with left defect ?"))
+                    return;
+            }
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
@@ -115,7 +143,7 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
             
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RIGHT");
+            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_RIGHT");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
             dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -134,10 +162,17 @@ namespace SpiralLab.Sirius.FCEU
 
         private void button5_Click(object sender, EventArgs e)
         {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Right Reference Mark", $"Do you want to mark with right reference ?"))
+            if (User.Level == UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
                 return;
-
+            }
+            {
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes != mb.ShowDialog("Warning !!! Right Reference Mark", $"Do you want to mark with right reference ?"))
+                    return;
+            }
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
@@ -146,10 +181,17 @@ namespace SpiralLab.Sirius.FCEU
 
         private void button8_Click(object sender, EventArgs e)
         {
-            var mb = new MessageBoxYesNo();
-            if (DialogResult.Yes != mb.ShowDialog("Warning !!! Right Defect Mark", $"Do you want to mark with right defect ?"))
+            if (User.Level == UserLevel.Operator)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
                 return;
-
+            }
+            {
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes != mb.ShowDialog("Warning !!! Right Defect Mark", $"Do you want to mark with right defect ?"))
+                    return;
+            }
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;

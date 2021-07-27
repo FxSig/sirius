@@ -39,6 +39,9 @@ namespace SpiralLab.Sirius.FCEU
             this.FormClosing += FormMain_FormClosing;
             lsbErrWarn.DrawItem += LsbErrWarn_DrawItem;
             lblProject.Text = $"Project: {Program.ProjectName}";
+
+            User.OnLoggedIn += User_OnLoggedIn;
+            User.OnLoggedOut += User_OnLoggedOut;
         }
 
         private void LsbErrWarn_DrawItem(object sender, DrawItemEventArgs e)
@@ -60,6 +63,8 @@ namespace SpiralLab.Sirius.FCEU
             for (int i = 0; i < 20; i++)
                 this.lsbErrWarn.Items.Add(string.Empty);
             this.SequenceInit();
+
+            User.Reload();
         }
         private bool SequenceInit()
         {
@@ -331,6 +336,20 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Stop();
         }
 
-       
+        private void lblUser_Click(object sender, EventArgs e)
+        {
+            var form = new FormUser();
+            form.ShowDialog();
+        }
+        private void User_OnLoggedOut()
+        {
+            lblUser.Text = $"User: [{User.Level.ToString()}] {User.Name}";
+        }
+
+        private void User_OnLoggedIn(UserLevel level)
+        {
+            lblUser.Text = $"User: [{User.Level.ToString()}] {User.Name}";
+        }
+
     }
 }

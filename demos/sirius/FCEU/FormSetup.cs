@@ -16,17 +16,17 @@ namespace SpiralLab.Sirius.FCEU
             [Description("스크린 텐키")]
             ScreenTenkey,
 
-            [Description("모터")]
-            Motors,
+            //[Description("모터")]
+            //Motors,
 
-            [Description("레이저")]
-            Laser,
+            //[Description("레이저")]
+            //Laser,
         }
 
         Form formDIO;
         Form formScreenTenkey;
-        Form formMotors;
-        Form formLaser;
+        //Form formMotors;
+        //Form formLaser;
 
         public FormSetup()
         {
@@ -41,8 +41,8 @@ namespace SpiralLab.Sirius.FCEU
             this.Load += FormSetup_Load;
             this.formDIO = new FCEU.FormDigitalIO();
             this.formScreenTenkey = new FCEU.FormScreenTenkey();
-            this.formLaser = new Nguyen.FormIPG();
-            this.formMotors = new FCEU.FormMotor();
+            //this.formLaser = new Nguyen.FormIPG();
+            //this.formMotors = new FCEU.FormMotor();
         }
 
         private void FormSetup_Load(object sender, EventArgs e)
@@ -82,12 +82,12 @@ namespace SpiralLab.Sirius.FCEU
                 case Part.ScreenTenkey:
                     this.SwitchForm(panel, formScreenTenkey);
                     break;
-                case Part.Laser:
-                    this.SwitchForm(panel, formLaser);
-                    break;
-                case Part.Motors:
-                    this.SwitchForm(panel, formMotors);
-                    break;
+                //case Part.Laser:
+                //    this.SwitchForm(panel, formLaser);
+                //    break;
+                //case Part.Motors:
+                //    this.SwitchForm(panel, formMotors);
+                //    break;
             }
         }
         #endregion

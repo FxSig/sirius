@@ -29,6 +29,7 @@ namespace SpiralLab.Sirius.FCEU
         /// 엔지니어
         /// </summary>
         Engineer,
+
         /// <summary>
         /// 개발자
         /// </summary>
@@ -91,21 +92,17 @@ namespace SpiralLab.Sirius.FCEU
             User.Level = UserLevel.Operator;
             User.Name = @"NoName";
 
-            var oldName = new StringBuilder(255);
-            var oldLevel = new StringBuilder(255);
-            var isUdpBroadCast = new StringBuilder(255);
-            var udpBroadCastPort = new StringBuilder(255);
-            NativeMethods.GetPrivateProfileString("Current", "Name", string.Empty, oldName, 255, uacFileName);
-            NativeMethods.GetPrivateProfileString("Current", "Level", string.Empty, oldLevel, 255, uacFileName);
+            var oldName = NativeMethods.ReadIni<string>(uacFileName, "Current", "Name");
+            var oldLevel = NativeMethods.ReadIni<string>(uacFileName, "Current", "Level");
 
-            if (!string.IsNullOrEmpty(oldName.ToString()))
+            if (!string.IsNullOrEmpty(oldName))
             {
-                User.Name = oldName.ToString();
+                User.Name = oldName;
                 User.IsLoggedIn = true;
             }
-            if (!string.IsNullOrEmpty(oldLevel.ToString()))
+            if (!string.IsNullOrEmpty(oldLevel))
             {
-                User.Level = (UserLevel)int.Parse(oldLevel.ToString());
+                User.Level = (UserLevel)int.Parse(oldLevel);
                 User.IsLoggedIn = true;
             }
             if (System.Diagnostics.Debugger.IsAttached)
@@ -114,6 +111,11 @@ namespace SpiralLab.Sirius.FCEU
                 User.Level = UserLevel.Developer;
                 User.IsLoggedIn = true;
             }
+            
+            if (User.IsLoggedIn)
+                User.OnLoggedIn?.Invoke(User.Level);
+            else
+                User.OnLoggedOut?.Invoke();
         }
 
         /// <summary>
@@ -127,18 +129,18 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (string.IsNullOrEmpty(password))
                 return false;
-            var configuredPassword = new StringBuilder(255);          
-            NativeMethods.GetPrivateProfileString(level.ToString(), "Password", string.Empty, configuredPassword, 255, uacFileName);
-            if (string.IsNullOrEmpty(configuredPassword.ToString()))
+
+            var configuredPassword = NativeMethods.ReadIni<string>(uacFileName, level.ToString(), "Password");
+            if (string.IsNullOrEmpty(configuredPassword))
             {
                 string encryptedInputedPassword = StringCipher.Encrypt(password, sharedKey);
-                NativeMethods.WritePrivateProfileString(level.ToString(), "Password", encryptedInputedPassword, uacFileName);
+                NativeMethods.WriteIni<string>(uacFileName, level.ToString(), "Password", encryptedInputedPassword);
                 var mb = new MessageBoxOk();
                 mb.ShowDialog("Password", $"Password key is not exist! so reset to current input password", 30);
             }
             else
             {
-                string decryptedPassword = StringCipher.Decrypt(configuredPassword.ToString(), sharedKey); 
+                string decryptedPassword = StringCipher.Decrypt(configuredPassword, sharedKey); 
                 if (!password.Equals(decryptedPassword))
                 {
                     Logger.Log(Logger.Type.Error, $"fail to log in as {name} by {level.ToString()}");
@@ -151,8 +153,9 @@ namespace SpiralLab.Sirius.FCEU
             if (User.IsLoggedIn)
                 User.OnLoggedOut?.Invoke();
             User.OnLoggedIn?.Invoke(level);
-            NativeMethods.WritePrivateProfileString("Old", "Name", User.Name, uacFileName);
-            NativeMethods.WritePrivateProfileString("Old", "Level", $"{(int)User.Level}", uacFileName);
+
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Name", User.Name);
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Level", $"{(int)User.Level}");
             Logger.Log(Logger.Type.Info, $"success to logged in as {name} by {level.ToString()}");
             return true;
         }
@@ -169,8 +172,8 @@ namespace SpiralLab.Sirius.FCEU
                 User.Name = name;
             User.Level = level;
             User.OnLoggedIn?.Invoke(level);
-            NativeMethods.WritePrivateProfileString("Old", "Name", User.Name, uacFileName);
-            NativeMethods.WritePrivateProfileString("Old", "Level", $"{(int)User.Level}", uacFileName);
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Name", User.Name);
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Level", $"{(int)User.Level}");
             User.IsLoggedIn = true;
             Logger.Log(Logger.Type.Info, $"success to logged in as {name} by {level.ToString()}");
             return true;
@@ -185,8 +188,8 @@ namespace SpiralLab.Sirius.FCEU
             User.Name = @"NoName";
             User.Level = UserLevel.Operator;
             User.OnLoggedOut?.Invoke();
-            NativeMethods.WritePrivateProfileString("Old", "Name", User.Name, uacFileName);
-            NativeMethods.WritePrivateProfileString("Old", "Level", $"{(int)User.Level}", uacFileName);
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Name", User.Name);
+            NativeMethods.WriteIni<string>(uacFileName, "Old", "Level", $"{(int)User.Level}");
             User.IsLoggedIn = false;
             Logger.Log( Logger.Type.Info, $"success to logged out");
             return true;
