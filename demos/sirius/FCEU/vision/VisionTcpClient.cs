@@ -91,7 +91,7 @@ namespace SpiralLab.Sirius.FCEU
                     isConnected = false;
                     this.client?.Dispose();
                     this.client = new TcpClient();
-                    Logger.Log(Logger.Type.Warn, $"vision tcp client is not connected");
+                    //Logger.Log(Logger.Type.Warn, $"vision tcp client is not connected");
                     this.client.Connect(this.ipaddress, this.port);
                     this.client.NoDelay = true;
                     isConnected = true;

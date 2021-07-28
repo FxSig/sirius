@@ -523,6 +523,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap laser_beam_32px {
+            get {
+                object obj = ResourceManager.GetObject("laser_beam_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap lens_24px {
             get {
                 object obj = ResourceManager.GetObject("lens_24px", resourceCulture);
@@ -546,6 +556,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap lens2_24px {
             get {
                 object obj = ResourceManager.GetObject("lens2_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap luminaria_led_32px {
+            get {
+                object obj = ResourceManager.GetObject("luminaria_led_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -813,6 +833,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap ruler_32px {
+            get {
+                object obj = ResourceManager.GetObject("ruler_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap save_all_32px {
             get {
                 object obj = ResourceManager.GetObject("save_all_32px", resourceCulture);
@@ -996,6 +1026,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap spirallablogo {
             get {
                 object obj = ResourceManager.GetObject("spirallablogo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap squared_menu_32px {
+            get {
+                object obj = ResourceManager.GetObject("squared_menu_32px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

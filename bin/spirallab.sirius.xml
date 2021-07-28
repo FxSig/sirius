@@ -3598,6 +3598,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.rs_232_male_32px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.running_24px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3669,6 +3674,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.spirallablogo">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.split_table_30px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>

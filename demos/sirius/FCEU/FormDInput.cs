@@ -33,6 +33,7 @@ namespace SpiralLab.Sirius.FCEU
             this.dgvInput.CellPainting += DgvInput_CellPainting;
             this.VisibleChanged += FormDInput_VisibleChanged;
             timer.Interval = 100;
+            timer.Tick += Timer_Tick;
         }
 
         private void FormDInput_VisibleChanged(object sender, EventArgs e)
@@ -54,6 +55,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (null == this.Rtc)
                 return;
+            this.dgvInput.ClearSelection();
             this.Rtc.CtlReadData<uint>(ExtensionChannel.ExtDI16, out uint bits);
             for (int i = 0; i < dgvInput.RowCount; i++)
             {
@@ -83,7 +85,7 @@ namespace SpiralLab.Sirius.FCEU
             if (row.Cells[2].Value.ToString() == "ON")
             {
                 row.Cells[2].Style.BackColor = Color.Lime;
-                row.Cells[2].Style.ForeColor = Color.Black;
+                row.Cells[2].Style.ForeColor = Color.White;
             }
             else
             {

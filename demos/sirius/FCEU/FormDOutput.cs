@@ -32,6 +32,7 @@ namespace SpiralLab.Sirius.FCEU
             this.dgvOutput.CellDoubleClick += DgvOutput_CellDoubleClick;
             this.VisibleChanged += FormDOutput_VisibleChanged;
             timer.Interval = 100;
+            timer.Tick += Timer_Tick;
         }
 
         private void FormDOutput_VisibleChanged(object sender, EventArgs e)
@@ -53,6 +54,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (null == this.Rtc)
                 return;
+            dgvOutput.ClearSelection();
             this.Rtc.CtlReadData<uint>(ExtensionChannel.ExtDO16, out uint bits);
             for (int i = 0; i < dgvOutput.RowCount; i++)
             {
@@ -82,7 +84,7 @@ namespace SpiralLab.Sirius.FCEU
             if (row.Cells[2].Value.ToString() == "ON")
             {
                 row.Cells[2].Style.BackColor = Color.Red;
-                row.Cells[2].Style.ForeColor = Color.Black;
+                row.Cells[2].Style.ForeColor = Color.White;
             }
             else
             {
@@ -103,6 +105,7 @@ namespace SpiralLab.Sirius.FCEU
             var ioName = dgvOutput.Rows[e.RowIndex].Cells[1].Value;
             bool onOff = dgvOutput.Rows[e.RowIndex].Cells[2].Value.Equals("ON");
             this.Rtc?.CtlWriteExtDO16((ushort)bitPosition, !onOff);
+            dgvOutput.ClearSelection();
         }
 
     }

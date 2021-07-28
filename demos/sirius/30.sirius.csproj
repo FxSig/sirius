@@ -816,6 +816,10 @@
     <None Include="Resources\spirallab.png" />
     <None Include="Resources\sirius.png" />
     <None Include="Resources\customer_100px.png" />
+    <None Include="Resources\squared_menu_32px.png" />
+    <None Include="Resources\laser_beam_32px.png" />
+    <None Include="Resources\ruler_32px.png" />
+    <None Include="Resources\luminaria_led_32px.png" />
     <Content Include="spirallab2.ico" />
     <None Include="Resources\spirallab5.png" />
     <Content Include="spirallab.ico" />
