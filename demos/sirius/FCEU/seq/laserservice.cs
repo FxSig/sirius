@@ -12,7 +12,7 @@ namespace SpiralLab.Sirius.FCEU
     /// <summary>
     /// 레이저 서비스 객체
     /// </summary>
-    public class LaserService  
+    public class LaserService
         : SpiralLab.IServiceLaser
     {
         public string Name { get; set; }
@@ -51,7 +51,7 @@ namespace SpiralLab.Sirius.FCEU
                 //var pen = new FCEUPen();
                 //seq.Editor.OnDocumentPenNew += SiriusEditorForm1_OnDocumentPenNew;
                 //기본 펜 생성 
-                var pen = new PenDefault();            
+                var pen = new PenDefault();
                 doc.Action.ActEntityAdd(pen);
             }));
 
@@ -106,7 +106,7 @@ namespace SpiralLab.Sirius.FCEU
             markerArg.Document = doc;
             markerArg.Rtc = seq.Rtc;
             markerArg.Laser = seq.Laser;
-            markerArg.RtcListType = ListType.Auto;            
+            markerArg.RtcListType = ListType.Auto;
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 form.Percentage = 50;
@@ -301,7 +301,7 @@ namespace SpiralLab.Sirius.FCEU
                     seq.Editor.View.Render();
                 }));
                 form.Percentage = 100;
-                for (int i=0; i< 100; i++)
+                for (int i = 0; i < 100; i++)
                     Application.DoEvents();
                 form.Close();
             }));

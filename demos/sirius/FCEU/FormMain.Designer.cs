@@ -50,12 +50,12 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
+            this.lblUser = new System.Windows.Forms.Label();
             this.lblVisionComm = new System.Windows.Forms.Label();
             this.lblRecipe = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
-            this.lblUser = new System.Windows.Forms.Label();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -316,7 +316,7 @@
             this.lsbErrWarn.ItemHeight = 16;
             this.lsbErrWarn.Location = new System.Drawing.Point(293, 11);
             this.lsbErrWarn.Name = "lsbErrWarn";
-            this.lsbErrWarn.Size = new System.Drawing.Size(415, 100);
+            this.lsbErrWarn.Size = new System.Drawing.Size(631, 100);
             this.lsbErrWarn.TabIndex = 1;
             // 
             // pictureBox1
@@ -363,6 +363,20 @@
             this.panMenu.Name = "panMenu";
             this.panMenu.Size = new System.Drawing.Size(1280, 32);
             this.panMenu.TabIndex = 15;
+            // 
+            // lblUser
+            // 
+            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblUser.AutoSize = true;
+            this.lblUser.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblUser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUser.Location = new System.Drawing.Point(915, 7);
+            this.lblUser.Name = "lblUser";
+            this.lblUser.Size = new System.Drawing.Size(115, 16);
+            this.lblUser.TabIndex = 10;
+            this.lblUser.Text = "User : (Unknown)";
+            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblUser.Click += new System.EventHandler(this.lblUser_Click);
             // 
             // lblVisionComm
             // 
@@ -416,20 +430,6 @@
             this.panBody.Name = "panBody";
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
-            // 
-            // lblUser
-            // 
-            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblUser.AutoSize = true;
-            this.lblUser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblUser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUser.Location = new System.Drawing.Point(915, 7);
-            this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(115, 16);
-            this.lblUser.TabIndex = 10;
-            this.lblUser.Text = "User : (Unknown)";
-            this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblUser.Click += new System.EventHandler(this.lblUser_Click);
             // 
             // FormMain
             // 

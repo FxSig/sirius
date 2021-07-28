@@ -75,7 +75,7 @@ namespace SpiralLab.Sirius.FCEU
             {
                 var doc = DocumentSerializer.OpenSirius(recipeFileName);
                 this.siriusViewerForm1.Document = doc;
-                this.siriusViewerForm1.AliasName = $" [{index}]: {name} ";
+                this.siriusViewerForm1.AliasName = $" [{index}] {name} ";
                 this.siriusViewerForm1.FileName = recipeFileName;
             }
             finally
@@ -104,6 +104,45 @@ namespace SpiralLab.Sirius.FCEU
                 list.Add(name);
             }
             return list;
+        }
+
+        /// <summary>
+        /// 디렉토리 재귀 복사
+        /// </summary>
+        /// <param name="source">소스 디렉토리</param>
+        /// <param name="target">타켓 디렉토리</param>
+        internal static void CopyFilesRecursively(DirectoryInfo source, DirectoryInfo target)
+        {
+            foreach (DirectoryInfo dir in source.GetDirectories())
+                CopyFilesRecursively(dir, target.CreateSubdirectory(dir.Name));
+            foreach (FileInfo file in source.GetFiles())
+                file.CopyTo(Path.Combine(target.FullName, file.Name), true);
+        }
+
+        /// <summary>
+        /// 있는 레시피를 복사한다
+        /// </summary>
+        /// <param name="sourceRecipeDir">원본 레시피 폴더 이름 1,2,3</param>
+        /// <param name="sourceRecipeName">원본 레시피 이름</param>
+        /// <param name="targetRecipeDir">대상 레시피 폴더 이름 1,2,3</param>
+        /// <param name="targetRecipeName">원본 레시피 이름 (ini 파일에 기록됨)</param>
+        /// <returns></returns>
+        public static bool RecipeCopy(string sourceRecipeDir, string sourceRecipeName,  string targetRecipeDir, string targetRecipeName)
+        {
+            var root = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes");
+            var src = $"{root}\\{sourceRecipeDir}";
+            var target = $"{root}\\{targetRecipeDir}";
+            DirectoryInfo diSrc = new DirectoryInfo(src);
+            DirectoryInfo diTarget = new DirectoryInfo(target);
+            if (!diTarget.Exists)
+                diTarget.Create();
+            CopyFilesRecursively(diSrc, diTarget);
+
+            string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "recipe.ini");
+            //string sourceRecipeName = NativeMethods.ReadIni<string>(fileName, src, "NAME");
+            NativeMethods.WriteIni<string>(fileName, targetRecipeDir, "NAME", targetRecipeName);
+            Logger.Log(Logger.Type.Warn, $"recipe has copied from [{sourceRecipeDir}]{sourceRecipeName} to [{targetRecipeDir}]{targetRecipeName}");
+            return true;
         }
 
         private void UpdateDir()

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnRecipeChange = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
@@ -52,7 +52,7 @@
             this.btnRecipeChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecipeChange.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecipeChange.Image = global::Spirallab.Sirius.Properties.Resources.clone_24px;
-            this.btnRecipeChange.Location = new System.Drawing.Point(929, 688);
+            this.btnRecipeChange.Location = new System.Drawing.Point(242, 689);
             this.btnRecipeChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRecipeChange.Name = "btnRecipeChange";
             this.btnRecipeChange.Size = new System.Drawing.Size(68, 64);
@@ -75,15 +75,16 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnRecipeChange);
             this.splitContainer1.Panel2.Controls.Add(this.dgvRecipe);
             this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
             this.splitContainer1.SplitterDistance = 700;
-            this.splitContainer1.SplitterWidth = 2;
+            this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 10;
             // 
             // siriusViewerForm1
             // 
-            this.siriusViewerForm1.AliasName = "NoName";
+            this.siriusViewerForm1.AliasName = " NoName";
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusViewerForm1.Document = null;
             this.siriusViewerForm1.FileName = "NoName";
@@ -100,23 +101,25 @@
             // 
             this.dgvRecipe.AllowUserToAddRows = false;
             this.dgvRecipe.AllowUserToDeleteRows = false;
+            this.dgvRecipe.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvRecipe.BackgroundColor = System.Drawing.SystemColors.ControlLightLight;
-            this.dgvRecipe.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRecipe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRecipe.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRecipe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRecipe.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRecipe.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dgvRecipe.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRecipe.GridColor = System.Drawing.SystemColors.ControlLight;
-            this.dgvRecipe.Location = new System.Drawing.Point(0, 0);
+            this.dgvRecipe.Location = new System.Drawing.Point(6, 5);
             this.dgvRecipe.MultiSelect = false;
             this.dgvRecipe.Name = "dgvRecipe";
             this.dgvRecipe.RowHeadersVisible = false;
@@ -125,7 +128,7 @@
             this.dgvRecipe.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecipe.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRecipe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvRecipe.Size = new System.Drawing.Size(322, 768);
+            this.dgvRecipe.Size = new System.Drawing.Size(310, 665);
             this.dgvRecipe.TabIndex = 8;
             // 
             // dataGridViewTextBoxColumn1
@@ -150,7 +153,6 @@
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1024, 768);
-            this.Controls.Add(this.btnRecipeChange);
             this.Controls.Add(this.splitContainer1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

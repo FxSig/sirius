@@ -1051,6 +1051,11 @@
             SyncAxis (XLScan) 옵션 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.CorrectionFiles">
             <summary>
             스캐너 보정 파일 목록 (최대 2개 로드 가능)
@@ -1847,6 +1852,23 @@
             기본값(0) 객체 생성
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Rtc5JumpMode">
+            <summary>
+            RTC5 점프 모드 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5JumpMode.Flag">
+            <summary>
+            -1 : Disabled
+            0 : Enabled but Diactived
+            1: Enabled and Activated
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5JumpMode.Length">
+            <summary>
+            mm 값 입력 (자동으로 bits 로 내부 계산됨)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc5">
             <summary>
             RTC5 객체
@@ -1916,6 +1938,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.IsSyncAxis">
             <summary>
             SyncAxis (XLScan) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.CorrectionFiles">
@@ -2417,6 +2444,13 @@
             <param name="counts">회수값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlJumpMode(SpiralLab.Sirius.IRtcJumpMode)">
+            <summary>
+            점프 모드 사용시 (intelli~ 기반의 스캐너 제품군으로 벡터 점프 모드 튜닝 지원시)
+            </summary>
+            <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
@@ -2493,6 +2527,24 @@
             <param name="y">x,y 위치</param>
             <param name="laserOn">usec</param>
             <param name="laserOff">usec</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListJumpMode(System.Int32)" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Numerics.Vector2,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            </summary>
+            <param name="vPosition">x,y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
@@ -3015,6 +3067,23 @@
             기본값(0) 객체 생성
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Rtc6JumpMode">
+            <summary>
+            RTC6 점프 모드 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6JumpMode.Flag">
+            <summary>
+            -1 : Disabled
+            0 : Enabled but Diactived
+            1: Enabled and Activated
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6JumpMode.Length">
+            <summary>
+            mm 값 입력 (자동으로 bits 로 내부 계산됨)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc6">
             <summary>
             RTC6 객체
@@ -3084,6 +3153,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6.IsSyncAxis">
             <summary>
             SyncAxis (XLScan) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.CorrectionFiles">
@@ -3585,6 +3659,13 @@
             <param name="counts">회수값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlJumpMode(SpiralLab.Sirius.IRtcJumpMode)">
+            <summary>
+            점프 모드 사용시 (intelli~ 기반의 스캐너 제품군으로 벡터 점프 모드 튜닝 지원시)
+            </summary>
+            <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
@@ -3661,6 +3742,24 @@
             <param name="y">x,y 위치</param>
             <param name="laserOnUSec">usec</param>
             <param name="laserOffUSec">usec</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.ListJumpMode(System.Int32)" -->
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Numerics.Vector2,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            </summary>
+            <param name="vPosition">x,y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Single,System.Single,System.Single)">
+            <summary>
+            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            </summary>
+            <param name="x">x 위치 (mm)</param>
+            <param name="y">y 위치 (mm)</param>
+            <param name="msec">시간 (msec)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
@@ -4130,6 +4229,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.IsSyncAxis">
             <summary>
             SyncAxis (XLScan) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.CorrectionFiles">
@@ -4844,6 +4948,11 @@
             SyncAxis (XLScan) 옵션 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.CorrectionFiles">
             <summary>
             스캐너 보정 파일 목록 (최대 4개 로드 가능)
@@ -4876,6 +4985,13 @@
             외부 /START 실행된 회수 조회
             </summary>
             <param name="counts">회수값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlJumpMode(SpiralLab.Sirius.IRtcJumpMode)">
+            <summary>
+            점프 모드 사용시 (intelli~ 기반의 스캐너 제품군으로 벡터 점프 모드 튜닝 지원시)
+            </summary>
+            <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData2D">
@@ -5186,6 +5302,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IRtcJumpMode">
+            <summary>
+            RTC 점프 모드 설정용 인터페이스
+            Rtc5JumpMode , Rtc6JumpMode 클래스 사용 필요
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtc">
             <summary>
             RTC 인터페이스
@@ -5260,6 +5382,11 @@
         <member name="P:SpiralLab.Sirius.IRtc.IsSyncAxis">
             <summary>
             SyncAxis (XL-SCAN) 옵션 지원 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.IsJumpMode">
+            <summary>
+            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화되어 Jump and Drill 사용시 자동 적용됨
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
@@ -6085,6 +6212,13 @@
             <param name="counts">회수값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlJumpMode(SpiralLab.Sirius.IRtcJumpMode)">
+            <summary>
+            점프 모드 사용시 (intelli~ 기반의 스캐너 제품군으로 벡터 점프 모드 튜닝 지원시)
+            </summary>
+            <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
@@ -6144,23 +6278,28 @@
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpMode(System.Int32)">
             <summary>
-            리스트 명령 - 점프+드릴 (only intelliDRILL)
+            리스트 명령 - 점프 모드 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            </summary>
+            <param name="flag">-1 : Disabled, 0 : Enabled but Diactived, 1: Enabled and Activated</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.Single)">
+            <summary>
+            리스트 명령 - (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             </summary>
             <param name="vPosition">x,y 위치 (mm)</param>
             <param name="msec">시간 (msec)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - 점프+드릴 (only intelliDRILL)
+            리스트 명령 - (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             </summary>
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
             <param name="msec">시간 (msec)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MeasurementChannel">

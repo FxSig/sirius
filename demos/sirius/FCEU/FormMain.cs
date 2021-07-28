@@ -333,7 +333,11 @@ namespace SpiralLab.Sirius.FCEU
         }
         private void btnAbort_Click(object sender, EventArgs e)
         {
-            Seq.Stop();
+            var mb = new MessageBoxYesNo();
+            if (DialogResult.Yes == mb.ShowDialog("Warning !", "Do you really want to abort ?"))
+            {
+                Seq.Stop();
+            }
         }
 
         private void lblUser_Click(object sender, EventArgs e)
