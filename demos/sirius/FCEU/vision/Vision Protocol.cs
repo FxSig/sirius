@@ -145,4 +145,5 @@ public enum MessageProtocol
 
     IM_INSP = 990, //client는 접속되면 이메시지를 서버에 보낸다.
     IM_LASER = 991,
+    WHO_ARE_YOU = 999,
 }

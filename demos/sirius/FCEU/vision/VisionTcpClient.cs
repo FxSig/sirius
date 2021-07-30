@@ -106,7 +106,7 @@ namespace SpiralLab.Sirius.FCEU
                             break;
                         }
                         if (false == this.Parse(resp))
-                            Logger.Log(Logger.Type.Error, $"vision tcp client unknown data format? {(int)resp}");                            
+                            Logger.Log(Logger.Type.Error, $"vision tcp client fail to parse : unknown ? {(int)resp} : {resp.ToString()}");
 
                     } while (!terminated && this.client.Connected);
                 }
@@ -389,6 +389,10 @@ namespace SpiralLab.Sirius.FCEU
                             this.Send(MessageProtocol.DO_HATCHING_02_START_NG);
                         break;
                     #endregion
+
+                    case MessageProtocol.WHO_ARE_YOU:
+                        this.Send(MessageProtocol.IM_LASER);
+                        break;
                 }
             }
             return success;
