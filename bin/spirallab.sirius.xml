@@ -5936,6 +5936,11 @@
             ACI Color 객체 색상 변환기
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.MyColorEditor">
+            <summary>
+            Color 객체 변환기
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.InsertVertexEditor">
             <summary>
             InsertVertex 변환기

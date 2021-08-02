@@ -21,7 +21,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 축 번호
         /// </summary>
-        public uint No { get; set; }
+        public int No { get; set; }
         /// <summary>
         /// 축 이름
         /// </summary>
@@ -62,6 +62,10 @@ namespace SpiralLab.Sirius
             IsError = true;
         }
 
+        public bool Initialize()
+        {
+            return true;
+        }
         /// <summary>
         /// 원점 초기화
         /// </summary>
