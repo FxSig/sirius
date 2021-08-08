@@ -116,7 +116,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             this.SwitchForm(this.panBody, this.FormAuto);
             timer1.Tick += Timer1_Tick;
-            timer1.Interval = 200;
+            timer1.Interval = 100;
             timer1.Enabled = true;
         }
 
@@ -218,6 +218,8 @@ namespace SpiralLab.Sirius.FCEU
         uint tempIndex = 0;
         private void Timer1_Tick(object sender, EventArgs e)
         {
+            string ready, busy, error;
+
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
             var svc = Seq.Service as LaserService;
             if (svc.RecipeNo < 0)
@@ -279,6 +281,7 @@ namespace SpiralLab.Sirius.FCEU
                     btnAbort.ForeColor = Color.White;
                 }
                 tempIndex++;
+                busy = "Busy";
             }
             else
             {
@@ -288,7 +291,19 @@ namespace SpiralLab.Sirius.FCEU
                     btnAbort.ForeColor = SystemColors.ControlText;
                 }
                 tempIndex = 0;
+                busy = "Not Busy";
             }
+            if (Seq.IsReady)
+                ready = "Ready";
+            else
+                ready = "Not Ready";
+
+            if (Seq.IsError)
+                error = "Error";
+            else
+                error = "No Error";
+
+            lblStatus.Text = $"Status: {ready} / {busy} / {error}";
         }
 
         private void panTop_DoubleClick(object sender, EventArgs e)

@@ -268,6 +268,7 @@ namespace SpiralLab.Sirius.FCEU
             Warn(WarnEnum.DefectMarkLeft, true);
 
             bool success = true;
+            Thread.Sleep(50);// 안정화 시간?
             switch (proc)
             {
                 case Process.Defect_Right://right
