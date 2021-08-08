@@ -68,9 +68,9 @@ namespace SpiralLab.Sirius.FCEU
             string fullFilePath = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
 
             var dlg = new OpenFileDialog();
-            dlg.Filter = "scanner correction file (*.txt)|*.txt|All Files (*.*)|*.*";
-            dlg.Title = "Open Scanner Correction File";
-            dlg.FileName = fullFilePath;
+            dlg.Filter = "scanner correction data file (*.txt)|*.txt|All Files (*.*)|*.*";
+            dlg.Title = "Open Scanner Correction Data File";
+            dlg.FileName = Path.Combine(fullFilePath, $"scanner_calibration_{svc.FieldCorrectionRows}v{ svc.FieldCorrectionCols}.txt");
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
@@ -84,7 +84,8 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_LEFT");
+            var defRoot = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
+            var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_02.txt");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
             dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
@@ -142,8 +143,9 @@ namespace SpiralLab.Sirius.FCEU
             var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
-            
-            var defFile = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT_RIGHT");
+
+            var defRoot = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
+            var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_01.txt");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
             dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";

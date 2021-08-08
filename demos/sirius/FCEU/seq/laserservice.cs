@@ -3,6 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Numerics;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace SpiralLab.Sirius.FCEU
         public string Name { get; set; }
         public object Tag { get; set; }
         public int RecipeNo { get; internal set; }
+        public string RecipeName { get; internal set; }
         public bool IsVisionConnected
         {
             get
@@ -40,6 +42,7 @@ namespace SpiralLab.Sirius.FCEU
         public void RecipeClear()
         {
             RecipeNo = -1;
+            RecipeName = string.Empty;
             var doc = new Sirius.DocumentDefault();
 
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
@@ -127,6 +130,7 @@ namespace SpiralLab.Sirius.FCEU
                     }));
                 }));
                 RecipeNo = no;
+                RecipeName = recipeName;
                 seq.Warn(WarnEnum.RecipeChanged);
                 Logger.Log(Logger.Type.Warn, $"recipe has changed to [{no}]: {recipeName}");
             }
@@ -155,8 +159,9 @@ namespace SpiralLab.Sirius.FCEU
             //비전에서 기록한 보정 측정 정보
             if (string.IsNullOrEmpty(fileFullPath))
             {
-                var iniFileName = FormMain.ConfigFileName;
-                fileFullPath = NativeMethods.ReadIni<string>(iniFileName, $"FILE", "CORRECTION");
+                string rootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "CORRECTION");
+                //scanner_calibration_5v5.txt
+                fileFullPath = Path.Combine(rootPath, $"scanner_calibration_{this.FieldCorrectionRows}v{ this.FieldCorrectionCols}.txt");
             }
             if (false == File.Exists(fileFullPath))
             {
@@ -165,21 +170,72 @@ namespace SpiralLab.Sirius.FCEU
                 return false;
             }
 
+            int rows = this.FieldCorrectionRows;
+            int cols = this.FieldCorrectionCols;
+            float interval = 10;// not yet define yet
+            string sourceFile = seq.Rtc.CorrectionFiles[0];
+            string targetFile = string.Empty;
+            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, sourceFile, targetFile);
+            float left = -interval * (float)(int)(cols / 2);
+            float top = interval * (float)(int)(rows / 2);
+
             // data read !!
             // format ?
             //
             //
-            //svc.FieldCorrectionRows;
-            //svc.FieldCorrectionCols;
             //svc.FieldCorrectionInterval;
+            string line = string.Empty;
+            bool isIntervalHasRead = false;
+            var list = new List<Vector2>(rows * cols);
+            using (var stream = new StreamReader(fileFullPath))
+            {
+                while (!stream.EndOfStream)
+                {
+                    line = stream.ReadLine();
+                    if (string.IsNullOrEmpty(line))
+                        continue;
+                    if (line.StartsWith(";"))
+                        continue;
+                    if (!isIntervalHasRead)
+                    {
+                        this.FieldCorrectionInterval = float.Parse(line);
+                        interval = this.FieldCorrectionInterval;
+                        isIntervalHasRead = true;
+                    }
+                    string[] tokens = line.Split(new char[] { ',', ';'});
+                    if (tokens.Length <= 3)
+                        continue;
 
-            int rows = 9;
-            int cols = 9;
-            float interval = 10;
-            string sourceFile = seq.Rtc.CorrectionFiles[0];
-            string targetFile = string.Empty;
+                    int no = int.Parse(tokens[0]);
+                    float dx = int.Parse(tokens[1]);
+                    float dy = int.Parse(tokens[2]);
+                    list.Add(new Vector2(dx, dy));
+                }
+            }
 
-            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, sourceFile, targetFile);
+            if (list.Count != rows*cols)
+            {
+                Logger.Log(Logger.Type.Error, $"field correcction data counts are mismatched. rows X cols= {this.FieldCorrectionRows} X {this.FieldCorrectionCols} but readed: {list.Count}");
+                return false;
+            }
+
+            //180 rotate and reverse order
+            list.Reverse();
+            left = -interval * (float)(int)(cols / 2);
+            top = interval * (float)(int)(rows / 2);
+            int index = 0;
+            for (int row=0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    correction2D.AddRelative(row, col,
+                        new Vector2(left + col * interval, top - row * interval),
+                        Vector2.Negate(list[index]) // xy 비전 좌표값 반전
+                        );
+                    index++;
+                }
+            }
+
             var form2D = new Correction2DForm(correction2D);
             form2D.OnApply += Form2D_OnApply;
             form2D.OnClose += Form2D_OnClose;

@@ -21,8 +21,8 @@ namespace SpiralLab.Sirius
         /// <param name="size"></param>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        [DllImport("kernel32.dll")]
-        public static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
+        [DllImport("kernel32.dll", CharSet=CharSet.Unicode)]
+        internal static extern int GetPrivateProfileString(string section, string key, string def, StringBuilder retVal, int size, string filePath);
         public static T ReadIni<T>(string fileName, string section, string key)
         {
             const int size = 255;
@@ -39,10 +39,10 @@ namespace SpiralLab.Sirius
         /// <param name="val"></param>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        [DllImport("kernel32.dll")]
+        [DllImport("kernel32.dll", CharSet=CharSet.Unicode)]
         public static extern long WritePrivateProfileString(string Section, string key, string val, string filePath);
 
-        public static void WriteIni<T>(string fileName, string section, string key, T value)
+        internal static void WriteIni<T>(string fileName, string section, string key, T value)
         {
             WritePrivateProfileString(section, key, value.ToString(), fileName);
         }

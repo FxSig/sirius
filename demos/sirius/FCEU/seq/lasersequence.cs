@@ -107,8 +107,11 @@ namespace SpiralLab.Sirius.FCEU
             var fullCorrectionFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", ct5FileName);
             this.Fov = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "FOV");
             success &= Rtc.Initialize(kFactor, laserMode, fullCorrectionFilePath);
-            Rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-            Rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            float freqHz = 25 * 1000; //25khz
+            float pw = 1.0f / freqHz * 1.0e6F; //40 usec
+            float pw_20percentage = pw * 0.2f; // 40 * 0.2 = 8usec
+            Rtc.CtlFrequency(freqHz, pw_20percentage); // laser frequency : 25KHz, pulse width : 8 usec 
+            Rtc.CtlSpeed(500, 500); // default jump and mark speed : 100mm/s
             Rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
             Editor.Rtc = Rtc;
             #endregion
@@ -338,17 +341,18 @@ namespace SpiralLab.Sirius.FCEU
                 case Process.SystemTeach:
                     {
                         var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
-                        if (!File.Exists(siriusFileName))
+                        var fullFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, siriusFileName);
+                        if (!File.Exists(fullFilePath))
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark system teach but file doesn't exist : {siriusFileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark system teach but file doesn't exist : {fullFilePath}");
                             return false;
                         }
-                        var doc = DocumentSerializer.OpenSirius(siriusFileName);
+                        var doc = DocumentSerializer.OpenSirius(fullFilePath);
                         if (null == doc)
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {siriusFileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {fullFilePath}");
                             return false;
                         }
 
@@ -375,17 +379,18 @@ namespace SpiralLab.Sirius.FCEU
                 case Process.FieldCorrection:
                     {
                         var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
-                        if (!File.Exists(siriusFileName))
+                        var fullFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, siriusFileName);
+                        if (!File.Exists(fullFilePath))
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {siriusFileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {fullFilePath}");
                             return false;
                         }
-                        var doc = DocumentSerializer.OpenSirius(siriusFileName);
+                        var doc = DocumentSerializer.OpenSirius(fullFilePath);
                         if (null == doc)
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {siriusFileName}");
+                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {fullFilePath}");
                             return false;
                         }
                         var markerArg = new MarkerArgDefault();
