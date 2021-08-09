@@ -50,13 +50,13 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblVisionComm = new System.Windows.Forms.Label();
             this.lblRecipe = new System.Windows.Forms.Label();
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -366,6 +366,16 @@
             this.panMenu.Size = new System.Drawing.Size(1280, 32);
             this.panMenu.TabIndex = 15;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(460, 7);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(180, 16);
+            this.lblStatus.TabIndex = 15;
+            this.lblStatus.Text = "Status: Ready / Busy / Error";
+            // 
             // lblUser
             // 
             this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -432,16 +442,6 @@
             this.panBody.Name = "panBody";
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(460, 7);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(180, 16);
-            this.lblStatus.TabIndex = 15;
-            this.lblStatus.Text = "Status: Ready / Busy / Error";
             // 
             // FormMain
             // 

@@ -69,7 +69,6 @@ namespace SpiralLab.Sirius.FCEU
             }
             this.disposed = true;
         }
-
         public bool Start()
         {
             terminated = true;
@@ -82,7 +81,6 @@ namespace SpiralLab.Sirius.FCEU
             this.thread.Start();
             return true;
         }
-
         public void WorkerThread()
         {
             do
@@ -127,7 +125,6 @@ namespace SpiralLab.Sirius.FCEU
             }
             while (!terminated);
         }
-
         public bool Send(MessageProtocol data)
         {
             if (!this.client.Connected)
@@ -165,7 +162,6 @@ namespace SpiralLab.Sirius.FCEU
                 }
 
                 data = (MessageProtocol)BitConverter.ToInt32(buffer, 0);
-                Logger.Log(Logger.Type.Debug, $"vision comm recv : {data.ToString()} [{(int)data}, 0x{(int)data:X4}]");
                 return true;
             }
             catch (Exception ex)
@@ -183,7 +179,9 @@ namespace SpiralLab.Sirius.FCEU
 
             if (modelChange >= 200 && modelChange <= 399)//비전 관련 명령이므로 무시
                 return true;
-            else if (modelChange >= (int)MessageProtocol.MODEL_LOAD && modelChange < (int)MessageProtocol.MODEL_LOAD_OK)
+
+            Logger.Log(Logger.Type.Debug, $"vision comm recv : {message.ToString()} [{(int)message}, 0x{(int)message:X4}]");
+            if (modelChange >= (int)MessageProtocol.MODEL_LOAD && modelChange < (int)MessageProtocol.MODEL_LOAD_OK)
             {
                 //model change 
                 success &= svc.RecipeChange(modelChange);
@@ -232,6 +230,8 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                         break;
+                    case MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_FINISH_OK:
+                        break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE:
                         {
                             if (svc.ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval))
@@ -248,6 +248,8 @@ namespace SpiralLab.Sirius.FCEU
                                 this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                         }
                         break;
+                    case MessageProtocol.LASER_SCANNER_COMPENSATE_FINISH_OK:
+                        break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_READ:
                         if (svc.ReadScannerFieldCorrection())
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_READ_OK);
@@ -263,12 +265,15 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_NG);
                         break;
-
+                    case MessageProtocol.LASER_SCANNER_REF_01_IMAGE_FINISH_OK:
+                        break;
                     case MessageProtocol.LASER_SCANNER_REF_02_IMAGE:
                         if (seq.Start(LaserSequence.Process.Ref_Left))
                             this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_OK);
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_NG);
+                        break;
+                    case MessageProtocol.LASER_SCANNER_REF_02_IMAGE_FINISH_OK:
                         break;
                     #endregion
 
@@ -318,6 +323,8 @@ namespace SpiralLab.Sirius.FCEU
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_NG);
                         }
                         break;
+                    case MessageProtocol.LASER_READ_HATCHING_01_FINISH_OK:
+                        break;
                     case MessageProtocol.LASER_READ_HATCHING_02:
                         {
                             var defRootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
@@ -332,6 +339,8 @@ namespace SpiralLab.Sirius.FCEU
                             else
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_NG);
                         }
+                        break;
+                    case MessageProtocol.LASER_READ_HATCHING_02_FINISH_OK:
                         break;
                     #endregion
 
@@ -363,6 +372,5 @@ namespace SpiralLab.Sirius.FCEU
             }
             return success;
         }
-    
     }
 }

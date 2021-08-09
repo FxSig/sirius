@@ -27,18 +27,14 @@ namespace SpiralLab.Sirius.FCEU
         public ConcurrentDictionary<ErrEnum, byte> Errors { get; private set; }
         public ConcurrentDictionary<WarnEnum, byte> Warns { get; private set; }
 
-
         public SiriusEditorForm Editor { get; set; }
         public SiriusViewerForm Viewer { get; set; }
-
 
         public bool IsReady { get; private set; }
         public bool IsBusy { get; private set; }
         public bool IsError { get; private set; }
         public bool IsTerminated { get; set; }
-
         public VisionTcpClient VisionComm { get; private set; }
-
         public object Tag { get; set; }
 
         /// <summary>
@@ -76,6 +72,9 @@ namespace SpiralLab.Sirius.FCEU
                 return;
             if (disposing)
             {
+                this.Marker.OnProgress -= Marker_OnProgress;
+                this.Marker.OnFinished -= Marker_OnFinished;
+
                 IsTerminated = true;
                 this.VisionComm?.Dispose();
                 this.VisionComm = null;
@@ -141,6 +140,7 @@ namespace SpiralLab.Sirius.FCEU
             #region 마커 지정 (전용 마커 사용)            
             this.Marker = new MarkerFCEU(0);
             this.Marker.Name = "FCEU Marker";
+            this.Marker.OnProgress += Marker_OnProgress;
             this.Marker.OnFinished += Marker_OnFinished;
             var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
@@ -163,6 +163,12 @@ namespace SpiralLab.Sirius.FCEU
 
             this.Service = new LaserService(this);
             return success;
+        }
+
+        private void Marker_OnProgress(IMarker sender, IMarkerArg markerArg)
+        {
+            this.Viewer.Progress = (int) markerArg.Progress;
+            this.Editor.Progress = (int) markerArg.Progress;
         }
 
         readonly int ErrWarnLimit = 10;
@@ -268,7 +274,7 @@ namespace SpiralLab.Sirius.FCEU
             Warn(WarnEnum.DefectMarkLeft, true);
 
             bool success = true;
-            Thread.Sleep(50);// 안정화 시간?
+            Thread.Sleep(300);// 스테이지 안정화 시간?
             switch (proc)
             {
                 case Process.Defect_Right://right
@@ -279,13 +285,12 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        //var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
-                        //var layer = doc.Layers.NameOf(defLayerRight);
+                        //레퍼런스 레이어 에서 오프셋을 구한다
                         var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
                         var layer = doc.Layers.NameOf(refLayerRight);
                         if (null == layer)
                         {
-                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerRight}");
+                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerRight}");
                             Error(ErrEnum.NoEntitiesToMark);
                             return false;
                         }
@@ -313,14 +318,13 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
-                        //var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
-                        //var layer = doc.Layers.NameOf(defLayerLeft);
+                        //레퍼런스 레이어 에서 오프셋을 구한다
                         var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
                         var layer = doc.Layers.NameOf(refLayerLeft);
                         if (null == layer)
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"target layer is not exist : {refLayerLeft}");
+                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerLeft}");
                             return false;
                         }
                         var br = layer.BoundRect;
@@ -356,7 +360,6 @@ namespace SpiralLab.Sirius.FCEU
                             Logger.Log(Logger.Type.Error, $"try to mark system teach but fail to open : {fullFilePath}");
                             return false;
                         }
-
                         var markerArg = new MarkerArgDefault();
                         markerArg.Rtc = this.Rtc;
                         markerArg.Laser = this.Laser;
@@ -384,14 +387,14 @@ namespace SpiralLab.Sirius.FCEU
                         if (!File.Exists(fullFilePath))
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark  field correction but file doesnt exist : {fullFilePath}");
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner field correction but file doesnt exist : {fullFilePath}");
                             return false;
                         }
                         var doc = DocumentSerializer.OpenSirius(fullFilePath);
                         if (null == doc)
                         {
                             Error(ErrEnum.NoEntitiesToMark);
-                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to open : {fullFilePath}");
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner field correction but fail to open : {fullFilePath}");
                             return false;
                         }
                         var markerArg = new MarkerArgDefault();
@@ -417,12 +420,12 @@ namespace SpiralLab.Sirius.FCEU
                         }
                         if (false == Marker.Ready(markerArg))
                         {
-                            Logger.Log(Logger.Type.Error, $"try to mark field correction but fail to ready");
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner field correction but fail to ready");
                             return false;
                         }
                         this.Warn(WarnEnum.StartingToMark);
                         this.Warn(WarnEnum.ScannerFieldCorrectionToMark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark field correction ");
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark scanner field correction ");
                         success &= Marker.Start();
                     }
                     break;

@@ -23,10 +23,10 @@ namespace SpiralLab.Sirius.FCEU
         public FormEditor()
         {
             InitializeComponent();
-            this.SiriusEditor.OnCorrection2D += SiriusEditor_OnCorrection2D;
 
-            //SiriusEditor.OnDocumentOpen += SiriusEditor_OnDocumentOpen;
-            //SiriusEditor.OnDocumentSave += SiriusEditor_OnDocumentSave;
+            this.SiriusEditor.OnDocumentOpen += SiriusEditor_OnDocumentOpen;
+            this.SiriusEditor.OnDocumentSave += SiriusEditor_OnDocumentSave;
+            this.SiriusEditor.OnCorrection2D += SiriusEditor_OnCorrection2D;
         }
 
         private void SiriusEditor_OnDocumentOpen(object sender)
@@ -37,18 +37,26 @@ namespace SpiralLab.Sirius.FCEU
 
             if (svc.RecipeNo <= 0)
             {
-                //invalid ?
+                var ofd = new OpenFileDialog();
+                ofd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
+                ofd.Title = "Open File";
+                ofd.FileName = string.Empty;
+                ofd.Multiselect = false;
+                ofd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes");
+                DialogResult result = ofd.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    SiriusEditor.OnOpen(ofd.FileName);
+                }
                 return;
             }
 
             var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
             string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
-            if (!File.Exists(recipeFileName))
+            if (File.Exists(recipeFileName))
             {
-                //invalid ?
-                return;
+                SiriusEditor.OnOpen(recipeFileName);
             }
-            SiriusEditor.OnOpen(recipeFileName);
 
             //var ofd = new OpenFileDialog();
             //ofd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
@@ -68,11 +76,11 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
-            //if (svc.RecipeNo <= 0)
-            //{
-            //    //invalid ?
-            //    return;
-            //}
+            if (svc.RecipeNo <= 0)
+            {
+                //invalid ?
+                return;
+            }
 
             //var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
             //string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
@@ -88,7 +96,7 @@ namespace SpiralLab.Sirius.FCEU
                 var sfd = new SaveFileDialog();
                 sfd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
                 sfd.Title = "Save As ...";
-                sfd.FileName = string.Empty;
+                sfd.FileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
                 sfd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}");
                 DialogResult result = sfd.ShowDialog(this);
                 if (result == DialogResult.OK)
@@ -129,57 +137,57 @@ namespace SpiralLab.Sirius.FCEU
         {
             return;
 
+            var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
+            var seq = formMain.Seq;
+            var svc = seq.Service as LaserService;
+
             //example codes
-            //var rtc = this.SiriusEditor.Rtc;
+            var rtc = this.SiriusEditor.Rtc;
 
-            //int rows = 5;
-            //int cols = 5;
-
-            //float interval = 10.0f;
-            //var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, interval, rtc.CorrectionFiles[0], string.Empty);
-            //float left = -interval * (float)(int)(cols / 2);
-            //float top = interval * (float)(int)(rows / 2);
-            //var rand = new Random();
-            //for (int row = 0; row < rows; row++)
-            //{
-            //    for (int col = 0; col < cols; col++)
-            //    {
-            //        correction2D.AddRelative(row, col,
-            //            new Vector2(
-            //                left + col * interval,
-            //                top - row * interval),
-            //            new Vector2(
-            //                rand.Next(20) / 1000.0f - 0.01f,
-            //                rand.Next(20) / 1000.0f - 0.01f)
-            //            );
-            //    }
-            //}
-            //var form2D = new Correction2DForm(correction2D);
-            //form2D.OnApply += Form2D_OnApply;
-            //form2D.ShowDialog(this);
+            int rows = svc.FieldCorrectionRows;
+            int cols = svc.FieldCorrectionCols;
+            float interval = svc.FieldCorrectionInterval;
+            var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, interval, rtc.CorrectionFiles[0], string.Empty);
+            float left = -interval * (float)(int)(cols / 2);
+            float top = interval * (float)(int)(rows / 2);
+            for (int row = 0; row < rows; row++)
+            {
+                for (int col = 0; col < cols; col++)
+                {
+                    correction2D.AddRelative(row, col,
+                        new Vector2(
+                            left + col * interval,
+                            top - row * interval),
+                         Vector2.Zero
+                        );
+                }
+            }
+            var form2D = new Correction2DForm(correction2D);
+            form2D.OnApply += Form2D_OnApply;
+            form2D.ShowDialog(this);
         }
 
-        //private void Form2D_OnApply(object sender, EventArgs e)
-        //{
-        //    var form = sender as Correction2DForm;
-        //    string ct5FileName = form.RtcCorrection.TargetCorrectionFile;
-        //    if (!File.Exists(ct5FileName))
-        //        return;
-        //    var mb = new MessageBoxYesNo();
-        //    if (DialogResult.Yes != mb.ShowDialog("Warning !", "Do you really want to apply new correction file ?"))
-        //        return;
-        //    var rtc = this.SiriusEditor.Rtc;
-        //    bool success = true;
-        //    success = rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ct5FileName);
-        //    success = rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
-        //    if (success)
-        //    {
-        //        //update ini file
-        //        var iniFileName = FormMain.ConfigFileName;
-        //        NativeMethods.WriteIni<string>(iniFileName, $"RTC", "CORRECTION", Path.GetFileName(ct5FileName));
-        //        var mb2 = new MessageBoxOk();
-        //        mb2.ShowDialog("Correction", $"Correction file has changed to {iniFileName}");
-        //    }
-        //}
+        private void Form2D_OnApply(object sender, EventArgs e)
+        {
+            var form = sender as Correction2DForm;
+            string ct5FileName = form.RtcCorrection.TargetCorrectionFile;
+            if (!File.Exists(ct5FileName))
+                return;
+            var mb = new MessageBoxYesNo();
+            if (DialogResult.Yes != mb.ShowDialog("Warning !", "Do you really want to apply new correction file ?"))
+                return;
+            var rtc = this.SiriusEditor.Rtc;
+            bool success = true;
+            success = rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ct5FileName);
+            success = rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
+            if (success)
+            {
+                //update ini file
+                var iniFileName = FormMain.ConfigFileName;
+                NativeMethods.WriteIni<string>(iniFileName, $"RTC", "CORRECTION", Path.GetFileName(ct5FileName));
+                var mb2 = new MessageBoxOk();
+                mb2.ShowDialog("Correction", $"Correction file has changed to {iniFileName}");
+            }
+        }
     }
 }

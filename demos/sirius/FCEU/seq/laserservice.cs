@@ -148,7 +148,6 @@ namespace SpiralLab.Sirius.FCEU
             }));
             return success;
         }
-
         public bool ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval)
         {
             rows = cols = 0;
@@ -178,9 +177,13 @@ namespace SpiralLab.Sirius.FCEU
                         continue;
                     if (line.StartsWith(";"))
                         continue;
-                    
                     //3,5,2,2
                     string[] tokens = line.Split(new char[] { ',', ';' });
+                    if (4 != tokens.Length)
+                    {
+                        Logger.Log(Logger.Type.Error, $"invalid file format: {line} at {fileFullPath}");
+                        return false;
+                    }
                     rows = int.Parse(tokens[0]) ;
                     cols = int.Parse(tokens[1]);
                     interval = float.Parse(tokens[2]);
@@ -189,7 +192,6 @@ namespace SpiralLab.Sirius.FCEU
             }
             return false;
         }
-
         public bool ReadScannerFieldCorrection(string fileFullPath = "")
         {
             if (seq.isFieldCorrecting)
@@ -234,12 +236,15 @@ namespace SpiralLab.Sirius.FCEU
                         continue;
                     
                     string[] tokens = line.Split(new char[] { ',', ';' });
-                    if (tokens.Length <= 3)
-                        continue;
+                    if (3 != tokens.Length)
+                    {
+                        Logger.Log(Logger.Type.Error, $"invalid file format: {line} at {fileFullPath}");
+                        return false;
+                    }
                     //[0], x, y
                     //int no = int.Parse(tokens[0]); 
-                    float dx = int.Parse(tokens[1]);
-                    float dy = int.Parse(tokens[2]);
+                    float dx = float.Parse(tokens[1]);
+                    float dy = float.Parse(tokens[2]);
                     list.Add(new Vector2(dx, dy));
                 }
             }
@@ -261,7 +266,7 @@ namespace SpiralLab.Sirius.FCEU
                 {
                     correction2D.AddRelative(row, col,
                         new Vector2(left + col * interval, top - row * interval),
-                        Vector2.Negate(list[index]) // xy 비전 좌표값 반전
+                        new Vector2(-list[index].X, -list[index].Y) // xy 비전 좌표값 반전
                         );
                     index++;
                 }

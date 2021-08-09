@@ -21,7 +21,6 @@ namespace SpiralLab.Sirius.FCEU
         public FormEditor FormEditor { get; private set; }
         public FormSetup FormSetup { get; private set; }
         public FormHistory FormHistory { get; private set; }
-
         System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();      
 
         public FormMain()
@@ -57,7 +56,6 @@ namespace SpiralLab.Sirius.FCEU
             //e.DrawFocusRectangle();
             lsbErrWarn.ResumeLayout();
         }
-
         private void FormMain_Load(object sender, EventArgs e)
         {
             for (int i = 0; i < 20; i++)
@@ -79,7 +77,6 @@ namespace SpiralLab.Sirius.FCEU
             Seq.Editor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
             return this.Seq.Initialize();
         }
-
         private void Logger_OnLogged(Logger.Type type, string message)
         {
             Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
@@ -87,7 +84,6 @@ namespace SpiralLab.Sirius.FCEU
                 this.FormHistory.Log(type, message);
             }));
         }
-
         private void SiriusEditorForm_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트
@@ -138,6 +134,7 @@ namespace SpiralLab.Sirius.FCEU
             }
         }
         #endregion
+
         #region 폼 외곽에 Drop Shadow 효과
         protected override CreateParams CreateParams
         {
@@ -150,6 +147,7 @@ namespace SpiralLab.Sirius.FCEU
             }
         }
         #endregion
+
         #region 폼 화면 전환
         public void SwitchForm(Panel destination, Form target)
         {
@@ -177,11 +175,11 @@ namespace SpiralLab.Sirius.FCEU
             Logger.Log(Logger.Type.Debug, $"main screen switched to {target.Text}");
         } 
         #endregion
+
         private void btnAuto_Click(object sender, EventArgs e)
         {
             this.SwitchForm(this.panBody, this.FormAuto);            
         }
-
         private void btnRecipe_Click(object sender, EventArgs e)
         {
             this.SwitchForm(this.panBody, this.FormRecipe);
@@ -305,7 +303,6 @@ namespace SpiralLab.Sirius.FCEU
 
             lblStatus.Text = $"Status: {ready} / {busy} / {error}";
         }
-
         private void panTop_DoubleClick(object sender, EventArgs e)
         {
             switch (this.WindowState)
@@ -354,7 +351,6 @@ namespace SpiralLab.Sirius.FCEU
                 Seq.Stop();
             }
         }
-
         private void lblUser_Click(object sender, EventArgs e)
         {
             var form = new FormUser();
@@ -364,11 +360,9 @@ namespace SpiralLab.Sirius.FCEU
         {
             lblUser.Text = $"User: [{User.Level.ToString()}] {User.Name}";
         }
-
         private void User_OnLoggedIn(UserLevel level)
         {
             lblUser.Text = $"User: [{User.Level.ToString()}] {User.Name}";
         }
-
     }
 }
