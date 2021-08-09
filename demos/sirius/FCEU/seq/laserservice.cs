@@ -325,9 +325,6 @@ namespace SpiralLab.Sirius.FCEU
         /// <returns></returns>
         public bool PrepareDefectInEditor(int index, Group group)
         {
-            // 오토 화면 
-            //if (this.formMain.FormCurrent != this.formMain.FormAuto)
-            //    return false;
             if (seq.IsBusy)
             {
                 Logger.Log(Logger.Type.Error, $"trying to prepare defect data into editor but busy");
@@ -491,7 +488,7 @@ namespace SpiralLab.Sirius.FCEU
             bool isHatchable = false;
             HatchMode hatchMode = HatchMode.Line;
             float hatchAngle = 90;
-            float hatch2Angle = 90;
+            float hatch2Angle = 0;
             float hatchInterval = 0.1f;
             float hatchExclude = 0;
 
@@ -520,6 +517,7 @@ namespace SpiralLab.Sirius.FCEU
             group.Name = $"Defects";
             group.IsEnableFastRendering = true;
             group.IsHitTest = false; //선택 않되도록
+            group.Align = Alignment.Center;
             int counts = 0;
             seq.Warn(WarnEnum.VisionDataOpening);
             try
@@ -545,13 +543,15 @@ namespace SpiralLab.Sirius.FCEU
                         else if (line.StartsWith("POLYLINE_END"))
                         {
                             Debug.Assert(null != polyline);
-                            Debug.Assert(polyline.Count >= 3);
-                            polyline.IsClosed = true;
-                            polyline.HatchMode = hatchMode;
-                            polyline.IsHatchable = isHatchable;
-                            polyline.HatchAngle = hatchAngle;
-                            polyline.HatchInterval = hatchInterval;
-                            polyline.HatchExclude = hatchExclude;
+                            if (polyline.Count >= 3)
+                            {
+                                polyline.IsClosed = true;
+                                polyline.HatchMode = hatchMode;
+                                polyline.IsHatchable = isHatchable;
+                                polyline.HatchAngle = hatchAngle;
+                                polyline.HatchInterval = hatchInterval;
+                                polyline.HatchExclude = hatchExclude;
+                            }
                             polyline.Regen();
                             group.Add(polyline);
 
@@ -596,6 +596,40 @@ namespace SpiralLab.Sirius.FCEU
                     //{
                     //    return e1.BoundRect.Center.X.CompareTo(e2.BoundRect.Center.X);
                     //});
+                    switch (index)
+                    {
+                        case 1: //right
+                            {
+                                var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                                var layer = doc.Layers.NameOf(refLayerRight);
+                                if (null == layer)
+                                {
+                                    Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerRight}");
+                                }
+                                else
+                                {
+                                    var br = layer.BoundRect;
+                                    group.Transit(br.Center);
+                                }
+                            }
+                            break;
+                        case 2: //left
+                            {
+                                var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
+                                var layer = doc.Layers.NameOf(refLayerLeft);
+                                if (null == layer)
+                                {
+                                    Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerLeft}");
+                                }
+                                else
+                                {
+                                    var br = layer.BoundRect;
+                                    group.Transit(br.Center);
+                                }
+                            }
+                            break;                             
+                    }
+                    //
                     seq.Warn(WarnEnum.VisionDataOpening, true);
                 }
                 Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
