@@ -122,6 +122,7 @@ namespace SpiralLab.Sirius.FCEU
                     Application.DoEvents();
                     seq.Editor.Document = doc; //updated !
                     seq.Editor.FileName = recipeFileName;
+                    seq.Viewer.FileName = recipeFileName;
                     //Viewer.Document = doc; ÀÚµ¿ !
                     Application.DoEvents();
                     Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()

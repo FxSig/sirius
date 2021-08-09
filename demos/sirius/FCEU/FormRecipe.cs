@@ -205,7 +205,9 @@ namespace SpiralLab.Sirius.FCEU
             {
                 var mb = new MessageBoxOk();
                 if (success)
+                {
                     mb.ShowDialog("Recipe", $"Success to change recipe by [{this.index}]: {this.name} ", 10);
+                }
                 else
                     mb.ShowDialog("Recipe", $"Fail to change recipe by [{this.index}]: {this.name} ", 10);
             }

@@ -46,7 +46,16 @@ namespace SpiralLab.Sirius.FCEU
                 DialogResult result = ofd.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
-                    SiriusEditor.OnOpen(ofd.FileName);
+                    if (SiriusEditor.OnOpen(ofd.FileName))
+                    {
+                        var mb2 = new MessageBoxOk();
+                        mb2.ShowDialog("Open File", $"Success to open file : {ofd.FileName}");
+                    }
+                    else
+                    {
+                        var mb2 = new MessageBoxOk();
+                        mb2.ShowDialog("Open File", $"Fail to open file : {ofd.FileName}");
+                    }
                 }
                 return;
             }
@@ -55,7 +64,16 @@ namespace SpiralLab.Sirius.FCEU
             string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
             if (File.Exists(recipeFileName))
             {
-                SiriusEditor.OnOpen(recipeFileName);
+                if (SiriusEditor.OnOpen(recipeFileName))
+                {
+                    var mb2 = new MessageBoxOk();
+                    mb2.ShowDialog("Open File", $"Success to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}", 10);
+                }
+                else
+                {
+                    var mb2 = new MessageBoxOk();
+                    mb2.ShowDialog("Open File", $"Fail to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}");
+                }
             }
 
             //var ofd = new OpenFileDialog();
@@ -79,6 +97,7 @@ namespace SpiralLab.Sirius.FCEU
             if (svc.RecipeNo <= 0)
             {
                 //invalid ?
+                SiriusEditor.OnSave("");
                 return;
             }
 
@@ -104,12 +123,12 @@ namespace SpiralLab.Sirius.FCEU
                     if (true == SiriusEditor.OnSaveAs(sfd.FileName))
                     {
                         var mb = new MessageBoxOk();
-                        mb.ShowDialog("Document Save", $"Success to save : {SiriusEditor.FileName}", 10);
+                        mb.ShowDialog("Document Save", $"Success to save file : {sfd.FileName}", 10);
                     }
                     else
                     {
                         var mb = new MessageBoxOk();
-                        mb.ShowDialog("Document Save", $"Fail to save : {SiriusEditor.FileName}", 10);
+                        mb.ShowDialog("Document Save", $"Fail to save file : {sfd.FileName}");
                     }
                 }
             }
@@ -117,18 +136,18 @@ namespace SpiralLab.Sirius.FCEU
             {
                 {
                     var mb = new MessageBoxYesNo();
-                    if (DialogResult.Yes != mb.ShowDialog("Warning !", $"Do you really want to save as {SiriusEditor.FileName} ?"))
+                    if (DialogResult.Yes != mb.ShowDialog("Warning !", $"Do you really want to save [{svc.RecipeNo}] {svc.RecipeName} at {SiriusEditor.FileName} ?"))
                         return;
                 }
                 if (true == SiriusEditor.OnSave(SiriusEditor.FileName))
                 {
                     var mb = new MessageBoxOk();
-                    mb.ShowDialog("Document Save", $"Success to save : {SiriusEditor.FileName}", 10);
+                    mb.ShowDialog("Document Save", $"Success to save [{svc.RecipeNo}] {svc.RecipeName}", 10);
                 }
                 else
                 {
                     var mb = new MessageBoxOk();
-                    mb.ShowDialog("Document Save", $"Fail to save : {SiriusEditor.FileName}", 10);
+                    mb.ShowDialog("Document Save", $"Fail to save [{svc.RecipeNo}] {svc.RecipeName}");
                 }
             }
         }
