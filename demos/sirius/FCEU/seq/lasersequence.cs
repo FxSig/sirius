@@ -167,8 +167,11 @@ namespace SpiralLab.Sirius.FCEU
 
         private void Marker_OnProgress(IMarker sender, IMarkerArg markerArg)
         {
-            this.Viewer.Progress = (int) markerArg.Progress;
-            this.Editor.Progress = (int) markerArg.Progress;
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
+            {
+                this.Viewer.Progress = (int)markerArg.Progress;
+                this.Editor.Progress = (int)markerArg.Progress;
+            }));
         }
 
         readonly int ErrWarnLimit = 10;
