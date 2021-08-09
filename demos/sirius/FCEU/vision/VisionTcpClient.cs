@@ -180,10 +180,10 @@ namespace SpiralLab.Sirius.FCEU
             var seq = this.formMain.Seq;
             var svc = seq.Service as LaserService;
             int modelChange = (int)message;
+
             if (modelChange >= 200 && modelChange <= 399)//비전 관련 명령이므로 무시
                 return true;
-
-            if (modelChange >= (int)MessageProtocol.MODEL_LOAD && modelChange < (int)MessageProtocol.MODEL_LOAD_OK)
+            else if (modelChange >= (int)MessageProtocol.MODEL_LOAD && modelChange < (int)MessageProtocol.MODEL_LOAD_OK)
             {
                 //model change 
                 success &= svc.RecipeChange(modelChange);
@@ -232,79 +232,22 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                         break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_3X3:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 3;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 2;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
+                    case MessageProtocol.LASER_SCANNER_COMPENSATE:
+                        {
+                            if (svc.ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval))
+                            {
+                                svc.FieldCorrectionRows = rows;
+                                svc.FieldCorrectionCols = cols;
+                                svc.FieldCorrectionInterval = interval;
+                                if (seq.Start(LaserSequence.Process.FieldCorrection))
+                                    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
+                                else
+                                    this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
+                            }
+                            else
+                                this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
+                        }
                         break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_5X5:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 5;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 4;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_7X7:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 7;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 6;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_9X9:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 9;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 8;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_11X11:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 11;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 10;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_13X13:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 13;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 12;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_15X15:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 15;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 14;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-                    case MessageProtocol.LASER_SCANNER_COMPENSATE_17X17:
-                        svc.FieldCorrectionRows = svc.FieldCorrectionCols = 17;
-                        //특정 파일에서 간격을 읽어서 ?
-                        svc.FieldCorrectionInterval = seq.Fov / 16;
-                        if (seq.Start(LaserSequence.Process.FieldCorrection))
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
-                        else
-                            this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
-                        break;
-
                     case MessageProtocol.LASER_SCANNER_COMPENSATE_READ:
                         if (svc.ReadScannerFieldCorrection())
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_READ_OK);
@@ -420,5 +363,6 @@ namespace SpiralLab.Sirius.FCEU
             }
             return success;
         }
+    
     }
 }

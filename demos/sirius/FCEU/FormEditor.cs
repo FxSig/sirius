@@ -89,26 +89,39 @@ namespace SpiralLab.Sirius.FCEU
                 sfd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
                 sfd.Title = "Save As ...";
                 sfd.FileName = string.Empty;
+                sfd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}");
                 DialogResult result = sfd.ShowDialog(this);
                 if (result == DialogResult.OK)
                 {
                     if (true == SiriusEditor.OnSaveAs(sfd.FileName))
                     {
-                        MessageBox.Show($"Success to save : {SiriusEditor.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        var mb = new MessageBoxOk();
+                        mb.ShowDialog("Document Save", $"Success to save : {SiriusEditor.FileName}", 10);
                     }
                     else
                     {
-                        MessageBox.Show($"Fail to save : {SiriusEditor.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var mb = new MessageBoxOk();
+                        mb.ShowDialog("Document Save", $"Fail to save : {SiriusEditor.FileName}", 10);
                     }
                 }
             }
-            else if (true == SiriusEditor.OnSave(SiriusEditor.FileName))
-            {
-                MessageBox.Show($"Success to save : {SiriusEditor.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             else
             {
-                MessageBox.Show($"Fail to save : {SiriusEditor.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                {
+                    var mb = new MessageBoxYesNo();
+                    if (DialogResult.Yes != mb.ShowDialog("Warning !", $"Do you really want to save as {SiriusEditor.FileName} ?"))
+                        return;
+                }
+                if (true == SiriusEditor.OnSave(SiriusEditor.FileName))
+                {
+                    var mb = new MessageBoxOk();
+                    mb.ShowDialog("Document Save", $"Success to save : {SiriusEditor.FileName}", 10);
+                }
+                else
+                {
+                    var mb = new MessageBoxOk();
+                    mb.ShowDialog("Document Save", $"Fail to save : {SiriusEditor.FileName}", 10);
+                }
             }
         }
 

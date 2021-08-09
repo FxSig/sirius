@@ -70,6 +70,7 @@ namespace SpiralLab.Sirius.FCEU
             var dlg = new OpenFileDialog();
             dlg.Filter = "scanner correction data file (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Scanner Correction Data File";
+            dlg.InitialDirectory = fullFilePath;
             dlg.FileName = Path.Combine(fullFilePath, $"scanner_calibration_{svc.FieldCorrectionRows}v{ svc.FieldCorrectionCols}.txt");
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
@@ -88,6 +89,7 @@ namespace SpiralLab.Sirius.FCEU
             var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_02.txt");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
+            dlg.InitialDirectory = defRoot;
             dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Vision Defect File ...";
             DialogResult result = dlg.ShowDialog();
@@ -148,6 +150,7 @@ namespace SpiralLab.Sirius.FCEU
             var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_01.txt");
             var dlg = new OpenFileDialog();
             dlg.FileName = defFile;
+            dlg.InitialDirectory = defRoot;
             dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Vision Defect File ...";
             DialogResult result = dlg.ShowDialog();

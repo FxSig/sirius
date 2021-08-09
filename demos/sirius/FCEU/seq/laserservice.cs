@@ -148,6 +148,48 @@ namespace SpiralLab.Sirius.FCEU
             }));
             return success;
         }
+
+        public bool ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval)
+        {
+            rows = cols = 0;
+            interval = 0;
+            if (seq.isFieldCorrecting)
+            {
+                seq.Error(ErrEnum.VisionFieldCorrectionOpen);
+                Logger.Log(Logger.Type.Error, $"another field correction form is activating");
+                return false;
+            }
+            string rootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "CORRECTION");
+            string fileFullPath = Path.Combine(rootPath, $"scanner_matrix_gap_data.txt");
+            if (false == File.Exists(fileFullPath))
+            {
+                seq.Error(ErrEnum.VisionFieldCorrectionOpen);
+                Logger.Log(Logger.Type.Error, $"try to open field correction file interval but failed : {fileFullPath}");
+                return false;
+            }
+
+            string line = string.Empty;
+            using (var stream = new StreamReader(fileFullPath))
+            {
+                while (!stream.EndOfStream)
+                {
+                    line = stream.ReadLine();
+                    if (string.IsNullOrEmpty(line))
+                        continue;
+                    if (line.StartsWith(";"))
+                        continue;
+                    
+                    //3,5,2,2
+                    string[] tokens = line.Split(new char[] { ',', ';' });
+                    rows = int.Parse(tokens[0]) ;
+                    cols = int.Parse(tokens[1]);
+                    interval = float.Parse(tokens[2]);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         public bool ReadScannerFieldCorrection(string fileFullPath = "")
         {
             if (seq.isFieldCorrecting)
@@ -161,7 +203,7 @@ namespace SpiralLab.Sirius.FCEU
             {
                 string rootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "CORRECTION");
                 //scanner_calibration_5v5.txt
-                fileFullPath = Path.Combine(rootPath, $"scanner_calibration_{this.FieldCorrectionRows}v{ this.FieldCorrectionCols}.txt");
+                fileFullPath = Path.Combine(rootPath, $"scanner_calibration_{this.FieldCorrectionRows}v{this.FieldCorrectionCols}.txt");
             }
             if (false == File.Exists(fileFullPath))
             {
@@ -172,20 +214,14 @@ namespace SpiralLab.Sirius.FCEU
 
             int rows = this.FieldCorrectionRows;
             int cols = this.FieldCorrectionCols;
-            float interval = 10;// not yet define yet
+            float interval = this.FieldCorrectionInterval;
             string sourceFile = seq.Rtc.CorrectionFiles[0];
             string targetFile = string.Empty;
             var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, sourceFile, targetFile);
             float left = -interval * (float)(int)(cols / 2);
             float top = interval * (float)(int)(rows / 2);
-
-            // data read !!
-            // format ?
-            //
-            //
-            //svc.FieldCorrectionInterval;
+            
             string line = string.Empty;
-            bool isIntervalHasRead = false;
             var list = new List<Vector2>(rows * cols);
             using (var stream = new StreamReader(fileFullPath))
             {
@@ -196,17 +232,12 @@ namespace SpiralLab.Sirius.FCEU
                         continue;
                     if (line.StartsWith(";"))
                         continue;
-                    if (!isIntervalHasRead)
-                    {
-                        this.FieldCorrectionInterval = float.Parse(line);
-                        interval = this.FieldCorrectionInterval;
-                        isIntervalHasRead = true;
-                    }
-                    string[] tokens = line.Split(new char[] { ',', ';'});
+                    
+                    string[] tokens = line.Split(new char[] { ',', ';' });
                     if (tokens.Length <= 3)
                         continue;
-
-                    int no = int.Parse(tokens[0]);
+                    //[0], x, y
+                    //int no = int.Parse(tokens[0]); 
                     float dx = int.Parse(tokens[1]);
                     float dy = int.Parse(tokens[2]);
                     list.Add(new Vector2(dx, dy));

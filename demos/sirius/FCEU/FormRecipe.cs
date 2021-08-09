@@ -22,6 +22,7 @@ namespace SpiralLab.Sirius.FCEU
 
             this.VisibleChanged += FormRecipe_VisibleChanged;
             dgvRecipe.CellClick += DgvRecipe_CellClick;
+            //dgvRecipe.KeyDown += DgvRecipe_KeyDown;
 
             this.siriusViewerForm1.Document = new DocumentDefault();
         }
@@ -83,18 +84,33 @@ namespace SpiralLab.Sirius.FCEU
                 form.Close();
             }
         }
+
+        private void DgvRecipe_KeyDown(object sender, KeyEventArgs e)
+        {
+            //if (dgvRecipe.CurrentCell.ColumnIndex != 1)
+            //    return;
+            //e.Handled = true;
+            //DataGridViewCell cell = dgvRecipe.Rows[dgvRecipe.CurrentCell.RowIndex].Cells[dgvRecipe.CurrentCell.ColumnIndex];
+            //dgvRecipe.CurrentCell = cell;
+            //dgvRecipe.BeginEdit(true);
+            //dgvRecipe.CellEndEdit += DgvRecipe_CellEndEdit;
+        }
+
+        private void DgvRecipe_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            //if (e.RowIndex < 0)
+            //    return;
+            //if (e.ColumnIndex != 1)
+            //    return;
+            //DataGridViewCell cell = dgvRecipe.Rows[e.RowIndex].Cells[e.ColumnIndex];
+            //var index = int.Parse(dgvRecipe.Rows[e.RowIndex].Cells[0].Value.ToString());
+            //NativeMethods.WriteIni<string>(FormMain.ConfigFileName, $"RECIPE", $"{index}", cell.Value.ToString());
+
+            //dgvRecipe.CellEndEdit -= DgvRecipe_CellEndEdit;
+        }
+
         public List<string> GetList()
         {
-            //string dirName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes");
-            //string[] dirs = Directory.GetDirectories(dirName, "*.*", SearchOption.TopDirectoryOnly);
-            //List<string> names = new List<string>(dirs.Length);
-            //foreach (var d in dirs)
-            //{
-            //    var dir = new DirectoryInfo(d);
-            //    names.Add(dir.Name);
-            //}
-            //return names;
-
             var list = new List<string>();
             string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "recipe.ini");
             var count = NativeMethods.ReadIni<int>(fileName, $"RECIPE", "COUNT");

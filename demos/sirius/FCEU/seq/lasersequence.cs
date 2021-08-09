@@ -592,38 +592,56 @@ namespace SpiralLab.Sirius.FCEU
             switch ((SpiralLab.Sirius.FCEU.LaserSequence.Process)marker.Tag)
             {
                 case Process.SystemTeach:
-                    if (markerArg.IsSuccess) 
+                    if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_FINISH);
+                        this.Warn(WarnEnum.SystemTeachToMark, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_SYSTEM_TEACH_NG);
                     break;
                 case Process.FieldCorrection:
                     if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_FINISH);
+                        this.Warn(WarnEnum.ScannerFieldCorrectionToMark, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
                     break;
                 case Process.Ref_Right:
                     if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_FINISH);
+                        this.Warn(WarnEnum.ReferenceMarkRight, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_01_IMAGE_NG);
                     break;
                 case Process.Ref_Left:
                     if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_FINISH);
+                        this.Warn(WarnEnum.ReferenceMarkLeft, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_REF_02_IMAGE_NG);
                     break;
                 case Process.Defect_Right:
                     if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.DO_HATCHING_01_FINISH);
+                        this.Warn(WarnEnum.DefectMarkRight, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.DO_HATCHING_01_START_NG);
                     break;
                 case Process.Defect_Left:
                     if (markerArg.IsSuccess)
+                    {
                         VisionComm.Send(MessageProtocol.DO_HATCHING_02_FINISH);
+                        this.Warn(WarnEnum.DefectMarkLeft, true);
+                    }
                     else
                         VisionComm.Send(MessageProtocol.DO_HATCHING_02_START_NG);
                     break;                

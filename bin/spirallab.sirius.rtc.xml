@@ -710,9 +710,100 @@
             <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
+        <member name="T:SpiralLab.Sirius.IPoweMap">
+            <summary>
+            IPoweMap 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPoweMap.Index">
+            <summary>
+            식별자 (0, 1, 2, ...)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPoweMap.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPoweMap.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMeterVirtual">
+            <summary>
+            PowerMeterVirtual 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnMeasured">
+            <summary>
+            파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Index">
+            <summary>
+            파워메터 식별자 (0, 1, 2, ...)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Period">
+            <summary>
+            샘플링 주기 시간(msec)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Dispose">
+            <summary>
+            자원 해제 - IDisposable 인터페이스 구현
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Initialize">
+            <summary>
+            장치및 통신 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start">
+            <summary>
+            데이타 수집 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Stop">
+            <summary>
+            데이타 수집 종료
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Clear">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Size">
+            <summary>
+            수집된 데이타 개수
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMeasured">
+            <summary>
+            스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
+            </summary>
+            <param name="sender">IPowerMeter 인터페이스</param>
+            <param name="watt">측정값 (Watt)</param>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerMeter">
             <summary>
             PowerMeter 인터페이스
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMeter.OnMeasured">
+            <summary>
+            파워 측정 이벤트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.Index">
@@ -723,6 +814,11 @@
         <member name="P:SpiralLab.Sirius.IPowerMeter.Name">
             <summary>
             이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.Initialize">
