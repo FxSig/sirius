@@ -41,9 +41,11 @@ namespace SpiralLab.Sirius.FCEU
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(203, 42);
+            this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(203, 47);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(555, 190);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = resources.GetString("textBox1.Text");
@@ -66,7 +68,7 @@ namespace SpiralLab.Sirius.FCEU
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(525, 19);
             this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Recipe Helper";
+            this.lblTitle.Text = "Recipe 내부의 레이어 디자인 구조";
             // 
             // panel1
             // 
@@ -79,8 +81,8 @@ namespace SpiralLab.Sirius.FCEU
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SpiralLab.Sirius.Properties.Resources.recipehelp;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 42);
+            this.pictureBox1.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.recipehelp;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 47);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(189, 190);
             this.pictureBox1.TabIndex = 0;

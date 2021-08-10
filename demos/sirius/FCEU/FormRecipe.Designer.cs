@@ -52,7 +52,7 @@
             this.btnRecipeChange.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnRecipeChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecipeChange.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecipeChange.Image = global::SpiralLab.Sirius.Properties.Resources.clone_24px;
+            this.btnRecipeChange.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.clone_24px;
             this.btnRecipeChange.Location = new System.Drawing.Point(244, 689);
             this.btnRecipeChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRecipeChange.Name = "btnRecipeChange";
@@ -146,7 +146,7 @@
             this.btnCopy.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopy.Image = global::SpiralLab.Sirius.Properties.Resources.database_export_24px;
+            this.btnCopy.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.database_export_24px;
             this.btnCopy.Location = new System.Drawing.Point(13, 689);
             this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCopy.Name = "btnCopy";

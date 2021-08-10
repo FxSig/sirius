@@ -49,7 +49,7 @@ namespace SpiralLab.Sirius.FCEU
             if (e.RowIndex < 0)
                 return;
             this.recipeSrcNo = int.Parse(dgvRecipeSrc.Rows[e.RowIndex].Cells[0].Value.ToString());
-            this.recipeSrc = dgvRecipeSrc.Rows[e.RowIndex].Cells[1].Value.ToString();
+            this.recipeSrc = dgvRecipeSrc.Rows[e.RowIndex].Cells[1].Value?.ToString();
             txtTargetRecipeName.Text = this.recipeSrc + " Copy";
         }
         private void DgvRecipeTarget_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -57,7 +57,7 @@ namespace SpiralLab.Sirius.FCEU
             if (e.RowIndex < 0)
                 return;
             this.recipeTargetNo = int.Parse(dgvRecipeTarget.Rows[e.RowIndex].Cells[0].Value.ToString());
-            this.recipeTarget = dgvRecipeTarget.Rows[e.RowIndex].Cells[1].Value.ToString();
+            this.recipeTarget = dgvRecipeTarget.Rows[e.RowIndex].Cells[1].Value?.ToString();
         }
 
         private void UpdateRecipeDir()
@@ -73,6 +73,7 @@ namespace SpiralLab.Sirius.FCEU
                 rowIndex.Cells[1].Value = recipes[i];
             }
             dgvRecipeSrc.ResumeLayout();
+            dgvRecipeSrc.ClearSelection();
 
             dgvRecipeTarget.SuspendLayout();
             dgvRecipeTarget.Rows.Clear();
@@ -84,6 +85,7 @@ namespace SpiralLab.Sirius.FCEU
                 rowIndex.Cells[1].Value = recipes[i];
             }
             dgvRecipeTarget.ResumeLayout();
+            dgvRecipeTarget.ClearSelection();
         }
 
         private void btnCopyRecipe_Click(object sender, EventArgs e)

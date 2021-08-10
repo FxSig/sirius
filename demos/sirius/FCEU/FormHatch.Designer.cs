@@ -106,7 +106,7 @@ namespace SpiralLab.Sirius.FCEU
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::SpiralLab.Sirius.Properties.Resources.cross;
+            this.pictureBox3.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.cross;
             this.pictureBox3.Location = new System.Drawing.Point(515, 21);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(24, 24);
@@ -116,7 +116,7 @@ namespace SpiralLab.Sirius.FCEU
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::SpiralLab.Sirius.Properties.Resources.single;
+            this.pictureBox2.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.single;
             this.pictureBox2.Location = new System.Drawing.Point(389, 21);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(24, 24);
@@ -180,7 +180,7 @@ namespace SpiralLab.Sirius.FCEU
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SpiralLab.Sirius.Properties.Resources.hatch;
+            this.pictureBox1.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.hatch;
             this.pictureBox1.Location = new System.Drawing.Point(17, 21);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(313, 267);

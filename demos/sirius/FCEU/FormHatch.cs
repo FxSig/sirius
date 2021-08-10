@@ -63,10 +63,14 @@ namespace SpiralLab.Sirius.FCEU
                     case SpiralLab.Sirius.HatchMode.Line:
                         rdbSingle.Checked = true;
                         rdbCross.Checked = false;
+                        txtAngle1.Enabled = true;
+                        txtAngle2.Enabled = false;
                         break;
                     case SpiralLab.Sirius.HatchMode.CrossLine:
                         rdbSingle.Checked = false;
                         rdbCross.Checked = true;
+                        txtAngle1.Enabled = true;
+                        txtAngle2.Enabled = true;
                         break;
                 }    
             }

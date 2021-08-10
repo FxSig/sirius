@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>SpiralLab.Sirius</RootNamespace>
+    <RootNamespace>SpiralLab.Sirius.Demo</RootNamespace>
     <AssemblyName>sirius</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
