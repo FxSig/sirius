@@ -124,7 +124,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Spirallab.Sirius.Properties.Resources.customer_100px;
+            this.pictureBox1.Image = global::SpiralLab.Sirius.Properties.Resources.customer_100px;
             this.pictureBox1.Location = new System.Drawing.Point(12, 43);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(100, 100);

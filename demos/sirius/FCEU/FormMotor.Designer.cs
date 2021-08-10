@@ -275,7 +275,7 @@
             this.btnServo.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnServo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnServo.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnServo.Image = global::Spirallab.Sirius.Properties.Resources.sync_settings_24px;
+            this.btnServo.Image = global::SpiralLab.Sirius.Properties.Resources.sync_settings_24px;
             this.btnServo.Location = new System.Drawing.Point(161, 5);
             this.btnServo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnServo.Name = "btnServo";
@@ -297,7 +297,7 @@
             this.btnMotorStop.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMotorStop.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMotorStop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnMotorStop.Image = global::Spirallab.Sirius.Properties.Resources.stop_30px;
+            this.btnMotorStop.Image = global::SpiralLab.Sirius.Properties.Resources.stop_30px;
             this.btnMotorStop.Location = new System.Drawing.Point(538, 6);
             this.btnMotorStop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMotorStop.Name = "btnMotorStop";
@@ -317,7 +317,7 @@
             this.btnJog.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnJog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnJog.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnJog.Image = global::Spirallab.Sirius.Properties.Resources.step_out_24px;
+            this.btnJog.Image = global::SpiralLab.Sirius.Properties.Resources.step_out_24px;
             this.btnJog.Location = new System.Drawing.Point(13, 6);
             this.btnJog.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnJog.Name = "btnJog";
@@ -338,7 +338,7 @@
             this.btnMotorReset.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnMotorReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMotorReset.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMotorReset.Image = global::Spirallab.Sirius.Properties.Resources.synchronize_24px;
+            this.btnMotorReset.Image = global::SpiralLab.Sirius.Properties.Resources.synchronize_24px;
             this.btnMotorReset.Location = new System.Drawing.Point(465, 6);
             this.btnMotorReset.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMotorReset.Name = "btnMotorReset";
@@ -358,7 +358,7 @@
             this.btnMotorHome.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnMotorHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMotorHome.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMotorHome.Image = global::Spirallab.Sirius.Properties.Resources.refresh_24px;
+            this.btnMotorHome.Image = global::SpiralLab.Sirius.Properties.Resources.refresh_24px;
             this.btnMotorHome.Location = new System.Drawing.Point(87, 6);
             this.btnMotorHome.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMotorHome.Name = "btnMotorHome";
@@ -485,7 +485,7 @@
             this.btnWriteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWriteAll.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnWriteAll.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnWriteAll.Image = global::Spirallab.Sirius.Properties.Resources.database_export_24px;
+            this.btnWriteAll.Image = global::SpiralLab.Sirius.Properties.Resources.database_export_24px;
             this.btnWriteAll.Location = new System.Drawing.Point(538, 6);
             this.btnWriteAll.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnWriteAll.Name = "btnWriteAll";
@@ -506,7 +506,7 @@
             this.btnMoveToIndex.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnMoveToIndex.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMoveToIndex.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoveToIndex.Image = global::Spirallab.Sirius.Properties.Resources.step_over_24px;
+            this.btnMoveToIndex.Image = global::SpiralLab.Sirius.Properties.Resources.step_over_24px;
             this.btnMoveToIndex.Location = new System.Drawing.Point(13, 6);
             this.btnMoveToIndex.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnMoveToIndex.Name = "btnMoveToIndex";
@@ -527,7 +527,7 @@
             this.btnCopyPosition.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.btnCopyPosition.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopyPosition.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCopyPosition.Image = global::Spirallab.Sirius.Properties.Resources.clone_24px;
+            this.btnCopyPosition.Image = global::SpiralLab.Sirius.Properties.Resources.clone_24px;
             this.btnCopyPosition.Location = new System.Drawing.Point(465, 6);
             this.btnCopyPosition.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCopyPosition.Name = "btnCopyPosition";

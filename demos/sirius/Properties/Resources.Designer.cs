@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Spirallab.Sirius.Properties {
+namespace SpiralLab.Sirius.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Spirallab.Sirius.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Spirallab.Sirius.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SpiralLab.Sirius.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -293,6 +293,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap cross {
+            get {
+                object obj = ResourceManager.GetObject("cross", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap customer_100px {
             get {
                 object obj = ResourceManager.GetObject("customer_100px", resourceCulture);
@@ -366,6 +376,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap direction_32px {
             get {
                 object obj = ResourceManager.GetObject("direction_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap direction_32px1 {
+            get {
+                object obj = ResourceManager.GetObject("direction_32px1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +496,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap hashtag_activity_grid_26px {
             get {
                 object obj = ResourceManager.GetObject("hashtag_activity_grid_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap hatch {
+            get {
+                object obj = ResourceManager.GetObject("hatch", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -733,6 +763,16 @@ namespace Spirallab.Sirius.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap recipehelp {
+            get {
+                object obj = ResourceManager.GetObject("recipehelp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap refresh_24px {
             get {
                 object obj = ResourceManager.GetObject("refresh_24px", resourceCulture);
@@ -906,6 +946,16 @@ namespace Spirallab.Sirius.Properties {
         internal static System.Drawing.Bitmap sign_out_24px {
             get {
                 object obj = ResourceManager.GetObject("sign_out_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap single {
+            get {
+                object obj = ResourceManager.GetObject("single", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

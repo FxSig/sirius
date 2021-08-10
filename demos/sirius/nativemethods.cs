@@ -28,6 +28,8 @@ namespace SpiralLab.Sirius
             const int size = 255;
             var sb = new StringBuilder(size);
             GetPrivateProfileString(section, key, string.Empty, sb, size, fileName);
+            if (string.IsNullOrEmpty(sb.ToString()))
+                return default(T);
             return (T) Convert.ChangeType(sb.ToString(), typeof(T));
         }
 

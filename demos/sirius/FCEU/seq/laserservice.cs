@@ -491,6 +491,7 @@ namespace SpiralLab.Sirius.FCEU
             float hatch2Angle = 0;
             float hatchInterval = 0.1f;
             float hatchExclude = 0;
+            uint repeat = 1;
 
             string extData = doc.ExtensionData;
             if (string.IsNullOrEmpty(extData))
@@ -510,6 +511,11 @@ namespace SpiralLab.Sirius.FCEU
                 hatch2Angle = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "ANGLE2");
                 hatchInterval = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "INTERVAL");
                 hatchExclude = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "EXCLUDE");
+                repeat = NativeMethods.ReadIni<uint>(tempFileName, $"HATCH", "REPEAT");
+                if (repeat <= 1)
+                    repeat = 1;
+                if (hatchInterval <= 0)
+                    isHatchable = false;
             }
 
             bool success = true;
@@ -518,6 +524,7 @@ namespace SpiralLab.Sirius.FCEU
             group.IsEnableFastRendering = true;
             group.IsHitTest = false; //선택 않되도록
             group.Align = Alignment.Center;
+            group.Repeat = repeat;
             int counts = 0;
             seq.Warn(WarnEnum.VisionDataOpening);
             try
@@ -549,6 +556,7 @@ namespace SpiralLab.Sirius.FCEU
                                 polyline.HatchMode = hatchMode;
                                 polyline.IsHatchable = isHatchable;
                                 polyline.HatchAngle = hatchAngle;
+                                polyline.HatchAngle2 = hatch2Angle;
                                 polyline.HatchInterval = hatchInterval;
                                 polyline.HatchExclude = hatchExclude;
                             }

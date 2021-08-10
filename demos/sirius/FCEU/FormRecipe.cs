@@ -158,7 +158,7 @@ namespace SpiralLab.Sirius.FCEU
             if (formMain.Seq.IsBusy)
             {
                 var mb = new MessageBoxOk();
-                mb.ShowDialog("Equipment Status", $"Equipment are running now...");
+                mb.ShowDialog("LASER IS BUSY !", $"Turn laser off at first !!!");
                 return;
             }
 
@@ -184,6 +184,14 @@ namespace SpiralLab.Sirius.FCEU
 
         private void btnCopy_Click(object sender, EventArgs e)
         {
+            var formMain = Program.MainForm as SpiralLab.Sirius.FCEU.FormMain;
+            var svc = formMain.Seq.Service as LaserService;
+            if (formMain.Seq.IsBusy)
+            {
+                var mb = new MessageBoxOk();
+                mb.ShowDialog("LASER IS BUSY !", $"Turn laser off at first !!!");
+                return;
+            }
             var form = new FormRecipeCopy();
             form.ShowDialog();
             this.UpdateDir();

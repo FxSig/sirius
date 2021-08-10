@@ -208,5 +208,68 @@ namespace SpiralLab.Sirius.FCEU
                 mb2.ShowDialog("Correction", $"Correction file has changed to {iniFileName}");
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (null == SiriusEditor.Document)
+                return;
+            var form = new FormHatch();
+
+            string extData = SiriusEditor.Document.ExtensionData;
+            if (string.IsNullOrEmpty(extData))
+            {
+                Logger.Log(Logger.Type.Error, $"document extension data (hatch) is empty !");
+                return;
+            }
+            var tempFileName = Path.GetTempFileName();
+            using (StreamWriter sw = new StreamWriter(tempFileName))
+            {
+                sw.Write(extData);
+            }
+            bool isHatchable = NativeMethods.ReadIni<bool>(tempFileName, $"HATCH", "HATCHABLE");
+            HatchMode hatchMode = (HatchMode)NativeMethods.ReadIni<int>(tempFileName, $"HATCH", "MODE");
+            float hatchAngle = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "ANGLE");
+            float hatch2Angle = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "ANGLE2");
+            float hatchInterval = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "INTERVAL");
+            float hatchExclude = NativeMethods.ReadIni<float>(tempFileName, $"HATCH", "EXCLUDE");
+            uint repeat = NativeMethods.ReadIni<uint>(tempFileName, $"HATCH", "REPEAT");
+            if (repeat <= 1)
+                repeat = 1;
+            if (hatchInterval <= 0)
+                isHatchable = false;
+
+            form.IsHatchable = isHatchable;
+            form.Angle1 = hatchAngle;
+            form.Angle2 = hatch2Angle;
+            form.Interval = hatchInterval;
+            form.Exclude = hatchExclude;
+            form.Mode = hatchMode;
+            form.Repeat = repeat;
+
+            if (form.ShowDialog() != DialogResult.OK)
+                return;
+
+            isHatchable = form.IsHatchable;
+            hatchAngle = form.Angle1;
+            hatch2Angle = form.Angle2;
+            hatchInterval = form.Interval;
+            hatchExclude = form.Exclude;
+            hatchMode = form.Mode;
+            repeat = form.Repeat;
+
+            NativeMethods.WriteIni<bool>(tempFileName, $"HATCH", "HATCHABLE", isHatchable);
+            NativeMethods.WriteIni<int>(tempFileName, $"HATCH", "MODE", (int)hatchMode);
+            NativeMethods.WriteIni<float>(tempFileName, $"HATCH", "ANGLE", hatchAngle);
+            NativeMethods.WriteIni<float>(tempFileName, $"HATCH", "ANGLE2", hatch2Angle);
+            NativeMethods.WriteIni<float>(tempFileName, $"HATCH", "INTERVAL", hatchInterval);
+            NativeMethods.WriteIni<float>(tempFileName, $"HATCH", "EXCLUDE", hatchExclude);
+            NativeMethods.WriteIni<uint>(tempFileName, $"HATCH", "REPEAT", repeat);
+
+
+            //읽어서 doc ext 에 설정
+            extData = File.ReadAllText(tempFileName);
+            SiriusEditor.Document.ExtensionData = extData;
+            //done
+        }
     }
 }

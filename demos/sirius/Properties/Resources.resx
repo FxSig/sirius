@@ -169,6 +169,9 @@
   <data name="customer_16px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\customer_16px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="exercise_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\exercise_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="spiral3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spiral3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -211,6 +214,9 @@
   <data name="web_camera_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\web_camera_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="sirius" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sirius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="data_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\data_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -232,8 +238,8 @@
   <data name="search_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="shutdown_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\shutdown_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="laser_beam_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\laser_beam_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\info_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -243,9 +249,6 @@
   </data>
   <data name="module_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\module_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="web_camera_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\web_camera_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -286,9 +289,6 @@
   <data name="spirallab" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spirallab.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="memory_slot_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\memory_slot_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="chevron_left_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron_left_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -313,20 +313,20 @@
   <data name="gears_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\gears_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="upload_to_cloud_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\upload_to_cloud_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="squared_menu_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\squared_menu_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="tune_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tune_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="exercise_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\exercise_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="memory_slot_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\memory_slot_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="database_export_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\database_export_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="blueprint_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blueprint_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="upload_to_cloud_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\upload_to_cloud_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shutdown_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shutdown_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -346,8 +346,8 @@
   <data name="cameras_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cameras_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="laser_beam_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\laser_beam_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="rotate_right_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\rotate_right_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rotate_right_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotate_right_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -358,11 +358,14 @@
   <data name="reset_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\reset_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="data_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\data_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="lens2_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lens2_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sirius" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sirius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="customer_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\customer_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SetCenter_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetCenter_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -370,8 +373,11 @@
   <data name="calculator_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\calculator_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="rotate_right_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\rotate_right_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="recipehelp" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\recipehelp.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blueprint_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blueprint_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="rs_232_male_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rs-232_male_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -406,8 +412,8 @@
   <data name="question_mark_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question_mark_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="customer_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\customer_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="adjust_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\adjust_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -433,8 +439,11 @@
   <data name="walking_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\walking_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="data_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\data_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="shutdown_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\shutdown_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="single" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\single.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="download_from_the_cloud_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\download_from_the_cloud_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -454,6 +463,9 @@
   <data name="information_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\information_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="hatch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\hatch.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="spirallab2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spirallab2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -469,7 +481,10 @@
   <data name="activity_history_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\activity_history_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="squared_menu_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\squared_menu_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="direction_32px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\direction_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

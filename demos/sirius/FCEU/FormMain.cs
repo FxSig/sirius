@@ -362,5 +362,11 @@ namespace SpiralLab.Sirius.FCEU
         {
             lblUser.Text = $"User: [{User.Level.ToString()}] {User.Name}";
         }
+
+        private void btnRecipeQuestion_Click(object sender, EventArgs e)
+        {
+            var form = new FormRecipeQuestion();
+            form.ShowDialog();
+        }
     }
 }

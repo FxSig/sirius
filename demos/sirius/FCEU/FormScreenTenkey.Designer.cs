@@ -56,7 +56,7 @@
             this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button9.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button9.ForeColor = System.Drawing.Color.Maroon;
-            this.button9.Image = global::Spirallab.Sirius.Properties.Resources.luminaria_led_32px;
+            this.button9.Image = global::SpiralLab.Sirius.Properties.Resources.luminaria_led_32px;
             this.button9.Location = new System.Drawing.Point(25, 355);
             this.button9.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button9.Name = "button9";
@@ -76,7 +76,7 @@
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.Maroon;
-            this.button8.Image = global::Spirallab.Sirius.Properties.Resources.luminaria_led_32px;
+            this.button8.Image = global::SpiralLab.Sirius.Properties.Resources.luminaria_led_32px;
             this.button8.Location = new System.Drawing.Point(393, 355);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button8.Name = "button8";
@@ -95,7 +95,7 @@
             this.button7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button7.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_32px;
+            this.button7.Image = global::SpiralLab.Sirius.Properties.Resources.activity_history_32px;
             this.button7.Location = new System.Drawing.Point(25, 211);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button7.Name = "button7";
@@ -114,7 +114,7 @@
             this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_32px;
+            this.button6.Image = global::SpiralLab.Sirius.Properties.Resources.activity_history_32px;
             this.button6.Location = new System.Drawing.Point(393, 211);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button6.Name = "button6";
@@ -134,7 +134,7 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Maroon;
-            this.button5.Image = global::Spirallab.Sirius.Properties.Resources.ruler_32px;
+            this.button5.Image = global::SpiralLab.Sirius.Properties.Resources.ruler_32px;
             this.button5.Location = new System.Drawing.Point(393, 283);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button5.Name = "button5";
@@ -154,7 +154,7 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Maroon;
-            this.button4.Image = global::Spirallab.Sirius.Properties.Resources.ruler_32px;
+            this.button4.Image = global::SpiralLab.Sirius.Properties.Resources.ruler_32px;
             this.button4.Location = new System.Drawing.Point(25, 283);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button4.Name = "button4";
@@ -173,7 +173,7 @@
             this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_32px;
+            this.button3.Image = global::SpiralLab.Sirius.Properties.Resources.activity_history_32px;
             this.button3.Location = new System.Drawing.Point(393, 90);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button3.Name = "button3";
@@ -193,7 +193,7 @@
             this.button2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Image = global::Spirallab.Sirius.Properties.Resources.squared_menu_32px;
+            this.button2.Image = global::SpiralLab.Sirius.Properties.Resources.squared_menu_32px;
             this.button2.Location = new System.Drawing.Point(393, 18);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button2.Name = "button2";
@@ -213,7 +213,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Maroon;
-            this.button1.Image = global::Spirallab.Sirius.Properties.Resources.laser_beam_32px;
+            this.button1.Image = global::SpiralLab.Sirius.Properties.Resources.laser_beam_32px;
             this.button1.Location = new System.Drawing.Point(25, 18);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.button1.Name = "button1";

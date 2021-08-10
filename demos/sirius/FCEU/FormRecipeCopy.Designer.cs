@@ -92,7 +92,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClose.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnClose.Image = global::Spirallab.Sirius.Properties.Resources.close_window_24px;
+            this.btnClose.Image = global::SpiralLab.Sirius.Properties.Resources.close_window_24px;
             this.btnClose.Location = new System.Drawing.Point(600, 7);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
@@ -114,7 +114,7 @@
             this.btnCopyRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCopyRecipe.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCopyRecipe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnCopyRecipe.Image = global::Spirallab.Sirius.Properties.Resources.save_all_32px;
+            this.btnCopyRecipe.Image = global::SpiralLab.Sirius.Properties.Resources.save_all_32px;
             this.btnCopyRecipe.Location = new System.Drawing.Point(268, 7);
             this.btnCopyRecipe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCopyRecipe.Name = "btnCopyRecipe";

@@ -28,8 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.button1 = new System.Windows.Forms.Button();
             this.siriusEditorForm1 = new SpiralLab.Sirius.SiriusEditorForm();
             this.SuspendLayout();
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Image = global::SpiralLab.Sirius.Properties.Resources.single;
+            this.button1.Location = new System.Drawing.Point(1117, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(144, 30);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Hatch Options";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // siriusEditorForm1
             // 
@@ -56,6 +71,7 @@
             // 
             this.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.ClientSize = new System.Drawing.Size(1268, 757);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.siriusEditorForm1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -68,5 +84,6 @@
         #endregion
 
         private SiriusEditorForm siriusEditorForm1;
+        private System.Windows.Forms.Button button1;
     }
 }

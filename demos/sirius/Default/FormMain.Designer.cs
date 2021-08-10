@@ -77,7 +77,7 @@
             this.btnHistory.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnHistory.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHistory.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHistory.Image = global::Spirallab.Sirius.Properties.Resources.activity_history_48px;
+            this.btnHistory.Image = global::SpiralLab.Sirius.Properties.Resources.activity_history_48px;
             this.btnHistory.Location = new System.Drawing.Point(386, 8);
             this.btnHistory.Name = "btnHistory";
             this.btnHistory.Size = new System.Drawing.Size(82, 72);
@@ -94,7 +94,7 @@
             this.btnSetup.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnSetup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSetup.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetup.Image = global::Spirallab.Sirius.Properties.Resources.adjust_48px;
+            this.btnSetup.Image = global::SpiralLab.Sirius.Properties.Resources.adjust_48px;
             this.btnSetup.Location = new System.Drawing.Point(293, 8);
             this.btnSetup.Name = "btnSetup";
             this.btnSetup.Size = new System.Drawing.Size(82, 72);
@@ -111,7 +111,7 @@
             this.btnLaser.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnLaser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLaser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaser.Image = global::Spirallab.Sirius.Properties.Resources.lens_48px;
+            this.btnLaser.Image = global::SpiralLab.Sirius.Properties.Resources.lens_48px;
             this.btnLaser.Location = new System.Drawing.Point(200, 8);
             this.btnLaser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLaser.Name = "btnLaser";
@@ -130,7 +130,7 @@
             this.btnExit.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Image = global::Spirallab.Sirius.Properties.Resources.shutdown_48px;
+            this.btnExit.Image = global::SpiralLab.Sirius.Properties.Resources.shutdown_48px;
             this.btnExit.Location = new System.Drawing.Point(1186, 8);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(82, 72);
@@ -146,7 +146,7 @@
             this.btnRecipe.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnRecipe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecipe.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRecipe.Image = global::Spirallab.Sirius.Properties.Resources.micro_sd_48px;
+            this.btnRecipe.Image = global::SpiralLab.Sirius.Properties.Resources.micro_sd_48px;
             this.btnRecipe.Location = new System.Drawing.Point(107, 8);
             this.btnRecipe.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRecipe.Name = "btnRecipe";
@@ -164,7 +164,7 @@
             this.btnAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
             this.btnAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAuto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Image = global::Spirallab.Sirius.Properties.Resources.collage_48px;
+            this.btnAuto.Image = global::SpiralLab.Sirius.Properties.Resources.collage_48px;
             this.btnAuto.Location = new System.Drawing.Point(12, 8);
             this.btnAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnAuto.Name = "btnAuto";
@@ -209,7 +209,7 @@
             // 
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::Spirallab.Sirius.Properties.Resources.full_screen_24px;
+            this.btnMaximize.Image = global::SpiralLab.Sirius.Properties.Resources.full_screen_24px;
             this.btnMaximize.Location = new System.Drawing.Point(1238, 5);
             this.btnMaximize.Name = "btnMaximize";
             this.btnMaximize.Size = new System.Drawing.Size(29, 23);
@@ -238,7 +238,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(325, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "2021 COPYRIGHT TO (c)SPIRALLAB. ALL RIGHTS RESERVED.";
+            this.label1.Text = "2021 COPYRIGHT TO (c)SpiralLab. ALL RIGHTS RESERVED.";
             // 
             // panHeader
             // 
@@ -341,7 +341,7 @@
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormMain";
-            this.Text = "Sirius (c)SPIRALLAB";
+            this.Text = "Sirius (c)SpiralLab";
             this.panFooter.ResumeLayout(false);
             this.panTop.ResumeLayout(false);
             this.panTop.PerformLayout();
