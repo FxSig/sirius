@@ -279,7 +279,7 @@ namespace SpiralLab.Sirius.FCEU
                     btnAbort.ForeColor = Color.White;
                 }
                 tempIndex++;
-                busy = "Busy";
+                lblBusy.BackColor = Color.Red;
             }
             else
             {
@@ -289,19 +289,17 @@ namespace SpiralLab.Sirius.FCEU
                     btnAbort.ForeColor = SystemColors.ControlText;
                 }
                 tempIndex = 0;
-                busy = "Not Busy";
+                lblBusy.BackColor = Color.Maroon;
             }
             if (Seq.IsReady)
-                ready = "Ready";
+                lblReady.BackColor = Color.Lime;
             else
-                ready = "Not Ready";
+                lblReady.BackColor = Color.Green;
 
             if (Seq.IsError)
-                error = "Error";
+                lblError.BackColor = Color.Red;
             else
-                error = "No Error";
-
-            lblStatus.Text = $"Status: {ready} / {busy} / {error}";
+                lblError.BackColor = Color.Maroon;
         }
         private void panTop_DoubleClick(object sender, EventArgs e)
         {

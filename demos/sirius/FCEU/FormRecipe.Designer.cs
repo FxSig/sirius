@@ -34,6 +34,7 @@
             this.dgvRecipe = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCopy = new System.Windows.Forms.Button();
             this.siriusViewerForm1 = new SpiralLab.Sirius.SiriusViewerForm();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -52,7 +53,7 @@
             this.btnRecipeChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecipeChange.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecipeChange.Image = global::Spirallab.Sirius.Properties.Resources.clone_24px;
-            this.btnRecipeChange.Location = new System.Drawing.Point(243, 689);
+            this.btnRecipeChange.Location = new System.Drawing.Point(244, 689);
             this.btnRecipeChange.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnRecipeChange.Name = "btnRecipeChange";
             this.btnRecipeChange.Size = new System.Drawing.Size(68, 64);
@@ -75,6 +76,7 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnCopy);
             this.splitContainer1.Panel2.Controls.Add(this.btnRecipeChange);
             this.splitContainer1.Panel2.Controls.Add(this.dgvRecipe);
             this.splitContainer1.Size = new System.Drawing.Size(1024, 768);
@@ -114,7 +116,7 @@
             this.dgvRecipe.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvRecipe.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvRecipe.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvRecipe.Size = new System.Drawing.Size(311, 665);
+            this.dgvRecipe.Size = new System.Drawing.Size(312, 665);
             this.dgvRecipe.TabIndex = 8;
             // 
             // dataGridViewTextBoxColumn1
@@ -134,6 +136,27 @@
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // btnCopy
+            // 
+            this.btnCopy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCopy.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCopy.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
+            this.btnCopy.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Gray;
+            this.btnCopy.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Silver;
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCopy.Image = global::Spirallab.Sirius.Properties.Resources.database_export_24px;
+            this.btnCopy.Location = new System.Drawing.Point(13, 689);
+            this.btnCopy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Size = new System.Drawing.Size(68, 64);
+            this.btnCopy.TabIndex = 9;
+            this.btnCopy.Text = "Recipe Manager";
+            this.btnCopy.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnCopy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
             // 
             // siriusViewerForm1
             // 
@@ -175,5 +198,6 @@
         private System.Windows.Forms.DataGridView dgvRecipe;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Button btnCopy;
     }
 }

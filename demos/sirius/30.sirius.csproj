@@ -142,6 +142,12 @@
     <Compile Include="FCEU\FormRecipe.Designer.cs">
       <DependentUpon>FormRecipe.cs</DependentUpon>
     </Compile>
+    <Compile Include="FCEU\FormRecipeCopy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FCEU\FormRecipeCopy.Designer.cs">
+      <DependentUpon>FormRecipeCopy.cs</DependentUpon>
+    </Compile>
     <Compile Include="FCEU\FormScreenTenkey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -377,6 +383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormRecipe.resx">
       <DependentUpon>FormRecipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FCEU\FormRecipeCopy.resx">
+      <DependentUpon>FormRecipeCopy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FCEU\FormScreenTenkey.resx">
       <DependentUpon>FormScreenTenkey.cs</DependentUpon>

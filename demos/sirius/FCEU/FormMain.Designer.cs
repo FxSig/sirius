@@ -50,7 +50,9 @@
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
-            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblError = new System.Windows.Forms.Label();
+            this.lblBusy = new System.Windows.Forms.Label();
+            this.lblReady = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblVisionComm = new System.Windows.Forms.Label();
             this.lblRecipe = new System.Windows.Forms.Label();
@@ -355,7 +357,9 @@
             // panMenu
             // 
             this.panMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.panMenu.Controls.Add(this.lblStatus);
+            this.panMenu.Controls.Add(this.lblError);
+            this.panMenu.Controls.Add(this.lblBusy);
+            this.panMenu.Controls.Add(this.lblReady);
             this.panMenu.Controls.Add(this.lblUser);
             this.panMenu.Controls.Add(this.lblVisionComm);
             this.panMenu.Controls.Add(this.lblRecipe);
@@ -366,23 +370,50 @@
             this.panMenu.Size = new System.Drawing.Size(1280, 32);
             this.panMenu.TabIndex = 15;
             // 
-            // lblStatus
+            // lblError
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(460, 7);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(180, 16);
-            this.lblStatus.TabIndex = 15;
-            this.lblStatus.Text = "Status: Ready / Busy / Error";
+            this.lblError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblError.BackColor = System.Drawing.Color.Maroon;
+            this.lblError.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.ForeColor = System.Drawing.Color.White;
+            this.lblError.Location = new System.Drawing.Point(1015, 5);
+            this.lblError.Name = "lblError";
+            this.lblError.Size = new System.Drawing.Size(80, 23);
+            this.lblError.TabIndex = 13;
+            this.lblError.Text = "Error";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblBusy
+            // 
+            this.lblBusy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBusy.BackColor = System.Drawing.Color.Maroon;
+            this.lblBusy.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBusy.ForeColor = System.Drawing.Color.White;
+            this.lblBusy.Location = new System.Drawing.Point(931, 5);
+            this.lblBusy.Name = "lblBusy";
+            this.lblBusy.Size = new System.Drawing.Size(80, 23);
+            this.lblBusy.TabIndex = 12;
+            this.lblBusy.Text = "Busy";
+            this.lblBusy.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblReady
+            // 
+            this.lblReady.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblReady.BackColor = System.Drawing.Color.Green;
+            this.lblReady.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReady.Location = new System.Drawing.Point(847, 5);
+            this.lblReady.Name = "lblReady";
+            this.lblReady.Size = new System.Drawing.Size(80, 23);
+            this.lblReady.TabIndex = 11;
+            this.lblReady.Text = "Ready";
+            this.lblReady.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblUser
             // 
-            this.lblUser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUser.AutoSize = true;
             this.lblUser.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblUser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUser.Location = new System.Drawing.Point(915, 7);
+            this.lblUser.Location = new System.Drawing.Point(404, 7);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(115, 16);
             this.lblUser.TabIndex = 10;
@@ -503,6 +534,8 @@
         private System.Windows.Forms.Button btnHistory;
         private System.Windows.Forms.Label lblProject;
         private System.Windows.Forms.Label lblUser;
-        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblError;
+        private System.Windows.Forms.Label lblBusy;
+        private System.Windows.Forms.Label lblReady;
     }
 }

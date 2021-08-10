@@ -100,7 +100,7 @@ namespace SpiralLab.Sirius.FCEU
                     //amount of time without activity before sending a keepalive to 1 secs
                     Buffer.BlockCopy(BitConverter.GetBytes((uint)1000), 0, keepAlive, size, size);
                     //interval to 1 sec
-                    Buffer.BlockCopy(BitConverter.GetBytes((uint)1000), 0, keepAlive, size*2, size);
+                    Buffer.BlockCopy(BitConverter.GetBytes((uint)1000), 0, keepAlive, size * 2, size);
                     this.client.Client.IOControl(IOControlCode.KeepAliveValues, keepAlive, null);
                     isConnected = true;
                     Logger.Log(Logger.Type.Info, $"vision tcp client connected to {this.ipaddress}:{this.port}");
@@ -118,9 +118,19 @@ namespace SpiralLab.Sirius.FCEU
 
                     } while (!terminated && this.client.Connected);
                 }
-                catch (Exception )
+                catch (SocketException)
+                {
+                    for (int i = 0; i < 20; i++) //20*100 = 2sec
+                    {
+                        if (terminated)
+                            break;
+                        Thread.Sleep(100);
+                    }
+                }
+                catch (Exception)
                 {
                     //Logger.Log(Logger.Type.Error, ex);
+                    Thread.Sleep(100);
                 }
             }
             while (!terminated);

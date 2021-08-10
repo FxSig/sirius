@@ -22,7 +22,6 @@ namespace SpiralLab.Sirius.FCEU
 
             this.VisibleChanged += FormRecipe_VisibleChanged;
             dgvRecipe.CellClick += DgvRecipe_CellClick;
-            //dgvRecipe.KeyDown += DgvRecipe_KeyDown;
 
             this.siriusViewerForm1.Document = new DocumentDefault();
         }
@@ -85,31 +84,7 @@ namespace SpiralLab.Sirius.FCEU
             }
         }
 
-        private void DgvRecipe_KeyDown(object sender, KeyEventArgs e)
-        {
-            //if (dgvRecipe.CurrentCell.ColumnIndex != 1)
-            //    return;
-            //e.Handled = true;
-            //DataGridViewCell cell = dgvRecipe.Rows[dgvRecipe.CurrentCell.RowIndex].Cells[dgvRecipe.CurrentCell.ColumnIndex];
-            //dgvRecipe.CurrentCell = cell;
-            //dgvRecipe.BeginEdit(true);
-            //dgvRecipe.CellEndEdit += DgvRecipe_CellEndEdit;
-        }
-
-        private void DgvRecipe_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.RowIndex < 0)
-            //    return;
-            //if (e.ColumnIndex != 1)
-            //    return;
-            //DataGridViewCell cell = dgvRecipe.Rows[e.RowIndex].Cells[e.ColumnIndex];
-            //var index = int.Parse(dgvRecipe.Rows[e.RowIndex].Cells[0].Value.ToString());
-            //NativeMethods.WriteIni<string>(FormMain.ConfigFileName, $"RECIPE", $"{index}", cell.Value.ToString());
-
-            //dgvRecipe.CellEndEdit -= DgvRecipe_CellEndEdit;
-        }
-
-        public List<string> GetList()
+        public static List<string> GetList()
         {
             var list = new List<string>();
             string fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "recipe.ini");
@@ -186,12 +161,6 @@ namespace SpiralLab.Sirius.FCEU
                 mb.ShowDialog("Equipment Status", $"Equipment are running now...");
                 return;
             }
-            //if (UserLevel.Maint > QMC.Core.User.Level)
-            //{
-            //    var mb = new MessageBoxOk();
-            //    mb.ShowDialog("User Level", "Not enough user level !", 10);
-            //    return;
-            //}
 
             if (string.IsNullOrEmpty(this.name) || this.index < 0)
                 return;
@@ -211,6 +180,13 @@ namespace SpiralLab.Sirius.FCEU
                 else
                     mb.ShowDialog("Recipe", $"Fail to change recipe by [{this.index}]: {this.name} ", 10);
             }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            var form = new FormRecipeCopy();
+            form.ShowDialog();
+            this.UpdateDir();
         }
     }
 }
