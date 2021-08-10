@@ -271,7 +271,7 @@ namespace CustomEditor
             success &= rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
             this.Rtc = rtc;
 
-            ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
+            var laser = new LaserVirtual(0, "virtual", 20.0f);
             laser.Rtc = rtc;
             success &= laser.Initialize();
             success &= laser.CtlPower(10);

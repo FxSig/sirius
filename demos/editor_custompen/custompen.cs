@@ -396,7 +396,12 @@ namespace SpiralLab.Sirius
             var laser = markerArg.Laser;
             bool success = true;
             if (null != laser)
-                success &= laser.ListPower(this.Power); // 레이저 소스 객체에 파워값을 전달한다
+            {
+                var powerControl = laser as IPowerControl;
+                if (null != powerControl)
+                    success &= powerControl.ListPower(this.Power); // 레이저 소스 객체에 파워값을 전달한다
+            }
+
             if (!success)
                 return false;
             success &= rtc.ListDelay(this.LaserOnDelay, this.LaserOffDelay, this.ScannerJumpDelay, this.ScannerMarkDelay, this.ScannerPolygonDelay);

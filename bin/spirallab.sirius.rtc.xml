@@ -123,6 +123,16 @@
             IRtc 인터페이스
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Tag">
             <summary>
             사용자 데이타
@@ -333,6 +343,26 @@
             <param name="onOff">On/Off</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IPowerControl">
+            <summary>
+            레이저 소스 IPowerControl 인터페이스
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single)">
+            <summary>
+            파워 변경 (즉시 명령)
+            </summary>
+            <param name="watt">출력 에너지(Watt)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single)">
+            <summary>
+            파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
+            마커의 내부 쓰레드에 의해 호출됨
+            </summary>
+            <param name="watt">출력 에너지(Watt)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.ShutterStatus">
             <summary>
             레이저 소스 내부의 셔터 상태 열거형
@@ -353,17 +383,17 @@
             열림
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.ILaserShutter">
+        <member name="T:SpiralLab.Sirius.IShutter">
             <summary>
-            레이저 소스 Shutter 인터페이스
+            레이저 소스 IShutter 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ILaserShutter.Status">
+        <member name="P:SpiralLab.Sirius.IShutter.Status">
             <summary>
             셔터(Shutter) 상태
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ILaserShutter.CtlShutter(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.IShutter.CtlShutter(System.Boolean)">
             <summary>
             셔터 동작
             </summary>
@@ -415,6 +445,16 @@
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ILaser.Tag">
             <summary>
             사용자 정의 데이타
@@ -436,21 +476,6 @@
             <summary>
             리셋 (에러 상태 해제 시도)
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.CtlPower(System.Single)">
-            <summary>
-            파워 변경 (즉시 명령)
-            </summary>
-            <param name="watt">출력 에너지(Watt)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.ILaser.ListPower(System.Single)">
-            <summary>
-            파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
-            마커의 내부 쓰레드에 의해 호출됨
-            </summary>
-            <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.LaserVirtual">
@@ -498,6 +523,16 @@
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.Tag">
             <summary>
             사용자 데이타
@@ -542,6 +577,18 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.Status">
+            <summary>
+            셔터(Shutter) 상태
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlShutter(System.Boolean)">
+            <summary>
+            셔터 동작
+            </summary>
+            <param name="open">true=열기 시도, false= 닫기 시도</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.SPIStatus">
             <summary>
             SPI 레이저 상태 정보
@@ -560,6 +607,16 @@
         <member name="P:SpiralLab.Sirius.SPIG4.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.#ctor">

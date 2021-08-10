@@ -133,7 +133,9 @@ namespace SpiralLab.Sirius.FCEU
             var maxPower = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"LASER", "MAXPOWER");
             Laser.MaxPowerWatt = maxPower;
             success &= Laser.Initialize();
-            success &= Laser.CtlPower(10);
+            var powerControl = Laser as IPowerControl;
+            if (null != powerControl)
+                success &= powerControl.CtlPower(10);
             Editor.Laser = Laser;
             #endregion
 

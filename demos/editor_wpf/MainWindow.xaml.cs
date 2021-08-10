@@ -49,7 +49,7 @@ namespace editor_wpf
             siriusEditorForm.Rtc = rtc;
 
             #region 레이저 소스 초기화
-            ILaser laser = new LaserVirtual(0, "virtual", 20.0f);
+            var laser = new LaserVirtual(0, "virtual", 20.0f);
             laser.Rtc = rtc;
             laser.Initialize();
             laser.CtlPower(10);

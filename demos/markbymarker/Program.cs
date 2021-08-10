@@ -62,7 +62,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
-            ILaser laser = new LaserVirtual(0, "virtual", 10.0f);
+            var laser = new LaserVirtual(0, "virtual", 10.0f);
             laser.Rtc = rtc;
             laser.Initialize();
             laser.CtlPower(5);

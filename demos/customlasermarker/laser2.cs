@@ -14,7 +14,9 @@ namespace SpiralLab.Sirius
     /// 레이저 소스 (사용자 커스텀 버전)
     /// RS-232 통신과 같이 통신 지연을 가지고 있는 레이저 소스 예제
     /// </summary>
-    public class YourCustomLaser2 : SpiralLab.Sirius.ILaser
+    public class YourCustomLaser2
+        : SpiralLab.Sirius.ILaser
+        , SpiralLab.Sirius.IPowerControl
     {
         /// <summary>
         /// 동기화 객체
@@ -55,6 +57,8 @@ namespace SpiralLab.Sirius
         /// IRtc 객체
         /// </summary>
         public IRtc Rtc { get; set; }
+        public bool IsPowerConntrol { get; set; }
+        public bool IsShutterControl { get; set; }
         public object Tag { get; set; }
 
         private SerialPort serialPort;
@@ -66,6 +70,8 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
+            IsPowerConntrol = true;
+            IsShutterControl = false;
             this.serialPort = new SerialPort($"COM{comPort}");
             this.serialPort.BaudRate = 9600;
             this.serialPort.DataBits = 8;

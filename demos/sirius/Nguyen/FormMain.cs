@@ -97,7 +97,9 @@ namespace SpiralLab.Sirius.Nguyen
             laser.MaxPowerWatt = maxPower;
             success &= laser.Initialize();
             var defaultPower = NativeMethods.ReadIni<float>(ConfigFileName, $"LASER", "DEFAULTPOWER");
-            success &= laser.CtlPower(defaultPower);
+            var powerControl = laser as IPowerControl;
+            if (null != powerControl)
+                success &= powerControl.CtlPower(defaultPower);
             this.FormEditor.SiriusEditor.Laser = laser;
             #endregion
 

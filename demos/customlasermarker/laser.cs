@@ -11,7 +11,9 @@ namespace SpiralLab.Sirius
     /// <summary>
     /// 레이저 소스 (사용자 커스텀 용)
     /// </summary>
-    public class YourCustomLaser : SpiralLab.Sirius.ILaser
+    public class YourCustomLaser 
+        : SpiralLab.Sirius.ILaser
+        , SpiralLab.Sirius.IPowerControl
     {
         /// <summary>
         /// 동기화 객체
@@ -52,7 +54,8 @@ namespace SpiralLab.Sirius
         /// IRtc 객체
         /// </summary>
         public IRtc Rtc { get; set; }
-
+        public bool IsPowerConntrol { get; set; }
+        public bool IsShutterControl { get; set; }
         public object Tag { get; set; }
         private bool disposed = false;
 
@@ -68,6 +71,8 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
+            IsPowerConntrol = true;
+            IsShutterControl = false;
         }
         ~YourCustomLaser()
         {
