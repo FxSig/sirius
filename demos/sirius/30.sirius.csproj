@@ -875,6 +875,8 @@
     <None Include="Resources\Sign_Warning_3B_4-400x290.jpg" />
     <None Include="Resources\spirallab2.ico" />
     <None Include="Resources\spirallab.ico" />
+    <None Include="Resources\탑엔지니어링_CI_소.bmp" />
+    <None Include="Resources\탑엔지니어링_CI.bmp" />
     <Content Include="spirallab2.ico" />
     <None Include="Resources\spirallab5.png" />
     <Content Include="spirallab.ico" />

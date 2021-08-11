@@ -1289,5 +1289,25 @@ namespace SpiralLab.Sirius.Demo.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 탑엔지니어링_CI {
+            get {
+                object obj = ResourceManager.GetObject("탑엔지니어링_CI", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 탑엔지니어링_CI_소 {
+            get {
+                object obj = ResourceManager.GetObject("탑엔지니어링_CI_소", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

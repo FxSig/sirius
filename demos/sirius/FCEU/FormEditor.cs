@@ -35,57 +35,50 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
-            if (svc.RecipeNo <= 0)
+            if (svc.RecipeNo > 0)
             {
-                var ofd = new OpenFileDialog();
-                ofd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
-                ofd.Title = "Open File";
-                ofd.FileName = string.Empty;
-                ofd.Multiselect = false;
-                ofd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes");
-                DialogResult result = ofd.ShowDialog(this);
-                if (result == DialogResult.OK)
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes == mb.ShowDialog("Open Recipe", $"Do you want re-open [{svc.RecipeNo}]: {svc.RecipeName} ?"))
                 {
-                    if (SiriusEditor.OnOpen(ofd.FileName))
+                    var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
+                    string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
+                    if (File.Exists(recipeFileName))
                     {
-                        var mb2 = new MessageBoxOk();
-                        mb2.ShowDialog("Open File", $"Success to open file : {ofd.FileName}");
+                        if (SiriusEditor.OnOpen(recipeFileName))
+                        {
+                            var mb2 = new MessageBoxOk();
+                            mb2.ShowDialog("Open File", $"Success to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}", 10);
+                        }
+                        else
+                        {
+                            var mb2 = new MessageBoxOk();
+                            mb2.ShowDialog("Open File", $"Fail to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}");
+                        }
                     }
-                    else
-                    {
-                        var mb2 = new MessageBoxOk();
-                        mb2.ShowDialog("Open File", $"Fail to open file : {ofd.FileName}");
-                    }
+                    return;
                 }
-                return;
             }
-
-            var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
-            string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
-            if (File.Exists(recipeFileName))
+           
+            var ofd = new OpenFileDialog();
+            ofd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
+            ofd.Title = "Open File";
+            ofd.FileName = string.Empty;
+            ofd.Multiselect = false;
+            ofd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes");
+            DialogResult result = ofd.ShowDialog(this);
+            if (result == DialogResult.OK)
             {
-                if (SiriusEditor.OnOpen(recipeFileName))
+                if (SiriusEditor.OnOpen(ofd.FileName))
                 {
                     var mb2 = new MessageBoxOk();
-                    mb2.ShowDialog("Open File", $"Success to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}", 10);
+                    mb2.ShowDialog("Open File", $"Success to open file : {ofd.FileName}");
                 }
                 else
                 {
                     var mb2 = new MessageBoxOk();
-                    mb2.ShowDialog("Open File", $"Fail to open file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}");
+                    mb2.ShowDialog("Open File", $"Fail to open file : {ofd.FileName}");
                 }
             }
-
-            //var ofd = new OpenFileDialog();
-            //ofd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
-            //ofd.Title = "Open File";
-            //ofd.FileName = string.Empty;
-            //ofd.Multiselect = false;
-            //DialogResult result = ofd.ShowDialog(this);
-            //if (result == DialogResult.OK)
-            //{
-            //    SiriusEditor.OnOpen(ofd.FileName);
-            //}
         }
 
         private void SiriusEditor_OnDocumentSave(object sender)
@@ -94,62 +87,28 @@ namespace SpiralLab.Sirius.FCEU
             var seq = formMain.Seq;
             var svc = seq.Service as LaserService;
 
-            if (svc.RecipeNo <= 0)
+            if (svc.RecipeNo > 0)
             {
-                //invalid ?
-                SiriusEditor.OnSave("");
-                return;
-            }
-
-            //var fileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
-            //string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", fileName);
-            //if (!File.Exists(recipeFileName))
-            //{
-            //    //invalid ?
-            //    return;
-            //}
-            //SiriusEditor.OnSave(recipeFileName);
-
-            if (string.IsNullOrEmpty(SiriusEditor.FileName))
-            {
-                var sfd = new SaveFileDialog();
-                sfd.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
-                sfd.Title = "Save As ...";
-                sfd.FileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
-                sfd.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}");
-                DialogResult result = sfd.ShowDialog(this);
-                if (result == DialogResult.OK)
+                var mb = new MessageBoxYesNo();
+                if (DialogResult.Yes == mb.ShowDialog("Save Recipe", $"Do you want to overwrite into [{svc.RecipeNo}]: {svc.RecipeName} ?"))
                 {
-                    if (true == SiriusEditor.OnSaveAs(sfd.FileName))
+                    string laserFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "RECIPE");
+                    string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", $"{svc.RecipeNo}", laserFileName);
+                    if (SiriusEditor.OnSave(recipeFileName))
                     {
-                        var mb = new MessageBoxOk();
-                        mb.ShowDialog("Document Save", $"Success to save file : {sfd.FileName}", 10);
+                        var mb2 = new MessageBoxOk();
+                        mb2.ShowDialog("Save File", $"Success to save file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}", 10);
                     }
                     else
                     {
-                        var mb = new MessageBoxOk();
-                        mb.ShowDialog("Document Save", $"Fail to save file : {sfd.FileName}");
+                        var mb2 = new MessageBoxOk();
+                        mb2.ShowDialog("Save File", $"Fail to save file [{svc.RecipeNo}] {svc.RecipeName} at {recipeFileName}");
                     }
+                    return;
                 }
             }
-            else
-            {
-                {
-                    var mb = new MessageBoxYesNo();
-                    if (DialogResult.Yes != mb.ShowDialog("Warning !", $"Do you really want to save [{svc.RecipeNo}] {svc.RecipeName} at {SiriusEditor.FileName} ?"))
-                        return;
-                }
-                if (true == SiriusEditor.OnSave(SiriusEditor.FileName))
-                {
-                    var mb = new MessageBoxOk();
-                    mb.ShowDialog("Document Save", $"Success to save [{svc.RecipeNo}] {svc.RecipeName}", 10);
-                }
-                else
-                {
-                    var mb = new MessageBoxOk();
-                    mb.ShowDialog("Document Save", $"Fail to save [{svc.RecipeNo}] {svc.RecipeName}");
-                }
-            }
+
+            SiriusEditor.OnSave("");
         }
 
         private void SiriusEditor_OnCorrection2D(object sender, EventArgs e)

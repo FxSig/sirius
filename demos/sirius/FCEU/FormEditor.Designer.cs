@@ -37,11 +37,11 @@
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.single;
-            this.button1.Location = new System.Drawing.Point(1106, 0);
+            this.button1.Location = new System.Drawing.Point(1023, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(155, 30);
+            this.button1.Size = new System.Drawing.Size(238, 30);
             this.button1.TabIndex = 1;
-            this.button1.Text = "Hatch Parameter";
+            this.button1.Text = "Hatch Parameter in Defect Layer";
             this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
