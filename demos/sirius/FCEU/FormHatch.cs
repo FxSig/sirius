@@ -103,5 +103,16 @@ namespace SpiralLab.Sirius.FCEU
             }
         }
 
+        private void rdbSingle_Click(object sender, EventArgs e)
+        {
+            txtAngle1.Enabled = true;
+            txtAngle2.Enabled = false;
+        }
+
+        private void rdbCross_Click(object sender, EventArgs e)
+        {
+            txtAngle1.Enabled = true;
+            txtAngle2.Enabled = true;
+        }
     }
 }

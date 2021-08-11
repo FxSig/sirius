@@ -17,12 +17,12 @@ namespace SpiralLab.Sirius.FCEU
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (User.Level ==  UserLevel.Operator)
-            {
-                var mb = new MessageBoxOk();
-                mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
-                    return;
-            }
+            //if (User.Level ==  UserLevel.Operator)
+            //{
+            //    var mb = new MessageBoxOk();
+            //    mb.ShowDialog("Warning !!! User Level", $"You do not have user privileges. Please log in again with elevated privileges.");
+            //        return;
+            //}
             {
                 var mb = new MessageBoxYesNo();
                 if (DialogResult.Yes != mb.ShowDialog("Warning !!! System Teach", $"Do you really want to mark with system teach ?"))
@@ -71,7 +71,7 @@ namespace SpiralLab.Sirius.FCEU
             dlg.Filter = "scanner correction data file (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Scanner Correction Data File";
             dlg.InitialDirectory = fullFilePath;
-            dlg.FileName = Path.Combine(fullFilePath, $"scanner_calibration_{svc.FieldCorrectionRows}v{ svc.FieldCorrectionCols}.txt");
+            dlg.FileName = $"scanner_calibration_{svc.FieldCorrectionRows}v{ svc.FieldCorrectionCols}.txt";
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
@@ -86,10 +86,10 @@ namespace SpiralLab.Sirius.FCEU
             var svc = seq.Service as LaserService;
 
             var defRoot = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
-            var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_02.txt");
+            //var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_02.txt");
             var dlg = new OpenFileDialog();
-            dlg.FileName = defFile;
-            dlg.InitialDirectory = defRoot;
+            dlg.FileName = "share_result_data_02.txt";
+            dlg.InitialDirectory = Path.Combine(defRoot, $"{svc.RecipeName}\\temp");
             dlg.Filter = "vision defect left files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Vision Defect File ...";
             DialogResult result = dlg.ShowDialog();
@@ -147,10 +147,10 @@ namespace SpiralLab.Sirius.FCEU
             var svc = seq.Service as LaserService;
 
             var defRoot = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
-            var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_01.txt");
+            //var defFile = Path.Combine(defRoot, $"{svc.RecipeName}\\temp\\share_result_data_01.txt");
             var dlg = new OpenFileDialog();
-            dlg.FileName = defFile;
-            dlg.InitialDirectory = defRoot;
+            dlg.FileName = "share_result_data_01.txt";
+            dlg.InitialDirectory = Path.Combine(defRoot, $"{svc.RecipeName}\\temp");
             dlg.Filter = "vision defect right files (*.txt)|*.txt|All Files (*.*)|*.*";
             dlg.Title = "Open Vision Defect File ...";
             DialogResult result = dlg.ShowDialog();

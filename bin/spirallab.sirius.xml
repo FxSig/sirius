@@ -4295,6 +4295,11 @@
             선택된 외곽 사각형의 색상
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.DocumentSelectedBoundRectGripColor">
+            <summary>
+            선택된 외곽 사각형의 Grip 색상
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentSelectedBoundRectCenterColor">
             <summary>
             선택된 외곽 사각형의 중심 색상

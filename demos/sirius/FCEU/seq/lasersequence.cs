@@ -528,7 +528,9 @@ namespace SpiralLab.Sirius.FCEU
             {
                 bool ready = true;
                 ready &= Marker.IsReady;
-                ready &= this.formMain.FormCurrent == this.formMain.FormAuto; //auto 화면이 아니면 ready off
+                if (User.Level != UserLevel.Developer)
+                    ready &= this.formMain.FormCurrent == this.formMain.FormAuto; //auto 화면이 아니면 ready off
+
                 ready &= !isFieldCorrecting; // 스캐너 보정중에는 ready off
                 this.IsReady = ready;
 

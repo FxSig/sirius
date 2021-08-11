@@ -877,6 +877,7 @@
     <None Include="Resources\spirallab.ico" />
     <None Include="Resources\탑엔지니어링_CI_소.bmp" />
     <None Include="Resources\탑엔지니어링_CI.bmp" />
+    <None Include="Resources\tenkey.png" />
     <Content Include="spirallab2.ico" />
     <None Include="Resources\spirallab5.png" />
     <Content Include="spirallab.ico" />

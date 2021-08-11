@@ -48,7 +48,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (e.RowIndex < 0)
                 return;
-            this.recipeSrcNo = int.Parse(dgvRecipeSrc.Rows[e.RowIndex].Cells[0].Value.ToString());
+            this.recipeSrcNo = int.Parse(dgvRecipeSrc.Rows[e.RowIndex].Cells[0].Value?.ToString());
             this.recipeSrc = dgvRecipeSrc.Rows[e.RowIndex].Cells[1].Value?.ToString();
             txtTargetRecipeName.Text = this.recipeSrc + " Copy";
         }
@@ -56,7 +56,7 @@ namespace SpiralLab.Sirius.FCEU
         {
             if (e.RowIndex < 0)
                 return;
-            this.recipeTargetNo = int.Parse(dgvRecipeTarget.Rows[e.RowIndex].Cells[0].Value.ToString());
+            this.recipeTargetNo = int.Parse(dgvRecipeTarget.Rows[e.RowIndex].Cells[0].Value?.ToString());
             this.recipeTarget = dgvRecipeTarget.Rows[e.RowIndex].Cells[1].Value?.ToString();
         }
 

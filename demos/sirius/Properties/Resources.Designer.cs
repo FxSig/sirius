@@ -1193,6 +1193,26 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap tenkey {
+            get {
+                object obj = ResourceManager.GetObject("tenkey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap tenkey1 {
+            get {
+                object obj = ResourceManager.GetObject("tenkey1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap track_order_32px {
             get {
                 object obj = ResourceManager.GetObject("track_order_32px", resourceCulture);
@@ -1296,16 +1316,6 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap 탑엔지니어링_CI {
             get {
                 object obj = ResourceManager.GetObject("탑엔지니어링_CI", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap 탑엔지니어링_CI_소 {
-            get {
-                object obj = ResourceManager.GetObject("탑엔지니어링_CI_소", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

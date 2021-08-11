@@ -133,6 +133,7 @@ namespace SpiralLab.Sirius.FCEU
             this.rdbCross.TabIndex = 11;
             this.rdbCross.Text = "Cross Lines";
             this.rdbCross.UseVisualStyleBackColor = true;
+            this.rdbCross.Click += new System.EventHandler(this.rdbCross_Click);
             // 
             // rdbSingle
             // 
@@ -145,6 +146,7 @@ namespace SpiralLab.Sirius.FCEU
             this.rdbSingle.TabStop = true;
             this.rdbSingle.Text = "Single Line";
             this.rdbSingle.UseVisualStyleBackColor = true;
+            this.rdbSingle.Click += new System.EventHandler(this.rdbSingle_Click);
             // 
             // txtAngle2
             // 

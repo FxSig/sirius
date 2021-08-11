@@ -214,9 +214,6 @@
   <data name="web_camera_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\web_camera_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="sirius" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\sirius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="data_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\data_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -250,11 +247,17 @@
   <data name="module_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\module_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="web_camera_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\web_camera_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="electronics_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\electronics_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="탑엔지니어링_CI" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\탑엔지니어링_CI.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="services_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\services_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -364,8 +367,11 @@
   <data name="lens2_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\lens2_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="customer_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\customer_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="direction_32px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\direction_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="sirius" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\sirius.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="SetCenter_30px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\SetCenter_30px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -412,8 +418,8 @@
   <data name="question_mark_64px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\question_mark_64px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="iris_scan_40px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\iris_scan_40px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="customer_100px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\customer_100px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="adjust_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\adjust_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -438,6 +444,9 @@
   </data>
   <data name="walking_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\walking_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="shutdown_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shutdown_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -481,16 +490,10 @@
   <data name="activity_history_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\activity_history_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="direction_32px1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\direction_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tenkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tenkey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="cross" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\cross.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="탑엔지니어링_CI" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\탑엔지니어링_CI.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="탑엔지니어링_CI_소" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\탑엔지니어링_CI_소.bmp;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tenkey1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tenkey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

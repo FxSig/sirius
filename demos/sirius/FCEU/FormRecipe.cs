@@ -50,8 +50,8 @@ namespace SpiralLab.Sirius.FCEU
             if (e.RowIndex < 0)
                 return;
 
-            var newIndex = int.Parse(dgvRecipe.Rows[e.RowIndex].Cells[0].Value.ToString());
-            var newName = dgvRecipe.Rows[e.RowIndex].Cells[1].Value.ToString();
+            var newIndex = int.Parse(dgvRecipe.Rows[e.RowIndex].Cells[0].Value?.ToString());
+            var newName = dgvRecipe.Rows[e.RowIndex].Cells[1].Value?.ToString();
             if (this.index == newIndex)
                 return;
 

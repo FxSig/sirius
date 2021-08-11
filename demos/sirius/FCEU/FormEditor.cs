@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Threading;
 using System.Numerics;
+using System.ComponentModel;
 
 namespace SpiralLab.Sirius.FCEU
 {
@@ -27,7 +28,17 @@ namespace SpiralLab.Sirius.FCEU
             this.SiriusEditor.OnDocumentOpen += SiriusEditor_OnDocumentOpen;
             this.SiriusEditor.OnDocumentSave += SiriusEditor_OnDocumentSave;
             this.SiriusEditor.OnCorrection2D += SiriusEditor_OnCorrection2D;
+
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", false);
         }
+        private void PropertyBrowsable(Type type, string name, bool isShow)
+        {
+            PropertyDescriptor descriptor = TypeDescriptor.GetProperties(type)[name];
+            BrowsableAttribute attrib = (BrowsableAttribute)descriptor.Attributes[typeof(BrowsableAttribute)];
+            System.Reflection.FieldInfo isBrow = attrib.GetType().GetField("browsable", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            isBrow.SetValue(attrib, isShow);
+        }
+
 
         private void SiriusEditor_OnDocumentOpen(object sender)
         {
