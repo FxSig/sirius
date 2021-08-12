@@ -30,6 +30,26 @@ namespace SpiralLab.Sirius.FCEU
             this.SiriusEditor.OnCorrection2D += SiriusEditor_OnCorrection2D;
 
             PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "TimeLag", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "AngularLimit", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+
+
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMinValue", false);
+            PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", false);
+
+
         }
         private void PropertyBrowsable(Type type, string name, bool isShow)
         {

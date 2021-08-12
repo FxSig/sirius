@@ -463,25 +463,19 @@ namespace SpiralLab.Sirius.FCEU
         public bool ReadDefectFromFile(int index, string fileName, out Group group)
         {
             group = null;
-            ProgressForm form = new ProgressForm();
-            Program.MainForm.Invoke(new MethodInvoker(delegate ()
-            {
-                form.Message = $"Reading From Defect File: {fileName}";
-                form.Percentage = 0;
-                form.Show(seq.Editor);
-            }));
-
             if (!File.Exists(fileName))
             {
-                Program.MainForm.Invoke(new MethodInvoker(delegate ()
-                {
-                    form.Close();
-                }));
-
                 seq.Error(ErrEnum.VisionDefectDataOpen);
                 Logger.Log(Logger.Type.Error, $"fail to open vision defect file : {fileName}");
                 return false;
             }
+            ProgressForm form = new ProgressForm();
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
+            {
+                form.Message = $"Reading From Defect File : {fileName}";
+                form.Percentage = 0;
+                form.Show(seq.Editor);
+            }));
 
             var editor = seq.Editor;
             var doc = editor.Document; //에디터의 doc 를 대상
@@ -525,8 +519,20 @@ namespace SpiralLab.Sirius.FCEU
             group.IsHitTest = false; //선택 않되도록
             group.Align = Alignment.Center;
             group.Repeat = repeat;
-            int counts = 0;
+            int polylineCount = 0;
             seq.Warn(WarnEnum.VisionDataOpening);
+
+            var lineIndex = 0;
+            var lineCount = File.ReadAllLines(fileName).Length;
+            if (lineCount <= 0)
+            {
+                Program.MainForm.Invoke(new MethodInvoker(delegate ()
+                {
+                    form.Close();
+                }));
+                Logger.Log(Logger.Type.Error, $"no polyline data in {fileName}");
+                return false;
+            }
             try
             {
                 using (var stream = new StreamReader(fileName))
@@ -562,16 +568,7 @@ namespace SpiralLab.Sirius.FCEU
                             }
                             polyline.Regen();
                             group.Add(polyline);
-
-                            counts++;
-                            //// 하나씩 혹은 한번에 전체를 ?
-                            //Program.MainForm.Invoke(new MethodInvoker(delegate ()
-                            //{
-                            //    docFceu.Action.ActEntityAdd(polyline);
-                            //    editor.View.Render();
-                            //    form.Percentage = counts++ / max * 100;
-                            //}));
-
+                            polylineCount++;
                             polyline = null;
                         }
                         else
@@ -581,9 +578,19 @@ namespace SpiralLab.Sirius.FCEU
                             float y = float.Parse(tokens[1]);
                             polyline.Add(new LwPolyLineVertex(x, y));
                         }
+     
+                        float percentage = (float)lineIndex++ / (float)lineCount * 100.0f;
+                        if (percentage % 10 == 0)
+                        {
+                            // 하나씩 혹은 한번에 전체를 ?
+                            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                            {
+                                form.Percentage = percentage;
+                            }));
+                        }
                     }
                 }
-                Logger.Log(Logger.Type.Info, $"success to open defect file : {counts} counts at {fileName}");
+                Logger.Log(Logger.Type.Info, $"success to open defect file : {polylineCount} polylines at {fileName}");
             }
             catch (Exception ex)
             {
@@ -594,9 +601,10 @@ namespace SpiralLab.Sirius.FCEU
             {
                 if (success)
                 {
-                    Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                    Program.MainForm.Invoke(new MethodInvoker(delegate ()
                     {
-                        form.Message = $"Regening ... ";
+                        form.Message = $"Regening {polylineCount} Polylines From {fileName}";
+                        form.Percentage = 100;
                     }));
                     group.Regen();
                     //x 정렬 오름차순
@@ -640,7 +648,7 @@ namespace SpiralLab.Sirius.FCEU
                     //
                     seq.Warn(WarnEnum.VisionDataOpening, true);
                 }
-                Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     form.Close();
                 }));

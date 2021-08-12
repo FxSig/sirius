@@ -42,6 +42,7 @@ namespace SpiralLab.Sirius.FCEU
         /// </summary>
         internal bool isFieldCorrecting;
         SpiralLab.Sirius.FCEU.FormMain formMain;
+        bool isMarkerStarted = false;
         Thread thread;
         bool disposed = false;
 
@@ -250,7 +251,7 @@ namespace SpiralLab.Sirius.FCEU
         }
         public bool Start(SpiralLab.Sirius.FCEU.LaserSequence.Process proc)
         {
-            if (this.IsBusy)
+            if (this.IsBusy || this.isMarkerStarted)
             {
                 Error(ErrEnum.Busy);
                 Logger.Log(Logger.Type.Error, $"try to start mark but busy : {proc.ToString()}");
@@ -503,6 +504,7 @@ namespace SpiralLab.Sirius.FCEU
                     //success &= Marker.Start();
                     break;
             }
+            isMarkerStarted = success;
             return success;
         }
         public void Reset()
@@ -537,6 +539,7 @@ namespace SpiralLab.Sirius.FCEU
                 bool busy = false;
                 busy |= Rtc.CtlGetStatus(RtcStatus.Busy);
                 busy |= Marker.IsBusy;
+                busy |= isMarkerStarted;
                 if (this.IsBusy != busy)
                 {
                     if (busy)
@@ -660,6 +663,7 @@ namespace SpiralLab.Sirius.FCEU
             //revert scanner angle into marker
             var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
             this.Marker.ScannerRotateAngle = scannerRotateAngle;
+            isMarkerStarted = false;
         }
     }
 }

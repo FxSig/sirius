@@ -364,6 +364,9 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.DO_HATCHING_01_START_NG);
                         break;
+                    case MessageProtocol.DO_HATCHING_01_FINISH_OK:
+                        break;
+
                     case MessageProtocol.MOVE_HATCHING_02_POITION_DONE:
                         this.Send(MessageProtocol.MOVE_HATCHING_02_POITION_DONE_OK);
                         break;
@@ -372,6 +375,8 @@ namespace SpiralLab.Sirius.FCEU
                             this.Send(MessageProtocol.DO_HATCHING_02_START_OK);
                         else
                             this.Send(MessageProtocol.DO_HATCHING_02_START_NG);
+                        break;
+                    case MessageProtocol.DO_HATCHING_02_FINISH_OK:
                         break;
                     #endregion
 

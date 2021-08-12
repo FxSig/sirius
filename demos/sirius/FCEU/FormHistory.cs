@@ -34,13 +34,11 @@ namespace SpiralLab.Sirius.FCEU
             folderCol = new System.Collections.Specialized.StringCollection();
 
             listView1.SetDoubleBuffered(true);
-            CreateHeadersAndFillListView();
-
+             CreateHeadersAndFillListView();
         }
         private void CreateHeadersAndFillListView()
         {
             ColumnHeader colHead;
-
             colHead = new ColumnHeader();
             colHead.Text = "Date";
             this.listView1.Columns.Add(colHead);
@@ -91,7 +89,9 @@ namespace SpiralLab.Sirius.FCEU
             lvi.SubItems.Add(lvsi);
 
             this.listView1.Items.Add(lvi);
-            listView1.TopItem = listView1.Items[listView1.Items.Count - 1];
+
+            if (autoScrollToolStripMenuItem.Checked)
+                listView1.TopItem = listView1.Items[listView1.Items.Count - 1];
 
             listView1.EndUpdate();
         }
@@ -108,6 +108,12 @@ namespace SpiralLab.Sirius.FCEU
 
             }
         }
-       
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            listView1.BeginUpdate();
+            listView1.Items.Clear();
+            listView1.EndUpdate();
+        }
     }
 }
