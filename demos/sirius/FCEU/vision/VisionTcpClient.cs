@@ -77,7 +77,7 @@ namespace SpiralLab.Sirius.FCEU
             this.client = new TcpClient();
             terminated = false;
             this.thread = new Thread(this.WorkerThread);
-            this.thread.Name = $"Vision Client Thread";
+            this.thread.Name = $"Tcp Client Thread";
             this.thread.Start();
             return true;
         }
@@ -90,37 +90,36 @@ namespace SpiralLab.Sirius.FCEU
                     isConnected = false;
                     this.client?.Dispose();
                     this.client = new TcpClient();
-                    //Logger.Log(Logger.Type.Warn, $"vision tcp client is not connected");
                     this.client.Connect(this.ipaddress, this.port);
-                    this.client.NoDelay = true;
+                    this.client.NoDelay = true; //nagle algorithm off
                     int size = Marshal.SizeOf((uint)0);
                     byte[] keepAlive = new byte[size * 3];
                     //turn keepalive on
                     Buffer.BlockCopy(BitConverter.GetBytes((uint)1), 0, keepAlive, 0, size);
                     //amount of time without activity before sending a keepalive to 1 secs
-                    Buffer.BlockCopy(BitConverter.GetBytes((uint)1000), 0, keepAlive, size, size);
+                    Buffer.BlockCopy(BitConverter.GetBytes((uint)5000), 0, keepAlive, size, size);
                     //interval to 1 sec
-                    Buffer.BlockCopy(BitConverter.GetBytes((uint)1000), 0, keepAlive, size * 2, size);
+                    Buffer.BlockCopy(BitConverter.GetBytes((uint)5000), 0, keepAlive, size * 2, size);
                     this.client.Client.IOControl(IOControlCode.KeepAliveValues, keepAlive, null);
                     isConnected = true;
-                    Logger.Log(Logger.Type.Info, $"vision tcp client connected to {this.ipaddress}:{this.port}");
+                    Logger.Log(Logger.Type.Info, $"tcp client connected to {this.ipaddress}:{this.port}");
                     this.Send(MessageProtocol.IM_LASER);
                     do
                     {
                         if (!this.Receive(out var resp))
                         {
-                            Logger.Log(Logger.Type.Error, $"vision tcp client fail to receive data !");
+                            Logger.Log(Logger.Type.Error, $"tcp client fail to receive data !");
                             this.client.Close();
                             break;
                         }
                         if (false == this.Parse(resp))
-                            Logger.Log(Logger.Type.Error, $"vision tcp client : unknown? {(int)resp}: {resp.ToString()}");
+                            Logger.Log(Logger.Type.Error, $"tcp client : unknown? {(int)resp}: {resp.ToString()}");
 
                     } while (!terminated && this.client.Connected);
                 }
                 catch (SocketException)
                 {
-                    for (int i = 0; i < 20; i++) //20*100 = 2sec
+                    for (int i = 0; i < 30; i++) //30*100 = 3sec reconnect
                     {
                         if (terminated)
                             break;
@@ -146,7 +145,7 @@ namespace SpiralLab.Sirius.FCEU
                 Debug.Assert(4 == bytes.Length);
                 //nstream.Write(bytes, 0, bytes.Length);
                 nstream.WriteAsync(bytes, 0, bytes.Length);
-                Logger.Log(Logger.Type.Debug, $"vision comm send : {data.ToString()} [{(int)data}, 0x{(int)data:X4}]");
+                Logger.Log(Logger.Type.Debug, $"tcp send : {data.ToString()} [{(int)data}, 0x{(int)data:X4}]");
                 return true;                
             }
             catch (Exception ex)
@@ -167,7 +166,7 @@ namespace SpiralLab.Sirius.FCEU
                 int bytes = nstream.Read(buffer, 0, buffer.Length);
                 if (4 != bytes)
                 {
-                    Logger.Log(Logger.Type.Error, $"fail to receive vision comm bytes= {bytes}");
+                    Logger.Log(Logger.Type.Error, $"tcp comm fail to receive. bytes= {bytes}");
                     return false;
                 }
 
@@ -190,7 +189,7 @@ namespace SpiralLab.Sirius.FCEU
             if (modelChange >= 200 && modelChange <= 399)//비전 관련 명령이므로 무시
                 return true;
 
-            Logger.Log(Logger.Type.Debug, $"vision comm recv : {message.ToString()} [{(int)message}, 0x{(int)message:X4}]");
+            Logger.Log(Logger.Type.Debug, $"tcp recv : {message.ToString()} [{(int)message}, 0x{(int)message:X4}]");
             if (modelChange >= (int)MessageProtocol.MODEL_LOAD && modelChange < (int)MessageProtocol.MODEL_LOAD_OK)
             {
                 //model change 
@@ -244,11 +243,12 @@ namespace SpiralLab.Sirius.FCEU
                         break;
                     case MessageProtocol.LASER_SCANNER_COMPENSATE:
                         {
-                            if (svc.ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval))
+                            if (svc.ReadScanFieldCorrectionInterval(out int rows, out int cols, out float rowInterval, out float colInterval))
                             {
                                 svc.FieldCorrectionRows = rows;
                                 svc.FieldCorrectionCols = cols;
-                                svc.FieldCorrectionInterval = interval;
+                                svc.FieldCorrectionRowInterval = rowInterval;
+                                svc.FieldCorrectionColInterval = colInterval;
                                 if (seq.Start(LaserSequence.Process.FieldCorrection))
                                     this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_OK);
                                 else
@@ -266,6 +266,39 @@ namespace SpiralLab.Sirius.FCEU
                         else
                             this.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_READ_NG);
                         break;
+                    case MessageProtocol.LASER_Z_CORRECT_INIT: //no return ?
+                        if (seq.IsBusy)
+                        {
+                            this.Send(MessageProtocol.LASER_Z_CORRECT_INIT_NG);
+                            Logger.Log(Logger.Type.Error, $"trying to scanner z correction index reset to 0 but busy");
+                        }
+                        else
+                        {
+                            svc.ZCorrectionIndex = 0;
+                            this.Send(MessageProtocol.LASER_Z_CORRECT_INIT_OK);
+                            Logger.Log(Logger.Type.Info, $"scanner z correction index reset to 0");
+                        }
+                        break;
+                    case MessageProtocol.LASER_Z_CORRECT:
+                        {
+                            //좌 -> 우
+                            if (svc.ReadZCorrection(out float dx, out float dy, out int count))
+                            {
+                                svc.ZCorrectionDx = dx;
+                                svc.ZCorrectionDy = dy;
+                                svc.ZCorrectionCount = count;
+                                if (seq.Start(LaserSequence.Process.ZCorrection))
+                                    this.Send(MessageProtocol.LASER_Z_CORRECT_OK);
+                                else
+                                    this.Send(MessageProtocol.LASER_Z_CORRECT_NG);
+                            }
+                            else
+                                this.Send(MessageProtocol.LASER_Z_CORRECT_NG);
+                        }
+                        break;
+                    case MessageProtocol.LASER_Z_CORRECT_FINISH_OK:
+                        break;
+                   
                     #endregion
 
                     #region Ref 타켓 마킹
@@ -322,10 +355,10 @@ namespace SpiralLab.Sirius.FCEU
                         {
                             var defRootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
                             var defFile = Path.Combine(defRootPath, $"{svc.RecipeName}\\temp\\share_result_data_01.txt");
-                            if (svc.ReadDefectFromFile(1, defFile, out var group))
+                            if (svc.ReadDefectFromFile(1, defFile, out var group, out float dx, out float dy, out float angle))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_01_OK);
-                                if (svc.PrepareDefectInEditor(1, group))
+                                if (svc.PrepareDefectInEditor(1, group, dx, dy, angle))
                                 //if (svc.PrepareDefectInMarker(1, group)) //에디터만 업데이트해 놓으면 추후 start 시 복제됨
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_01_FINISH);
                             }
@@ -339,10 +372,10 @@ namespace SpiralLab.Sirius.FCEU
                         {
                             var defRootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "DEFECT");
                             var defFile = Path.Combine(defRootPath, $"{svc.RecipeName}\\temp\\share_result_data_02.txt");
-                            if (svc.ReadDefectFromFile(2, defFile, out var group))
+                            if (svc.ReadDefectFromFile(2, defFile, out var group, out float dx, out float dy, out float angle))
                             {
                                 this.Send(MessageProtocol.LASER_READ_HATCHING_02_OK);
-                                if (svc.PrepareDefectInEditor(2, group))
+                                if (svc.PrepareDefectInEditor(2, group, dx, dy, angle))
                                 //if (svc.PrepareDefectInMarker(2, group)) //에디터만 업데이트해 놓으면 추후 start 시 복제됨
                                     this.Send(MessageProtocol.LASER_READ_HATCHING_02_FINISH);
                             }

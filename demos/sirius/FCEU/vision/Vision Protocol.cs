@@ -64,6 +64,15 @@ public enum MessageProtocol
     LASER_SCANNER_COMPENSATE_FINISH, // 레이저 -> 제어
     LASER_SCANNER_COMPENSATE_FINISH_OK, // 제어 -> 레이저
 
+    LASER_Z_CORRECT_INIT = 470, //제어->레이저; 초기상태로 변환
+    LASER_Z_CORRECT_INIT_OK,
+    LASER_Z_CORRECT_INIT_NG,
+    LASER_Z_CORRECT,            //제어->레이저; 라인만들기
+    LASER_Z_CORRECT_OK,            //레이저->제어
+    LASER_Z_CORRECT_NG,            //레이저->제어
+    LASER_Z_CORRECT_FINISH,        //레이저 -> 제어
+    LASER_Z_CORRECT_FINISH_OK, //제어 -> 레이저
+
     LASER_SCANNER_COMPENSATE_READ = 490, //제어->레이저 ; 스캐너 필드 보정용 비전 측정 데이타 파일 읽기
     LASER_SCANNER_COMPENSATE_READ_OK, //레이저 ->제어
     LASER_SCANNER_COMPENSATE_READ_NG, //레이저 ->제어

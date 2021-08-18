@@ -95,9 +95,9 @@ namespace SpiralLab.Sirius.FCEU
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            if (svc.ReadDefectFromFile(2, dlg.FileName, out var group))
+            if (svc.ReadDefectFromFile(2, dlg.FileName, out var group, out float dx, out float dy, out float angle))
             {
-                if (svc.PrepareDefectInEditor(2, group))
+                if (svc.PrepareDefectInEditor(2, group, dx, dy, angle))
                 {
                     Logger.Log(Logger.Type.Warn, $"manually defect (left side) file loaded : {dlg.FileName}");
                 }
@@ -156,9 +156,9 @@ namespace SpiralLab.Sirius.FCEU
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            if (svc.ReadDefectFromFile(1, dlg.FileName, out var group))
+            if (svc.ReadDefectFromFile(1, dlg.FileName, out var group, out float dx, out float dy, out float angle))
             {
-                if (svc.PrepareDefectInEditor(1, group))
+                if (svc.PrepareDefectInEditor(1, group, dx, dy, angle))
                 {
                     Logger.Log(Logger.Type.Warn, $"manually defect (right side) file loaded : {dlg.FileName}");
                 }

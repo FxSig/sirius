@@ -78,6 +78,603 @@
             <param name="output">보간된 출력값</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.AdlinkDInput`1">
+            <summary>
+            디지털 입력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDInput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDInput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDInput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDInput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDInput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AdlinkDOutput`1">
+            <summary>
+            디지털 출력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AjinExtekDInput`1">
+            <summary>
+            디지털 입력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AjinExtekDOutput`1">
+            <summary>
+            디지털 출력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IDOutput`1">
+            <summary>
+            디지털 출력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDOutput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDOutput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDOutput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDOutput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDOutput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IDInput`1">
+            <summary>
+            디지털 입력 인터페이스    
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPSerial">
+            <summary>
+            레이저 소스 (IPG YLP)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.PowerCompensator">
+            <summary>
+            파워 보정기
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Add(SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Remove(SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Contains(SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IPGYLPStatusCode.Empty">
+            <summary>
+            기본값(0) 객체 생성
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.PulseRepRateMin">
+            <summary>
+            KHz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.PulseRepRateMax">
+            <summary>
+            KHz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.PulseRepRate">
+            <summary>
+            KHz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsEmissionOn">
+            <summary>
+            Laser Emission 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.AlarmCode">
+            <summary>
+            현재 설정된 알람코드
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPSerial.AlarmCodes">
+            <summary>
+            알람 코드
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.OperatingPower">
+            <summary>
+            Watt
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.IsGuideLaserOn">
+            <summary>
+            Guide Laser온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPSerial.ComPort">
+            <summary>
+            통신 포트 번호
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">COM 포트</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.OnTimer(System.Object)">
+            <summary>
+            쓰레드 타이머
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.CtlPower(System.Single)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPSerial.ListPower(System.Single)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia">
+            <summary>
+            레이저 소스 (OptoWave Fotia)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerCompensator">
+            <summary>
+            파워 보정기
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsDiodeOn">
+            <summary>
+            다이오드 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsQSwitchOn">
+            <summary>
+            Q스위치 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsShutterOpen">
+            <summary>
+            셔터 온오프
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.TriggerModes.Internal">
+            <summary>
+            내부 트리거
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.TriggerModes.External">
+            <summary>
+            외부 트리거
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.TriggerMode">
+            <summary>
+            트리거 모드 (External 로 해야 Rtc 로 제어 가능)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PulseRepRate">
+            <summary>
+            주파수 Hz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerFactor">
+            <summary>
+            파워 비율값? (%)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.DiodeCurrentAmp">
+            <summary>
+            다이오드 커런트 (Amp)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualDiodeCurrentAmp">
+            <summary>
+            실제 다이오드 커런트 (Amp)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel">
+            <summary>
+            게이트 신호 레벨 (Rtc 신호 레벨과 같이 맞출것)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel.Low">
+            <summary>
+            Active Low
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel.High">
+            <summary>
+            Active High
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LogicLevel">
+            <summary>
+            게이트 신호 레벨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LaserTime">
+            <summary>
+            레이저 사용 시간?
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.FirmwareVersion">
+            <summary>
+            펌웨어 버전
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Crystal1Temperature">
+            <summary>
+            크리스털1 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Crystal2Temperature">
+            <summary>
+            크리스털2 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal1Temperature">
+            <summary>
+            크리스털 1 실제 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal2Temperature">
+            <summary>
+            크리스털 2 실제 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualLaserHeadTemperature">
+            <summary>
+            레이저 헤드 실제 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualDiodeTemperature">
+            <summary>
+            다이오드 실제 온도
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes">
+            <summary>
+            알람 코드
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCode">
+            <summary>
+            현재 설정된 알람코드
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ComPort">
+            <summary>
+            통신 포트 번호
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">COM 포트</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.OnTimer(System.Object)">
+            <summary>
+            쓰레드 타이머
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlPower(System.Single)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.ListPower(System.Single)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
             레이저 소스 (IPG YLP  Type E)
@@ -293,7 +890,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.OnUpdate(System.Object)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.OnTimer(System.Object)">
             <summary>
             extension1 port 의 입력상태를 읽어 업데이트
             </summary>
@@ -343,6 +940,117 @@
             <param name="onOff">On/Off</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.CoherentAviaLX">
+            <summary>
+            레이저 소스 (코히런트 AVIA LX)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsPowerConntrol">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsShutterOpen">
+            <summary>
+            셔터(Shutter) 상태
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">COM 포트</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.OnTimer(System.Object)">
+            <summary>
+            쓰레드 타이머
+            </summary>
+            <param name="state"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlReset">
+            <summary>
+            리셋
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlPower(System.Single)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.ListPower(System.Single)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerControl">
             <summary>
             레이저 소스 IPowerControl 인터페이스
@@ -363,42 +1071,15 @@
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.ShutterStatus">
-            <summary>
-            레이저 소스 내부의 셔터 상태 열거형
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.ShutterStatus.Unknown">
-            <summary>
-            모름
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.ShutterStatus.Closed">
-            <summary>
-            닫힘
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.ShutterStatus.Opened">
-            <summary>
-            열림
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.IShutter">
             <summary>
             레이저 소스 IShutter 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IShutter.Status">
+        <member name="P:SpiralLab.Sirius.IShutter.IsShutterOpen">
             <summary>
             셔터(Shutter) 상태
             </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IShutter.CtlShutter(System.Boolean)">
-            <summary>
-            셔터 동작
-            </summary>
-            <param name="open">true=열기 시도, false= 닫기 시도</param>
-            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.ILaser">
             <summary>
@@ -577,7 +1258,7 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Status">
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterOpen">
             <summary>
             셔터(Shutter) 상태
             </summary>
@@ -1223,9 +1904,9 @@
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4ExternalControlMode.ToUInt">
+        <member name="M:SpiralLab.Sirius.Rtc4ExternalControlMode.ToInt">
             <summary>
-            4바이트 uint 으로 변환
+            4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
@@ -2013,9 +2694,9 @@
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5LaserControlSignal.ToUInt">
+        <member name="M:SpiralLab.Sirius.Rtc5LaserControlSignal.ToInt">
             <summary>
-            4바이트 uint 으로 변환
+            4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
@@ -2095,7 +2776,7 @@
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5ExternalControlMode.ToUInt">
+        <member name="M:SpiralLab.Sirius.Rtc5ExternalControlMode.ToInt">
             <summary>
             4바이트 uint 으로 변환
             </summary>
@@ -2121,6 +2802,111 @@
         <member name="P:SpiralLab.Sirius.Rtc5JumpMode.Length">
             <summary>
             mm 값 입력 (자동으로 bits 로 내부 계산됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInXDirection">
+            <summary>
+            X &lt; –524288
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInXDirection">
+            <summary>
+            X &gt; +524287
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInYDirection">
+            <summary>
+            Y &lt; –524288
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInYDirection">
+            <summary>
+            Y &gt; +524287
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInXUserDirection">
+            <summary>
+            X &lt; Xmin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInXUserDirection">
+            <summary>
+            X &gt; Xmax
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInYUserDirection">
+            <summary>
+            Y &lt; Ymin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInYUserDirection">
+            <summary>
+            Y &gt; Ymin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.TriggerError">
+            <summary>
+            TriggerError: an enabled external trigger or simulated trigger occurred during execution of a list.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.ActivateFlyError">
+            <summary>
+            ActivateFlyError: an error has occurred during activation of Processing-on-the-fly correction by activate_fly_2d or activate_fly_xy 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInZDirection">
+            <summary>
+            Z &lt; –32.768
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInZDirection">
+            <summary>
+            Z &gt; +32.767
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInZUserDirection">
+            <summary>
+            Z &lt; Zmin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfOverflowInZUserDirection">
+            <summary>
+            Z &gt; Zmax
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5MarkingInfo.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MarkingInfo.Add(SpiralLab.Sirius.Rtc5MarkingInfo.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MarkingInfo.Remove(SpiralLab.Sirius.Rtc5MarkingInfo.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MarkingInfo.Contains(SpiralLab.Sirius.Rtc5MarkingInfo.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5MarkingInfo.ToInt">
+            <summary>
+            4바이트 uint 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5MarkingInfo.Empty">
+            <summary>
+            기본값(0) 객체 생성
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc5">
@@ -2246,7 +3032,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.KZFactor">
             <summary>
-            Z 축 bits/mm 값
+            Z 축 bits/mm 값 (= KFactor / 16 in RTC5)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5.vPhysical3D">
@@ -2705,6 +3491,15 @@
             <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlLoadedCorrectionInfo(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionFileHeaderParam,System.Double@)">
+            <summary>
+            로드된 보정 파일의 헤더 정보 조회
+            </summary>
+            <param name="tableIndex">테이블 번호 (Table1)</param>
+            <param name="parameter">CorrectionFileHeader 열거 항목</param>
+            <param name="data">조회된 데이타</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
@@ -2897,6 +3692,24 @@
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlLoadZTable(System.Single,System.Single,System.Single)">
+            <summary>
+            3D 옵션 사용시 포물선 방정식의 계수 재설정
+            </summary>
+            <param name="coefA">Z (out) = A + Bl + Cl^2</param>
+            <param name="coefB">Z (out) = A + Bl + Cl^2</param>
+            <param name="coefC">Z (out) = A + Bl + Cl^2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlZDistance(System.Numerics.Vector3,System.Single@)">
+            <summary>
+            지정된 좌표의 초점 거리(l)
+            3D 옵션이 있고, 보정 파일이 지정되어 있어야 함
+            </summary>
+            <param name="vPosition"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListZOffset(System.Single)">
             <summary>
             리스트 명령 - Z 오프셋 
@@ -3030,6 +3843,31 @@
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFRotateBegin(System.Numerics.Vector2,System.UInt32)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 (Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 위치값
+            </summary>
+            <param name="vCenter">회전 중심 (x,y)</param>
+            <param name="pulsedPerRevolution">한 회전당 발생하는 엔코더 개수 (최소 100 이상)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위를 설정
+            범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
+            이를 회피하기 위해서 ListMOTFWaitLimitX 등의 조건을 통해 리스트 명령이 대기되도록 조치 필요
+            </summary>
+            <param name="xRange">X 영역 크기</param>
+            <param name="yRange">Y 영역 크기</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -3237,9 +4075,9 @@
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6LaserControlSignal.ToUInt">
+        <member name="M:SpiralLab.Sirius.Rtc6LaserControlSignal.ToInt">
             <summary>
-            4바이트 uint 으로 변환
+            4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
@@ -3316,9 +4154,9 @@
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6ExternalControlMode.ToUInt">
+        <member name="M:SpiralLab.Sirius.Rtc6ExternalControlMode.ToInt">
             <summary>
-            4바이트 uint 으로 변환
+            4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
@@ -3342,6 +4180,111 @@
         <member name="P:SpiralLab.Sirius.Rtc6JumpMode.Length">
             <summary>
             mm 값 입력 (자동으로 bits 로 내부 계산됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInXDirection">
+            <summary>
+            X &lt; –524288
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInXDirection">
+            <summary>
+            X &gt; +524287
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInYDirection">
+            <summary>
+            Y &lt; –524288
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInYDirection">
+            <summary>
+            Y &gt; +524287
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInXUserDirection">
+            <summary>
+            X &lt; Xmin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInXUserDirection">
+            <summary>
+            X &gt; Xmax
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInYUserDirection">
+            <summary>
+            Y &lt; Ymin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInYUserDirection">
+            <summary>
+            Y &gt; Ymin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.TriggerError">
+            <summary>
+            TriggerError: an enabled external trigger or simulated trigger occurred during execution of a list.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.ActivateFlyError">
+            <summary>
+            ActivateFlyError: an error has occurred during activation of Processing-on-the-fly correction by activate_fly_2d or activate_fly_xy 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInZDirection">
+            <summary>
+            Z &lt; –32.768
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInZDirection">
+            <summary>
+            Z &gt; +32.767
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInZUserDirection">
+            <summary>
+            Z &lt; Zmin
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfOverflowInZUserDirection">
+            <summary>
+            Z &gt; Zmax
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6MarkingInfo.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6MarkingInfo.Add(SpiralLab.Sirius.Rtc6MarkingInfo.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6MarkingInfo.Remove(SpiralLab.Sirius.Rtc6MarkingInfo.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6MarkingInfo.Contains(SpiralLab.Sirius.Rtc6MarkingInfo.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6MarkingInfo.ToInt">
+            <summary>
+            4바이트 uint 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6MarkingInfo.Empty">
+            <summary>
+            기본값(0) 객체 생성
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6">
@@ -3926,6 +4869,15 @@
             <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlLoadedCorrectionInfo(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionFileHeaderParam,System.Double@)">
+            <summary>
+            로드된 보정 파일의 헤더 정보 조회
+            </summary>
+            <param name="tableIndex"></param>
+            <param name="parameter"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
@@ -4118,6 +5070,24 @@
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlLoadZTable(System.Single,System.Single,System.Single)">
+            <summary>
+            3D 옵션 사용시 포물선 방정식의 계수 재설정
+            </summary>
+            <param name="coefA">Z (out) = A + Bl + Cl^2</param>
+            <param name="coefB">Z (out) = A + Bl + Cl^2</param>
+            <param name="coefC">Z (out) = A + Bl + Cl^2</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlZDistance(System.Numerics.Vector3,System.Single@)">
+            <summary>
+            지정된 좌표의 초점 거리(l)
+            3D 옵션이 있고, 보정 파일이 지정되어 있어야 함
+            </summary>
+            <param name="vPosition"></param>
+            <param name="distance"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListZOffset(System.Single)">
             <summary>
             리스트 명령 - Z 오프셋 
@@ -4251,6 +5221,31 @@
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFRotateBegin(System.Numerics.Vector2,System.UInt32)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 (Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 위치값
+            </summary>
+            <param name="vCenter">회전 중심 (x,y)</param>
+            <param name="pulsedPerRevolution">한 회전당 발생하는 엔코더 개수 (최소 100 이상)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위를 설정
+            범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
+            이를 회피하기 위해서 ListMOTFWaitLimitX 등의 조건을 통해 리스트 명령이 대기되도록 조치 필요
+            </summary>
+            <param name="xRange">X 영역 크기</param>
+            <param name="yRange">Y 영역 크기</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -4933,6 +5928,21 @@
             입력 데이타의 열 개수
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.RowInterval">
+            <summary>
+             행 간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.ColInterval">
+            <summary>
+            열 간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection2D.KFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcCorrection2D.SourceCorrectionFile">
             <summary>
             입력 보정 파일
@@ -4948,16 +5958,6 @@
             변환 결과 로그 메시지
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.kFactor">
-            <summary>
-            bits/mm
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.RtcCorrection2D.interval">
-            <summary>
-            간격 (mm)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.RtcCorrection2D.Data">
             <summary>
             절대 위치, 실측 데이타의 2차원 배열
@@ -4968,14 +5968,15 @@
             SCANLAB 의 보정 유틸리티 실행파일 경로
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.String,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.String,System.String)">
             <summary>
             생성자
             </summary>
             <param name="kFactor">bits/mm</param>
             <param name="rows">행 개수</param>
             <param name="cols">열 개수</param>
-            <param name="interval">간격</param>
+            <param name="rowInterval">행 간격 (mm)</param>
+            <param name="colInterval">열 간격 (mm)</param>
             <param name="srcCtbFile">입력 보정 파일</param>
             <param name="targetCtbFile">출력 보정 파일</param>
         </member>
@@ -5020,6 +6021,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection2D.OnResultEvent(System.Boolean)">
+            <summary>
+            이벤트 핸들러 호출 (상속 확장 구현용)
+            </summary>
+            <param name="success">변환 성공 여부</param>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcCorrection3D">
             <summary>
             scanner correction for 3D 
@@ -5050,6 +6057,16 @@
             출력 보정 파일
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection3D.Interval">
+            <summary>
+            간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcCorrection3D.KFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcCorrection3D.ZLower">
             <summary>
             Z 보정 위치 최하단값 (mm)
@@ -5078,6 +6095,11 @@
         <member name="F:SpiralLab.Sirius.RtcCorrection3D.kFactor">
             <summary>
             bits/mm
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcCorrection3D.interval">
+            <summary>
+            mm
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcCorrection3D.exeFileName">
@@ -5129,6 +6151,12 @@
             변환 
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcCorrection3D.OnResultEvent(System.Boolean)">
+            <summary>
+            이벤트 핸들러 호출 (상속 확장 구현용)
+            </summary>
+            <param name="success">변환 성공 여부</param>
         </member>
         <member name="T:SpiralLab.Sirius.RtcJumpTo">
             <summary>
@@ -5359,11 +6387,6 @@
             입력 데이타의 열 개수
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.Interval">
-            <summary>
-            보정 간격 (mm)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.ICorrection.KFactor">
             <summary>
             K 값 (bits/mm)
@@ -5545,13 +6568,18 @@
             스캔 헤드의 사용가능 온도 도달 여부
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.RtcStatus.MotfOutOfRange">
+            <summary>
+            MOTF 사용시 스캐너의 허용영역을 벋어났는지 여부 
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ILaserControlSignal">
             <summary>
             레이저 제어 신호의 레벨 설정(Laser1, 2, On 등의 신호 레벨 : Active Low/High)
             RTC5 이상만 지원됨
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ILaserControlSignal.ToUInt">
+        <member name="M:SpiralLab.Sirius.ILaserControlSignal.ToInt">
             <summary>
             비트 구조체를 32비트 값으로 변환
             </summary>
@@ -5562,7 +6590,7 @@
             RTC 외부 제어 모드 값 (Rtc4,5 의 비트 플래그가 다르므로 각 버전별 상속 구현)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
+        <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToInt">
             <summary>
             비트 구조체를 32 비트값으로 변환
             </summary>
@@ -6444,6 +7472,141 @@
             <param name="angle">회전 (각도)</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.CorrectionFileHeaderParam">
+            <summary>
+            보정 파일 헤더 파라메터 조회 항목
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.CorrectionTable">
+            <summary>
+            0 = 2D
+            1 = 3D
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.KFactor">
+            <summary>
+            Calibration factor Kxy [bit/mm]
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.FocalLengthOrWorkingDistance">
+            <summary>
+            For a configuration with a scan objective: the effective focal length of the objective [mm]. 
+            For a configuration without a scan objective: the working distance A [mm]. 
+            A = distance from the optical axis of the incident laser beam at the first deflection mirror to the image plane.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.StretchFactorX">
+            <summary>
+            Stretch factor for the x direction. Compensates the pyramid-shaped image field change which exists in the z direction of 3D markings.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.StretchFactorY">
+            <summary>
+            Stretch factor for the y direction. Compensates the pyramid-shaped image field change which exists in the z direction of 3D markings.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.CoefficientA">
+            <summary>
+            Bits ! 
+            Coefficient A of the polynomial for z axis control, offset part, ±26 Bit.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.CoefficientB">
+            <summary>
+            Bits ! 
+            Coefficient B of the polynomial for z axis control, linear part, ±11 Bit.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.CoefficientC">
+            <summary>
+            Bits ! 
+            Coefficient C of the polynomial for z axis control, square part, ±4 Bit.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.NumOfCorrectionFile">
+            <summary>
+            Number of the correction file. With correction files supplied by SCANLAB, 
+            the parameter corresponds to the number in the file name (for example, 145 for D2_145.ct5 or D3_145.ct5)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.DifferentiationFThetaObjective">
+            <summary>
+            Differentiation between correction with or without an F-Theta objective.
+            The following applies: 
+            Parameter = 10 * PObj + PTyp with
+            – PObj = 0: Correction without F-Theta objective
+              PObj = 1: Correction with F-Theta objective
+            – if correction with F-Theta objective:
+              PTyp = 0.0: without distortion data
+              PTyp = 1.0: with F-Theta’s F-stop progression condition
+              PTyp = 2.0: with image height table
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.IndicatorFortheSourceOfTheCorrectionFile">
+            <summary>
+            Indicator for the source of the correction file.
+            The following applies: Parameter = 1000 * POrig + PVer with
+            • POrig = 10000: Originally calculated file
+              POrig = 20000: converted from ctb file
+              POrig = 30000: reconstructed from txt file
+              By manipulating a correction file using correction programs available from SCANLAB,
+              POrig is increased by 1 in each case.
+               – PVer = Version number of the program used to create the correction file
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.InverseTable">
+            <summary>
+            Information about the inverse table.
+            The following applies: Parameter = PExist + 2 × PCalc with
+            • PExist = 1.0: valid inverse table is present
+              PExist = 0.0: no valid inverse table present
+            • If valid inverse table is present:
+              PCalc = 0: inverse table calculated ab initio
+              PCalc = 1: inverse table numerically calculated
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.AngleCalibration">
+            <summary>
+            Angle calibration of the scan system.
+            Mechanical angle deflection in [± °] at 96% of the maximum control.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ScanHeadGeometry">
+            <summary>
+            Code for the scan head geometry used for the calculation (for internal use only), for example,
+            • = –1.0: unknown geometry (for example, for a table converted from a ctb file)
+            • = 0.0: standard geometry
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ProtectiveWindow">
+            <summary>
+            Indicator for whether an additional protective window has been taken into account.
+            The following applies: Parameter = 1,000,000 × PT + 1,000 × PI with
+            • PT = Protective window thickness in mm (max. 2 decimal places)
+            • PI = Refraction index(max. 3 decimal places)
+            Example: The value 3,521,450.0 corresponds to a protective window thickness of 3.52 mm and a refraction index of 1.450.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ImageFieldSizeLimited">
+            <summary>
+            Indicator for whether the image field size has been limited in the correction file.
+            • = 0.0: without field size limit
+            • = 2.0: with field size limit
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IRtcMarkingInfo">
+            <summary>
+            RTC 마킹 정보(marking info 비트 데이타)
+            RTC5 : Rtc5MarkingInfo
+            RTC6 : Rtc6MarkingInfo
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMarkingInfo.ToInt">
+            <summary>
+            32 비트 값
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcExtension">
             <summary>
             RTC 확장 기능 인터페이스
@@ -6483,6 +7646,24 @@
             점프 모드 사용시 (intelli~ 기반의 스캐너 제품군으로 벡터 점프 모드 튜닝 지원시)
             </summary>
             <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlLoadedCorrectionInfo(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionFileHeaderParam,System.Double@)">
+            <summary>
+            로드된 보정 파일의 헤더 정보 조회
+            </summary>
+            <param name="tableIndex">테이블 번호 (Table1)</param>
+            <param name="parameter">CorrectionFileHeader 열거 항목</param>
+            <param name="data">조회된 데이타</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlMarkingInfo(SpiralLab.Sirius.IRtcMarkingInfo@)">
+            <summary>
+            마킹 정보 32비트값 조회
+            RTC5 : Rtc5MarkingInfo
+            RTC6 : Rtc6MarkingInfo
+            </summary>
+            <param name="markingInfo"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
@@ -6633,6 +7814,26 @@
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Over">
             <summary>
             입력 엔코더 값이 지정된 값 보다 커질 때까지 대기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.EncoderRangeCondition">
+            <summary>
+            엔코더 사용범위 (제한 영역)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EncoderRangeCondition.UnderFlow">
+            <summary>
+            입력 엔코더 + 위치값이 지정된 영역 내부일 때
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EncoderRangeCondition.Boundary">
+            <summary>
+            영역을 넘나들때
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.EncoderRangeCondition.OverFlow">
+            <summary>
+            입력 엔코더 + 위치값이 지정된 영역 외부일 때
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcMOTF">

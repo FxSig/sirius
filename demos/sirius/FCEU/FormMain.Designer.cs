@@ -222,7 +222,7 @@
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblVersion.Location = new System.Drawing.Point(364, 9);
+            this.lblVersion.Location = new System.Drawing.Point(470, 9);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(43, 16);
             this.lblVersion.TabIndex = 3;
@@ -259,9 +259,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 16);
+            this.label1.Size = new System.Drawing.Size(183, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "2021 COPYRIGHT TO (c)SPIRALLAB. Http:// SPIRALLAB.CO.KR.";
+            this.label1.Text = "2021 COPYRIGHT TO (c)SpiralLAB.";
             // 
             // panHeader
             // 
@@ -376,7 +376,7 @@
             // 
             this.btnRecipeQuestion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRecipeQuestion.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.pcb_out_24px;
-            this.btnRecipeQuestion.Location = new System.Drawing.Point(159, 4);
+            this.btnRecipeQuestion.Location = new System.Drawing.Point(155, 4);
             this.btnRecipeQuestion.Name = "btnRecipeQuestion";
             this.btnRecipeQuestion.Size = new System.Drawing.Size(29, 23);
             this.btnRecipeQuestion.TabIndex = 14;
@@ -387,7 +387,7 @@
             // 
             this.lblError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblError.BackColor = System.Drawing.Color.Maroon;
-            this.lblError.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblError.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblError.ForeColor = System.Drawing.Color.White;
             this.lblError.Location = new System.Drawing.Point(1015, 5);
             this.lblError.Name = "lblError";
@@ -400,7 +400,7 @@
             // 
             this.lblBusy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBusy.BackColor = System.Drawing.Color.Maroon;
-            this.lblBusy.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBusy.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBusy.ForeColor = System.Drawing.Color.White;
             this.lblBusy.Location = new System.Drawing.Point(931, 5);
             this.lblBusy.Name = "lblBusy";
@@ -413,7 +413,8 @@
             // 
             this.lblReady.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblReady.BackColor = System.Drawing.Color.Green;
-            this.lblReady.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReady.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblReady.ForeColor = System.Drawing.Color.White;
             this.lblReady.Location = new System.Drawing.Point(847, 5);
             this.lblReady.Name = "lblReady";
             this.lblReady.Size = new System.Drawing.Size(80, 23);

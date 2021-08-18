@@ -16,6 +16,9 @@ namespace SpiralLab.Sirius.FCEU
         [Description("레이저 가공이 이미 진행중입니다")]
         Busy,
 
+        [Description("에러 상태 해제가 되지 않았습니다")]
+        ErrorReset,
+
         [Description("스캐너 전원 공급이 되지 않습니다")]
         ScannerPower,
 
@@ -36,6 +39,9 @@ namespace SpiralLab.Sirius.FCEU
 
         [Description("비전 시스템으로 부터 스캐너 보정 정보을 읽을 수 없습니다")]
         VisionFieldCorrectionOpen,
+
+        [Description("비전 시스템으로 부터 스캐너 Z 보정 정보을 읽을 수 없습니다")]
+        VisionZCorrectionOpen,
 
         [Description("불량 정보를 업데이트할 수 없습니다")]
         NoDefectLayer,
@@ -74,6 +80,9 @@ namespace SpiralLab.Sirius.FCEU
 
         [Description("스캐너 필드 보정을 위한 가공을 시작합니다")]
         ScannerFieldCorrectionToMark,
+
+        [Description("스캐너 지축 보정을 위한 가공을 시작합니다")]
+        ScannerZCorrection,
 
         [Description("우측 기준 도면 마킹을 시작합니다")]
         ReferenceMarkRight,

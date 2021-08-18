@@ -216,8 +216,6 @@ namespace SpiralLab.Sirius.FCEU
         uint tempIndex = 0;
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            string ready, busy, error;
-
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
             var svc = Seq.Service as LaserService;
             if (svc.RecipeNo < 0)
@@ -272,14 +270,16 @@ namespace SpiralLab.Sirius.FCEU
                 {
                     btnAbort.BackColor = Color.Maroon;
                     btnAbort.ForeColor = Color.White;
+                    lblBusy.BackColor = Color.Maroon;
                 }
                 else
                 {
                     btnAbort.BackColor = Color.Red;
                     btnAbort.ForeColor = Color.White;
+                    lblBusy.BackColor = Color.Red;
                 }
                 tempIndex++;
-                lblBusy.BackColor = Color.Red;
+
             }
             else
             {

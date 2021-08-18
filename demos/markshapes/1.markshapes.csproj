@@ -61,11 +61,5 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\lib\spirallab.sirius.csproj">
-      <Project>{eb052dd6-6210-411c-919d-9e151f04f4d1}</Project>
-      <Name>spirallab.sirius</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

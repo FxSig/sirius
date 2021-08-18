@@ -29,7 +29,13 @@ namespace SpiralLab.Sirius.FCEU
         }
         public int FieldCorrectionRows { get; set; }
         public int FieldCorrectionCols { get; set; }
-        public float FieldCorrectionInterval { get; set; }
+        public float FieldCorrectionRowInterval { get; set; }
+        public float FieldCorrectionColInterval { get; set; }
+        //좌 -> 우
+        public float ZCorrectionDx { get; set; }
+        public float ZCorrectionDy { get; set; }
+        public float ZCorrectionCount { get; set; }
+        public int ZCorrectionIndex { get; set; }
 
         LaserSequence seq;
 
@@ -113,6 +119,26 @@ namespace SpiralLab.Sirius.FCEU
             Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 form.Percentage = 50;
+
+                ////TRANS 레이어 섹제하고 ref 레이어 visible true
+                //Layer transRightLayer = doc.Layers.NameOf("TRANS_RIGHT");
+                //if (null != transRightLayer)
+                //    doc.Action.ActEntityDelete(new List<IEntity>(transRightLayer));
+                //var refLayerRightName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                //var refLayerRight = doc.Layers.NameOf(refLayerRightName);
+                //if (null != refLayerRight)
+                //    refLayerRight.IsVisible = true;
+
+                //Layer transLeftLayer = doc.Layers.NameOf("TRANS_LEFT");
+                //if (null != transLeftLayer)
+                //    doc.Action.ActEntityDelete(new List<IEntity>(transLeftLayer));
+                //var refLayerLeftName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
+                //var refLayerLeft = doc.Layers.NameOf(refLayerLeftName);
+                //if (null != refLayerLeft)
+                //    refLayerLeft.IsVisible = true;
+
+                form.Percentage = 70;
+
             }));
             success &= seq.Marker.Ready(markerArg);
             if (success)
@@ -120,12 +146,13 @@ namespace SpiralLab.Sirius.FCEU
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     Application.DoEvents();
+
                     seq.Editor.Document = doc; //updated !
                     seq.Editor.FileName = recipeFileName;
                     seq.Viewer.FileName = recipeFileName;
                     //Viewer.Document = doc; 자동 !
                     Application.DoEvents();
-                    Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                    Program.MainForm.Invoke(new MethodInvoker(delegate ()
                     {
                         form.Percentage = 100;
                     }));
@@ -149,10 +176,10 @@ namespace SpiralLab.Sirius.FCEU
             }));
             return success;
         }
-        public bool ReadScanFieldCorrectionInterval(out int rows, out int cols, out float interval)
+        public bool ReadScanFieldCorrectionInterval(out int rows, out int cols, out float rowInterval, out float colInterval)
         {
             rows = cols = 0;
-            interval = 0;
+            rowInterval = colInterval = 0;
             if (seq.isFieldCorrecting)
             {
                 seq.Error(ErrEnum.VisionFieldCorrectionOpen);
@@ -187,7 +214,9 @@ namespace SpiralLab.Sirius.FCEU
                     }
                     rows = int.Parse(tokens[0]) ;
                     cols = int.Parse(tokens[1]);
-                    interval = float.Parse(tokens[2]);
+                    rowInterval = float.Parse(tokens[2]);
+                    colInterval = rowInterval;
+                    //colInterval = float.Parse(tokens[3]);
                     return true;
                 }
             }
@@ -217,12 +246,13 @@ namespace SpiralLab.Sirius.FCEU
 
             int rows = this.FieldCorrectionRows;
             int cols = this.FieldCorrectionCols;
-            float interval = this.FieldCorrectionInterval;
+            float rowInterval = this.FieldCorrectionRowInterval;
+            float colInterval = this.FieldCorrectionColInterval;
             string sourceFile = seq.Rtc.CorrectionFiles[0];
             string targetFile = string.Empty;
-            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, interval, sourceFile, targetFile);
-            float left = -interval * (float)(int)(cols / 2);
-            float top = interval * (float)(int)(rows / 2);
+            var correction2D = new RtcCorrection2D(seq.Rtc.KFactor, rows, cols, rowInterval, colInterval, sourceFile, targetFile);
+            float left = -colInterval * (float)(int)(cols / 2);
+            float top = rowInterval * (float)(int)(rows / 2);
             
             string line = string.Empty;
             var list = new List<Vector2>(rows * cols);
@@ -258,15 +288,15 @@ namespace SpiralLab.Sirius.FCEU
 
             //180 rotate and reverse order
             list.Reverse();
-            left = -interval * (float)(int)(cols / 2);
-            top = interval * (float)(int)(rows / 2);
+            left = -colInterval * (float)(int)(cols / 2);
+            top = rowInterval * (float)(int)(rows / 2);
             int index = 0;
             for (int row=0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
                     correction2D.AddRelative(row, col,
-                        new Vector2(left + col * interval, top - row * interval),
+                        new Vector2(left + col * colInterval, top - row * rowInterval),
                         new Vector2(-list[index].X, -list[index].Y) // xy 비전 좌표값 반전
                         );
                     index++;
@@ -282,6 +312,55 @@ namespace SpiralLab.Sirius.FCEU
             {
                 form2D.Show(seq.Editor);
             }));
+            return true;
+        }
+        public bool ReadZCorrection(out float dx, out float dy, out int counts)
+        {
+            dx = dy = counts = 0;
+            string rootPath = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "CORRECTION");
+            //scanner_z_correct_data.txt
+            string fileFullPath = Path.Combine(rootPath, $"scanner_z_correct_data.txt");
+            if (false == File.Exists(fileFullPath))
+            {
+                seq.Error(ErrEnum.VisionZCorrectionOpen);
+                Logger.Log(Logger.Type.Error, $"try to open z correction file but failed : {fileFullPath}");
+                return false;
+            }
+            //scanner_x_gap,1
+            //scanner_line_count,10
+            //laser_z_pos,42
+            //laser_z_gap,1
+            //review_start_pos_x,30
+            //review_start_pos_y,45
+            string line = string.Empty;
+            using (var stream = new StreamReader(fileFullPath))
+            {
+                while (!stream.EndOfStream)
+                {
+                    line = stream.ReadLine();
+                    if (string.IsNullOrEmpty(line))
+                        continue;
+                    if (line.StartsWith(";"))
+                        continue;
+
+                    string[] tokens = line.Split(new char[] { ',', ';' });
+                    if (2 != tokens.Length)
+                    {
+                        Logger.Log(Logger.Type.Error, $"invalid file format: {line} at {fileFullPath}");
+                        return false;
+                    }
+                    if (tokens[0] == "scanner_x_gap")
+                    {
+                        dx = 0;
+                        dy = float.Parse(tokens[1]); // ______ 모양으로 가정됨
+                    }
+                    else if (tokens[0] == "scanner_line_count")
+                    {
+                        counts = int.Parse(tokens[1]);
+                    }
+                }
+            }
+            Logger.Log(Logger.Type.Debug, $"success to open scanner z correction: dx= {dx:F3}, dy= {dy:F3}, counts= {counts}");
             return true;
         }
         private void Form2D_OnApply(object sender, EventArgs e)
@@ -323,7 +402,7 @@ namespace SpiralLab.Sirius.FCEU
         /// <param name="index">1(오른쪽), 2(왼쪽)</param>
         /// <param name="group">그룹 객체들</param>
         /// <returns></returns>
-        public bool PrepareDefectInEditor(int index, Group group)
+        public bool PrepareDefectInEditor(int index, Group group, float refDx, float refDy, float refAngle)
         {
             if (seq.IsBusy)
             {
@@ -331,35 +410,35 @@ namespace SpiralLab.Sirius.FCEU
                 return false;
             }
             var doc = seq.Editor.Document; //에디터의 doc 를 대상으로
-            Layer layer = null;
+            Layer defLayer = null;
             var defLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_RIGHT");
             var defLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "DEFECT_LEFT");
             switch (index)
             {
                 case 1:
-                    layer = doc.Layers.NameOf(defLayerRight);
+                    defLayer = doc.Layers.NameOf(defLayerRight);
                     break;
                 case 2:
-                    layer = doc.Layers.NameOf(defLayerLeft);
+                    defLayer = doc.Layers.NameOf(defLayerLeft);
                     break;
                 default:
                     Logger.Log(Logger.Type.Error, $"invalid left/right id: {index}");
                     return false;
             }
-            if (null == layer || 0 == layer.Count)
+            if (null == defLayer || 0 == defLayer.Count)
             {
                 seq.Error(ErrEnum.NoDefectLayer);
                 Logger.Log(Logger.Type.Error, $"target layer name is not exist : {defLayerRight} or {defLayerLeft}");
                 return false;
             }
-            if (!(layer[0] is IPen))
+            if (!(defLayer[0] is IPen))
             {
                 seq.Error(ErrEnum.NoDefectLayer);
                 Logger.Log(Logger.Type.Error, $"target layer is not start with pen entity");
                 return false;
             }
 
-            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+            Program.MainForm.Invoke(new MethodInvoker(delegate ()
             {
                 var form = new ProgressForm()
                 {
@@ -367,8 +446,9 @@ namespace SpiralLab.Sirius.FCEU
                     Percentage = 0,
                 };
                 form.Show(seq.Editor);
-                var deleteEntities = new List<IEntity>(layer.Count);
-                foreach (var entity in layer)
+                Application.DoEvents();
+                var deleteEntities = new List<IEntity>(defLayer.Count);
+                foreach (var entity in defLayer)
                 {
                     if (!(entity is IPen))
                         deleteEntities.Add(entity);
@@ -377,23 +457,61 @@ namespace SpiralLab.Sirius.FCEU
                 Application.DoEvents();
                 doc.Action.ActEntityDelete(deleteEntities);
                 Application.DoEvents();
-                doc.Action.ActEntityAdd(group, layer);
+                doc.Action.ActEntityAdd(group, defLayer);
                 Application.DoEvents();
-                form.Message += "Adding To Document ..." + Environment.NewLine;
+                form.Message += "Adding Polylines ..." + Environment.NewLine;
                 doc.Action.SelectedEntity = null;
                 form.Percentage = 50;
                 Application.DoEvents();
                 doc.Action.UndoRedoClear(); //100 undo 개수 제한이 있지만 메모리 소비가 클수있음 ? save memory
                 form.Message += $"Regening ..." + Environment.NewLine;
                 Application.DoEvents();
-                Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
-                {
-                    seq.Editor.View.Render();
-                }));
+                seq.Editor.View.Render();                
+                form.Percentage = 80;
+
+                //form.Message += $"Transforming Reference Layers ..." + Environment.NewLine;
+                //Application.DoEvents();
+
+                //switch (index)
+                //{
+                //    case 1://right
+                //        Layer transRightLayer = doc.Layers.NameOf("TRANS_RIGHT");
+                //        if (null != transRightLayer)
+                //            doc.Action.ActEntityDelete(new List<IEntity>(transRightLayer));
+                //        var refLayerRightName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                //        var refLayerRight = doc.Layers.NameOf(refLayerRightName);
+                //        transRightLayer = refLayerRight.Clone() as Layer;
+                //        transRightLayer.Name = "TRANS_RIGHT";
+                //        transRightLayer.IsVisible = true;
+                //        transRightLayer.Regen();
+                //        transRightLayer.Rotate(refAngle, refLayerRight.BoundRect.Center);
+                //        transRightLayer.Transit(new Vector2(refDx, refDy));
+                //        doc.Action.ActEntityAdd(transRightLayer);
+                //        refLayerRight.IsVisible = false;
+                //        break;
+                //    case 2://left
+                //        Layer transLeftLayer = doc.Layers.NameOf("TRANS_LEFT");
+                //        if (null != transLeftLayer)
+                //            doc.Action.ActEntityDelete(new List<IEntity>(transLeftLayer));
+                //        var refLayerLeftName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
+                //        var refLayerLeft = doc.Layers.NameOf(refLayerLeftName);
+                //        transLeftLayer = refLayerLeft.Clone() as Layer;
+                //        transLeftLayer.Name = "TRANS_LEFT";
+                //        transLeftLayer.IsVisible = true;
+                //        transLeftLayer.Regen();
+                //        transLeftLayer.Rotate(refAngle, refLayerLeft.BoundRect.Center);
+                //        transLeftLayer.Transit(new Vector2(refDx, refDy));
+                //        doc.Action.ActEntityAdd(transLeftLayer);
+                //        refLayerLeft.IsVisible = false;
+                //        break;
+                //}
+                
+                seq.Editor.View.Render();
+                Application.DoEvents();
                 form.Percentage = 100;
-                for (int i = 0; i < 100; i++)
-                    Application.DoEvents();
+                Application.DoEvents();
                 form.Close();
+                Application.DoEvents();
             }));
             return true;
         }
@@ -460,9 +578,14 @@ namespace SpiralLab.Sirius.FCEU
         /// <param name="fileName">비전 검사 결과 파일 이름</param>
         /// <param name="group">그룹 객체들</param>
         /// <returns></returns>
-        public bool ReadDefectFromFile(int index, string fileName, out Group group)
+        public bool ReadDefectFromFile(int index, string fileName, out Group group, out float refDx, out float refDy, out float refAngle)
         {
+
+            //out List<Group> ??
             group = null;
+            refDx = 0;
+            refDy = 0;
+            refAngle = 0;
             if (!File.Exists(fileName))
             {
                 seq.Error(ErrEnum.VisionDefectDataOpen);
@@ -476,6 +599,7 @@ namespace SpiralLab.Sirius.FCEU
                 form.Percentage = 0;
                 form.Show(seq.Editor);
             }));
+            Application.DoEvents();
 
             var editor = seq.Editor;
             var doc = editor.Document; //에디터의 doc 를 대상
@@ -529,6 +653,7 @@ namespace SpiralLab.Sirius.FCEU
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     form.Close();
+                    Application.DoEvents();
                 }));
                 Logger.Log(Logger.Type.Error, $"no polyline data in {fileName}");
                 return false;
@@ -583,9 +708,10 @@ namespace SpiralLab.Sirius.FCEU
                         if (percentage % 10 == 0)
                         {
                             // 하나씩 혹은 한번에 전체를 ?
-                            Program.MainForm.BeginInvoke(new MethodInvoker(delegate ()
+                            Program.MainForm.Invoke(new MethodInvoker(delegate ()
                             {
                                 form.Percentage = percentage;
+                                Application.DoEvents();
                             }));
                         }
                     }
@@ -605,6 +731,7 @@ namespace SpiralLab.Sirius.FCEU
                     {
                         form.Message = $"Regening {polylineCount} Polylines From {fileName}";
                         form.Percentage = 100;
+                        Application.DoEvents();
                     }));
                     group.Regen();
                     //x 정렬 오름차순
@@ -651,6 +778,7 @@ namespace SpiralLab.Sirius.FCEU
                 Program.MainForm.Invoke(new MethodInvoker(delegate ()
                 {
                     form.Close();
+                    Application.DoEvents();
                 }));
             }
             return success;

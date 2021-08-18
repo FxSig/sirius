@@ -232,6 +232,8 @@ namespace SpiralLab.Sirius.FCEU
             // chbEnable
             // 
             this.chbEnable.AutoSize = true;
+            this.chbEnable.Checked = true;
+            this.chbEnable.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbEnable.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chbEnable.Location = new System.Drawing.Point(25, 363);
             this.chbEnable.Name = "chbEnable";

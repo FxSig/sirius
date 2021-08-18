@@ -232,6 +232,10 @@ namespace SpiralLab.Sirius.FCEU
             /// 좌 (해칭 절반)
             /// </summary>
             Defect_Left,
+
+            Defect_Selected_Right,
+            Defect_Selected_Left,
+
             /// <summary>
             /// 중심 마크
             /// </summary>
@@ -240,6 +244,8 @@ namespace SpiralLab.Sirius.FCEU
             /// 스캐너 보정 마크 (SystemTeach 사용하여 offset 생성)
             /// </summary>
             FieldCorrection,
+
+            ZCorrection,
             /// <summary>
             /// 우 (도면 절반)
             /// </summary>
@@ -269,10 +275,17 @@ namespace SpiralLab.Sirius.FCEU
                 Logger.Log(Logger.Type.Error, $"try to start mark but invalid scanner position acknowledge");
                 return false;
             }
+            if (this.IsError)
+            {
+                Error(ErrEnum.ErrorReset);
+                Logger.Log(Logger.Type.Error, $"try to start mark but error status !");
+                return false;
+            }
 
             Warn(WarnEnum.FinishToMark, true);
             Warn(WarnEnum.StoppingToMark, true);
             Warn(WarnEnum.SystemTeachToMark, true);
+            Warn(WarnEnum.ScannerZCorrection, true);
             Warn(WarnEnum.ScannerFieldCorrectionToMark, true);
             Warn(WarnEnum.ReferenceMarkRight, true);
             Warn(WarnEnum.ReferenceMarkLeft, true);
@@ -280,7 +293,7 @@ namespace SpiralLab.Sirius.FCEU
             Warn(WarnEnum.DefectMarkLeft, true);
 
             bool success = true;
-            Thread.Sleep(300);// 스테이지 안정화 시간?
+            Thread.Sleep(200);// 스테이지 안정화 시간?
             switch (proc)
             {
                 case Process.Defect_Right://right
@@ -291,13 +304,14 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         //레퍼런스 레이어 에서 오프셋을 구한다
                         var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
                         var layer = doc.Layers.NameOf(refLayerRight);
                         if (null == layer)
                         {
-                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerRight}");
                             Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerRight}");
                             return false;
                         }
                         var br = layer.BoundRect;
@@ -324,6 +338,7 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         //레퍼런스 레이어 에서 오프셋을 구한다
                         var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
                         var layer = doc.Layers.NameOf(refLayerLeft);
@@ -349,6 +364,89 @@ namespace SpiralLab.Sirius.FCEU
                         success &= Marker.Start();
                     }
                     break;
+
+                case Process.Defect_Selected_Right:
+                    {
+                        var doc = Editor.Document;
+                        if (null == doc.Action.SelectedEntity || doc.Action.SelectedEntity.Count <= 0)
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"try to mark non-selected defect (right side)");
+                            return false;
+                        }
+
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
+                        markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.Selected;
+                        //레퍼런스 레이어 에서 오프셋을 구한다
+                        var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
+                        var layer = doc.Layers.NameOf(refLayerRight);
+                        if (null == layer)
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerRight}");
+                            return false;
+                        }
+                        var br = layer.BoundRect;
+                        markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
+                        {
+                            Logger.Log(Logger.Type.Error, $"try to mark selected defect (left side) but fail to ready");
+                            return false;
+                        }
+                        this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.DefectMarkLeft);
+                        Logger.Log(Logger.Type.Warn, $"trying to start selected mark defect (left side) : {doc.Action.SelectedEntity.Count} counts");
+                        success &= Marker.Start();
+                    }
+                    break;
+                case Process.Defect_Selected_Left:
+                    {
+                        var doc = Editor.Document;
+                        if (null == doc.Action.SelectedEntity || doc.Action.SelectedEntity.Count <= 0)
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"try to mark non-selected defect (left side)");
+                            return false;
+                        }
+
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
+                        markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.Selected;
+                        //레퍼런스 레이어 에서 오프셋을 구한다
+                        var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
+                        var layer = doc.Layers.NameOf(refLayerLeft);
+                        if (null == layer)
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"target reference layer is not exist : {refLayerLeft}");
+                            return false;
+                        }
+                        var br = layer.BoundRect;
+                        markerArg.Offsets.Add(new Offset(-br.Center.X, -br.Center.Y));
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+                        if (false == Marker.Ready(markerArg))
+                        {
+                            Logger.Log(Logger.Type.Error, $"try to mark selected defect (right side) but fail to ready");
+                            return false;
+                        }
+                        this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.DefectMarkRight);
+                        Logger.Log(Logger.Type.Warn, $"trying to start selected mark defect (right side) : {doc.Action.SelectedEntity.Count} counts");
+                        success &= Marker.Start();
+                    }
+                    break;
                 case Process.SystemTeach:
                     {
                         var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "SYSTEMTEACH");
@@ -371,6 +469,7 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         //offset 0,0
                         var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
                         this.Marker.ScannerRotateAngle = scannerRotateAngle;
@@ -408,20 +507,21 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         //offset 0,0
                         this.Marker.ScannerRotateAngle = 0; // no rotate
                         this.Marker.Tag = proc;
 
                         var svc = Service as LaserService;
-                        float left = -svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionCols / 2);
-                        float top = svc.FieldCorrectionInterval * (float)(int)(svc.FieldCorrectionRows / 2);
+                        float left = -svc.FieldCorrectionColInterval * (float)(int)(svc.FieldCorrectionCols / 2);
+                        float top = svc.FieldCorrectionRowInterval * (float)(int)(svc.FieldCorrectionRows / 2);
                         for (int row = 0; row < svc.FieldCorrectionRows; row++)
                         {
                             for (int col = 0; col < svc.FieldCorrectionCols; col++)
                             {
                                 markerArg.Offsets.Add(new Offset(
-                                        left + col * svc.FieldCorrectionInterval,
-                                        top - row * svc.FieldCorrectionInterval));
+                                        left + col * svc.FieldCorrectionColInterval,
+                                        top - row * svc.FieldCorrectionRowInterval));
                             }
                         }
                         if (false == Marker.Ready(markerArg))
@@ -431,8 +531,51 @@ namespace SpiralLab.Sirius.FCEU
                         }
                         this.Warn(WarnEnum.StartingToMark);
                         this.Warn(WarnEnum.ScannerFieldCorrectionToMark);
-                        Logger.Log(Logger.Type.Warn, $"trying to start mark scanner field correction ");
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark scanner field correction : rows= {svc.FieldCorrectionRows}, cols= {svc.FieldCorrectionCols}, row gap= {svc.FieldCorrectionRowInterval:F3}, col gap= {svc.FieldCorrectionColInterval:F3}");
                         success &= Marker.Start();
+                    }
+                    break;
+                case Process.ZCorrection:
+                    {
+                        var siriusFileName = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"FILE", "ZCORRECTION");
+                        var fullFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, siriusFileName);
+                        if (!File.Exists(fullFilePath))
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner z correction but file doesnt exist : {fullFilePath}");
+                            return false;
+                        }
+                        var doc = DocumentSerializer.OpenSirius(fullFilePath);
+                        if (null == doc)
+                        {
+                            Error(ErrEnum.NoEntitiesToMark);
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner z correction but fail to open : {fullFilePath}");
+                            return false;
+                        }
+                        var markerArg = new MarkerArgDefault();
+                        markerArg.Rtc = this.Rtc;
+                        markerArg.Laser = this.Laser;
+                        markerArg.Document = doc;
+                        markerArg.RtcListType = ListType.Auto;
+                        //offset 0,0
+                        var scannerRotateAngle = NativeMethods.ReadIni<float>(FormMain.ConfigFileName, $"RTC", "ROTATE");
+                        this.Marker.ScannerRotateAngle = scannerRotateAngle;
+                        this.Marker.Tag = proc;
+
+                        //개수 간격
+                        var svc = Service as LaserService;
+                        markerArg.Offsets.Add(new Offset(svc.ZCorrectionDx * (float)svc.ZCorrectionIndex, svc.ZCorrectionDy * (float)svc.ZCorrectionIndex));
+                        if (false == Marker.Ready(markerArg))
+                        {
+                            Logger.Log(Logger.Type.Error, $"try to mark scanner z correction but fail to ready");
+                            return false;
+                        }
+                        this.Warn(WarnEnum.StartingToMark);
+                        this.Warn(WarnEnum.ScannerFieldCorrectionToMark);
+                        Logger.Log(Logger.Type.Warn, $"trying to start mark scanner z correction : offset dx= {svc.ZCorrectionDx:F3}, dy= {svc.ZCorrectionDy:F3}mm, index= {svc.ZCorrectionIndex}");
+                        success &= Marker.Start();
+                        if (success)
+                            svc.ZCorrectionIndex++;
                     }
                     break;
                 case Process.Ref_Right:
@@ -443,6 +586,7 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         var refLayerRight = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_RIGHT");
                         var layer = doc.Layers.NameOf(refLayerRight);
                         if (null == layer)
@@ -475,6 +619,7 @@ namespace SpiralLab.Sirius.FCEU
                         markerArg.Laser = this.Laser;
                         markerArg.Document = doc;
                         markerArg.RtcListType = ListType.Auto;
+                        markerArg.MarkTargets = MarkTargets.All;
                         var refLayerLeft = NativeMethods.ReadIni<string>(FormMain.ConfigFileName, $"LAYER", "REF_LEFT");
                         var layer = doc.Layers.NameOf(refLayerLeft);
                         if (null == layer)
@@ -521,8 +666,8 @@ namespace SpiralLab.Sirius.FCEU
         public void Stop()
         {
             this.Warn(WarnEnum.StoppingToMark);
-            //Rtc.CtlAbort();
             Marker.Stop();
+            Rtc.CtlAbort();
         }
         public void Loop()
         {
@@ -621,6 +766,15 @@ namespace SpiralLab.Sirius.FCEU
                     }
                     else
                         VisionComm.Send(MessageProtocol.LASER_SCANNER_COMPENSATE_NG);
+                    break;
+                case Process.ZCorrection:
+                    if (markerArg.IsSuccess)
+                    {
+                        VisionComm.Send(MessageProtocol.LASER_Z_CORRECT_FINISH);
+                        this.Warn(WarnEnum.ScannerZCorrection, true);
+                    }
+                    else
+                        VisionComm.Send(MessageProtocol.LASER_Z_CORRECT_NG);
                     break;
                 case Process.Ref_Right:
                     if (markerArg.IsSuccess)

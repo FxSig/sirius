@@ -155,18 +155,17 @@ namespace SpiralLab.Sirius.FCEU
 
             int rows = svc.FieldCorrectionRows;
             int cols = svc.FieldCorrectionCols;
-            float interval = svc.FieldCorrectionInterval;
-            var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, interval, rtc.CorrectionFiles[0], string.Empty);
-            float left = -interval * (float)(int)(cols / 2);
-            float top = interval * (float)(int)(rows / 2);
+            float rowIterval = svc.FieldCorrectionRowInterval;
+            float colIterval = svc.FieldCorrectionColInterval;
+            var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, rowIterval, colIterval, rtc.CorrectionFiles[0], string.Empty);
+            float left = -colIterval * (float)(int)(cols / 2);
+            float top = rowIterval * (float)(int)(rows / 2);
             for (int row = 0; row < rows; row++)
             {
                 for (int col = 0; col < cols; col++)
                 {
                     correction2D.AddRelative(row, col,
-                        new Vector2(
-                            left + col * interval,
-                            top - row * interval),
+                        new Vector2( left + col * colIterval, top - row * rowIterval),
                          Vector2.Zero
                         );
                 }

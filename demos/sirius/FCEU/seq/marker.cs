@@ -85,6 +85,14 @@ namespace SpiralLab.Sirius
                     if (layer.Name.IndexOf(defLayerLeft, StringComparison.OrdinalIgnoreCase) < 0)
                         return true;
                     break;
+                case SpiralLab.Sirius.FCEU.LaserSequence.Process.Defect_Selected_Right: //right
+                    if (layer.Name.IndexOf(defLayerRight, StringComparison.OrdinalIgnoreCase) < 0)
+                        return true;
+                    break;
+                case SpiralLab.Sirius.FCEU.LaserSequence.Process.Defect_Selected_Left: //left
+                    if (layer.Name.IndexOf(defLayerLeft, StringComparison.OrdinalIgnoreCase) < 0)
+                        return true;
+                    break;
                 default: //SpiralLab.Sirius.FCEU.LaserSequence.Process.Default
                     break;
             }

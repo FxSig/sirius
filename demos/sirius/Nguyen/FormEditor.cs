@@ -37,7 +37,7 @@ namespace SpiralLab.Sirius.Nguyen
             int cols = 5;
 
             float interval = 10.0f;
-            var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, interval, rtc.CorrectionFiles[0], string.Empty);
+            var correction2D = new RtcCorrection2D(rtc.KFactor, rows, cols, interval, interval, rtc.CorrectionFiles[0], string.Empty);
             float left = -interval * (float)(int)(cols / 2);
             float top = interval * (float)(int)(rows / 2);
             var rand = new Random();
