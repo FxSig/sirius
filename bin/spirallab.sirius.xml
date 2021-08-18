@@ -1696,6 +1696,14 @@
             <param name="importedEntity">생성된 개체</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Action.ActImportSTL(System.String,SpiralLab.Sirius.IEntity@)">
+            <summary>
+            STL 파일 가져오기 (개발 미완료)
+            </summary>
+            <param name="fileName"></param>
+            <param name="importedEntity"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Action.ActDocumentPropertyChanged(SpiralLab.Sirius.IDocument,System.String,System.Object,System.Object)">
             <summary>
             DOC 의 속성 변경 명령
