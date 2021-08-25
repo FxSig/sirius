@@ -42,6 +42,11 @@
             엔티티 회전
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.UndoRedoEntityTransitGrip">
+            <summary>
+            엔티티 의 Grip 포인트 이동
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.AlcVectorEnd">
             <summary>
             ALC by Vector Dependent End 엔티티 객체
@@ -271,6 +276,11 @@
         <member name="T:SpiralLab.Sirius.WriteData">
             <summary>
             write data entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteData.OutputValue">
+            <summary>
+            출력 값 : 디지털 출력(uint), 기타(float) 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.WriteData.Clone">
@@ -1105,6 +1115,11 @@
         <member name="P:SpiralLab.Sirius.Correction2DForm.RtcCorrection">
             <summary>
             RtcCorrection2D 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DForm.OnConvert">
+            <summary>
+            Convert 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction2DForm.OnApply">
@@ -2617,7 +2632,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsALC">
             <summary>
-            위치 의존적 레이저 출력 보상용 테이블 파일
+            Automatic Laser Control 사용여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.AlcPositionFileName">
@@ -4383,6 +4398,27 @@
             언두(Undo) 스택 최대 개수 제한 (메모리 절약을 위해)
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFont">
+            <summary>
+            트리뷰 노드의 기본 폰트 체
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFontSize">
+            <summary>
+            트리뷰 노드의 기본 폰트 크기
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.GripPointSize">
+            <summary>
+            Grip 의 기본 크기 (픽셀)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.GripPointCursor">
+            <summary>
+            Grip 위치별 커서 모양 정의
+            GripPoints 열거형 데이타와 일치 필요
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.PensColor">
             <summary>
             10 가지 Pen 집합의 색상
@@ -4762,6 +4798,56 @@
             우하단
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.LeftTop">
+            <summary>
+            좌상단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.MiddleTop">
+            <summary>
+            중앙 상단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.RightTop">
+            <summary>
+            우상단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.LeftMiddle">
+            <summary>
+            좌중간
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.RightMiddle">
+            <summary>
+            우중간
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.LeftBottom">
+            <summary>
+            좌하단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.MiddleBottom">
+            <summary>
+            중앙 하단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.RightBottom">
+            <summary>
+            우하단
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.Angle">
+            <summary>
+            회전
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.GripPoints.Angle2">
+            <summary>
+            회전2 (like as arc)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.LetterSpaceWay">
             <summary>
             자간 간격 
@@ -4931,6 +5017,45 @@
             </summary>
             <param name="rect">사각 영역</param>
             <param name="threshold">문턱값 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDrawable.DrawGrips(SpiralLab.Sirius.IView)">
+            <summary>
+            해당 객체의 그립(Grip) 영역을 그린다
+            </summary>
+            <param name="view">IView 인터페이스</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDrawable.DrawGripping(SpiralLab.Sirius.IView,System.Int32,System.Single,System.Single)">
+            <summary>
+            선택된 그립(Grip) 영역을 dx, dy 동작했을때의 실시간 변화를 그린다
+            </summary>
+            <param name="view">IView 인터페이스</param>
+            <param name="gripId">그립(Grip) 영역 식별자</param>
+            <param name="dx">X 이동량 (mm)</param>
+            <param name="dy">X 이동량 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDrawable.TransitGrip(System.Int32,System.Numerics.Vector2@,System.Boolean)">
+            <summary>
+            선택된 그립(Grip) 영역을 dx, dy 적용한다
+            Action 적용되어 Undo 등에 활용된다
+            </summary>
+            <param name="gripId">그립(Grip) 영역 식별자</param>
+            <param name="delta">XY 이동량 (mm)</param>
+            <param name="isUndoing">Undo 작업을 하고 있는지 여부 (내부에서 사용됨)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDrawable.HitTestGrip(System.Single,System.Single,System.Single,System.Int32@,System.Windows.Forms.Cursor@)">
+            <summary>
+            그립(Grip) 영역을 선택 테스트(HitTest) 한다
+            성공시 그립 번호(Grip ID) 와 그립에 적합한 커서 모양을 리턴한다
+            </summary>
+            <param name="x">X 위치 (mm)</param>
+            <param name="y">Y 위치 (mm)</param>
+            <param name="threshold">선택 거리 문턱값</param>
+            <param name="gripId">그립(Grip) 영역 식별자</param>
+            <param name="cursor">그립에 적합한 커서 모양</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Text">
@@ -5527,36 +5652,6 @@
             </returns>
             <remarks>This method will test for values of numbers very close to zero.</remarks>
         </member>
-        <member name="M:SpiralLab.Sirius.MathHelper.Sign(System.Single,System.Single)">
-            <summary>
-            Returns a value indicating the sign of a double-precision floating-point number.
-            </summary>
-            <param name="number">Double precision number.
-            <param name="threshold">Tolerance.</param>
-            </param>
-            <returns>
-            A number that indicates the sign of value.
-            Return value Meaning -1 value is less than zero.
-            0 value is equal to zero.
-            1 value is greater than zero.
-            </returns>
-            <remarks>This method will test for values of numbers very close to zero.</remarks>
-        </member>
-        <member name="M:SpiralLab.Sirius.MathHelper.IsOne(System.Single)">
-            <summary>
-            Checks if a number is close to one.
-            </summary>
-            <param name="number">Double precision number.</param>
-            <returns>True if its close to one or false in any other case.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MathHelper.IsOne(System.Single,System.Single)">
-            <summary>
-            Checks if a number is close to one.
-            </summary>
-            <param name="number">Double precision number.</param>
-            <param name="threshold">Tolerance.</param>
-            <returns>True if its close to one or false in any other case.</returns>
-        </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IsZero(System.Single)">
             <summary>
             Checks if a number is close to zero.
@@ -6041,6 +6136,13 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.MarkerFormScannerPositionEventHandler">
+            <summary>
+            스캐너 이동시 콜백 이벤트
+            </summary>
+            <param name="sender">MarkerForm 윈폼</param>
+            <param name="vPosition">x, y, 위치</param>
+        </member>
         <member name="T:SpiralLab.Sirius.MarkerForm">
             <summary>
             마커 폼
@@ -6050,6 +6152,11 @@
             <summary>
             오프셋 리스트 (바인딩 용)
             </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MarkerForm.OnScannerPosition">
+             <summary>
+            스캐너 이동 이벤트 핸들러
+             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerForm.#ctor">
             <summary>
