@@ -51,6 +51,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'C' : create new field correction for 2D (square)");
                 Console.WriteLine("'D' : create new field correction for 2D (rectangle)");
                 Console.WriteLine("'F' : create new field correction for 2D with WinForms");
+                Console.WriteLine("'O' : create new field correction for 2D (old ctb file format)");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -70,6 +71,10 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.F:
                         CreateFieldCorrectionWithWinForms();                        
+                        break;
+                    case ConsoleKey.O:
+                        string result3 = CreateOldFieldCorrection();
+                        Console.WriteLine(result3);
                         break;
                 }
             } while (true);
@@ -200,6 +205,51 @@ namespace SpiralLab.Sirius
 
             var form = new Correction2DForm(correction);
             form.ShowDialog();
+        }
+        /// <summary>
+        /// 2D 스캐너 보정 실시 (정사각형 영역)\
+        /// RTC3/4 에서 사용되는 ctb 파일 포맷
+        /// </summary>
+        /// <returns></returns>
+        private static string CreateOldFieldCorrection()
+        {
+            //현재 스캐너 보정 파일
+            var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
+            //신규로 생성할 스캐너 보정 파일
+            var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ctb");
+
+            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
+            // 3x5 (15개) 위치에 대한 보정 테이블 입력 용 / 간격 10 mm
+            var correction = new RtcOldCorrection2D(kfactor, 3, 3, 10, srcFile, targetFile);
+
+            #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            correction.AddRelative(0, 0, new Vector2(-20, 10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 1, new Vector2(-10, 10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 2, new Vector2(0, 10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 3, new Vector2(10, 10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(0, 4, new Vector2(20, 10), new Vector2(0.01f, 0.01f));
+
+            correction.AddRelative(1, 0, new Vector2(-20, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 1, new Vector2(-10, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 2, new Vector2(0, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 3, new Vector2(10, 0), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(1, 4, new Vector2(20, 0), new Vector2(0.01f, 0.01f));
+
+            correction.AddRelative(2, 0, new Vector2(-20, -10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 1, new Vector2(-10, -10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 2, new Vector2(0, -10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 3, new Vector2(10, -10), new Vector2(0.01f, 0.01f));
+            correction.AddRelative(2, 4, new Vector2(20, -10), new Vector2(0.01f, 0.01f));
+            #endregion
+
+            //신규 보정 파일 생성 실시
+            bool success = correction.Convert();
+            //var rtc = ...;
+            // 보정 파일을 테이블 1번으로 로딩
+            //success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, targetFile);
+            // 테이블1 번을 1번 스캐너(Primary Head)에 지정
+            //success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
+            return correction.ResultMessage;
         }
     }
 }

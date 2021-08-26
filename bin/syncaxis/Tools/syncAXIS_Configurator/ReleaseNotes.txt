@@ -1,0 +1,48 @@
+*******************************************************************************
+File: ReleaseNotes.txt
+
+SCANLAB syncAXIS Configurator Software Package Version 1.6.
+
+*******************************************************************************
+
+Manufacturer
+
+   SCANLAB GmbH
+   Siemensstr. 2a
+   82178 Puchheim
+   Germany
+
+   Tel. + 49 (89) 800 746-0
+   Fax: + 49 (89) 800 746-199
+
+   info@scanlab.de
+   www.scanlab.de
+
+*******************************************************************************
+
+Scope of this Document
+The scope of this document is to describe the changes in the syncAXIS 
+configurator software package.
+
+Abbreviations
+B   Bugfix
+C   Change
+N   New feature
+
+********* syncAXIS Configurator changes in version 1.5.0 for version 1.6.0 ****
+-------------------------------------------------------------------------------
+N 	Added Calculated Dynamics to stage configuration.
+
+N   Added context menu on tabs for 1) Opening containing folder, 2) Copy full 
+    path name, 3) Closing this tab, 4) Close all but this tab, 5) Reload file.
+
+-------------------------------------------------------------------------------
+C   Updated controls to support 1.6 configuration schema
+
+C   Changed min laser off time to be 1/64 us.
+
+-------------------------------------------------------------------------------
+B 	Fixed: All hidable/closable sections will maintain their status when using
+    the undo feature.
+
+-------------------------------------------------------------------------------   

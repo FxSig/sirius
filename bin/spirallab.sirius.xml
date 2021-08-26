@@ -47,6 +47,44 @@
             엔티티 의 Grip 포인트 이동
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.AlcBegin">
+            <summary>
+            ALC Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcBegin.AlcPercentage100">
+            <summary>
+            ALC 사용시 100% 출력값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcBegin.AlcMinValue">
+            <summary>
+            ALC 사용시 최소 출력값 (Cut off)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcBegin.AlcMaxValue">
+            <summary>
+            ALC 사용시 최대 출력값 (Cut off)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcBegin.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.AlcVectorEnd">
             <summary>
             ALC by Vector Dependent End 엔티티 객체
@@ -1105,6 +1143,55 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
             <summary>
             사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.CorrectionOld2DForm">
+            <summary>
+            스캐너 2D 보정용 폼
+            RTC3/4의 ctb 파일 포맷용 (old ctb format)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CorrectionOld2DForm.RtcCorrection">
+            <summary>
+            RtcOldCorrection2D 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnConvert">
+            <summary>
+            Convert 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnApply">
+            <summary>
+            Apply 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnClose">
+            <summary>
+            창(폼) 닫힐시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.#ctor(SpiralLab.Sirius.RtcOldCorrection2D)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtcCorrection">RtcOldCorrection2D 객체</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionOld2DForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Correction2DForm">
@@ -3507,6 +3594,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.penreturn">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.play_16px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>

@@ -1,0 +1,61 @@
+*******************************************************************************
+File: ReleaseNotes.txt
+
+SCANLAB syncAXIS Viewer Software Package Version 1.6.
+
+*******************************************************************************
+
+Manufacturer
+
+   SCANLAB GmbH
+   Siemensstr. 2a
+   82178 Puchheim
+   Germany
+
+   Tel. + 49 (89) 800 746-0
+   Fax: + 49 (89) 800 746-199
+
+   info@scanlab.de
+   www.scanlab.de
+
+*******************************************************************************
+
+Scope of this Document
+The scope of this document is to describe the changes in the syncAXIS 
+Viewer software package.
+
+Abbreviations
+B   Bugfix
+C   Change
+N   New feature
+
+********* syncAXIS Viewer changes in version 1.5.0 for version 1.6.0 ****
+-------------------------------------------------------------------------------
+N 	Added Redraw progress indicator with cancel button.
+	
+N   Added new data reduction option to replace nth line reduction.
+    Nth line options will still be available for command line arguments.
+
+N 	Removed accurate limits and accurate position load options.
+ 	
+N   Added legend entry for guide lines.	
+	
+N   Added limit to the amount of memory a file can safely load.  If a file's
+    data will use up 95% of the usable memory, the file will only partially 
+	load.  Loaded time will be displayed to the user.
+	
+N   Added the ability to load multiple files that have different number of 
+    scanheads at the same time.	
+
+-------------------------------------------------------------------------------
+C   Refactored the default data options selected when changing the display options 
+    to reduce number of user inputs.
+	
+-------------------------------------------------------------------------------
+B	Fixed: Dialog will now display in the center of the screen instead of a 
+    sometimes off the screen.
+	
+B   Fixed: Zooming by using a bounding box now works correctly for all sized boxes.
+    	
+
+-------------------------------------------------------------------------------   

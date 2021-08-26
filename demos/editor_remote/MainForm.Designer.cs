@@ -62,7 +62,6 @@
             this.Name = "MainForm";
             this.Text = "Sirius Editor - (c)SpiralLab";
             this.ResumeLayout(false);
-
         }
 
         #endregion

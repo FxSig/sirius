@@ -334,6 +334,7 @@ namespace SpiralLab.Sirius
         public CustomPen()
         {
             this.Node = new TreeNode();
+            this.Node.NodeFont = new System.Drawing.Font("Arial", 10);
             this.Name = "Custom";
             this.IsSelected = false;
             this.isMarkerable = true;
@@ -377,6 +378,7 @@ namespace SpiralLab.Sirius
                 {
                     Text = Node.Text,
                     Tag = Node.Tag,
+                    NodeFont = (System.Drawing.Font)Node.NodeFont.Clone(),
                 },
             };
             return pen;

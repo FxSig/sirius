@@ -81,6 +81,7 @@
         <member name="T:SpiralLab.Sirius.AdlinkDInput`1">
             <summary>
             디지털 입력 인터페이스    
+            Adlink 7230 류의 제품군
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput`1.SyncRoot">
@@ -111,6 +112,7 @@
         <member name="T:SpiralLab.Sirius.AdlinkDOutput`1">
             <summary>
             디지털 출력 인터페이스    
+            Adlink 7230 류의 제품군
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDOutput`1.SyncRoot">
@@ -141,6 +143,7 @@
         <member name="T:SpiralLab.Sirius.AjinExtekDInput`1">
             <summary>
             디지털 입력 인터페이스    
+            아진엑스텍 D.Input 제품군
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDInput`1.SyncRoot">
@@ -171,6 +174,7 @@
         <member name="T:SpiralLab.Sirius.AjinExtekDOutput`1">
             <summary>
             디지털 출력 인터페이스    
+            아진엑스텍 D.Output 제품군
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDOutput`1.SyncRoot">
@@ -1589,10 +1593,13 @@
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IMotor">
-            <summary>
-            모터 인터페이스
-            스캐너 Z 축을 제어하기 위한 모터 인터페이스 
-            </summary>
+             <summary>
+             모터 인터페이스
+             스캐너 Z or 회전축 을 제어하기 위한 모터 인터페이스 
+            
+             * 인터페이스는 추후 변경예정 !!!
+             
+             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
             <summary>
@@ -1669,6 +1676,7 @@
         <member name="T:SpiralLab.Sirius.MotorAjinExtek">
             <summary>
             Motor AjinExtek AXL
+            추후 변경예정 !
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.SyncRoot">
@@ -1943,6 +1951,12 @@
         <member name="P:SpiralLab.Sirius.Rtc4.KFactor">
             <summary>
             bits/mm 값 (2^16)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.LaserMode">
@@ -2949,6 +2963,12 @@
             bits/mm 값 (2^20)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.LaserMode">
             <summary>
             레이저 모드(CO2, Yag1,2,3,4, ...)
@@ -3657,6 +3677,18 @@
             <param name="compensator">보정기</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+            <summary>
+            ALC(Automatic Laser Control) 기능 설정
+            </summary>
+            <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
+            <param name="ctrl">AutoLaserControlSignal 열거형</param>
+            <param name="percentage100">100% 일때의 출력값</param>
+            <param name="min">최소 출력값</param>
+            <param name="max">최대 출력값</param>
+            <param name="compensator">보정기</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
@@ -3841,7 +3873,8 @@
             Encoder0 Encoder1 Encoder0_Delta Encoder1_Delta ;주석
             ...
             추신) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
-            추신) 모든 bits 값은 +-524288 을 초과하지 말것
+            추신) 모든 bits 값은 +-524288 을 초과하지 말것 
+            The first of the two tables is loaded with No = 0 and the second with No = 1 + 65,536.
             </summary>
             <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
             <param name="tableNo">테이블 번호</param>
@@ -4335,6 +4368,12 @@
         <member name="P:SpiralLab.Sirius.Rtc6.KFactor">
             <summary>
             bits/mm 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.LaserMode">
@@ -5045,6 +5084,18 @@
             <param name="compensator">보정기</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+            <summary>
+            ALC(Automatic Laser Control) 기능 설정
+            </summary>
+            <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
+            <param name="ctrl">AutoLaserControlSignal 열거형</param>
+            <param name="percentage100">100% 일때의 출력값</param>
+            <param name="min">최소 출력값</param>
+            <param name="max">최대 출력값</param>
+            <param name="compensator">보정기</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
@@ -5487,6 +5538,17 @@
             bits/mm 값
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.LaserMode">
+            <summary>
+            레이저 신호 모드
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
@@ -5555,6 +5617,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.BandWidth">
             <summary>
             LPF(Low Pass Filter) Bandwidth
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.HeuristicIndex">
+            <summary>
+            XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.#ctor">
@@ -5907,6 +5974,13 @@
             <param name="drawLength">직선 보간 거리 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListApproxBlendLimit(System.Single)">
+            <summary>
+            Maximum tolerable distance of the blend curve from the corner.
+            </summary>
+            <param name="approxBlendLimit"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWriteData``1(SpiralLab.Sirius.ExtensionChannel,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             리스트 명령 - 확장 포트에 데이타 쓰기 
@@ -5938,9 +6012,129 @@
             <param name="busyWait">모든 리스트 명령의 실행이 완료될때까지 대기</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.RtcOldCorrection2D">
+            <summary>
+            스캐너 필드 보정 for 2D plane (Z=0)
+            RTC4의 ctb 포맷용
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.RtcOldCorrection2D.OnResult">
+            <summary>
+            변환 결과에 대한 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.Rows">
+            <summary>
+            입력 데이타의 행 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.Cols">
+            <summary>
+            입력 데이타의 열 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.Interval">
+            <summary>
+             간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.KFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.SourceCorrectionFile">
+            <summary>
+            입력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.TargetCorrectionFile">
+            <summary>
+            출력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.IsAutoCenterOffset">
+            <summary>
+            보정 데이타중 스캐너 중심 위치에 0,0 이어야 하지만, 그렇지 않을경우 오프셋이 있는 중심위치값 만큼을 전체 데이타에서 빼기(오프셋)하여 보정을 하더라도 스캐너 중심이 변하지 않도록 해주는 기능
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.ResultMessage">
+            <summary>
+            변환 결과 로그 메시지
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcOldCorrection2D.Data">
+            <summary>
+            절대 위치, 실측 데이타의 2차원 배열
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcOldCorrection2D.exeFileName">
+            <summary>
+            SCANLAB 의 보정 유틸리티 실행파일 경로
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="kFactor">bits/mm</param>
+            <param name="rows">행 개수</param>
+            <param name="cols">열 개수</param>
+            <param name="interval">간격 (mm)</param>
+            <param name="srcCtbFile">입력 보정 파일</param>
+            <param name="targetCtbFile">출력 보정 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">절대좌표</param>
+            <param name="measured">측정좌표</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력 
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">논리적인 좌표</param>
+            <param name="error">에러량</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.Clear">
+            <summary>
+            입력 데이타 모두 제거
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.Convert">
+            <summary>
+            변환 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcOldCorrection2D.OnResultEvent(System.Boolean)">
+            <summary>
+            이벤트 핸들러 호출 (상속 확장 구현용)
+            </summary>
+            <param name="success">변환 성공 여부</param>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcCorrection2D">
             <summary>
             스캐너 필드 보정 for 2D plane (Z=0)
+            RTC5/6의 ct5 포맷용
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.RtcCorrection2D.OnResult">
@@ -6012,8 +6206,8 @@
             <param name="cols">열 개수</param>
             <param name="rowInterval">행 간격 (mm)</param>
             <param name="colInterval">열 간격 (mm)</param>
-            <param name="srcCtbFile">입력 보정 파일</param>
-            <param name="targetCtbFile">출력 보정 파일</param>
+            <param name="srcCt5File">입력 보정 파일</param>
+            <param name="targetCt5File">출력 보정 파일</param>
         </member>
         <member name="M:SpiralLab.Sirius.RtcCorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
@@ -6065,6 +6259,7 @@
         <member name="T:SpiralLab.Sirius.RtcCorrection3D">
             <summary>
             scanner correction for 3D 
+            RTC5/6의 ct5 포맷용
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.RtcCorrection3D.OnResult">
@@ -6152,8 +6347,8 @@
             <param name="interval">간격</param>
             <param name="zUpper">최상단 위치 (mm)</param>
             <param name="zLower">최하단 위치 (mm)</param>
-            <param name="srcCtbFile">입력 보정 파일</param>
-            <param name="targetCtbFile">출력 보정 파일</param>
+            <param name="srcCt5File">입력 보정 파일</param>
+            <param name="targetCt5File">출력 보정 파일</param>
         </member>
         <member name="M:SpiralLab.Sirius.RtcCorrection3D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
@@ -6240,6 +6435,12 @@
         <member name="P:SpiralLab.Sirius.RtcVirtual.KFactor">
             <summary>
             bits/mm 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.Fpk">
@@ -6665,6 +6866,12 @@
         <member name="P:SpiralLab.Sirius.IRtc.KFactor">
             <summary>
             k factor = bits / mm
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.FieldSize">
+            <summary>
+            가로 세로 가공 영역의 크기 (WxD) (mm)
+            내부 필드 영역을 벋어날 경우 에러 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.LaserMode">
@@ -7260,6 +7467,18 @@
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
             <param name="compensator">출력값 보정기 사용시 지정</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+            <summary>
+            ALC(Automatic Laser Control) 기능 설정
+            </summary>
+            <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
+            <param name="ctrl">AutoLaserControlSignal 열거형</param>
+            <param name="percentage100">100% 일때의 출력값</param>
+            <param name="min">최소 출력값</param>
+            <param name="max">최대 출력값</param>
+            <param name="compensator">보정기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
@@ -8094,6 +8313,14 @@
             <param name="filterBandWidth">Hz</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectHeuristic(System.UInt32)">
+            <summary>
+            사용 휴리스틱 변경하기
+            (xml 설정 파일에서 미리 저장되어 있어야함)
+            </summary>
+            <param name="heristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Numerics.Vector2)">
             <summary>
             스테이지 혹은 스캐너 를 수동 이동할때 사용
@@ -8130,6 +8357,30 @@
             </summary>
             <param name="laser">ILaser 인터페이스</param>
             <param name="motionType">MotionType 열거형</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListApproxBlendLimit(System.Single)">
+            <summary>
+            모션 블랜딩 반지름 근사값
+            Maximum tolerable mathematical distance of the blending curve to the corner point. 
+            </summary>
+            <param name="approxBlendLimit">반지름 거리값 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListContourDependentSpeedCalculation(System.Int32,System.Single)">
+            <summary>
+            Contour-dependent speed calculation 사용유무
+            </summary>
+            <param name="direction">0 : 비활성화, 1 : Speeds are determined right of the curve mid-line. -1 : Speeds are determined left of the curve mid-line.</param>
+            <param name="spotRadius">Radius of the laser spot in the working plane. (mm) specifies how far to the right or left of the curve mid-line the speeds are determined.</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListSpotDistanceControl(System.Boolean,System.Single)">
+            <summary>
+            Spot Distance Control 비활성화 유무
+            </summary>
+            <param name="isSupress">활성화 경우 (“Automatic Laser Control“ is active with SpotDistance as an “ActiveChannel”) </param>
+            <param name="timeDelay"></param>
             <returns></returns>
         </member>
         <member name="T:RTC4Import.RTC4Wrap">

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<cfg:Configuration xmlns:cfg="syncAXIS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="cfg syncAXIS_1_5.xsd" Version="1.5">
+<cfg:Configuration xmlns:cfg="syncAXIS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="cfg syncAXIS_1_6.xsd" Version="1.6">
   <cfg:GeneralConfig>
     <cfg:ACSController></cfg:ACSController>
     <cfg:InitialOperationMode>ScannerAndStage</cfg:InitialOperationMode>
@@ -46,6 +46,16 @@
       <cfg:Acceleration Unit="rad/s^2">1.1314e5</cfg:Acceleration>
       <cfg:Jerk Unit="rad/s^3">4e9</cfg:Jerk>
     </cfg:DynamicLimits>
+    <cfg:CalculationDynamics>
+      <cfg:MarkDynamics>
+        <cfg:Acceleration Unit="rad/s^2">1.1314e5</cfg:Acceleration>
+        <cfg:Jerk Unit="rad/s^3">4e9</cfg:Jerk>
+      </cfg:MarkDynamics>
+      <cfg:JumpDynamics>
+        <cfg:Acceleration Unit="rad/s^2">1.1314e5</cfg:Acceleration>
+        <cfg:Jerk Unit="rad/s^3">4e9</cfg:Jerk>
+      </cfg:JumpDynamics>
+    </cfg:CalculationDynamics>
     <cfg:DefaultCorrectionFile>0</cfg:DefaultCorrectionFile>
     <cfg:FocalLength Unit="mm">100</cfg:FocalLength>
     <cfg:Delay Unit="s">0.00125</cfg:Delay>
@@ -124,7 +134,7 @@
       <cfg:LaserSwitchConfig>
         <cfg:LaserPreTriggerTime Unit="s">0e-6</cfg:LaserPreTriggerTime>
         <cfg:LaserSwitchOffsetTime Unit="s">-20e-6</cfg:LaserSwitchOffsetTime>
-        <cfg:LaserMinOffTime Unit="s">1e-5</cfg:LaserMinOffTime>
+        <cfg:LaserMinOffTime Unit="s">15.625e-9</cfg:LaserMinOffTime>
       </cfg:LaserSwitchConfig>
     </cfg:MarkConfig>
     <cfg:GeometryConfig>

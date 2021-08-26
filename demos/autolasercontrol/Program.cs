@@ -115,6 +115,7 @@ namespace SpiralLab.Sirius
 
         /// <summary>
         /// 선 그리기 = 지령 속도 기반 레이저 신호 (아나로그 ~10V) 제어
+        /// 가공 출력 조건 = 5V (최소 4V, 최대 6V)
         /// </summary>
         private static bool DrawLine1(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
@@ -123,7 +124,7 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             alc.AutoLaserControlByPositionFileName = string.Empty;
-            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
 
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
@@ -138,6 +139,7 @@ namespace SpiralLab.Sirius
 
         /// <summary>
         /// 선 그리기 = 위치 의존적 + 지령 속도 기반 레이저 신호 (아나로그 ~10V) 제어
+        /// 가공 출력 조건 = 5V (최소 4V, 최대 6V)
         /// </summary>
         private static bool DrawLine2(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
@@ -147,7 +149,7 @@ namespace SpiralLab.Sirius
             bool success = true;
             alc.AutoLaserControlByPositionFileName = "your power scale file.txt";
             alc.AutoLaserControlByPositionTableNo = 1;
-            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 10, 0, 10);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
 
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
@@ -163,6 +165,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 선 그리기 = 실제 속도 기반 레이저 신호 (주파수 변조) 제어
         /// intelliDRIVE 기반 스캐너 필요
+        /// 가공 출력 조건 = 50KHz (최소 40KHz, 최대 60KHz)
         /// </summary>
         private static bool DrawLine3(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
@@ -174,7 +177,7 @@ namespace SpiralLab.Sirius
             //target frequency : 100KHz
             //lower cut off frequency : 50KHz
             //upper cut off frequency : 120KHz
-            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000,  50*1000, 120 * 1000);
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 50 * 1000, 40*1000, 60 * 1000);
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
             success &= rtc.ListMark(new Vector2(x2, y2));
@@ -195,9 +198,7 @@ namespace SpiralLab.Sirius
             var alc = rtc as IRtcAutoLaserControl;
             if (null == alc)
                 return false;
-            bool success = true;
-            alc.AutoLaserControlByPositionFileName = string.Empty;
-            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Frequency, AutoLaserControlMode.ActualVelocity, 100 * 1000, 50 * 1000, 120 * 1000);
+            bool success = true;            
             success &= rtc.ListBegin(laser);
             success &= alc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 10F); // 아나로그 신호로 시작 (기준값 : 10V)
             success &= rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 10V * 0.5 = 5V 로 시작

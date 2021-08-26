@@ -48,8 +48,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "16.autolasercontrol", "demo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "25.customeditor", "demos\customeditor\25.customeditor.csproj", "{B5606A31-1F51-46E4-A4DC-66DE583BD69D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "20.cppinterops", "demos\cppinterops\cppinterops.vcxproj", "{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "27.editor_custompen", "demos\editor_custompen\27.editor_custompen.csproj", "{D630D123-9932-4901-A733-4EF20E96A8E2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "28.editor_remote", "demos\editor_remote\28.editor_remote.csproj", "{DA0F78E4-1B73-4AB5-A26D-239F27858674}"
@@ -294,16 +292,6 @@ Global
 		{B5606A31-1F51-46E4-A4DC-66DE583BD69D}.Release|x64.Build.0 = Release|Any CPU
 		{B5606A31-1F51-46E4-A4DC-66DE583BD69D}.Release|x86.ActiveCfg = Release|Any CPU
 		{B5606A31-1F51-46E4-A4DC-66DE583BD69D}.Release|x86.Build.0 = Release|Any CPU
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x64.ActiveCfg = Debug|x64
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x64.Build.0 = Debug|x64
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x86.ActiveCfg = Debug|Win32
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x86.Build.0 = Debug|Win32
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|Any CPU.ActiveCfg = Release|Win32
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x64.ActiveCfg = Release|x64
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x64.Build.0 = Release|x64
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x86.ActiveCfg = Release|Win32
-		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x86.Build.0 = Release|Win32
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D630D123-9932-4901-A733-4EF20E96A8E2}.Debug|x64.ActiveCfg = Debug|Any CPU

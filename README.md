@@ -70,6 +70,17 @@
 
 **5. Version history**
 
+ * 2021.08.26 v1.7.4
+   - added) scanner field correction with each row/col interval and editable data
+   - added) ct5 file header information are queriable
+   - added) old ctb format supported
+   - added) text/sirius text with aspect ratio
+   - added) sizable/rotatable entities with grip points
+   - added) automatic laser control entity 
+   - fixed) layer repeat counts bug
+   - fixed) order of internal hatch lines bug
+   - updated) syncaxis v1.6 library
+
  * 2021.07.22 v1.7.3
    - added) hatch mode (cross line = 2nd hatch angle)
    - added) support divide entities 
