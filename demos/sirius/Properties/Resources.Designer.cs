@@ -103,16 +103,6 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap add_node_16px {
-            get {
-                object obj = ResourceManager.GetObject("add_node_16px", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
         internal static System.Drawing.Bitmap adjust_48px {
             get {
                 object obj = ResourceManager.GetObject("adjust_48px", resourceCulture);
