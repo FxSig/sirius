@@ -31,70 +31,48 @@ namespace SpiralLab.Sirius.Autonics
             this.FormClosing += FormMain_FormClosing;
         }
 
-        private void CreateHeadersAndFillListView()
-        {
-            ColumnHeader colHead;
-
-            colHead = new ColumnHeader();
-            colHead.Text = "Date                ";
-            this.listView1.Columns.Add(colHead);
-
-            colHead = new ColumnHeader();
-            colHead.Text = "Level    ";
-            this.listView1.Columns.Add(colHead);
-
-            colHead = new ColumnHeader();
-            colHead.Text = "Message";
-            this.listView1.Columns.Add(colHead);
-
-            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            listView1.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-        }
-
         public void Log(Logger.Type type, string message)
         {
-            listView1.BeginUpdate();
-            while (listView1.Items.Count > 2000)
-            {
-                listView1.Items[0].Remove();
-            }
-            ListViewItem lvi;
-            ListViewItem.ListViewSubItem lvsi;
-            lvi = new ListViewItem();
-            lvi.Text = DateTime.Now.ToString("MM-dd HH:mm:ss");
+        //    listView1.BeginUpdate();
+        //    while (listView1.Items.Count > 2000)
+        //    {
+        //        listView1.Items[0].Remove();
+        //    }
+        //    ListViewItem lvi;
+        //    ListViewItem.ListViewSubItem lvsi;
+        //    lvi = new ListViewItem();
+        //    lvi.Text = DateTime.Now.ToString("MM-dd HH:mm:ss");
 
-            lvsi = new ListViewItem.ListViewSubItem();
-            lvsi.Text = type.ToString();
-            switch (type)
-            {
-                case Logger.Type.Error:
-                case Logger.Type.Fatal:
-                    lvsi.BackColor = Color.Red;
-                    lvi.UseItemStyleForSubItems = false;
-                    break;
-                case Logger.Type.Warn:
-                    lvsi.BackColor = Color.Yellow;
-                    lvi.UseItemStyleForSubItems = false;
-                    break;
-                default:
-                    break;
-            }
-            lvi.SubItems.Add(lvsi);
+        //    lvsi = new ListViewItem.ListViewSubItem();
+        //    lvsi.Text = type.ToString();
+        //    switch (type)
+        //    {
+        //        case Logger.Type.Error:
+        //        case Logger.Type.Fatal:
+        //            lvsi.BackColor = Color.Red;
+        //            lvi.UseItemStyleForSubItems = false;
+        //            break;
+        //        case Logger.Type.Warn:
+        //            lvsi.BackColor = Color.Yellow;
+        //            lvi.UseItemStyleForSubItems = false;
+        //            break;
+        //        default:
+        //            break;
+        //    }
+        //    lvi.SubItems.Add(lvsi);
 
-            lvsi = new ListViewItem.ListViewSubItem();
-            lvsi.Text = message;
-            lvi.SubItems.Add(lvsi);
+        //    lvsi = new ListViewItem.ListViewSubItem();
+        //    lvsi.Text = message;
+        //    lvi.SubItems.Add(lvsi);
 
-            this.listView1.Items.Add(lvi);
-            listView1.TopItem = listView1.Items[listView1.Items.Count - 1];
+        //    this.listView1.Items.Add(lvi);
+        //    listView1.TopItem = listView1.Items[listView1.Items.Count - 1];
 
-            listView1.EndUpdate();
+        //    listView1.EndUpdate();
         }
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            this.CreateHeadersAndFillListView();
-
             this.SiriusLibInit();
             this.SwitchForm(this.panBody, this.FormAuto);
         }
@@ -288,14 +266,6 @@ namespace SpiralLab.Sirius.Autonics
         }
         #endregion
 
-        private void btnAuto_Click(object sender, EventArgs e)
-        {
-            this.SwitchForm(this.panBody, this.FormAuto);
-        }
-        private void btnLaser_Click(object sender, EventArgs e)
-        {
-            this.SwitchForm(this.panBody, this.FormEditor);
-        }
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
             var mb = new MessageBoxYesNo();
@@ -307,37 +277,50 @@ namespace SpiralLab.Sirius.Autonics
             this.timer1.Enabled = false;
             Logger.Log(Logger.Type.Warn, $"mmi is terminating by the user");
         }
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-        private void btnMaximize_Click(object sender, EventArgs e)
-        {
-            switch (this.WindowState)
-            {
-                case FormWindowState.Normal:
-                    this.WindowState = FormWindowState.Maximized;
-                    break;
-                case FormWindowState.Maximized:
-                    this.WindowState = FormWindowState.Normal;
-                    break;
-            }
-        }
+
         private void Timer1_Tick(object sender, EventArgs e)
         {
             lblTime.Text = DateTime.Now.ToString("H:mm:ss tt");
         }
-        private void panTop_DoubleClick(object sender, EventArgs e)
+
+        private void lblMax_Click(object sender, EventArgs e)
         {
-            switch (this.WindowState)
-            {
-                case FormWindowState.Normal:
-                    this.WindowState = FormWindowState.Maximized;
-                    break;
-                case FormWindowState.Maximized:
-                    this.WindowState = FormWindowState.Normal;
-                    break;
-            }
+            this.WindowState = FormWindowState.Maximized;
+        }
+
+        private void lblMini_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void lblClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void lblHomeButton_Click(object sender, EventArgs e)
+        {
+            this.SwitchForm(this.panBody, this.FormAuto);
+        }
+
+        private void lblRecipeButton_Click(object sender, EventArgs e)
+        {
+            this.SwitchForm(this.panBody, this.FormEditor);
+        }
+
+        private void lblLogButton_Click(object sender, EventArgs e)
+        {
+            //this.SwitchForm(this.panBody, this.History);
+        }
+
+        private void lblConfigButton_Click(object sender, EventArgs e)
+        {
+            //this.SwitchForm(this.panBody, this.FormSetup);
+        }
+
+        private void lblManualButton_Click(object sender, EventArgs e)
+        {
+            //this.SwitchForm(this.panBody, this.Manual);
         }
     }
 }

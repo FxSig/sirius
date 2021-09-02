@@ -5,7 +5,7 @@
  SuperEasy library for Control for Scanner and Lasers
 
  
- ![bitmap](http://www.spirallab.co.kr/wp-content/uploads/2021/07/sir.png)
+ ![bitmap](http://www.spirallab.co.kr/wp-content/uploads/2021/08/pod.png)
  
  ![path](http://www.spirallab.co.kr/wp-content/uploads/2021/05/image-19-1024x622.png)
  
@@ -28,15 +28,15 @@
  - support unlimited vector data by RTC controller automatically.
  - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) options.
  - support many kinds of commerical laser sources (support customizable ILaser interface)
- - support laser power control with POD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation)
+ - support laser power control with POD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt), group for multiple entities and layers.
  - support 2D barcodes mark with dots, lines, outlines, hatch or custom patter each cells
  - support powerful undo/redo actions.
  - support 1 source(single document data), multiple view windows.
  - support customizable and extensible marker interface.
- - support laser beam path visualizer (simulator).
- - support path optimizer algorithm with points, offset of group entitiy
+ - support laser beam path visualizer (simulator) and path optimizer algorithm.
  - support vary laser parameters with special entity called 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
+ - support user executable script codes (C#) with scriptable entities
  
   ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2021/07/pathopt-1024x806.png)  
  
@@ -44,7 +44,7 @@
 
 **3. How to use ?**
 
- - Development Environment : .NET dll library with x32/x64
+ - Development Environment : .NET dll library 
  - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
  - spirallab.sirius.dll file support user control : SpiralLab.Sirius.EditorForm / SpiralLab.Sirius.ViewerForm
  - There are multiple demo programs in DEMOS directory
@@ -69,6 +69,11 @@
 ----
 
 **5. Version history**
+
+ * 2021.09.02 v1.7.5
+   - added) entity with script (compile and execute by C# codes) : barcode, text, siriustext ,...
+   - added) script demo project
+   - added) gnuplot for analyze measurement data
 
  * 2021.08.26 v1.7.4
    - added) scanner field correction with each row/col interval and editable data

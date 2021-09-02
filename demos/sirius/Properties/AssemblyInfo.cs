@@ -11,7 +11,7 @@ using System.Windows;
 [assembly: AssemblyCompany("(c)SpiralLab")]
 [assembly: AssemblyProduct("sirius demo program")]
 [assembly: AssemblyCopyright("(c)SpiralLab")]
-[assembly: AssemblyTrademark("(c)SpiralLab")]
+[assembly: AssemblyTrademark("(c)SpiralLab.Sirius")]
 [assembly: AssemblyCulture("")]
  
 

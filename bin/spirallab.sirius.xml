@@ -47,6 +47,57 @@
             엔티티 의 Grip 포인트 이동
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.IScriptable">
+            <summary>
+            스크립트 코드를 통해 데이타를 변경되는 방식
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.IsScriptEnabled">
+            <summary>
+            스크립트 사용 유무
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.ScriptFileName">
+            <summary>
+            스크립트 소스 파일 이름 (.cs)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.ScriptInstanceName">
+            <summary>
+            스크립트내 생성할 객체의 이름 (네임스페이스.클래스 이름)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.ScriptPropertyName">
+            <summary>
+            스크립트내 생성된 객체에서 값을 얻어올 속성 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.ScriptArguments">
+            <summary>
+            스크립트내 생성된 객체에서 전달할 인자 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IScriptable.ScriptResult">
+            <summary>
+             스크립트내 생성된 객체에서 값을 얻어온 속성의 결과
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IScriptable.ScriptCompile(System.String,System.CodeDom.Compiler.CompilerErrorCollection@)">
+            <summary>
+            스크립트 컴파일 (ScriptFileName 파일을 찾아 열고 컴파일 진행)
+            </summary>
+            <param name="lineOfCodes">컴파일 코드</param>
+            <param name="compileErrorCollection">실패시 컴파일 오류 목록</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IScriptable.ScriptExecute(System.String@,System.Boolean)">
+            <summary>
+            스크립트 실행
+            </summary>
+            <param name="value">실행 결과 리턴</param>
+            <param name="applyIntoData">실행 성공시 그 결과를 엔티티의 데이타에 즉시 반영 여부</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.AlcBegin">
             <summary>
             ALC Begin 엔티티 객체
@@ -102,6 +153,24 @@
             <returns>A new color that is a copy of this instance.</returns>
         </member>
         <member name="M:SpiralLab.Sirius.AlcVectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MeasurementEnd">
+            <summary>
+            Measurement End 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementEnd.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
             </summary>
@@ -197,6 +266,24 @@
             <summary>
             선분 벡터의 각도 (degree : 0~360)
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MeasurementBegin">
+            <summary>
+            Measurement Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.WriteDataExt16">
             <summary>
@@ -748,6 +835,72 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ScriptHelper">
+            <summary>
+            스크립트 (C# 동적 컴파일) 헬퍼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ScriptHelper.Provider">
+            <summary>
+            소스 코드 종류
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ScriptHelper.Codes">
+            <summary>
+            코드 내용
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.#ctor(SpiralLab.Sirius.ScriptHelper.Providers,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="provider">코드 종류</param>
+            <param name="lineOfCodes">코드 내용</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.Compile(System.CodeDom.Compiler.CompilerErrorCollection@)">
+            <summary>
+            코드 컴파일
+            </summary>
+            <param name="compileErrorCollection">에러 발생시 목록</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.CreateInstance(System.String)">
+            <summary>
+            객체 생성
+            </summary>
+            <param name="typeName">객체 타입명</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.SetProperty(System.String,System.Object)">
+            <summary>
+            객체의 속성 값 설정
+            </summary>
+            <param name="propName">속성 이름</param>
+            <param name="arg">속성 값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.GetProperty(System.String,System.Object@)">
+            <summary>
+            객체의 속성 값 조회
+            </summary>
+            <param name="propName">속성 이름</param>
+            <param name="value">조회된 값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptHelper.Function(System.String,System.Object[],System.Object@)">
+            <summary>
+            객체의 함수 호출
+            </summary>
+            <param name="funcName">함수 이름</param>
+            <param name="args">함수 호출 인자</param>
+            <param name="value">함수 호출 결과</param>
+            <returns></returns>
+        </member>
         <member name="P:SpiralLab.Sirius.CxfHelper.CapitalHeight">
             <summary>
             대문자 높이
@@ -801,6 +954,11 @@
         <member name="P:SpiralLab.Sirius.CxfHelper.BBox">
             <summary>
             Bound Box
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.DxfHelper">
+            <summary>
+            netDXF 포맷 변환기
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CxfFontCollectionHelper">
@@ -1302,6 +1460,28 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.DivideForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ScriptForm">
+            <summary>
+            정점 편집 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ScriptForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ScriptForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -1904,6 +2084,16 @@
             <param name="entities">선택 엔티티 리스트</param>
             <param name="dx">X 이동량 </param>
             <param name="dy">Y 이동량 </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityTransitGrip(SpiralLab.Sirius.IEntity,System.Int32,System.Single,System.Single)">
+            <summary>
+            지정된 엔티티의 그립(Grip) 위치를 특정한 양만큼 이동
+            </summary>
+            <param name="entity">대상 엔티티</param>
+            <param name="gripId">그립 포인트 식별 번호</param>
+            <param name="dx">X 이동량</param>
+            <param name="dy">Y 이동량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityDragMove(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,System.Int32)">
@@ -3589,6 +3779,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.paste_clone">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.pencil_16px">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -6186,9 +6381,27 @@
             UI 유틸리티 기능들
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.UiHelper.PropertyBrowsable(System.Type,System.String,System.Boolean)">
+            <summary>
+            PropertyGrid 의 속성창에서 지정된 타입의 속성 필드 출력 여부
+            </summary>
+            <param name="type">객체 타입</param>
+            <param name="name">속성 이름</param>
+            <param name="visible">표시 여부</param>
+        </member>
         <member name="T:SpiralLab.Sirius.BarcodePatternFileBrowser">
             <summary>
             바코드 개별셀의 패턴을 외부 시리우스 파일로 처리
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ScriptFileBrowser">
+            <summary>
+            스크립트 파일 브러우저
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ScriptFileEditor">
+            <summary>
+            ScriptFileEditor 변환기
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ImageFileBrowser">

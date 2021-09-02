@@ -30,17 +30,36 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panFooter = new System.Windows.Forms.Panel();
-            this.btnLaser = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.btnAuto = new System.Windows.Forms.Button();
+            this.lblLogButtonState = new System.Windows.Forms.Label();
+            this.lblLogButton = new System.Windows.Forms.Label();
+            this.lblConfigButtonState = new System.Windows.Forms.Label();
+            this.lblConfigButton = new System.Windows.Forms.Label();
+            this.lblManualButtonState = new System.Windows.Forms.Label();
+            this.lblManualButton = new System.Windows.Forms.Label();
+            this.lblOperationButtonState = new System.Windows.Forms.Label();
+            this.lblHomeButtonState = new System.Windows.Forms.Label();
+            this.lblHomeButton = new System.Windows.Forms.Label();
+            this.lblRecipeButton = new System.Windows.Forms.Label();
             this.panTop = new System.Windows.Forms.Panel();
+            this.lblClose = new System.Windows.Forms.Label();
+            this.lblMax = new System.Windows.Forms.Label();
+            this.lblMini = new System.Windows.Forms.Label();
             this.lblVersion = new System.Windows.Forms.Label();
-            this.btnMaximize = new System.Windows.Forms.Button();
             this.lblTime = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panHeader = new System.Windows.Forms.Panel();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblLoginoutText = new System.Windows.Forms.Label();
+            this.lblLoginButton = new System.Windows.Forms.Label();
+            this.lblHost2Status = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblLaser2Status = new System.Windows.Forms.Label();
+            this.lblLaser2 = new System.Windows.Forms.Label();
+            this.lblHostStatus = new System.Windows.Forms.Label();
+            this.lblHost = new System.Windows.Forms.Label();
+            this.lblLaserStatus = new System.Windows.Forms.Label();
+            this.lblLaser = new System.Windows.Forms.Label();
+            this.lblHostText = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panMenu = new System.Windows.Forms.Panel();
@@ -50,80 +69,161 @@
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // panFooter
             // 
-            this.panFooter.Controls.Add(this.btnLaser);
-            this.panFooter.Controls.Add(this.btnExit);
-            this.panFooter.Controls.Add(this.btnAuto);
+            this.panFooter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(38)))), ((int)(((byte)(40)))));
+            this.panFooter.Controls.Add(this.lblLogButtonState);
+            this.panFooter.Controls.Add(this.lblLogButton);
+            this.panFooter.Controls.Add(this.lblConfigButtonState);
+            this.panFooter.Controls.Add(this.lblConfigButton);
+            this.panFooter.Controls.Add(this.lblManualButtonState);
+            this.panFooter.Controls.Add(this.lblManualButton);
+            this.panFooter.Controls.Add(this.lblOperationButtonState);
+            this.panFooter.Controls.Add(this.lblHomeButtonState);
+            this.panFooter.Controls.Add(this.lblHomeButton);
+            this.panFooter.Controls.Add(this.lblRecipeButton);
             this.panFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panFooter.Location = new System.Drawing.Point(0, 918);
+            this.panFooter.Location = new System.Drawing.Point(0, 932);
             this.panFooter.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.panFooter.Name = "panFooter";
-            this.panFooter.Size = new System.Drawing.Size(1280, 87);
+            this.panFooter.Size = new System.Drawing.Size(1280, 73);
             this.panFooter.TabIndex = 7;
             // 
-            // btnLaser
+            // lblLogButtonState
             // 
-            this.btnLaser.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLaser.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnLaser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLaser.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaser.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.sirius;
-            this.btnLaser.Location = new System.Drawing.Point(105, 8);
-            this.btnLaser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnLaser.Name = "btnLaser";
-            this.btnLaser.Size = new System.Drawing.Size(82, 72);
-            this.btnLaser.TabIndex = 12;
-            this.btnLaser.Text = "&Sirius™";
-            this.btnLaser.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLaser.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnLaser.UseVisualStyleBackColor = true;
-            this.btnLaser.Click += new System.EventHandler(this.btnLaser_Click);
+            this.lblLogButtonState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblLogButtonState.ForeColor = System.Drawing.Color.Black;
+            this.lblLogButtonState.Location = new System.Drawing.Point(926, 71);
+            this.lblLogButtonState.Name = "lblLogButtonState";
+            this.lblLogButtonState.Size = new System.Drawing.Size(120, 2);
+            this.lblLogButtonState.TabIndex = 19;
+            this.lblLogButtonState.Text = "label9";
             // 
-            // btnExit
+            // lblLogButton
             // 
-            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExit.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExit.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.shutdown_48px;
-            this.btnExit.Location = new System.Drawing.Point(1186, 8);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(82, 72);
-            this.btnExit.TabIndex = 8;
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnExit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            this.lblLogButton.BackColor = System.Drawing.Color.Transparent;
+            this.lblLogButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblLogButton.ForeColor = System.Drawing.Color.White;
+            this.lblLogButton.Image = ((System.Drawing.Image)(resources.GetObject("lblLogButton.Image")));
+            this.lblLogButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLogButton.Location = new System.Drawing.Point(926, 0);
+            this.lblLogButton.Name = "lblLogButton";
+            this.lblLogButton.Size = new System.Drawing.Size(120, 73);
+            this.lblLogButton.TabIndex = 18;
+            this.lblLogButton.Text = "     Log";
+            this.lblLogButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLogButton.Click += new System.EventHandler(this.lblLogButton_Click);
             // 
-            // btnAuto
+            // lblConfigButtonState
             // 
-            this.btnAuto.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAuto.FlatAppearance.BorderColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAuto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAuto.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAuto.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.collage_48px;
-            this.btnAuto.Location = new System.Drawing.Point(12, 8);
-            this.btnAuto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(82, 72);
-            this.btnAuto.TabIndex = 3;
-            this.btnAuto.Text = "&Auto";
-            this.btnAuto.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnAuto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAuto.UseVisualStyleBackColor = true;
-            this.btnAuto.Click += new System.EventHandler(this.btnAuto_Click);
+            this.lblConfigButtonState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblConfigButtonState.ForeColor = System.Drawing.Color.Black;
+            this.lblConfigButtonState.Location = new System.Drawing.Point(753, 71);
+            this.lblConfigButtonState.Name = "lblConfigButtonState";
+            this.lblConfigButtonState.Size = new System.Drawing.Size(120, 2);
+            this.lblConfigButtonState.TabIndex = 17;
+            this.lblConfigButtonState.Text = "label7";
+            // 
+            // lblConfigButton
+            // 
+            this.lblConfigButton.BackColor = System.Drawing.Color.Transparent;
+            this.lblConfigButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblConfigButton.ForeColor = System.Drawing.Color.White;
+            this.lblConfigButton.Image = ((System.Drawing.Image)(resources.GetObject("lblConfigButton.Image")));
+            this.lblConfigButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblConfigButton.Location = new System.Drawing.Point(753, 0);
+            this.lblConfigButton.Name = "lblConfigButton";
+            this.lblConfigButton.Size = new System.Drawing.Size(120, 73);
+            this.lblConfigButton.TabIndex = 16;
+            this.lblConfigButton.Text = "     Config";
+            this.lblConfigButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblConfigButton.Click += new System.EventHandler(this.lblConfigButton_Click);
+            // 
+            // lblManualButtonState
+            // 
+            this.lblManualButtonState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblManualButtonState.ForeColor = System.Drawing.Color.Black;
+            this.lblManualButtonState.Location = new System.Drawing.Point(580, 71);
+            this.lblManualButtonState.Name = "lblManualButtonState";
+            this.lblManualButtonState.Size = new System.Drawing.Size(120, 2);
+            this.lblManualButtonState.TabIndex = 15;
+            this.lblManualButtonState.Text = "label5";
+            // 
+            // lblManualButton
+            // 
+            this.lblManualButton.BackColor = System.Drawing.Color.Transparent;
+            this.lblManualButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblManualButton.ForeColor = System.Drawing.Color.White;
+            this.lblManualButton.Image = ((System.Drawing.Image)(resources.GetObject("lblManualButton.Image")));
+            this.lblManualButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblManualButton.Location = new System.Drawing.Point(580, 0);
+            this.lblManualButton.Name = "lblManualButton";
+            this.lblManualButton.Size = new System.Drawing.Size(120, 73);
+            this.lblManualButton.TabIndex = 14;
+            this.lblManualButton.Text = "     Manual";
+            this.lblManualButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblManualButton.Click += new System.EventHandler(this.lblManualButton_Click);
+            // 
+            // lblOperationButtonState
+            // 
+            this.lblOperationButtonState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblOperationButtonState.ForeColor = System.Drawing.Color.Black;
+            this.lblOperationButtonState.Location = new System.Drawing.Point(407, 71);
+            this.lblOperationButtonState.Name = "lblOperationButtonState";
+            this.lblOperationButtonState.Size = new System.Drawing.Size(120, 2);
+            this.lblOperationButtonState.TabIndex = 13;
+            this.lblOperationButtonState.Text = "label3";
+            // 
+            // lblHomeButtonState
+            // 
+            this.lblHomeButtonState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lblHomeButtonState.ForeColor = System.Drawing.Color.Black;
+            this.lblHomeButtonState.Location = new System.Drawing.Point(234, 71);
+            this.lblHomeButtonState.Name = "lblHomeButtonState";
+            this.lblHomeButtonState.Size = new System.Drawing.Size(120, 2);
+            this.lblHomeButtonState.TabIndex = 11;
+            this.lblHomeButtonState.Text = "label2";
+            // 
+            // lblHomeButton
+            // 
+            this.lblHomeButton.BackColor = System.Drawing.Color.Transparent;
+            this.lblHomeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.lblHomeButton.ForeColor = System.Drawing.Color.White;
+            this.lblHomeButton.Image = ((System.Drawing.Image)(resources.GetObject("lblHomeButton.Image")));
+            this.lblHomeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHomeButton.Location = new System.Drawing.Point(234, 0);
+            this.lblHomeButton.Name = "lblHomeButton";
+            this.lblHomeButton.Size = new System.Drawing.Size(120, 73);
+            this.lblHomeButton.TabIndex = 10;
+            this.lblHomeButton.Text = "     Home";
+            this.lblHomeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblHomeButton.Click += new System.EventHandler(this.lblHomeButton_Click);
+            // 
+            // lblRecipeButton
+            // 
+            this.lblRecipeButton.BackColor = System.Drawing.Color.Transparent;
+            this.lblRecipeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.lblRecipeButton.ForeColor = System.Drawing.Color.White;
+            this.lblRecipeButton.Image = ((System.Drawing.Image)(resources.GetObject("lblRecipeButton.Image")));
+            this.lblRecipeButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblRecipeButton.Location = new System.Drawing.Point(407, 0);
+            this.lblRecipeButton.Name = "lblRecipeButton";
+            this.lblRecipeButton.Size = new System.Drawing.Size(120, 73);
+            this.lblRecipeButton.TabIndex = 12;
+            this.lblRecipeButton.Text = "     Recipe";
+            this.lblRecipeButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblRecipeButton.Click += new System.EventHandler(this.lblRecipeButton_Click);
             // 
             // panTop
             // 
-            this.panTop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            this.panTop.BackColor = System.Drawing.Color.OrangeRed;
+            this.panTop.Controls.Add(this.lblClose);
+            this.panTop.Controls.Add(this.lblMax);
+            this.panTop.Controls.Add(this.lblMini);
             this.panTop.Controls.Add(this.lblVersion);
-            this.panTop.Controls.Add(this.btnMaximize);
             this.panTop.Controls.Add(this.lblTime);
             this.panTop.Controls.Add(this.label1);
             this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
@@ -133,32 +233,64 @@
             this.panTop.Name = "panTop";
             this.panTop.Size = new System.Drawing.Size(1280, 34);
             this.panTop.TabIndex = 8;
-            this.panTop.DoubleClick += new System.EventHandler(this.panTop_DoubleClick);
             this.panTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panTop_MouseDown);
             this.panTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panTop_MouseMove);
+            // 
+            // lblClose
+            // 
+            this.lblClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblClose.BackColor = System.Drawing.Color.Transparent;
+            this.lblClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.lblClose.ForeColor = System.Drawing.Color.White;
+            this.lblClose.Image = ((System.Drawing.Image)(resources.GetObject("lblClose.Image")));
+            this.lblClose.Location = new System.Drawing.Point(1257, 12);
+            this.lblClose.Margin = new System.Windows.Forms.Padding(0);
+            this.lblClose.Name = "lblClose";
+            this.lblClose.Size = new System.Drawing.Size(11, 11);
+            this.lblClose.TabIndex = 11;
+            this.lblClose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblClose.Click += new System.EventHandler(this.lblClose_Click);
+            // 
+            // lblMax
+            // 
+            this.lblMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMax.BackColor = System.Drawing.Color.Transparent;
+            this.lblMax.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.lblMax.ForeColor = System.Drawing.Color.White;
+            this.lblMax.Image = ((System.Drawing.Image)(resources.GetObject("lblMax.Image")));
+            this.lblMax.Location = new System.Drawing.Point(1173, 12);
+            this.lblMax.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMax.Name = "lblMax";
+            this.lblMax.Size = new System.Drawing.Size(11, 11);
+            this.lblMax.TabIndex = 10;
+            this.lblMax.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMax.Click += new System.EventHandler(this.lblMax_Click);
+            // 
+            // lblMini
+            // 
+            this.lblMini.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMini.BackColor = System.Drawing.Color.Transparent;
+            this.lblMini.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.lblMini.ForeColor = System.Drawing.Color.White;
+            this.lblMini.Image = ((System.Drawing.Image)(resources.GetObject("lblMini.Image")));
+            this.lblMini.Location = new System.Drawing.Point(1233, 12);
+            this.lblMini.Margin = new System.Windows.Forms.Padding(0);
+            this.lblMini.Name = "lblMini";
+            this.lblMini.Size = new System.Drawing.Size(11, 11);
+            this.lblMini.TabIndex = 9;
+            this.lblMini.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblMini.Click += new System.EventHandler(this.lblMini_Click);
             // 
             // lblVersion
             // 
             this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.lblVersion.ForeColor = System.Drawing.Color.White;
             this.lblVersion.Location = new System.Drawing.Point(339, 9);
             this.lblVersion.Name = "lblVersion";
             this.lblVersion.Size = new System.Drawing.Size(43, 16);
             this.lblVersion.TabIndex = 3;
             this.lblVersion.Text = "Ver 1.0";
-            // 
-            // btnMaximize
-            // 
-            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMaximize.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.full_screen_24px;
-            this.btnMaximize.Location = new System.Drawing.Point(1238, 5);
-            this.btnMaximize.Name = "btnMaximize";
-            this.btnMaximize.Size = new System.Drawing.Size(29, 23);
-            this.btnMaximize.TabIndex = 2;
-            this.btnMaximize.UseVisualStyleBackColor = true;
-            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
             // 
             // lblTime
             // 
@@ -176,7 +308,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(325, 16);
@@ -186,45 +318,173 @@
             // panHeader
             // 
             this.panHeader.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panHeader.Controls.Add(this.listView1);
-            this.panHeader.Controls.Add(this.pictureBox1);
+            this.panHeader.Controls.Add(this.lblLoginoutText);
+            this.panHeader.Controls.Add(this.lblLoginButton);
+            this.panHeader.Controls.Add(this.lblHost2Status);
+            this.panHeader.Controls.Add(this.label2);
+            this.panHeader.Controls.Add(this.lblLaser2Status);
+            this.panHeader.Controls.Add(this.lblLaser2);
+            this.panHeader.Controls.Add(this.lblHostStatus);
+            this.panHeader.Controls.Add(this.lblHost);
+            this.panHeader.Controls.Add(this.lblLaserStatus);
+            this.panHeader.Controls.Add(this.lblLaser);
+            this.panHeader.Controls.Add(this.lblHostText);
+            this.panHeader.Controls.Add(this.lblStatus);
             this.panHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.panHeader.Location = new System.Drawing.Point(0, 34);
             this.panHeader.Name = "panHeader";
-            this.panHeader.Size = new System.Drawing.Size(1280, 121);
+            this.panHeader.Size = new System.Drawing.Size(1280, 62);
             this.panHeader.TabIndex = 10;
             // 
-            // listView1
+            // lblLoginoutText
             // 
-            this.listView1.Activation = System.Windows.Forms.ItemActivation.OneClick;
-            this.listView1.FullRowSelect = true;
-            this.listView1.GridLines = true;
-            this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(280, 7);
-            this.listView1.MultiSelect = false;
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(987, 107);
-            this.listView1.TabIndex = 2;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.View = System.Windows.Forms.View.Details;
+            this.lblLoginoutText.BackColor = System.Drawing.Color.Transparent;
+            this.lblLoginoutText.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblLoginoutText.ForeColor = System.Drawing.Color.Black;
+            this.lblLoginoutText.Location = new System.Drawing.Point(1161, 23);
+            this.lblLoginoutText.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLoginoutText.Name = "lblLoginoutText";
+            this.lblLoginoutText.Size = new System.Drawing.Size(107, 20);
+            this.lblLoginoutText.TabIndex = 32;
+            this.lblLoginoutText.Text = "Login";
+            this.lblLoginoutText.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblLoginoutText.UseCompatibleTextRendering = true;
             // 
-            // pictureBox1
+            // lblLoginButton
             // 
-            this.pictureBox1.Image = global::SpiralLab.Sirius.Demo.Properties.Resources.spirallablogo;
-            this.pictureBox1.Location = new System.Drawing.Point(14, 7);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(237, 107);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 1;
-            this.pictureBox1.TabStop = false;
+            this.lblLoginButton.ForeColor = System.Drawing.Color.Transparent;
+            this.lblLoginButton.Image = ((System.Drawing.Image)(resources.GetObject("lblLoginButton.Image")));
+            this.lblLoginButton.Location = new System.Drawing.Point(1131, 23);
+            this.lblLoginButton.Name = "lblLoginButton";
+            this.lblLoginButton.Size = new System.Drawing.Size(20, 20);
+            this.lblLoginButton.TabIndex = 31;
+            // 
+            // lblHost2Status
+            // 
+            this.lblHost2Status.ForeColor = System.Drawing.Color.Transparent;
+            this.lblHost2Status.Image = ((System.Drawing.Image)(resources.GetObject("lblHost2Status.Image")));
+            this.lblHost2Status.Location = new System.Drawing.Point(946, 22);
+            this.lblHost2Status.Name = "lblHost2Status";
+            this.lblHost2Status.Size = new System.Drawing.Size(14, 20);
+            this.lblHost2Status.TabIndex = 30;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(861, 22);
+            this.label2.Margin = new System.Windows.Forms.Padding(0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(82, 20);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Data PC";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label2.UseCompatibleTextRendering = true;
+            // 
+            // lblLaser2Status
+            // 
+            this.lblLaser2Status.ForeColor = System.Drawing.Color.Transparent;
+            this.lblLaser2Status.Image = ((System.Drawing.Image)(resources.GetObject("lblLaser2Status.Image")));
+            this.lblLaser2Status.Location = new System.Drawing.Point(612, 22);
+            this.lblLaser2Status.Name = "lblLaser2Status";
+            this.lblLaser2Status.Size = new System.Drawing.Size(14, 20);
+            this.lblLaser2Status.TabIndex = 28;
+            // 
+            // lblLaser2
+            // 
+            this.lblLaser2.BackColor = System.Drawing.Color.Transparent;
+            this.lblLaser2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLaser2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblLaser2.ForeColor = System.Drawing.Color.Black;
+            this.lblLaser2.Location = new System.Drawing.Point(533, 22);
+            this.lblLaser2.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLaser2.Name = "lblLaser2";
+            this.lblLaser2.Size = new System.Drawing.Size(76, 20);
+            this.lblLaser2.TabIndex = 27;
+            this.lblLaser2.Text = "Laser2";
+            this.lblLaser2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLaser2.UseCompatibleTextRendering = true;
+            // 
+            // lblHostStatus
+            // 
+            this.lblHostStatus.ForeColor = System.Drawing.Color.Transparent;
+            this.lblHostStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblHostStatus.Image")));
+            this.lblHostStatus.Location = new System.Drawing.Point(791, 22);
+            this.lblHostStatus.Name = "lblHostStatus";
+            this.lblHostStatus.Size = new System.Drawing.Size(14, 20);
+            this.lblHostStatus.TabIndex = 26;
+            // 
+            // lblHost
+            // 
+            this.lblHost.BackColor = System.Drawing.Color.Transparent;
+            this.lblHost.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblHost.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblHost.ForeColor = System.Drawing.Color.Black;
+            this.lblHost.Location = new System.Drawing.Point(674, 22);
+            this.lblHost.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHost.Name = "lblHost";
+            this.lblHost.Size = new System.Drawing.Size(114, 20);
+            this.lblHost.TabIndex = 25;
+            this.lblHost.Text = "Scanner PC";
+            this.lblHost.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHost.UseCompatibleTextRendering = true;
+            // 
+            // lblLaserStatus
+            // 
+            this.lblLaserStatus.ForeColor = System.Drawing.Color.Transparent;
+            this.lblLaserStatus.Image = ((System.Drawing.Image)(resources.GetObject("lblLaserStatus.Image")));
+            this.lblLaserStatus.Location = new System.Drawing.Point(468, 22);
+            this.lblLaserStatus.Name = "lblLaserStatus";
+            this.lblLaserStatus.Size = new System.Drawing.Size(14, 20);
+            this.lblLaserStatus.TabIndex = 24;
+            // 
+            // lblLaser
+            // 
+            this.lblLaser.BackColor = System.Drawing.Color.Transparent;
+            this.lblLaser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.lblLaser.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
+            this.lblLaser.ForeColor = System.Drawing.Color.Black;
+            this.lblLaser.Location = new System.Drawing.Point(392, 22);
+            this.lblLaser.Margin = new System.Windows.Forms.Padding(0);
+            this.lblLaser.Name = "lblLaser";
+            this.lblLaser.Size = new System.Drawing.Size(76, 20);
+            this.lblLaser.TabIndex = 23;
+            this.lblLaser.Text = "Laser1";
+            this.lblLaser.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblLaser.UseCompatibleTextRendering = true;
+            // 
+            // lblHostText
+            // 
+            this.lblHostText.BackColor = System.Drawing.Color.Transparent;
+            this.lblHostText.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.lblHostText.ForeColor = System.Drawing.Color.Black;
+            this.lblHostText.Location = new System.Drawing.Point(249, 22);
+            this.lblHostText.Margin = new System.Windows.Forms.Padding(0);
+            this.lblHostText.Name = "lblHostText";
+            this.lblHostText.Size = new System.Drawing.Size(100, 20);
+            this.lblHostText.TabIndex = 22;
+            this.lblHostText.Text = "Host Status";
+            this.lblHostText.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblHostText.UseCompatibleTextRendering = true;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.lblStatus.Location = new System.Drawing.Point(3, 5);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(221, 54);
+            this.lblStatus.TabIndex = 21;
+            this.lblStatus.Text = "State";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.Color.Gainsboro;
             this.splitter1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 155);
+            this.splitter1.Location = new System.Drawing.Point(0, 96);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1280, 1);
             this.splitter1.TabIndex = 11;
@@ -235,7 +495,7 @@
             this.splitter2.BackColor = System.Drawing.Color.Gainsboro;
             this.splitter2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.splitter2.Location = new System.Drawing.Point(0, 917);
+            this.splitter2.Location = new System.Drawing.Point(0, 931);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(1280, 1);
             this.splitter2.TabIndex = 13;
@@ -246,7 +506,7 @@
             this.panMenu.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panMenu.Controls.Add(this.lblMenu);
             this.panMenu.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panMenu.Location = new System.Drawing.Point(0, 156);
+            this.panMenu.Location = new System.Drawing.Point(0, 97);
             this.panMenu.Name = "panMenu";
             this.panMenu.Size = new System.Drawing.Size(1280, 32);
             this.panMenu.TabIndex = 15;
@@ -267,7 +527,7 @@
             this.splitter3.BackColor = System.Drawing.Color.Gainsboro;
             this.splitter3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Location = new System.Drawing.Point(0, 188);
+            this.splitter3.Location = new System.Drawing.Point(0, 129);
             this.splitter3.Name = "splitter3";
             this.splitter3.Size = new System.Drawing.Size(1280, 1);
             this.splitter3.TabIndex = 16;
@@ -276,9 +536,9 @@
             // panBody
             // 
             this.panBody.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panBody.Location = new System.Drawing.Point(0, 189);
+            this.panBody.Location = new System.Drawing.Point(0, 130);
             this.panBody.Name = "panBody";
-            this.panBody.Size = new System.Drawing.Size(1280, 728);
+            this.panBody.Size = new System.Drawing.Size(1280, 801);
             this.panBody.TabIndex = 18;
             // 
             // FormMain
@@ -305,7 +565,6 @@
             this.panTop.ResumeLayout(false);
             this.panTop.PerformLayout();
             this.panHeader.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panMenu.ResumeLayout(false);
             this.panMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -315,21 +574,40 @@
         #endregion
         private System.Windows.Forms.Panel panFooter;
         private System.Windows.Forms.Panel panTop;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panHeader;
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Button btnExit;
         private System.Windows.Forms.Splitter splitter2;
-        private System.Windows.Forms.Button btnMaximize;
-        private System.Windows.Forms.Label lblVersion;
         private System.Windows.Forms.Panel panMenu;
         private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Label lblMenu;
         private System.Windows.Forms.Panel panBody;
-        private System.Windows.Forms.Button btnAuto;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnLaser;
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Label lblVersion;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLoginoutText;
+        private System.Windows.Forms.Label lblLoginButton;
+        private System.Windows.Forms.Label lblHost2Status;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblLaser2Status;
+        private System.Windows.Forms.Label lblLaser2;
+        private System.Windows.Forms.Label lblHostStatus;
+        private System.Windows.Forms.Label lblHost;
+        private System.Windows.Forms.Label lblLaserStatus;
+        private System.Windows.Forms.Label lblLaser;
+        private System.Windows.Forms.Label lblHostText;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblLogButtonState;
+        private System.Windows.Forms.Label lblLogButton;
+        private System.Windows.Forms.Label lblConfigButtonState;
+        private System.Windows.Forms.Label lblConfigButton;
+        private System.Windows.Forms.Label lblManualButtonState;
+        private System.Windows.Forms.Label lblManualButton;
+        private System.Windows.Forms.Label lblOperationButtonState;
+        private System.Windows.Forms.Label lblHomeButtonState;
+        private System.Windows.Forms.Label lblHomeButton;
+        private System.Windows.Forms.Label lblRecipeButton;
+        private System.Windows.Forms.Label lblClose;
+        private System.Windows.Forms.Label lblMax;
+        private System.Windows.Forms.Label lblMini;
     }
 }

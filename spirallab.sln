@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "28.editor_remote", "demos\e
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "30.sirius", "demos\sirius\30.sirius.csproj", "{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "29.script", "demos\script\29.script.csproj", "{F3711B4A-F07A-4537-9C8B-1931B9691D25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -328,6 +330,18 @@ Global
 		{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}.Release|x64.Build.0 = Release|Any CPU
 		{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}.Release|x86.ActiveCfg = Release|Any CPU
 		{2EBF0D5E-7697-4A1F-8715-7F7023EF13CC}.Release|x86.Build.0 = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|x64.Build.0 = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Debug|x86.Build.0 = Debug|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|x64.ActiveCfg = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|x64.Build.0 = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|x86.ActiveCfg = Release|Any CPU
+		{F3711B4A-F07A-4537-9C8B-1931B9691D25}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

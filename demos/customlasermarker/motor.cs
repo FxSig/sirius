@@ -82,7 +82,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="position">위치</param>
         /// <returns></returns>
-        public bool CtlMoveAbs(float position)
+        public bool CtlMoveAbs(float position, float vel, float acc)
         {
             Thread.Sleep(100);
             this.Position = position;
@@ -93,7 +93,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public bool CtlMoveRel(float distance)
+        public bool CtlMoveRel(float distance, float vel, float acc)
         {
             Thread.Sleep(100);
             this.Position += distance;
