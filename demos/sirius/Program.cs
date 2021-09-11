@@ -49,14 +49,14 @@ namespace SpiralLab.Sirius
                 mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
                 return;
             }
-            try
+           // try
             {
                 Application.Run(MainForm);
             }
-            catch(Exception ex)
+            //catch(Exception ex)
             {
-                Logger.Log(Logger.Type.Error, ex);
-                MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                //Logger.Log(Logger.Type.Error, ex);
+                //MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
             mutex.ReleaseMutex();
         }

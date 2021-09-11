@@ -406,6 +406,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Core.NativeMethods">
+            <summary>
+            P/Invoke 용 네이티브 코드 집합
+            </summary>
+        </member>
         <member name="T:SpiralLab.LoggerMessage">
             <summary>
             로그 메시지 콜백 델리게이트 
@@ -458,7 +463,7 @@
             로그 메시지 이벤트 핸들러
             </summary>
         </member>
-        <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Object)">
+        <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String)">
             <summary>
             로그 메시지 기록
             </summary>
@@ -500,6 +505,13 @@
             <param name="format"></param>
             <param name="args"></param>
         </member>
+        <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception)">
+            <summary>
+            로그 메시지 기록
+            </summary>
+            <param name="type"></param>
+            <param name="ex"></param>
+        </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception,System.String)">
             <summary>
             로그 메시지 기록
@@ -514,11 +526,6 @@
             </summary>
             <param name="ex"></param>
             <returns></returns>
-        </member>
-        <member name="T:SpiralLab.NativeMethods">
-            <summary>
-            P/Invoke 용 네이티브 코드 집합
-            </summary>
         </member>
     </members>
 </doc>

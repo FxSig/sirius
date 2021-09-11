@@ -102,7 +102,7 @@ namespace SpiralLab.Sirius
             }
 
             //create instance
-            if (!script.CreateInstance("Test.MyClass"))
+            if (!script.CreateInstance("Test.MyClass", out var instance))
             {
                 Console.WriteLine("fail to create instance !");
                 Console.ReadKey();
@@ -180,8 +180,7 @@ namespace SpiralLab.Sirius
                 return;
             }
             text.ScriptExecute(out var executeResult, true);
-            var fontText = text.FontText;
-
+            var fontText = text.TextData;
             Debug.Assert(0 == string.Compare(executeResult, fontText));
             Console.WriteLine($"Text entity has changed to {executeResult}");
         }
@@ -243,7 +242,7 @@ namespace SpiralLab.Sirius
                 return;
             }
             qr.ScriptExecute(out var executeResult, true);
-            var qrData = qr.Data;
+            var qrData = qr.TextData;
             Debug.Assert(0 == string.Compare(executeResult, qrData));
             Console.WriteLine($"Barcode entity has changed to {executeResult}");
         }

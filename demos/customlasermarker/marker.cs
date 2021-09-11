@@ -348,7 +348,7 @@ namespace SpiralLab.Sirius
             var motorZ = this.MarkerArg.MotorZ;
             float oldZPosition = 0;
             if (null != motorZ)
-                oldZPosition = motorZ.Position;
+                oldZPosition = motorZ.ActualPosition;
             var offsets = this.MarkerArg.Offsets;
             var scannerRotateAngle =  this.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
@@ -410,10 +410,7 @@ namespace SpiralLab.Sirius
                     break;
             }
             if (success && null != motorZ)
-            {
-                if (motorZ.IsReady && !motorZ.IsBusy && !motorZ.IsError)
-                    success &= motorZ.CtlMoveAbs(oldZPosition, 1000, 1000);
-            }
+                success &= motorZ.CtlMoveAbs(oldZPosition, 100, 1000);
             return success;
         }
         protected virtual bool PostWork()

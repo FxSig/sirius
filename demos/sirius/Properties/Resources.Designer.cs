@@ -103,6 +103,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap add_node_16px {
+            get {
+                object obj = ResourceManager.GetObject("add_node_16px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap adjust_48px {
             get {
                 object obj = ResourceManager.GetObject("adjust_48px", resourceCulture);
@@ -503,9 +513,29 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap hatch {
+            get {
+                object obj = ResourceManager.GetObject("hatch", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap hdd_48px {
             get {
                 object obj = ResourceManager.GetObject("hdd_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_orangeline_short {
+            get {
+                object obj = ResourceManager.GetObject("img_orangeline_short", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -746,6 +776,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap raspberry_pi_zero_40px {
             get {
                 object obj = ResourceManager.GetObject("raspberry_pi_zero_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap recipehelp {
+            get {
+                object obj = ResourceManager.GetObject("recipehelp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1173,6 +1213,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap tenkey {
+            get {
+                object obj = ResourceManager.GetObject("tenkey", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap track_order_32px {
             get {
                 object obj = ResourceManager.GetObject("track_order_32px", resourceCulture);
@@ -1266,6 +1316,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap windows_client_48px {
             get {
                 object obj = ResourceManager.GetObject("windows_client_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap 탑엔지니어링_CI {
+            get {
+                object obj = ResourceManager.GetObject("탑엔지니어링_CI", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

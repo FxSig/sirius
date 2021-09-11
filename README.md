@@ -70,6 +70,17 @@
 
 **5. Version history**
 
+* 2021.09.11 v1.7.6
+ - added) improved selection algorithm by ctrl, shift, alt key combination
+ - added) support serial communication with IPG YLP laser source 
+ - added) support serial communication with OptoWave Fotia laser source
+ - added) support serial communication with Photonics Industry DX laser source
+ - added) support serial communication with JPT TypeE laser source
+ - added) motor/digital io demo project (based on AJINEXTEK controller)
+ - fixed) out of memory exception (at treeview nodes)
+ - fixed) ctb/ct5 file extension display bug at field correction winform
+ - fixed) hatching within group entity
+
  * 2021.09.02 v1.7.5
    - added) entity with script (compile and execute by C# codes) : barcode, text, siriustext ,...
    - added) script demo project

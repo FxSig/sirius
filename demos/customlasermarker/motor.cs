@@ -27,10 +27,13 @@ namespace SpiralLab.Sirius
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 위치
+        /// 명령 위치 (unit)
         /// </summary>
-        public float Position { get; private set; }
-
+        public float CommandPosition { get; private set; }
+        /// <summary>
+        /// 실제 위치 (unit)
+        /// </summary>
+        public float ActualPosition { get; private set; }
         /// <summary>
         /// 모터 준비 상태 여부
         /// </summary>
@@ -43,6 +46,15 @@ namespace SpiralLab.Sirius
         /// 모터 에러 상태 여부
         /// </summary>
         public bool IsError { get; private set; }
+
+        public bool IsServoAlarm { get; private set; }
+
+        public bool IsHomeSearched { get; private set; }
+
+        public bool IsServoOn { get; private set; }
+
+        public bool IsDriving { get; private set; }
+
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -56,14 +68,21 @@ namespace SpiralLab.Sirius
             SyncRoot = new object();
             No = 0;
             Name = "Scanner Z Axis";
-            Position = -1;
             IsReady = false;
             IsBusy = false;
             IsError = true;
         }
+        public void Dispose()
+        { }
 
         public bool Initialize()
         {
+            return true;
+        }
+
+        public bool CtlServo(bool onOff)
+        {
+            IsServoOn = onOff;
             return true;
         }
         /// <summary>
@@ -74,7 +93,8 @@ namespace SpiralLab.Sirius
         {
             IsReady = true;
             IsError = false;
-            Position = 0;
+            IsHomeSearched = true;
+            CommandPosition = ActualPosition = 0;
             return true;
         }
         /// <summary>
@@ -85,7 +105,7 @@ namespace SpiralLab.Sirius
         public bool CtlMoveAbs(float position, float vel, float acc)
         {
             Thread.Sleep(100);
-            this.Position = position;
+            CommandPosition = ActualPosition = position;
             return true;
         }
         /// <summary>
@@ -96,7 +116,8 @@ namespace SpiralLab.Sirius
         public bool CtlMoveRel(float distance, float vel, float acc)
         {
             Thread.Sleep(100);
-            this.Position += distance;
+            CommandPosition += distance;
+            ActualPosition += distance;
             return true;
         }
         /// <summary>
@@ -116,6 +137,11 @@ namespace SpiralLab.Sirius
         {
             this.IsReady = true;
             this.IsError = false;
+            return true;
+        }
+
+        public bool Update()
+        {
             return true;
         }
     }

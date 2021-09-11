@@ -120,6 +120,7 @@ namespace SpiralLab.Sirius
                 isMarkerable = value;
                 if (null == Node.NodeFont)
                     Node.NodeFont = new System.Drawing.Font("Arial", 10);
+                Node.NodeFont.Dispose();
                 if (isMarkerable)
                     Node.NodeFont = new System.Drawing.Font("Arial", 10, Node.NodeFont.Style & ~System.Drawing.FontStyle.Strikeout);
                 else

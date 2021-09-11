@@ -202,6 +202,68 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.DInputVirtual`1">
+            <summary>
+            디지털 입력     
+            가상 장치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputVirtual`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputVirtual`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputVirtual`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputVirtual`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputVirtual`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.DOutputVirtual`1">
+            <summary>
+            디지털 출력     
+            가상 장치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DOutputVirtual`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DOutputVirtual`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DOutputVirtual`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DOutputVirtual`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DOutputVirtual`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IDOutput`1">
             <summary>
             디지털 출력 인터페이스    
@@ -267,89 +329,9 @@
             레이저 소스 (Photonics Industry DX)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.SyncRoot">
+        <member name="E:SpiralLab.Sirius.PhotonicsIndustryDX.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsShutterOpen">
-            <summary>
-            Shutter 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsLDDOn">
-            <summary>
-            LDD 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.DiodeCurrentAmp">
-            <summary>
-            다이오드 커런트 (Amp)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.ComPort">
-            <summary>
-            통신 포트 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.LaserStatus">
-            <summary>
-            Read Status 객체
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
@@ -366,12 +348,6 @@
             초기화
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlReset">
             <summary>
@@ -398,89 +374,9 @@
             레이저 소스 (JPT TypeE)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.SyncRoot">
+        <member name="E:SpiralLab.Sirius.JPTTypeE.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.OperatingPower">
-            <summary>
-            %
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.PulseRepRate">
-            <summary>
-            KHz
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.Simmer">
-            <summary>
-            %
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.IsGuideLaserOn">
-            <summary>
-            Guide Laser온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.ComPort">
-            <summary>
-            통신 포트 번호
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
@@ -497,12 +393,6 @@
             초기화
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
         </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.CtlReset">
             <summary>
@@ -524,217 +414,133 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeD">
+        <member name="T:SpiralLab.Sirius.IPGYLP">
             <summary>
-            레이저 소스 (IPG YLP Type D/D1)
+            레이저 소스 (IPG YLP)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.SyncRoot">
+        <member name="E:SpiralLab.Sirius.IPGYLP.PropertyChanged">
             <summary>
-            동기화 객체
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Value">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Value">
             <summary>
             4바이트 값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Add(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Add(SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Bit)">
             <summary>
             비트 설정
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Remove(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Remove(SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Bit)">
             <summary>
             비트 해제
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Contains(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Contains(SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Bit)">
             <summary>
             비트값 설정 여부
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.ToInt">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.ToInt">
             <summary>
             4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDStatus.Empty">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPStatus.Empty">
             <summary>
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Value">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Value">
             <summary>
             4바이트 값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Add(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Add(SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Bit)">
             <summary>
             비트 설정
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Remove(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Remove(SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Bit)">
             <summary>
             비트 해제
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Contains(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Contains(SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Bit)">
             <summary>
             비트값 설정 여부
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.ToInt">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.ToInt">
             <summary>
             4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDExtendedStatus.Empty">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPExtendedStatus.Empty">
             <summary>
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Value">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Value">
             <summary>
             4바이트 값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Add(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Add(SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Bit)">
             <summary>
             비트 설정
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Remove(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Remove(SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Bit)">
             <summary>
             비트 해제
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Contains(SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Contains(SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Bit)">
             <summary>
             비트값 설정 여부
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.ToInt">
+        <member name="M:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.ToUInt">
             <summary>
-            4바이트 int 으로 변환
+            4바이트 uint 으로 변환
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IPGYLPTypeDDigitalInterface.Empty">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IPGYLPDigitalInterface.Empty">
             <summary>
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PulseRepRateMin">
+        <member name="P:SpiralLab.Sirius.IPGYLP.IsTimedOut">
             <summary>
-            KHz
+            현재 설정된 알람코드
+            Status 속성을 통해 접근 !!!
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PulseRepRateMax">
+        <member name="M:SpiralLab.Sirius.IPGYLP.#ctor">
             <summary>
-            KHz
+            생성자
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.HeadTemperature">
-            <summary>
-            degree
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PulseRepRate">
-            <summary>
-            KHz
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsEmissionOn">
-            <summary>
-            Laser Emission 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.OperatingPower">
-            <summary>
-            %
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsGuideLaserOn">
-            <summary>
-            Guide Laser온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.ComPort">
-            <summary>
-            통신 포트 번호
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -743,187 +549,182 @@
             <param name="comPort">COM 포트</param>
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.Initialize">
+        <member name="M:SpiralLab.Sirius.IPGYLP.Initialize">
             <summary>
             초기화
             </summary>
             <returns></returns>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Device_Status">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Device_Status">
             <summary>
             32 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Device_Temp">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Device_Temp">
             <summary>
             C
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Digital_Interface_Status">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Digital_Interface_Status">
             <summary>
             32 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Extended_Status">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Extended_Status">
             <summary>
             32 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.BR_Counter">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.BR_Counter">
             <summary>
-            read back reflection counter
+            read back reflection counter 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Session_BR_Counter">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Session_BR_Counter">
             <summary>
             read back reflection counter for the current session. the session starts with supplying voltage to the laser module
+            32 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Nominal_Average_Power">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Nominal_Average_Power">
             <summary>
             read nomina average power of the laser in [W]. return value is float in [W]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Nominal_Pulse_Duration">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Nominal_Pulse_Duration">
             <summary>
             read nominal pulse duration of the laser [ns]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Nominal_Pulse_Energy">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Nominal_Pulse_Energy">
             <summary>
             read nominal pulse energy of the laser [mJ]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Nominal_Peak_Power">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Nominal_Peak_Power">
             <summary>
             read nominal peak power of the laser in [kW]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Pulse_Repetion_Rate_Range">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Pulse_Repetion_Rate_Range">
             <summary>
             read pulse repetition rates range. return value is two floats separated by a semicolon. min and max in [KHz]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Head_Temp">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Head_Temp">
             <summary>
             C
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Main_24V_Supply">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Main_24V_Supply">
             <summary>
             V
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.HouseKeeping_24V_Supply">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.HouseKeeping_24V_Supply">
             <summary>
             V
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Operating_Mode">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Operating_Mode">
             <summary>
             16 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Installed_Options">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Installed_Options">
             <summary>
             16 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Start_Opertating_Mode">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Start_Opertating_Mode">
             <summary>
             16 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Pulse_Repetion_Rate">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Pulse_Repetion_Rate">
             <summary>
             KHz
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Operating_Power_Watt">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Operating_Power_Watt">
             <summary>
             W
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Operating_Power_Percentage">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Operating_Power_Percentage">
             <summary>
             %
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Operating_Pulse_Energy">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Operating_Pulse_Energy">
             <summary>
             mJ
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Pulse_Repetion_Rate_Monitor">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Queries.Pulse_Repetion_Rate_Monitor">
             <summary>
             KHz
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Operating_Mode">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Operating_Mode">
             <summary>
             /16 bit. set active control interface operating mode
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Start_Operating_Mode">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Start_Operating_Mode">
             <summary>
             16 bit
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Pulse_Repetion_Rate">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Pulse_Repetion_Rate">
             <summary>
             set operating pulse repetition rate in [KHz]
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Laser_Emission_On">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Laser_Emission_On">
             <summary>
             switch ON laser emission
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Laser_Emission_Off">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Laser_Emission_Off">
             <summary>
             switch OFF laser emission
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Operating_Power">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Operating_Power">
             <summary>
             set operating power in [%]. 0~100 (resolution 255 levels)
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Guide_Laser_On">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Guide_Laser_On">
             <summary>
             switch ON guide laser
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Guide_Laser_Off">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Guide_Laser_Off">
             <summary>
             switch OFF guide laser
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Commands.Reset_Alarms">
+        <member name="F:SpiralLab.Sirius.IPGYLP.Commands.Reset_Alarms">
             <summary>
             reset alarms
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlReset">
+        <member name="M:SpiralLab.Sirius.IPGYLP.CtlReset">
             <summary>
             리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.CtlPower(System.Single)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLP.ListPower(System.Single)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
@@ -935,79 +736,9 @@
             레이저 소스 (OptoWave Fotia)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.SyncRoot">
+        <member name="E:SpiralLab.Sirius.AdvancedOptoWaveFotia.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsDiodeOn">
-            <summary>
-            다이오드 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsQSwitchOn">
-            <summary>
-            Q스위치 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsShutterOpen">
-            <summary>
-            셔터 온오프
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.TriggerModes.Internal">
@@ -1020,104 +751,81 @@
             외부 트리거
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.TriggerMode">
-            <summary>
-            트리거 모드 (External 로 해야 Rtc 로 제어 가능)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PulseRepRate">
-            <summary>
-            주파수 Hz
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerFactor">
-            <summary>
-            파워 비율값 (%)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.DiodeCurrentAmp">
-            <summary>
-            다이오드 커런트 (Amp)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualDiodeCurrentAmp">
-            <summary>
-            실제 다이오드 커런트 (Amp)
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel">
-            <summary>
-            게이트 신호 레벨 (Rtc 신호 레벨과 같이 맞출것)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel.Low">
-            <summary>
-            Active Low
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.GateLogicLevel.High">
-            <summary>
-            Active High
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LogicLevel">
-            <summary>
-            게이트 신호 레벨
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LaserTime">
-            <summary>
-            레이저 사용 시간 (hrs)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.FirmwareVersion">
-            <summary>
-            펌웨어 버전
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.TargetCrystal1Temperature">
-            <summary>
-            크리스털1 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.TargetCrystal2Temperature">
-            <summary>
-            크리스털2 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal1Temperature">
-            <summary>
-            크리스털 1 실제 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal2Temperature">
-            <summary>
-            크리스털 2 실제 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualLaserHeadTemperature">
-            <summary>
-            레이저 헤드 실제 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualDiodeTemperature">
-            <summary>
-            다이오드 실제 온도
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes">
             <summary>
             알람 코드
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCode">
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode1TemperatureHigh">
             <summary>
-            현재 설정된 알람코드
+            higher 35
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ComPort">
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode1TemperatureLow">
             <summary>
-            통신 포트 번호
+            lower 15
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.LaserHeadTemperatureHigh">
+            <summary>
+            higher 40
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.LaserHeadTemperatureLow">
+            <summary>
+            lower 15
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.EnvironmentalTemperatureHigh">
+            <summary>
+            higher 40
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.EnvironmentalTemperatureLow">
+            <summary>
+            lower 15
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.InterlockOpen">
+            <summary>
+            double check, lasting longer than 100ms
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Crystal1TemperatureHigh">
+            <summary>
+            +3- 5mins  after power up
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Crystal1TemperatureLow">
+            <summary>
+            -3- 5mins	after	power	up
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Crystal2TemperatureHigh">
+            <summary>
+            +3- 5mins	after	power	up
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Crystal2TemperatureLow">
+            <summary>
+            -3- 5mins	after	power	up
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode2TemperatureHigh">
+            <summary>
+            >35- after	power	up
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode2TemperatureLow" -->
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode3TemperatureHigh">
+            <summary>
+            >35- after	power	up
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "F:SpiralLab.Sirius.AdvancedOptoWaveFotia.AlarmCodes.Diode3TemperatureLow" -->
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
@@ -1134,12 +842,6 @@
             초기화
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlReset">
             <summary>
@@ -1161,274 +863,14 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
-            <summary>
-            레이저 소스 (IPG YLP  Type E)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Rtc">
-            <summary>
-            IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out">
-            <summary>
-            RTC Ext1 포트
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit">
-            <summary>
-            7bit output power resolution (128 단계 : 하위 1 비트는 삭제됨)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit.Latch">
-            <summary>
-            LSB
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Bit.Power0">
-            <summary>
-            Data1
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.Power7Bits">
-            <summary>
-            7 bit resolution 으로 동작됨
-            set 동작시 latch 비트가 초기화 됨
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Extension2Out.PowerWatt">
-            <summary>
-            0~최대파워값(Watt)으로 동작됨
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext2Out">
-            <summary>
-            Extension2 출력 비트 객체
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode">
-            <summary>
-            알람코드
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Unknown">
-            <summary>
-            Unknown/Invalid status
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Normal">
-            <summary>
-            Normal operation
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Temperature">
-            <summary>
-            Laser temperature is out of the operating temperature range
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.PowerSupply">
-            <summary>
-            External supply voltage is out of the specified range
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.LaserIsNotReady">
-            <summary>
-            Laser is not ready for emission
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.BackReflection">
-            <summary>
-            Laser automatically switched OFF due to high optical power reflected back to the laser
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.System">
-            <summary>
-            Laser protection system detectes internal failure
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.AlarmCode.Reserved">
-            <summary>
-            Reserved
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension1In">
-            <summary>
-            Extension1 입력 비트 객체
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm1">
-            <summary>
-            IPG Pin 16
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm2">
-            <summary>
-            IPG Pin 21
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Extension1In.Bit.Alarm3">
-            <summary>
-            IPG Pin 11
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext1In">
-            <summary>
-            Extension1 입력 비트 객체
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPTypeE.Extension1Out">
-            <summary>
-            Extension1 출력 비트 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Ext1Out">
-            <summary>
-            Extension1 출력 비트 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerWatt">
-            <summary>
-            Power Set or Get (Watt)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsEmission">
-            <summary>
-            Laser Emission Is On/Off?
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsGuideLaser">
-            <summary>
-            Guide (Pilot/Red) Laser Is On/Off?
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor(System.UInt32,System.String,System.Single)">
-            <summary>
-            생성자
-            </summary>
-            <param name="index">식별번호</param>
-            <param name="name">이름</param>
-            <param name="maxPowerWatt">최대 파워 (W)</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Finalize">
-            <summary>
-            종결자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Initialize">
-            <summary>
-            SPI 레이저 초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.OnTimer(System.Object)">
-            <summary>
-            extension1 port 의 입력상태를 읽어 업데이트
-            </summary>
-            <param name="state"></param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlAbort">
-            <summary>
-            Abort (turn off emmission signal)
-            강제 중지 (Emission 출력 Disable 됨)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlReset">
-            <summary>
-            Reset (turn on emmission signal)
-            리셋 (에러상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlPower(System.Single)">
-            <summary>
-            Output power change to assigned watt with control command
-            파워 변경  (RTC의 컨트롤 명령으로 처리시)
-            </summary>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.ListPower(System.Single)">
-            <summary>
-            Output power change to assigned watt with list command
-            파워 변경 (RTC의 리스트 명령으로 처리시)
-            </summary>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Emission(System.Boolean)">
-            <summary>
-            Enable/Disable Emission
-            </summary>
-            <param name="onOff">On/Off</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.GuideLaser(System.Boolean)">
-            <summary>
-            Guide(Pilot/Red) Laser On/Off
-            </summary>
-            <param name="onOff">On/Off</param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.CoherentAviaLX">
             <summary>
             레이저 소스 (코히런트 AVIA LX)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CoherentAviaLX.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.SyncRoot">
@@ -1510,12 +952,6 @@
             초기화
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlReset">
             <summary>
@@ -1650,59 +1086,9 @@
             레이저 소스 (가상)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.SyncRoot">
+        <member name="E:SpiralLab.Sirius.LaserVirtual.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.LaserVirtual.Tag">
-            <summary>
-            사용자 데이타
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.#ctor">
@@ -1756,34 +1142,19 @@
             <param name="open">true=열기 시도, false= 닫기 시도</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.SPIStatus">
-            <summary>
-            SPI 레이저 상태 정보
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.SPIG4">
             <summary>
             SPI - G3/G3 IR 파이버 레이저 소스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.SPIG4.SyncRoot">
+        <member name="E:SpiralLab.Sirius.SPIG4.PropertyChanged">
             <summary>
-            동기화 객체
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.SPIG4.Rtc">
+        <member name="T:SpiralLab.Sirius.SPIG4.SPIStatus">
             <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SPIG4.IsPowerConntrol">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SPIG4.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
+            SPI 레이저 상태 정보
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.#ctor">
@@ -1799,12 +1170,6 @@
             <param name="name"></param>
             <param name="comPort"></param>
             <param name="maxPowerWatt"></param>
-        </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.OnTimer(System.Object)">
-            <summary>
-            쓰레드 타이머
-            </summary>
-            <param name="state"></param>
         </member>
         <member name="F:SpiralLab.Sirius.MathHelper.DegToRad">
             <summary>
@@ -2098,9 +1463,14 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.Position">
+        <member name="P:SpiralLab.Sirius.IMotor.CommandPosition">
             <summary>
-            위치 (mm)
+            명령 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.ActualPosition">
+            <summary>
+            실제 위치 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsReady">
@@ -2118,10 +1488,43 @@
             알람 발생 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsServoAlarm">
+            <summary>
+            서보 알람 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsServoOn">
+            <summary>
+            서보 온오프 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsDriving">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMotor.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.Initialize">
+            <summary>
+            모터 축 생성후 내부 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlServo(System.Boolean)">
+            <summary>
+            서보 온오프
+            </summary>
+            <param name="onOff">온오프</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
             <summary>
@@ -2133,14 +1536,18 @@
             <summary>
             절대 위치 이동
             </summary>
-            <param name="position">위치값(mm)</param>
+            <param name="position">위치값(units)</param>
+            <param name="vel">속도(units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single,System.Single,System.Single)">
             <summary>
             상대 위치 이동
             </summary>
-            <param name="distance">거리값(mm)</param>
+            <param name="distance">거리값(units)</param>
+            <param name="vel">속도(units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
@@ -2152,6 +1559,12 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
             <summary>
             알람 해제
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.Update">
+            <summary>
+            상태 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -2176,9 +1589,19 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.Position">
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.CommandPosition">
             <summary>
-            위치 (mm)
+            위치 (units)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualPosition">
+            <summary>
+            위치 (units)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualVelocity">
+            <summary>
+            속도 (units/sec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsReady">
@@ -2194,6 +1617,31 @@
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsError">
             <summary>
             알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoAlarm">
+            <summary>
+            서보 알람 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearching">
+            <summary>
+            원점 검색중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoOn">
+            <summary>
+            서보 온오프 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsDriving">
+            <summary>
+            구동중 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.Tag">
@@ -2219,6 +1667,21 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.LoadParameterFile(System.String)">
+            <summary>
+            설정파일 로드
+            전체 축의 서보 오프상태 확인 후 사용
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlServo(System.Boolean)">
+            <summary>
+            서보 온오프
+            </summary>
+            <param name="onOff"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlHomeSearch">
             <summary>
             홈(원점) 검색 시작
@@ -2229,14 +1692,18 @@
             <summary>
             절대 위치로 이동
             </summary>
-            <param name="position">위치 (mm)</param>
+            <param name="position">위치 (units)</param>
+            <param name="vel">속도 (units/s)</param>
+            <param name="acc">가감속도 (units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveRel(System.Single,System.Single,System.Single)">
             <summary>
             상대 위치 이동
             </summary>
-            <param name="distance">거리값(mm)</param>
+            <param name="distance">거리값(units)</param>
+            <param name="vel">속도 (units/s)</param>
+            <param name="acc">가감속도 (units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveStop">
@@ -2251,17 +1718,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorAjinExtek.LoadParametes(System.String)">
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.Update">
             <summary>
-            설정파일 로드
-            전체 축의 서보 오프상태 확인 후 사용
-            </summary>
-            <param name="path"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorAjinExtek.OpenLib">
-            <summary>
-            라이브러리 오픈
+            상태 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -2285,9 +1744,14 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.Position">
+        <member name="P:SpiralLab.Sirius.MotorVirtual.CommandPosition">
             <summary>
-            위치 (mm)
+            위치 (units)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.ActualPosition">
+            <summary>
+            실제 위치 (units)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorVirtual.IsReady">
@@ -2303,6 +1767,11 @@
         <member name="P:SpiralLab.Sirius.MotorVirtual.IsError">
             <summary>
             알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.IsHomeSearched">
+            <summary>
+            원점 검색 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorVirtual.Tag">
@@ -2338,14 +1807,18 @@
             <summary>
             절대 위치로 이동
             </summary>
-            <param name="position">위치 (mm)</param>
+            <param name="position">위치 (units)</param>
+            <param name="vel">속도(units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveRel(System.Single,System.Single,System.Single)">
             <summary>
             상대 위치 이동
             </summary>
-            <param name="distance">거리값(mm)</param>
+            <param name="distance">거리값(units)</param>
+            <param name="vel">속도(units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveStop">
@@ -9122,6 +8595,23 @@
             <param name="isSupress">활성화 경우 (“Automatic Laser Control“ is active with SpotDistance as an “ActiveChannel”) </param>
             <param name="timeDelay"></param>
             <returns></returns>
+        </member>
+        <member name="F:SpiralLab.Sirius.MainForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MainForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MainForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="T:RTC4Import.RTC4Wrap">
             <summary>
