@@ -12,14 +12,16 @@ using System.Windows.Forms;
 namespace SpiralLab.Sirius
 {
 
-    public enum Dummy
+    public enum NoName
     { }
 
     public partial class MotionForm : Form
     {
-        IDInput<Dummy> DigitalInput;
-        IDOutput<Dummy> DigitalOutput;
+        IDInput<NoName> DigitalInput;
+        IDOutput<NoName> DigitalOutput;
         IMotor MotorZ;
+        string[] dInputNames = new string[16];
+        string[] dOutputNames = new string[16];
 
         System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -27,12 +29,54 @@ namespace SpiralLab.Sirius
         {
             InitializeComponent();
 
+            this.dgvInput.CellPainting += DgvInput_CellPainting;
+            this.dgvOutput.CellPainting += DgvOutput_CellPainting;
+            this.dgvOutput.CellDoubleClick += DgvOutput_CellDoubleClick;
+            this.Load += MotionForm_Load;
+            this.FormClosed += MotionForm_FormClosed;
+
+            timer.Interval = 100;
+            timer.Tick += Timer_Tick;
+        }
+
+        private void MotionForm_Load(object sender, EventArgs e)
+        {
+            UpdateNames();
+
+            DigitalInput = new AjinExtekDInput<NoName>(0, "D.IN");
+            DigitalInput.Initialize();
+
+            DigitalOutput = new AjinExtekDOutput<NoName>(0, "D.OUT");
+            DigitalOutput.Initialize();
+
+            MotorZ = new MotorAjinExtek(0, "Z Axis");
+            MotorZ.Initialize();
+
+            timer.Enabled = true;
+        }
+
+        private void MotionForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            timer.Enabled = false;
+        }
+
+        private void UpdateNames()
+        {
+            string iniFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "handlerio.ini");
+            dInputNames = new string[16];
+            dOutputNames = new string[16];
+            for (int i = 0; i < 16; i++)
+            {
+                dInputNames[i] = NativeMethods.ReadIni<string>(iniFile, "DIN", $"{i}");
+                dOutputNames[i] = NativeMethods.ReadIni<string>(iniFile, "DOUT", $"{i}");
+            }
+
             this.dgvInput.SuspendLayout();
             this.dgvInput.RowCount = 16;
             for (int i = 0; i < dgvInput.RowCount; i++)
             {
                 dgvInput.Rows[i].Cells[0].Value = i;
-                //dgvInput.Rows[i].Cells[1].Value = 
+                dgvInput.Rows[i].Cells[1].Value = dInputNames[i];
             }
             this.dgvInput.ResumeLayout();
 
@@ -41,31 +85,9 @@ namespace SpiralLab.Sirius
             for (int i = 0; i < dgvOutput.RowCount; i++)
             {
                 dgvOutput.Rows[i].Cells[0].Value = i;
-                //dgvOutput.Rows[i].Cells[1].Value = 
+                dgvOutput.Rows[i].Cells[1].Value = dOutputNames[i];
             }
             this.dgvOutput.ResumeLayout();
-
-            this.Load += MotionForm_Load;
-            this.dgvInput.CellPainting += DgvInput_CellPainting;
-            this.dgvOutput.CellPainting += DgvOutput_CellPainting;
-            this.dgvOutput.CellDoubleClick += DgvOutput_CellDoubleClick;
-
-            timer.Interval = 100;
-            timer.Tick += Timer_Tick;
-        }
-
-        private void MotionForm_Load(object sender, EventArgs e)
-        {
-
-            DigitalInput = new AjinExtekDInput<Dummy>(0, "D.IN");
-            DigitalInput.Initialize();
-
-            DigitalOutput = new AjinExtekDOutput<Dummy>(0, "D.OUT");
-            DigitalOutput.Initialize();
-
-            MotorZ = new MotorAjinExtek(0, "Z Axis");
-            MotorZ.Initialize();
-
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -145,7 +167,7 @@ namespace SpiralLab.Sirius
                 return;
             dgvInput.SuspendLayout();
             DataGridViewRow row = dgvInput.Rows[e.RowIndex];
-            if (row.Cells[2].Value.ToString() == "ON")
+            if (row.Cells[2].Value?.ToString() == "ON")
             {
                 row.Cells[2].Style.BackColor = Color.Lime;
                 row.Cells[2].Style.ForeColor = Color.White;
@@ -165,7 +187,7 @@ namespace SpiralLab.Sirius
                 return;
             dgvOutput.SuspendLayout();
             DataGridViewRow row = dgvOutput.Rows[e.RowIndex];
-            if (row.Cells[2].Value.ToString() == "ON")
+            if (row.Cells[2].Value?.ToString() == "ON")
             {
                 row.Cells[2].Style.BackColor = Color.Red;
                 row.Cells[2].Style.ForeColor = Color.White;
