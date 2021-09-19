@@ -17,6 +17,11 @@
             <param name="rect"></param>
             <param name="subLwPolylines"></param>
         </member>
+        <member name="T:SpiralLab.Sirius.UndoRedoEntityLWPolylineToArc">
+            <summary>
+            엔티티 그룹으로 만들기
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.UndoRedoEntityReplace">
             <summary>
             엔티티 교체하기
@@ -1550,6 +1555,26 @@
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ScriptForm">
             <summary>
             스크립트 편집 폼
@@ -2288,6 +2313,13 @@
             </summary>
             <param name="targets">대상 엔티티 </param>
             <param name="rects">사각 영역 집합</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityLWPolylineToArc(SpiralLab.Sirius.LwPolyline)">
+            <summary>
+            지정된 LW 폴리라인을 Arc 로 변환을 시도한다
+            </summary>
+            <param name="lwPolyline"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.HitTest(System.Windows.Forms.Keys,System.Single,System.Single,System.Single)">
@@ -4155,6 +4187,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.thick_arrow_pointing_up_26px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.toarc">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>

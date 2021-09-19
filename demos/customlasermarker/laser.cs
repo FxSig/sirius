@@ -66,7 +66,7 @@ namespace SpiralLab.Sirius
         /// IRtc 객체
         /// </summary>
         public IRtc Rtc { get; set; }
-        public bool IsPowerConntrol { get; set; }
+        public bool IsPowerControl { get; set; }
         public bool IsShutterControl { get; set; }
         public object Tag { get; set; }
         private bool disposed = false;
@@ -83,7 +83,7 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
-            IsPowerConntrol = true;
+            IsPowerControl = true;
             IsShutterControl = false;
         }
         ~YourCustomLaser()

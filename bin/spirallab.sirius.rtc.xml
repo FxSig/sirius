@@ -379,6 +379,111 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTStatus.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTStatus.Add(SpiralLab.Sirius.JPTTypeE.JPTStatus.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTStatus.Remove(SpiralLab.Sirius.JPTTypeE.JPTStatus.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTStatus.Contains(SpiralLab.Sirius.JPTTypeE.JPTStatus.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTStatus.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTStatus.Empty">
+            <summary>
+            기본값(0) 객체 생성
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTControlMode.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTControlMode.Add(SpiralLab.Sirius.JPTTypeE.JPTControlMode.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTControlMode.Remove(SpiralLab.Sirius.JPTTypeE.JPTControlMode.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTControlMode.Contains(SpiralLab.Sirius.JPTTypeE.JPTControlMode.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTControlMode.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTControlMode.Empty">
+            <summary>
+            기본값(0) 객체 생성
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTAlarm.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTAlarm.Add(SpiralLab.Sirius.JPTTypeE.JPTAlarm.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTAlarm.Remove(SpiralLab.Sirius.JPTTypeE.JPTAlarm.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTAlarm.Contains(SpiralLab.Sirius.JPTTypeE.JPTAlarm.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.JPTAlarm.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.JPTAlarm.Empty">
+            <summary>
+            기본값(0) 객체 생성
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
             <summary>
             생성자
@@ -913,7 +1018,7 @@
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsPowerConntrol">
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
             </summary>
@@ -1048,7 +1153,7 @@
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ILaser.IsPowerConntrol">
+        <member name="P:SpiralLab.Sirius.ILaser.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
             </summary>
@@ -1215,6 +1320,15 @@
             <summary>
             마진값 상수
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IsInRange(System.Double,System.Double,System.Double)">
+            <summary>
+            해당 값이 범위 안에 있는지 여부
+            </summary>
+            <param name="a"></param>
+            <param name="lower">하한값</param>
+            <param name="upper">상한값</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MatrixStack">
             <summary>
@@ -1508,6 +1622,17 @@
             구동중 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMotor.IsCwSenOn">
+            <summary>
+            Cw 리미트 센서 
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IMotor.IsCCwSenOn" -->
+        <member name="P:SpiralLab.Sirius.IMotor.IsOrgSenOn">
+            <summary>
+            Origin(Home) 센서 
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMotor.Tag">
             <summary>
             사용자 정의 데이타
@@ -1574,74 +1699,9 @@
             추후 변경예정 !
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.SyncRoot">
+        <member name="E:SpiralLab.Sirius.MotorAjinExtek.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.No">
-            <summary>
-            모터 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.Name">
-            <summary>
-            모터 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.CommandPosition">
-            <summary>
-            위치 (units)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualPosition">
-            <summary>
-            위치 (units)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualVelocity">
-            <summary>
-            속도 (units/sec)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoAlarm">
-            <summary>
-            서보 알람 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearched">
-            <summary>
-            원점 검색 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearching">
-            <summary>
-            원점 검색중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoOn">
-            <summary>
-            서보 온오프 상태
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsDriving">
-            <summary>
-            구동중 여부
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.Tag">
@@ -1724,59 +1784,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.GetAxisCnt">
+            <summary>
+            연결된 모터 수량 확인
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotorVirtual">
             <summary>
             Motor Virtual
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.SyncRoot">
+        <member name="E:SpiralLab.Sirius.MotorVirtual.PropertyChanged">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.No">
-            <summary>
-            모터 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.Name">
-            <summary>
-            모터 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.CommandPosition">
-            <summary>
-            위치 (units)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.ActualPosition">
-            <summary>
-            실제 위치 (units)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.IsHomeSearched">
-            <summary>
-            원점 검색 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.Tag">
-            <summary>
-            사용자 정의 데이타
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotorVirtual.#ctor">

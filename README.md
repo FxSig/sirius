@@ -70,6 +70,12 @@
 
 **5. Version history**
 
+* 2021.09.19 v1.7.7
+ - fixed) support drag and drop at listbox (like as group, offset, ...)
+ - fixed) arc entity's start/sweep angle with grip point
+ - fixed) group entity with continous path (experimental)
+ - fixed) barcode entity with hatch scale factor
+
 * 2021.09.11 v1.7.6
  - added) improved selection algorithm by ctrl, shift, alt key combination
  - added) support serial communication with IPG YLP laser source 

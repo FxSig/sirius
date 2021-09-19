@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,6 +15,7 @@ namespace SpiralLab.Sirius
     /// </summary>
     public class MotorZ : SpiralLab.Sirius.IMotor
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// 동기화 객체
         /// </summary>
@@ -54,6 +56,9 @@ namespace SpiralLab.Sirius
         public bool IsServoOn { get; private set; }
 
         public bool IsDriving { get; private set; }
+        public bool IsCCwSenOn { get; private set; }
+        public bool IsCwSenOn { get; private set; }
+        public bool IsOrgSenOn { get; private set; }
 
         /// <summary>
         /// 사용자 정의 데이타
