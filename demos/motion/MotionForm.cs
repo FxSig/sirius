@@ -146,16 +146,14 @@ namespace SpiralLab.Sirius
                     lblDriving.BackColor = Color.Red;
                 else
                     lblDriving.BackColor = Color.Maroon;
-
-                //if (MotorZ.IsNegLimit)
-                //    lblNeg.BackColor = Color.Red;
-                //else
-                //    lblNeg.BackColor = Color.Maroon;
-
-                //if (MotorZ.IsPosLimit)
-                //    lblPos.BackColor = Color.Red;
-                //else
-                //    lblPos.BackColor = Color.Maroon;
+                if (MotorZ.IsCCwSenOn)
+                    lblNeg.BackColor = Color.Red;
+                else
+                    lblNeg.BackColor = Color.Maroon;
+                if (MotorZ.IsCwSenOn)
+                    lblPos.BackColor = Color.Red;
+                else
+                    lblPos.BackColor = Color.Maroon;
             }
         }
 

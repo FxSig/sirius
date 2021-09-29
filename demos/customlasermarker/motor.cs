@@ -125,6 +125,11 @@ namespace SpiralLab.Sirius
             ActualPosition += distance;
             return true;
         }
+
+        public bool CtlMoveJog(float vel, float acc)
+        {
+            return true;
+        }
         /// <summary>
         /// 모션 정지
         /// </summary>

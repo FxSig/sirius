@@ -102,11 +102,11 @@ namespace CustomEditor
         /// <summary>
         /// 문서 컨테이너 객체
         /// </summary>
-        public IDocument Document 
-        { 
+        public IDocument Document
+        {
             get { return this.doc; }
-            set 
-            { 
+            set
+            {
                 if (null == value)
                     return;
                 if (value.Equals(this.doc))
@@ -152,16 +152,16 @@ namespace CustomEditor
         /// <summary>
         /// RTC 제어 객체
         /// </summary>
-        public IRtc Rtc 
-        { 
+        public IRtc Rtc
+        {
             get { return this.rtc; }
             set { this.rtc = value; }
         }
-        IRtc rtc;       
+        IRtc rtc;
         /// <summary>
         /// 레이저 소스 제어 객체
         /// </summary>
-        public ILaser Laser 
+        public ILaser Laser
         {
             get { return this.laser; }
             set { this.laser = value; }
@@ -234,7 +234,7 @@ namespace CustomEditor
         {
             InitializeComponent();
 
-             this.GLcontrol.Resize += new EventHandler(this.OnResized);
+            this.GLcontrol.Resize += new EventHandler(this.OnResized);
             this.GLcontrol.MouseDown += new MouseEventHandler(this.OnMouseDown);
             this.GLcontrol.MouseUp += new MouseEventHandler(this.OnMouseUp);
             this.GLcontrol.MouseMove += new MouseEventHandler(this.OnMouseMove);
@@ -251,7 +251,7 @@ namespace CustomEditor
         {
             #region 사용자의 초기화 코드 예제
             bool success = true;
-            
+
             success &= SpiralLab.Core.Initialize();
             var doc = new DocumentDefault();
             this.Document = doc;
@@ -330,7 +330,7 @@ namespace CustomEditor
             {
                 lblBound.Text = string.Empty;
                 lblCenter.Text = string.Empty;
-                lblWH.Text = string.Empty;                
+                lblWH.Text = string.Empty;
             }
             else
             {
@@ -338,14 +338,14 @@ namespace CustomEditor
                 lblCenter.Text = $"{this.view.SelectedBoundRect.Center.X:F3}, {this.view.SelectedBoundRect.Center.Y:F3}";
                 lblWH.Text = $"{this.view.SelectedBoundRect.Width:F3}, {this.view.SelectedBoundRect.Height:F3}";
             }
-        }      
+        }
         private void RegenTreeView()
         {
             //트리뷰 업데이트
             trvEntity.SuspendLayout();
             trvEntity.Nodes.Clear();
             int i = 0;
-            foreach(var layer in this.Document.Layers)
+            foreach (var layer in this.Document.Layers)
             {
                 this.Layer_OnAddItem(this.Document.Layers, i++, layer);
                 int j = 0;
@@ -380,7 +380,7 @@ namespace CustomEditor
         private void Entity_OnAddItem(ObservableList<IEntity> sender, int index, IEntity e)
         {
             e.Node.Tag = e;
-            var layer = sender as Layer;            
+            var layer = sender as Layer;
             if (layer.Node.Nodes.Count == index)
                 layer.Node.Nodes.Add(e.Node);
             else
@@ -437,7 +437,7 @@ namespace CustomEditor
                         list.Add(entity);
             }
 
-             this.Document.Action.ActEntitySelect(list);
+            this.Document.Action.ActEntitySelect(list);
         }
         private void trvEntity_DragEnter(object sender, DragEventArgs e)
         {
@@ -630,11 +630,27 @@ namespace CustomEditor
         }
         private void btnZoomOut_Click(object sender, EventArgs e)
         {
-            this.view?.OnZoomOut(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
+            if (null == Document.Action.SelectedEntity || 0 == Document.Action.SelectedEntity.Count)
+                this.view?.OnZoomOut(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
+            else
+            {
+                var br = new BoundRect();
+                foreach (var entity in Document.Action.SelectedEntity)
+                    br.Union(entity.BoundRect);
+                this.view?.OnZoomOut(br);
+            }
         }
         private void btnZoomIn_Click(object sender, EventArgs e)
         {
-            this.view?.OnZoomIn(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
+            if (null == Document.Action.SelectedEntity || 0 == Document.Action.SelectedEntity.Count)
+                this.view?.OnZoomIn(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
+            else
+            {
+                var br = new BoundRect();
+                foreach (var entity in Document.Action.SelectedEntity)
+                    br.Union(entity.BoundRect);
+                this.view?.OnZoomIn(br);
+            }
         }
         private void btnZoomFit_Click(object sender, EventArgs e)
         {

@@ -1538,6 +1538,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.winform.Laser.AdvancedOptoWaveFotia_Form.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.winform.Laser.AdvancedOptoWaveFotia_Form.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.winform.Laser.AdvancedOptoWaveFotia_Form.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.winform.Laser.IPGYLP_Form.components">
             <summary> 
             필수 디자이너 변수입니다.
@@ -1555,24 +1572,21 @@
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.Index">
+        <member name="F:SpiralLab.Sirius.LaserForm.components">
             <summary>
-            식별번호
+            Required designer variable.
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.Name">
+        <member name="M:SpiralLab.Sirius.LaserForm.Dispose(System.Boolean)">
             <summary>
-            이름
+            Clean up any resources being used.
             </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.MaxPowerWatt">
+        <member name="M:SpiralLab.Sirius.LaserForm.InitializeComponent">
             <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.winform.Laser.LaserSourceData.IsReady">
-            <summary>
-            상태 (준비완료 여부)
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScriptForm">
@@ -2142,7 +2156,7 @@
             <summary>
             엔티티 선택 명령
             </summary>
-            <param name="eneities">선택 엔티티 리스트</param>
+            <param name="entities">선택 엔티티 리스트</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityGroup(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,System.Boolean)">
@@ -3676,6 +3690,26 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_group">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_group_conti_objects">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_group_objects">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_group_objects1">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_halfcircle">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3791,6 +3825,11 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_ungroup_objects">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.icons8_zoom_in_16">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -3872,6 +3911,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.live_photos_24px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.merge">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -4067,6 +4111,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.small_lens_32px">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.sort">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
@@ -4364,19 +4413,32 @@
             <summary>
             특정 위치를 중심으로 줌 인 이벤트
             </summary>
-            <param name="p"></param>
+            <param name="p">픽셀</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IView.OnZoomIn(SpiralLab.Sirius.BoundRect)">
+            <summary>
+            특정 외곽 영역을 중심으로 줌 인
+            </summary>
+            <param name="br"></param>
         </member>
         <member name="M:SpiralLab.Sirius.IView.OnZoomOut(System.Drawing.Point)">
             <summary>
             특정 위치를 중심으로 줌 아웃 이벤트
             </summary>
-            <param name="p"></param>
+            <param name="p">픽셀</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IView.OnZoomFit(SpiralLab.Sirius.BoundRect)">
+        <member name="M:SpiralLab.Sirius.IView.OnZoomOut(SpiralLab.Sirius.BoundRect)">
+            <summary>
+            특정 외곽 영역을 중심으로 줌 아웃
+            </summary>
+            <param name="br"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IView.OnZoomFit(SpiralLab.Sirius.BoundRect,System.Single)">
             <summary>
             지정된 영역이 클라이언트 렌더 영역을 가득(약 95%) 채우도록 줌 FIT
             </summary>
             <param name="br"></param>
+            <param name="factor">1 보다 클수록 줌 아웃, 1보다 작을수록 줌인</param>
         </member>
         <member name="M:SpiralLab.Sirius.IView.OnPan(System.Boolean)">
             <summary>

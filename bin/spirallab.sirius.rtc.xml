@@ -1364,6 +1364,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MatrixStack.Equals(SpiralLab.Sirius.MatrixStack)">
+            <summary>
+            동일성 비교 (deep compare)
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MatrixStack.Clear">
             <summary>
             모두 삭제하고 단위행렬상태로 초기화
@@ -1438,6 +1445,11 @@
             PowerMeterVirtual 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnMeasured">
             <summary>
             파워 측정 이벤트
@@ -1456,6 +1468,11 @@
         <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Period">
             <summary>
             샘플링 주기 시간(msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Dispose">
@@ -1675,6 +1692,14 @@
             <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveJog(System.Single,System.Single)">
+            <summary>
+            조그 속도 이동
+            </summary>
+            <param name="vel">속도 (units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
             <summary>
             정지
@@ -1727,14 +1752,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorAjinExtek.LoadParameterFile(System.String)">
-            <summary>
-            설정파일 로드
-            전체 축의 서보 오프상태 확인 후 사용
-            </summary>
-            <param name="fileName"></param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlServo(System.Boolean)">
             <summary>
             서보 온오프
@@ -1766,6 +1783,14 @@
             <param name="acc">가감속도 (units/s^2)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveJog(System.Single,System.Single)">
+            <summary>
+            조그 속도 이동
+            </summary>
+            <param name="vel">속도 (units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveStop">
             <summary>
             정지
@@ -1782,6 +1807,14 @@
             <summary>
             상태 업데이트
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.LoadParameterFile(System.String)">
+            <summary>
+            설정파일 로드
+            전체 축의 서보 오프상태 확인 후 사용
+            </summary>
+            <param name="fileName"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.GetAxisCnt">
@@ -1839,6 +1872,14 @@
             </summary>
             <param name="distance">거리값(units)</param>
             <param name="vel">속도(units/s)</param>
+            <param name="acc">가감속(units/s^2)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlMoveJog(System.Single,System.Single)">
+            <summary>
+            조그 속도 이동
+            </summary>
+            <param name="vel">속도 (units/s)</param>
             <param name="acc">가감속(units/s^2)</param>
             <returns></returns>
         </member>

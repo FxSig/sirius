@@ -70,6 +70,16 @@
 
 **5. Version history**
 
+* 2021.09.29 v1.7.8
+ - updated) icons set
+ - added) 1/2d barcode with dot N*N array
+ - added) group form with path sort and merge within polylines
+ - added) arc with reverse winding
+ - added) default laser comm screen in editor
+ - fixed) group/ungroup with specific buttons (not by context menu)
+ - fixed) working properly keyboard shortcuts 
+ - fixed) laser path simulation bug when draw small arc < 0.2 radius
+
 * 2021.09.19 v1.7.7
  - fixed) support drag and drop at listbox (like as group, offset, ...)
  - fixed) arc entity's start/sweep angle with grip point
