@@ -324,6 +324,68 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.RtcDInput`1">
+            <summary>
+            디지털 입력 인터페이스    
+            RTC 제품의 확장(Extension) 16/16 포트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDInput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDInput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDInput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDInput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDInput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.RtcDOutput`1">
+            <summary>
+            디지털 출력 인터페이스    
+            RTC 제품의 확장(Extension) 16/16 포트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDOutput`1.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDOutput`1.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDOutput`1.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDOutput`1.ChannelCount">
+            <summary>
+            채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcDOutput`1.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryDX">
             <summary>
             레이저 소스 (Photonics Industry DX)
@@ -1678,26 +1740,26 @@
             <summary>
             절대 위치 이동
             </summary>
-            <param name="position">위치값(units)</param>
-            <param name="vel">속도(units/s)</param>
-            <param name="acc">가감속(units/s^2)</param>
+            <param name="position">위치값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속 (mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single,System.Single,System.Single)">
             <summary>
             상대 위치 이동
             </summary>
-            <param name="distance">거리값(units)</param>
-            <param name="vel">속도(units/s)</param>
-            <param name="acc">가감속(units/s^2)</param>
+            <param name="distance">거리값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속 (mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveJog(System.Single,System.Single)">
             <summary>
             조그 속도 이동
             </summary>
-            <param name="vel">속도 (units/s)</param>
-            <param name="acc">가감속(units/s^2)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속 (mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
@@ -1729,6 +1791,20 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.ConvertMmToPulse(System.Single)">
+            <summary>
+            mm -> pulse
+            </summary>
+            <param name="mm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.ConvertPulseToMm(System.Single)">
+            <summary>
+            pulse -> mm
+            </summary>
+            <param name="pulse"></param>
+            <returns></returns>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.Tag">
             <summary>
             사용자 정의 데이타
@@ -1739,12 +1815,13 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorAjinExtek.#ctor(System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.#ctor(System.Int32,System.String,System.Single)">
             <summary>
             생성자
             </summary>
             <param name="no">축 번호</param>
             <param name="name">축 이름</param>
+            <param name="pulsePerMm">펄스와 사용자 단위(mm)간 비율값</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.Initialize">
             <summary>
@@ -1769,26 +1846,26 @@
             <summary>
             절대 위치로 이동
             </summary>
-            <param name="position">위치 (units)</param>
-            <param name="vel">속도 (units/s)</param>
-            <param name="acc">가감속도 (units/s^2)</param>
+            <param name="position">위치 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속도 (mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveRel(System.Single,System.Single,System.Single)">
             <summary>
             상대 위치 이동
             </summary>
-            <param name="distance">거리값(units)</param>
-            <param name="vel">속도 (units/s)</param>
-            <param name="acc">가감속도 (units/s^2)</param>
+            <param name="distance">거리값(mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속도 (mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveJog(System.Single,System.Single)">
             <summary>
             조그 속도 이동
             </summary>
-            <param name="vel">속도 (units/s)</param>
-            <param name="acc">가감속(units/s^2)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <param name="acc">가감속(mm/s^2)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveStop">
