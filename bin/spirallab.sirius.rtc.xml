@@ -1160,12 +1160,22 @@
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IShutter">
+        <member name="T:SpiralLab.Sirius.IGuideControl">
+            <summary>
+            레이저 소스 IGuide 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IGuideControl.IsGuideOn">
+            <summary>
+            가이드 빔(Guide) On/Off 상태
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IShutterControl">
             <summary>
             레이저 소스 IShutter 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IShutter.IsShutterOpen">
+        <member name="P:SpiralLab.Sirius.IShutterControl.IsShutterOpen">
             <summary>
             셔터(Shutter) 상태
             </summary>
@@ -1223,6 +1233,11 @@
         <member name="P:SpiralLab.Sirius.ILaser.IsShutterControl">
             <summary>
             셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ILaser.IsGuideControl">
+            <summary>
+            Guide 레이저 빔 지원하는지 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Tag">
@@ -1302,12 +1317,10 @@
             셔터(Shutter) 상태
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlShutter(System.Boolean)">
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsGuideOn">
             <summary>
-            셔터 동작
+            가이드 빔(Guide) On/Off 상태
             </summary>
-            <param name="open">true=열기 시도, false= 닫기 시도</param>
-            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SPIG4">
             <summary>
@@ -2111,6 +2124,11 @@
         <member name="P:SpiralLab.Sirius.Rtc4.IsJumpMode">
             <summary>
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.CorrectionFiles">
@@ -3121,6 +3139,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.IsJumpMode">
             <summary>
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.CorrectionFiles">
@@ -4530,6 +4553,11 @@
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.CorrectionFiles">
             <summary>
             스캐너 보정 파일 목록 (최대 4개 로드 가능)
@@ -5697,6 +5725,11 @@
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.CorrectionFiles">
             <summary>
             스캐너 보정 파일 목록 (최대 4개 로드 가능)
@@ -6591,6 +6624,11 @@
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.CorrectionFiles">
             <summary>
             스캐너 보정 파일 목록 (최대 4개 로드 가능)
@@ -7041,6 +7079,11 @@
         <member name="P:SpiralLab.Sirius.IRtc.IsJumpMode">
             <summary>
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화되어 Jump and Drill 사용시 자동 적용됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.DuplicatedLength">
+            <summary>
+            정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">

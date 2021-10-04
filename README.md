@@ -69,6 +69,12 @@
 ----
 
 **5. Version history**
+* 2021.10.04 v1.7.9
+ - fixed) sort and merge group entity's path
+ - fixed) accuracy of barcode cell's pitch, support cell array size, scale factor
+ - fixed) rtc field size for check out of range 
+ - fixed) reset rtc's' external start when marker has stopped
+ - fixed) laser path simulation with vary speed (short-cut : CTRL + F9,10,11)
 
 * 2021.09.29 v1.7.8
  - updated) icons set

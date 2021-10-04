@@ -68,6 +68,7 @@ namespace SpiralLab.Sirius
         public IRtc Rtc { get; set; }
         public bool IsPowerControl { get; set; }
         public bool IsShutterControl { get; set; }
+        public bool IsGuideControl { get; set; }
         public object Tag { get; set; }
         private bool disposed = false;
 
@@ -85,6 +86,7 @@ namespace SpiralLab.Sirius
             this.MaxPowerWatt = maxPowerWatt;
             IsPowerControl = true;
             IsShutterControl = false;
+            IsGuideControl = false;
         }
         ~YourCustomLaser()
         {

@@ -71,6 +71,7 @@ namespace SpiralLab.Sirius
         public IRtc Rtc { get; set; }
         public bool IsPowerControl { get; set; }
         public bool IsShutterControl { get; set; }
+        public bool IsGuideControl { get; set; }
         public object Tag { get; set; }
 
         private SerialPort serialPort;
@@ -84,6 +85,7 @@ namespace SpiralLab.Sirius
             this.MaxPowerWatt = maxPowerWatt;
             IsPowerControl = true;
             IsShutterControl = false;
+            IsGuideControl = false;
             this.serialPort = new SerialPort($"COM{comPort}");
             this.serialPort.BaudRate = 9600;
             this.serialPort.DataBits = 8;
