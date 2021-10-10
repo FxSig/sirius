@@ -33,6 +33,8 @@ namespace SpiralLab.Sirius
 {
     class Program
     {
+
+
         [STAThread]
         static void Main(string[] args)
         {
@@ -55,9 +57,16 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser source
+            //var laser = new LaserVirtual(0, "Virtual", 20);
+            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
             var laser = new YourCustomLaser(0, "custom laser", 20.0f);
-            //or
-            //ILaser laser2 = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
+            //var laser2 = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
+
             laser.Rtc = rtc;
             laser.Initialize();
             laser.CtlPower(10);
@@ -65,6 +74,8 @@ namespace SpiralLab.Sirius
 
             #region motor z axis
             IMotor motorZ = new MotorZ();
+            motorZ.Initialize();
+            motorZ.CtlHomeSearch();
             #endregion
 
             #region prepare your marker
@@ -82,6 +93,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'M' : mark by your custom marker");
+                Console.WriteLine("'F' : laser form");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
@@ -95,12 +107,18 @@ namespace SpiralLab.Sirius
                         Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         DrawByMarker(rtc, laser, marker, motorZ);
                         break;
+                    case ConsoleKey.F:
+                        SpiralLab.Sirius.LaserForm laerForm = new SpiralLab.Sirius.LaserForm();
+                        laerForm.Laser = laser;
+                        laerForm.ShowDialog();
+                        break;
                 }
 
             } while (true);
 
             rtc.Dispose();
         }
+
         private static bool DrawByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
         {
             #region load from sirius file

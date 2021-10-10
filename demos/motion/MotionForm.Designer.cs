@@ -29,16 +29,16 @@ namespace SpiralLab.Sirius
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle40 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle39 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvOutput = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +72,9 @@ namespace SpiralLab.Sirius
             this.label6 = new System.Windows.Forms.Label();
             this.lblNeg = new System.Windows.Forms.Label();
             this.lblPos = new System.Windows.Forms.Label();
+            this.button8 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
+            this.lblORG = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInput)).BeginInit();
             this.SuspendLayout();
@@ -83,28 +86,28 @@ namespace SpiralLab.Sirius
             this.dgvOutput.AllowUserToResizeRows = false;
             this.dgvOutput.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvOutput.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle31.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle31.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle31.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle31.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle31.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvOutput.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle31;
             this.dgvOutput.ColumnHeadersHeight = 34;
             this.dgvOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOutput.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle35.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle35.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle35.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle35.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle35.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle35.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOutput.DefaultCellStyle = dataGridViewCellStyle35;
             this.dgvOutput.Location = new System.Drawing.Point(376, 12);
             this.dgvOutput.MultiSelect = false;
             this.dgvOutput.Name = "dgvOutput";
@@ -116,13 +119,13 @@ namespace SpiralLab.Sirius
             this.dgvOutput.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvOutput.Size = new System.Drawing.Size(373, 657);
+            this.dgvOutput.Size = new System.Drawing.Size(373, 583);
             this.dgvOutput.TabIndex = 10;
             // 
             // dataGridViewTextBoxColumn1
             // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle32;
             this.dataGridViewTextBoxColumn1.HeaderText = "No";
             this.dataGridViewTextBoxColumn1.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
@@ -133,8 +136,8 @@ namespace SpiralLab.Sirius
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle33.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle33;
             this.dataGridViewTextBoxColumn2.HeaderText = "Output Name";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -143,8 +146,8 @@ namespace SpiralLab.Sirius
             // 
             // dataGridViewTextBoxColumn3
             // 
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle34.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle34;
             this.dataGridViewTextBoxColumn3.HeaderText = "Status";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 8;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -159,14 +162,14 @@ namespace SpiralLab.Sirius
             this.dgvInput.AllowUserToResizeRows = false;
             this.dgvInput.BackgroundColor = System.Drawing.SystemColors.ControlLight;
             this.dgvInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvInput.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle36.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle36.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle36.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle36.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle36.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle36.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvInput.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle36;
             this.dgvInput.ColumnHeadersHeight = 34;
             this.dgvInput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvInput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -174,14 +177,14 @@ namespace SpiralLab.Sirius
             this.Column2,
             this.Column3});
             this.dgvInput.Cursor = System.Windows.Forms.Cursors.Default;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvInput.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle40.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle40.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle40.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle40.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle40.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle40.SelectionForeColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle40.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvInput.DefaultCellStyle = dataGridViewCellStyle40;
             this.dgvInput.Location = new System.Drawing.Point(12, 12);
             this.dgvInput.MultiSelect = false;
             this.dgvInput.Name = "dgvInput";
@@ -193,13 +196,13 @@ namespace SpiralLab.Sirius
             this.dgvInput.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvInput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.dgvInput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvInput.Size = new System.Drawing.Size(358, 657);
+            this.dgvInput.Size = new System.Drawing.Size(358, 583);
             this.dgvInput.TabIndex = 9;
             // 
             // Column1
             // 
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle37.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle37;
             this.Column1.HeaderText = "No";
             this.Column1.MinimumWidth = 8;
             this.Column1.Name = "Column1";
@@ -210,8 +213,8 @@ namespace SpiralLab.Sirius
             // Column2
             // 
             this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column2.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle38.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column2.DefaultCellStyle = dataGridViewCellStyle38;
             this.Column2.HeaderText = "Input Name";
             this.Column2.MinimumWidth = 8;
             this.Column2.Name = "Column2";
@@ -220,8 +223,8 @@ namespace SpiralLab.Sirius
             // 
             // Column3
             // 
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Column3.DefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle39.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Column3.DefaultCellStyle = dataGridViewCellStyle39;
             this.Column3.HeaderText = "Status";
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
@@ -231,9 +234,9 @@ namespace SpiralLab.Sirius
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1220, 34);
+            this.button1.Location = new System.Drawing.Point(1012, 35);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 24);
+            this.button1.Size = new System.Drawing.Size(30, 24);
             this.button1.TabIndex = 11;
             this.button1.Text = "...";
             this.button1.UseVisualStyleBackColor = true;
@@ -241,16 +244,16 @@ namespace SpiralLab.Sirius
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(905, 34);
+            this.textBox1.Location = new System.Drawing.Point(784, 36);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(309, 23);
+            this.textBox1.Size = new System.Drawing.Size(221, 23);
             this.textBox1.TabIndex = 12;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(818, 37);
+            this.label1.Location = new System.Drawing.Point(781, 12);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(79, 16);
             this.label1.TabIndex = 13;
@@ -258,7 +261,7 @@ namespace SpiralLab.Sirius
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(905, 138);
+            this.textBox2.Location = new System.Drawing.Point(941, 165);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(100, 23);
             this.textBox2.TabIndex = 14;
@@ -266,7 +269,7 @@ namespace SpiralLab.Sirius
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(905, 167);
+            this.textBox3.Location = new System.Drawing.Point(941, 194);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(100, 23);
             this.textBox3.TabIndex = 15;
@@ -274,7 +277,7 @@ namespace SpiralLab.Sirius
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(905, 196);
+            this.textBox4.Location = new System.Drawing.Point(941, 223);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(100, 23);
             this.textBox4.TabIndex = 16;
@@ -283,7 +286,7 @@ namespace SpiralLab.Sirius
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(833, 141);
+            this.label2.Location = new System.Drawing.Point(869, 168);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 16);
             this.label2.TabIndex = 17;
@@ -292,7 +295,7 @@ namespace SpiralLab.Sirius
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(834, 170);
+            this.label3.Location = new System.Drawing.Point(870, 197);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 16);
             this.label3.TabIndex = 18;
@@ -301,7 +304,7 @@ namespace SpiralLab.Sirius
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(820, 199);
+            this.label4.Location = new System.Drawing.Point(856, 226);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(79, 16);
             this.label4.TabIndex = 19;
@@ -309,9 +312,9 @@ namespace SpiralLab.Sirius
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(1023, 138);
+            this.button2.Location = new System.Drawing.Point(891, 331);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(80, 64);
+            this.button2.Size = new System.Drawing.Size(72, 52);
             this.button2.TabIndex = 20;
             this.button2.Text = "Move";
             this.button2.UseVisualStyleBackColor = true;
@@ -319,9 +322,9 @@ namespace SpiralLab.Sirius
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1195, 138);
+            this.button3.Location = new System.Drawing.Point(969, 331);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(80, 64);
+            this.button3.Size = new System.Drawing.Size(72, 52);
             this.button3.TabIndex = 21;
             this.button3.Text = "Home";
             this.button3.UseVisualStyleBackColor = true;
@@ -329,9 +332,9 @@ namespace SpiralLab.Sirius
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(1023, 215);
+            this.button4.Location = new System.Drawing.Point(891, 452);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(80, 64);
+            this.button4.Size = new System.Drawing.Size(150, 52);
             this.button4.TabIndex = 22;
             this.button4.Text = "Stop";
             this.button4.UseVisualStyleBackColor = true;
@@ -339,9 +342,9 @@ namespace SpiralLab.Sirius
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(1195, 215);
+            this.button5.Location = new System.Drawing.Point(807, 331);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(80, 64);
+            this.button5.Size = new System.Drawing.Size(72, 173);
             this.button5.TabIndex = 23;
             this.button5.Text = "Reset";
             this.button5.UseVisualStyleBackColor = true;
@@ -352,7 +355,7 @@ namespace SpiralLab.Sirius
             this.lblDriving.BackColor = System.Drawing.Color.Maroon;
             this.lblDriving.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriving.ForeColor = System.Drawing.Color.White;
-            this.lblDriving.Location = new System.Drawing.Point(1103, 70);
+            this.lblDriving.Location = new System.Drawing.Point(982, 73);
             this.lblDriving.Name = "lblDriving";
             this.lblDriving.Size = new System.Drawing.Size(60, 32);
             this.lblDriving.TabIndex = 24;
@@ -364,7 +367,7 @@ namespace SpiralLab.Sirius
             this.lblServo.BackColor = System.Drawing.Color.Green;
             this.lblServo.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblServo.ForeColor = System.Drawing.Color.White;
-            this.lblServo.Location = new System.Drawing.Point(905, 70);
+            this.lblServo.Location = new System.Drawing.Point(784, 73);
             this.lblServo.Name = "lblServo";
             this.lblServo.Size = new System.Drawing.Size(60, 32);
             this.lblServo.TabIndex = 26;
@@ -376,7 +379,7 @@ namespace SpiralLab.Sirius
             this.lblHome.BackColor = System.Drawing.Color.Green;
             this.lblHome.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHome.ForeColor = System.Drawing.Color.White;
-            this.lblHome.Location = new System.Drawing.Point(971, 70);
+            this.lblHome.Location = new System.Drawing.Point(850, 73);
             this.lblHome.Name = "lblHome";
             this.lblHome.Size = new System.Drawing.Size(60, 32);
             this.lblHome.TabIndex = 27;
@@ -388,7 +391,7 @@ namespace SpiralLab.Sirius
             this.lblAlarm.BackColor = System.Drawing.Color.Maroon;
             this.lblAlarm.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAlarm.ForeColor = System.Drawing.Color.White;
-            this.lblAlarm.Location = new System.Drawing.Point(1037, 70);
+            this.lblAlarm.Location = new System.Drawing.Point(916, 73);
             this.lblAlarm.Name = "lblAlarm";
             this.lblAlarm.Size = new System.Drawing.Size(60, 32);
             this.lblAlarm.TabIndex = 28;
@@ -397,9 +400,9 @@ namespace SpiralLab.Sirius
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(1109, 138);
+            this.button6.Location = new System.Drawing.Point(891, 392);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(80, 64);
+            this.button6.Size = new System.Drawing.Size(72, 52);
             this.button6.TabIndex = 29;
             this.button6.Text = "Servo On";
             this.button6.UseVisualStyleBackColor = true;
@@ -407,9 +410,9 @@ namespace SpiralLab.Sirius
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(1109, 215);
+            this.button7.Location = new System.Drawing.Point(969, 392);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(80, 64);
+            this.button7.Size = new System.Drawing.Size(72, 52);
             this.button7.TabIndex = 30;
             this.button7.Text = "Servo Off";
             this.button7.UseVisualStyleBackColor = true;
@@ -417,7 +420,7 @@ namespace SpiralLab.Sirius
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(905, 227);
+            this.textBox5.Location = new System.Drawing.Point(941, 254);
             this.textBox5.Name = "textBox5";
             this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(100, 23);
@@ -426,7 +429,7 @@ namespace SpiralLab.Sirius
             // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(905, 256);
+            this.textBox6.Location = new System.Drawing.Point(941, 283);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(100, 23);
@@ -436,7 +439,7 @@ namespace SpiralLab.Sirius
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(789, 230);
+            this.label5.Location = new System.Drawing.Point(825, 257);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(109, 16);
             this.label5.TabIndex = 33;
@@ -445,7 +448,7 @@ namespace SpiralLab.Sirius
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(765, 259);
+            this.label6.Location = new System.Drawing.Point(801, 286);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(134, 16);
             this.label6.TabIndex = 34;
@@ -456,11 +459,11 @@ namespace SpiralLab.Sirius
             this.lblNeg.BackColor = System.Drawing.Color.Maroon;
             this.lblNeg.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNeg.ForeColor = System.Drawing.Color.White;
-            this.lblNeg.Location = new System.Drawing.Point(1169, 70);
+            this.lblNeg.Location = new System.Drawing.Point(848, 116);
             this.lblNeg.Name = "lblNeg";
             this.lblNeg.Size = new System.Drawing.Size(60, 32);
             this.lblNeg.TabIndex = 35;
-            this.lblNeg.Text = "LM-";
+            this.lblNeg.Text = "CCW";
             this.lblNeg.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPos
@@ -468,18 +471,55 @@ namespace SpiralLab.Sirius
             this.lblPos.BackColor = System.Drawing.Color.Maroon;
             this.lblPos.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPos.ForeColor = System.Drawing.Color.White;
-            this.lblPos.Location = new System.Drawing.Point(1235, 70);
+            this.lblPos.Location = new System.Drawing.Point(914, 116);
             this.lblPos.Name = "lblPos";
             this.lblPos.Size = new System.Drawing.Size(60, 32);
             this.lblPos.TabIndex = 36;
-            this.lblPos.Text = "LM+";
+            this.lblPos.Text = "CW";
             this.lblPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(891, 520);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(72, 52);
+            this.button8.TabIndex = 37;
+            this.button8.Text = "JOG (-)";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button8_MouseDown);
+            this.button8.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button8_MouseUp);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(969, 520);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(72, 52);
+            this.button9.TabIndex = 38;
+            this.button9.Text = "JOG (+)";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.MouseDown += new System.Windows.Forms.MouseEventHandler(this.button9_MouseDown);
+            this.button9.MouseUp += new System.Windows.Forms.MouseEventHandler(this.button9_MouseUp);
+            // 
+            // lblORG
+            // 
+            this.lblORG.BackColor = System.Drawing.Color.Green;
+            this.lblORG.Font = new System.Drawing.Font("Arial Narrow", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblORG.ForeColor = System.Drawing.Color.White;
+            this.lblORG.Location = new System.Drawing.Point(981, 116);
+            this.lblORG.Name = "lblORG";
+            this.lblORG.Size = new System.Drawing.Size(60, 32);
+            this.lblORG.TabIndex = 39;
+            this.lblORG.Text = "ORG";
+            this.lblORG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MotionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1310, 676);
+            this.ClientSize = new System.Drawing.Size(1064, 607);
+            this.Controls.Add(this.lblORG);
+            this.Controls.Add(this.button9);
+            this.Controls.Add(this.button8);
             this.Controls.Add(this.lblPos);
             this.Controls.Add(this.lblNeg);
             this.Controls.Add(this.label6);
@@ -553,5 +593,8 @@ namespace SpiralLab.Sirius
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblNeg;
         private System.Windows.Forms.Label lblPos;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Label lblORG;
     }
 }

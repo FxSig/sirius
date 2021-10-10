@@ -16,6 +16,8 @@ namespace SpiralLab.Sirius
     public class YourCustomLaser 
         : SpiralLab.Sirius.ILaser
         , SpiralLab.Sirius.IPowerControl
+        //, SpiralLab.Sirius.IShutterControl
+        //, SpiralLab.Sirius.IGuideControl
     {
         /// <summary>
         /// 속성 변경 이벤트 핸들러
@@ -156,7 +158,7 @@ namespace SpiralLab.Sirius
                 if (null == this.Rtc)
                     return false;
                 bool success = true;
-                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, 0.5f); // 아나로그로 제어되는 레이저 소스
+                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, 0.5f); // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
 
                 if (success)
                 {
@@ -179,7 +181,7 @@ namespace SpiralLab.Sirius
                     return false;
                 bool success = true;
                 float ratio = watt / MaxPowerWatt;
-                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, ratio); // 아나로그로 제어되는 레이저 소스
+                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, ratio);   // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
                 return success;
             }
         }

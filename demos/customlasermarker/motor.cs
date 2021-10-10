@@ -48,18 +48,34 @@ namespace SpiralLab.Sirius
         /// 모터 에러 상태 여부
         /// </summary>
         public bool IsError { get; private set; }
-
+        /// <summary>
+        /// 모터 서보 알람 여부
+        /// </summary>
         public bool IsServoAlarm { get; private set; }
-
+        /// <summary>
+        /// 모터 홈 초기화 여부
+        /// </summary>
         public bool IsHomeSearched { get; private set; }
-
+        /// <summary>
+        /// 모터 서보 온 여부
+        /// </summary>
         public bool IsServoOn { get; private set; }
-
+        /// <summary>
+        /// 모터 구동중 여부
+        /// </summary>
         public bool IsDriving { get; private set; }
+        /// <summary>
+        /// 모터 - 종단 센서 감지 여부
+        /// </summary>
         public bool IsCCwSenOn { get; private set; }
+        /// <summary>
+        /// 모터 + 종단 센서 감지 여부
+        /// </summary>
         public bool IsCwSenOn { get; private set; }
+        /// <summary>
+        /// 모터 ORG 센서 감지 여부
+        /// </summary>
         public bool IsOrgSenOn { get; private set; }
-
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -84,7 +100,6 @@ namespace SpiralLab.Sirius
         {
             return true;
         }
-
         public bool CtlServo(bool onOff)
         {
             IsServoOn = onOff;

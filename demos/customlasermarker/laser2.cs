@@ -19,6 +19,8 @@ namespace SpiralLab.Sirius
     public class YourCustomLaser2
         : SpiralLab.Sirius.ILaser
         , SpiralLab.Sirius.IPowerControl
+        //, SpiralLab.Sirius.IShutterControl
+        //, SpiralLab.Sirius.IGuideControl
     {
         /// <summary>
         /// 속성 변경 이벤트 핸들러
@@ -203,7 +205,7 @@ namespace SpiralLab.Sirius
             if (!success)
                 return false;
             //RTC 버퍼 준비를 새로 시작한다
-            success &= this.Rtc.ListBegin(this, ListType.Single);
+            success &= this.Rtc.ListBegin(this, ListType.Auto);
             return success;
         }
 

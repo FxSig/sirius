@@ -165,30 +165,6 @@ namespace SpiralLab.Sirius
             this.MarkerArg = markerArg;
             this.clonedDoc = (IDocument)this.MarkerArg.Document.Clone();
             Debug.Assert(clonedDoc != null);
-            var rtc = this.MarkerArg.Rtc;
-            //character set 모두 삭제
-            RtcCharacterSetHelper.Clear(rtc);
-            // 재등록
-            bool success = true;
-            for (int i = 0; i < this.clonedDoc.Layers.Count; i++)
-            {
-                var layer = this.clonedDoc.Layers[i];
-                if (layer.IsMarkerable)
-                {
-                    foreach (var entity in layer)
-                    {
-                        var siriusText = entity as SiriusText;
-                        if (null != siriusText)
-                            success &= siriusText.RegisterCharacterSetIntoRtc(rtc);
-                        var text = entity as Text;
-                        if (null != text)
-                            success &= text.RegisterCharacterSetIntoRtc(rtc);
-                    }
-                }
-            }
-            if (!success)
-                Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: fail to register character into rtc");
-
             this.MarkerArg.Progress = 0;
             this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
@@ -244,14 +220,6 @@ namespace SpiralLab.Sirius
             {
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: laser source has a error status !");
                 return false;
-            }
-            if (null != motorZ)
-            {
-                if (!motorZ.IsReady|| motorZ.IsBusy|| motorZ.IsError)
-                {
-                    Logger.Log(Logger.Type.Error, $"marker [{this.Index}]:  motor z invalid status");
-                    return false;
-                }
             }
             if (null != this.thread && this.thread.IsAlive)
             {
@@ -346,9 +314,6 @@ namespace SpiralLab.Sirius
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
             var motorZ = this.MarkerArg.MotorZ;
-            float oldZPosition = 0;
-            if (null != motorZ)
-                oldZPosition = motorZ.ActualPosition;
             var offsets = this.MarkerArg.Offsets;
             var scannerRotateAngle =  this.ScannerRotateAngle;
             int totalCounts = offsets.Count * this.clonedDoc.Layers.Count;
@@ -409,8 +374,6 @@ namespace SpiralLab.Sirius
                 if (!success)
                     break;
             }
-            if (success && null != motorZ)
-                success &= motorZ.CtlMoveAbs(oldZPosition, 100, 1000);
             return success;
         }
         protected virtual bool PostWork()

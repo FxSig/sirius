@@ -35,10 +35,27 @@ namespace SpiralLab.Sirius
             rtc2.Initialize(1000, LaserMode.Yag1, correctionFile);
 
             //Laser 소스 객체 2개 생성
-            var laser1 = new LaserVirtual(0, "Virtual Laser1", 20);
+            var laser1 = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            //var laser1 = new IPGYLP(0, "IPG YLP", 1, 20);
+            //var laser1 = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser1 = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser1 = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser1 = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser1 = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            laser1.Rtc = rtc1;
             laser1.Initialize();
-            var laser2 = new LaserVirtual(1, "Virtual Laser2", 20);
+            laser1.CtlPower(2);
+
+            var laser2 = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            //var laser2 = new IPGYLP(0, "IPG YLP", 2, 20);
+            //var laser2 = new JPTTypeE(0, "JPT Type E", 2, 20);
+            //var laser2 = new SPIG4(0, "SPI G3/4", 2, 20);
+            //var laser2 = new PhotonicsIndustryDX(0, "PI", 2, 20);
+            //var laser2 = new AdvancedOptoWaveFotia(0, "Fotia", 2, 20);
+            //var laser2 = new CoherentAviaLX(0, "Avia LX", 2, 20);
+            laser2.Rtc = rtc2;
             laser2.Initialize();
+            laser2.CtlPower(2);
 
             //Marker 2개 생성
             var marker1 = new MarkerDefault(0);

@@ -133,6 +133,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap autonics {
+            get {
+                object obj = ResourceManager.GetObject("autonics", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap bang_48px {
             get {
                 object obj = ResourceManager.GetObject("bang_48px", resourceCulture);
@@ -453,6 +463,36 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap error_64px {
+            get {
+                object obj = ResourceManager.GetObject("error_64px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap error_64px1 {
+            get {
+                object obj = ResourceManager.GetObject("error_64px1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap error_64px2 {
+            get {
+                object obj = ResourceManager.GetObject("error_64px2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap exercise_24px {
             get {
                 object obj = ResourceManager.GetObject("exercise_24px", resourceCulture);
@@ -526,6 +566,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap hdd_48px {
             get {
                 object obj = ResourceManager.GetObject("hdd_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap high_priority_64px {
+            get {
+                object obj = ResourceManager.GetObject("high_priority_64px", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -756,6 +806,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap play_48px {
             get {
                 object obj = ResourceManager.GetObject("play_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap qnikeu_ijb8_ge7htt_logo {
+            get {
+                object obj = ResourceManager.GetObject("qnikeu_ijb8-ge7htt_logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1366,6 +1426,16 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap web_camera_48px {
             get {
                 object obj = ResourceManager.GetObject("web_camera_48px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap weblogo_autonics_6x3 {
+            get {
+                object obj = ResourceManager.GetObject("weblogo-autonics-6x3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

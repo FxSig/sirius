@@ -50,7 +50,16 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser (virtual)
-            ILaser laser = new LaserVirtual(0, "virtual", 20);
+            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            laser.Rtc = rtc;
+            laser.Initialize();
+            laser.CtlPower(2);
             #endregion
 
             #region create entities
@@ -131,7 +140,7 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.D:
                         Console.WriteLine("WARNING !!! LASER IS BUSY ...");
                         var timer = Stopwatch.StartNew();
-                        DrawForFieldCorrection(laser, rtc, doc);
+                        Draw(laser, rtc, doc);
                         Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
                         break;
                 }
@@ -145,7 +154,7 @@ namespace SpiralLab.Sirius
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="doc"></param>
-        private static bool DrawForFieldCorrection(ILaser laser, IRtc rtc, IDocument doc)
+        private static bool Draw(ILaser laser, IRtc rtc, IDocument doc)
         {
             var markerArg = new MarkerArgDefault()
             {

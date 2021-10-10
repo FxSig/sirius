@@ -17,8 +17,8 @@ namespace SpiralLab.Sirius
 
     public partial class MotionForm : Form
     {
-        IDInput<NoName> DigitalInput;
-        IDOutput<NoName> DigitalOutput;
+        IDInput DigitalInput;
+        IDOutput DigitalOutput;
         IMotor MotorZ;
         string[] dInputNames = new string[16];
         string[] dOutputNames = new string[16];
@@ -43,10 +43,14 @@ namespace SpiralLab.Sirius
         {
             UpdateNames();
 
-            DigitalInput = new AjinExtekDInput<NoName>(0, "D.IN");
+            DigitalInput = new AjinExtekDInput(0, "D.IN");
+            //DigitalInput = new AdlinkDInput<NoName>(0, "D.IN", 7230, 0);
+            //DigitalInput = new RtcDInput<NoName>(rtc, 0, "D.IN");
             DigitalInput.Initialize();
 
-            DigitalOutput = new AjinExtekDOutput<NoName>(0, "D.OUT");
+            DigitalOutput = new AjinExtekDOutput(0, "D.OUT");
+            //DigitalOutput = new AdlinkDOutput<NoName>(0, "D.OUT", 7230, 0);
+            //DigitalOutput = new RtcDOutput<NoName>(rtc, 0, "D.OUT");
             DigitalOutput.Initialize();
 
             MotorZ = new MotorAjinExtek(0, "Z Axis");
@@ -58,6 +62,7 @@ namespace SpiralLab.Sirius
         private void MotionForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             timer.Enabled = false;
+            MotorZ.Dispose();
         }
 
         private void UpdateNames()
@@ -154,6 +159,10 @@ namespace SpiralLab.Sirius
                     lblPos.BackColor = Color.Red;
                 else
                     lblPos.BackColor = Color.Maroon;
+                if (MotorZ.IsOrgSenOn)
+                    lblORG.BackColor = Color.Lime;
+                else
+                    lblORG.BackColor = Color.Green;
             }
         }
 
@@ -219,6 +228,7 @@ namespace SpiralLab.Sirius
             var dlg = new OpenFileDialog();
             dlg.Filter = "ajinextek motor parameter data files (*.dat)|*.dat|All Files (*.*)|*.*";
             dlg.Title = "Open to motor parameter file";
+            dlg.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "motion");
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
@@ -257,6 +267,30 @@ namespace SpiralLab.Sirius
         private void button7_Click(object sender, EventArgs e)
         {
             MotorZ.CtlServo(false);
+        }
+
+        private void button8_MouseDown(object sender, MouseEventArgs e)
+        {
+            var vel = float.Parse(textBox3.Text);
+            var acc = float.Parse(textBox4.Text);
+            MotorZ.CtlMoveJog(-Math.Abs(vel), acc);
+        }
+
+        private void button8_MouseUp(object sender, MouseEventArgs e)
+        {
+            MotorZ.CtlMoveStop();
+        }
+
+        private void button9_MouseDown(object sender, MouseEventArgs e)
+        {
+            var vel = float.Parse(textBox3.Text);
+            var acc = float.Parse(textBox4.Text);
+            MotorZ.CtlMoveJog(Math.Abs(vel), acc);
+        }
+
+        private void button9_MouseUp(object sender, MouseEventArgs e)
+        {
+            MotorZ.CtlMoveStop();
         }
     }
 }
