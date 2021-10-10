@@ -204,7 +204,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.IDInputTrigger">
             <summary>
-            입력 트리거 인터페이스
+            디지털 입력 트리거 인터페이스
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDInputTrigger.IsTriggered(System.Boolean,System.Int64)">
@@ -217,17 +217,33 @@
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA">
             <summary>
-            입력 A 접점 트리거
+            디지털 입력 A 접점 트리거
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggerA.IsTriggered(System.Boolean,System.Int64)">
+            <summary>
+            트리거 동작 여부
+            </summary>
+            <param name="inputStatus">현재의 입력값 </param>
+            <param name="msec">hold time 시간 (msec)</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerB">
             <summary>
-            입력 B 접점 트리거
+            디지털 입력 B 접점 트리거
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggerB.IsTriggered(System.Boolean,System.Int64)">
+            <summary>
+            트리거 동작 여부
+            </summary>
+            <param name="inputStatus">현재의 입력값</param>
+            <param name="msec">hold time 시간 (msec)</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputVirtual">
             <summary>
-            디지털 입력     
+            디지털 입력   
             가상 장치
             </summary>
         </member>
@@ -475,7 +491,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.Update">
             <summary>
-            입력 업데이트
+            입력 채널 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -1353,7 +1369,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IGuideControl.IsGuideOn">
             <summary>
-            가이드 빔(Guide) On/Off 상태
+            가이드 빔(Guide) On/Off 상태 조회및 설정
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IShutterControl">
@@ -1363,7 +1379,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IShutterControl.IsShutterOpen">
             <summary>
-            셔터(Shutter) 상태
+            셔터(Shutter) 상태 조회및 설정
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ILaser">
