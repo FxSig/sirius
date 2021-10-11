@@ -171,6 +171,74 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.#ctor(System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.IsAOn``1(``0)">
+            <summary>
+            A On 상태
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.IsAOn(System.UInt32)">
+            <summary>
+            A On 상태
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.IsBOn``1(``0)">
+            <summary>
+            B On 상태
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.IsBOn(System.UInt32)">
+            <summary>
+            B On 상태
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            16비트 채널 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.Update">
+            <summary>
+            입력 채널 업데이트
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.GetModuleCnt">
+            <summary>
+            채널(모듈)의 개수 얻기
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.AjinExtekDOutput">
             <summary>
             디지털 출력 인터페이스    
@@ -202,6 +270,118 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.#ctor(System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.OutOn``1(``0)">
+            <summary>
+            출력 켜기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.OutOn(System.UInt32)">
+            <summary>
+            출력 켜기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.OutOff``1(``0)">
+            <summary>
+            출력 끄기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.OutOff(System.UInt32)">
+            <summary>
+            출력 끄기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.IsOutOn``1(``0)">
+            <summary>
+            출력 켜짐 상태
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.IsOutOn(System.UInt32)">
+            <summary>
+            출력 켜짐 상태
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.IsOutOff``1(``0)">
+            <summary>
+            출력 꺼짐 상태
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.IsOutOff(System.UInt32)">
+            <summary>
+            출력 꺼짐 상태
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            16비트 채널 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.SetChannel(System.Int32,System.UInt16)">
+            <summary>
+            16비트 채널 설정
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.Update">
+            <summary>
+            출력 채널 업데이트
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.ReverseUpdate">
+            <summary>
+            하드웨어적인 출력 상태를 역으로 읽어와 채널 메모리 값을 업데이트
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.GetModuleCnt">
+            <summary>
+            출력 채널(모듈) 개수
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IDInputTrigger">
             <summary>
             디지털 입력 트리거 인터페이스
@@ -211,8 +391,8 @@
             <summary>
             트리거 동작 여부
             </summary>
-            <param name="inputStatus">현재의 입력값 </param>
-            <param name="msec">hold time 시간 (msec)</param>
+            <param name="inputStatus">접점 입력값</param>
+            <param name="msec">hold time (msec)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA">
@@ -220,12 +400,17 @@
             디지털 입력 A 접점 트리거
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggerA.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.DInputTriggerA.IsTriggered(System.Boolean,System.Int64)">
             <summary>
             트리거 동작 여부
             </summary>
-            <param name="inputStatus">현재의 입력값 </param>
-            <param name="msec">hold time 시간 (msec)</param>
+            <param name="inputStatus">접점 입력값 </param>
+            <param name="msec">hold time (msec)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerB">
@@ -237,8 +422,8 @@
             <summary>
             트리거 동작 여부
             </summary>
-            <param name="inputStatus">현재의 입력값</param>
-            <param name="msec">hold time 시간 (msec)</param>
+            <param name="inputStatus">접점 입력값</param>
+            <param name="msec">hold time (msec)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputVirtual">
@@ -271,6 +456,66 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOn``1(``0)">
+            <summary>
+            A On 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">열거형 대상</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOn(System.UInt32)">
+            <summary>
+            A On 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOn``1(``0)">
+            <summary>
+            B On 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">열거형 대상</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOn(System.UInt32)">
+            <summary>
+            B On 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            채널 16비트값 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.Update">
+            <summary>
+            입력 채널들 업데이트
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DOutputVirtual">
             <summary>
@@ -343,77 +588,81 @@
             <summary>
             해당 접점 출력 On
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOn(System.UInt32)">
             <summary>
             해당 접점 출력 Off
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOff``1(``0)">
             <summary>
             해당 접점 출력 Off
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOff(System.UInt32)">
             <summary>
             해당 접점 출력 Off
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOn``1(``0)">
             <summary>
             해당 접점 출력 On 상태 여부
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOn(System.UInt32)">
             <summary>
             해당 접점 출력 On 상태 여부
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOff``1(``0)">
             <summary>
             해당 접점 출력 Off 상태 여부
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOff(System.UInt32)">
             <summary>
             해당 접점 출력 Off 상태 여부
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.GetChannel(System.Int32,System.UInt16@)">
             <summary>
             해당 채널 16비트 상태 가져오기
             </summary>
-            <param name="ch"></param>
-            <param name="d16bits"></param>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.SetChannel(System.Int32,System.UInt16)">
             <summary>
             해당 채널 16비트 상태 강제 Override
             </summary>
-            <param name="ch"></param>
-            <param name="d16bits"></param>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.Update">
             <summary>
-            출력 업데이트
+            출력 채널들 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -457,36 +706,38 @@
             <summary>
             해당 접점 입력 AOn 상태
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">열거형 번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsAOn(System.UInt32)">
             <summary>
             해당 접점 입력 AOn 상태
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOn``1(``0)">
             <summary>
             해당 접점 입력 BOn 상태
             </summary>
-            <param name="no"></param>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">열거형 번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOn(System.UInt32)">
             <summary>
             해당 접점 입력 BOn 상태
             </summary>
-            <param name="no"></param>
+            <param name="no">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.GetChannel(System.Int32,System.UInt16@)">
             <summary>
             해당 채널 16비트 상태 얻기
             </summary>
-            <param name="ch"></param>
-            <param name="d16bits"></param>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.Update">
@@ -526,6 +777,69 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtc"></param>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.IsAOn``1(``0)">
+            <summary>
+            A On 상태
+            </summary>
+            <typeparam name="T">열거형 타입</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.IsAOn(System.UInt32)">
+            <summary>
+            A On 상태
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.IsBOn``1(``0)">
+            <summary>
+            B On 상태
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.IsBOn(System.UInt32)">
+            <summary>
+            B On 상태
+            </summary>
+            <param name="no"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            16비트 채널값 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDInput.Update">
+            <summary>
+            입력 채널들 업데이트
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcDOutputExt2">
             <summary>
             디지털 출력 인터페이스    
@@ -557,6 +871,107 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtc"></param>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.OutOn``1(``0)">
+            <summary>
+            출력 켜기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.OutOn(System.UInt32)">
+            <summary>
+            출력 켜기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.OutOff``1(``0)">
+            <summary>
+            출력 끄기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.OutOff(System.UInt32)">
+            <summary>
+            출력 끄기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.IsOutOn``1(``0)">
+            <summary>
+            출력 켜짐 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.IsOutOn(System.UInt32)">
+            <summary>
+            출력 켜짐 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.IsOutOff``1(``0)">
+            <summary>
+            출력 꺼짐 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.IsOutOff(System.UInt32)">
+            <summary>
+            출력 꺼짐 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            16비트 채널 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.SetChannel(System.Int32,System.UInt16)">
+            <summary>
+            16비트 채널 설정
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.Update">
+            <summary>
+            출력 채널 업데이트
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcDOutputExt1">
             <summary>
             디지털 출력 인터페이스    
@@ -587,6 +1002,107 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+            <summary>
+            생서자
+            </summary>
+            <param name="rtc"></param>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.OutOn``1(``0)">
+            <summary>
+            출력 켜기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.OutOn(System.UInt32)">
+            <summary>
+            출력 켜기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.OutOff``1(``0)">
+            <summary>
+            출력 끄기
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.OutOff(System.UInt32)">
+            <summary>
+            출력 끄기
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.IsOutOn``1(``0)">
+            <summary>
+            출력 켜짐 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.IsOutOn(System.UInt32)">
+            <summary>
+            출력 켜짐 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.IsOutOff``1(``0)">
+            <summary>
+            출력 꺼짐 여부
+            </summary>
+            <typeparam name="T">열거형</typeparam>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.IsOutOff(System.UInt32)">
+            <summary>
+            출력 꺼짐 여부
+            </summary>
+            <param name="no">번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.GetChannel(System.Int32,System.UInt16@)">
+            <summary>
+            16비트 채널 얻기
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.SetChannel(System.Int32,System.UInt16)">
+            <summary>
+            16비트 채널 설정
+            </summary>
+            <param name="ch">채널</param>
+            <param name="d16bits">16비트값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.Update">
+            <summary>
+            채널 출력 업데이트
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryDX">
             <summary>
@@ -2004,6 +2520,96 @@
         <member name="E:SpiralLab.Sirius.MotorAjinExtek.PropertyChanged">
             <summary>
             속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.No">
+            <summary>
+            모터 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.CommandPosition">
+            <summary>
+            위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualPosition">
+            <summary>
+            실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualVelocity">
+            <summary>
+            속도 (mm/sec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoAlarm">
+            <summary>
+            서보 알람 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearching">
+            <summary>
+            원점 검색중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsServoOn">
+            <summary>
+            서보 온오프 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsDriving">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsCwSenOn">
+            <summary>
+            CW 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsCCwSenOn">
+            <summary>
+            CCW 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsOrgSenOn">
+            <summary>
+            ORG 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.PulsePerMm">
+            <summary>
+            모터 스케일 설정 : Pulses/mm
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.ConvertMmToPulse(System.Single)">
@@ -3803,6 +4409,20 @@
             <param name="busyWait">모든 리스트 명령의 실행이 완료될때까지 대기</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.IsDuplicated(System.Numerics.Vector2)">
+            <summary>
+            데이타 중복 여부
+            </summary>
+            <param name="vPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.IsListReady(System.UInt32)">
+            <summary>
+            내부 버퍼 메모리 상태 처리
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlHomePosition(System.Numerics.Vector2)">
             <summary>
             지정된 위치를 홈(Home) 위치로 설정
@@ -3861,6 +4481,13 @@
             <param name="tableIndex">테이블 번호 (Table1)</param>
             <param name="parameter">CorrectionFileHeader 열거 항목</param>
             <param name="data">조회된 데이타</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMarkingInfo(SpiralLab.Sirius.IRtcMarkingInfo@)">
+            <summary>
+            마킹 정보 얻기
+            </summary>
+            <param name="info">Rtc5MarkingInfo</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlTrackingError(SpiralLab.Sirius.ScannerHead,System.UInt32,System.UInt32)">
@@ -5215,6 +5842,20 @@
             <param name="busyWait">모든 리스트 명령의 실행이 완료될때까지 대기</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.IsDuplicated(System.Numerics.Vector2)">
+            <summary>
+            좌표 중복 여부
+            </summary>
+            <param name="vPosition"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.IsListReady(System.UInt32)">
+            <summary>
+            내부 버퍼 메모리 상태 처리
+            </summary>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlHomePosition(System.Numerics.Vector2)">
             <summary>
             지정된 위치를 홈(Home) 위치로 설정
@@ -5273,6 +5914,13 @@
             <param name="tableIndex"></param>
             <param name="parameter"></param>
             <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMarkingInfo(SpiralLab.Sirius.IRtcMarkingInfo@)">
+            <summary>
+            마킹 정보 얻기
+            </summary>
+            <param name="info">Rtc6MarkingInfo</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlTrackingError(SpiralLab.Sirius.ScannerHead,System.UInt32,System.UInt32)">
