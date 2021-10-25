@@ -15,6 +15,14 @@ namespace SpiralLab.Sirius
     /// </summary>
     public class MotorZ : SpiralLab.Sirius.IMotor
     {
+        /// <summary>
+        /// 원점 탐색 완료시 발생되는 이벤트 핸들러
+        /// </summary>
+        public event EventHandler MotorHomed;
+        /// <summary>
+        /// INotifyPropertyChanged 인터페이스 구현
+        /// 속성값 변경시 발생되는 이벤트 핸들러 
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
         /// <summary>
         /// 동기화 객체
@@ -76,6 +84,8 @@ namespace SpiralLab.Sirius
         /// 모터 ORG 센서 감지 여부
         /// </summary>
         public bool IsOrgSenOn { get; private set; }
+
+        public float MaxSpeed { get; set; }
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -122,7 +132,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="position">위치</param>
         /// <returns></returns>
-        public bool CtlMoveAbs(float position, float vel, float acc)
+        public bool CtlMoveAbs(float position, float vel)
         {
             Thread.Sleep(100);
             CommandPosition = ActualPosition = position;
@@ -133,15 +143,14 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public bool CtlMoveRel(float distance, float vel, float acc)
+        public bool CtlMoveRel(float distance, float vel)
         {
             Thread.Sleep(100);
             CommandPosition += distance;
             ActualPosition += distance;
             return true;
         }
-
-        public bool CtlMoveJog(float vel, float acc)
+        public bool CtlMoveJog(float vel)
         {
             return true;
         }

@@ -340,7 +340,7 @@ namespace SpiralLab.Sirius
                                     success &= !motorZ.IsBusy;
                                     success &= !motorZ.IsError;
                                     if (success)
-                                        success &= motorZ.CtlMoveAbs(layer.ZPosition, 1000, 1000);
+                                        success &= motorZ.CtlMoveAbs(layer.ZPosition, 10);
                                     if (!success)
                                         Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: motor Z invalid position/status");
                                 }

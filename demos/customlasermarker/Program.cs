@@ -58,14 +58,14 @@ namespace SpiralLab.Sirius
 
             #region initialize Laser source
             //var laser = new LaserVirtual(0, "Virtual", 20);
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            var laser = new IPGYLPTypeD(0, "IPG YLP Type D", 1, 20);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            var laser = new YourCustomLaser(0, "custom laser", 20.0f);
-            //var laser2 = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
+            //var laser = new YourCustomLaser(0, "custom laser", 20.0f);
+            //var laser = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
 
             laser.Rtc = rtc;
             laser.Initialize();

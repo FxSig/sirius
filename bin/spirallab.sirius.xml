@@ -1161,13 +1161,18 @@
             가공 대상에 대한 옵션 (기본값 : All)
             </summary>  
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.RepeatSelectedButBoundRect">
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsGuided">
+            <summary>
+            가이드 레이저를 이용한 가공시
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.RepeatSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
             외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.SpeedSelectedButBoundRect">
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.SpeedSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
             외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)
@@ -1298,13 +1303,18 @@
             가공 대상에 대한 옵션 (기본값 : All)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.RepeatSelectedButBoundRect">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsGuided">
+            <summary>
+            가이드 레이저를 이용한 가공시
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.RepeatSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
             외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.SpeedSelectedButBoundRect">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.SpeedSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
             외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)
@@ -1567,18 +1577,18 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Laser.IPGYLPForm.components">
+        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.components">
             <summary> 
             필수 디자이너 변수입니다.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.Dispose(System.Boolean)">
             <summary> 
             사용 중인 모든 리소스를 정리합니다.
             </summary>
             <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.InitializeComponent">
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
@@ -1613,6 +1623,28 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.LaserForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TransitForm">
+            <summary>
+            사용자 입력 각도 만큼의 회전 편집폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.TransitForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TransitForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.TransitForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -1697,7 +1729,7 @@
             폐(댣힌) 영역을 가진 엔티티에 대해서만 동작
             </summary>    
         </member>
-        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             해치 인자를 통해 해칭된 그룹 객체를 얻는다
             </summary>
@@ -1706,6 +1738,7 @@
             <param name="angle2">Cross Line 모드시 두번재 해치 각도</param>        
             <param name="interval">해치 간격 (mm)</param>
             <param name="exclude">해치 외부 제외 영역 길이 (mm)</param>        
+            <param name="shift">오프셋 이동량 (mm)</param>  
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.LwPolyLineVertex">
@@ -2267,7 +2300,7 @@
             <param name="layer">대상 레이어</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
+        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
             <summary>
             지정된 엔티티가 닫힌 형태라면 해치 패턴을 추가하고 이를 신규 그룹 개체로 생성한다. 
             </summary>
@@ -2277,6 +2310,7 @@
             <param name="angle2">크로스 해치 모드 시 두번째 해치 각도</param>
             <param name="interval">해치 간격</param>
             <param name="exclude">해치 외곽 제외 영역</param>
+            <param name="shift">해치 오프셋 (mm)</param>
             <param name="layer">대상 레이어</param>
             <returns></returns>
         </member>
@@ -5449,11 +5483,6 @@
             Hatch (Line)
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.BarcodeShapeType.Pattern">
-            <summary>
-            사용자 정의 패턴
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.IDrawable">
             <summary>
             화면에 출력(렌더)이 가능한 엔티티(Entity)에 대한 인터페이스
@@ -5717,6 +5746,11 @@
         <member name="P:SpiralLab.Sirius.HatchForm.Interval">
             <summary>
             해치 간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.Shift">
+            <summary>
+            간격 시작 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.HatchForm.Exclude">
@@ -6116,16 +6150,6 @@
             <summary>
             사전 작업
             순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.MarkerDefault.progressTotal">
-            <summary>
-            진행률 계산을 위한 전체 인덱스 개수 (인덱스 = 오프셋 개수 * 레이어 개수 * 레이어내 엔티티 수)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.MarkerDefault.progressIndex">
-            <summary>
-            진행률 계산을 위한 현재 인덱스 위치
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MarkerDefault.oldMatrixStack">
@@ -7213,6 +7237,21 @@
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorZ">
             <summary>
             스캐너 Z 축 제어용 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Input">
+            <summary>
+            RTC 확장1 포트 16입력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Output">
+            <summary>
+            RTC 확장1 포트 16출력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension2Output">
+            <summary>
+            RTC 확장2 포트 8출력
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">

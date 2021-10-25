@@ -43,18 +43,21 @@ namespace SpiralLab.Sirius
         {
             UpdateNames();
 
-            DigitalInput = new AjinExtekDInput(0, "D.IN");
-            //DigitalInput = new AdlinkDInput<NoName>(0, "D.IN", 7230, 0);
-            //DigitalInput = new RtcDInput<NoName>(rtc, 0, "D.IN");
-            DigitalInput.Initialize();
-
-            DigitalOutput = new AjinExtekDOutput(0, "D.OUT");
-            //DigitalOutput = new AdlinkDOutput<NoName>(0, "D.OUT", 7230, 0);
-            //DigitalOutput = new RtcDOutput<NoName>(rtc, 0, "D.OUT");
-            DigitalOutput.Initialize();
+            var motorParameterFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "motion", "ajinmotorparameterfile.mot");
+            MotorAjinExtek.LoadParameterFile(motorParameterFile);
 
             MotorZ = new MotorAjinExtek(0, "Z Axis");
             MotorZ.Initialize();
+
+            DigitalInput = new AjinExtekDInput(0, "D.IN");
+            //DigitalInput = new AdlinkDInput(0, "D.IN", 7230, 0);
+            //DigitalInput = new RtcDInput(rtc, 0, "D.IN");
+            DigitalInput.Initialize();
+
+            DigitalOutput = new AjinExtekDOutput(0, "D.OUT");
+            //DigitalOutput = new AdlinkDOutput(0, "D.OUT", 7230, 0);
+            //DigitalOutput = new RtcDOutput(rtc, 0, "D.OUT");
+            DigitalOutput.Initialize();
 
             timer.Enabled = true;
         }
@@ -117,7 +120,7 @@ namespace SpiralLab.Sirius
                 dgvInput.ResumeLayout();
             }
             {
-                DigitalOutput.Update();
+
                 DigitalOutput.GetChannel(0, out ushort bits);
                 dgvOutput.SuspendLayout();
                 for (int i = 0; i < dgvOutput.RowCount; i++)
@@ -220,6 +223,7 @@ namespace SpiralLab.Sirius
                 DigitalOutput.OutOff(bitPosition);
             else
                 DigitalOutput.OutOn(bitPosition);
+            DigitalOutput.Update();
             dgvOutput.ClearSelection();
         }
 
@@ -240,8 +244,7 @@ namespace SpiralLab.Sirius
         {
             var pos = float.Parse(textBox2.Text);
             var vel = float.Parse(textBox3.Text);
-            var acc = float.Parse(textBox4.Text);
-            MotorZ.CtlMoveAbs(pos, vel, acc);
+            MotorZ.CtlMoveAbs(pos, vel);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -272,8 +275,7 @@ namespace SpiralLab.Sirius
         private void button8_MouseDown(object sender, MouseEventArgs e)
         {
             var vel = float.Parse(textBox3.Text);
-            var acc = float.Parse(textBox4.Text);
-            MotorZ.CtlMoveJog(-Math.Abs(vel), acc);
+            MotorZ.CtlMoveJog(-Math.Abs(vel));
         }
 
         private void button8_MouseUp(object sender, MouseEventArgs e)
@@ -284,8 +286,7 @@ namespace SpiralLab.Sirius
         private void button9_MouseDown(object sender, MouseEventArgs e)
         {
             var vel = float.Parse(textBox3.Text);
-            var acc = float.Parse(textBox4.Text);
-            MotorZ.CtlMoveJog(Math.Abs(vel), acc);
+            MotorZ.CtlMoveJog(Math.Abs(vel));
         }
 
         private void button9_MouseUp(object sender, MouseEventArgs e)

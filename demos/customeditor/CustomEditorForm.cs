@@ -951,7 +951,7 @@ namespace CustomEditor
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
-            this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, form.Angle, form.Angle2, form.Interval, form.Exclude);
+            this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, form.Angle, form.Angle2, form.Interval, form.Exclude, form.Shift);
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
