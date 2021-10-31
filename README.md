@@ -62,6 +62,7 @@
 
  - e-mail : labspiral@gmail.com
  - homepage : http://spirallab.co.kr                        
+ - developer page : http://www.spirallab.co.kr/?page_id=229
  - git repository : https://github.com/labspiral/sirius.git
  - phone : +82-10-9619-3896
  - Please contact to me to use commerically.
@@ -71,55 +72,55 @@
 **5. Version history**
 
 * 2021.10.29 v1.8.2
- - fixed) mark entities' parameters by pen color and added pen editor 
- - fixed) optimized hatched line path in hatch (text, barcode, ...), hatch with zig zag order
- - fixed) scanner field correction with 3d (ct5, ctb) bugs
+   - fixed) mark entities' parameters by pen color and added pen editor 
+   - fixed) optimized hatched line path in hatch (text, barcode, ...), hatch with zig zag order
+   - fixed) scanner field correction with 3d (ct5, ctb) bugs
 
 * 2021.10.25 v1.8.1
- - fixed) Photonics Industry DX laser supported guide laser by 5% PEC level
- - fixed) support mark target combination (if laser guide on : no mark in internal hatch / possible to override speed and repeat )
- - fixed) wrong mark with barcode entities if shape type are dots
- - fixed) true font type : points are calculated based on distance 
- - added) IMotor with maximum limit of velocity 
+   - fixed) Photonics Industry DX laser supported guide laser by 5% PEC level
+   - fixed) support mark target combination (if laser guide on : no mark in internal hatch / possible to override speed and repeat )
+   - fixed) wrong mark with barcode entities if shape type are dots
+   - fixed) true font type : points are calculated based on distance 
+   - added) IMotor with maximum limit of velocity 
 
 * 2021.10.18 v1.8.0
- - fixed) Photonics Industry DX laser communication
- - fixed) IMotor interface and MotorAjinExtek bug
- - fixed) SiriusEditorForm support with DInput/DOutput by IRtcExtension CtlReadData/CtlWriteData 
+   - fixed) Photonics Industry DX laser communication
+   - fixed) IMotor interface and MotorAjinExtek bug
+   - fixed) SiriusEditorForm support with DInput/DOutput by IRtcExtension CtlReadData/CtlWriteData 
 
 * 2021.10.04 v1.7.9
- - fixed) sort and merge group entity's path
- - fixed) accuracy of barcode cell's pitch, support cell array size, scale factor
- - fixed) rtc field size for check out of range 
- - fixed) reset rtc's' external start when marker has stopped
- - fixed) laser path simulation with vary speed (short-cut : CTRL + F9,10,11)
+   - fixed) sort and merge group entity's path
+   - fixed) accuracy of barcode cell's pitch, support cell array size, scale factor
+   - fixed) rtc field size for check out of range 
+   - fixed) reset rtc's' external start when marker has stopped
+   - fixed) laser path simulation with vary speed (short-cut : CTRL + F9,10,11)
 
 * 2021.09.29 v1.7.8
- - updated) icons set
- - added) 1/2d barcode with dot N*N array
- - added) group form with path sort and merge within polylines
- - added) arc with reverse winding
- - added) default laser comm screen in editor
- - fixed) group/ungroup with specific buttons (not by context menu)
- - fixed) working properly keyboard shortcuts 
- - fixed) laser path simulation bug when draw small arc < 0.2 radius
+   - updated) icons set
+   - added) 1/2d barcode with dot N*N array
+   - added) group form with path sort and merge within polylines
+   - added) arc with reverse winding
+   - added) default laser comm screen in editor
+   - fixed) group/ungroup with specific buttons (not by context menu)
+   - fixed) working properly keyboard shortcuts 
+   - fixed) laser path simulation bug when draw small arc < 0.2 radius
 
 * 2021.09.19 v1.7.7
- - fixed) support drag and drop at listbox (like as group, offset, ...)
- - fixed) arc entity's start/sweep angle with grip point
- - fixed) group entity with continous path (experimental)
- - fixed) barcode entity with hatch scale factor
+   - fixed) support drag and drop at listbox (like as group, offset, ...)
+   - fixed) arc entity's start/sweep angle with grip point
+   - fixed) group entity with continous path (experimental)
+   - fixed) barcode entity with hatch scale factor
 
 * 2021.09.11 v1.7.6
- - added) improved selection algorithm by ctrl, shift, alt key combination
- - added) support serial communication with IPG YLP laser source 
- - added) support serial communication with OptoWave Fotia laser source
- - added) support serial communication with Photonics Industry DX laser source
- - added) support serial communication with JPT TypeE laser source
- - added) motor/digital io demo project (based on AJINEXTEK controller)
- - fixed) out of memory exception (at treeview nodes)
- - fixed) ctb/ct5 file extension display bug at field correction winform
- - fixed) hatching within group entity
+   - added) improved selection algorithm by ctrl, shift, alt key combination
+   - added) support serial communication with IPG YLP laser source 
+   - added) support serial communication with OptoWave Fotia laser source
+   - added) support serial communication with Photonics Industry DX laser source
+   - added) support serial communication with JPT TypeE laser source
+   - added) motor/digital io demo project (based on AJINEXTEK controller)
+   - fixed) out of memory exception (at treeview nodes)
+   - fixed) ctb/ct5 file extension display bug at field correction winform
+   - fixed) hatching within group entity
 
  * 2021.09.02 v1.7.5
    - added) entity with script (compile and execute by C# codes) : barcode, text, siriustext ,...
