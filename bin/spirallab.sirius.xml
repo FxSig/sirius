@@ -1418,184 +1418,184 @@
             </summary>
             <param name="name">이름</param>
         </member>
-        <member name="T:SpiralLab.Sirius.CorrectionOld3DForm">
+        <member name="T:SpiralLab.Sirius.Correction3DRtcCtbForm">
             <summary>
             스캐너 3D 보정용 폼
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionOld3DForm.RtcCorrection">
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCtbForm.RtcCorrection">
             <summary>
             RtcCorrection3D 객체
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.CorrectionOld3DForm.OnApply">
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnApply">
             <summary>
             Apply 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.CorrectionOld3DForm.OnClose">
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnClose">
             <summary>
             창(폼) 닫힐시 이벤트 핸들러
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.#ctor(SpiralLab.Sirius.RtcOldCorrection3D)">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCtbForm.#ctor(SpiralLab.Sirius.Correction3DRtcCtb)">
             <summary>
             생성자
             </summary>
             <param name="rtcCorrection">RtcCorrection3D 객체</param>
         </member>
-        <member name="F:SpiralLab.Sirius.CorrectionOld3DForm.components">
+        <member name="F:SpiralLab.Sirius.Correction3DRtcCtbForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCtbForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCtbForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.CorrectionOld2DForm">
+        <member name="T:SpiralLab.Sirius.Correction2DRtcCtbForm">
             <summary>
             스캐너 2D 보정용 폼
             RTC3/4의 ctb 파일 포맷용 (old ctb format)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.CorrectionOld2DForm.RtcCorrection">
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCtbForm.RtcCorrection">
             <summary>
             RtcOldCorrection2D 객체
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnConvert">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnConvert">
             <summary>
             Convert 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnApply">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnApply">
             <summary>
             Apply 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.CorrectionOld2DForm.OnClose">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnClose">
             <summary>
             창(폼) 닫힐시 이벤트 핸들러
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.#ctor(SpiralLab.Sirius.RtcOldCorrection2D)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCtbForm.#ctor(SpiralLab.Sirius.Correction2DRtcCtb)">
             <summary>
             생성자
             </summary>
             <param name="rtcCorrection">RtcOldCorrection2D 객체</param>
         </member>
-        <member name="F:SpiralLab.Sirius.CorrectionOld2DForm.components">
+        <member name="F:SpiralLab.Sirius.Correction2DRtcCtbForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCtbForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.CorrectionOld2DForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCtbForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.Correction2DForm">
+        <member name="T:SpiralLab.Sirius.Correction2DRtcCt5Form">
             <summary>
             스캐너 2D 보정용 폼
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Correction2DForm.RtcCorrection">
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCt5Form.RtcCorrection">
             <summary>
             RtcCorrection2D 객체
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Correction2DForm.OnConvert">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnConvert">
             <summary>
             Convert 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Correction2DForm.OnApply">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnApply">
             <summary>
             Apply 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Correction2DForm.OnClose">
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnClose">
             <summary>
             창(폼) 닫힐시 이벤트 핸들러
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DForm.#ctor(SpiralLab.Sirius.RtcCorrection2D)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5Form.#ctor(SpiralLab.Sirius.Correction2DRtcCt5)">
             <summary>
             생성자
             </summary>
             <param name="rtcCorrection">RtcCorrection2D 객체</param>
         </member>
-        <member name="F:SpiralLab.Sirius.Correction2DForm.components">
+        <member name="F:SpiralLab.Sirius.Correction2DRtcCt5Form.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5Form.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5Form.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.Correction3DForm">
+        <member name="T:SpiralLab.Sirius.Correction3DRtcCt5Form">
             <summary>
             스캐너 3D 보정용 폼
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Correction3DForm.RtcCorrection">
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCt5Form.RtcCorrection">
             <summary>
             RtcCorrection3D 객체
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Correction3DForm.OnApply">
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnApply">
             <summary>
             Apply 버튼 클릭시 이벤트 핸들러
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Correction3DForm.OnClose">
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnClose">
             <summary>
             창(폼) 닫힐시 이벤트 핸들러
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DForm.#ctor(SpiralLab.Sirius.RtcCorrection3D)">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCt5Form.#ctor(SpiralLab.Sirius.Correction3DRtcCt5)">
             <summary>
             생성자
             </summary>
             <param name="rtcCorrection">RtcCorrection3D 객체</param>
         </member>
-        <member name="F:SpiralLab.Sirius.Correction3DForm.components">
+        <member name="F:SpiralLab.Sirius.Correction3DRtcCt5Form.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCt5Form.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCt5Form.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
