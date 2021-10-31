@@ -526,9 +526,6 @@ namespace CustomEditor
             trvEntity.Nodes.Clear();
             this.FileName = string.Empty;
             this.Document.Action.ActNew();
-
-            var pen = new PenDefault();
-            this.Document.Action.ActEntityAdd(pen);
         }
         private void btnOpen_Click(object sender, EventArgs e)
         {

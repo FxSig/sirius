@@ -63,9 +63,12 @@ namespace SpiralLab.Sirius
             // 문서 지정
             siriusEditorForm1.Document = doc;
 
-            // 기본 펜 생성후 문서에 추가
-            var pen = new PenDefault();
-            doc.Action.ActEntityAdd(pen);
+            if (siriusEditorForm1.EnablePens)
+            {
+                // 기본 펜 생성후 문서에 추가
+                var pen = new PenDefault();
+                doc.Action.ActEntityAdd(pen);
+            }
 
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;

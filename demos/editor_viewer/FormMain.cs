@@ -25,10 +25,13 @@ namespace SpiralLab.Sirius
             //에디터에 문서 지정시 레이어가 없으면 자동 생성됨
             siriusEditorForm1.Document = doc;
             siriusViewerForm1.Document = doc;
-            
-            // 기본 펜 개체 생성
-            var pen = new PenDefault();
-            doc.Action.ActEntityAdd(pen);
+
+            if (siriusEditorForm1.EnablePens)
+            {
+                // 기본 펜 생성후 문서에 추가
+                var pen = new PenDefault();
+                doc.Action.ActEntityAdd(pen);
+            }
 
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
