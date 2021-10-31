@@ -70,13 +70,17 @@
 
 **5. Version history**
 
+* 2021.10.29 v1.8.2
+ - fixed) mark entities' parameters by pen color and added pen editor 
+ - fixed) optimized hatched line path in hatch (text, barcode, ...), hatch with zig zag order
+ - fixed) scanner field correction with 3d (ct5, ctb) bugs
+
 * 2021.10.25 v1.8.1
  - fixed) Photonics Industry DX laser supported guide laser by 5% PEC level
- - fixed) support mark target combination
-          - if laser guide on : no mark in internal hatch / possible to override speed and repeat 
+ - fixed) support mark target combination (if laser guide on : no mark in internal hatch / possible to override speed and repeat )
  - fixed) wrong mark with barcode entities if shape type are dots
  - fixed) true font type : points are calculated based on distance 
- - support) IMotor with maximum limit of velocity 
+ - added) IMotor with maximum limit of velocity 
 
 * 2021.10.18 v1.8.0
  - fixed) Photonics Industry DX laser communication

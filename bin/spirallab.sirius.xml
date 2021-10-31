@@ -1216,6 +1216,16 @@
             가공이 성공적으로 완료되었는지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsEnablePens">
+            <summary>
+            펜 집합 사용 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsScannerPowerFaultAsError">
+            <summary>
+            Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
             <summary>
             사용자 정의 데이타
@@ -1357,6 +1367,16 @@
             가공 성공적으로 완료 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsEnablePens">
+            <summary>
+            펜 집합 사용 여부
+            </summary> 
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsScannerPowerFaultAsError">
+            <summary>
+            Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
             <summary>
             사용자 정의 데이타
@@ -1397,6 +1417,49 @@
             생성자
             </summary>
             <param name="name">이름</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.CorrectionOld3DForm">
+            <summary>
+            스캐너 3D 보정용 폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CorrectionOld3DForm.RtcCorrection">
+            <summary>
+            RtcCorrection3D 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CorrectionOld3DForm.OnApply">
+            <summary>
+            Apply 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.CorrectionOld3DForm.OnClose">
+            <summary>
+            창(폼) 닫힐시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.#ctor(SpiralLab.Sirius.RtcOldCorrection3D)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtcCorrection">RtcCorrection3D 객체</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionOld3DForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionOld3DForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionOld2DForm">
             <summary>
@@ -1729,11 +1792,12 @@
             폐(댣힌) 영역을 가진 엔티티에 대해서만 동작
             </summary>    
         </member>
-        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             해치 인자를 통해 해칭된 그룹 객체를 얻는다
             </summary>
             <param name="mode">해치 모드</param>
+            <param name="zigZag">지그재그 사용여부</param>
             <param name="angle">해치 각도</param>
             <param name="angle2">Cross Line 모드시 두번재 해치 각도</param>        
             <param name="interval">해치 간격 (mm)</param>
@@ -2300,12 +2364,13 @@
             <param name="layer">대상 레이어</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Single,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
+        <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
             <summary>
             지정된 엔티티가 닫힌 형태라면 해치 패턴을 추가하고 이를 신규 그룹 개체로 생성한다. 
             </summary>
             <param name="entities">엔티티 리스트</param>
             <param name="mode">해치 모드</param>
+            <param name="zigZag">지그 재그 사용여부</param>
             <param name="angle">해치 각도</param>
             <param name="angle2">크로스 해치 모드 시 두번째 해치 각도</param>
             <param name="interval">해치 간격</param>
@@ -2879,6 +2944,11 @@
         <member name="P:SpiralLab.Sirius.IDocument.Layers">
             <summary>
             레이어 컨테이너 (내부에 복수개의 Layer 가 있고, Layer 안에 복수개의 Entity 가 있음)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDocument.Pens">
+            <summary>
+            펜 엔티티의 집합으로 레이저 가공 파라메터의 모음
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Tag">
@@ -5733,6 +5803,11 @@
             해치 모드
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.HatchForm.ZigZag">
+            <summary>
+            지그 재그 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.HatchForm.Angle">
             <summary>
             해치 각도
@@ -5941,6 +6016,11 @@
         <member name="P:SpiralLab.Sirius.IMarker.Document">
             <summary>
             복제된 문서(IDocument) 객체에 대한 접근 (Ready 호출시 복제됨)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarker.IsEnablePens">
+            <summary>
+            펜 객체 집합을 사용할지 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Tag">
@@ -7257,6 +7337,12 @@
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">
             <summary>
             오른쪽 속성창 보여주기 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.EnablePens">
+            <summary>
+            True : 펜집합 사용
+            False : 개별 펜 사용
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.#ctor">

@@ -97,9 +97,14 @@ namespace SpiralLab.Sirius
         /// 복제된 문서 객체
         /// </summary>
         private IDocument clonedDoc;
-
+        /// <summary>
+        /// 스캐너 회전 장착시 일정 각도를 적용하여 가공시 사용
+        /// </summary>
         public double ScannerRotateAngle { get; set; }
-
+        /// <summary>
+        /// 멀티 펜 편집기를 이용한 에디터 구성 여부
+        /// </summary>
+        public bool IsEnablePens { get; set; }
         /// <summary>
         /// 부가 정보
         /// </summary>
