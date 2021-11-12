@@ -1423,6 +1423,18 @@
             스캐너 3D 보정용 폼
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnUserImportUpper">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z+
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnUserImportLower">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z-
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtcCtbForm.RtcCorrection">
             <summary>
             RtcCorrection3D 객체
@@ -1465,6 +1477,11 @@
             <summary>
             스캐너 2D 보정용 폼
             RTC3/4의 ctb 파일 포맷용 (old ctb format)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnUserImport">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtcCtbForm.RtcCorrection">
@@ -1515,6 +1532,11 @@
             스캐너 2D 보정용 폼
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnUserImport">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtcCt5Form.RtcCorrection">
             <summary>
             RtcCorrection2D 객체
@@ -1561,6 +1583,18 @@
         <member name="T:SpiralLab.Sirius.Correction3DRtcCt5Form">
             <summary>
             스캐너 3D 보정용 폼
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnUserImportUpper">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z+
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnUserImportLower">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z-
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtcCt5Form.RtcCorrection">
@@ -1655,6 +1689,23 @@
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.components">

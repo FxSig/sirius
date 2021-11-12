@@ -68,6 +68,8 @@ namespace SpiralLab.Sirius
         /// IRtc 객체
         /// </summary>
         public IRtc Rtc { get; set; }
+
+        public PowerControlMethod PowerControlMethod { get; set; }
         public bool IsPowerControl { get; set; }
         public bool IsShutterControl { get; set; }
         public bool IsGuideControl { get; set; }
@@ -86,6 +88,7 @@ namespace SpiralLab.Sirius
             this.Index = index;
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
+            PowerControlMethod = PowerControlMethod.Analog;
             IsPowerControl = true;
             IsShutterControl = false;
             IsGuideControl = false;

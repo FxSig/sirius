@@ -171,7 +171,7 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AjinExtekDInput.#ctor(System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.AjinExtekDInput.#ctor(System.UInt32,System.String)">
             <summary>
             생성자
             </summary>
@@ -270,7 +270,7 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.#ctor(System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.AjinExtekDOutput.#ctor(System.UInt32,System.String)">
             <summary>
             생성자
             </summary>
@@ -807,7 +807,7 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcDInput.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcDInput.#ctor(SpiralLab.Sirius.IRtc,System.UInt32,System.String)">
             <summary>
             생성자
             </summary>
@@ -901,7 +901,7 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.#ctor(SpiralLab.Sirius.IRtc,System.UInt32,System.String)">
             <summary>
             생성자
             </summary>
@@ -1033,7 +1033,7 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.#ctor(SpiralLab.Sirius.IRtc,System.UInt32,System.String)">
             <summary>
             생서자
             </summary>
@@ -3138,9 +3138,54 @@
             <param name="watt">파워 (W)</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerControlMethod">
+            <summary>
+            레이저 소스 파워 제어 방식 종류
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Unknown">
+            <summary>
+            모름
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Rs232">
+            <summary>
+            외부 통신
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.TcpIp">
+            <summary>
+            외부 통신 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Duty">
+            <summary>
+            펄스폭 비율을 통한 제어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Analog">
+            <summary>
+            아나로그 전압을 이용한 제어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.DigitalBits">
+            <summary>
+            디지털 비트 출력을 통한 제어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Custom">
+            <summary>
+            사용자 정의
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerControl">
             <summary>
             레이저 소스 IPowerControl 인터페이스 (파워 변경을 지원하는 레이저 소스)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerControl.PowerControlMethod">
+            <summary>
+            파워 변경 방식
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single)">
@@ -4364,9 +4409,19 @@
             Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.Frequency">
+            <summary>
+            마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.ListType">
+            <summary>
+            마지막 or 현재 설정된  리스트 타입 값 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsMOTF">
@@ -5379,9 +5434,19 @@
             Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.Frequency">
+            <summary>
+            마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.ListType">
+            <summary>
+            마지막 or 현재 설정된  리스트 타입 값 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.IsMOTF">
@@ -6812,9 +6877,19 @@
             Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.Frequency">
+            <summary>
+            마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.ListType">
+            <summary>
+            마지막 or 현재 설정된  리스트 타입 값 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsMOTF">
@@ -8005,9 +8080,19 @@
             레이저 신호 모드
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Frequency">
+            <summary>
+            마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ListType">
+            <summary>
+            마지막 or 현재 설정된  리스트 타입 값 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.IsMOTF">
@@ -9044,9 +9129,19 @@
             내부 필드 영역을 벋어날 경우 에러 처리됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.Frequency">
+            <summary>
+            마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.ListType">
+            <summary>
+            마지막 or 현재 설정된  리스트 타입 값 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.IsMOTF">
@@ -9489,6 +9584,11 @@
         <member name="P:SpiralLab.Sirius.IRtc.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.Frequency">
+            <summary>
+            마지막 설정된 주파수 (Hz) 값
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.CorrectionFiles">
