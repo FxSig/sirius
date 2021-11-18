@@ -122,7 +122,7 @@ namespace SpiralLab.Sirius
                         StopMarkAndReset(laser, rtc);
                         break;
                     case ConsoleKey.F:
-                        SpiralLab.Sirius.LaserForm laerForm = new SpiralLab.Sirius.LaserForm();
+                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm();
                         laerForm.Laser = laser;
                         laerForm.ShowDialog();
                         break;

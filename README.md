@@ -52,7 +52,6 @@
  - (x64) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x64.dll $(TargetDir)freetype6.dll"
  - (x32) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x32.dll $(TargetDir)freetype6.dll"
 
-![stitched image](http://www.spirallab.co.kr/wp-content/uploads/2021/06/unnamed-5-1-2.png)
 
  *The program running about 3 hours in evalution copy mode !*
  
@@ -70,6 +69,11 @@
 ----
 
 **5. Version history**
+
+* 2021.11.19 v1.8.3
+   - fixed) rtc4 list buffer handling bug, rtc4 CtlWriteData bug (RTC4 사용시 대용량 데이타 유실로 인해 마지막 3천개의 데이타만 가동되는 버그 해결)
+   - fixed) readyonly bug at correction3d winforms (Correction3D 윈폼에서 일부 데이타 입력 불가 버그 해결)
+   - added) stitched images are saved now (StitchedImage 에 지정된 개별셀 이미지가 파일에 저장 가능해짐)
 
 * 2021.10.29 v1.8.2
    - fixed) mark entities' parameters by pen color and added pen editor 

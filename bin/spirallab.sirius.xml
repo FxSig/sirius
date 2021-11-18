@@ -340,7 +340,7 @@
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.StitchedImage.Clear">
+        <member name="M:SpiralLab.Sirius.StitchedImage.ClearImages">
             <summary>
             모든 인덱스의 이미지 삭제
             </summary>
@@ -358,7 +358,7 @@
             인덱스 위치에 이미지 로드
             </summary>
             <param name="index">좌 상단 0</param>
-            <param name="bytes">바이트 배열</param>
+            <param name="bitmapBytes">비트맵 이미지 바이트 배열</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.StitchedImage.UpdateImage(System.Int32,System.IO.Stream)">
@@ -366,7 +366,15 @@
             인덱스 위치에 이미지 로드
             </summary>
             <param name="index">좌 상단 0</param>
-            <param name="stream">스트림</param>
+            <param name="bitmapStream">비트맵 이미지 스트림</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.StitchedImage.UpdateImage(System.Int32,System.Drawing.Bitmap)">
+            <summary>
+            인덱스 위치에 이미지 로드
+            </summary>
+            <param name="index">좌 상단 0</param>
+            <param name="bitmap">비트맵 이미지</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Ellipse">
@@ -1708,6 +1716,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Laser.LaserForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.components">
             <summary>
             Required designer variable.
@@ -1725,21 +1750,21 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.LaserForm.components">
-            <summary>
-            Required designer variable.
+        <member name="F:SpiralLab.Sirius.EnumDataGridView.components">
+            <summary> 
+            필수 디자이너 변수입니다.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
+        <member name="M:SpiralLab.Sirius.EnumDataGridView.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
             </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+        <member name="M:SpiralLab.Sirius.EnumDataGridView.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TransitForm">

@@ -99,7 +99,7 @@ namespace SpiralLab.Sirius
                         DrawLinesWithRotate(laser, rtc, 0, 360);
                         break;
                     case ConsoleKey.F:
-                        SpiralLab.Sirius.LaserForm laerForm = new SpiralLab.Sirius.LaserForm();
+                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm();
                         laerForm.Laser = laser;
                         laerForm.ShowDialog();
                         break;
