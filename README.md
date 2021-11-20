@@ -70,6 +70,11 @@
 
 **5. Version history**
 
+* 2021.11.21 v1.8.4
+   - added) new scanner correction with (c)SCANLAB Correction Pro (스캔랩의 CorrectionPro 프로그램 기반의 보정 지원)
+     - added) Correction2DRtc / Correction2DRtcForm (두개의 신규 클래스 추가됨)
+   - fixed) fail to scanner field correct when edge position of area has inputted (X,Y 측정위치가 영역의 가장 끝일 경우 발생하는 에러 해결)
+
 * 2021.11.19 v1.8.3
    - fixed) rtc4 list buffer handling bug, rtc4 CtlWriteData bug (RTC4 사용시 대용량 데이타 유실로 인해 마지막 3천개의 데이타만 가동되는 버그 해결)
    - fixed) readyonly bug at correction3d winforms (Correction3D 윈폼에서 일부 데이타 입력 불가 버그 해결)

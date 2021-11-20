@@ -33,9 +33,10 @@ namespace SpiralLab.Sirius
             // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             float fieldSize = 60;
             float interval = 20;
-            int rowcol = 3;
+            int rows = 3;
+            int cols = 3;
             float kfactor = (float)Math.Pow(2, 16) / fieldSize;
-            var correction = new Correction2DRtcCtb(kfactor, rowcol, rowcol, interval, srcFile, targetFile);
+            var correction = new Correction2DRtc(kfactor, rows, cols, interval, interval, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
@@ -49,7 +50,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.002f, -0.008f));
             #endregion
 
-            var form = new Correction2DRtcCtbForm(correction);
+            var form = new Correction2DRtcForm(correction);
             form.ShowDialog();
         }
 
@@ -114,7 +115,7 @@ namespace SpiralLab.Sirius
             int row = 3;
             int col = 3;
             float kfactor = (float)Math.Pow(2, 20) / fieldSize;
-            var correction = new Correction2DRtcCt5(kfactor, row, col, rowInterval, colInterval, srcFile, targetFile);
+            var correction = new Correction2DRtc(kfactor, row, col, rowInterval, colInterval, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
@@ -128,7 +129,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.002f, -0.008f));
             #endregion
 
-            var form = new Correction2DRtcCt5Form(correction);
+            var form = new Correction2DRtcForm(correction);
             form.ShowDialog();
         }
 

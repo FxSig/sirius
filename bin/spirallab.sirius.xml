@@ -1426,9 +1426,66 @@
             </summary>
             <param name="name">이름</param>
         </member>
+        <member name="T:SpiralLab.Sirius.Correction2DRtcForm">
+            <summary>
+            스캐너 2D 보정용 폼
+            RTC4/5/6의 ctb 및 ct5 파일 포맷용 
+            Correction2DRtc 기반으로 동작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcForm.OnUserImport">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcForm.RtcCorrection">
+            <summary>
+            RtcCorrection2D 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcForm.OnConvert">
+            <summary>
+            Convert 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcForm.OnApply">
+            <summary>
+            Apply 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction2DRtcForm.OnClose">
+            <summary>
+            창(폼) 닫힐시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DRtcForm.#ctor(SpiralLab.Sirius.Correction2DRtc)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtcCorrection">RtcCorrection2D 객체</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction2DRtcForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DRtcForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DRtcForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Correction3DRtcCtbForm">
             <summary>
             스캐너 3D 보정용 폼
+            RTC4의 ctb 파일 포맷용 
+            Correction3DRtcCtb 기반으로 동작
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnUserImportUpper">
@@ -1485,6 +1542,7 @@
             <summary>
             스캐너 2D 보정용 폼
             RTC3/4의 ctb 파일 포맷용 (old ctb format)
+            Correction2DRtcCtb 기반
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnUserImport">
@@ -1538,6 +1596,8 @@
         <member name="T:SpiralLab.Sirius.Correction2DRtcCt5Form">
             <summary>
             스캐너 2D 보정용 폼
+            RTC5/6의 ct5 파일 포맷용 
+            Correction2DRtcCt5 기반으로 동작
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnUserImport">
@@ -1591,6 +1651,8 @@
         <member name="T:SpiralLab.Sirius.Correction3DRtcCt5Form">
             <summary>
             스캐너 3D 보정용 폼
+            RTC5/6의 ct5 파일 포맷용 
+            Correction3DRtcCt5 기반으로 동작
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnUserImportUpper">
