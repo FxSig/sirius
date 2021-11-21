@@ -9776,6 +9776,11 @@
             정점간 중복 검사하여 합치기 위한 최소 거리값 (mm)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IRtc.ListType">
+            <summary>
+            현재 사용중인 리스트 타입
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
             <summary>
             RTC 카드 초기화
