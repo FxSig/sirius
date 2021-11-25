@@ -130,6 +130,11 @@
             보정 데이타중 스캐너 중심 위치에 0,0 이어야 하지만, 그렇지 않을경우 오프셋이 있는 중심위치값 만큼을 전체 데이타에서 빼기(오프셋)하여 보정을 하더라도 스캐너 중심이 변하지 않도록 해주는 기능
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtc.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.ResultMessage">
             <summary>
             변환 결과 로그 메시지
@@ -4941,7 +4946,7 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크 (Ellipse : 타원)
             </summary>
@@ -4951,6 +4956,7 @@
             <param name="startAngle">시작 각도</param>
             <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <param name="angleDelta">각도 미분량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
@@ -6007,7 +6013,7 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크 (Ellipse : 타원)
             </summary>
@@ -6017,6 +6023,7 @@
             <param name="startAngle">시작 각도</param>
             <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <param name="angleDelta">각도 미분량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
@@ -7450,7 +7457,7 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크 (Ellipse : 타원)
             </summary>
@@ -7460,6 +7467,7 @@
             <param name="startAngle">시작 각도</param>
             <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <param name="angleDelta">각도 미분량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
@@ -8613,7 +8621,7 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크 (Ellipse : 타원)
             </summary>
@@ -8623,6 +8631,7 @@
             <param name="startAngle">시작 각도</param>
             <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <param name="angleDelta">각도 미분량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
@@ -8744,6 +8753,11 @@
         <member name="P:SpiralLab.Sirius.Correction3DRtcCtb.DataUpper">
             <summary>
             최상단의 "절대위치, 측정위치" (mm) 배열 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCtb.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtcCtb.ResultMessage">
@@ -8872,6 +8886,11 @@
             보정 데이타중 스캐너 중심 위치에 0,0 이어야 하지만, 그렇지 않을경우 오프셋이 있는 중심위치값 만큼을 전체 데이타에서 빼기(오프셋)하여 보정을 하더라도 스캐너 중심이 변하지 않도록 해주는 기능
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCtb.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtcCtb.ResultMessage">
             <summary>
             변환 결과 로그 메시지
@@ -8995,6 +9014,11 @@
         <member name="P:SpiralLab.Sirius.Correction2DRtcCt5.IsAutoCenterOffset">
             <summary>
             보정 데이타중 스캐너 중심 위치에 0,0 이어야 하지만, 그렇지 않을경우 오프셋이 있는 중심위치값 만큼을 전체 데이타에서 빼기(오프셋)하여 보정을 하더라도 스캐너 중심이 변하지 않도록 해주는 기능
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCt5.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtcCt5.ResultMessage">
@@ -9131,6 +9155,11 @@
         <member name="P:SpiralLab.Sirius.Correction3DRtcCt5.DataUpper">
             <summary>
             최상단의 "절대위치, 측정위치" (mm) 배열 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCt5.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtcCt5.ResultMessage">
@@ -10028,7 +10057,7 @@
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크 (Ellipse : 타원)
             </summary>
@@ -10038,6 +10067,7 @@
             <param name="startAngle">시작 각도</param>
             <param name="sweepAngle">각도 회전량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
+            <param name="angleDelta">각도 미분량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
@@ -14321,6 +14351,11 @@
              int n_read_multi_mcbsp(uint CardNo, uint No);
             </summary>
         </member>
+        <member name="F:RTC5Import.RTC5Wrap.n_clear_fly_overflow_ctrl">
+            <summary>
+             void n_clear_fly_overflow_ctrl(uint CardNo, uint Mode);
+            </summary>
+        </member>
         <member name="F:RTC5Import.RTC5Wrap.set_ext_start_delay">
             <summary>
              void set_ext_start_delay(int Delay, uint EncoderNo);
@@ -14439,6 +14474,11 @@
         <member name="F:RTC5Import.RTC5Wrap.read_multi_mcbsp">
             <summary>
              int read_multi_mcbsp(uint No);
+            </summary>
+        </member>
+        <member name="F:RTC5Import.RTC5Wrap.clear_fly_overflow_ctrl">
+            <summary>
+             void clear_fly_overflow_ctrl(uint Mode);
             </summary>
         </member>
         <member name="F:RTC5Import.RTC5Wrap.n_get_time">
@@ -17641,6 +17681,16 @@
              void n_eth_get_com_timeouts(uint CardNo, out uint AcquireTimeout, out uint AcquireMaxRetries, out uint SendRecvTimeout, out uint SendRecvMaxRetries, out uint KeepAlive, out uint KeepInterval);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_eth_set_com_timeouts_auto">
+            <summary>
+             void n_eth_set_com_timeouts_auto(uint CardNo, double InitialTimeout, double MaxTimeout, double Multiplier, uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_eth_get_com_timeouts_auto">
+            <summary>
+             void n_eth_get_com_timeouts_auto(uint CardNo, out double InitialTimeout, out double MaxTimeout, out double Multiplier, out uint Mode);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_eth_check_connection">
             <summary>
              uint n_eth_check_connection(uint CardNo);
@@ -17664,6 +17714,26 @@
         <member name="F:RTC6Import.RTC6Wrap.n_store_program">
             <summary>
              uint n_store_program(uint CardNo, uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_read_image_eth">
+            <summary>
+             uint n_read_image_eth(uint CardNo, string Name);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_write_image_eth">
+            <summary>
+             uint n_write_image_eth(uint CardNo, string Name);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_eth_configure_link_loss">
+            <summary>
+             void n_eth_configure_link_loss(uint CardNo, uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_eth_get_standalone_status">
+            <summary>
+             void n_eth_get_standalone_status(uint CardNo, out uint Status, out uint Error, out uint Mode);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.eth_get_last_error">
@@ -17711,6 +17781,16 @@
              void eth_get_com_timeouts(out uint AcquireTimeout, out uint AcquireMaxRetries, out uint SendRecvTimeout, out uint SendRecvMaxRetries, out uint KeepAlive, out uint KeepInterval);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.eth_set_com_timeouts_auto">
+            <summary>
+             void eth_set_com_timeouts_auto(double InitialTimeout, double MaxTimeout, double Multiplier, uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.eth_get_com_timeouts_auto">
+            <summary>
+             void eth_get_com_timeouts_auto(out double InitialTimeout, out double MaxTimeout, out double Multiplier, out uint Mode);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.eth_check_connection">
             <summary>
              uint eth_check_connection();
@@ -17734,6 +17814,26 @@
         <member name="F:RTC6Import.RTC6Wrap.store_program">
             <summary>
              uint store_program(uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.read_image_eth">
+            <summary>
+             uint read_image_eth(string Name);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.write_image_eth">
+            <summary>
+             uint write_image_eth(string Name);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.eth_configure_link_loss">
+            <summary>
+             void eth_configure_link_loss(uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.eth_get_standalone_status">
+            <summary>
+             void eth_get_standalone_status(out uint Status, out uint Error, out uint Mode);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.read_abc_from_file">
@@ -18381,6 +18481,16 @@
              void n_simulate_ext_start_ctrl(uint CardNo);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_store_timestamp_counter">
+            <summary>
+             void n_store_timestamp_counter(uint CardNo);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_get_timestamp_long">
+            <summary>
+             void n_get_timestamp_long(uint CardNo, out uint TimeStampL, out uint TimeStampH);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_get_counts">
             <summary>
              uint n_get_counts(uint CardNo);
@@ -18414,6 +18524,16 @@
         <member name="F:RTC6Import.RTC6Wrap.simulate_ext_start_ctrl">
             <summary>
              void simulate_ext_start_ctrl();
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.store_timestamp_counter">
+            <summary>
+             void store_timestamp_counter();
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.get_timestamp_long">
+            <summary>
+             void get_timestamp_long(out uint TimeStampL, out uint TimeStampH);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.get_counts">
@@ -18811,19 +18931,19 @@
              void n_config_laser_signals(uint CardNo, uint Config);
             </summary>
         </member>
-        <member name="F:RTC6Import.RTC6Wrap.n_set_laser_power">
-            <summary>
-             void n_set_laser_power(uint CardNo, uint Port, uint Value);
-            </summary>
-        </member>
-        <member name="F:RTC6Import.RTC6Wrap.n_set_port_default_list">
-            <summary>
-             void n_set_port_default_list(uint CardNo, uint Port, uint Value);
-            </summary>
-        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_spot_distance_ctrl">
             <summary>
              void n_spot_distance_ctrl(uint CardNo, double Dist);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_laser_pulse_form">
+            <summary>
+             void n_set_laser_pulse_form(uint CardNo, uint Mode, uint Length);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_laser_pulse_sync">
+            <summary>
+             void n_set_laser_pulse_sync(uint CardNo, uint Mode, uint Delay);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.disable_laser">
@@ -18941,19 +19061,19 @@
              void config_laser_signals(uint Config);
             </summary>
         </member>
-        <member name="F:RTC6Import.RTC6Wrap.set_laser_power">
-            <summary>
-             void set_laser_power(uint Port, uint Value);
-            </summary>
-        </member>
-        <member name="F:RTC6Import.RTC6Wrap.set_port_default_list">
-            <summary>
-             void set_port_default_list(uint Port, uint Value);
-            </summary>
-        </member>
         <member name="F:RTC6Import.RTC6Wrap.spot_distance_ctrl">
             <summary>
              void spot_distance_ctrl(double Dist);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_laser_pulse_form">
+            <summary>
+             void set_laser_pulse_form(uint Mode, uint Length);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_laser_pulse_sync">
+            <summary>
+             void set_laser_pulse_sync(uint Mode, uint Delay);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_ext_start_delay">
@@ -18999,6 +19119,26 @@
         <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_matrix">
             <summary>
              void n_set_mcbsp_matrix(uint CardNo);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_x">
+            <summary>
+             void n_set_mcbsp_global_x(uint CardNo, double ScaleX);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_y">
+            <summary>
+             void n_set_mcbsp_global_y(uint CardNo, double ScaleY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_rot">
+            <summary>
+             void n_set_mcbsp_global_rot(uint CardNo, double Resolution);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_matrix">
+            <summary>
+             void n_set_mcbsp_global_matrix(uint CardNo);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_in">
@@ -19056,6 +19196,11 @@
              int n_read_multi_mcbsp(uint CardNo, uint No);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_clear_fly_overflow_ctrl">
+            <summary>
+             void n_clear_fly_overflow_ctrl(uint CardNo, uint Mode);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.set_ext_start_delay">
             <summary>
              void set_ext_start_delay(int Delay, uint EncoderNo);
@@ -19099,6 +19244,26 @@
         <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_matrix">
             <summary>
              void set_mcbsp_matrix();
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_x">
+            <summary>
+             void set_mcbsp_global_x(double ScaleX);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_y">
+            <summary>
+             void set_mcbsp_global_y(double ScaleY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_rot">
+            <summary>
+             void set_mcbsp_global_rot(double Resolution);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_matrix">
+            <summary>
+             void set_mcbsp_global_matrix();
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_in">
@@ -19154,6 +19319,11 @@
         <member name="F:RTC6Import.RTC6Wrap.read_multi_mcbsp">
             <summary>
              int read_multi_mcbsp(uint No);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.clear_fly_overflow_ctrl">
+            <summary>
+             void clear_fly_overflow_ctrl(uint Mode);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_get_time">
@@ -20131,9 +20301,29 @@
              void n_range_checking(uint CardNo, uint HeadNo, uint Mode, uint Data);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_store_timestamp_counter_list">
+            <summary>
+             void n_store_timestamp_counter_list(uint CardNo);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_wait_for_timestamp_counter">
+            <summary>
+             void n_wait_for_timestamp_counter(uint CardNo, uint TimeStampCounter);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_wait_for_timestamp_counter_mode">
+            <summary>
+             void n_wait_for_timestamp_counter_mode(uint CardNo, uint TimeStampCounter, uint Mode);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_list_jump">
             <summary>
              void n_set_list_jump(uint CardNo, uint Pos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_wait_for_timestamp_counter_long">
+            <summary>
+             void n_wait_for_timestamp_counter_long(uint CardNo, uint WaitCounterL, uint WaitCounterH, uint MaxWaitTime, uint Mode);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.list_nop">
@@ -20189,6 +20379,26 @@
         <member name="F:RTC6Import.RTC6Wrap.range_checking">
             <summary>
              void range_checking(uint HeadNo, uint Mode, uint Data);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.store_timestamp_counter_list">
+            <summary>
+             void store_timestamp_counter_list();
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.wait_for_timestamp_counter">
+            <summary>
+             void wait_for_timestamp_counter(uint TimeStampCounter);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.wait_for_timestamp_counter_mode">
+            <summary>
+             void wait_for_timestamp_counter_mode(uint TimeStampCounter, uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.wait_for_timestamp_counter_long">
+            <summary>
+             void wait_for_timestamp_counter_long(uint WaitCounterL, uint WaitCounterH, uint MaxWaitTime, uint Mode);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.set_list_jump">
@@ -20776,6 +20986,16 @@
              void n_config_laser_signals_list(uint CardNo, uint Config);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_laser_power">
+            <summary>
+             void n_set_laser_power(uint CardNo, uint Port, uint Value);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_port_default_list">
+            <summary>
+             void n_set_port_default_list(uint CardNo, uint Port, uint Value);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_spot_distance">
             <summary>
              void n_spot_distance(uint CardNo, double Dist);
@@ -20874,6 +21094,16 @@
         <member name="F:RTC6Import.RTC6Wrap.config_laser_signals_list">
             <summary>
              void config_laser_signals_list(uint Config);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_laser_power">
+            <summary>
+             void set_laser_power(uint Port, uint Value);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_port_default_list">
+            <summary>
+             void set_port_default_list(uint Port, uint Value);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.spot_distance">
@@ -21011,6 +21241,26 @@
              void n_set_mcbsp_matrix_list(uint CardNo);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_x_list">
+            <summary>
+             void n_set_mcbsp_global_x_list(uint CardNo, double ScaleX);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_y_list">
+            <summary>
+             void n_set_mcbsp_global_y_list(uint CardNo, double ScaleY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_rot_list">
+            <summary>
+             void n_set_mcbsp_global_rot_list(uint CardNo, double Resolution);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_global_matrix_list">
+            <summary>
+             void n_set_mcbsp_global_matrix_list(uint CardNo);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_in_list">
             <summary>
              void n_set_mcbsp_in_list(uint CardNo, uint Mode, double Scale);
@@ -21094,6 +21344,76 @@
         <member name="F:RTC6Import.RTC6Wrap.n_fly_prediction">
             <summary>
              void n_fly_prediction(uint CardNo, uint PredictionX, uint PredictionY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_fly_1_axis">
+            <summary>
+             void n_set_fly_1_axis(uint CardNo, uint Axis, uint Mode, double Scale);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_fly_return_1_axis">
+            <summary>
+             void n_fly_return_1_axis(uint CardNo, uint Axis, int RetPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_wait_for_1_axis">
+            <summary>
+             void n_wait_for_1_axis(uint CardNo, int Value, uint EncoderMode, int WaitMode, uint LaserMode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_activate_fly_1_axis">
+            <summary>
+             void n_activate_fly_1_axis(uint CardNo, uint Axis, uint Mode, double Scale, int Offset);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_park_position_1_axis">
+            <summary>
+             void n_park_position_1_axis(uint CardNo, uint Mode, uint Axis, int ParkPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_park_return_1_axis">
+            <summary>
+             void n_park_return_1_axis(uint CardNo, uint Mode, uint Axis, int RetPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_fly_2_axes">
+            <summary>
+             void n_set_fly_2_axes(uint CardNo, uint Axis1, uint Mode1, double Scale1, uint Axis2, uint Mode2, double Scale2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_fly_return_2_axes">
+            <summary>
+             void n_fly_return_2_axes(uint CardNo, uint Axis1, int RetPos1, uint Axis2, int RetPos2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_wait_for_2_axes">
+            <summary>
+             void n_wait_for_2_axes(uint CardNo, uint EncoderModeX, int MinValueX, int MaxValueX, uint EncoderModeY, int MinValueY, int MaxValueY, int WaitMode, uint LaserMode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_activate_fly_2_axes">
+            <summary>
+             void n_activate_fly_2_axes(uint CardNo, uint ModeX, double ScaleX, int OffsetX, uint ModeY, double ScaleY, int OffsetY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_park_position_2_axes">
+            <summary>
+             void n_park_position_2_axes(uint CardNo, uint Mode, int ParkPosX, int ParkPosY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_park_return_2_axes">
+            <summary>
+             void n_park_return_2_axes(uint CardNo, uint Mode, int RetPosX, int RetkPosY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_fly_3_axes">
+            <summary>
+             void n_set_fly_3_axes(uint CardNo, uint ModeX, double ScaleX, uint ModeY, double ScaleY, uint ModeZ, double ScaleZ);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_fly_return_3_axes">
+            <summary>
+             void n_fly_return_3_axes(uint CardNo, int RetPosX, int RetPosY, int RetPosZ);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_wait_for_encoder">
@@ -21226,6 +21546,26 @@
              void set_mcbsp_matrix_list();
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_x_list">
+            <summary>
+             void set_mcbsp_global_x_list(double ScaleX);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_y_list">
+            <summary>
+             void set_mcbsp_global_y_list(double ScaleY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_rot_list">
+            <summary>
+             void set_mcbsp_global_rot_list(double Resolution);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_global_matrix_list">
+            <summary>
+             void set_mcbsp_global_matrix_list();
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_in_list">
             <summary>
              void set_mcbsp_in_list(uint Mode, double Scale);
@@ -21309,6 +21649,76 @@
         <member name="F:RTC6Import.RTC6Wrap.fly_prediction">
             <summary>
              void fly_prediction(uint PredictionX, uint PredictionY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_fly_1_axis">
+            <summary>
+             void set_fly_1_axis(uint Axis, uint Mode, double Scale);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.fly_return_1_axis">
+            <summary>
+             void fly_return_1_axis(uint Axis, int RetPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.wait_for_1_axis">
+            <summary>
+             void wait_for_1_axis(int Value, uint EncoderMode, int WaitMode, uint LaserMode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.activate_fly_1_axis">
+            <summary>
+             void activate_fly_1_axis(uint Axis, uint Mode, double Scale, int Offset);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.park_position_1_axis">
+            <summary>
+             void park_position_1_axis(uint Mode, uint Axis, int ParkPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.park_return_1_axis">
+            <summary>
+             void park_return_1_axis(uint Mode, uint Axis, int RetPos);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_fly_2_axes">
+            <summary>
+             void set_fly_2_axes(uint Axis1, uint Mode1, double Scale1, uint Axis2, uint Mode2, double Scale2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.fly_return_2_axes">
+            <summary>
+             void fly_return_2_axes(uint Axis1, int RetPos1, uint Axis2, int RetPos2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.wait_for_2_axes">
+            <summary>
+             void wait_for_2_axes(uint EncoderModeX, int MinValueX, int MaxValueX, uint EncoderModeY, int MinValueY, int MaxValueY, int WaitMode, uint LaserMode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.activate_fly_2_axes">
+            <summary>
+             void activate_fly_2_axes(uint ModeX, double ScaleX, int OffsetX, uint ModeY, double ScaleY, int OffsetY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.park_position_2_axes">
+            <summary>
+             void park_position_2_axes(uint Mode, int ParkPosX, int ParkPosY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.park_return_2_axes">
+            <summary>
+             void park_return_2_axes(uint Mode, int RetPosX, int RetPosY);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_fly_3_axes">
+            <summary>
+             void set_fly_3_axes(uint ModeX, double ScaleX, uint ModeY, double ScaleY, uint ModeZ, double ScaleZ);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.fly_return_3_axes">
+            <summary>
+             void fly_return_3_axes(int RetPosX, int RetPosY, int RetPosZ);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.wait_for_encoder">
@@ -22344,6 +22754,36 @@
         <member name="F:RTC6Import.RTC6Wrap.stepper_wait">
             <summary>
              void stepper_wait(uint No);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_laser_timing_table">
+            <summary>
+             void n_set_laser_timing_table(uint CardNo, uint Index, uint F);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_duty_cycle_table">
+            <summary>
+             void n_set_duty_cycle_table(uint CardNo, uint Index, uint DutyCycle);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_regulation3">
+            <summary>
+             void n_regulation3(uint CardNo, uint Fmax, uint Fmin);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_laser_timing_table">
+            <summary>
+             void set_laser_timing_table(uint Index, uint F);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_duty_cycle_table">
+            <summary>
+             void set_duty_cycle_table(uint Index, uint DutyCycle);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.regulation3">
+            <summary>
+             void regulation3(uint Fmax, uint Fmin);
             </summary>
         </member>
     </members>
