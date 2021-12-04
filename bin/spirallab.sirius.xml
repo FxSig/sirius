@@ -1433,6 +1433,16 @@
             Correction2DRtc 기반으로 동작
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcForm.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcForm.AliasName">
+            <summary>
+            별명 이름
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcForm.OnUserImport">
             <summary>
             사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
@@ -1476,6 +1486,63 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Correction2DRtcForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Correction3DRtcForm">
+            <summary>
+            스캐너 3D 보정용 폼
+            ctb/ct5 파일 포맷용 
+            Correction3DRtc 기반으로 동작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcForm.OnUserImportUpper">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z+
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcForm.OnUserImportLower">
+            <summary>
+            사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
+            Z-
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcForm.RtcCorrection">
+            <summary>
+            RtcCorrection3D 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcForm.OnApply">
+            <summary>
+            Apply 버튼 클릭시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtcForm.OnClose">
+            <summary>
+            창(폼) 닫힐시 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtcForm.#ctor(SpiralLab.Sirius.Correction3DRtc)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtcCorrection">RtcCorrection3D 객체</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DRtcForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtcForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtcForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -1807,6 +1874,73 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MarkerSyncAxisForm">
+            <summary>
+            마커 폼
+            SyncAxis 제어기 전용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerSyncAxisForm.Offsets">
+            <summary>
+            오프셋 리스트 (바인딩 용)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerSyncAxisForm.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkerSyncAxisForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerSyncAxisForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerSyncAxisForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMeterForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

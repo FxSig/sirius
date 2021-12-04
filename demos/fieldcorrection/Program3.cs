@@ -101,14 +101,10 @@ namespace SpiralLab.Sirius
                         else
                             Console.WriteLine($"Image Field Size : Clipped");
 
-
-                        Console.WriteLine("");
+                        Console.WriteLine(Environment.NewLine);
                         break;
                 }
-
             } while (true);
         }
-      
-        
     }
 }

@@ -34,13 +34,16 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Remote\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="spirallab.core">
-      <HintPath>..\..\packages\sirius.rtc\spirallab.core.dll</HintPath>
-    </Reference>
-    <Reference Include="spirallab.sirius.rtc">
-      <HintPath>..\..\packages\sirius.rtc\spirallab.sirius.rtc.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -59,9 +62,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\core\spirallab.core.csproj">
+      <Project>{b967580b-310f-4661-bd6d-29049f32899e}</Project>
+      <Name>spirallab.core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\lib\spirallab.sirius.csproj">
       <Project>{eb052dd6-6210-411c-919d-9e151f04f4d1}</Project>
       <Name>spirallab.sirius</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\rtc\spirallab.sirius.rtc.csproj">
+      <Project>{acd096be-a822-4279-8ac0-48e589136108}</Project>
+      <Name>spirallab.sirius.rtc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

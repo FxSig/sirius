@@ -70,7 +70,7 @@ namespace SpiralLab.Sirius
             float zUpper = 5;
             float zLower = -5;
             float kfactor = (float)Math.Pow(2, 16) / fieldSize;
-            var correction = new Correction3DRtcCtb(kfactor, row, col, interval, zUpper, zLower, srcFile, targetFile);
+            var correction = new Correction3DRtc(kfactor, row, col, interval, zUpper, zLower, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
@@ -96,7 +96,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector3(20, -20, zLower), new Vector3(0.01f, 0.01f, 0));
             #endregion
 
-            var form = new Correction3DRtcCtbForm(correction);
+            var form = new Correction3DRtcForm(correction);
             form.ShowDialog();
         }
 
@@ -149,7 +149,7 @@ namespace SpiralLab.Sirius
             float zUpper = 5;
             float zLower = -5;
             float kfactor = (float)Math.Pow(2, 20) / fieldSize;
-            var correction = new Correction3DRtcCt5(kfactor, row, col, interval, zUpper, zLower, srcFile, targetFile);
+            var correction = new Correction3DRtc(kfactor, row, col, interval, zUpper, zLower, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
@@ -175,7 +175,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector3(20, -20, zLower), new Vector3(0.01f, 0.01f, 0));
             #endregion
 
-            var form = new Correction3DRtcCt5Form(correction);
+            var form = new Correction3DRtcForm(correction);
             form.ShowDialog();
         }
     }

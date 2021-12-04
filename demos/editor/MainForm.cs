@@ -23,7 +23,7 @@ namespace SpiralLab.Sirius
             // 문서 지정
             siriusEditorForm1.Document = doc;
 
-            if (siriusEditorForm1.EnablePens)
+            if (!siriusEditorForm1.EnablePens)
             {
                 // 기본 펜 생성후 문서에 추가
                 var pen = new PenDefault();

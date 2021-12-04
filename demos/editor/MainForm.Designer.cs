@@ -34,8 +34,10 @@
             // siriusEditorForm1
             // 
             this.siriusEditorForm1.AliasName = "NoName";
+            this.siriusEditorForm1.BackColor = System.Drawing.SystemColors.Control;
             this.siriusEditorForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusEditorForm1.Document = null;
+            this.siriusEditorForm1.EnablePens = true;
             this.siriusEditorForm1.FileName = "NoName";
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm1.HidePropertyGrid = false;
@@ -48,6 +50,9 @@
             this.siriusEditorForm1.Name = "siriusEditorForm1";
             this.siriusEditorForm1.Progress = 0;
             this.siriusEditorForm1.Rtc = null;
+            this.siriusEditorForm1.RtcExtension1Input = null;
+            this.siriusEditorForm1.RtcExtension1Output = null;
+            this.siriusEditorForm1.RtcExtension2Output = null;
             this.siriusEditorForm1.Size = new System.Drawing.Size(1008, 729);
             this.siriusEditorForm1.TabIndex = 0;
             // 
@@ -60,7 +65,7 @@
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "Sirius Editor - (c)SpiralLab";
+            this.Text = "Sirius Editor - (c)SpiralLAB";
             this.ResumeLayout(false);
 
         }

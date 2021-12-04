@@ -529,7 +529,7 @@ namespace SpiralLab.Sirius
             this.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MotionForm";
-            this.Text = "Motion - (c)SpiralLab";
+            this.Text = "Motion - (c)SpiralLAB";
             ((System.ComponentModel.ISupportInitialize)(this.dgvOutput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInput)).EndInit();
             this.ResumeLayout(false);

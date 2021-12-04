@@ -209,6 +209,158 @@
             </summary>
             <param name="success">변환 성공 여부</param>
         </member>
+        <member name="T:SpiralLab.Sirius.Correction3DRtc">
+            <summary>
+            scanner correction for 3D 
+            ctb/ct5 포맷 겸용
+            StretchCorreXion5.exe + CorrectionFileConverter.exe 기반
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Correction3DRtc.OnResult">
+            <summary>
+            변환 결과에 대한 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.Rows">
+            <summary>
+            입력 데이타의 행 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.Cols">
+            <summary>
+            입력 데이타의 열 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.SourceCorrectionFile">
+            <summary>
+            입력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.TargetCorrectionFile">
+            <summary>
+            출력 보정 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.Interval">
+            <summary>
+            간격 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.KFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.ZLower">
+            <summary>
+            Z 보정 위치 최하단값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.ZUpper">
+            <summary>
+            Z 보정 위치 최상단값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.DataLower">
+            <summary>
+            최하단의 "절대위치, 측정위치" (mm) 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.DataUpper">
+            <summary>
+            최상단의 "절대위치, 측정위치" (mm) 배열 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.IsDeleteDatFile">
+            <summary>
+            변환성공시 입력 Dat 파일 삭제 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtc.ResultMessage">
+            <summary>
+            변환 결과 로그 메시지
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DRtc.kFactor">
+            <summary>
+            bits/mm
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DRtc.interval">
+            <summary>
+            mm
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DRtc.exeFileName">
+            <summary>
+            SCANLAB 의 보정 유틸리티 실행파일 경로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Correction3DRtc.converterExeFileName">
+            <summary>
+            SCANLAB 의 보정 유틸리티 실행파일 경로
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Correction3DRtc.ExitCode">
+            process exit code ref : stretch correction.pdf by scanlab
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="kFactor">bits/mm</param>
+            <param name="rows">행 개수</param>
+            <param name="cols">열 개수</param>
+            <param name="interval">간격</param>
+            <param name="zUpper">최상단 위치 (mm)</param>
+            <param name="zLower">최하단 위치 (mm)</param>
+            <param name="srcCtFile">입력 보정 파일</param>
+            <param name="targetCtFile">출력 보정 파일</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            측정 데이타 입력 (절대 좌표 값)
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">기준 좌표(mm)</param>
+            <param name="measured">측정 절대 좌표 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.AddRelative(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            측정 데이타 입력 (상대 좌표값) 
+            ex) 상대 좌표값 = 비전 오차량 만큼만 입력
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">기준 좌표값 (mm)</param>
+            <param name="error">측정 상대 좌표 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.Clear">
+            <summary>
+            입력 데이타 모두 제거
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.Convert">
+            <summary>
+            변환 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.InternalConvert">
+            <summary>
+            ct5 기반의 3D 보정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.OnResultEvent(System.Boolean)">
+            <summary>
+            이벤트 핸들러 호출 (상속 확장 구현용)
+            </summary>
+            <param name="success">변환 성공 여부</param>
+        </member>
         <member name="T:SpiralLab.Sirius.AdlinkDInput">
             <summary>
             디지털 입력 인터페이스    
@@ -240,6 +392,14 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.AdlinkDInput.#ctor(System.UInt32,System.String,System.UInt16)">
+            <summary>
+            ADLINK 입력 생성자 
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="adlinkCardType">DASK.7230</param>
+        </member>
         <member name="T:SpiralLab.Sirius.AdlinkDOutput">
             <summary>
             디지털 출력 인터페이스    
@@ -270,6 +430,14 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdlinkDOutput.#ctor(System.UInt32,System.String,System.UInt16)">
+            <summary>
+            ADLINK 출력 생성자 
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="adlinkCardType">DASK.7230</param>
         </member>
         <member name="T:SpiralLab.Sirius.AjinExtekDInput">
             <summary>
@@ -3769,34 +3937,116 @@
             <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
-        <member name="T:SpiralLab.Sirius.IPoweMap">
+        <member name="T:SpiralLab.Sirius.IPowerMap">
             <summary>
-            IPoweMap 인터페이스
+            파워맵 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPoweMap.Index">
+        <member name="P:SpiralLab.Sirius.IPowerMap.Index">
             <summary>
-            식별자 (0, 1, 2, ...)
+            식별자
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPoweMap.Name">
+        <member name="P:SpiralLab.Sirius.IPowerMap.FileName">
             <summary>
-            이름
+            파워 맵 파일 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPoweMap.Tag">
+        <member name="P:SpiralLab.Sirius.IPowerMap.XName">
             <summary>
-            사용자 정의 데이타
+            X : 레이저 파워 조절 Factor( pulse width (um) / voltage(V) / duty width (%) )
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.XGap">
+            <summary>
+            파라메터 X값의 간격
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.Data">
+            <summary>
+            Category, (X값, 측정값)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Clear">
+            <summary>
+            시리즈 정보및 룩업테이블 모두 삭제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Update(System.String,System.Single,System.Single)">
+            <summary>
+            룩업 테이블 업데이트 
+            설정값 : 시리즈 이름과 의존값(x)
+            측정값 : 에너지 (Watt)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">펄스폭, 아날로그와 같은 가변인자</param>
+            <param name="detectedWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Query(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블 실제값 조회
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">펄스폭, 아날로그와 같은 가변인자</param>
+            <param name="watt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.MaxDetectedPower(System.String,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 실제 최대 에너지(W)값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="detectedWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.MinMaxX(System.String,System.Single@,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 X 의 최대, 최소값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="minX">최소값(펄스폭, 아날로그와 같은 가변인자)</param>
+            <param name="maxX">최대값(펄스폭, 아날로그와 같은 가변인자)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Lookup(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="targetWatt">출력을 원하는 에너지(W)</param>
+            <param name="x">계산된 x값 (펄스폭, 아날로그와 같은 가변인자)</param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMeterOphirUsbI">
+            <summary>
+            Ophir 사의 USBI 파워메터 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirUsbI.Channel">
+            <summary>
+            활성화 채널 번호 (1~4)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.#ctor(System.UInt32,System.String,System.String,System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="serialNo">시리얼 번호</param>
+            <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Start(System.Single)">
+            <summary>
+            측정 시작
+            </summary>
+            <param name="samplingHz">측정 빈도 (Hz) - OPHIR USBI 에서는 설정 불가</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeterVirtual">
             <summary>
             PowerMeterVirtual 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.SyncRoot">
-            <summary>
-            동기화 객체
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnMeasured">
@@ -3814,19 +4064,24 @@
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Period">
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.IsReady">
             <summary>
-            샘플링 주기 시간(msec)
+            준비 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.IsBusy">
+            <summary>
+            동작중 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.IsError">
+            <summary>
+            에러 상태
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Tag">
             <summary>
             사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Dispose">
-            <summary>
-            자원 해제 - IDisposable 인터페이스 구현
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Initialize">
@@ -3835,7 +4090,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start">
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start(System.Single)">
             <summary>
             데이타 수집 시작
             </summary>
@@ -3847,20 +4102,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Clear">
-            <summary>
-            데이타 모두 삭제
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Size">
-            <summary>
-            수집된 데이타 개수
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.PowerMeasured">
             <summary>
-            스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
+            파워메터 측정값 이벤트 통지용 
             </summary>
             <param name="sender">IPowerMeter 인터페이스</param>
             <param name="watt">측정값 (Watt)</param>
@@ -3885,6 +4129,21 @@
             이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.IsReady">
+            <summary>
+            준비 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.IsBusy">
+            <summary>
+            동작중 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.IsError">
+            <summary>
+            에러 상태
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.Tag">
             <summary>
             사용자 정의 데이타
@@ -3896,10 +4155,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Start">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Start(System.Single)">
             <summary>
             데이타 수집 시작
             </summary>
+            <param name="samplingHz">측정 빈도 (Hz)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.Stop">
@@ -3913,10 +4173,32 @@
             데이타 모두 삭제
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Size">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Reset">
             <summary>
-            수집된 데이타 개수
+            리셋
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.GetData(System.Single[]@)">
+            <summary>
+            수집된 데이타 얻기
+            </summary>
+            <param name="gatherData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.#ctor(System.String,System.UInt32,System.String,System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="serialNo">시리얼 번호</param>
+            <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.Start(System.Single)">
+            <summary>
+            측정 시작
+            </summary>
+            <param name="samplingHz">측정 빈도 (Hz)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IMotor">
@@ -8331,6 +8613,28 @@
             <param name="unUsed_ctbFileName"></param>
             <returns></returns>
         </member>
+        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.WarningOnly">
+            <summary>
+            Log a warning message.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.AbortImmediately">
+            <summary>
+            Immediately abort job execution.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.StopAndReport">
+            <summary>
+            End the job and do a controlled jump to home position.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlDynamicViolation(SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation)">
+            <summary>
+            
+            </summary>
+            <param name="dv"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
             보정 파일 변경 - syncAxis 미지원
@@ -8528,6 +8832,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListDelay(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 지연
+            SyncAxis 기반에서는 의미없는 기능임
             </summary>
             <param name="laserOn">레이저 온 지연 (usec)</param>
             <param name="laserOff">레이저 오프 지연 (usec)</param>
@@ -8547,6 +8852,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWait(System.Single)">
             <summary>
             리스트 명령 - 시간 대기
+            SyncAxis 기반에서는 지원되지 않는 기능임
             </summary>
             <param name="msec">시간 (msec)</param>
             <returns></returns>
@@ -8561,12 +8867,14 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListLaserOn">
             <summary>
             리스트 명령 - 레이저 출사 시작 
+            SyncAxis 기반에서는 지원되지 않는 기능임
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListLaserOff">
             <summary>
             리스트 명령 - 레이저 출사 중지
+            SyncAxis 기반에서는 지원되지 않는 기능임
             </summary>
             <returns></returns>
         </member>
@@ -9819,7 +10127,7 @@
             </summary>
             <param name="kFactor">k factor = bits/mm</param>
             <param name="laserMode">LaserMode 열거형</param>
-            <param name="ctbFileName">주 스캐너의 보정 테이블(Table1)에 Load/Select 하려는 .ct5 스캐너 보정 파일</param>
+            <param name="ctFileName">주 스캐너의 보정 테이블(Table1)에 Load/Select 하려는 ctb/ct5 스캐너 보정 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
@@ -9827,7 +10135,7 @@
             보정 파일(.ct5)을 RTC 내부 메모리로 로딩
             </summary>
             <param name="tableIndex">CorrectionTableIndex 열거형 </param>
-            <param name="ctbFileName">.ct5 스캐너 보정 파일</param>
+            <param name="ctFileName">ctb/ct5 스캐너 보정 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">

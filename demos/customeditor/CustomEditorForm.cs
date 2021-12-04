@@ -526,6 +526,11 @@ namespace CustomEditor
             trvEntity.Nodes.Clear();
             this.FileName = string.Empty;
             this.Document.Action.ActNew();
+
+           
+            // 기본 펜 생성후 문서에 추가            
+            var pen = new PenDefault();
+            doc.Action.ActEntityAdd(pen);
         }
         private void btnOpen_Click(object sender, EventArgs e)
         {
@@ -948,7 +953,7 @@ namespace CustomEditor
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
-            this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, false, form.Angle, form.Angle2, form.Interval, form.Exclude, form.Shift);
+            this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, form.ZigZag, form.Angle, form.Angle2, form.Interval, form.Exclude, form.Shift);
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {

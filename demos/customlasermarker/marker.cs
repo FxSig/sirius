@@ -128,9 +128,7 @@ namespace SpiralLab.Sirius
         /// 복제된 문서 객체
         /// </summary>
         public IDocument Document { get { return this.clonedDoc; } }
-        /// <summary>
-        /// 멀티 펜 편집기를 이용한 에디터 구성 여부
-        /// </summary>
+
         public bool IsEnablePens { get; set; }
         /// <summary>
         /// 사용자 정의 데이타

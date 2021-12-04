@@ -49,7 +49,7 @@ namespace SpiralLab.Sirius
             catch (Exception ex)
             {
                 Logger.Log(Logger.Type.Error, ex);
-                MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message, "Exception - (c)SpiralLAB", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
       

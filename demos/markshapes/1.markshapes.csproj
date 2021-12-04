@@ -35,18 +35,27 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Remote|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Remote\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="spirallab.core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\sirius.rtc\spirallab.core.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius, Version=1.0.7.9, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius, Version=1.0.8.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.rtc, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius.rtc, Version=1.0.8.6, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\sirius.rtc\spirallab.sirius.rtc.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

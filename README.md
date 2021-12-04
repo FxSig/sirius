@@ -70,6 +70,15 @@
 
 **5. Version history**
 
+* 2021.12.5 v1.8.6
+   - fixed) scanner 3d field correction bug (3D 보정시 dat 파일 생성 오류 수정)
+   - fixed) readdata/writedata bug in rtc (RTC read/write data 호출시 인자 타입 변환 오류 수정)
+   - added) adlink DAQ 입출력 지원
+   - added) powermeter interface (파워메터 인터페이스 추가)
+     - ophir usbi (OPHIR 사의 USBI 제품)
+     - thorlab pm100usb (Thorlabs 사의 PM100USB 제품)
+    - added) powermap interface (파워매핑 인터페이스 추가)
+
 * 2021.11.26 v1.8.5
    - updated) Scanlab Rtc5 up-to-date v.2021_10_22 (RTC5 dll 라이브러리 최신 버전으로 업데이트)
    - updated) Scanlab Rtc6 up-to-date v.2021_11_12  (RTC6 dll 라이브러리 최신 버전으로 업데이트)
