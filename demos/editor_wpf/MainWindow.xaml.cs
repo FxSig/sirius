@@ -28,15 +28,18 @@ namespace editor_wpf
             SpiralLab.Core.Initialize();
             var siriusEditorForm = (siriusEditor.Child as SiriusEditorForm);
 
+            //펜 집합 기능 사용
+            siriusEditorForm.EnablePens = true;
+
             var doc = new DocumentDefault();
             siriusEditorForm.Document = doc;
 
             #region RTC 초기화
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy (가상 RTC 카드)
             var rtc = new Rtc5(0); //create Rtc5 controller
             //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Rtc6 Ethernet
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 
 
             float fov = 60.0f;    ///scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
@@ -48,11 +51,17 @@ namespace editor_wpf
             #endregion
             siriusEditorForm.Rtc = rtc;
 
-            #region 레이저 소스 초기화
-            var laser = new LaserVirtual(0, "virtual", 20.0f);
+            #region initialize Laser (virtual)
+            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
             laser.Rtc = rtc;
             laser.Initialize();
-            laser.CtlPower(10);
+            laser.CtlPower(2);
             #endregion
 
             siriusEditorForm.Laser = laser;

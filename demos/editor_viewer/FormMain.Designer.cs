@@ -57,8 +57,10 @@
             // siriusEditorForm1
             // 
             this.siriusEditorForm1.AliasName = "NoName";
+            this.siriusEditorForm1.BackColor = System.Drawing.SystemColors.Control;
             this.siriusEditorForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusEditorForm1.Document = null;
+            this.siriusEditorForm1.EnablePens = true;
             this.siriusEditorForm1.FileName = "NoName";
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm1.HidePropertyGrid = false;
@@ -69,14 +71,20 @@
             this.siriusEditorForm1.Marker = null;
             this.siriusEditorForm1.MotorZ = null;
             this.siriusEditorForm1.Name = "siriusEditorForm1";
+            this.siriusEditorForm1.PowerMap = null;
+            this.siriusEditorForm1.PowerMeter = null;
             this.siriusEditorForm1.Progress = 0;
             this.siriusEditorForm1.Rtc = null;
+            this.siriusEditorForm1.RtcExtension1Input = null;
+            this.siriusEditorForm1.RtcExtension1Output = null;
+            this.siriusEditorForm1.RtcExtension2Output = null;
             this.siriusEditorForm1.Size = new System.Drawing.Size(692, 704);
             this.siriusEditorForm1.TabIndex = 1;
             // 
             // siriusViewerForm1
             // 
             this.siriusViewerForm1.AliasName = "NoName";
+            this.siriusViewerForm1.BackColor = System.Drawing.SystemColors.Control;
             this.siriusViewerForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusViewerForm1.Document = null;
             this.siriusViewerForm1.FileName = "NoName";

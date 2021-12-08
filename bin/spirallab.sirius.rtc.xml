@@ -4028,20 +4028,20 @@
             활성화 채널 번호 (1~4)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.#ctor(System.UInt32,System.String,System.String,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
             <param name="serialNo">시리얼 번호</param>
+            <param name="samplingRateHz">시리얼 번호</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Start(System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Start">
             <summary>
             측정 시작
             </summary>
-            <param name="samplingHz">측정 빈도 (Hz) - OPHIR USBI 에서는 설정 불가</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeterVirtual">
@@ -4090,7 +4090,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start(System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start">
             <summary>
             데이타 수집 시작
             </summary>
@@ -4129,6 +4129,11 @@
             이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.SamplingRateHz">
+            <summary>
+            측정 주기 (Hz)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.IsReady">
             <summary>
             준비 상태
@@ -4155,11 +4160,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Start(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.Start">
             <summary>
             데이타 수집 시작
             </summary>
-            <param name="samplingHz">측정 빈도 (Hz)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.Stop">
@@ -4185,20 +4189,20 @@
             <param name="gatherData"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.#ctor(System.String,System.UInt32,System.String,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
             <param name="serialNo">시리얼 번호</param>
+            <param name="samplingRateHz">측정 주기</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.Start(System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.Start">
             <summary>
             측정 시작
             </summary>
-            <param name="samplingHz">측정 빈도 (Hz)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IMotor">

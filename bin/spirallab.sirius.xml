@@ -195,6 +195,11 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.PensSerializer">
+            <summary>
+            Pens 객체 저장/복원용
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IPens">
             <summary>
             복수개의 펜 개체를 관리하는 인터페이스
@@ -220,14 +225,40 @@
             내부 펜 개체의 개수
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPens.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPens.Items">
             <summary>
             내부 펜 개체 배열 접근
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPens.Tag">
+        <member name="M:SpiralLab.Sirius.IPens.Add(SpiralLab.Sirius.IPen)">
             <summary>
-            사용자 정의 데이타
+            펜 개체 추가
+            </summary>
+            <param name="pen">펜 개체</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPens.NameOf(System.String,System.Boolean)">
+            <summary>
+            지정된 이름의 펜 개체 찾기
+            </summary>
+            <param name="penName">이름</param>
+            <param name="ignoreCase">대소문자 구분여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPens.ColorOf(System.Drawing.Color)">
+            <summary>
+            지정된 색상의 펜 개체 찾기
+            </summary>
+            <param name="color">색상</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPens.Clear">
+            <summary>
+            모든 펜 개체 삭제
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Pens">
@@ -1845,6 +1876,11 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Laser.LaserForm.AliasName">
+            <summary>
+            상태바에 출력되는 이름 (별명)
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Laser.LaserForm.components">
             <summary>
             Required designer variable.
@@ -1929,21 +1965,26 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PowerMeterForm.components">
+        <member name="T:SpiralLab.Sirius.PowerMeterForm">
             <summary>
-            Required designer variable.
+            파워메터 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMeterForm.components">
+            <summary> 
+            필수 디자이너 변수입니다.
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
             </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EnumDataGridView.components">
@@ -5338,7 +5379,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.PensColor">
             <summary>
-            10 가지 Pen 집합의 색상
+            10 가지 Pen 집합의 색상 목록
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.DefaultColor">
+            <summary>
+            개체 생성 펜 기본 색상
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EType">
@@ -7082,6 +7128,11 @@
             마커 폼
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerForm.AliasName">
+            <summary>
+            상태바에 출력되는 이름 (별명)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerForm.Offsets">
             <summary>
             오프셋 리스트 (바인딩 용)
@@ -7541,6 +7592,16 @@
             문서(Document)에서 디지털 입출력 창을 띄울때 발생하는 이벤트
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMeter">
+            <summary>
+            문서(Document)에서 파워측정(PowerMeter)창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMap">
+            <summary>
+            문서(Document)에서 파워매핑(PowerMap) 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
             <summary>
             식별 번호
@@ -7604,6 +7665,16 @@
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension2Output">
             <summary>
             RTC 확장2 포트 8출력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.PowerMeter">
+            <summary>
+            파워메터
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.PowerMap">
+            <summary>
+            파워맵
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">

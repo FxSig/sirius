@@ -70,6 +70,10 @@
 
 **5. Version history**
 
+* 2021.12.10 v1.8.7
+   - added) powermeter winforms in SiriusEditorForm
+   - added) powermap winforms in SiriusEditorForm
+
 * 2021.12.5 v1.8.6
    - fixed) scanner 3d field correction bug (3D 보정시 dat 파일 생성 오류 수정)
    - fixed) readdata/writedata bug in rtc (RTC read/write data 호출시 인자 타입 변환 오류 수정)
