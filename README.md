@@ -24,19 +24,19 @@
 
  - support SCANLAB's RTC4, RTC5, RTC6, RTC6 Ethernet, XL-SCAN(SyncAXIS) multiple products. 
  - support RTC control with 3x3 matrix stack operation.
- - support RTC field correction with easy to use.
- - support unlimited vector data by RTC controller automatically.
+ - support RTC 2D/3D field correction with easy to use.
+ - support processing unlimited vector data into RTC controller automatically.
  - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) options.
  - support many kinds of commerical laser sources (support customizable ILaser interface)
  - support laser power control with POD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing
  - support entities : line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt), group for multiple entities and layers.
- - support 2D barcodes mark with dots, lines, outlines, hatch or custom patter each cells
+ - support mark 2D barcodes with dots, lines, outlines, hatch.
  - support powerful undo/redo actions.
- - support 1 source(single document data), multiple view windows.
+ - support 1 source(single document data) with multiple views.
  - support customizable and extensible marker interface.
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
- - support vary laser parameters with special entity called 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
- - support user executable script codes (C#) with scriptable entities
+ - support vary laser parameters with 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
+ - support executable C# script codes
  
   ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2021/07/pathopt-1024x806.png)  
  
@@ -64,15 +64,18 @@
  - developer page : http://www.spirallab.co.kr/?page_id=229
  - git repository : https://github.com/labspiral/sirius.git
  - phone : +82-10-9619-3896
- - Please contact to me to use commerically.
+ - Please contact to me to use commercially.
   
 ----
 
 **5. Version history**
 
 * 2021.12.10 v1.8.7
-   - added) powermeter winforms in SiriusEditorForm
-   - added) powermap winforms in SiriusEditorForm
+   - added) support laser signal activate/deactivate at RTC (레이저 신호 활성화/비활성화 기능 제공)
+   - added) editable MOTF encoder simulation speed in marker winforms (마커창에서 시뮬레이션 엔코더 속도 입력창 제공)
+   - fixed) invalid encoder reset when MOTF begins (MOTF 시작시 엔코더 리셋 여부 활성화 버그 수정)
+   - fixed) crash bug when refresh propertygrid at laser winform (레이저 소스폼에서 속성창 리프레쉬 버그)
+   - added) powermeter/ powermap winforms in SiriusEditorForm (파워메터/파워매핑 윈폼 추가)
 
 * 2021.12.5 v1.8.6
    - fixed) scanner 3d field correction bug (3D 보정시 dat 파일 생성 오류 수정)

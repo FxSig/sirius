@@ -3272,6 +3272,11 @@
             현재 알람코드
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsGuideOn">
+            <summary>
+            Guide Laser 온오프
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ComPort">
             <summary>
             통신 포트 번호
@@ -5025,6 +5030,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlLaserSignal(System.Boolean)">
+            <summary>
+            레이저 시그날 활성화 여부
+            </summary>
+            <param name="onOff"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMove(System.Numerics.Vector2)">
             <summary>
             지정된 위치로 스캐너 수동 이동
@@ -5420,6 +5432,7 @@
         <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
+            둘다 0,0 입력시 비활성화됨
             </summary>
             <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
@@ -5643,7 +5656,7 @@
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.EncoderReset">
             <summary>
             엔코더 리셋(초기화) 여부
-            = 1 Encoder resets of the two internal encoder counters (initiated by the Processing-on-the-fly commands set_fly_x, set_fly_y or set_fly_rot) occur after the subsequent start trigger(i.e.the subsequent external start signal or simulate_ext_start or simulate_ext_start_ctrl command, possibly postponed by a track delay defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list, see also bit #2).
+            = 1: Encoder resets of the two internal encoder counters (initiated by the Processing-on-the-fly commands set_fly_x, set_fly_y or set_fly_rot) occur after the subsequent start trigger(i.e.the subsequent external start signal or simulate_ext_start or simulate_ext_start_ctrl command, possibly postponed by a track delay defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list, see also bit #2).
             = 0: Encoder resets occur immediately with each initiating Processing-on-the-fly command.
             </summary>
         </member>
@@ -6083,6 +6096,13 @@
             <summary>
             레이저 변호 신호 (LASER1,2,ON) 중단
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlLaserSignal(System.Boolean)">
+            <summary>
+            레이저 시그날 활성화 여부
+            </summary>
+            <param name="onOff"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMove(System.Numerics.Vector2)">
@@ -6755,6 +6775,7 @@
         <member name="M:SpiralLab.Sirius.Rtc5.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
+            둘다 0,0 입력시 비활성화됨
             </summary>
             <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
@@ -7529,6 +7550,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlLaserSignal(System.Boolean)">
+            <summary>
+            레이저 시그날 활성화 여부
+            </summary>
+            <param name="onOff"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMove(System.Numerics.Vector2)">
             <summary>
             지정된 위치로 스캐너 수동 이동
@@ -8199,6 +8227,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
+            둘다 0,0 입력시 비활성화됨
             </summary>
             <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
@@ -8667,6 +8696,13 @@
             <summary>
             레이저 변호 신호 (LASER1,2,ON) 중단
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlLaserSignal(System.Boolean)">
+            <summary>
+            레이저 시그날 활성화 여부
+            </summary>
+            <param name="onOff"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMove(System.Numerics.Vector2)">
@@ -10162,6 +10198,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc.CtlLaserSignal(System.Boolean)">
+            <summary>
+            레이저 시그날 활성화 여부
+            </summary>
+            <param name="onOff"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlMove(System.Numerics.Vector2)">
             <summary>
             지정된 위치로 스캐너 수동 이동
@@ -11578,9 +11621,11 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
+            RTC 내부 1MHz의 가상 엔코더가 활성화되며, 이를 사용해 사용자가 입력한 가상 속도를 연산해 내는 방식
+            X,Y 모두 0 입력시 내부 1MHz 가상 엔코더 비활성화됨
             </summary>
-            <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
-            <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
+            <param name="encXSimulatedSpeed">가상 엔코더X 속도 (mm/s)</param>
+            <param name="encYSimulatedSpeed">가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
