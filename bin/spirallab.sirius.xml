@@ -334,6 +334,13 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MeasurementBegin.GetMeasuredData(System.Collections.Generic.List{System.ValueTuple{SpiralLab.Sirius.MeasurementChannel,System.Int32[]}}@)">
+            <summary>
+            측정된 데이타 목록을 얻어오기
+            </summary>
+            <param name="measuredTupleData">채널, 데이타배열 목록 얻기</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.WriteDataExt16">
             <summary>
             write data ext16 entity
@@ -6288,6 +6295,15 @@
             <param name="sender">IMarker 인터페이스</param>
             <param name="markerArg">IMarkerArg 인터페이스 (마커 가공 인자)</param>
         </member>
+        <member name="T:SpiralLab.Sirius.MeasureEventHandler">
+            <summary>
+            계측량 통지용 콜백
+            MeasurementBegin 엔티티의 GetMeasuredData 호출로 데이타 취득
+            </summary>
+            <param name="sender"></param>
+            <param name="rtcMeasurement"></param>
+            <param name="measurementBegin"></param>
+        </member>
         <member name="T:SpiralLab.Sirius.IMarker">
             <summary>
             마커 인터페이스
@@ -6298,6 +6314,11 @@
         <member name="E:SpiralLab.Sirius.IMarker.OnProgress">
             <summary>
             진행률 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IMarker.OnMeasurement">
+            <summary>
+            계측 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnFinished">
@@ -6448,6 +6469,12 @@
             진행률 이벤트 핸들러
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.MarkerDefault.OnMeasurement">
+            <summary>
+            계측 이벤트 핸들러
+            MeasurementBegin 엔티티의 GetMeasuredData 호출로 데이타 취득
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnFinished">
             <summary>
             완료 이벤트 핸들러
@@ -6492,6 +6519,11 @@
         <member name="P:SpiralLab.Sirius.MarkerDefault.Document">
             <summary>
             Ready 에 의해 복제된 문서(IDocument) 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerDefault.IsEnablePens">
+            <summary>
+            펜 집한 기능 사용 유무 (IMarkerArg 로 전달되는 인자)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Tag">

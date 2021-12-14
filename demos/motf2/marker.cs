@@ -21,6 +21,10 @@ namespace SpiralLab.Sirius
         /// </summary>
         public event MarkerEventHandler OnProgress;
         /// <summary>
+        /// 계측 이벤트 핸들러
+        /// </summary>
+        public event MeasureEventHandler OnMeasurement;
+        /// <summary>
         /// 가공 완료 이벤트 핸들러
         /// </summary>
         public event MarkerEventHandler OnFinished;

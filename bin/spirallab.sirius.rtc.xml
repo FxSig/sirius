@@ -5448,14 +5448,7 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.CtlTrackingError(System.UInt32,System.UInt32)">
-            <summary>
-            RTC4 카드는 미지원
-            </summary>
-            <param name="xUsec">X 축 보상 시간(usec)</param>
-            <param name="yUsec">Y축 보상 시간(usec)</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc4.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             RTC4 카드는 미지원
@@ -6791,15 +6784,7 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlTrackingError(System.UInt32,System.UInt32)">
-            <summary>
-            트래킹 에러 보상
-            (추천 : 스캔 헤드의 메뉴얼에 명기된 Tracking Error 시간을 지정)
-            </summary>
-            <param name="xUsec">X 축 보상 시간(usec)</param>
-            <param name="yUsec">Y축 보상 시간(usec)</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             엔코더 테이블 보정 파일 로드
@@ -6862,7 +6847,7 @@
             <summary>
             리스트 명령 - 외부 트리거 시작 (External Start) 사용시 지연 설정
             </summary>
-            <param name="enc">x/Y 엔코더 종류</param>
+            <param name="enc">X/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
@@ -8243,15 +8228,7 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlTrackingError(System.UInt32,System.UInt32)">
-            <summary>
-            트래킹 에러 보상
-            (추천 : 스캔 헤드의 메뉴얼에 명기된 Tracking Error 시간을 지정)
-            </summary>
-            <param name="xUsec">X 축 보상 시간(usec)</param>
-            <param name="yUsec">Y 축 보상 시간(usec)</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             엔코더 테이블 보정 파일 로드
@@ -11618,16 +11595,6 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderSpeed(System.Single,System.Single)">
-            <summary>
-            외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
-            RTC 내부 1MHz의 가상 엔코더가 활성화되며, 이를 사용해 사용자가 입력한 가상 속도를 연산해 내는 방식
-            X,Y 모두 0 입력시 내부 1MHz 가상 엔코더 비활성화됨
-            </summary>
-            <param name="encXSimulatedSpeed">가상 엔코더X 속도 (mm/s)</param>
-            <param name="encYSimulatedSpeed">가상 엔코더Y 속도 (mm/s)</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
             현재 엔코더 값 얻기
@@ -11638,13 +11605,27 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlTrackingError(System.UInt32,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderSpeed(System.Single,System.Single)">
             <summary>
-            트래킹 에러 보상
-            (추천 : 스캔 헤드의 메뉴얼에 명기된 Tracking Error 시간을 지정)
+            외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
+            가상 입력 엔코더 속도를 지정하면, 내부 1MHz의 가상 엔코더가 활성화되며, 이를 사용해 사용자가 입력한 가상 속도를 연산해 내는 방식
+            X,Y 모두 0 입력시 내부 1MHz 가상 엔코더 비활성화됨
+            </summary>
+            <param name="encXSimulatedSpeed">가상 엔코더X 속도 (mm/s)</param>
+            <param name="encYSimulatedSpeed">가상 엔코더Y 속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfTrackingError(System.UInt32,System.UInt32)">
+            <summary>
+            Motf 사용시 스캐너의 트래킹 에러 보상
+            0, 0 으로 지정시 Disabled 됨
+            EC = E + (E – EP ) * TrackingError,
+            EC : 현재 사이클에서의 엔코더 보상값
+            E : 현재 엔코더 값
+            EP : 이전 사이클에서의 엔코더 보상값 
             </summary>
             <param name="xUsec">X 축 보상 시간(usec)</param>
-            <param name="yUsec">Y축 보상 시간(usec)</param>
+            <param name="yUsec">Y 축 보상 시간(usec)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfCompensateTable(System.String,System.UInt32)">
@@ -11676,7 +11657,7 @@
             초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
-            <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
+            <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
