@@ -110,78 +110,6 @@
             <param name="bits">비트 배열</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.IMemory">
-            <summary>
-            메모리 인터페이스 
-            데이타의 변경을 화면/혹은 DB에 통지해야 할 경우 PropertyChanged 이벤트 핸들러를 등록하여 사용한다
-            메모리 정보를 DB 에 저장하는 경우 속성 정보가 변경될때마다 DB와 동기화 된다. 
-            만약 DB 저장이 필요하지 않은 속성의 경우에는 [JsonIgnore] Attribute 를 지정해 준다
-            다중 쓰레드 환경등에서의 동기화가 필요할 경우에는 반드시 SyncRoot 를 통해 공유 자원을 보호해야 한다
-            </summary>
-        </member>
-        <member name="P:SpiralLab.IMemory.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.IMemory.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="T:SpiralLab.MemoryDB">
-            <summary>
-            메모리 데이터 베이스
-            </summary>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.#ctor(SpiralLab.IMemory,System.String,System.UInt32)">
-            <summary>
-            메모리 데이터 베이스 생성자
-            </summary>
-            <param name="memory">메모리 인터페이스 객체</param>
-            <param name="dbFileName">데이터베이스 파일 이름 (예:test.db)</param>
-            <param name="maxDataSize">데이타(Json 변환포맷) 최대 크기 (bytes)</param>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.Finalize">
-            <summary>
-            종결자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.Dispose">
-            <summary>
-            자원 해제
-            </summary>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.Initialize">
-            <summary>
-            초기화 및 동기화
-            </summary>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.PrepareTable">
-            <summary>
-            데이터 베이스 테이블 준비 (없으면 생성)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.ReverseSync">
-            <summary>
-            DB 에 저장되어 있는 모든 속성 데이타를 실제 메모리 객체에 반영(동기화)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.ForwardSync">
-            <summary>
-            속성들을 모두 조회하여 DB 에 없으면 삽입한다 (동기화)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.MemoryDB.Update(System.Reflection.PropertyInfo@)">
-            <summary>
-            속성 값이 변경될 경우 DB 에 업데이트
-            </summary>
-            <param name="prop">PropertyInfo 객체</param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.IEquipment">
             <summary>
             Equipment 인터페이스
@@ -372,27 +300,22 @@
             비전 서비스 인터페이스
             </summary>
         </member>
-        <member name="T:SpiralLab.ICore">
-            <summary>
-            스파이럴랩 Core 인터페이스
-            </summary>
-        </member>
-        <member name="M:SpiralLab.ICore.InitializeEngine">
-            <summary>
-            코어 초기화
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Core">
             <summary>
             스파이럴랩 코어 객체
             </summary>
         </member>
-        <member name="M:SpiralLab.Core.InitializeEngine">
+        <member name="P:SpiralLab.Core.IsInitialized">
             <summary>
-            코어 초기화
+            초기화 성공 여부
             </summary>
-            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Core.IsRunningPlatform64">
+            <summary>
+            실행중인 런타임 
+            true : x64
+            false : x32
+            </summary>
         </member>
         <member name="M:SpiralLab.Core.Initialize">
             <summary>

@@ -70,6 +70,10 @@
 
 **5. Version history**
 
+* 2021.12.18 v1.8.8
+   - fixed) no nodes at treeview bug (트리뷰에 노드가 업데이트 되지 않는 버그)
+   - fixed) encoder pulses/mm can be negate value with motf (MOTF 를 위한 엔코더 스케일값에 음수 입력 가능)
+
 * 2021.12.10 v1.8.7
    - added) support laser signal activate/deactivate at RTC (레이저 신호 활성화/비활성화 기능 제공)
    - added) editable MOTF encoder simulation speed in marker winforms (마커창에서 시뮬레이션 엔코더 속도 입력창 제공)
