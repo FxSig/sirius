@@ -1272,6 +1272,12 @@
             Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsRegisteringFonts">
+            <summary>
+            현재 마킹이 폰트 다운로드를 위한 것인지 여부
+            (내부적으로 사용됨 : false 기본값으로 유지할것)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
             <summary>
             사용자 정의 데이타
@@ -1417,6 +1423,12 @@
             <summary>
             펜 집합 사용 여부
             </summary> 
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsRegisteringFonts">
+            <summary>
+            현재 마킹이 폰트 다운로드를 위한 것인지 여부
+            (내부적으로 사용됨)
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsScannerPowerFaultAsError">
             <summary>

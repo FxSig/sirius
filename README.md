@@ -70,6 +70,9 @@
 
 **5. Version history**
 
+* 2021.12.22 v1.8.9
+   - fixed) register fonts(characterset) into rtc bug (폰트 다운로드시 개별 글자의 비율 오류 및 불필요 리스트 생성 버그)
+
 * 2021.12.18 v1.8.8
    - fixed) no nodes at treeview bug (트리뷰에 노드가 업데이트 되지 않는 버그)
    - fixed) encoder pulses/mm can be negate value with motf (MOTF 를 위한 엔코더 스케일값에 음수 입력 가능)

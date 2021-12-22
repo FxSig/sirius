@@ -78,6 +78,33 @@
             <param name="output">보간된 출력값</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.Adlink">
+            <summary>
+            ADLINK 내부 관리 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Adlink.Register(System.UInt16,System.UInt16)">
+            <summary>
+            카드 등록
+            </summary>
+            <param name="cardType"></param>
+            <param name="cardNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Adlink.Release(System.UInt16)">
+            <summary>
+            카드 해제
+            </summary>
+            <param name="cardNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Adlink.GetErrorMsg(System.Int32)">
+            <summary>
+            에러 메시지
+            </summary>
+            <param name="iErrorCode"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Correction2DRtc">
             <summary>
             스캐너 필드 보정 for 2D plane (Z=0)
@@ -364,7 +391,7 @@
         <member name="T:SpiralLab.Sirius.AdlinkDInput">
             <summary>
             디지털 입력 인터페이스    
-            Adlink 7230 류의 제품군
+            생성자에 DASK.PCI_7230 와 같은 카드 타입을 제공
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput.SyncRoot">
@@ -398,12 +425,12 @@
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
-            <param name="adlinkCardType">DASK.7230</param>
+            <param name="adlinkCardType">카드 타입 (예: DASK.7230)</param>
         </member>
         <member name="T:SpiralLab.Sirius.AdlinkDOutput">
             <summary>
             디지털 출력 인터페이스    
-            Adlink 7230 류의 제품군
+            생성자에 DASK.PCI_7230 와 같은 카드 타입을 제공
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDOutput.SyncRoot">
@@ -437,7 +464,7 @@
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
-            <param name="adlinkCardType">DASK.7230</param>
+            <param name="adlinkCardType">카드 타입 (예: DASK.7230)</param>
         </member>
         <member name="T:SpiralLab.Sirius.AjinExtekDInput">
             <summary>
@@ -1436,7 +1463,8 @@
         <member name="T:SpiralLab.Sirius.FiberVirtual">
             <summary>
             레이저 소스 (FiberVirtual)
-            업체 : 오토닉스 전용. 확장2번 포트의 8비트를 이용한 파워제어, 확장 1 번 포트 핀맵 참고할것
+            업체 : 오토닉스 전용
+            확장2번 포트의 8비트를 이용한 파워제어, 확장 1 번 포트 핀맵 참고할것
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.FiberVirtual.PropertyChanged">
