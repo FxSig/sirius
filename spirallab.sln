@@ -58,6 +58,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "29.script", "demos\script\2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31.motion", "demos\motion\31.motion.csproj", "{FDA0C1BB-592A-42D4-A872-EA02C663421B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "32.lasercontrol", "demos\lasercontrol\32.lasercontrol.csproj", "{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -356,6 +358,18 @@ Global
 		{FDA0C1BB-592A-42D4-A872-EA02C663421B}.Release|x64.Build.0 = Release|Any CPU
 		{FDA0C1BB-592A-42D4-A872-EA02C663421B}.Release|x86.ActiveCfg = Release|Any CPU
 		{FDA0C1BB-592A-42D4-A872-EA02C663421B}.Release|x86.Build.0 = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|x64.Build.0 = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Debug|x86.Build.0 = Debug|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x64.ActiveCfg = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x64.Build.0 = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x86.ActiveCfg = Release|Any CPU
+		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

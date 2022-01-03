@@ -37,7 +37,7 @@ namespace SpiralLab.Sirius
             if (null == projectType)
             {
                 var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Can't create target project : {projectType.ToString()} at {configFileName}");
+                mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
                 return;
             }
             //메인 폼 생성
@@ -49,15 +49,14 @@ namespace SpiralLab.Sirius
                 mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
                 return;
             }
-            //try
-            //{
+            try
+            {
                 Application.Run(MainForm);
-            //}
-            //catch(Exception ex)
-            //{
-            //    Logger.Log(Logger.Type.Error, ex);
-            //    MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //}
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             mutex.ReleaseMutex();
         }
     }

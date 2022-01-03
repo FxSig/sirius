@@ -70,6 +70,12 @@
 
 **5. Version history**
 
+* 2022.1.3 v1.9.0
+   - added) image analyzer for scanner field correction (스캐너 보정을 위한 이미지 분석기 추가)
+     - added) spirallab.sirius.fieldcorrection.dll (해당 dll 추가됨)
+	 - copy x64\OpenCvSharpExtern.dll(or x32) into bin directory (플랫폼에 맞게 해당 파일을 bin 디렉토리에 복사할것)
+   - added) laser control demo programs (레이저 제어 활용 데모 코드 추가)
+
 * 2021.12.22 v1.8.9
    - fixed) register fonts(characterset) into rtc bug (폰트 다운로드시 개별 글자의 비율 오류 및 불필요 리스트 생성 버그)
 

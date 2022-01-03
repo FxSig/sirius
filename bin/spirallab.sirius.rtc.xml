@@ -219,7 +219,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtc.Clear">
+        <member name="M:SpiralLab.Sirius.Correction2DRtc.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -365,7 +365,7 @@
             <param name="error">측정 상대 좌표 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DRtc.Clear">
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -1460,142 +1460,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.FiberVirtual">
-            <summary>
-            레이저 소스 (FiberVirtual)
-            업체 : 오토닉스 전용
-            확장2번 포트의 8비트를 이용한 파워제어, 확장 1 번 포트 핀맵 참고할것
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.FiberVirtual.PropertyChanged">
-            <summary>
-            속성 변경 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.Index">
-            <summary>
-            식별 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.PowerWatt">
-            <summary>
-            파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.RtcExt1">
-            <summary>
-            RTC 확장1 포트를 통해 레이저 파워 제어시 지정하여 사용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.RtcExt2">
-            <summary>
-            RTC 확장2 포트를 통해 레이저 파워 제어시 지정하여 사용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.FiberVirtual.IsGuideOn">
-            <summary>
-            Guide Laser 온오프
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.#ctor(System.UInt32,System.String,System.Single)">
-            <summary>
-            생성자
-            </summary>
-            <param name="index">식별번호</param>
-            <param name="name">이름</param>
-            <param name="maxPowerWatt">최대 파워 (W)</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.CtlPower(System.Single)">
-            <summary>
-            파워 변경
-            </summary>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.FiberVirtual.ListPower(System.Single)">
-            <summary>
-            파워 변경 (RTC의 리스트 명령으로 처리시)
-            </summary>
-            <param name="watt">파워 (W)</param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
             레이저 소스 (IPG YLP Type E)
@@ -1649,16 +1513,6 @@
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.RtcExt1">
-            <summary>
-            RTC 확장1 포트를 통해 레이저 제어시 (특정 고객 핀맵용)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.RtcExt2">
-            <summary>
-            RTC 확장2 포트를 통해 레이저 파워 제어시 지정하여 사용 (특정 고객 핀맵용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsPowerControl">
@@ -2397,11 +2251,6 @@
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.RtcExt2">
-            <summary>
-            RTC 확장2 포트를 통해 레이저 파워 제어시 지정하여 사용
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
@@ -2680,16 +2529,6 @@
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.RtcExt1">
-            <summary>
-            RTC 확장1 포트를 통해 레이저 제어시 (특정 고객 핀맵용)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.RtcExt2">
-            <summary>
-            RTC 확장2 포트를 통해 레이저 파워 제어시 지정하여 사용 (특정 고객 핀맵용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsPowerControl">
@@ -3465,7 +3304,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.ListPower(System.Single)">
             <summary>
-            파워 변경 (RTC의 리스트 명령으로 처리시)
+            파워 변경 (시리얼 통신으로 처리됨)
             </summary>
             <param name="watt">파워 (W)</param>
             <returns></returns>
@@ -9175,7 +9014,7 @@
             <param name="error">측정 상대 좌표 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DRtcCtb.Clear">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCtb.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9300,7 +9139,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.Clear">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9431,7 +9270,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5.Clear">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9569,7 +9408,7 @@
             <param name="error">측정 상대 좌표 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DRtcCt5.Clear">
+        <member name="M:SpiralLab.Sirius.Correction3DRtcCt5.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9823,6 +9662,11 @@
             <param name="success">변환 성공 여부</param>
             <param name="message">변환 로그 메시지</param>
         </member>
+        <member name="T:SpiralLab.Sirius.Plane">
+            <summary>
+            3D 공간의 평면 지정
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ICorrection">
             <summary>
             Correction (스캐너 보정) 인터페이스
@@ -9861,7 +9705,7 @@
             출력 보정 파일 (correction 폴더에서의 상대적 경로)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ICorrection.Clear">
+        <member name="M:SpiralLab.Sirius.ICorrection.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 모두 제거
             </summary>

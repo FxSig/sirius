@@ -475,6 +475,21 @@
             라이센스 (SyncAXIS) 인식 성공 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Rockey4ND.IsLaserLicensed">
+            <summary>
+            라이센스 (Laser) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsGridCheckerLicensed">
+            <summary>
+            라이센스 (GridChecker) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsVisionLicensed">
+            <summary>
+            라이센스 (Vision) 인식 성공 여부
+            </summary>
+        </member>
         <member name="M:SpiralLab.Rockey4ND.#ctor">
             <summary>
             생성자
