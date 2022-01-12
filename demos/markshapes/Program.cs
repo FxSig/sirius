@@ -160,7 +160,7 @@ namespace SpiralLab.Sirius
             return success;
         }
         /// <summary>
-        /// draw rectangle
+        /// draw line
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>

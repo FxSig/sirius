@@ -13,9 +13,16 @@ namespace SpiralLab.Sirius
 {
     public partial class MainForm : Form
     {
+
+        IDInput RtcExt1DInput;
+        IDOutput RtcExt1DOutput;
+        IDOutput RtcExt2DOutput;
+
         public MainForm()
         {
             InitializeComponent();
+
+            this.FormClosing += MainForm_FormClosing;
 
             SpiralLab.Core.Initialize();
             // 신규 문서 생성
@@ -69,11 +76,30 @@ namespace SpiralLab.Sirius
             var marker = new MarkerDefault(0);
             #endregion
             this.siriusEditorForm1.Marker =  marker;
+
+            #region RTC 확장 IO 
+            this.RtcExt1DInput = new RtcDInput(rtc, 0, "DIN RTC EXT1");
+            this.RtcExt1DInput.Initialize();
+            this.RtcExt1DOutput = new RtcDOutputExt1(rtc, 0, "DOUT RTC EXT1");
+            this.RtcExt1DOutput.Initialize();
+            this.RtcExt2DOutput = new RtcDOutputExt2(rtc, 0, "DIN RTC EXT2");
+            this.RtcExt2DOutput.Initialize();
+            this.siriusEditorForm1.RtcExtension1Input = this.RtcExt1DInput;
+            this.siriusEditorForm1.RtcExtension1Output = this.RtcExt1DOutput;
+            this.siriusEditorForm1.RtcExtension2Output = this.RtcExt2DOutput;
+            #endregion
         }
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             siriusEditorForm1.Document = doc;
+        }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            RtcExt1DInput?.Dispose();
+            RtcExt1DOutput?.Dispose();
+            RtcExt2DOutput?.Dispose();
         }
     }
 }

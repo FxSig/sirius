@@ -5,18 +5,23 @@
  SuperEasy library for Control for Scanner and Lasers
 
  
- ![bitmap](http://www.spirallab.co.kr/wp-content/uploads/2021/08/pod.png)
+ ![pulse on demand](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-6.png)
  
- ![path](http://www.spirallab.co.kr/wp-content/uploads/2021/05/image-19-1024x622.png)
+ ![scanner field correction by image](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-5.png)
  
- ![sirius](https://user-images.githubusercontent.com/58460570/70974494-38c41780-20eb-11ea-8567-afe02fab5441.png)
+ ![scanner field correction](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-7.png)
 
- ![barcode](https://user-images.githubusercontent.com/58460570/117915869-130f6200-b321-11eb-928f-7c4f08c1af70.png)
+ ![script](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-8.png)
+
+ ![path](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-9.png)
+
+ ![barcode](http://www.spirallab.co.kr/wp-content/uploads/2021/06/image-21-1024x686-2.png)
  
- ![stitchedimage](http://www.spirallab.co.kr/wp-content/uploads/2021/06/unnamed-5.png)
- 
+ ![stitchedimage](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-11.png)
+
  ![text with arc](https://user-images.githubusercontent.com/58460570/117915901-215d7e00-b321-11eb-8055-5502aad8bf85.png)
 
+ ![multiple views](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-10.png)
 
   ----
 
@@ -24,21 +29,33 @@
 
  - support SCANLAB's RTC4, RTC5, RTC6, RTC6 Ethernet, XL-SCAN(SyncAXIS) multiple products. 
  - support RTC control with 3x3 matrix stack operation.
- - support RTC 2D/3D field correction with easy to use.
  - support processing unlimited vector data into RTC controller automatically.
- - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) options.
- - support many kinds of commerical laser sources (support customizable ILaser interface)
+ - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) features.
  - support laser power control with POD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing
- - support entities : line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt), group for multiple entities and layers.
+ - support line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt), group for multiple entities and layers.
  - support mark 2D barcodes with dots, lines, outlines, hatch.
  - support powerful undo/redo actions.
  - support 1 source(single document data) with multiple views.
  - support customizable and extensible marker interface.
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
- - support vary laser parameters with 'Pen' (frequency, pulse width, power(watt), scanner speeds, laser delays, sky writing , ...)
- - support executable C# script codes
+ - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
+ - support SCANLAB's 2D/3D field correction with easy to use and with powerful image analyzer.
+ - support RTC motion profile with control signals at real-time and plot to graph.
+ - support executable C# script codes.
+ - support powermeters and power mapping interface
+   - Ophir USBI
+   - Thorlab PM100USB
+ - support many kinds of commerical laser sources
+   - Advanced Optowave Fotia
+   - Coherent Avia LX
+   - PHOTONICS INDUSTRY DX
+   - IPG YLP Type D/E
+   - SPI G3/4
+   - JPT Type E
  
-  ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2021/07/pathopt-1024x806.png)  
+ ![measurement](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-13.png)  
+
+ ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2022/01/ezgif.com-gif-maker.gif)
  
   ----
 
@@ -47,11 +64,10 @@
  - Development Environment : .NET dll library 
  - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
  - spirallab.sirius.dll file support user control : SpiralLab.Sirius.EditorForm / SpiralLab.Sirius.ViewerForm
+ - x64 Environment : copy all files from bin\x64 to bin\  
+ - x32 Environment : copy all files from bin\x32 to bin\ 
  - There are multiple demo programs in DEMOS directory
  - There are stand-alone programs in DEMOS\Sirius directory
- - (x64) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x64.dll $(TargetDir)freetype6.dll"
- - (x32) Post build event at Visual Studio "Copy /Y $(TargetDir)freetype6_x32.dll $(TargetDir)freetype6.dll"
-
 
  *The program running about 3 hours in evalution copy mode !*
  
@@ -69,6 +85,20 @@
 ----
 
 **5. Version history**
+
+* 2022.1.12 v1.9.1
+   - added) docs\sirius.pdf document file (사용자 문서 업데이트)
+   - added) support powerful measurement of signals (강력한 계측 기능 제공)
+     - MeasurementBegin/End entity (MeasurementBegin/End 엔티티 이용)
+     - create measurement data automatically and plot to graph in Marker Form (마커 화면에서 옵션사항으로 계측 데이타 취득및 저장, 그래프로 플롯 기능 제공)
+   - added) measurement demo project (계측 데모 프로젝트 추가)
+   - added) support various way of read/write extension i/o port (확장 포트를 이용한 데이타 읽기/쓰기 조합 지원)
+     - write data entity (다양한 확장 포트로 데이타 쓰기)
+     - write data ext16 entity (확장 1포트에 개별 비트 쓰기)
+     - write data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 출력 비트 마스크에 쓰기)
+     - wait data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 대기하기)
+    - fixed) improve scanner field correction by image  (이미지를 이용한 스캐너 보정 기능 개선)
+    - fixed) property values of timer entity is not shown (타이머 개체의 속성값이 일부 표시되지 않는 문제 해결)
 
 * 2022.1.3 v1.9.0
    - added) image analyzer for scanner field correction (스캐너 보정을 위한 이미지 분석기 추가)

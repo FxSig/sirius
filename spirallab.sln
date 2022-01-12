@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31129.286
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.fieldcorrection", "demos\fieldcorrection\4.fieldcorrection.csproj", "{86B03BA5-B828-4B15-909C-7A844408E103}"
 EndProject
@@ -59,6 +59,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "31.motion", "demos\motion\31.motion.csproj", "{FDA0C1BB-592A-42D4-A872-EA02C663421B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "32.lasercontrol", "demos\lasercontrol\32.lasercontrol.csproj", "{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "26.measurement", "demos\measurement\26.measurement.csproj", "{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -370,6 +372,18 @@ Global
 		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x64.Build.0 = Release|Any CPU
 		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x86.ActiveCfg = Release|Any CPU
 		{A70A8D4B-D5EA-4E79-99C6-2B33788AF6E4}.Release|x86.Build.0 = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|x64.Build.0 = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Debug|x86.Build.0 = Debug|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|x64.ActiveCfg = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|x64.Build.0 = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|x86.ActiveCfg = Release|Any CPU
+		{36F8C9D7-750C-4272-8D9F-2E15B596DAEE}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -195,6 +195,85 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.WaitDataExt16If">
+            <summary>
+            wait data ext16 if condition entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.WaitDataExt16If.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.WaitDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.WriteDataExt16If">
+            <summary>
+            write data ext16 if condition entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.WriteDataExt16If.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.WriteDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MeasurementHelper">
+            <summary>
+            계측 데이타 유틸리티 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementHelper.Save(System.String,SpiralLab.Sirius.MeasurementBegin,SpiralLab.Sirius.IRtc)">
+            <summary>
+            측정된 데이타 목록을 파일에 저장한다
+            </summary>
+            <param name="fileName">파일이름</param>
+            <param name="mb">대상 MeasurementBegin 객체</param>
+            <param name="rtc">현재 사용중인 IRtc 인터페이스</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementHelper.Save(System.String,SpiralLab.Sirius.IRtcMeasurement,System.Single,SpiralLab.Sirius.MeasurementChannel[],System.Boolean)">
+            <summary>
+            측정된 데이타 목록을 파일에 저장한다
+            </summary>
+            <param name="fileName">파일이름</param>
+            <param name="rtcMeasurement">IRtcMeasurement 객체</param>
+            <param name="frequency">샘플링 주기</param>
+            <param name="channels">계측 대상 채널</param>
+            <param name="isRawData">데이타 변환 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementHelper.InternalSave(System.String,System.Collections.Generic.List{System.ValueTuple{SpiralLab.Sirius.MeasurementChannel,System.Int32[]}},SpiralLab.Sirius.IRtcMeasurement,System.Single,System.Boolean)">
+            <summary>
+            실제 저장 진행하는 내부 코드
+            </summary>
+            <param name="fileName">파일이름</param>
+            <param name="measuredDataTuple">튜플 (ch, data[])</param>
+            <param name="rtcMeasurement">IRtcMeasurement 인터페이스</param>
+            <param name="frequency">샘플링 주기 (Hz)</param>
+            <param name="isRawData">데이타 변환 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementHelper.Plot(System.String)">
+            <summary>
+            지정된 계측 데이타 파일을 열어 그래프로 플롯(Plot) 시키기
+            </summary>
+            <param name="fileName">계측 데이타 파일 이름</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PensSerializer">
             <summary>
             Pens 객체 저장/복원용
@@ -325,7 +404,6 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -338,7 +416,7 @@
             <summary>
             측정된 데이타 목록을 얻어오기
             </summary>
-            <param name="measuredTupleData">채널, 데이타배열 목록 얻기</param>
+            <param name="measuredDataTuple">튜플 리스트 (채널, 데이타 배열 목록)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.WriteDataExt16">
@@ -1039,6 +1117,12 @@
             Bound Box
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.CxfHelper.#ctor(System.String)">
+            <summary>
+            생성자 
+            </summary>
+            <param name="fontFileName">cxf 폰트 파일</param>
+        </member>
         <member name="T:SpiralLab.Sirius.DxfHelper">
             <summary>
             netDXF 포맷 변환기
@@ -1278,6 +1362,11 @@
             (내부적으로 사용됨 : false 기본값으로 유지할것)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsMeasurementToPolt">
+            <summary>
+            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
             <summary>
             사용자 정의 데이타
@@ -1428,6 +1517,13 @@
             <summary>
             현재 마킹이 폰트 다운로드를 위한 것인지 여부
             (내부적으로 사용됨)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsMeasurementToPolt">
+            <summary>
+            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
+            계측 파일 경로 : bin\plot\measurement-이름.txt 
+            gnuplot 설정 파일 경로 :  bin\plot\gnuplot\plot.cmd
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsScannerPowerFaultAsError">
@@ -1856,6 +1952,23 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.jpttypeEForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -6082,13 +6195,6 @@
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Timer.Equals(SpiralLab.Sirius.Timer)">
-            <summary>
-            동일성 검사
-            </summary>
-            <param name="other">Another color to compare to.</param>
-            <returns>True if the three components are equal or false in any other case.</returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Timer.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
@@ -6325,17 +6431,21 @@
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnProgress">
             <summary>
-            진행률 이벤트 핸들러
+            가공 진행률 이벤트 핸들러
+            0~100 %
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnMeasurement">
             <summary>
             계측 이벤트 핸들러
+            MeasurementBegin 엔티티 사용시에만 콜백되며
+            MeasurementBegin 의 Save 를 통해 계측 데이타 저장하거나 
+            GetMeasuredData 함수를 이용한 채널별 데이타를 취득가능
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnFinished">
             <summary>
-            완료 이벤트 핸들러
+            가공 완료 이벤트 핸들러
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Index">
@@ -6484,7 +6594,7 @@
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnMeasurement">
             <summary>
             계측 이벤트 핸들러
-            MeasurementBegin 엔티티의 GetMeasuredData 호출로 데이타 취득
+            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnFinished">
@@ -7639,6 +7749,11 @@
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnCorrection3D">
             <summary>
             문서(Document)에서 스캐너 보정 3D 팝업 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMeasurement">
+            <summary>
+            문서(Document)에서 계측(Measurement) 팝업 창을 띄울때 발생하는 이벤트
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnIO">

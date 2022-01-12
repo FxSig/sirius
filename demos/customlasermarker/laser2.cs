@@ -208,7 +208,7 @@ namespace SpiralLab.Sirius
             if (!success)
                 return false;
             //RTC 버퍼 준비를 새로 시작한다
-            success &= this.Rtc.ListBegin(this, ListType.Auto);
+            success &= this.Rtc.ListBegin(this, this.Rtc.ListType);
             return success;
         }
 

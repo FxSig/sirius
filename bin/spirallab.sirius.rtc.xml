@@ -105,6 +105,153 @@
             <param name="iErrorCode"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.CorrectionData3D">
+            <summary>
+            3차원 보정 데이타 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CorrectionData3D.Reference">
+            <summary>
+            논리적인 좌표값 x,y (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CorrectionData3D.Measured">
+            <summary>
+            실제 측정된 좌표값 x,y (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CorrectionData3D.Delta">
+            <summary>
+            오차량 (실제 측정된 좌표값 - 이론상의 좌표값)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionData3D.#ctor(System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            생성자
+            </summary>
+            <param name="reference">논리적인 좌표값</param>
+            <param name="measured">실제 측정된 좌표값</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionData3D.ReferenceToString">
+            <summary>
+            논리 좌표 문자열 출력
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CorrectionData3D.MeasuredToString">
+            <summary>
+            실측값 문자열 출력
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Correction3DResultEventHandler">
+            <summary>
+            스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
+            </summary>
+            <param name="sender">IRtcCorrection 인터페이스</param>
+            <param name="success">변환 성공 여부</param>
+            <param name="message">변환 로그 메시지</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.Plane">
+            <summary>
+            3D 공간의 평면 지정
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ICorrection3D">
+            <summary>
+            3D Correction (스캐너 보정) 인터페이스
+            실행파일\correction\correXionPro.exe (for 2D)
+            실행파일\correction\stretchcorreXion5.exe (for 3D)
+            가 경로상에 존재해야 한다
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.ICorrection3D.OnResult">
+            <summary>
+            결과 통보용 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.Rows">
+            <summary>
+            입력 데이타의 행 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.Cols">
+            <summary>
+            입력 데이타의 열 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.KFactor">
+            <summary>
+            K 값 (bits/mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.SourceCorrectionFile">
+            <summary>
+            입력 보정 파일 (correction 폴더에서의 상대적 경로)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.TargetCorrectionFile">
+            <summary>
+            출력 보정 파일 (correction 폴더에서의 상대적 경로)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.ZLower">
+            <summary>
+            Z 보정 위치 최하단값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.ZUpper">
+            <summary>
+            Z 보정 위치 최상단값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.DataLower">
+            <summary>
+            최하단의 "절대위치, 측정위치" (mm) 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.DataUpper">
+            <summary>
+            최상단의 "절대위치, 측정위치" (mm) 배열 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection3D.ResultMessage">
+            <summary>
+            변환 결과 로그 메시지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection3D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            측정 데이타 입력 (절대 좌표 값)
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">기준 좌표(mm)</param>
+            <param name="measured">측정 절대 좌표 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection3D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
+            <summary>
+            측정 데이타 입력 (상대 좌표값) 
+            ex) 상대 좌표값 = 비전 오차량 만큼만 입력
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">기준 좌표값 (mm)</param>
+            <param name="error">측정 상대 좌표 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection3D.Clear(SpiralLab.Sirius.Plane)">
+            <summary>
+            입력 데이타 모두 제거
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection3D.Convert">
+            <summary>
+            변환 시작
+            </summary>
+            <returns>성공 여부</returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Correction2DRtc">
             <summary>
             스캐너 필드 보정 for 2D plane (Z=0)
@@ -219,7 +366,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtc.Clear(SpiralLab.Sirius.Plane)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtc.Clear">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -4663,7 +4810,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc4.Count">
             <summary>
-            카드 개수
+            인스턴스 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.Index">
@@ -5162,6 +5309,24 @@
             <param name="onOff">출력</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력 조건에 맞으면, 확장1 포트의 16비트 지정된 비트 위치로 출력
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="outputBitMask">위 조건1,2 가 맞을때 출력을 변경할 확장1 포트의 출력 비트 마스크</param>
+            <param name="onOff">확장1 포트의 출력 비트를 set(1) 할지 아니면 clear(0) 할지 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListEnd">
             <summary>
             리스트 명령 끝 - 버퍼 닫기
@@ -5288,6 +5453,37 @@
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
+            <summary>
+            계측 데이타 가져오기
+            </summary>
+            <param name="channel">채널</param>
+            <param name="data">데이타 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
+            <summary>
+            계측으로 취득된 Raw 데이타를 사용자 분석 용이하도록 변환
+            </summary>
+            <param name="channel">MeasurementChannel 채널</param>
+            <param name="data">입력 데이타</param>
+            <param name="convertedValue">변환된 데이타</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMeasurementBegin(System.Single,SpiralLab.Sirius.MeasurementChannel[])">
+            <summary>
+            리스트 명령 - 계측 측정 시작
+            </summary>
+            <param name="frequency">샘플링 주기 (Hz : ~ 100KHz)</param>
+            <param name="channels">대상 채널 (최대 4개)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMeasurementEnd">
+            <summary>
+            리스트 명령 - 계측 끝
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderReset(System.Single,System.Single)">
             <summary>
             RTC4 카드는 미지원
@@ -5315,7 +5511,14 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc4.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfTrackingError(System.UInt32,System.UInt32)">
+            <summary>
+            Motf 사용시 스캐너의 트래킹 에러 보상
+            RTC4 카드는 미지원
+            </summary>
+            <param name="xUsec">X 축 보상 시간(usec)</param>
+            <param name="yUsec">Y 축 보상 시간(usec)</param>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             RTC4 카드는 미지원
@@ -5578,6 +5781,11 @@
             mm 값 입력 (자동으로 bits 로 내부 계산됨)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Rtc5MarkingInfo">
+            <summary>
+            Marking Info 객체
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Rtc5MarkingInfo.Bit.MotfUnderflowInXDirection">
             <summary>
             X &lt; –524288
@@ -5690,7 +5898,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5.Count">
             <summary>
-            카드 개수
+            인스턴스 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Index">
@@ -6230,6 +6438,24 @@
             <param name="onOff">출력</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력 조건에 맞으면, 확장1 포트의 16비트 지정된 비트 위치로 출력
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="outputBitMask">위 조건1,2 가 맞을때 출력을 변경할 확장1 포트의 출력 비트 마스크</param>
+            <param name="onOff">확장1 포트의 출력 비트를 set(1) 할지 아니면 clear(0) 할지 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListEnd">
             <summary>
             리스트 명령 끝 - 버퍼 닫기
@@ -6438,15 +6664,24 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
             <summary>
-            측정된 데이타 가져오기
+            계측 데이타 가져오기
             </summary>
             <param name="channel">채널</param>
             <param name="data">데이타 배열</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
+            <summary>
+            계측으로 취득된 Raw 데이타를 사용자 분석 용이하도록 변환
+            </summary>
+            <param name="channel">MeasurementChannel 채널</param>
+            <param name="data">입력 데이타</param>
+            <param name="convertedValue">변환된 데이타</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMeasurementBegin(System.Single,SpiralLab.Sirius.MeasurementChannel[])">
             <summary>
-            리스트 명령 - 샘플링 측정 시작
+            리스트 명령 - 계측 측정 시작
             </summary>
             <param name="frequency">샘플링 주기 (Hz : ~ 100KHz)</param>
             <param name="channels">대상 채널 (최대 4개)</param>
@@ -6454,7 +6689,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMeasurementEnd">
             <summary>
-            리스트 명령 - 샘플링 측정 끝
+            리스트 명령 - 계측 끝
             </summary>
             <returns></returns>
         </member>
@@ -6651,7 +6886,18 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)">
+            <summary>
+            Motf 사용시 스캐너의 트래킹 에러 보상
+            0, 0 으로 지정시 Disabled 됨
+            Tracking error compensation is a first-approximation correction:
+            EC = E + (E – EP ) * TrackingError,
+            E : current encoder value
+            EP : previous cycle and EC is the compensated encoder value(used for Processing-on-the-fly correction).
+            </summary>
+            <param name="xUsec">X 축 보상 시간(usec)</param>
+            <param name="yUsec">Y 축 보상 시간(usec)</param>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             엔코더 테이블 보정 파일 로드
@@ -7022,6 +7268,11 @@
             mm 값 입력 (자동으로 bits 로 내부 계산됨)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Rtc6MarkingInfo">
+            <summary>
+            Marking Info 객체
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Rtc6MarkingInfo.Bit.MotfUnderflowInXDirection">
             <summary>
             X &lt; –524288
@@ -7134,7 +7385,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc6.Count">
             <summary>
-            카드 개수
+            인스턴스 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.Index">
@@ -7674,6 +7925,24 @@
             <param name="onOff">출력</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력 조건에 맞으면, 확장1 포트의 16비트 지정된 비트 위치로 출력
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="outputBitMask">위 조건1,2 가 맞을때 출력을 변경할 확장1 포트의 출력 비트 마스크</param>
+            <param name="onOff">확장1 포트의 출력 비트를 set(1) 할지 아니면 clear(0) 할지 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListEnd">
             <summary>
             리스트 명령 끝 - 버퍼 닫기
@@ -7888,6 +8157,15 @@
             <param name="data">데이타 배열</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
+            <summary>
+            계측으로 취득된 Raw 데이타를 사용자 분석 용이하도록 변환
+            </summary>
+            <param name="channel">MeasurementChannel 채널</param>
+            <param name="data">입력 데이타</param>
+            <param name="convertedValue">변환된 데이타</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMeasurementBegin(System.Single,SpiralLab.Sirius.MeasurementChannel[])">
             <summary>
             리스트 명령 - 샘플링 측정 시작
@@ -8095,7 +8373,18 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)" -->
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)">
+            <summary>
+            Motf 사용시 스캐너의 트래킹 에러 보상
+            0, 0 으로 지정시 Disabled 됨
+            Tracking error compensation is a first-approximation correction:
+            EC = E + (E – EP ) * TrackingError,
+            E : current encoder value
+            EP : previous cycle and EC is the compensated encoder value(used for Processing-on-the-fly correction).
+            </summary>
+            <param name="xUsec">X 축 보상 시간(usec)</param>
+            <param name="yUsec">Y 축 보상 시간(usec)</param>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             엔코더 테이블 보정 파일 로드
@@ -8340,6 +8629,11 @@
             <summary>
             SCANLAB's XLSCAN (RTC6 + SyncAXIS + ExcelliSCAN + ACS Motion)
             x64 버전만 지원 가능
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.Count">
+            <summary>
+            인스턴스 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Index">
@@ -8872,6 +9166,24 @@
             <param name="onOff">출력</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력 조건에 맞으면, 확장1 포트의 16비트 지정된 비트 위치로 출력
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="outputBitMask">위 조건1,2 가 맞을때 출력을 변경할 확장1 포트의 출력 비트 마스크</param>
+            <param name="onOff">확장1 포트의 출력 비트를 set(1) 할지 아니면 clear(0) 할지 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEnd">
             <summary>
             리스트 명령 끝 - 버퍼 닫기
@@ -9139,7 +9451,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.Clear(SpiralLab.Sirius.Plane)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.Clear">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9270,7 +9582,7 @@
             <param name="error">에러량</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5.Clear(SpiralLab.Sirius.Plane)">
+        <member name="M:SpiralLab.Sirius.Correction2DRtcCt5.Clear">
             <summary>
             입력 데이타 모두 제거
             </summary>
@@ -9615,46 +9927,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.CorrectionData3D">
-            <summary>
-            3차원 보정 데이타 
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData3D.Reference">
-            <summary>
-            논리적인 좌표값 x,y (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData3D.Measured">
-            <summary>
-            실제 측정된 좌표값 x,y (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.CorrectionData3D.Delta">
-            <summary>
-            오차량 (실제 측정된 좌표값 - 이론상의 좌표값)
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData3D.#ctor(System.Numerics.Vector3,System.Numerics.Vector3)">
-            <summary>
-            생성자
-            </summary>
-            <param name="reference">논리적인 좌표값</param>
-            <param name="measured">실제 측정된 좌표값</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData3D.ReferenceToString">
-            <summary>
-            논리 좌표 문자열 출력
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.CorrectionData3D.MeasuredToString">
-            <summary>
-            실측값 문자열 출력
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.ResultEventHandler">
+        <member name="T:SpiralLab.Sirius.Correction2DResultEventHandler">
             <summary>
             스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
             </summary>
@@ -9662,55 +9935,90 @@
             <param name="success">변환 성공 여부</param>
             <param name="message">변환 로그 메시지</param>
         </member>
-        <member name="T:SpiralLab.Sirius.Plane">
+        <member name="T:SpiralLab.Sirius.ICorrection2D">
             <summary>
-            3D 공간의 평면 지정
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.ICorrection">
-            <summary>
-            Correction (스캐너 보정) 인터페이스
+            2D Correction (스캐너 보정) 인터페이스
             실행파일\correction\correXionPro.exe (for 2D)
             실행파일\correction\stretchcorreXion5.exe (for 3D)
             가 경로상에 존재해야 한다
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.ICorrection.OnResult">
+        <member name="E:SpiralLab.Sirius.ICorrection2D.OnResult">
             <summary>
             결과 통보용 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.Rows">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.Rows">
             <summary>
             입력 데이타의 행 개수
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.Cols">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.Cols">
             <summary>
             입력 데이타의 열 개수
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.KFactor">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.KFactor">
             <summary>
             K 값 (bits/mm)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.SourceCorrectionFile">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.SourceCorrectionFile">
             <summary>
             입력 보정 파일 (correction 폴더에서의 상대적 경로)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ICorrection.TargetCorrectionFile">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.TargetCorrectionFile">
             <summary>
             출력 보정 파일 (correction 폴더에서의 상대적 경로)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ICorrection.Clear(SpiralLab.Sirius.Plane)">
+        <member name="P:SpiralLab.Sirius.ICorrection2D.Data">
+            <summary>
+            계측 데이타 2차원 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ICorrection2D.ResultMessage">
+            <summary>
+            변환 결과 문자열
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">절대좌표</param>
+            <param name="measured">측정좌표</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            측정 데이타 입력 
+            좌상단부터 우상단 방향으로 순서 
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </summary>
+            <param name="row">행</param>
+            <param name="col">열</param>
+            <param name="reference">논리적인 좌표</param>
+            <param name="error">에러량</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ICorrection2D.Clear">
             <summary>
             입력 데이타 모두 제거
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ICorrection.Convert">
+        <member name="M:SpiralLab.Sirius.ICorrection2D.Convert">
             <summary>
             변환 시작
             </summary>
@@ -10310,6 +10618,24 @@
             </summary>
             <param name="bitPosition">0~15</param>
             <param name="onOff">출력</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력 조건에 맞으면, 확장1 포트의 16비트 지정된 비트 위치로 출력
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="outputBitMask">위 조건1,2 가 맞을때 출력을 변경할 확장1 포트의 출력 비트 마스크</param>
+            <param name="onOff">확장1 포트의 출력 비트를 set(1) 할지 아니면 clear(0) 할지 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
+            <summary>
+            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            </summary>
+            <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
+            <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListEnd">
@@ -11187,104 +11513,125 @@
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAX_LaserOn">
             <summary>
             StatusAX+LASERON (StatusAX for laser signal on, –524288 for laser signal off).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAY_LaserOn">
             <summary>
             StatusAY+LASERON (StatusAY for laser signal on, –524288 for laser signal off).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBX_LaserOn">
             <summary>
             StatusBX+LASERON (StatusBX for laser signal on, –524288 for laser signal off).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBY_LaserOn">
             <summary>
             StatusBY+LASERON (StatusBY for laser signal on, –524288 for laser signal off).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAX_Out">
             <summary>
             SampleAX_Out (effective X-axis output value for the primary scan head connector; if applicable incl. any scanner offset and gain compensation, see comments; not usable for measuring Z-axis output values).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAY_Out">
             <summary>
             SampleAY_Out (effective Y-axis output value for the primary scan head connector; not usable for measuring Z-axis output values).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBX_Out">
             <summary>
             SampleBX_Out (effective X-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBY_Out">
             <summary>
             SampleBY_Out (effective Y-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.AutomaticLaserControlParam">
             <summary>
             Laser control parameter of automatic laser control (see set_auto_laser_control).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAX_Trans">
             <summary>
             SampleAX_Trans (transformed X-axis control value for the primary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAY_Trans">
             <summary>
             SampleAY_Trans (transformed Y-axis control value for the primary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAZ_Trans">
             <summary>
             SampleAZ_Trans (transformed Z-axis control value, if XY are connected to the primary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBX_Trans">
             <summary>
             SampleBX_Trans (transformed X-axis control value for the secondary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBY_Trans">
             <summary>
             SampleBY_Trans (transformed Y-axis control value for the secondary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBZ_Trans">
             <summary>
             SampleBZ_Trans (transformed Z-axis control value, if XY are connected to the secondary scan head connector).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.AutomaticLaserControlByVectorParam">
             <summary>
             Laser control parameter of vector-defined laser control (see set_vector_control).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.FocusShift">
             <summary>
             Focus shift (see set_vector_control, set_defocus, set_defocus_list).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAO1">
             <summary>
             12-bit output value at the ANALOG OUT1 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAO2">
             <summary>
             12-bit output value at the ANALOG OUT2 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”). /// </summary>
+            RTC5 이상만 지원
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDO16">
             <summary>
             Output value at the 16-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.1 ”16- Bit Digital Output Port”) /// </summary>
+            RTC5 이상만 지원
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDO8">
             <summary>
             Output value at the 8-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.2 ”8- Bit Digital Output Port”).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.PulseLength">
@@ -11292,64 +11639,76 @@
             Pulse length (PulseLength) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control).
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.MeasurementChannel.OutputPeroid">
+        <member name="F:SpiralLab.Sirius.MeasurementChannel.OutputPeriod">
             <summary>
             Output period (HalfPeriod) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.Enc0Counter">
             <summary>
             Counter value of encoder counter Encoder0.
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.Enc1Counter">
             <summary>
             Counter value of encoder counter Encoder1.
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.MarkSpeed">
             <summary>
             Marking speed (from set_mark_speed, set_mark_speed_ctrl).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDI16">
             <summary>
             16-bit digital input (EXTENSION 1).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ZoomValueForIntelliWeld">
             <summary>
             Zoom value (only for intelliWELD II).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.TimeStampCounter">
             <summary>
             Time stamp counter (see chapter 8.13 ”Time Measurements”, page 231).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.WobbelAmplitude">
             <summary>
             Wobbel amplitude (see set_wobbel, set_wobbel_mode and chapter 8.4 ”Wobbel Mode”, page 189).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAI">
             <summary>
             ReadAnalogIn (see read_analog_in).
+            RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ScaledEncoderX">
             <summary>
             Scaled encoder value for X. (RTC6 only)
+            RTC6 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ScaledEncoderY">
             <summary>
             Scaled encoder value for Y. (RTC6 only)
+            RTC6 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ScaledEncoderZ">
             <summary>
             Scaled encoder value for Z. (RTC6 only)
+            RTC6 이상만 지원
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcMeasurement">
@@ -11363,6 +11722,15 @@
             </summary>
             <param name="channel">채널</param>
             <param name="data">데이타 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMeasurement.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
+            <summary>
+            계측으로 취득된 Raw 데이타를 사용자 분석 용이하도록 변환
+            </summary>
+            <param name="channel">MeasurementChannel 채널</param>
+            <param name="data">입력 데이타</param>
+            <param name="convertedValue">변환된 데이타</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.ListMeasurementBegin(System.Single,SpiralLab.Sirius.MeasurementChannel[])">

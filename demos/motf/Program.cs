@@ -55,8 +55,8 @@ namespace SpiralLab.Sirius
 
             var rtcMOTF = rtc as IRtcMOTF;
             //엔코더 스케일 설정
-            rtcMOTF.EncXCountsPerMm = 2000;
-            rtcMOTF.EncYCountsPerMm = 2000;
+            rtcMOTF.EncXCountsPerMm = 67;
+            rtcMOTF.EncYCountsPerMm = 67;
 
             #endregion
 
@@ -125,11 +125,11 @@ namespace SpiralLab.Sirius
             //리스트 시작 
             success &= rtc.ListBegin(laser, ListType.Single);
             // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-            success &= rtcMotf.ListMOTFBegin();
+            success &= rtcMotf.ListMOTFBegin(true);
             // 0,0 으로 점프
             success &= rtc.ListJump(new Vector2(0, 0));
             //10 초동안 대기
-            success &= rtc.ListWait(1000 * 10);
+            success &= rtc.ListWait(1000 * 60);
             // MOTF 중시
             success &= rtcMotf.ListMOTFEnd(Vector2.Zero);
             success &= rtc.ListEnd();

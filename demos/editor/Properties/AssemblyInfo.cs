@@ -5,13 +5,13 @@ using System.Runtime.InteropServices;
 // 어셈블리에 대한 일반 정보는 다음 특성 집합을 통해 
 // 제어됩니다. 어셈블리와 관련된 정보를 수정하려면
 // 이러한 특성 값을 변경하세요.
-[assembly: AssemblyTitle("view")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("sirius editor demo")]
+[assembly: AssemblyDescription("Demo Program")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("view")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCompany("SPIRALLAB")]
+[assembly: AssemblyProduct("sirius editor demo")]
+[assembly: AssemblyCopyright("(c)SpiralLAB")]
+[assembly: AssemblyTrademark("Sirius Editor Demo")]
 [assembly: AssemblyCulture("")]
 
 // ComVisible을 false로 설정하면 이 어셈블리의 형식이 COM 구성 요소에 

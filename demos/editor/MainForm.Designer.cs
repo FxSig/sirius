@@ -48,6 +48,8 @@
             this.siriusEditorForm1.Marker = null;
             this.siriusEditorForm1.MotorZ = null;
             this.siriusEditorForm1.Name = "siriusEditorForm1";
+            this.siriusEditorForm1.PowerMap = null;
+            this.siriusEditorForm1.PowerMeter = null;
             this.siriusEditorForm1.Progress = 0;
             this.siriusEditorForm1.Rtc = null;
             this.siriusEditorForm1.RtcExtension1Input = null;

@@ -335,44 +335,28 @@ namespace SpiralLab.Sirius
                     var layer = this.clonedDoc.Layers[j];
                     if (layer.IsMarkerable)
                     {
-                        switch (layer.MotionType)
+                        if (!success)
+                            break;
+                        success &= rtc.ListBegin(laser);
+                        foreach (var entity in layer)
                         {
-                            case MotionType.ScannerOnly:
-                            case MotionType.StageOnly:
-                            case MotionType.StageAndScanner:
-                                if (null != motorZ)
-                                {
-                                    success &= motorZ.IsReady;
-                                    success &= !motorZ.IsBusy;
-                                    success &= !motorZ.IsError;
-                                    if (success)
-                                        success &= motorZ.CtlMoveAbs(layer.ZPosition, 10);
-                                    if (!success)
-                                        Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: motor Z invalid position/status");
-                                }
-                                if (!success) break;
-                                success &= rtc.ListBegin(laser);
-                                foreach (var entity in layer)
-                                {
-                                    var markerable = entity as IMarkerable;
-                                    if (null != markerable)
-                                        success &= markerable.Mark(this.MarkerArg);
-                                    if (!success)
-                                        break;
-
-                                    float progress = ((float)i / (float)offsets.Count * (float)j / (float)this.clonedDoc.Layers.Count * 100.0f);
-                                    this.MarkerArg.Progress = progress;
-                                    this.OnProgress?.Invoke(this, this.MarkerArg);
-                                }
-                                if (success)
-                                {
-                                    success &= rtc.ListEnd();
-                                    success &= rtc.ListExecute(true);
-                                }
+                            var markerable = entity as IMarkerable;
+                            if (null != markerable)
+                                success &= markerable.Mark(this.MarkerArg);
+                            if (!success)
                                 break;
+                            float progress = ((float)i / (float)offsets.Count * (float)j / (float)this.clonedDoc.Layers.Count * 100.0f);
+                            this.MarkerArg.Progress = progress;
+                            this.OnProgress?.Invoke(this, this.MarkerArg);
+                        }
+                        if (success)
+                        {
+                            success &= rtc.ListEnd();
+                            success &= rtc.ListExecute(true);
                         }
                     }
-                    if (!success) break;
+                    if (!success) 
+                        break;
                 }
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();

@@ -4,6 +4,11 @@
         <name>spirallab.core</name>
     </assembly>
     <members>
+        <member name="T:SpiralLab.StringCipher">
+            <summary>
+            Encoding/Decoding 
+            </summary>
+        </member>
         <member name="T:SpiralLab.BitHelper`2">
             <summary>
             비트 조작용 객체
