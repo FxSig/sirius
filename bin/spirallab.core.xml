@@ -9,6 +9,22 @@
             Encoding/Decoding 
             </summary>
         </member>
+        <member name="M:SpiralLab.StringCipher.Encrypt(System.String,System.String)">
+            <summary>
+            암호화
+            </summary>
+            <param name="plainText"></param>
+            <param name="passPhrase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.StringCipher.Decrypt(System.String,System.String)">
+            <summary>
+            복호화
+            </summary>
+            <param name="cipherText"></param>
+            <param name="passPhrase"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.BitHelper`2">
             <summary>
             비트 조작용 객체

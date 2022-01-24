@@ -1351,7 +1351,7 @@
             펜 집합 사용 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsScannerPowerFaultAsError">
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsVerifyScannerPowerFault">
             <summary>
             Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
             </summary>
@@ -1510,8 +1510,17 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsEnablePens">
             <summary>
-            펜 집합 사용 여부
+            펜 집합 사용 여부 
+            SiriusEditorForm 의 펜 집합 속성과 연동됨 (UI 파트에서 활성화 할것)
+            (내부적으로 사용됨)
             </summary> 
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsMeasurementToPolt">
+            <summary>
+            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
+            계측 파일 경로 : bin\plot\measurement-이름.txt 
+            gnuplot 설정 파일 경로 :  bin\config\plot.cmd
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsRegisteringFonts">
             <summary>
@@ -1519,16 +1528,9 @@
             (내부적으로 사용됨)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.IsMeasurementToPolt">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsVerifyScannerPowerFault">
             <summary>
-            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
-            계측 파일 경로 : bin\plot\measurement-이름.txt 
-            gnuplot 설정 파일 경로 :  bin\plot\gnuplot\plot.cmd
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.IsScannerPowerFaultAsError">
-            <summary>
-            Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
+            Scanner Power 상태 및 Ack 응답상태를 검사하여 에러로 처리할지 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
@@ -3399,6 +3401,11 @@
         <member name="P:SpiralLab.Sirius.IDocument.Pens">
             <summary>
             펜 엔티티의 집합으로 레이저 가공 파라메터의 모음
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDocument.IsEditorLock">
+            <summary>
+            편집기 화면에서 Lock 처리를 지원
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Tag">

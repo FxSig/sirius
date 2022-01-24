@@ -40,7 +40,8 @@ namespace SpiralLab.Sirius
             //var rtc = new Rtc5(0); //create Rtc5 controller
             //var rtc = new Rtc6(0); //create Rtc6 controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)            
-            var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml")); //실험적인 상태 (Scanlab XLSCAN 솔류션)
+            string configXmlFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml");
+            var rtc = new Rtc6SyncAxis(0, configXmlFileName) ; // Scanlab XLSCAN 솔류션
 
             rtc.Initialize(0, 0, string.Empty);
             rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
@@ -65,9 +66,15 @@ namespace SpiralLab.Sirius
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
+                Console.WriteLine("'S' : simulation mode enabled");
+                Console.WriteLine("'H' : hardware mode enabled");
+                Console.WriteLine("'C' : job characteristic");
                 Console.WriteLine("'F1' : draw rectangle 2D with scanner only");
                 Console.WriteLine("'F2' : draw rectangle 2D with stage only");
                 Console.WriteLine("'F3' : draw rectangle 2D with scanner and stage");
+                Console.WriteLine("'F10' : get status");
+                Console.WriteLine("'F11' : reset");
+                Console.WriteLine("'F12' : abort");
                 Console.WriteLine("'M' : move stage x and y");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
@@ -78,6 +85,12 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("");
                 switch (key.Key)
                 {
+                    case ConsoleKey.S:
+                        rtc.CtlSimulationMode(true);
+                        break;
+                    case ConsoleKey.H:
+                        rtc.CtlSimulationMode(false);
+                        break;
                     case ConsoleKey.F1:
                         Draw(rtc, laser, MotionType.ScannerOnly);
                         break;
@@ -85,7 +98,44 @@ namespace SpiralLab.Sirius
                         Draw(rtc, laser, MotionType.StageOnly);
                         break;
                     case ConsoleKey.F3:
+                        //band width 변경 가능
+                        //rtc.CtlBandWidth(2.0f); 
+                        //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
+                        //rtc.CtlHeadOffset(ScanDevice.ScanDevice1, new Vector2(0.1f, 0.2f), 5);
+                        //rtc.CtlHeadOffset(ScanDevice.ScanDevice2, new Vector2(-0.1f, -0.2f), -5);
                         Draw(rtc, laser, MotionType.StageAndScanner);
+                        break;
+                    case ConsoleKey.F10:
+                        if (rtc.CtlGetStatus(RtcStatus.Busy))
+                            Console.WriteLine("rtc is busy now ...");
+                        else
+                            Console.WriteLine("rtc is not busy ...");
+
+                        rtc.CtlGetDynamicsConfig(out var dynamics);
+                        Console.WriteLine(dynamics.ToString());
+                        rtc.CtlGetTrajectory(out var trajectory);
+                        Console.WriteLine(trajectory.ToString());
+                        {
+                            rtc.CtlGetScannerPosition(ScanDevice.ScanDevice1, out float x, out float y);
+                            Console.WriteLine($"scanner x= {x:F3}, y= {y:F3}");
+                        }
+                        {
+                            rtc.CtlGetStagePosition(out float x, out float y);
+                            Console.WriteLine($"stage x= {x:F3}, y= {y:F3}");
+                        }
+
+                        Console.WriteLine($"band width= {rtc.BandWidth}");
+                        Console.WriteLine($"simulation mode= {rtc.IsSimulationMode} with {rtc.SimulationFileName}");
+
+                        break;
+                    case ConsoleKey.F11:
+                        rtc.CtlReset();
+                        break;
+                    case ConsoleKey.F12:
+                        rtc.CtlAbort();
+                        break;
+                    case ConsoleKey.C:
+                        PrintJobCharacteristic(rtc);
                         break;
                     case ConsoleKey.M:
                         rtc.StageMoveSpeed = 10;
@@ -109,8 +159,13 @@ namespace SpiralLab.Sirius
             if (success)
             {
                 success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
+                success &= rtc.ListExecute(false);
             }
+        }
+
+        static void PrintJobCharacteristic(Rtc6SyncAxis rtc)
+        {            
+            Console.WriteLine($"{rtc.JobStatus.ToString()}");
         }
     }
 }

@@ -86,6 +86,18 @@
 
 **5. Version history**
 
+* 2022.1.24 v1.9.2
+   - fixed) vector-defined laser control bug (벡터 기반 레이저 출력 제어 버그 수정)
+   - fixed) simplify automatic laser control by velocity (속도에 의한 레이저 자동 제어 간소화)
+   - added) SiriusEditorForm with lock/unlock feature (편집기 내에서 잠금 기능 추가)
+   - fixed) syncaxis 
+        - added) config dynamics
+        - added) job status / job event callback / job characteristic
+        - added) on/off simulation or hardware mode / simulation filename 
+        - added) get actual postion of stage, scanner(s)
+        - added) operation status (green/yellow/red)
+        - fixed) improved demo program with editor_syncaxis
+
 * 2022.1.12 v1.9.1
    - added) docs\sirius.pdf document file (사용자 문서 업데이트)
    - added) support powerful measurement of signals (강력한 계측 기능 제공)

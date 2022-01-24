@@ -5241,21 +5241,23 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListArc(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListArc(System.Numerics.Vector2,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListArc(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListArc(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -6067,6 +6069,11 @@
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.AutoLaserControlSignal">
+            <summary>
+            현재 활성화된 ALC 제어 신호
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.EncXCountsPerMm">
             <summary>
             단위 mm 당 엔코더 X 개수
@@ -6370,21 +6377,23 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Numerics.Vector2,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -6706,12 +6715,11 @@
             <param name="compensator">보정기</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListAutoLaserControl``1(``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             ALC(Automatic Laser Control) 기능 설정
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
-            <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
@@ -6805,7 +6813,7 @@
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListJump(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJump3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -6813,7 +6821,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListJump(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJump3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -6823,7 +6831,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMark(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMark3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -6831,7 +6839,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMark(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMark3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -6841,15 +6849,16 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListArc3D(System.Numerics.Vector3,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
             <param name="vCenter">중심 위치 (cx, cy, cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListArc(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListArc3D(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
@@ -6857,6 +6866,7 @@
             <param name="cy">중심 위치 (cy) (mm)</param>
             <param name="cz">중심 위치 (cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlEncoderReset(System.Single,System.Single)">
@@ -7554,6 +7564,11 @@
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.AutoLaserControlSignal">
+            <summary>
+            현재 활성화된 ALC 제어 신호
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.EncXCountsPerMm">
             <summary>
             단위 mm 당 엔코더 X 개수
@@ -7857,21 +7872,23 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Numerics.Vector2,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -8193,12 +8210,11 @@
             <param name="compensator">보정기</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListAutoLaserControl``1(``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             ALC(Automatic Laser Control) 기능 설정
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
-            <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
@@ -8292,7 +8308,7 @@
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListJump(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJump3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -8300,7 +8316,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListJump(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJump3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -8310,7 +8326,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMark(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMark3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -8318,7 +8334,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMark(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMark3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -8328,15 +8344,16 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListArc3D(System.Numerics.Vector3,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
             <param name="vCenter">중심 위치 (cx, cy, cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListArc(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListArc3D(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
@@ -8344,6 +8361,7 @@
             <param name="cy">중심 위치 (cy) (mm)</param>
             <param name="cz">중심 위치 (cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlEncoderReset(System.Single,System.Single)">
@@ -8610,21 +8628,6 @@
             <param name="errorCode">에러코드</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.CalculationStatus">
-            <summary>
-            모션 계산 상태
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.TransferStatus">
-            <summary>
-            모션 경로 전송 상태
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.ExecutionStatus">
-            <summary>
-            모션 실행 상태
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.Rtc6SyncAxis">
             <summary>
             SCANLAB's XLSCAN (RTC6 + SyncAXIS + ExcelliSCAN + ACS Motion)
@@ -8737,6 +8740,26 @@
             XML 환경 설정 파일
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Handle">
+            <summary>
+            SyncAxis 인스턴스 핸들
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.JobStatus">
+            <summary>
+            현재 작업(Job) 상태 
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.Rtc6SyncAxis.OnJobStatus">
+            <summary>
+            현재 작업 상태 업데이트 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.OpStatus">
+            <summary>
+            SyncAxis 오퍼에이션 상태
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.StageMoveSpeed">
             <summary>
             스테이지 이동 속도 (mm/s)
@@ -8752,9 +8775,25 @@
             LPF(Low Pass Filter) Bandwidth
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.IsSimulationMode">
+            <summary>
+            시뮬레이션 모드 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.SimulationFileName">
+            <summary>
+            시뮬레이션 모드일때 
+            현재 작업(Job Id)의 시뮬레이션 저장 파일 이름
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.HeuristicIndex">
             <summary>
             XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.MotionType">
+            <summary>
+            현재 모션 구동 타입
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.#ctor">
@@ -8784,32 +8823,23 @@
             <param name="unUsed_ctbFileName"></param>
             <returns></returns>
         </member>
-        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.WarningOnly">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ReInitialize">
             <summary>
-            Log a warning message.
+            재 초기화 루틴 
             </summary>
+            <returns></returns>
         </member>
-        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.AbortImmediately">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSimulationMode(System.Boolean)">
             <summary>
-            Immediately abort job execution.
+            시뮬레이션 모드/하드웨어 모드 설정
             </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation.StopAndReport">
-            <summary>
-            End the job and do a controlled jump to home position.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlDynamicViolation(SpiralLab.Sirius.Rtc6SyncAxis.DynamicViolation)">
-            <summary>
-            
-            </summary>
-            <param name="dv"></param>
+            <param name="enable"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
-            보정 파일 변경 - syncAxis 미지원
-            (XML 설정 파일에 등록된 ct5 파일이 대신 사용됨)
+            보정 파일 변경 - syncAxis 에서는 미지원됨
+            (XML 에 미리 등록된 ct5 파일만이 사용됨)
             </summary>
             <param name="tableIndex"></param>
             <param name="ctbFileName"></param>
@@ -8818,7 +8848,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
             보정 파일 선택 - syncAxis 미지원
-            (XML 설정 파일에 등록된 ct5 파일에서 선택됨)
+            (XML 설정 파일에 등록된 ct5 파일 목록들 중에서 선택됨)
             </summary>
             <param name="primaryHeadTableIndex"></param>
             <param name="secondaryHeadTableIndex"></param>
@@ -8956,6 +8986,23 @@
             <param name="vPosition">X,Y 위치 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
+            <summary>
+            스캐너의 실제 위치
+            </summary>
+            <param name="scanDevice"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetStagePosition(System.Single@,System.Single@)">
+            <summary>
+            스테이지의 실제 위치
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Single,System.Single)">
             <summary>
             스캐너 혹은 스테이지 이동
@@ -8973,6 +9020,14 @@
             <param name="filterBandWidth"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectHeuristic(System.UInt32)">
+            <summary>
+            휴리스틱 변경하기
+            (xml 설정 파일에서 미리 저장되어 있어야함)
+            </summary>
+            <param name="heristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
             <summary>
             멀티 헤드 오프셋 적용
@@ -8982,13 +9037,50 @@
             <param name="angle">회전량</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">
+            <summary>
+            Contour Dependent Speed Direction Control 사용 유무
+            </summary>
+            <param name="direction">방향</param>
+            <param name="spotRadius">반지름 크기 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetDynamicsConfig(SpiralLab.Sirius.Dynamics@)">
+            <summary>
+            Calculation Dynamics 설정 정보 얻기
+            </summary>
+            <param name="dynamics"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetDynamicsConfig(SpiralLab.Sirius.Dynamics)">
+            <summary>
+            Calculation Dynamics 정보 설정 하기
+            </summary>
+            <param name="dynamics"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetTrajectory(SpiralLab.Sirius.Trajectory@)">
+            <summary>
+            Trajectory 설정값 얻기
+            </summary>
+            <param name="trajectory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetTrajectory(SpiralLab.Sirius.Trajectory)">
+            <summary>
+            Trajectory 설정 하기
+            </summary>
+            <param name="trajectory"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <summary>
-            리스트 명령 시작 - 버퍼 준비 (Scanner Only 방식으로 고정됨)
-            * 전용 ListBegin 함수를 사용할것을 추천함
+            리스트 명령 시작 - 버퍼 준비 
+            Deprecated 된 기능으로, 만약 호출시 Scanner Only 방식으로 고정됨
+            * 전용 ListBegin 함수를 대신 사용할것
             </summary>
             <param name="laser">레이저 소스</param>
-            <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
+            <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : auto)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
@@ -9025,6 +9117,13 @@
             </summary>
             <param name="jump">점프(jump 속도 (mm/s)</param>
             <param name="mark">마크(mark/arc) 속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListSpeedMinMark(System.Single)">
+            <summary>
+            리스트 명령 - 최소 마크 속도
+            </summary>
+            <param name="mark">최소 마크 속도</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWait(System.Single)">
@@ -9090,21 +9189,23 @@
             <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListArc(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListArc(System.Numerics.Vector2,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListArc(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListArc(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -9148,6 +9249,22 @@
             <param name="approxBlendLimit"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Single)">
+            <summary>
+            Contour Dependent Speed Direction Control 사용 유무
+            </summary>
+            <param name="direction">방향</param>
+            <param name="spotRadius">반지름 크기 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListSpotDistanceControl(System.Boolean,System.Single)">
+            <summary>
+            Spot Distance Control 사용 유무
+            </summary>
+            <param name="isSupress">supress/unsupress 여부</param>
+            <param name="timeDelay">Relative point in time between 2 Job functions (slsc_list_*)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWriteData``1(SpiralLab.Sirius.ExtensionChannel,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
             리스트 명령 - 확장 포트에 데이타 쓰기 
@@ -9182,6 +9299,22 @@
             </summary>
             <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
             <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
+            <summary>
+            리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
+            </summary>
+            <typeparam name="T">XML 설정된 Active Channel 사용됨</typeparam>
+            <param name="unusedCtrl">XML 설정된 Active Channel 사용됨</param>
+            <param name="unusedStartingValue">XML 설정된 Active Channel 사용됨</param>
+            <param name="unusedCompensator">미사용</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcByVectorEnd">
+            <summary>
+            리스트 명령 -  ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 비활성화
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEnd">
@@ -10319,9 +10452,6 @@
             <summary>
             RTC 카드 초기화
             </summary>
-            <summary>
-            RTC 카드 초기화
-            </summary>
             <param name="kFactor">k factor = bits/mm</param>
             <param name="laserMode">LaserMode 열거형</param>
             <param name="ctFileName">주 스캐너의 보정 테이블(Table1)에 Load/Select 하려는 ctb/ct5 스캐너 보정 파일</param>
@@ -10523,7 +10653,7 @@
             리스트 명령 - 점프
             </summary>
             <param name="vPosition">x,y 위치 (mm)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListJump(System.Single,System.Single,System.Single)">
@@ -10532,7 +10662,7 @@
             </summary>
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListMark(System.Numerics.Vector2,System.Single)">
@@ -10540,7 +10670,7 @@
             리스트 명령 - 마크 (Mark : 선분)
             </summary>
             <param name="vPosition">x,y 위치 (mm)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListMark(System.Single,System.Single,System.Single)">
@@ -10549,24 +10679,26 @@
             </summary>
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) 사용시 비율값</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Numerics.Vector2,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc.ListArc(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
             <param name="sweepAngle">회전량 (+ : CCW, - : CW)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListEllipse(System.Numerics.Vector2,System.Single,System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -10708,7 +10840,7 @@
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListJump(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListJump3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -10716,7 +10848,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListJump(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListJump3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 점프 
             </summary>
@@ -10726,7 +10858,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListMark(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListMark3D(System.Numerics.Vector3,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -10734,7 +10866,7 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListMark(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListMark3D(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 마크
             </summary>
@@ -10744,15 +10876,16 @@
             <param name="rampFactor">자동 레이저 제어시의 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListArc(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListArc3D(System.Numerics.Vector3,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
             <param name="vCenter">중심 위치 (cx, cy, cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtc3D.ListArc(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtc3D.ListArc3D(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 아크(호) 
             </summary>
@@ -10760,6 +10893,7 @@
             <param name="cy">중심 위치 (cy) (mm)</param>
             <param name="cz">중심 위치 (cz) (mm)</param>
             <param name="sweepAngle">회전 각도 (+ : 반시계방향)</param>
+            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.AutoLaserControlMode">
@@ -10868,9 +11002,15 @@
             ALC(Automatic Laser Control 중 위치 의존적 방법으로 어떤 테이블을 사용할지 지정
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlSignal">
+            <summary>
+            현재 활성화된 ALC 제어 신호
+            CtlAutoLaserControl 호출에 의해 설정됨
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.CtlAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,SpiralLab.Sirius.AutoLaserControlMode,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
-            ALC(Automatic Laser Control) 기능 설정
+            ALC(Automatic Laser Control) 기능 전역 설정
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
@@ -10881,12 +11021,12 @@
             <param name="compensator">출력값 보정기 사용시 지정</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAutoLaserControl``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
+        <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAutoLaserControl``1(``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
-            ALC(Automatic Laser Control) 기능 설정
+            ALC(Automatic Laser Control) 기능 변경
+            CtlAutoLaserControl 호출에 의해 지정된 AutoLaserControlSignal 신호가 처리됨
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
-            <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="percentage100">100% 일때의 출력값</param>
             <param name="min">최소 출력값</param>
             <param name="max">최대 출력값</param>
@@ -11981,9 +12121,330 @@
             4
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.OperationStatus">
+            <summary>
+            SyncAxis 내부 인스턴스의 오퍼레이션 상태 색상
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ContourDependentSpeedDirection.Right">
+            <summary>
+            Speeds are determined right of the curve mid-line
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ContourDependentSpeedDirection.Left">
+            <summary>
+            Speeds are determined left of the curve mid-line.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicViolationReaction.WarningOnly">
+            <summary>
+            Log a warning message.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicViolationReaction.AbortImmediately">
+            <summary>
+            Immediately abort job execution.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicViolationReaction.StopAndReport">
+            <summary>
+            End the job and do a controlled jump to home position.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.DynamicMonitoringLevel">
+            <summary>
+            동적 모니터링 신호
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Position">
+            <summary>
+            위치
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Velocity">
+            <summary>
+            속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Acceleration">
+            <summary>
+            가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Jerk">
+            <summary>
+            가가속도
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Dynamics">
+            <summary>
+            Calculation Dynamics 설정정보
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.Reaction">
+            <summary>
+            Dynamic Violation 발생시 처리 방법 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerAngularVelLimit">
+            <summary>
+            스캐너 각속도 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerAngularAccLimit">
+            <summary>
+            스캐너 각가속도 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerAngularJerkLimit">
+            <summary>
+            스캐너 각 가가속도 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerFieldMinLimit">
+            <summary>
+            스캐너 필드 최소 크기 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerFieldMaxLimit">
+            <summary>
+            스캐너 필드 최대 크기 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerJumpAngularAcc">
+            <summary>
+            스캐너 점프 각 가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerJumpAngularJerk">
+            <summary>
+            스캐너 점프 각 가가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerMarkAngularAcc">
+            <summary>
+            스캐너 마크 각 가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerMarkAngularJerk">
+            <summary>
+            스캐너 마크 각 가가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.ScannerMonitoringLevel">
+            <summary>
+            스캐너 모니터링 레벨
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageVelLimit">
+            <summary>
+            스테이지 속도 제한
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageAccLimit">
+            <summary>
+            스테이지 가속도 제한
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageJerkLimit">
+            <summary>
+            스테이지 가가속도 제한
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageFieldMinLimit">
+            <summary>
+            스테이지 필드 최소 크기 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageFieldMaxLimit">
+            <summary>
+            스테이지 필드 최대 크기 제한값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageVel">
+            <summary>
+            스테이지 속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageAcc">
+            <summary>
+            스테이지 가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageJerk">
+            <summary>
+            스테이지 가가속도
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Dynamics.StageMonitoringLevel">
+            <summary>
+            스테이지 모니터링 레벨
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Dynamics.#ctor">
+            <summary>
+            기본 생성자
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.CalculationStatus">
+            <summary>
+            모션 계산 상태 (열거형)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TransferStatus">
+            <summary>
+            모션 경로 전송 상태 (열거형)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ExecutionStatus">
+            <summary>
+            모션 실행 상태 (열거형)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.JobStatus">
+            <summary>
+            SyncAxis 작업 상태 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.JobStatus.JobID">
+            <summary>
+            작업 식별자
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.CalcStatus">
+            <summary>
+            계산 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.TransStatus">
+            <summary>
+            전송 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.ExecStatus">
+            <summary>
+            실행 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxScanPos">
+            <summary>
+            스캐너 최대 X, Y 위치
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxStagePos">
+            <summary>
+            스테이지 최대 X, Y 위치
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxScanVel">
+            <summary>
+            스캐너 최대 X, Y 속도
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxStageVel">
+            <summary>
+            스테이지 최대 X, Y 속도
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxScanAcc">
+            <summary>
+            스캐너 최대 X, Y 가속도
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxStageAcc">
+            <summary>
+            스테이지 최대 X, Y 가속도
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxStageJerk">
+            <summary>
+            스테이지 최대 X, Y 가가속도
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxScanPosLaserOn">
+            <summary>
+            스캐너 최대 X, Y 위치 + 레이저 신호 On
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MaxStagePosLaserOn">
+            <summary>
+            스테이지 최대 X, Y 위치 + 레이저 신호 On
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.MinMaxMarkSpeed">
+            <summary>
+            The minimum marking speed during the Job. Only those parts are  taken into account in which the laser is switched on(laser spot speed). 
+            CalcStatus 상태가 Finished 되면 아래 항목들이 업데이트 된다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.InsertedSkywritings">
+            <summary>
+            Number of successions in which a Sky Writing-like motion has been  inserted(because a direct crossing would violate the dynamic limits and also a blending cannot be implemented).
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.JobStatus.MotionMicroSteps" -->
+        <member name="P:SpiralLab.Sirius.JobStatus.ExecTime">
+            <summary>
+            Execution time of this Job-ID up to here in ms. 
+            This information  about the duration of planned or executed motions can be used  for process evaluation and optimization.
+            Note that the measured times will fluctuate because MS Windows is not a real time system.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobStatus.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JobStatus.ToString">
+            <summary>
+            상세 정보 출력
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JobStatus.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.JobStatusEventHandler">
+            <summary>
+            작업 상태 이벤트 통지용 
+            </summary>
+            <param name="sender">IRtcSyncAxis 인터페이스</param>
+            <param name="jobStatus">JobStatus 정보 객체</param>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcSyncAxis">
             <summary>
             RTC SYNCAXIS 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Handle">
+            <summary>
+            SyncAxis 인스턴스 핸들
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.JobStatus">
+            <summary>
+            현재 작업(Job) 상태 
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IRtcSyncAxis.OnJobStatus">
+            <summary>
+            현재 작업 상태 업데이트 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.OpStatus">
+            <summary>
+            SyncAxis 내부 Operation Status 상태값
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveSpeed">
@@ -12003,6 +12464,22 @@
             초기값은 XML 설정 파일에 있는 값
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.IsSimulationMode">
+            <summary>
+            시뮬레이션 모드 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.SimulationFileName">
+            <summary>
+            시뮬레이션 모드일때 
+            현재 작업(Job Id)의 시뮬레이션 저장 파일 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeuristicIndex">
+            <summary>
+            XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
             <summary>
             LPF(Low Pass Filter) 주파수를 설정한다
@@ -12011,9 +12488,16 @@
             <param name="filterBandWidth">Hz</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSimulationMode(System.Boolean)">
+            <summary>
+            시뮬레이션 모드/하드웨어 모드 설정
+            </summary>
+            <param name="enable"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectHeuristic(System.UInt32)">
             <summary>
-            사용 휴리스틱 변경하기
+            휴리스틱 변경하기
             (xml 설정 파일에서 미리 저장되어 있어야함)
             </summary>
             <param name="heristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
@@ -12036,6 +12520,23 @@
             <param name="y">Y 위치 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
+            <summary>
+            스캐너의 실제 위치
+            </summary>
+            <param name="scanDevice"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetStagePosition(System.Single@,System.Single@)">
+            <summary>
+            스테이지의 실제 위치
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
             <summary>
             멀티 헤드 사용시 개별 헤드에 대한 오프셋, 회전 처리
@@ -12043,6 +12544,42 @@
             <param name="scanDevice">ScanDevice 열거형</param>
             <param name="offset">dx, dy 이동량 (mm)</param>
             <param name="angle">회전량 (각도) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">
+            <summary>
+            Contour Dependent Speed Direction Control 사용 유무
+            </summary>
+            <param name="direction">방향</param>
+            <param name="spotRadius">반지름 크기 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetDynamicsConfig(SpiralLab.Sirius.Dynamics@)">
+            <summary>
+            Calculation Dynamics 설정 정보 얻기
+            </summary>
+            <param name="dynamics"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetDynamicsConfig(SpiralLab.Sirius.Dynamics)">
+            <summary>
+            Calculation Dynamics 정보 설정 하기
+            </summary>
+            <param name="dynamics"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetTrajectory(SpiralLab.Sirius.Trajectory@)">
+            <summary>
+            Trajectory 설정값 얻기
+            </summary>
+            <param name="trajectory"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetTrajectory(SpiralLab.Sirius.Trajectory)">
+            <summary>
+            Trajectory 설정 하기
+            </summary>
+            <param name="trajectory"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
@@ -12057,6 +12594,13 @@
             <param name="motionType">MotionType 열거형</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListSpeedMinMark(System.Single)">
+            <summary>
+            리스트 명령 - 최소 마크 속도
+            </summary>
+            <param name="mark">최소 마크 속도</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListApproxBlendLimit(System.Single)">
             <summary>
             모션 블랜딩 반지름 근사값
@@ -12065,11 +12609,11 @@
             <param name="approxBlendLimit">반지름 거리값 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListContourDependentSpeedCalculation(System.Int32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Single)">
             <summary>
             Contour-dependent speed calculation 사용유무
             </summary>
-            <param name="direction">0 : 비활성화, 1 : Speeds are determined right of the curve mid-line. -1 : Speeds are determined left of the curve mid-line.</param>
+            <param name="direction">방향</param>
             <param name="spotRadius">Radius of the laser spot in the working plane. (mm) specifies how far to the right or left of the curve mid-line the speeds are determined.</param>
             <returns></returns>
         </member>
