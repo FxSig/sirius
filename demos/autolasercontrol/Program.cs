@@ -19,7 +19,7 @@
  * 
  * IRtc 인터페이스를 직접 사용하는 방법
  * 자동 레이저 제어 기법을 사용한다
- * 위치 의존적, 속도 의존적, 벡터 정의 기반의 레이저 신호 변조 기법
+ * 위치 의존적, 속도 의존적, 벡터 정의 기반의 자동 레이저 출력 제어 기법
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
@@ -134,7 +134,6 @@ namespace SpiralLab.Sirius
             bool success = true;
             alc.AutoLaserControlByPositionFileName = string.Empty;
             success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
-
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
             success &= rtc.ListMark(new Vector2(x2, y2));
@@ -158,8 +157,8 @@ namespace SpiralLab.Sirius
             bool success = true;
             alc.AutoLaserControlByPositionFileName = "your power scale file.txt";
             alc.AutoLaserControlByPositionTableNo = 1;
-            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
 
+            success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
             success &= rtc.ListMark(new Vector2(x2, y2));
@@ -173,7 +172,7 @@ namespace SpiralLab.Sirius
 
         /// <summary>
         /// 선 그리기 = 실제 속도 기반 레이저 신호 (주파수 변조) 제어
-        /// intelliDRIVE 기반 스캐너 필요
+        /// iDRIVE 기반 스캐너 필요
         /// 가공 출력 조건 = 50KHz (최소 40KHz, 최대 60KHz)
         /// </summary>
         private static bool DrawLine3(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
@@ -200,7 +199,6 @@ namespace SpiralLab.Sirius
 
         /// <summary>
         /// 선 그리기 = 벡터 위치 기반 레이저 신호(아나로그) 제어
-        /// intelliDRIVE 기반 스캐너 필요
         /// </summary>
         private static bool DrawLine4(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
         {
@@ -209,9 +207,9 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;            
             success &= rtc.ListBegin(laser);
-            success &= alc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 10F); // 아나로그 신호로 시작 (기준값 : 10V)
-            success &= rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 10V * 0.5 = 5V 로 시작
-            success &= rtc.ListMark(new Vector2(x2, y2), 1.0F); //끝 위치로 마크 10V * 1.0 = 10V 로 끝
+            success &= alc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 5F); // 아나로그 출력 초기값 : 5V
+            success &= rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 5V * 0.5 = 2.5V 로 시작
+            success &= rtc.ListMark(new Vector2(x2, y2), 1.5F); //끝 위치로 마크 5V * 1.5 = 7.5V 로 끝
             success &= alc.ListAlcByVectorEnd();
             if (success)
             {

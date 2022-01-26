@@ -124,14 +124,14 @@ namespace SpiralLab.Sirius
             Debug.Assert(rtcMeasurement != null);
             Console.WriteLine("WARNING !!! LASER IS BUSY ... Draw Circle");
             timer = Stopwatch.StartNew();
-            MeasurementChannel[] channels = new MeasurementChannel[4]
+            var channels = new MeasurementChannel[4]
             {
                  MeasurementChannel.SampleX, //X
                  MeasurementChannel.SampleY, //Y
-                 MeasurementChannel.LaserOn, //Gate
+                 MeasurementChannel.LaserOn, //Gate 0/1
                  MeasurementChannel.OutputPeriod, //KHz
             };
-            float hz = 1000; //1KHz
+            float hz = 10*1000; //10KHz (샘플링 주기 : 100usec)
             bool success = true;
             success &= rtc.ListBegin(laser);
             success &= rtcMeasurement.ListMeasurementBegin(hz, channels); //1Khz, 4개 채널

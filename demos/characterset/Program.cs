@@ -73,6 +73,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'C' : create character set");
+                Console.WriteLine("'B' : delete character set");
                 Console.WriteLine("'T' : mark to text");
                 Console.WriteLine("'D' : mark to date");
                 Console.WriteLine("'I' : mark to time");
@@ -90,6 +91,9 @@ namespace SpiralLab.Sirius
                 {                  
                     case ConsoleKey.C:  // 문자집합 생성
                         CreateCharacterSet(laser, rtc);
+                        break;
+                    case ConsoleKey.B:
+                        DeleteCharacterSet(rtc);
                         break;
                     case ConsoleKey.T:
                         MarkToText(laser, rtc);
@@ -123,6 +127,8 @@ namespace SpiralLab.Sirius
             var rtcCharSet = rtc as IRtcCharacterSet;
 
             //폰트 등록
+            // 총 4개의 character set 등록 가능
+            // 기본값  0 번 character set 으로 등록됨
             // example font : 0~9(숫자) ;(콜론) -(대쉬)
             rtcCharSet.CtlCharacterBegin('0');
             rtc.ListJump(new Vector2(5, 10));
@@ -251,11 +257,22 @@ namespace SpiralLab.Sirius
         }
 
         /// <summary>
+        /// 폰트 RTC 내부 리스트 메모리에 등록된 폰트 집합 삭제
+        /// </summary>
+        /// <param name="rtc"></param>
+        private static void DeleteCharacterSet(IRtc rtc)
+        {
+            var rtcCharSet = rtc as IRtcCharacterSet;
+            rtcCharSet.CtlCharacterSetClear();
+            Debug.Assert(false == rtcCharSet.CtlCharacterSetIsExist('0'));
+        }
+
+        /// <summary>
         /// 내부 리스트 메모리에 등록된 폰트를 이용한 텍스트 마킹
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
-        private static bool MarkToText(ILaser laser, IRtc rtc)
+            private static bool MarkToText(ILaser laser, IRtc rtc)
         {
             if (rtc.CtlGetStatus(RtcStatus.Busy))
                 return false;

@@ -253,7 +253,7 @@
             <param name="rtcMeasurement">IRtcMeasurement 객체</param>
             <param name="frequency">샘플링 주기</param>
             <param name="channels">계측 대상 채널</param>
-            <param name="isRawData">데이타 변환 여부</param>
+            <param name="isRawData">무 변환 데이타로 저장 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementHelper.InternalSave(System.String,System.Collections.Generic.List{System.ValueTuple{SpiralLab.Sirius.MeasurementChannel,System.Int32[]}},SpiralLab.Sirius.IRtcMeasurement,System.Single,System.Boolean)">
