@@ -14,9 +14,14 @@ namespace SpiralLab.Sirius
     public partial class MainForm : Form
     {
         IRtc Rtc;
-        IDInput RtcExt1DInput;
+        
+        //syncaxis 는 확장1포트 디지털 입력 읽기를 지원하지 않는다
+        //IDInput RtcExt1DInput;
+
         IDOutput RtcExt1DOutput;
-        IDOutput RtcExt2DOutput;
+
+        //syncaxis 는 확장2포트 8비트 디지털 쓰기를 지원하지 않는다
+        //IDOutput RtcExt2DOutput;
 
         public MainForm()
         {
@@ -62,7 +67,6 @@ namespace SpiralLab.Sirius
             rtc.StageMoveTimeOut = 5;
             #endregion
 
-
             #region 레이저 소스 초기화
             var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
             //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
@@ -76,21 +80,20 @@ namespace SpiralLab.Sirius
             laser.CtlPower(2);
             #endregion
 
-
             #region 마커 지정
             var marker = new MarkerDefault(0, " SyncAxis Marker ");
             #endregion
 
             #region RTC 확장 IO 
-            this.RtcExt1DInput = new RtcDInput(rtc, 0, "DIN RTC EXT1");
-            this.RtcExt1DInput.Initialize();
+            //this.RtcExt1DInput = new RtcDInput(rtc, 0, "DIN RTC EXT1");
+            //this.RtcExt1DInput.Initialize();
             this.RtcExt1DOutput = new RtcDOutputExt1(rtc, 0, "DOUT RTC EXT1");
             this.RtcExt1DOutput.Initialize();
-            this.RtcExt2DOutput = new RtcDOutputExt2(rtc, 0, "DIN RTC EXT2");
-            this.RtcExt2DOutput.Initialize();
-            this.siriusEditorForm1.RtcExtension1Input = this.RtcExt1DInput;
+            //this.RtcExt2DOutput = new RtcDOutputExt2(rtc, 0, "DIN RTC EXT2");
+            //this.RtcExt2DOutput.Initialize();
+            //this.siriusEditorForm1.RtcExtension1Input = this.RtcExt1DInput;
             this.siriusEditorForm1.RtcExtension1Output = this.RtcExt1DOutput;
-            this.siriusEditorForm1.RtcExtension2Output = this.RtcExt2DOutput;
+            //this.siriusEditorForm1.RtcExtension2Output = this.RtcExt2DOutput;
             #endregion
 
             this.Rtc = rtc;
@@ -106,10 +109,14 @@ namespace SpiralLab.Sirius
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            //this.siriusEditorForm1.Rtc = null;
+            //this.siriusEditorForm1.Laser = null;
+            //this.siriusEditorForm1.Marker = null;
+
             Rtc?.Dispose();
-            RtcExt1DInput?.Dispose();
+            //RtcExt1DInput?.Dispose();
             RtcExt1DOutput?.Dispose();
-            RtcExt2DOutput?.Dispose();
+            //RtcExt2DOutput?.Dispose();
 
         }
     }

@@ -92,6 +92,24 @@
             <param name="size">데이터 사이즈</param>
             <param name="pitchRow">포인터 Y 방향 픽셀 거리</param>
             <param name="pitchCol">포인터 X 방향 픽셀 거리</param>
+            <param name="row">포인터 Y 방향 Data 갯수</param>
+            <param name="col">포인터 X 방향 Data 갯수</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.InspCrosshair.filterWithPixel(OpenCvSharp.Mat@,System.Int32)">
+            <summary>
+            noise 성분은 제거한다. 
+            삭제 사이즈는 최대 20픽셀로 제한한다.
+            </summary>
+            <param name="binary"></param>
+            <param name="limit"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.InspCrosshair.filterWithSize(OpenCvSharp.Mat@,System.Int32,System.Int32)">
+            <summary>
+            설정된 십자마크 크기 보다 작은 사이즈는 이미지에서 삭제한다.
+            </summary>
+            <param name="binary"></param>
+            <param name="limitX"></param>
+            <param name="limitY"></param>
         </member>
         <member name="M:SpiralLab.Sirius.Program.Main">
             <summary>
@@ -112,6 +130,16 @@
             <summary>
               이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
               재정의합니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.thic_cross">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.thin_cross">
+            <summary>
+              System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
     </members>

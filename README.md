@@ -2,7 +2,7 @@
 
 **1. Descriptions**
 
- SuperEasy library for Control for Scanner and Lasers
+ SuperEasy library for Control Scanner and Lasers
 
  
  ![pulse on demand](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-6.png)
@@ -85,6 +85,13 @@
 ----
 
 **5. Version history**
+
+* 2022.2.2 v1.9.3
+   - added) spirallab.sirius.fieldcorrection with hatched images
+   - fixed) syncaxis
+       - pen parameter : spot distance compensation, min.mark speed 
+       - layer parameter : bandwidth 
+       - marker form with job/trajectory/dynamics 
 
 * 2022.1.24 v1.9.2
    - fixed) vector-defined laser control bug (벡터 기반 레이저 출력 제어 버그 수정)

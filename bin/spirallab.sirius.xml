@@ -177,6 +177,44 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.ZDefocus">
+            <summary>
+            Z Defocus 엔티티 
+            RTC 내의 리스트 명령에 의한 De-포커스 처리용 개체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ZDefocus.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ZDefocus.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.ZOffset">
+            <summary>
+            Z Offset 엔티티 
+            RTC 내의 리스트 명령에 의한 오프셋 처리용 개체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ZOffset.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.ZOffset.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MeasurementEnd">
             <summary>
             Measurement End 엔티티 객체
@@ -5536,6 +5574,36 @@
             개체 생성 펜 기본 색상
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.ResolvingTypeName">
+            <summary>
+            JSON 포맷 Deserialize 시 사용되는 이름 공간
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigRtcExtIoFileName">
+            <summary>
+            RTC 에서 사용되는 디지털 (확장1,2) 입출력 이름 목록
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigHandlerIoFileName">
+            <summary>
+            핸들러 에서 사용되는 디지털 입출력 이름 목록
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigPenDefaultFileName">
+            <summary>
+            펜 객체 생성시 초기값에 사용되는 값
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigMarkerFileName">
+            <summary>
+            마커 창에서 설정된 마지막 설정값 저장용 파일
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigMotorFileName">
+            <summary>
+            모터(조그)창에서 마지막 설정값 저장용 파일
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.EType">
             <summary>
             엔티티 타입 종류
@@ -7745,6 +7813,12 @@
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnLaser">
             <summary>
             문서(Document)에서 Laser 팝업 창을 띄울때 발생하는 이벤트
+            
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnRtc">
+            <summary>
+            문서(Document)에서 RTC 팝업 창을 띄울때 발생하는 이벤트
             
             </summary>
         </member>
