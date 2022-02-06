@@ -3346,6 +3346,21 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.ComPort">
             <summary>
             통신 포트 번호
@@ -4682,6 +4697,16 @@
         <member name="T:SpiralLab.Sirius.Vector2Converter">
             <summary>
             Numerics.Vector2 변환기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Vector3Converter">
+            <summary>
+            Vector2 타입 변환기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.XmlFileBrowser">
+            <summary>
+            시스템에서 지원하는 이미지 코덱 목록
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc4ExternalControlMode">
@@ -8045,7 +8070,7 @@
             x64 버전만 지원 가능
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.Rtc6SyncAxis.OnJobStatus">
+        <member name="E:SpiralLab.Sirius.Rtc6SyncAxis.OnJob">
             <summary>
             현재 작업 상태 업데이트 이벤트 핸들러
             </summary>
@@ -8072,9 +8097,9 @@
             <summary>
             초기화 : 리스트 핸들링 모드가 RepeatWhileBufferFull 로 자동 설정됨
             </summary>
-            <param name="unUsed_kFactor"></param>
+            <param name="kFactor"></param>
             <param name="unUsed_laserMode"></param>
-            <param name="unUsed_ctbFileName"></param>
+            <param name="unusedCt5FileName"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ReInitialize">
@@ -8083,20 +8108,13 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSimulationMode(System.Boolean)">
-            <summary>
-            시뮬레이션 모드/하드웨어 모드 설정
-            </summary>
-            <param name="enable"></param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
             보정 파일 변경 - syncAxis 에서는 미지원됨
             (XML 에 미리 등록된 ct5 파일만이 사용됨)
             </summary>
             <param name="tableIndex"></param>
-            <param name="ctbFileName"></param>
+            <param name="unusedCt5FileName"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
@@ -8106,13 +8124,6 @@
             </summary>
             <param name="primaryHeadTableIndex"></param>
             <param name="secondaryHeadTableIndex"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMotionMode(SpiralLab.Sirius.MotionMode)">
-            <summary>
-            Follow/UnFollow 모드 전환
-            </summary>
-            <param name="motionMode"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlLaserOn">
@@ -8136,8 +8147,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMove(System.Numerics.Vector2)">
             <summary>
-            미사용 할것 / ISyncAxis 에서 별도의 CtlMove 제공됨
-            (스캐너 위치 이동)
+            미사용 할것 (deprecated)
+            ISyncAxis 인터페이스에서 스테이지, 스캐너 개별 이동 명령 제공됨
             </summary>
             <param name="vPosition"></param>
             <returns></returns>
@@ -8238,13 +8249,79 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlBandWidth(System.Single)">
+            <summary>
+            LPF(Low Pass Filter) 주파수를 설정한다 (Hz)
+            높은값 : 스테이지쪽에 작업 부하를 상승
+            낮은값 : 스캐너 쪽에 작업 부하를 상승
+            (xml 설정 파일에 저장 되지 않음)
+            </summary>
+            <param name="filterBandWidth">LPF값 (Hz)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSimulationMode(System.Boolean)">
+            <summary>
+            시뮬레이션 모드/하드웨어 모드 설정
+            </summary>
+            <param name="enable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectHeuristic(System.UInt32)">
+            <summary>
+            휴리스틱 변경하기
+            (xml 설정 파일에서 미리 저장되어 있어야함)
+            </summary>
+            <param name="heristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMotionMode(SpiralLab.Sirius.MotionMode)">
+            <summary>
+            Follow/UnFollow 모드 전환
+            </summary>
+            <param name="motionMode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectStage(SpiralLab.Sirius.Stage,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            대상 스테이지 변경및 스캐너 보정 테이블 선택
+            </summary>
+            <param name="stage">스테이지 번호 (1,2,3,4)</param>
+            <param name="tableIndex">보정 파일 번호 (0,1,2,3) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetScannerPosition(System.Numerics.Vector2)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetStagePosition(System.Numerics.Vector2)">
+            <summary>
+            스테이지 이동
+            멀티 스테이지 사용시 CtlSelectStage 를 사전에 호출할 것
+            StageMoveSpeed / StageMoveTimeOut 값이 사용됨
+            </summary>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetScannerPosition(System.Single,System.Single)">
             <summary>
             스캐너 혹은 스테이지 이동
             (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
             </summary>
             <param name="motionType">모션 타입</param>
-            <param name="vPosition">X,Y 위치 (mm)</param>
+            <param name="x">X 위치 (mm)</param>
+            <param name="y">Y 위치 (mm) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetStagePosition(System.Single,System.Single)">
+            <summary>
+            스테이지 이동
+            </summary>
+            <param name="x">X 위치 (mm)</param>
+            <param name="y">Y 위치 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
@@ -8264,38 +8341,23 @@
             <param name="y"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Single,System.Single)">
-            <summary>
-            스캐너 혹은 스테이지 이동
-            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
-            </summary>
-            <param name="motionType">모션 타입</param>
-            <param name="x">X 위치 (mm)</param>
-            <param name="y">Y 위치 (mm) </param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlBandWidth(System.Single)">
-            <summary>
-            LPF (Low Pass Filter)의 Cut Off 대역폭
-            </summary>
-            <param name="filterBandWidth"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectHeuristic(System.UInt32)">
-            <summary>
-            휴리스틱 변경하기
-            (xml 설정 파일에서 미리 저장되어 있어야함)
-            </summary>
-            <param name="heristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
             <summary>
             멀티 헤드 오프셋 적용
             </summary>
             <param name="scanDevice">멀티헤드번호</param>
             <param name="offset">오프셋 량</param>
-            <param name="angle">회전량</param>
+            <param name="angle">회전 각도</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
+            <summary>
+            멀티 헤드 오프셋 적용
+            </summary>
+            <param name="scanDevice">멀티헤드번호</param>
+            <param name="dx">오프셋 X (mm)</param>
+            <param name="dy">오프셋 Y (mm)</param>
+            <param name="angle">회전 각도</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">
@@ -8520,6 +8582,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Single)">
             <summary>
             Contour Dependent Speed Direction Control 사용 유무
+            XML 에서 Active channel 이 하나이상 활성화 되어 있어야 한다
             </summary>
             <param name="direction">방향</param>
             <param name="spotRadius">반지름 크기 (mm)</param>
@@ -8529,7 +8592,7 @@
             <summary>
             Spot Distance Control 사용 유무
             </summary>
-            <param name="isSupress">supress/unsupress 여부</param>
+            <param name="supress">supress/unsupress 여부</param>
             <param name="timeDelay">Relative point in time between 2 Job functions (slsc_list_*)</param>
             <returns></returns>
         </member>
@@ -8569,19 +8632,16 @@
             <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcBegin(System.Single)">
             <summary>
-            리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
+            리스트 명령 - ALC(Automatic Laser Control) 기능중 Linear Ramp 활성화
             </summary>
-            <typeparam name="T">XML 설정된 Active Channel 사용됨</typeparam>
-            <param name="unusedCtrl">XML 설정된 Active Channel 사용됨</param>
-            <param name="unusedStartingValue">XML 설정된 Active Channel 사용됨</param>
-            <param name="unusedCompensator">미사용</param>
+            <param name="startingRamp">Ramp 비율값</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcByVectorEnd">
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListAlcEnd">
             <summary>
-            리스트 명령 -  ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 비활성화
+            리스트 명령 - ALC(Automatic Laser Control) 기능중 Linear Ramp 기능을 비활성화
             </summary>
             <returns></returns>
         </member>
@@ -9192,6 +9252,65 @@
             </summary>
             <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlSetScannerPosition(System.Numerics.Vector2)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlSetStagePosition(System.Numerics.Vector2)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlSetScannerPosition(System.Single,System.Single)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
+            <param name="x">X 위치 (mm)</param>
+            <param name="y">Y 위치 (mm) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlSetStagePosition(System.Single,System.Single)">
+            <summary>
+            스테이지 이동
+            멀티 스테이지 사용시 CtlSelectStage 를 사전에 호출할 것
+            StageMoveSpeed / StageMoveTimeOut 값이 사용됨
+            </summary>
+            <param name="x">X 위치 (mm)</param>        
+            <param name="y">Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
+            <summary>
+            스캐너의 실제 위치
+            </summary>
+            <param name="scanDevice"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlGetStagePosition(System.Single@,System.Single@)">
+            <summary>
+            스테이지의 실제 위치
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlGetInternalErrMsg(System.Collections.Generic.List{System.ValueTuple{System.UInt64,System.String}}@)">
+            <summary>
+            syncAXIS 인스턴스에서 제공하는 에러 개수및 목록
+            </summary>
+            <param name="errors">(에러코드, 에러메시지) 튜플 리스트</param>
+            <returns>에러 메시지를 모두 합쳐 제공</returns>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData2D">
             <summary>
@@ -11303,9 +11422,19 @@
             4
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Stage">
+            <summary>
+            스테이지 번호 (멀티 스테이지 사용시)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.OperationStatus">
             <summary>
             SyncAxis 내부 인스턴스의 오퍼레이션 상태 색상
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ContourDependentSpeedDirection">
+            <summary>
+            경로 의존 속도 제어시 방향
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ContourDependentSpeedDirection.Right">
@@ -11360,7 +11489,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.Dynamics">
             <summary>
-            Calculation Dynamics 설정정보
+            Dynamics(스캐너및 스테이지 역학) 설정 객체
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Dynamics.#ctor">
@@ -11368,19 +11497,9 @@
             기본 생성자
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.GeometryConfig.AutoCyclicGeometry">
+        <member name="T:SpiralLab.Sirius.MarkConfig">
             <summary>
-            deprecated
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.GeometryConfig.SplineConversionLengthLimit">
-            <summary>
-            deprecated
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.GeometryConfig.SplineMode">
-            <summary>
-            deprecated
+            Mark Config 객체
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Trajectory">
@@ -11403,6 +11522,16 @@
             모션 실행 상태 (열거형)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.ScannerJobCharacteristic">
+            <summary>
+            스캐너 작업 특성
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.StageJobCharacteristic">
+            <summary>
+            스테이지 작업 특성
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.JobCharacteristic">
             <summary>
             작업 특성 분석 용 객체
@@ -11413,24 +11542,24 @@
             생성자
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.JobStatus">
+        <member name="T:SpiralLab.Sirius.Job">
             <summary>
             SyncAxis 작업 상태 
             배열의 0 = X, Min, 배열의 1 위치 = Y, Max
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.JobStatus.ToString">
+        <member name="M:SpiralLab.Sirius.Job.ToString">
             <summary>
             상세 정보 출력
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.JobStatus.#ctor">
+        <member name="M:SpiralLab.Sirius.Job.#ctor">
             <summary>
             생성자
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.JobStatusEventHandler">
+        <member name="T:SpiralLab.Sirius.JobEventHandler">
             <summary>
             작업 상태 이벤트 통지용 
             </summary>
@@ -11447,12 +11576,12 @@
             SyncAxis 인스턴스 핸들
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.JobStatus">
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Job">
             <summary>
             현재 작업(Job) 상태 
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IRtcSyncAxis.OnJobStatus">
+        <member name="E:SpiralLab.Sirius.IRtcSyncAxis.OnJob">
             <summary>
             현재 작업 상태 업데이트 이벤트 핸들러
             </summary>
@@ -11460,6 +11589,27 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.JobQueue">
             <summary>
             작업 완료 큐
+            실행이 성공하여 특성(Characteristic) 이 계산된 마지막 50개의 작업 이력 저장용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head1Offset">
+            <summary>
+            스캔 헤드1 X,Y, Angle 오프셋
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head2Offset">
+            <summary>
+            스캔 헤드2 X,Y, Angle 오프셋
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head3Offset">
+            <summary>
+            스캔 헤드3 X,Y, Angle 오프셋
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head4Offset">
+            <summary>
+            스캔 헤드4 X,Y, Angle 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Trajectory">
@@ -11495,7 +11645,9 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.BandWidth">
             <summary>
-            LPF (Low Pass Filter) 주파수
+            LPF (Low Pass Filter) 주파수 (Hz)
+            높은값 : 스테이지쪽에 작업 부하를 상승
+            낮은값 : 스캐너 쪽에 작업 부하를 상승
             초기값은 XML 설정 파일에 있는 값
             </summary>
         </member>
@@ -11517,10 +11669,12 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
             <summary>
-            LPF(Low Pass Filter) 주파수를 설정한다
+            LPF(Low Pass Filter) 주파수를 설정한다 (Hz)
+            높은값 : 스테이지쪽에 작업 부하를 상승
+            낮은값 : 스캐너 쪽에 작업 부하를 상승
             (xml 설정 파일에 저장 되지 않음)
             </summary>
-            <param name="filterBandWidth">Hz</param>
+            <param name="filterBandWidth">LPF값 (Hz)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSimulationMode(System.Boolean)">
@@ -11545,21 +11699,47 @@
             <param name="motionMode"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectStage(SpiralLab.Sirius.Stage,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
-            스테이지 혹은 스캐너 를 수동 이동할때 사용
+            대상 스테이지 변경및 스캐너 보정 테이블 선택
             </summary>
-            <param name="motionType">모션 종류</param>
-            <param name="position">x,y 위치 (mm)</param>
+            <param name="stage">스테이지 번호 (1,2,3,4)</param>
+            <param name="tableIndex">보정 파일 번호 (0,1,2,3) </param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMove(SpiralLab.Sirius.MotionType,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetScannerPosition(System.Numerics.Vector2)">
             <summary>
-            스테이지 혹은 스캐너 를 수동 이동할때 사용
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
             </summary>
-            <param name="motionType">모션 종류</param>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetStagePosition(System.Numerics.Vector2)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
+            <param name="vPosition">X,Y 위치 (mm)</param>        
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetScannerPosition(System.Single,System.Single)">
+            <summary>
+            스캐너 혹은 스테이지 이동
+            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            </summary>
             <param name="x">X 위치 (mm)</param>
-            <param name="y">Y 위치 (mm)</param>
+            <param name="y">Y 위치 (mm) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetStagePosition(System.Single,System.Single)">
+            <summary>
+            스테이지 이동
+            멀티 스테이지 사용시 CtlSelectStage 를 사전에 호출할 것
+            StageMoveSpeed / StageMoveTimeOut 값이 사용됨
+            </summary>
+            <param name="x">X 위치 (mm)</param>   
+            <param name="y">X 위치 (mm)</param>      
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
@@ -11586,6 +11766,16 @@
             <param name="scanDevice">ScanDevice 열거형</param>
             <param name="offset">dx, dy 이동량 (mm)</param>
             <param name="angle">회전량 (각도) </param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
+            <summary>
+            멀티 헤드 오프셋 적용
+            </summary>
+            <param name="scanDevice">멀티헤드번호</param>
+            <param name="dx">오프셋 X (mm)</param>
+            <param name="dy">오프셋 Y (mm)</param>
+            <param name="angle">회전 각도</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">
@@ -11656,8 +11846,21 @@
             <summary>
             Spot Distance Control 비활성화 유무
             </summary>
-            <param name="isSupress">활성화 경우 (“Automatic Laser Control“ is active with SpotDistance as an “ActiveChannel”) </param>
+            <param name="supress">활성화 경우 (“Automatic Laser Control“ is active with SpotDistance as an “ActiveChannel”) </param>
             <param name="timeDelay"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListAlcBegin(System.Single)">
+            <summary>
+            리스트 명령 - ALC(Automatic Laser Control)  Linear Ramp 활성화 
+            </summary>
+            <param name="startingRamp">Ramp 비율값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListAlcEnd">
+            <summary>
+            리스트 명령 -  ALC(Automatic Laser Control)  Linear Ramp 비활성화
+            </summary>
             <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.MainForm.components">

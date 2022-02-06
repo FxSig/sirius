@@ -154,23 +154,46 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.AlcVectorEnd">
+        <member name="T:SpiralLab.Sirius.AlcSyncAxisEnd">
             <summary>
             ALC by Vector Dependent End 엔티티 객체
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorEnd.#ctor">
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.#ctor">
             <summary>
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorEnd.Clone">
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.Clone">
             <summary>
             복사본 생성
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.AlcSyncAxisBegin">
+            <summary>
+            ALC by Vector Dependent Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
             </summary>
@@ -699,29 +722,6 @@
             <returns>A new color that is a copy of this instance.</returns>
         </member>
         <member name="M:SpiralLab.Sirius.HPGL.Mark(SpiralLab.Sirius.IMarkerArg)">
-            <summary>
-            laser processing
-            </summary>
-            <param name="markerArg"></param>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.AlcVectorBegin">
-            <summary>
-            ALC by Vector Dependent Begin 엔티티 객체
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorBegin.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorBegin.Clone">
-            <summary>
-            복사본 생성
-            </summary>
-            <returns>A new color that is a copy of this instance.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.AlcVectorBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
             </summary>

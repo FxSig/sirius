@@ -491,9 +491,19 @@
             라이센스 인식 성공 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Rockey4ND.RtcLicenseMax">
+            <summary>
+            인스턴스 최대 생성 개수
+            </summary>
+        </member>
         <member name="P:SpiralLab.Rockey4ND.IsRtcSyncAxisLicensed">
             <summary>
             라이센스 (SyncAXIS) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.RtcSyncAxisLicenseMax">
+            <summary>
+            인스턴스 최대 생성 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.IsLaserLicensed">

@@ -2,7 +2,7 @@
 
 **1. Descriptions**
 
- SuperEasy library for Control Scanner and Lasers
+ SuperEasy library for Control Scanner and Laser
 
  
  ![pulse on demand](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-6.png)
@@ -85,6 +85,12 @@
 ----
 
 **5. Version history**
+
+* 2022.2.7 v1.9.4
+   - fixed) syncaxis v1.6 (syncaxis 1.6 버전지원및 4개의 멀티 스캔헤드 * 4개의 스테이지 지원용)
+       - job characteristic (작업 특성 분석 지원)
+       - config trajectory (mark/geometry) (경로 설정 지원)
+       - config dynamics (scanner/stage) (역할 설정 지원)
 
 * 2022.2.2 v1.9.3
    - added) spirallab.sirius.fieldcorrection with hatched images

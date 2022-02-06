@@ -140,7 +140,8 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.M:
                         rtc.StageMoveSpeed = 10;
                         rtc.StageMoveTimeOut = 5;
-                        rtc.CtlMove(MotionType.StageOnly, 10, 10);
+                        rtc.CtlSelectStage(Stage.Stage1);
+                        rtc.CtlSetStagePosition(10, 10);
                         break;
                 }
             } while (true);
@@ -165,7 +166,7 @@ namespace SpiralLab.Sirius
 
         static void PrintJobCharacteristic(Rtc6SyncAxis rtc)
         {            
-            Console.WriteLine($"{rtc.JobStatus.ToString()}");
+            Console.WriteLine($"{rtc.Job.ToString()}");
         }
     }
 }

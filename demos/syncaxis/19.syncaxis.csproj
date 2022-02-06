@@ -44,6 +44,22 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="spirallab.core, Version=1.0.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.sirius, Version=1.0.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.sirius.fieldcorrection, Version=1.0.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
+    </Reference>
+    <Reference Include="spirallab.sirius.rtc, Version=1.0.9.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -60,20 +76,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\core\spirallab.core.csproj">
-      <Project>{b967580b-310f-4661-bd6d-29049f32899e}</Project>
-      <Name>spirallab.core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\lib\spirallab.sirius.csproj">
-      <Project>{eb052dd6-6210-411c-919d-9e151f04f4d1}</Project>
-      <Name>spirallab.sirius</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\rtc\spirallab.sirius.rtc.csproj">
-      <Project>{acd096be-a822-4279-8ac0-48e589136108}</Project>
-      <Name>spirallab.sirius.rtc</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
