@@ -91,6 +91,7 @@
        - job characteristic (작업 특성 분석 지원)
        - config trajectory (mark/geometry) (경로 설정 지원)
        - config dynamics (scanner/stage) (역할 설정 지원)
+   - added) datetime offset with rtc 5, 6 
 
 * 2022.2.2 v1.9.3
    - added) spirallab.sirius.fieldcorrection with hatched images
