@@ -537,5 +537,10 @@
             인식 실패시 평가판 실행중 팝업후 종료
             </summary>
         </member>
+        <member name="M:SpiralLab.Rockey4ND.MaxLicense">
+            <summary>
+            라이센스 개수 초과 
+            </summary>
+        </member>
     </members>
 </doc>

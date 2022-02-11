@@ -5,7 +5,7 @@
     <cfg:InitialOperationMode>ScannerAndStage</cfg:InitialOperationMode>
     <cfg:InitialListHandlingMode>ReturnAtOnce</cfg:InitialListHandlingMode>
 	<cfg:DynamicViolationReaction>WarningOnly</cfg:DynamicViolationReaction>
-    <cfg:BaseDirectoryPath>C:/Users/sepwi/Documents/sirius/bin/</cfg:BaseDirectoryPath>
+    <cfg:BaseDirectoryPath>D:\git\sirius\bin\</cfg:BaseDirectoryPath>
     <cfg:SimulationConfig>
       <cfg:SimulationMode>true</cfg:SimulationMode>
       <cfg:SimOutputFileDirectory>[BaseDirectoryPath]/Logs/</cfg:SimOutputFileDirectory>

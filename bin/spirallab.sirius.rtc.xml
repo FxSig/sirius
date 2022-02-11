@@ -9677,10 +9677,15 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.KFactor">
             <summary>
-            k factor = bits / mm
+            스캐너의 bits/mm 비율값 (k factor)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtc.FieldSize">
+        <member name="P:SpiralLab.Sirius.IRtc.EffectiveFieldSize">
+            <summary>
+            K factor 에 의해 계산된 스캐너의 유효 가공영역 크기
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.FieldSizeLimit">
             <summary>
             가로 세로 가공 영역의 크기 (WxD) (mm)
             내부 필드 영역을 벋어날 경우 에러 처리됨

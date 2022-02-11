@@ -5579,6 +5579,16 @@
             JSON 포맷 Deserialize 시 사용되는 이름 공간
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigFontFilePath">
+            <summary>
+            폰트 파일 경로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigCorrectionFilePath">
+            <summary>
+            ctb/ct5 보정 파일 경로 
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigRtcExtIoFileName">
             <summary>
             RTC 에서 사용되는 디지털 (확장1,2) 입출력 이름 목록
@@ -5602,6 +5612,21 @@
         <member name="F:SpiralLab.Sirius.Config.ConfigMotorFileName">
             <summary>
             모터(조그)창에서 마지막 설정값 저장용 파일
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigPlotFilePath">
+            <summary>
+            계측 PLOT 파일 생성 경로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigSyncAxisViewerFileName">
+            <summary>
+            SYNCAXIS 뷰어 파일 경로
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigSyncAxisSimulateFilePath">
+            <summary>
+            SYNCAXIS 시뮬레이션 로그 파일 생성 경로
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EType">
