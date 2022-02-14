@@ -20,8 +20,7 @@ namespace SpiralLab.Sirius
             Mutex mutex = new Mutex(true, "SpiralLab.Sirius", out bool createdNew);
             if (!createdNew)
             {
-                var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Another program now executing...");
+                MessageBox.Show($"Another program now executing...", "Critical");
                 return;
             }
 
@@ -36,8 +35,7 @@ namespace SpiralLab.Sirius
             Type projectType = Type.GetType(projectName.Trim());
             if (null == projectType)
             {
-                var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
+                MessageBox.Show($"Can't create target project : {projectName} at {configFileName}", "Critical");
                 return;
             }
             //메인 폼 생성
@@ -45,8 +43,7 @@ namespace SpiralLab.Sirius
             Program.MainForm = Activator.CreateInstance(projectType) as Form ;
             if (null == Program.MainForm)
             {
-                var mb = new Default.MessageBoxOk();
-                mb.ShowDialog("Critical", $"Can't create target project : {projectName} at {configFileName}");
+                MessageBox.Show($"Can't create target project : {projectName} at {configFileName}", "Critical");
                 return;
             }
             try

@@ -16,7 +16,7 @@ namespace SpiralLab.Sirius.Default
         public FormDOutput()
         {
             InitializeComponent();
-            string iniFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "extio.ini");
+            string iniFile = Config.ConfigRtcExtIoFileName;
             string[] dOutputNames = new string[16];
             for (int i = 0; i < 16; i++)
                 dOutputNames[i] = NativeMethods.ReadIni<string>(iniFile, "DOUT", $"{i}");

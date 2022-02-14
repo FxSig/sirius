@@ -5,12 +5,12 @@ using System.Windows;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
-[assembly: AssemblyTitle("sirius")]
+[assembly: AssemblyTitle("atLaserMarker")]
 [assembly: AssemblyDescription("powered by siriuslib")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("(c)SpiralLab")]
-[assembly: AssemblyProduct("sirius demo program")]
-[assembly: AssemblyCopyright("(c)SpiralLab")]
+[assembly: AssemblyCompany("(c)SpiralLAB")]
+[assembly: AssemblyProduct("sirius program")]
+[assembly: AssemblyCopyright("http://spirallab.co.kr")]
 [assembly: AssemblyTrademark("(c)SpiralLab.Sirius")]
 [assembly: AssemblyCulture("")]
  

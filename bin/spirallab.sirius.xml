@@ -200,6 +200,82 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.BarcodeDataMatrix2">
+            <summary>
+            barcode datamatrix v2 entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.BarcodeQR2">
+            <summary>
+            barcode qr code v2 entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR2.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR2.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Barcode2D">
+            <summary>
+            2D 바코드 추상 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.ShapeType">
+            <summary>
+            바코드 타입
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.CellDot">
+            <summary>
+            바코드 타입 - 점
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.CellLine">
+            <summary>
+            바코드 타입 - 선
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.CellOutLine">
+            <summary>
+            바코드 타입 - 외곽선
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.CellHatch">
+            <summary>
+            바코드 타입 - 해치
+            </summary>        
+        </member>
+        <member name="F:SpiralLab.Sirius.Barcode2D.isRegen">
+            <summary>
+            리젠(Regen) 내부 플래그
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Barcode2D.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ZDefocus">
             <summary>
             Z Defocus 엔티티 
@@ -2174,6 +2250,11 @@
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ISiriusComm">
+            <summary>
+            통신 추상 클래스
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TransitForm">

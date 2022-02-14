@@ -38,8 +38,8 @@ namespace SpiralLab.Sirius
         Thread thread;
         SiriusEditorForm editor;
 
-        readonly byte[] ok = Encoding.UTF8.GetBytes("OK;");
-        readonly byte[] ng = Encoding.UTF8.GetBytes("NG;");
+        readonly byte[] OK = Encoding.UTF8.GetBytes("OK;");
+        readonly byte[] NG = Encoding.UTF8.GetBytes("NG;");
 
         bool disposed = false;
 
@@ -146,6 +146,8 @@ namespace SpiralLab.Sirius
             try
             {
                 var nstream = client.GetStream();
+                if (!nstream.CanRead)
+                    return false;
                 byte[] buffer = new byte[1024];
                 int bytes = nstream.Read(buffer, 0, buffer.Length);
                 if (0 ==  bytes)
@@ -167,8 +169,8 @@ namespace SpiralLab.Sirius
             bool success = true;
             string str = Encoding.Default.GetString(data);
 
-            char[] spes = { '\r', '\n', ';' };
-            string[] tokens = str.Split(spes);
+            char[] seps = { '\r', '\n', ';' };
+            string[] tokens = str.Split(seps);
 
             switch( tokens[0])
             {
@@ -195,7 +197,7 @@ namespace SpiralLab.Sirius
                 var entity = doc.Layers.NameOf(name, out Layer parentLayer);
                 if (null == entity)
                 {
-                    this.Send(ng);
+                    this.Send(NG);
                     return;
                 }
 
@@ -379,11 +381,11 @@ namespace SpiralLab.Sirius
 
                 if (success)
                 {
-                    this.Send(ok);
+                    this.Send(OK);
                 }
                 else
                 {
-                    this.Send(ng);
+                    this.Send(NG);
                 }
             }));
             return true;
@@ -393,20 +395,20 @@ namespace SpiralLab.Sirius
         {
             if (editor.Marker.IsBusy)
             {
-                this.Send(ng);
+                this.Send(NG);
                 return false;
             }
             string recipeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", name);
             if (File.Exists(recipeFileName))
             {
-                this.Send(ng);
+                this.Send(NG);
                 return false;
             }
 
             var doc = DocumentSerializer.OpenSirius(recipeFileName);
             if (null == doc)
             {
-                this.Send(ng);
+                this.Send(NG);
                 return false;
             }
 

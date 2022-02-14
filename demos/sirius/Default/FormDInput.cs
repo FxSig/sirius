@@ -16,7 +16,7 @@ namespace SpiralLab.Sirius.Default
         {
             InitializeComponent();
 
-            string iniFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "extio.ini");
+            string iniFile = Config.ConfigRtcExtIoFileName;
             string[] dInputNames = new string[16];
             for (int i = 0; i < 16; i++)
                 dInputNames[i] = NativeMethods.ReadIni<string>(iniFile, "DIN", $"{i}");

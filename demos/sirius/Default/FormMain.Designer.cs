@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.panFooter = new System.Windows.Forms.Panel();
             this.btnHistory = new System.Windows.Forms.Button();
@@ -49,6 +50,7 @@
             this.lblMenu = new System.Windows.Forms.Label();
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panBody = new System.Windows.Forms.Panel();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.panFooter.SuspendLayout();
             this.panTop.SuspendLayout();
             this.panHeader.SuspendLayout();
@@ -201,7 +203,7 @@
             this.lblVersion.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.lblVersion.Location = new System.Drawing.Point(339, 9);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(43, 16);
+            this.lblVersion.Size = new System.Drawing.Size(42, 16);
             this.lblVersion.TabIndex = 3;
             this.lblVersion.Text = "Ver 1.0";
             // 
@@ -225,7 +227,7 @@
             this.lblTime.ForeColor = System.Drawing.SystemColors.Control;
             this.lblTime.Location = new System.Drawing.Point(622, 9);
             this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(36, 16);
+            this.lblTime.Size = new System.Drawing.Size(35, 16);
             this.lblTime.TabIndex = 1;
             this.lblTime.Text = "12:00";
             // 
@@ -236,7 +238,7 @@
             this.label1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(325, 16);
+            this.label1.Size = new System.Drawing.Size(311, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "2021 COPYRIGHT TO (c)SpiralLab. ALL RIGHTS RESERVED.";
             // 
@@ -298,7 +300,7 @@
             this.lblMenu.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMenu.Location = new System.Drawing.Point(16, 7);
             this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(122, 16);
+            this.lblMenu.Size = new System.Drawing.Size(121, 16);
             this.lblMenu.TabIndex = 7;
             this.lblMenu.Text = "Menu : (Unknown)";
             this.lblMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -321,6 +323,11 @@
             this.panBody.Name = "panBody";
             this.panBody.Size = new System.Drawing.Size(1280, 728);
             this.panBody.TabIndex = 18;
+            // 
+            // notifyIcon1
+            // 
+            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Visible = true;
             // 
             // FormMain
             // 
@@ -375,5 +382,6 @@
         private System.Windows.Forms.Button btnSetup;
         private System.Windows.Forms.Button btnLaser;
         private System.Windows.Forms.Button btnHistory;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
     }
 }

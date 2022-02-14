@@ -19,30 +19,40 @@
  
  ![stitchedimage](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-11.png)
 
+ ![xlscan](http://www.spirallab.co.kr/wp-content/uploads/2022/02/Screenshot_Viewer_XLSCAN_colorMap-1.png)
+ 
+ ![xlscan with job](http://www.spirallab.co.kr/wp-content/uploads/2022/02/image-24.png)
+
+ ![xlscan with viewer](http://www.spirallab.co.kr/wp-content/uploads/2022/02/image-25-1508x1080.png)
+
  ![text with arc](https://user-images.githubusercontent.com/58460570/117915901-215d7e00-b321-11eb-8055-5502aad8bf85.png)
 
  ![multiple views](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-10.png)
+
+ ![measurement](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-13.png)
+
+ ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2022/01/ezgif.com-gif-maker.gif)
 
   ----
 
 **2. Features**
 
- - support SCANLAB's RTC4, RTC5, RTC6, RTC6 Ethernet, XL-SCAN(SyncAXIS) multiple products. 
- - support RTC control with 3x3 matrix stack operation.
- - support processing unlimited vector data into RTC controller automatically.
- - support RTC's MOTF(marking on the fly), Dual Head, 3D (like as VarioSCAN) features.
- - support laser power control with POD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing
- - support line, arc, LW polyline, rectangle, circle, true type font, cxf custome font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt), group for multiple entities and layers.
- - support mark 2D barcodes with dots, lines, outlines, hatch.
- - support powerful undo/redo actions.
- - support 1 source(single document data) with multiple views.
- - support customizable and extensible marker interface.
- - support laser beam path visualizer (simulator) and path optimizer algorithm.
- - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
- - support SCANLAB's 2D/3D field correction with easy to use and with powerful image analyzer.
- - support RTC motion profile with control signals at real-time and plot to graph.
+ - support SCANLAB's RTC4, RTC5, RTC6, RTC6 Ethernet multiple products.
+ - support SyncAxis(XL-SCAN) with multiple heads/stages combination.
+ - support powerful 3x3 matrix operation with stack.
+ - support processing unlimited vector data by automatically.
+ - support MOTF(marking on the fly), dual head, 3d (like as VarioSCAN) features.
+ - support 2D/3D field correction with easy to use and with powerful image analyzer.
+ - support scanner motion/signal profiles with plotted graph.
  - support executable C# script codes.
  - support powermeters and power mapping interface
+ - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
+ - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and cutomizable entities with layers.
+ - support 2D barcodes with various cell type like as dots, lines, outlines, hatch.
+ - support laser beam path visualizer (simulator) and path optimizer algorithm.
+ - support powerful undo/redo actions and 1 document data with multiple view targets.
+ - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
+ - support customizable and extensible marker interface.
    - Ophir USBI
    - Thorlab PM100USB
  - support many kinds of commerical laser sources
@@ -52,10 +62,6 @@
    - IPG YLP Type D/E
    - SPI G3/4
    - JPT Type E
- 
- ![measurement](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-13.png)  
-
- ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2022/01/ezgif.com-gif-maker.gif)
  
   ----
 
@@ -85,6 +91,21 @@
 ----
 
 **5. Version history**
+
+* 2022.2.14 v1.9.5
+   - fixed) syncaxis   
+     - enumerable job history (최대 50개 까지의 작업 이력 조회가 가능합니다)
+     - auto start when job is enough (가공 데이타가 충분상태가 되면 자동 가공을 실시하는 방식 도입)
+     - multiple head offsets with matrix bug (멀티 헤드별 행렬을 통한 오프셋 버그 해결)
+     - utilization ratio with position, acc, jerk (위치, 가속도, 가가속도의 사용률 분석 지원)
+   - fixed) rtc 4,5,6 
+     - laser control signal (속성창에서 레이저 출력 신호 변경 지원)
+     - laser mode (속성창에서 레이저 모드 변경 지원)
+     - external control (속성창에서 레이저 외부 신호 제어 변경 지원)
+     - marking info (속성창에서 marking info 상태 조회 지원)
+   - added) new barcode entity for easy to use (사용이 용이한 새로운 2D 바코드 개체 지원)
+     - datamatrix v2 
+     - qrcode v2
 
 * 2022.2.7 v1.9.4
    - fixed) syncaxis v1.6 (syncaxis 1.6 버전지원및 4개의 멀티 스캔헤드 * 4개의 스테이지 지원용)

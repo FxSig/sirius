@@ -254,9 +254,9 @@ namespace SpiralLab.Sirius
                 return false;
             Console.WriteLine("WARNING !!! LASER IS BUSY ... DrawSquareAreaWithPixels");
             timer = Stopwatch.StartNew();
-            // pixel operation 은 IRtcExtension 인터페이스에서 제공
-            var rtcExt = rtc as IRtcExtension;
-            if (null == rtcExt)
+            // pixel operation 은 IRtcRaster 인터페이스에서 제공
+            var rtcRaster = rtc as IRtcRaster;
+            if (null == rtcRaster)
                 return false;
             int counts = (int)(length / gap);
             float period = 200; //200 usec
@@ -268,9 +268,9 @@ namespace SpiralLab.Sirius
                 //jumtp to start position (줄의 시작위치로 점프)
                 success &= rtc.ListJump(new Vector2(0, i * gap));
                 // pixel period : 200us, intervael : gap, total pixel counts, output analog channel : analog 2
-                success &= rtcExt.ListPixelLine(period, delta, (uint)counts, ExtensionChannel.ExtAO2);
+                success &= rtcRaster.ListPixelLine(period, delta, (uint)counts, ExtensionChannel.ExtAO2);
                 for (int j = 0; j < counts; j++)
-                    success &= rtcExt.ListPixel(50, 0.5f); // each pixel with 50usec, 5V
+                    success &= rtcRaster.ListPixel(50, 0.5f); // each pixel with 50usec, 5V
                 if (!success)
                     break;
             }

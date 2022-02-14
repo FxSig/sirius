@@ -43,7 +43,7 @@ namespace SpiralLab.Sirius
             //var rtc = new RtcVirtual(0); //create Rtc for dummy
             var rtc = new Rtc5(0); //create Rtc5 controller
             //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //실험적인 상태 (Scanlab Rtc6 Ethernet 제어기)
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
 
             float fov = 60.0f;    // scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
@@ -98,7 +98,7 @@ namespace SpiralLab.Sirius
         private static bool DrawCircle(ILaser laser, IRtc rtc)
         {
             bool success = true;
-            var rtcExt = rtc as IRtcExtension;
+            var rtcRaster = rtc as IRtcRaster;
             //리스트 시작
             success &= rtc.ListBegin(laser);
             //아나로그1 에 5V 출력
@@ -122,9 +122,9 @@ namespace SpiralLab.Sirius
             //점프
             success &= rtc.ListJump(new Vector2(-10, 0));
             //매 100us 마다 X 방향으로 0.1 mm 이동하면서 아나로그 1번 출력으로 픽셀 출력(Raster Operation)을 준비 (100개)
-            success &= rtcExt.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO2);
+            success &= rtcRaster.ListPixelLine(100, new Vector2(0.1F, 0), 100, ExtensionChannel.ExtAO2);
             for (int i = 0; i < 100; i++)
-                success &= rtcExt.ListPixel(10, 0.5f); //10us 펄스 생성및 아나로그2 에 5V 출력
+                success &= rtcRaster.ListPixel(10, 0.5f); //10us 펄스 생성및 아나로그2 에 5V 출력
             
             if (success)
             {

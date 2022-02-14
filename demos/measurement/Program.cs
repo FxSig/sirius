@@ -93,7 +93,7 @@ namespace SpiralLab.Sirius
                         var dlg = new OpenFileDialog();
                         dlg.Filter = "measurement data files (*.txt)|*.txt|All Files (*.*)|*.*";
                         dlg.Title = "Open Measurement File";
-                        dlg.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot");
+                        dlg.InitialDirectory = Config.ConfigPlotFilePath;
                         DialogResult result = dlg.ShowDialog();
                         if (result != DialogResult.OK)
                             return;
