@@ -12883,9 +12883,29 @@
             작업 특성 분석치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Job.UtilizedScannerFieldX">
+        <member name="P:SpiralLab.Sirius.Job.UtilizedScannerPos">
             <summary>
-            분석 결과
+            스캐너 사용률 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.UtilizedStage1">
+            <summary>
+            스테이지1 사용률 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.UtilizedStage2">
+            <summary>
+            스테이지2 사용률 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.UtilizedStage3">
+            <summary>
+            스테이지3 사용률 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.UtilizedStage4">
+            <summary>
+            스테이지4 사용률 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Tag">
