@@ -4759,6 +4759,11 @@
             시스템에서 지원하는 이미지 코덱 목록
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.CorrectionFileBrowser">
+            <summary>
+            보정 파일 목록
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc4ExternalControlMode">
             <summary>
             RTC4 외부 트리거 모드 비트 플래그용
@@ -4922,12 +4927,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadTable">
             <summary>
-            첫번째 스캐너 헤드 보정 테이블 번호 (1~4)
+            첫번째 스캐너 헤드 보정 테이블 번호 (1~2)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadTable">
             <summary>
-            두번째 스캐너 헤드 보정 테이블 번호 (1~4)
+            두번째 스캐너 헤드 보정 테이블 번호 (1~2)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadOffset">
@@ -5513,14 +5518,14 @@
             Z 오프셋 
             (듀얼헤드 사용시 혼용 불가)
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlZDefocus(System.Single)">
             <summary>
             Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlLoadZTable(System.Single,System.Single,System.Single)">
@@ -6308,11 +6313,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
-            보정 파일(.ctb)을 RTC 내부 메모리로 로딩
-            RTC4의 경우 2개의 버퍼 테이블만 사용 가능
+            보정 파일(.ct5)을 RTC 내부 메모리로 로딩
             </summary>
             <param name="tableIndex">CorrectionTableIndex 열거형 </param>
-            <param name="ctbFileName">.ctb 스캐너 보정 파일</param>
+            <param name="ct5FileName">.ct5 스캐너 보정 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
@@ -6936,14 +6940,14 @@
             Z 오프셋 
             (듀얼헤드 사용시 혼용 불가)
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlZDefocus(System.Single)">
             <summary>
             Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlLoadZTable(System.Single,System.Single,System.Single)">
@@ -7847,7 +7851,7 @@
             RTC4의 경우 2개의 버퍼 테이블만 사용 가능
             </summary>
             <param name="tableIndex">CorrectionTableIndex 열거형 </param>
-            <param name="ctbFileName">.ctb 스캐너 보정 파일</param>
+            <param name="ct5FileName">.ctb 스캐너 보정 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
@@ -8470,14 +8474,14 @@
             <summary>
             Z 오프셋 
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlZDefocus(System.Single)">
             <summary>
             Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlLoadZTable(System.Single,System.Single,System.Single)">
@@ -8950,12 +8954,19 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.CorrectionFiles">
             <summary>
-            스캐너 보정 파일 목록 (최대 4개 로드 가능)
+            스캐너 보정 파일 목록 (미지원)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.PrimaryHeadTable">
             <summary>
-            첫번째 스캐너 헤드 보정 테이블 번호 (1~4)
+            주 스캐너 헤드 보정 테이블 번호 (1~4)
+            미지원
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.SecondaryHeadTable">
+            <summary>
+            부 스캐너 헤드 보정 테이블 번호 (1~4)
+            미지원
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ConfigXMLFile">
@@ -10817,6 +10828,11 @@
         <member name="P:SpiralLab.Sirius.IRtc.PrimaryHeadTable">
             <summary>
             Primary 헤드의 보정 파일 테이블 번호 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.SecondaryHeadTable">
+            <summary>
+            Secondary 헤드의 보정 파일 테이블 번호  (듀얼헤드 / 3D 옵션 사용시 활용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.MatrixStack">
@@ -13062,6 +13078,11 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Handle">
             <summary>
             SyncAxis 인스턴스 핸들
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.ConfigXMLFile">
+            <summary>
+            XML 설정 파일 이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Job">

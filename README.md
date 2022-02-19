@@ -53,9 +53,10 @@
  - support powerful undo/redo actions and 1 document data with multiple view targets.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
+ - support many kinds of power meter
    - Ophir USBI
    - Thorlab PM100USB
- - support many kinds of commerical laser sources
+ - support many kinds of laser sources
    - Advanced Optowave Fotia
    - Coherent Avia LX
    - PHOTONICS INDUSTRY DX
@@ -68,10 +69,10 @@
 **3. How to use ?**
 
  - Development Environment : .NET dll library 
- - Add references spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file into Microsoft Visual Studio.
- - spirallab.sirius.dll file support user control : SpiralLab.Sirius.EditorForm / SpiralLab.Sirius.ViewerForm
- - x64 Environment : copy all files from bin\x64 to bin\  
- - x32 Environment : copy all files from bin\x32 to bin\ 
+ - Add spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file reference into Microsoft Visual Studio.
+ - user control in spirallab.sirius.dll file : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
+ - x64 Environment : copy from bin\x64 to bin\  
+ - x32 Environment : copy from bin\x32 to bin\ 
  - There are multiple demo programs in DEMOS directory
  - There are stand-alone programs in DEMOS\Sirius directory
 
@@ -91,6 +92,18 @@
 ----
 
 **5. Version history**
+
+* 2022.2.21 v1.9.6
+   - improved) scanner field correction with vary images (다양한 이미지 조건에 맞도록 알고리즘 추가 개선)
+   - added) jump to origin position after finished to mark (가공 완료후 원점으로 자동 점프 하는 옵션)
+   - added) changable correction file within rtc property dialog (RTC 속성창에서 스캐너 보정 파일 변경 지원)
+   - qualified) syncaxis   
+     - field tested at equipment (장비에서 필드 테스트)
+   - fixed) ramp with arc/ polyline bug (arc, polyline 의 구간별 ramp 출력 버그 수정)
+   - fixed) layer 
+     - always works as repeat by 1 bug (레이어 반복 회수가 1로 고정되는 문제 해결)
+   - fixed) datamatrix /qrcode barcode when cell type line
+     - pitch error with zig zag mark
 
 * 2022.2.14 v1.9.5
    - fixed) syncaxis   

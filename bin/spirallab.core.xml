@@ -350,6 +350,23 @@
             P/Invoke 용 네이티브 코드 집합
             </summary>
         </member>
+        <member name="F:SpiralLab.FormLicense.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.FormLicense.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.FormLicense.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.LoggerMessage">
             <summary>
             로그 메시지 콜백 델리게이트 
@@ -486,14 +503,19 @@
             <param name="buffer"></param>
             <returns></returns>
         </member>
+        <member name="P:SpiralLab.Rockey4ND.SerialNo">
+            <summary>
+            인증키 시리얼 번호
+            </summary>
+        </member>
         <member name="P:SpiralLab.Rockey4ND.IsRtcLicensed">
             <summary>
-            라이센스 인식 성공 여부
+            라이센스 (Rtc) 인식 성공 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.RtcLicenseMax">
             <summary>
-            인스턴스 최대 생성 개수
+            인스턴스 (Rtc) 최대 생성 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.IsRtcSyncAxisLicensed">
@@ -503,22 +525,42 @@
         </member>
         <member name="P:SpiralLab.Rockey4ND.RtcSyncAxisLicenseMax">
             <summary>
-            인스턴스 최대 생성 개수
+            인스턴스 (SyncAxis) 최대 생성 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.IsLaserLicensed">
             <summary>
-            라이센스 (Laser) 인식 성공 여부
+            라이센스 (레이저 소스 제어 옵션) 인식 성공 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.IsGridCheckerLicensed">
             <summary>
-            라이센스 (GridChecker) 인식 성공 여부
+            라이센스 (이미지 기반 보정 데이타 추출 옵션) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsPathOptimizerLicensed">
+            <summary>
+            라이센스 (경로 최적화 옵션) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsMotfLicensed">
+            <summary>
+            라이센스 (MOTF) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsDualHeadLicensed">
+            <summary>
+            라이센스 (듀얼헤드 Master/Slave) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.Is3DLicensed">
+            <summary>
+            라이센스 (3D) 인식 성공 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.IsVisionLicensed">
             <summary>
-            라이센스 (Vision) 인식 성공 여부
+            라이센스 (머신 비전 옵션) 인식 성공 여부
             </summary>
         </member>
         <member name="M:SpiralLab.Rockey4ND.#ctor">

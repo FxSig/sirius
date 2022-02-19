@@ -1428,6 +1428,11 @@
             사용시 : 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsJumpToOriginAfterFinished">
+            <summary>
+            가공 완료후 0,0 으로 자동 점프 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Offsets">
             <summary>
             동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
@@ -1591,6 +1596,11 @@
             사용시 : 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsJumpToOriginAfterFinished">
+            <summary>
+            가공 완료후 0,0 으로 자동 점프 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Offsets">
             <summary>
             동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
@@ -1687,6 +1697,23 @@
             생성자
             </summary>
             <param name="name">이름</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.AboutForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AboutForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AboutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Correction2DRtcForm">
             <summary>

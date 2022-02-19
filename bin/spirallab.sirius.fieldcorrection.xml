@@ -62,6 +62,14 @@
             십자선 높이 크기 (mm)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.FormGridChecker.getImageHue(OpenCvSharp.Mat)">
+            <summary>
+            2022.02.16 배경 색상 따라서 RGB 중에서 취하는 데이터 선택하도록 수정
+            Color -> Gray 변경할 경우 배경 색상에 따라 Gray 영상 변경 시, 십자선과 배경의 밝기 차가 줄어드는 단점 있음
+            </summary>
+            <param name="img"></param>
+            <returns></returns>
+        </member>
         <member name="F:SpiralLab.Sirius.FormGridChecker.components">
             <summary>
             필수 디자이너 변수입니다.
@@ -103,13 +111,13 @@
             <param name="binary"></param>
             <param name="limit"></param>
         </member>
-        <member name="M:SpiralLab.Sirius.InspCrosshair.filterWithSize(OpenCvSharp.Mat@,System.Int32,System.Int32)">
+        <member name="M:SpiralLab.Sirius.InspCrosshair.filterWithSize(OpenCvSharp.Mat@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             설정된 십자마크 크기 보다 작은 사이즈는 이미지에서 삭제한다.
             </summary>
             <param name="binary"></param>
-            <param name="limitX"></param>
-            <param name="limitY"></param>
+            <param name="minSizeX"></param>
+            <param name="minSizeY"></param>
         </member>
         <member name="M:SpiralLab.Sirius.Program.Main">
             <summary>
