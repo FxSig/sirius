@@ -558,6 +558,21 @@
             라이센스 (3D) 인식 성공 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Rockey4ND.IsDIOLicensed">
+            <summary>
+            라이센스 (DIO 입출력 장치) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsMotorLicensed">
+            <summary>
+            라이센스 (모션 구동장치) 인식 성공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Rockey4ND.IsPowerMeterLicensed">
+            <summary>
+            라이센스 (파워메터) 인식 성공 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Rockey4ND.IsVisionLicensed">
             <summary>
             라이센스 (머신 비전 옵션) 인식 성공 여부

@@ -5551,14 +5551,14 @@
             리스트 명령 - Z 오프셋 
             (듀얼헤드 오프셋과 함께 사용불가)
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListZDefocus(System.Single)">
             <summary>
             리스트 명령 - Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListJump3D(System.Numerics.Vector3,System.Single)">
@@ -6973,14 +6973,14 @@
             리스트 명령 - Z 오프셋 
             (듀얼헤드 오프셋과 함께 사용불가)
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListZDefocus(System.Single)">
             <summary>
             리스트 명령 - Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListJump3D(System.Numerics.Vector3,System.Single)">
@@ -8507,14 +8507,14 @@
             리스트 명령 - Z 오프셋 
             (듀얼헤드 오프셋과 함께 사용불가)
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="offset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListZDefocus(System.Single)">
             <summary>
             리스트 명령 - Z 디포커스
             </summary>
-            <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <param name="defocus">디포커스 Z 이동량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListJump3D(System.Numerics.Vector3,System.Single)">
