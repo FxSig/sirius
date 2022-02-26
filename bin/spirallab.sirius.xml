@@ -52,11 +52,69 @@
             엔티티 의 Grip 포인트 이동
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.SerialTriggerMode">
+            <summary>
+            시리얼 번호 증가 모드
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.SerialTriggerMode.External">
+            <summary>
+            외부 트리거(/START) 에 의한 증가
+            시리얼 번호의 시작값 , 증가값을 RTC 의 CharacterSet 인터페이스를 통해 제어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.SerialTriggerMode.Internal">
+            <summary>
+            내부 로직에 의한 증가
+            시리얼 번호의 시작값, 증가값을 개별 개체의 속성값을 통해 제어
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ISerialIncrementable">
+            <summary>
+            시리얼 번호 증가 지원 인터페이스
+            텍스트 개체들중 시리얼 번호 증가를 지원하는 인터페이스
+            </summary>    
+        </member>
         <member name="T:SpiralLab.Sirius.ITextChangeable">
             <summary>
             ITextChangeable 인터페이스
             변경 가능한 텍스트 데이타를 가지고 있는 엔티티를 위한 인터페이스
             </summary>    
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.TextData">
+            <summary>
+            텍스트 내용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataDateTime">
+            <summary>
+            텍스트 내용이 자동 변경되는 날짜 시간 관련 데이타일 경우 활성화 한다.
+            마킹시 자동 변환이 되며, 포맷은 yyyyDDhhmmtt 와 같은 DataTime 포맷을 사용된다
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.ConvertTextDateTime">
+            <summary>
+            텍스트 내용을 날짜 시간 포맷으로 변환을 시도하여 결과를 리턴한다
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TextChangeableHelper">
+            <summary>
+            포맷된 텍스트를 분석해서 시간날짜를 변환
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.TextChangeableHelper.DateTimeNow">
+            <summary>
+            기준 시간 (마커 start 할때 마다 업데이트됨)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertTo(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
+            <summary>
+            변환시도
+            </summary>
+            <param name="rtcDateTimeOffset">RTC 의 date time offset 을 사용하기 위한 인터페이스</param>
+            <param name="text">입력 문자열 </param>
+            <param name="convertedDateTimeString">변환된 문자열</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IScriptable">
             <summary>
@@ -1405,6 +1463,11 @@
             가공 대상에 대한 옵션 (기본값 : All)
             </summary>  
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.ViewTargets">
+            <summary>
+            렌더링 대상 뷰
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsGuided">
             <summary>
             가이드 레이저를 이용한 가공시
@@ -1573,6 +1636,11 @@
             가공 대상에 대한 옵션 (기본값 : All)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.ViewTargets">
+            <summary>
+            렌더링 대상 뷰
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsGuided">
             <summary>
             가이드(Guide/Pilot/Red) 레이저를 이용한 가공 여부
@@ -1710,6 +1778,23 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.AboutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ConvertDateTimeForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.ConvertDateTimeForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ConvertDateTimeForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -2277,11 +2362,6 @@
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.ISiriusComm">
-            <summary>
-            통신 추상 클래스
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TransitForm">
@@ -6942,6 +7022,14 @@
             <param name="layer">레이어 객체</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetLayer(SpiralLab.Sirius.Layer)">
+            <summary>
+            특정 레이어를 가공할지를 처리하는 comparer
+            </summary>
+            <param name="layer"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.EntityWork(System.Int32,System.Int32,System.Int32,SpiralLab.Sirius.IEntity)">
             <summary>
             엔티티 가공 (레이어 내의 매 엔티티 마다 호출됨)
@@ -7428,6 +7516,11 @@
         <member name="T:SpiralLab.Sirius.PointsEditor">
             <summary>
             points 배열 변환기 (points)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.ConvertDateTimeEditor">
+            <summary>
+            ConvertDateTimeEditor 변환기
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.FontStringConverter">

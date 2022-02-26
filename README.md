@@ -78,20 +78,41 @@
 
  *The program running about 3 hours in evalution copy mode !*
  
+ 
  ----
 
 **4. Author**
 
- - e-mail : labspiral@gmail.com
- - homepage : http://spirallab.co.kr                        
  - developer page : http://www.spirallab.co.kr/?page_id=229
  - git repository : https://github.com/labspiral/sirius.git
- - phone : +82-10-9619-3896
- - Please contact to me to use commercially.
-  
+ - e-mail : labspiral@gmail.com
+ - homepage : http://spirallab.co.kr                        
+ 
+ 
 ----
 
 **5. Version history**
+
+
+* 2022.2.28 v.1.97
+   - fixed) restart versioning 1.9.6 -> 1.97 (버전 관리 번호 변경)
+   - added) sky writing with mode 1,2,3 at pen parameter (펜 파라메터의 sky writing 모드 1,2,3 중 선택 지원)
+   - fixed) serial entity (SiriuslTextSerial, TextSerial)
+     - internal/external trigger mode (번호 증가를 위한 트리거를 내부/외부 선택 가능)
+     - internal : increased whenever try to mark manually (마킹을 수동으로 할때 마다 수동 증가)
+     - external : external /START triggger automatically (외부 트리거가 발생할때 마다 자동 증가)
+   - added) text with datetime format (텍스트 개체가 시간 포맷으로 자동 변환 지원)
+     - if datetime option enabled, text data re-formatted by automatically (DateTime 옵션 활성화시 마킹 텍스트의 내용이 분석되어 변경됨)
+     - datetime start/end seperator : '%'' or '{'', '}''
+     - example1) {yyyyMMdd} -> 20220225
+     - example2) {yyyy/MM/dd HH:mm:ss} -> 2022/02/25 05:50:06
+     - example3) A123{yyyyMMdd}GOOD -> A12320220225GOOD 
+     - example4) A123{yyyy}XY{MM}AB{dd}GOOD -> A1232022XY02AB25GOOD 
+   - added) IRtcDateTimeOffset
+     - to support modify offset datetime (날짜 시간 오프셋 기능을 위해 IRtcDateTimeOffset 인터페이스 추가)
+   - added) IRtc3D interface 
+     - read/writable A,B,C coefficient at correction file (3D 보정 파일의 헤더 영역에 포물선 A,B,C 계수 읽고,쓰기 및 변경지원)
+     - get focal length at specific x,y,z location (특정 3D 위치에서 초점 거리 계산 기능 추가)
 
 * 2022.2.21 v1.9.6
    - improved) scanner field correction with vary images (다양한 이미지 조건에 맞도록 알고리즘 추가 개선)
