@@ -4744,6 +4744,15 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcHelper.DetectRtcCardCount(System.UInt32@,System.UInt32@,System.UInt32@)">
+            <summary>
+            장치관리자에 등록된 RTC 카드의 개수 정보 
+            </summary>
+            <param name="rtc4Count">설치된 RTC 4 개수</param>
+            <param name="rtc5Count">설치된 RTC 5 개수</param>
+            <param name="rtc6Count">설치된 RTC 6 개수</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Vector2Converter">
             <summary>
             Numerics.Vector2 변환기
