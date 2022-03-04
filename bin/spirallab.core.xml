@@ -345,6 +345,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:SpiralLab.Core.Version">
+            <summary>
+            코어 버전 정보
+            </summary>
+        </member>
         <member name="T:SpiralLab.Core.NativeMethods">
             <summary>
             P/Invoke 용 네이티브 코드 집합

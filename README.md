@@ -50,7 +50,7 @@
  - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and cutomizable entities with layers.
  - support 2D barcodes with various cell type like as dots, lines, outlines, hatch.
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
- - support powerful undo/redo actions and 1 document data with multiple view targets.
+ - support powerful undo/redo actions and single document data with multiple view targets.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
  - support many kinds of power meter
@@ -59,7 +59,7 @@
  - support many kinds of laser sources
    - Advanced Optowave Fotia
    - Coherent Avia LX
-   - PHOTONICS INDUSTRY DX
+   - Photonics Industry DX
    - IPG YLP Type D/E
    - SPI G3/4
    - JPT Type E
@@ -71,12 +71,12 @@
  - Development Environment : .NET dll library 
  - Add spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file reference into Microsoft Visual Studio.
  - user control in spirallab.sirius.dll file : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
- - x64 Environment : copy from bin\x64 to bin\  
- - x32 Environment : copy from bin\x32 to bin\ 
+ - x64 Environment : copy files from bin\x64 to bin\  
+ - x32 Environment : copy files from bin\x32 to bin\ 
  - There are multiple demo programs in DEMOS directory
  - There are stand-alone programs in DEMOS\Sirius directory
 
- *The program running about 3 hours in evalution copy mode !*
+ *The program running about 30 mins in evalution copy mode !*
  
  
  ----
@@ -93,9 +93,17 @@
 
 **5. Version history**
 
+* 2022.3.7 v.1.98
+   - added) improved hatch options (해치 옵션 기능 강화)
+     - hatch repeat count (해치 전용 반복 회수 지정가능)
+     - mark outline or not (해치시 외곽선 가공할지 여부)
+     - mark outline first (해치시 외곽선을 우선 가공할지 여부)
+   - added) jump entity (점프 개체 추가됨)
+   - fixed) internal angle offset within group entity bug (그룹개체내의 오프셋 사용시 x,y,angle 적용 버그)
+   - fixed) negative datetime offset bug (날짜 시간 오프셋에 음수값 처리 버그)
+   - fixed) works only 30mins at evaluation copy mode (평가판 모드에서 30분만 동작)
 
 * 2022.2.28 v.1.97
-   - fixed) restart versioning 1.9.6 -> 1.97 (버전 관리 번호 변경)
    - added) sky writing with mode 1,2,3 at pen parameter (펜 파라메터의 sky writing 모드 1,2,3 중 선택 지원)
    - fixed) serial entity (SiriuslTextSerial, TextSerial)
      - internal/external trigger mode (번호 증가를 위한 트리거를 내부/외부 선택 가능)
@@ -113,6 +121,7 @@
    - added) IRtc3D interface 
      - read/writable A,B,C coefficient at correction file (3D 보정 파일의 헤더 영역에 포물선 A,B,C 계수 읽고,쓰기 및 변경지원)
      - get focal length at specific x,y,z location (특정 3D 위치에서 초점 거리 계산 기능 추가)
+   - fixed) restart versioning 1.9.6 -> 1.97 (버전 관리 번호 변경)
 
 * 2022.2.21 v1.9.6
    - improved) scanner field correction with vary images (다양한 이미지 조건에 맞도록 알고리즘 추가 개선)

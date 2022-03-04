@@ -334,6 +334,24 @@
             생성자
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Jump">
+            <summary>
+            점프 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Jump.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Jump.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.ZDefocus">
             <summary>
             Z Defocus 엔티티 
