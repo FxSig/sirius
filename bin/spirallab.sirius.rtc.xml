@@ -5507,12 +5507,12 @@
             <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListWobbel(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListWobbel(System.Single,System.Single,System.Single,SpiralLab.Sirius.WobbelShape)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
             </summary>
-            <param name="amplitudeX">size of W (parallel movement) (mm)</param>
-            <param name="amplitudeY">size of Y (perpendicular movement) (mm)</param>
+            <param name="longitudinal">Longitudinal (세로 : parallel movement) (mm)</param>
+            <param name="transverse">transverse (가로 : perpendicular movement) (mm)</param>
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
             <returns></returns>
         </member>
@@ -6851,13 +6851,14 @@
             <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListWobbel(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListWobbel(System.Single,System.Single,System.Single,SpiralLab.Sirius.WobbelShape)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
             </summary>
-            <param name="amplitudeX">size of W (parallel movement) (mm)</param>
-            <param name="amplitudeY">size of Y (perpendicular movement) (mm)</param>
+            <param name="longitudinal">Longitudinal (세로 : parallel movement) (mm)</param>
+            <param name="transverse">transverse (가로 : perpendicular movement) (mm)</param>
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
+            <param name="wobbelShape">WobbelShape 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListJumpHard(System.Numerics.Vector2,System.Single,System.Single)">
@@ -8417,13 +8418,14 @@
             <param name="analogCompensator">아나로그 출력 보정기 사용시</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListWobbel(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListWobbel(System.Single,System.Single,System.Single,SpiralLab.Sirius.WobbelShape)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
             </summary>
-            <param name="amplitudeX">size of W (parallel movement) (mm)</param>
-            <param name="amplitudeY">size of Y (perpendicular movement) (mm)</param>
+            <param name="longitudinal">longitudinal (세로 : parallel movement) (mm)</param>
+            <param name="transverse">transverse (가로 : perpendicular movement) (mm)</param>
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
+            <param name="wobbelShape">WobbelShape 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListJumpHard(System.Numerics.Vector2,System.Single,System.Single)">
@@ -12142,6 +12144,26 @@
             • = 2.0: with field size limit
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.WobbelShape">
+            <summary>
+            와블 형상
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.WobbelShape.Ellipse">
+            <summary>
+            타원형
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.WobbelShape.Perpendicular8">
+            <summary>
+            8자 수직
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.WobbelShape.Parallel8">
+            <summary>
+            8자 수형
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcMarkingInfo">
             <summary>
             RTC 마킹 정보(marking info 비트 데이타)
@@ -12249,13 +12271,14 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.ListWobbel(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListWobbel(System.Single,System.Single,System.Single,SpiralLab.Sirius.WobbelShape)">
             <summary>
             리스트 명령 - 와블 (Wobbel Operation)
             </summary>
-            <param name="amplitudeX">size of W (parallel movement) (mm)</param>
-            <param name="amplitudeY">size of Y (perpendicular movement) (mm)</param>
+            <param name="longitudinal">Longitudinal (세로 : parallel movement) (mm)</param>
+            <param name="transverse">transverse (가로 : perpendicular movement) (mm)</param>
             <param name="frequencyHz">초당 반복회수 (Hz)</param>
+            <param name="wobbelShape">WobbelShape 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpMode(System.Int32)">

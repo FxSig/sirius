@@ -93,6 +93,12 @@
 
 **5. Version history**
 
+* 2022.3.15 v.1.99
+   - added) wobbel in pen (와블 가공 기능을 펜 개체에 추가)
+      - wobbel's transverse, longitudinal, frequency and shape (가로 세로 크기 주파수및 모양 설정)
+      - shape : ellipse, figure of 8 (타원, 8자 모양)
+      - max frequency is lower than 0.1/tracking error (와블 주기값은 스캐너의 tracking error 에 의해 최대 설정값이 제한됨)
+
 * 2022.3.7 v.1.98
    - added) improved hatch options (해치 옵션 기능 강화)
      - hatch repeat count (해치 전용 반복 회수 지정가능)
