@@ -93,6 +93,10 @@
 
 **5. Version history**
 
+* 2022.3.21 v.1.100
+   - added) text/siriustext/barcode1,2d entity support converting datetime/serialno/gs1 format (텍스트 변환 개체들의 데이타를 분석하여 날짜시간, 일련번호, GS1 포맷으로 자동변환 지원)
+   - added) IRtcSerialNo interface (일련번호 제어용 인터페이스 추가)
+
 * 2022.3.15 v.1.99
    - added) wobbel in pen (와블 가공 기능을 펜 개체에 추가)
       - wobbel's transverse, longitudinal, frequency and shape (가로 세로 크기 주파수및 모양 설정)

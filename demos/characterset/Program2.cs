@@ -72,6 +72,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             var rtcCharSet = rtc as IRtcCharacterSet;
+            var rtcSerialNo = rtc as IRtcSerialNo;
 
             ConsoleKeyInfo key;
             do
@@ -106,7 +107,7 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.R:
                         RtcCharacterSetHelper.Clear(rtc);
-                        rtcCharSet.CtlSerialReset(1000, 1);
+                        rtcSerialNo.CtlSerialReset(1000, 1);
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");

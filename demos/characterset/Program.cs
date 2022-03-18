@@ -66,6 +66,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             var rtcCharSet = rtc as IRtcCharacterSet;
+            var rtcSerialNo = rtc as IRtcSerialNo;
 
             ConsoleKeyInfo key;
             do
@@ -108,7 +109,7 @@ namespace SpiralLab.Sirius
                         MarkToSerial(laser, rtc);
                         break;
                     case ConsoleKey.R:
-                        rtcCharSet.CtlSerialReset(100, 5);
+                        rtcSerialNo.CtlSerialReset(100, 5);
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
@@ -348,15 +349,17 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
+            var rtcSerialNo = rtc as IRtcSerialNo;
+
             //초기값: 1000, 증가값: 1
-            rtcCharSet.CtlSerialReset(1000, 1);
+            rtcSerialNo.CtlSerialReset(1000, 1);
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(new Vector2(-10,-20));
-            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            success &= rtcSerialNo.ListSerial(4, SerialFormat.LeadingWithZero);
             success &= rtc.ListJump(new Vector2(-10, 0));
-            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            success &= rtcSerialNo.ListSerial(4, SerialFormat.LeadingWithZero);
             success &= rtc.ListJump(new Vector2(-10, 20));
-            success &= rtcCharSet.ListSerial(4, SerialFormat.LeadingWithZero);
+            success &= rtcSerialNo.ListSerial(4, SerialFormat.LeadingWithZero);
             if (success)
             {
                 success &= rtc.ListEnd();

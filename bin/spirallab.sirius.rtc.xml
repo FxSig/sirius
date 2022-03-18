@@ -11396,6 +11396,43 @@
             <param name="busyWait">모든 리스트 명령의 실행이 완료될때까지 대기</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IRtcSerialNo">
+            <summary>
+            IRtcSerialNo 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSerialNo.SerialStartNo">
+            <summary>
+            시작 시리얼 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSerialNo.SerialIncrementStep">
+            <summary>
+            증가 시리얼 번호값 (CtlSerialReset 함수에 의해 설정)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSerialNo.SerialExternalNo">
+            <summary>
+            현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialNo.CtlSerialReset(System.UInt32,System.UInt32)">
+            <summary>
+            시리얼 번호 리셋
+            </summary>
+            <param name="serialNo">시작 번호</param>
+            <param name="incrementStep">증가 값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialNo.ListSerial(System.UInt32,SpiralLab.Sirius.SerialFormat,SpiralLab.Sirius.CharacterSet)">
+            <summary>
+            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시리얼 번호 마킹
+            </summary>
+            <param name="numOfDigits">최대 자리수 (최대 15자)</param>
+            <param name="serialFormat">SerialFormat 열거형</param>
+            <param name="characterSet">CharacterSet 열거형</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcDateTimeOffset">
             <summary>
             RTC IRtcCharacterSet 인터페이스
@@ -11883,21 +11920,6 @@
             RTC IRtcCharacterSet 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcCharacterSet.SerialStartNo">
-            <summary>
-            시작 시리얼 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IRtcCharacterSet.SerialIncrementStep">
-            <summary>
-            증가 시리얼 번호값 (CtlSerialReset 함수에 의해 설정)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IRtcCharacterSet.SerialExternalNo">
-            <summary>
-            현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
-            </summary>
-        </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
             <summary>
             특정 색인 문자 좌표 정보 저장 시작 
@@ -11929,14 +11951,6 @@
             <param name="characterSet">CharacterSet 열거형</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlSerialReset(System.UInt32,System.UInt32)">
-            <summary>
-            시리얼 번호 리셋
-            </summary>
-            <param name="serialNo">시작 번호</param>
-            <param name="incrementStep">증가 값</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.ListText(System.String,SpiralLab.Sirius.CharacterSet)">
             <summary>
             보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 문자열 마킹
@@ -11961,15 +11975,6 @@
             </summary>
             <param name="timeFormat">TimeFormat 열거형</param>
             <param name="leadingWithZero">앞선 공간을 0 으로 채우기</param>
-            <param name="characterSet">CharacterSet 열거형</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IRtcCharacterSet.ListSerial(System.UInt32,SpiralLab.Sirius.SerialFormat,SpiralLab.Sirius.CharacterSet)">
-            <summary>
-            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시리얼 번호 마킹
-            </summary>
-            <param name="numOfDigits">최대 자리수 (최대 15자)</param>
-            <param name="serialFormat">SerialFormat 열거형</param>
             <param name="characterSet">CharacterSet 열거형</param>
             <returns></returns>
         </member>

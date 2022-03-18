@@ -52,29 +52,6 @@
             엔티티 의 Grip 포인트 이동
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.SerialTriggerMode">
-            <summary>
-            시리얼 번호 증가 모드
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.SerialTriggerMode.External">
-            <summary>
-            외부 트리거(/START) 에 의한 증가
-            시리얼 번호의 시작값 , 증가값을 RTC 의 CharacterSet 인터페이스를 통해 제어
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.SerialTriggerMode.Internal">
-            <summary>
-            내부 로직에 의한 증가
-            시리얼 번호의 시작값, 증가값을 개별 개체의 속성값을 통해 제어
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.ISerialIncrementable">
-            <summary>
-            시리얼 번호 증가 지원 인터페이스
-            텍스트 개체들중 시리얼 번호 증가를 지원하는 인터페이스
-            </summary>    
-        </member>
         <member name="T:SpiralLab.Sirius.ITextChangeable">
             <summary>
             ITextChangeable 인터페이스
@@ -92,9 +69,34 @@
             마킹시 자동 변환이 되며, 포맷은 yyyyDDhhmmtt 와 같은 DataTime 포맷을 사용된다
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.ITextChangeable.ConvertTextDateTime">
+        <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataSerialNo">
             <summary>
-            텍스트 내용을 날짜 시간 포맷으로 변환을 시도하여 결과를 리턴한다
+            텍스트 내용의 일부가 일련번호로 사용될 경우         
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataGS1">
+            <summary>
+            텍스트 내용을 분석하여 GS1 포맷으로 변환할지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.ConvertedTextData">
+            <summary>
+            텍스트 내용을 날짜 시간/일련번호/GS1 포맷으로 변환을 시도하여 결과를 리턴한다
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNo">
+            <summary>
+            일련번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoIncrementStep">
+            <summary>
+            일련번호 증가값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoDigits">
+            <summary>
+            일련번호 자리수
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TextChangeableHelper">
@@ -107,13 +109,13 @@
             기준 시간 (마커 start 할때 마다 업데이트됨)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertTo(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertToDateTime(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
             <summary>
             변환시도
             </summary>
             <param name="rtcDateTimeOffset">RTC 의 date time offset 을 사용하기 위한 인터페이스</param>
             <param name="text">입력 문자열 </param>
-            <param name="convertedDateTimeString">변환된 문자열</param>
+            <param name="converted">변환된 문자열</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IScriptable">
@@ -258,6 +260,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.BarcodeDataMatrix">
+            <summary>
+            barcode datamatrix entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.BarcodeDataMatrix2">
             <summary>
             barcode datamatrix v2 entity
@@ -270,6 +290,24 @@
             <returns>A new color that is a copy of this instance.</returns>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.BarcodeQR">
+            <summary>
+            barcode qr code entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             laser processing
             </summary>
@@ -735,24 +773,6 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.BarcodeQR">
-            <summary>
-            barcode qr code entity
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeQR.Clone">
-            <summary>
-            복사본 생성
-            </summary>
-            <returns>A new color that is a copy of this instance.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeQR.Mark(SpiralLab.Sirius.IMarkerArg)">
-            <summary>
-            laser processing
-            </summary>
-            <param name="markerArg"></param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.WriteData">
             <summary>
             write data entity
@@ -1072,6 +1092,18 @@
             복사본 생성
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="F:SpiralLab.Sirius.SerialTriggerMode.External">
+            <summary>
+            외부 트리거(/START) 에 의한 증가
+            시리얼 번호의 시작값 , 증가값을 RTC 의 CharacterSet 인터페이스를 통해 제어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.SerialTriggerMode.Internal">
+            <summary>
+            내부 로직에 의한 증가
+            시리얼 번호의 시작값, 증가값을 개별 개체의 속성값을 통해 제어
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusTextSerial">
             <summary>
@@ -3732,24 +3764,6 @@
             </summary>
             <param name="doc"></param>
             <param name="fileName"></param>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.BarcodeDataMatrix">
-            <summary>
-            barcode datamatrix entity
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Clone">
-            <summary>
-            복사본 생성
-            </summary>
-            <returns>A new color that is a copy of this instance.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Mark(SpiralLab.Sirius.IMarkerArg)">
-            <summary>
-            laser processing
-            </summary>
-            <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BlockInsert">
@@ -7045,7 +7059,6 @@
             특정 레이어를 가공할지를 처리하는 comparer
             </summary>
             <param name="layer"></param>
-            <param name="index"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.EntityWork(System.Int32,System.Int32,System.Int32,SpiralLab.Sirius.IEntity)">
