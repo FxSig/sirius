@@ -170,7 +170,7 @@ namespace SpiralLab.Sirius
             laser.Rtc = rtc;
 
 
-            var rtcDInExt1 = new RtcDInput(rtc, index, "DIN RTC EXT1");
+            var rtcDInExt1 = new RtcDInputExt1(rtc, index, "DIN RTC EXT1");
             success &= rtcDInExt1.Initialize();
             var rtcDOutExt1 = new RtcDOutputExt1(rtc, index, "DOUT RTC EXT1");
             success &= rtcDOutExt1.Initialize();

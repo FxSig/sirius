@@ -78,7 +78,7 @@ namespace SpiralLab.Sirius
             this.siriusEditorForm1.Marker =  marker;
 
             #region RTC 확장 IO 
-            this.RtcExt1DInput = new RtcDInput(rtc, 0, "DIN RTC EXT1");
+            this.RtcExt1DInput = new RtcDInputExt1(rtc, 0, "DIN RTC EXT1");
             this.RtcExt1DInput.Initialize();
             this.RtcExt1DOutput = new RtcDOutputExt1(rtc, 0, "DOUT RTC EXT1");
             this.RtcExt1DOutput.Initialize();

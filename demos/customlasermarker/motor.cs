@@ -65,6 +65,10 @@ namespace SpiralLab.Sirius
         /// </summary>
         public bool IsHomeSearched { get; private set; }
         /// <summary>
+        /// InPos 여부
+        /// </summary>
+        public bool IsInPos { get; private set; }
+        /// <summary>
         /// 모터 서보 온 여부
         /// </summary>
         public bool IsServoOn { get; private set; }

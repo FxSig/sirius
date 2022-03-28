@@ -93,6 +93,13 @@
 
 **5. Version history**
 
+* 2022.3.28 v.1.101
+   - added) triangle entity (삼각형 개체 추가)
+   - added) laser for coherent diamond j-series (코히런트 다이아몬드 J 시리즈 통신지원)
+   - added) DIO with rtc's D-sub 15pin (RTC 15핀 레이저 포트의 2/2 디지털 입출력 지원)
+   - support) import file format .sirius as single group entity (시리우스 파일 가져오기 지원. 하나의 개체로 변환됨)
+   - improved) performance with marker's offsets (마커에 오프셋 배열 지정시 가공 처리 속도 향상)
+
 * 2022.3.21 v.1.100
    - added) text/siriustext/barcode1,2d entity support converting datetime/serialno/gs1 format (텍스트 변환 개체들의 데이타를 분석하여 날짜시간, 일련번호, GS1 포맷으로 자동변환 지원)
    - added) IRtcSerialNo interface (일련번호 제어용 인터페이스 추가)
