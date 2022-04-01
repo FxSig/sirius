@@ -104,11 +104,6 @@
             포맷된 텍스트를 분석해서 시간날짜를 변환
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.TextChangeableHelper.DateTimeNow">
-            <summary>
-            기준 시간 (마커 start 할때 마다 업데이트됨)
-            </summary>
-        </member>
         <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertToDateTime(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
             <summary>
             변환시도
@@ -175,6 +170,11 @@
             <param name="result">실행 결과 리턴</param>
             <param name="applyIntoData">실행 성공시 그 결과를 엔티티의 데이타에 즉시 반영 여부</param>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Face">
+            <summary>
+            Triangles + Normals
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.AlcBegin">
             <summary>
@@ -371,6 +371,60 @@
             <summary>
             생성자
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Circle3D">
+            <summary>
+            원 3D 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Circle3D.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Circle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Triangle3D">
+            <summary>
+            삼각형3D 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Triangle3D.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Triangle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Triangle">
+            <summary>
+            삼각형 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Triangle.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Triangle.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Jump">
             <summary>
@@ -615,13 +669,6 @@
             복사본 생성
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Stereolithography.Mark(SpiralLab.Sirius.IMarkerArg)">
-            <summary>
-            laser processing
-            </summary>
-            <param name="markerArg"></param>
-            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.RasterLine">
             <summary>
@@ -1816,6 +1863,100 @@
             </summary>
             <param name="name">이름</param>
         </member>
+        <member name="T:SpiralLab.Sirius.UserLevel">
+            <summary>
+            사용자 레벨
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.UserLevel.Operator">
+            <summary>
+            오퍼레이터
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.UserLevel.Maint">
+            <summary>
+            메인터넌스
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.UserLevel.Engineer">
+            <summary>
+            엔지니어
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.UserLevel.Developer">
+            <summary>
+            개발자
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.LoggedIn">
+            <summary>
+            로그인 델리게이트
+            </summary>
+            <param name="level"></param>
+        </member>
+        <member name="T:SpiralLab.Sirius.LoggedOut">
+            <summary>
+            로그아웃 델리게이트
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.User">
+            <summary>
+            사용자 전역 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.User.OnLoggedIn">
+            <summary>
+            로그인 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.User.OnLoggedOut">
+            <summary>
+            로그아웃 이벤트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.User.Name">
+            <summary>
+            사용자 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.User.IsLoggedIn">
+            <summary>
+            로그인 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.User.Level">
+            <summary>
+            사용자 레벨
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.User.Reload">
+            <summary>
+            이전 상태 복원
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.UserLevel,System.String)">
+            <summary>
+            로그인 시도
+            </summary>
+            <param name="name">사용자 이름</param>
+            <param name="level">사용자 레벨</param>
+            <param name="password">암호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.UserLevel)">
+            <summary>
+            강제 로그인
+            </summary>
+            <param name="name"></param>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.User.LogOut">
+            <summary>
+            로그 아웃
+            </summary>
+            <returns></returns>
+        </member>
         <member name="F:SpiralLab.Sirius.AboutForm.components">
             <summary>
             Required designer variable.
@@ -1828,6 +1969,29 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.AboutForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.QRCodeVersionFormForm.QRCodeVersionTable">
+            <summary>
+            https://www.qrcode.com/en/about/version.html
+            version 1~40
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.QRCodeVersionFormForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.QRCodeVersionFormForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.QRCodeVersionFormForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -2353,6 +2517,28 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerSyncAxisForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Motor.MotorForm.AliasName">
+            <summary>
+            상태바에 출력되는 이름 (별명)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Motor.MotorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -7045,7 +7231,7 @@
             순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MarkerDefault.LayerWork(System.Int32,System.Int32,SpiralLab.Sirius.Layer)">
+        <member name="M:SpiralLab.Sirius.MarkerDefault.LayerWork(System.Int32,SpiralLab.Sirius.Layer)">
             <summary>
             레이어 가공 (매 레이어 가공시 호출됨)
             </summary>
@@ -7552,6 +7738,11 @@
         <member name="T:SpiralLab.Sirius.ConvertDateTimeEditor">
             <summary>
             ConvertDateTimeEditor 변환기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.QRCodeVersionEditor">
+            <summary>
+            QR Code Version 변환기
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.FontStringConverter">

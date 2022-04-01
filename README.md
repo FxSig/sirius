@@ -19,6 +19,8 @@
  
  ![stitchedimage](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-11.png)
 
+ ![stlfile](http://www.spirallab.co.kr/wp-content/uploads/2022/04/image.png)
+
  ![xlscan](http://www.spirallab.co.kr/wp-content/uploads/2022/02/Screenshot_Viewer_XLSCAN_colorMap-1.png)
  
  ![xlscan with job](http://www.spirallab.co.kr/wp-content/uploads/2022/02/image-24.png)
@@ -49,6 +51,7 @@
  - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
  - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and cutomizable entities with layers.
  - support 2D barcodes with various cell type like as dots, lines, outlines, hatch.
+ - support rendering 3D STL(StereoLithography) file.
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
  - support powerful undo/redo actions and single document data with multiple view targets.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
@@ -58,7 +61,7 @@
    - Thorlab PM100USB
  - support many kinds of laser sources
    - Advanced Optowave Fotia
-   - Coherent Avia LX
+   - Coherent Avia LX / Diamond J-Series
    - Photonics Industry DX
    - IPG YLP Type D/E
    - SPI G3/4
@@ -92,6 +95,14 @@
 ----
 
 **5. Version history**
+
+
+* 2022.4.4 v.1.102
+   - added) import stl(stereolithography) file for viewing (STL 파일 가져오기 및 화면에 렌더링 지원)
+   - added) triangle3d/circle3d entity (삼각형 3d, 원3d 개체 추가)
+      - rotate each x,y axis (X,Y 축에 개별 회전각도 지정 가능)
+   - fixed) vary laser spot size with simulate laser path by z location (시뮬레이션 가공시 높이에 따른 가공 점 크기 가변 지원)
+   - fixed) minor bugs (각종 버그 해결)
 
 * 2022.3.28 v.1.101
    - added) triangle entity (삼각형 개체 추가)
