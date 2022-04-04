@@ -390,6 +390,17 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.Fiducial">
+            <summary>
+            Fiducial 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Fiducial.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Triangle3D">
             <summary>
             삼각형3D 엔티티

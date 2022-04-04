@@ -5708,16 +5708,6 @@
             단위 mm 당 엔코더 Y 개수
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Rtc4.EncXSimulatedSpeed">
-            <summary>
-            엔코더 X 의 가상 속도 mm/s
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc4.EncYSimulatedSpeed">
-            <summary>
-            엔코더 Y 의 가상 속도 mm/s
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsDateTimeOffset">
             <summary>
             DateTime 오프셋 사용여부
@@ -7001,16 +6991,6 @@
         <member name="P:SpiralLab.Sirius.Rtc5.EncYCountsPerMm">
             <summary>
             단위 mm 당 엔코더 Y 개수
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5.EncXSimulatedSpeed">
-            <summary>
-            엔코더 X 의 가상 속도 mm/s
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc5.EncYSimulatedSpeed">
-            <summary>
-            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.SerialStartNo">
@@ -8567,16 +8547,6 @@
         <member name="P:SpiralLab.Sirius.Rtc6.EncYCountsPerMm">
             <summary>
             단위 mm 당 엔코더 Y 개수
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6.EncXSimulatedSpeed">
-            <summary>
-            엔코더 X 의 가상 속도 mm/s
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Rtc6.EncYSimulatedSpeed">
-            <summary>
-            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialStartNo">
@@ -13608,6 +13578,16 @@
             EncYCountsPerMm =   -----------
                                     mm  
             * 주의 사항 (한축의 엔코더만 사용할 경우에도 임의의 값을 설정하는것을 추천)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcMOTF.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcMOTF.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderReset(System.Single,System.Single)">

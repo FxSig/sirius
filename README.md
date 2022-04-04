@@ -96,12 +96,14 @@
 
 **5. Version history**
 
-
 * 2022.4.4 v.1.102
    - added) import stl(stereolithography) file for viewing (STL 파일 가져오기 및 화면에 렌더링 지원)
    - added) triangle3d/circle3d entity (삼각형 3d, 원3d 개체 추가)
       - rotate each x,y axis (X,Y 축에 개별 회전각도 지정 가능)
    - fixed) vary laser spot size with simulate laser path by z location (시뮬레이션 가공시 높이에 따른 가공 점 크기 가변 지원)
+   - added) fiducial entity (fiducial mark 전용 개체 추가)
+   - fixed) single menu item for control entities at editor (제어용 개체들을 하나의 메뉴 아래로 정리)
+   - fixed) RTC 의 내장 1MHz 가상 엔코더 동작시 한 축만 활성화되는 버그 (simulate encoder)
    - fixed) minor bugs (각종 버그 해결)
 
 * 2022.3.28 v.1.101
