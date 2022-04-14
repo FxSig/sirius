@@ -546,7 +546,7 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorACS.CommandPosition">
+        <member name="P:SpiralLab.Sirius.MotorACS.TargetPosition">
             <summary>
             위치 (mm)
             </summary>
@@ -616,7 +616,7 @@
             ORG 센서 상태
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorACS.MaxSpeed">
+        <member name="P:SpiralLab.Sirius.MotorACS.MaxVelocity">
             <summary>
             최대 속도를 제한값 (mm/s)
             </summary>
@@ -700,6 +700,67 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorXYZ">
+            <summary>
+            XYZ 모터 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.X">
+            <summary>
+            모터 X 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.Y">
+            <summary>
+            모터 Y 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.Z">
+            <summary>
+            모터 Z
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYZ.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYZ.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
+            <summary>
+            절대 위치 이동
+            </summary>
+            <param name="position">위치값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYZ.CtlMoveRel(System.Numerics.Vector3,System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotorXY">
             <summary>
             XY 모터 
@@ -707,17 +768,17 @@
         </member>
         <member name="P:SpiralLab.Sirius.MotorXY.X">
             <summary>
-            모터 X 번호
+            모터 X 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorXY.Y">
             <summary>
-            모터 Y 번호
+            모터 Y 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorXY.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorXY.IsReady">
@@ -756,30 +817,174 @@
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorPositionTable">
+            <summary>
+            모터 위치 테이블
+            (모터 위치들의 집합)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IMotorPosition">
+            <summary>
+            모터 위치 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Name">
+            <summary>
+            위치 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.X">
+            <summary>
+            X 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Y">
+            <summary>
+            Y 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Z">
+            <summary>
+            Z 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.R">
+            <summary>
+            R 회전각 (deg)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Velocity">
+            <summary>
+            구동시 속도 (mm/s)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorPositionSerializer">
+            <summary>
+            모터 위치 집합 시리얼라이저
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorPositionSerializer.Save(SpiralLab.Sirius.MotorPositionTable,System.String)">
+            <summary>
+            저장
+            </summary>
+            <param name="motorPositionTable">모터 위치 집합</param>
+            <param name="fileName">파일이름</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorPositionSerializer.Open(System.String)">
+            <summary>
+            열기
+            </summary>
+            <param name="fileName">파일이름</param>
+            <returns>모터 위치 집합</returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.IMotorXYZ">
+            <summary>
+            모터 XYZ 인터페이스
+            XYZ 스테이지를 제어하기 위한 모터 인터페이스 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.X">
+            <summary>
+            모터 X 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.Y">
+            <summary>
+            모터 Y 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.Z">
+            <summary>
+            모터 Y 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsInPos">
+            <summary>
+            In Position 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXYZ.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
+            <summary>
+            절대 위치 이동
+            </summary>
+            <param name="position">위치값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveRel(System.Numerics.Vector3,System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotorXYZ.Update">
+            <summary>
+            상태 업데이트
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorXYZRPosition">
+            <summary>
+            모터 XYZR 위치
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IMotorXY">
             <summary>
-            모터 인터페이스
-            스캐너 Z or 회전축 을 제어하기 위한 모터 인터페이스 
+            모터 XY 인터페이스
+            XY 스테이지를 제어하기 위한 모터 인터페이스 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.X">
             <summary>
-            모터 X 번호
+            모터 X 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.Y">
             <summary>
-            모터 Y 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.MatrixStack">
-            <summary>
-            3*3 행렬 스택
+            모터 Y 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.Name">
             <summary>
             모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.IsInPos">
+            <summary>
+            InPosition 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.IsReady">
@@ -4233,12 +4438,25 @@
             <param name="watt">출력 에너지(Watt)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IPowerControl.ListBegin">
+            <summary>
+            리스트 시작 시점 통지용
+            (내부적으로 가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single)">
             <summary>
             파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 명령) 
             마커의 내부 쓰레드에 의해 호출됨
             </summary>
             <param name="watt">출력 에너지(Watt)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerControl.ListEnd">
+            <summary>
+            리스트 끝 시점 통지용
+            </summary>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IGuideControl">
@@ -4762,6 +4980,11 @@
             Ophir 사의 USBI 파워메터 객체
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphirUsbI.OnMeasured">
+            <summary>
+            파워 측정 이벤트
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeterOphirUsbI.Channel">
             <summary>
             활성화 채널 번호 (1~4)
@@ -4777,7 +5000,7 @@
             <param name="samplingRateHz">시리얼 번호</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Start">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.CtlStart">
             <summary>
             측정 시작
             </summary>
@@ -4825,17 +5048,17 @@
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Initialize">
             <summary>
-            장치및 통신 초기화
+            장치 및 통신 초기화
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Start">
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.CtlStart">
             <summary>
             데이타 수집 시작
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Stop">
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.CtlStop">
             <summary>
             데이타 수집 종료
             </summary>
@@ -4888,6 +5111,11 @@
             에러 상태
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.Data">
+            <summary>
+            측정 데이타 큐
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.Tag">
             <summary>
             사용자 정의 데이타
@@ -4899,34 +5127,32 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Start">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.CtlStart">
             <summary>
             데이타 수집 시작
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Stop">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.CtlStop">
             <summary>
             데이타 수집 종료
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Clear">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.CtlClear">
             <summary>
             데이타 모두 삭제
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.Reset">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.CtlReset">
             <summary>
             리셋
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMeter.GetData(System.Single[]@)">
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.OnMeasured">
             <summary>
-            수집된 데이타 얻기
+            파워 측정 이벤트
             </summary>
-            <param name="gatherData"></param>
-            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
             <summary>
@@ -4938,7 +5164,7 @@
             <param name="samplingRateHz">측정 주기</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.Start">
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPM100Usb.CtlStart">
             <summary>
             측정 시작
             </summary>
@@ -4973,7 +5199,7 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.CommandPosition">
+        <member name="P:SpiralLab.Sirius.IMotor.TargetPosition">
             <summary>
             명령 위치 (mm)
             </summary>
@@ -4981,6 +5207,11 @@
         <member name="P:SpiralLab.Sirius.IMotor.ActualPosition">
             <summary>
             실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.TargetVelocity">
+            <summary>
+            명령 속도 (mm/s)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsReady">
@@ -5038,7 +5269,7 @@
             Origin(Home) 센서 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotor.MaxSpeed">
+        <member name="P:SpiralLab.Sirius.IMotor.MaxVelocity">
             <summary>
             최대 속도를 제한값 (mm/s)
             </summary>
@@ -5133,9 +5364,9 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.CommandPosition">
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.TargetPosition">
             <summary>
-            위치 (mm)
+            지령 위치 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.ActualPosition">
@@ -5208,7 +5439,7 @@
             모터 스케일 설정 : Pulses/mm
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorAjinExtek.MaxSpeed">
+        <member name="P:SpiralLab.Sirius.MotorAjinExtek.MaxVelocity">
             <summary>
             최대 속도를 제한값 (mm/s)
             </summary>
@@ -5344,7 +5575,7 @@
             모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.CommandPosition">
+        <member name="P:SpiralLab.Sirius.MotorVirtual.TargetPosition">
             <summary>
             위치 (mm)
             </summary>
@@ -5369,14 +5600,14 @@
             알람 발생 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.IsHomeSearched">
-            <summary>
-            원점 검색 여부
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.MotorVirtual.IsInPos">
             <summary>
             명령 지점 도착 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorVirtual.IsHomeSearched">
+            <summary>
+            원점 검색 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorVirtual.IsServoOn">
@@ -5404,7 +5635,7 @@
             ORG 센서 상태
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorVirtual.MaxSpeed">
+        <member name="P:SpiralLab.Sirius.MotorVirtual.MaxVelocity">
             <summary>
             최대 속도를 제한값 (mm/s)
             </summary>
@@ -5706,6 +5937,16 @@
         <member name="P:SpiralLab.Sirius.Rtc4.EncYCountsPerMm">
             <summary>
             단위 mm 당 엔코더 Y 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsDateTimeOffset">
@@ -6536,7 +6777,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5LaserControlSignal.Bit.ExtPulseSignalRisingEdge">
             <summary>
-             Determines for laser_on_pulses_list whether external signal pulses (at the LASER connector’s DIGITAL IN1 digital input) are to be counted at rising or falling edges:
+             Determines for laser_on_pulses_freq whether external signal pulses (at the LASER connector’s DIGITAL IN1 digital input) are to be counted at rising or falling edges:
             = 0: At the falling edge.
             = 1: At the rising edge
             </summary>
@@ -6991,6 +7232,16 @@
         <member name="P:SpiralLab.Sirius.Rtc5.EncYCountsPerMm">
             <summary>
             단위 mm 당 엔코더 Y 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.SerialStartNo">
@@ -8547,6 +8798,16 @@
         <member name="P:SpiralLab.Sirius.Rtc6.EncYCountsPerMm">
             <summary>
             단위 mm 당 엔코더 Y 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.EncXSimulatedSpeed">
+            <summary>
+            엔코더 X 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.EncYSimulatedSpeed">
+            <summary>
+            엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialStartNo">
@@ -14328,7 +14589,16 @@
             XML 설정된 스테이지 개수
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)" -->
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
+            <summary>
+            LPF(Low Pass Filter) 주파수를 설정한다 (Hz)
+            높은값 : 스테이지쪽에 작업 부하를 상승
+            낮은값 : 스캐너 쪽에 작업 부하를 상승
+            (xml 설정 파일에 저장 되지 않음)
+            </summary>
+            <param name="filterBandWidth">LPF값 (Hz)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSimulationMode(System.Boolean)">
             <summary>
             시뮬레이션 모드/하드웨어 모드 설정
@@ -19610,6 +19880,11 @@
              void n_set_mcbsp_out(uint CardNo, uint Signal1, uint Signal2);
             </summary>
         </member>
+        <member name="F:RTC5Import.RTC5Wrap.n_set_mcbsp_out_ptr_list">
+            <summary>
+             void n_set_mcbsp_out_ptr_list(uint CardNo, uint Number, uint[] SignalPtr);
+            </summary>
+        </member>
         <member name="F:RTC5Import.RTC5Wrap.n_camming">
             <summary>
              void n_camming(uint CardNo, uint FirstPos, uint NPos, uint No, uint Ctrl, double Scale, uint Code);
@@ -19758,6 +20033,11 @@
         <member name="F:RTC5Import.RTC5Wrap.set_mcbsp_out">
             <summary>
              void set_mcbsp_out(uint Signal1, uint Signal2);
+            </summary>
+        </member>
+        <member name="F:RTC5Import.RTC5Wrap.set_mcbsp_out_ptr_list">
+            <summary>
+             void set_mcbsp_out_ptr_list(uint Number, uint[] SignalPtr);
             </summary>
         </member>
         <member name="F:RTC5Import.RTC5Wrap.camming">
@@ -20865,6 +21145,16 @@
              uint write_abc_to_file(string Name, double A, double B, double C);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.read_abc_from_file_20b">
+            <summary>
+             uint read_abc_from_file_20b(string Name, out double A, out double B, out double C);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.write_abc_to_file_20b">
+            <summary>
+             uint write_abc_to_file_20b(string Name, double A, double B, double C);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_create_dat_file">
             <summary>
              uint n_create_dat_file(uint CardNo, int Flag);
@@ -21020,6 +21310,16 @@
              void n_number_of_correction_tables(uint CardNo, uint Number);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_load_z_table_no_20b">
+            <summary>
+             uint n_load_z_table_no_20b(uint CardNo, double A, double B, double C, uint No);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_load_z_table_20b">
+            <summary>
+             uint n_load_z_table_20b(uint CardNo, double A, double B, double C);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_get_head_para">
             <summary>
              double n_get_head_para(uint CardNo, uint HeadNo, uint ParaNo);
@@ -21093,6 +21393,16 @@
         <member name="F:RTC6Import.RTC6Wrap.number_of_correction_tables">
             <summary>
              void number_of_correction_tables(uint Number);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.load_z_table_no_20b">
+            <summary>
+             uint load_z_table_no_20b(double A, double B, double C, uint No);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.load_z_table_20b">
+            <summary>
+             uint load_z_table_20b(double A, double B, double C);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.get_head_para">
@@ -22520,6 +22830,11 @@
              void n_quad_axis_get_values(uint CardNo, out double X1, out double Y1, out uint Flags0, out uint Flags1);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_get_temperature">
+            <summary>
+             double n_get_temperature(uint CardNo);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.get_time">
             <summary>
              double get_time();
@@ -22693,6 +23008,11 @@
         <member name="F:RTC6Import.RTC6Wrap.quad_axis_get_values">
             <summary>
              void quad_axis_get_values(out double X1, out double Y1, out uint Flags0, out uint Flags1);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.get_temperature">
+            <summary>
+             double get_temperature();
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_defocus">
@@ -24780,6 +25100,11 @@
              void n_set_wobbel_vector(uint CardNo, double dTrans, double dLong, uint Period, double dPower);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_wobbel_vector_2">
+            <summary>
+             void n_set_wobbel_vector_2(uint CardNo, double dTrans, double dLong, uint Period, double dPower, double dPower2, uint Ctrl);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_wobbel_offset">
             <summary>
              void n_set_wobbel_offset(uint CardNo, int OffsetTrans, int OffsetLong);
@@ -24823,6 +25148,11 @@
         <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_out">
             <summary>
              void n_set_mcbsp_out(uint CardNo, uint Signal1, uint Signal2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_mcbsp_out_ptr_list">
+            <summary>
+             void n_set_mcbsp_out_ptr_list(uint CardNo, uint Number, uint[] SignalPtr);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.n_camming">
@@ -24940,6 +25270,11 @@
              void set_wobbel_vector(double dTrans, double dLong, uint Period, double dPower);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_wobbel_vector_2">
+            <summary>
+             void set_wobbel_vector_2(double dTrans, double dLong, uint Period, double dPower, double dPower2, uint Ctrl);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.set_wobbel_offset">
             <summary>
              void set_wobbel_offset(int OffsetTrans, int OffsetLong);
@@ -24983,6 +25318,11 @@
         <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_out">
             <summary>
              void set_mcbsp_out(uint Signal1, uint Signal2);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_mcbsp_out_ptr_list">
+            <summary>
+             void set_mcbsp_out_ptr_list(uint Number, uint[] SignalPtr);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.camming">

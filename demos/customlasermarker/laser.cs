@@ -170,6 +170,15 @@ namespace SpiralLab.Sirius
                 return success;
             }
         }
+
+        public bool ListBegin()
+        {
+            return true;
+        }
+        public bool ListEnd()
+        {
+            return true;
+        }
         /// <summary>
         /// 지정된 출력(watt)으로 레이저 파워 변경
         /// 리스트 명령 (RTC 버퍼에 삽입되는 명령)

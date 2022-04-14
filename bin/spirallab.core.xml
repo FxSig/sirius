@@ -432,6 +432,19 @@
             라이센스 체크용 폼
             </summary>
         </member>
+        <member name="M:SpiralLab.FormLicense.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.FormLicense.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
+            <summary>
+            오버라이드 ProcessCmdKey
+            </summary>
+            <param name="msg"></param>
+            <param name="keyData"></param>
+            <returns></returns>
+        </member>
         <member name="F:SpiralLab.FormLicense.components">
             <summary>
             Required designer variable.

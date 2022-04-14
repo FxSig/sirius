@@ -39,11 +39,14 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 명령 위치 (unit)
         /// </summary>
-        public float CommandPosition { get; private set; }
+        public float TargetPosition { get; set; }
         /// <summary>
         /// 실제 위치 (unit)
         /// </summary>
         public float ActualPosition { get; private set; }
+
+        public float TargetVelocity { get; set; }
+
         /// <summary>
         /// 모터 준비 상태 여부
         /// </summary>
@@ -71,7 +74,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 모터 서보 온 여부
         /// </summary>
-        public bool IsServoOn { get; private set; }
+        public bool IsServoOn { get; set; }
         /// <summary>
         /// 모터 구동중 여부
         /// </summary>
@@ -89,6 +92,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public bool IsOrgSenOn { get; private set; }
 
+        public float MaxVelocity { get; set; }
         public float MaxSpeed { get; set; }
         /// <summary>
         /// 사용자 정의 데이타
@@ -128,7 +132,7 @@ namespace SpiralLab.Sirius
             IsReady = true;
             IsError = false;
             IsHomeSearched = true;
-            CommandPosition = ActualPosition = 0;
+            TargetPosition = ActualPosition = 0;
             return true;
         }
         /// <summary>
@@ -139,7 +143,7 @@ namespace SpiralLab.Sirius
         public bool CtlMoveAbs(float position, float vel)
         {
             Thread.Sleep(100);
-            CommandPosition = ActualPosition = position;
+            TargetPosition = ActualPosition = position;
             return true;
         }
         /// <summary>
@@ -150,8 +154,8 @@ namespace SpiralLab.Sirius
         public bool CtlMoveRel(float distance, float vel)
         {
             Thread.Sleep(100);
-            CommandPosition += distance;
-            ActualPosition += distance;
+            TargetPosition += distance;
+            ActualPosition = TargetPosition;
             return true;
         }
         public bool CtlMoveJog(float vel)

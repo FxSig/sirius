@@ -32,6 +32,11 @@
             절대 위치  X, Y 값 (mm) 배열
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.FormGridChecker.IsSuccess">
+            <summary>
+            성공 여부 (결과)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.Rows">
             <summary>
             행 개수
@@ -60,6 +65,11 @@
         <member name="P:SpiralLab.Sirius.FormGridChecker.CrosshairHeight">
             <summary>
             십자선 높이 크기 (mm)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.FormGridChecker.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.FormGridChecker.getImageHue(OpenCvSharp.Mat)">
@@ -118,6 +128,8 @@
             <param name="binary"></param>
             <param name="minSizeX"></param>
             <param name="minSizeY"></param>
+            <param name="maxSizeX"></param>
+            <param name="maxSizeY"></param>
         </member>
         <member name="M:SpiralLab.Sirius.Program.Main">
             <summary>

@@ -178,6 +178,14 @@ namespace SpiralLab.Sirius
             success &= this.CommandToChangePower(watt);
             return success;
         }
+        public bool ListBegin()
+        {
+            return true;
+        }
+        public bool ListEnd()
+        {
+            return true;
+        }
 
         /// <summary>
         /// 지정된 출력(watt)으로 레이저 파워 변경

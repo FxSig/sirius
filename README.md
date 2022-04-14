@@ -96,6 +96,11 @@
 
 **5. Version history**
 
+* 2022.4.15 v.1.103
+   - added) motor form with xyz table (모터폼에 XYZ 상태 출력 및 위치 테이블 지원)
+   - added) powermeter form at SiriusEditorForm (파워메터용 출력 폼 추가됨)
+   - fixed) adjust laser duty cycle by automatically when vary target power (Duty Cycle 로 제어 되는 레이저 소소의 경우 파워값 변경시 펄스폭 자동 계산 지원)
+
 * 2022.4.4 v.1.102
    - added) import stl(stereolithography) file for viewing (STL 파일 가져오기 및 화면에 렌더링 지원)
    - added) triangle3d/circle3d entity (삼각형 3d, 원3d 개체 추가)
