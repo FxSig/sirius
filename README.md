@@ -96,6 +96,18 @@
 
 **5. Version history**
 
+* 2022.4.22 v.1.104
+   - added) laser source : SpectraPhysics Talon (스펙트라 피직스 탈론 레이저 소스 추가)
+   - added) laser source : IPG YLP N (IPG 레이저 소스 추가)
+   - fixed) draw ellipse with angle delta (타원의 미분 각도에 따라 렌더링 변경)
+   - added) execute RTC's execution buffer with fast response (RTC 버퍼 실행 시작을 단축하는 버퍼 처리 기능 추가)
+   - fixed) barcode 2d (DataMatrix/QR)
+      - cell type : hatch with shift (셀 타입 해치사용시 쉬프트 오프셋 거리 추가)
+      - cell type : line with vertical/horizontal direction (셀 타입 라인 사용시 가로세로 방향 설정)
+      - offset array with serial no (바코드에 오프셋 기능을 통한 일련번호 증가 기능 추가)
+   - fixed) text 
+       - offset array with serial no (텍스트에 오프셋 기능을 통한 일련번호 증가 기능 추가)
+
 * 2022.4.15 v.1.103
    - added) motor form with xyz table (모터폼에 XYZ 상태 출력 및 위치 테이블 지원)
    - added) powermeter form at SiriusEditorForm (파워메터용 출력 폼 추가됨)

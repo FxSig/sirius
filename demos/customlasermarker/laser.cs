@@ -64,6 +64,9 @@ namespace SpiralLab.Sirius
         /// 에러 상태
         /// </summary>
         public bool IsError { get; set; }
+
+        public bool IsTimedOut { get; set; }
+        public bool IsProtocolError { get; set; }
         /// <summary>
         /// IRtc 객체
         /// </summary>
