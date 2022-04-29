@@ -39,22 +39,22 @@
 
 **2. Features**
 
- - support SCANLAB's RTC4, RTC5, RTC6, RTC6 Ethernet multiple products.
+ - support SCANLAB's RTC4, RTC5, RTC6 products with multiples.
  - support SyncAxis(XL-SCAN) with multiple heads/stages combination.
- - support powerful 3x3 matrix operation with stack.
- - support processing unlimited vector data by automatically.
+ - support powerful 3x3 matrix operations with stack.
+ - support processing unlimited vector data by internally.
  - support MOTF(marking on the fly), dual head, 3d (like as VarioSCAN) features.
  - support 2D/3D field correction with easy to use and with powerful image analyzer.
  - support scanner motion/signal profiles with plotted graph.
- - support executable C# script codes.
- - support powermeters and power mapping interface
- - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
- - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and cutomizable entities with layers.
- - support 2D barcodes with various cell type like as dots, lines, outlines, hatch.
+ - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and customizable entities with layers.
+ - support 2D barcodes with various cell type like as dots, lines, outlines, hatch and generated data with formatted datetime, serial no by automatically.
  - support rendering 3D STL(StereoLithography) file.
+ - support powermeters and power mapping interface
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
  - support powerful undo/redo actions and single document data with multiple view targets.
+ - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
+ - support executable C# script codes.
  - support customizable and extensible marker interface.
  - support many kinds of power meter
    - Ophir USBI
@@ -63,9 +63,10 @@
    - Advanced Optowave Fotia
    - Coherent Avia LX / Diamond J-Series
    - Photonics Industry DX
-   - IPG YLP Type D/E
-   - SPI G3/4
+   - IPG YLP Type D/E, YLP N Series
    - JPT Type E
+   - SPI G3/4
+   - Spectra Physics Talon
  
   ----
 
@@ -96,6 +97,14 @@
 
 **5. Version history**
 
+* 2022.4.29 v.1.105
+   - fixed) points entity (점 개체 렌더링 속도 향상)
+      - fast rendering for speed up 
+   - fixed) auto-increase serialno at text/barcode with offsets (바코드와 텍스트 내부 오프셋 자동 증가 지원)
+   - fixed) syncaxis 
+      - simulated with multiple syncaxis viewers using multiple layers (다중 레이어 가공시 뷰어 결과도 레이어 개수만큼 출력)
+   - fixed) disabled scripts function (스크립트 기능을 비활성화)
+
 * 2022.4.22 v.1.104
    - added) laser source : SpectraPhysics Talon (스펙트라 피직스 탈론 레이저 소스 추가)
    - added) laser source : IPG YLP N (IPG 레이저 소스 추가)
@@ -106,7 +115,7 @@
       - cell type : line with vertical/horizontal direction (셀 타입 라인 사용시 가로세로 방향 설정)
       - offset array with serial no (바코드에 오프셋 기능을 통한 일련번호 증가 기능 추가)
    - fixed) text 
-       - offset array with serial no (텍스트에 오프셋 기능을 통한 일련번호 증가 기능 추가)
+      - offset array with serial no (텍스트에 오프셋 기능을 통한 일련번호 증가 기능 추가)
 
 * 2022.4.15 v.1.103
    - added) motor form with xyz table (모터폼에 XYZ 상태 출력 및 위치 테이블 지원)

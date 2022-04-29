@@ -84,14 +84,29 @@
             텍스트 내용을 날짜 시간/일련번호/GS1 포맷으로 변환을 시도하여 결과를 리턴한다
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.GS1Separator">
+            <summary>
+            GS1 구분 문자열
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNo">
             <summary>
             일련번호
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoFormat">
+            <summary>
+            일련번호 포맷
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoIncrementStep">
             <summary>
             일련번호 증가값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ITextChangeable.OffsetSerialNoIncrementStep">
+            <summary>
+            오프셋 배열을 가질 경우 일련번호 증가값
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoDigits">
@@ -4065,11 +4080,6 @@
             레이어에 포함된 엔티티의 개수
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Layer.Items">
-            <summary>
-            레이어에 포함된 엔티티의 배열 목록
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.Layer.IsVisible">
             <summary>
             레이어 가시성 여부
@@ -4089,6 +4099,11 @@
             <summary>
             레이어 별로 가공 방식을 변경 가능 
             해당 타입에 따라 사용자의 마커(IMarker)에서 세부 구현 가능
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.Items">
+            <summary>
+            레이어에 포함된 엔티티의 배열 목록
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.Repeat">
