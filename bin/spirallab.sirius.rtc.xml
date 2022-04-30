@@ -7802,11 +7802,6 @@
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.Rtc5">
-            <summary>
-            RTC5 객체
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Count">
             <summary>
             인스턴스 개수
@@ -10685,7 +10680,6 @@
         <member name="T:SpiralLab.Sirius.Rtc6SyncAxis">
             <summary>
             SCANLAB's XLSCAN (RTC6 + SyncAXIS + ExcelliSCAN + ACS Motion)
-            x64 버전만 지원 가능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Count">
@@ -10983,13 +10977,19 @@
             종결자
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.Initialize(System.String)">
+            <summary>
+            초기화 : 리스트 핸들링 모드가 RepeatWhileBufferFull 로 자동 설정됨
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
             <summary>
             초기화 : 리스트 핸들링 모드가 RepeatWhileBufferFull 로 자동 설정됨
             </summary>
-            <param name="kFactor"></param>
-            <param name="unUsed_laserMode"></param>
-            <param name="unusedCt5FileName"></param>
+            <param name="kFactor">사용되지 않음</param>
+            <param name="unUsed_laserMode">사용되지 않음</param>
+            <param name="unusedCt5FileName">사용되지 않음</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ReInitialize">
@@ -13003,11 +13003,6 @@
             Rtc5JumpMode , Rtc6JumpMode 클래스 사용 필요
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.IRtc">
-            <summary>
-            RTC 인터페이스
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.IRtc.Index">
             <summary>
             RTC 카드 식별자 (0, 1, 2, ...)
@@ -14923,6 +14918,11 @@
             스캐너 + 스테이지 (MOTF/Marking On the flying)
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.MotionMode">
+            <summary>
+            ACS 모션 제어 모드
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.MotionMode.Unknown">
             <summary>
             초기 상태
@@ -15011,6 +15011,11 @@
         <member name="T:SpiralLab.Sirius.DynamicMonitoringLevel">
             <summary>
             동적 모니터링 신호
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Deactivated">
+            <summary>
+            비활성화
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Position">
@@ -15321,6 +15326,41 @@
             생성자
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.UtilizedScanner">
+            <summary>
+            스캐너 활용률
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.UtilizedStage">
+            <summary>
+            스테이지 활용률
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.JobResult">
+            <summary>
+            작업 분석 결과
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.JobResult.Failed">
+            <summary>
+            실패
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.JobResult.Aborted">
+            <summary>
+            중지
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.JobResult.Unknown">
+            <summary>
+            모름
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.JobResult.Success">
+            <summary>
+            성공
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Job">
             <summary>
             SyncAxis 작업 상태 
@@ -15531,6 +15571,14 @@
             <summary>
             XML 설정된 스테이지 개수
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.Initialize(System.String)">
+            <summary>
+            초기화
+            생성자에서 XML 파일명이 사전에 지정되어 있어야 함
+            </summary>
+            <param name="configXMLFile">SyncAxis 환경설정(xml) 파일</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
             <summary>

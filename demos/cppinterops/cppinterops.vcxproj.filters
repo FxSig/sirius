@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="cppinterops_syncaxis.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
     <ClCompile Include="cppinterops.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>

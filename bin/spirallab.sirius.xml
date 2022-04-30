@@ -1889,6 +1889,130 @@
             </summary>
             <param name="name">이름</param>
         </member>
+        <member name="F:SpiralLab.Sirius.Laser.CoherentDiamondJSeriesForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.CoherentDiamondJSeriesForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.CoherentDiamondJSeriesForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.jpttypeEForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Laser.LaserForm.AliasName">
+            <summary>
+            상태바에 출력되는 이름 (별명)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.LaserForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Motor.FormMotorXYZ.components">
             <summary> 
             필수 디자이너 변수입니다.
@@ -2442,113 +2566,6 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.DivideForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.jpttypeEForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.jpttypeEForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.components">
-            <summary> 
-            필수 디자이너 변수입니다.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.Dispose(System.Boolean)">
-            <summary> 
-            사용 중인 모든 리소스를 정리합니다.
-            </summary>
-            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeDForm.InitializeComponent">
-            <summary> 
-            디자이너 지원에 필요한 메서드입니다. 
-            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.IPGYLPTypeEForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Laser.LaserForm.AliasName">
-            <summary>
-            상태바에 출력되는 이름 (별명)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.LaserForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.LaserForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.LaserForm.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryDXForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -6586,6 +6603,11 @@
         <member name="P:SpiralLab.Sirius.IDrawable.IsHighlighted">
             <summary>
             마우스 over 등에 의한 시각 효과 (현재 미지원)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDrawable.IsHitTest">
+            <summary>
+            마우스를 이용한 선택을 처리할지 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsDrawPath">

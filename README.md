@@ -101,9 +101,12 @@
    - fixed) points entity (점 개체 렌더링 속도 향상)
       - fast rendering for speed up 
    - fixed) auto-increase serialno at text/barcode with offsets (바코드와 텍스트 내부 오프셋 자동 증가 지원)
+   - fixed) skip jump position when enabled 3d option (옵션 가공시 점프 구간 가공 버그 수정)
+   - fixed) support hit test option at every drawable entities (출력 개체들에 모두 Hit Test 여부 선택 지원됨)
+   - fixed) disabled scripts function (스크립트 기능을 비활성화)
    - fixed) syncaxis 
       - simulated with multiple syncaxis viewers using multiple layers (다중 레이어 가공시 뷰어 결과도 레이어 개수만큼 출력)
-   - fixed) disabled scripts function (스크립트 기능을 비활성화)
+      - syncaxis demo c++ code (c++ 환경에서 COM 객체 등록후 사용 예제 코드 추가)
 
 * 2022.4.22 v.1.104
    - added) laser source : SpectraPhysics Talon (스펙트라 피직스 탈론 레이저 소스 추가)

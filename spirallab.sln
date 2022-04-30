@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32106.194
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "4.fieldcorrection", "demos\fieldcorrection\4.fieldcorrection.csproj", "{86B03BA5-B828-4B15-909C-7A844408E103}"
 EndProject
@@ -63,6 +63,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "33.editor_syncaxis", "demos\editor_syncaxis\33.editor_syncaxis.csproj", "{BFAF531B-B606-42BE-9C4C-79B6F78CBA21}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "19.syncaxis", "demos\syncaxis\19.syncaxis.csproj", "{903D7E83-2AB9-4274-B134-C356AA37F4FC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "17.cppinterops", "demos\cppinterops\cppinterops.vcxproj", "{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -563,6 +565,24 @@ Global
 		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Remote|x64.Build.0 = Remote|Any CPU
 		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Remote|x86.ActiveCfg = Remote|Any CPU
 		{903D7E83-2AB9-4274-B134-C356AA37F4FC}.Remote|x86.Build.0 = Remote|Any CPU
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|Any CPU.Build.0 = Debug|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x64.ActiveCfg = Debug|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x64.Build.0 = Debug|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x86.ActiveCfg = Debug|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Debug|x86.Build.0 = Debug|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|Any CPU.ActiveCfg = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|Any CPU.Build.0 = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x64.ActiveCfg = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x64.Build.0 = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x86.ActiveCfg = Release|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Release|x86.Build.0 = Release|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|Any CPU.ActiveCfg = Debug|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|Any CPU.Build.0 = Debug|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|x64.ActiveCfg = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|x64.Build.0 = Release|x64
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|x86.ActiveCfg = Release|Win32
+		{A3D1347B-786B-4AFE-A7D8-CDCF55BBEC54}.Remote|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
