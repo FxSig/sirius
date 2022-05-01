@@ -56,12 +56,12 @@ namespace SpiralLab.Sirius
 
             #region SyncAxis 초기화
             bool success = true;
-            var rtc = new Rtc6SyncAxis(0, xmlConfigFileName);
+            var rtc = new Rtc6SyncAxis();
             rtc.Name = "SyncAxis";
             float fov = 60.0f;    // scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            success &= rtc.Initialize(kfactor, LaserMode.None, string.Empty);
+            success &= rtc.Initialize(xmlConfigFileName);
             success &= rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
             success &= rtc.CtlSpeed(100, 100); // default scanner jump and mark speed : 100mm/s
 

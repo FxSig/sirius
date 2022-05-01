@@ -34,15 +34,16 @@ using namespace spirallab_sirius_rtc;
 
 #include <cassert>
 
+/// <summary>
+/// COM init
+/// </summary>
+/// <returns></returns>
 bool static COMInit()
 {
-    //COM 초기화
     HRESULT hr = CoInitialize(NULL);
 
-    //코어 객체 생성
+    //코어 객체 생성 및 초기화
     ICorePtr pCore(__uuidof(Core));
-    
-    //코어 엔진 초기화
     VARIANT_BOOL vRet = VARIANT_TRUE;
     hr = pCore->InitializeEngine(&vRet);
     assert(hr == S_OK);
@@ -50,9 +51,12 @@ bool static COMInit()
     return true;
 }
 
+/// <summary>
+/// COM cleanup
+/// </summary>
+/// <returns></returns>
 bool static COMCleanUp()
 {
-    //COM 해제
     CoUninitialize();
     return true;
 }
@@ -97,10 +101,8 @@ int _tmain(int argc, _TCHAR* argv[])
     HRESULT hr;
     VARIANT_BOOL vRet = VARIANT_TRUE;
 
-    // Rtc5 객체 생성
+    // Rtc5 객체 생성 및 초기화
     IRtcPtr pRtc(__uuidof(Rtc5));
-
-    // 초기화
     float kFactor = (float) pow(2,20) / 60.0f;
     TCHAR szCurrentPath[MAX_PATH] = { 0, };
     ::GetCurrentDirectory(MAX_PATH, szCurrentPath);
@@ -111,10 +113,10 @@ int _tmain(int argc, _TCHAR* argv[])
     assert(hr == S_OK);
     assert(vRet == VARIANT_TRUE);
 
-    // 레이저(가상) 객체 생성
+    // 레이저(가상) 객체 생성 및 초기화
     ILaserPtr pLaser(__uuidof(LaserVirtual));
-    //초기화
     pLaser->putref_Rtc(pRtc);
+    pLaser->put_MaxPowerWatt(20);
     hr = pLaser->Initialize(&vRet);
     assert(hr == S_OK);
     assert(vRet == VARIANT_TRUE);
@@ -130,7 +132,6 @@ int _tmain(int argc, _TCHAR* argv[])
     DrawCircle(pLaser, pRtc, 10);
 
     printf("\r\nPress any key to terminate program ... \r\n");
-    
     getchar();
     pLaser->Release();
     pLaser = NULL;
