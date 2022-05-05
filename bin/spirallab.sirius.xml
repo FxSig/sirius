@@ -131,6 +131,7 @@
         <member name="T:SpiralLab.Sirius.IScriptable">
             <summary>
             스크립트 코드를 통해 데이타를 변경되는 방식
+            (현재 비활성화)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.IsScriptEnabled">
@@ -1571,14 +1572,14 @@
             Rtc 내부 버퍼 처리 방식 (기본값: Auto)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.MotorZ">
-            <summary>
-            Z 축 제어를 위한 모터 인터페이스 (레이어별 높이 제어후 가공 방식을 사용할 경우 지정)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Laser">
             <summary>
             레이저 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.MotorZ">
+            <summary>
+            Z 축 제어를 위한 모터 인터페이스 (레이어별 높이를 변경후 가공할 경우 지정 필요)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.MarkTargets">
@@ -1594,6 +1595,7 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsGuided">
             <summary>
             가이드 레이저를 이용한 가공시
+            (활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.RepeatSelected">
@@ -1621,14 +1623,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Offsets">
             <summary>
-            동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
-            미 입력시 기본값 : 스캐너 중심 위치(0,0)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.PenStack">
-            <summary>
-            펜(IPen) 개체의 스택
-            Sirius 라이브러리 내부에서 사용됨
+            중복적으로 가공할때의 위치 배열 정보
+            미 지정시 원점(0,0) 으로 자동 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.StartTime">
@@ -1639,6 +1635,7 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.EndTime">
             <summary>
             가공 완료 시간
+            총 소요시간 (TimeSpan ts = EndTime - StartTime)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Progress">
@@ -1651,14 +1648,20 @@
             가공이 성공적으로 완료되었는지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsEnablePens">
-            <summary>
-            펜 집합 사용 여부
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsVerifyScannerPowerFault">
             <summary>
             Scanner Power 상태및 Ack 응답상태를 매번 검사하여 문제시 실제 에러로 처리할지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsMeasurementToPolt">
+            <summary>
+            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.PenStack">
+            <summary>
+            펜(IPen) 개체의 스택
+            Sirius 라이브러리 내부에서 사용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsRegisteringFonts">
@@ -1667,10 +1670,12 @@
             (내부적으로 사용됨 : false 기본값으로 유지할것)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsMeasurementToPolt">
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsEnablePens">
             <summary>
-            계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
-            </summary>
+            펜 집합 사용 여부 
+            SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
+            (내부적으로 사용됨)
+            </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
             <summary>
@@ -1744,14 +1749,14 @@
             Rtc 내부 버퍼 처리 방식 (기본값 : Auto)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.MotorZ">
-            <summary>
-            Z 축 제어를 위한 모터 인터페이스 (레이어별 높이 제어후 가공 방식을 사용할 경우 지정)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Laser">
             <summary>
             레이저 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.MotorZ">
+            <summary>
+            Z 축 제어를 위한 모터 인터페이스 (레이어별 높이를 변경후 가공할 경우 지정 필요)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.MarkTargets">
@@ -1767,6 +1772,7 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsGuided">
             <summary>
             가이드(Guide/Pilot/Red) 레이저를 이용한 가공 여부
+            (활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.RepeatSelected">
@@ -1784,23 +1790,18 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsExternalStart">
             <summary>
             External /START 사용여부
-            사용시 : 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
+            사용시 : 리스트 타입은 Single 으로 변경 필요. 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsJumpToOriginAfterFinished">
             <summary>
-            가공 완료후 0,0 으로 자동 점프 여부
+            가공 완료후 원점(0,0) 으로 자동 점프 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Offsets">
             <summary>
-            동일한 형상(Doc)을 여러번 오프셋으로 가공할때의 위치 정보 
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">
-            <summary>
-            가공중 펜 개체의 스택 (내부에서 사용됨)
-            이전 펜의 가공 파라메터로 복귀하는 기능을 사용할 경우 펜 개체를 추적하기 위한 스택 자료구조
+            중복적으로 가공할때의 위치 배열 정보
+            미 지정시 원점(0,0) 으로 자동 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.StartTime">
@@ -1811,6 +1812,7 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.EndTime">
             <summary>
             가공 완료 시간
+            총 소요시간 (TimeSpan ts = EndTime - StartTime)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Progress">
@@ -1820,15 +1822,13 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsSuccess">
             <summary>
-            가공 성공적으로 완료 여부
+            가공이 성공적으로 완료된는지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.IsEnablePens">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsVerifyScannerPowerFault">
             <summary>
-            펜 집합 사용 여부 
-            SiriusEditorForm 의 펜 집합 속성과 연동됨 (UI 파트에서 활성화 할것)
-            (내부적으로 사용됨)
-            </summary> 
+            Scanner Power 상태 및 Position Acknowledge 상태를 검사하여 가공전 에러로 처리할지 여부
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsMeasurementToPolt">
             <summary>
@@ -1837,16 +1837,24 @@
             gnuplot 설정 파일 경로 :  bin\config\plot.cmd
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">
+            <summary>
+            가공중 복수개의 펜 개체를 삽입/삭제 하기 위한 스택 
+            (내부에서 사용됨)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsRegisteringFonts">
             <summary>
             현재 마킹이 폰트 다운로드를 위한 것인지 여부
-            (내부적으로 사용됨)
+            (내부적으로 사용됨 : false 기본값으로 유지할것)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.IsVerifyScannerPowerFault">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.IsEnablePens">
             <summary>
-            Scanner Power 상태 및 Ack 응답상태를 검사하여 에러로 처리할지 여부
-            </summary>
+            펜 집합 사용 여부 
+            SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
+            (내부적으로 사용됨)
+            </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
             <summary>
@@ -2052,45 +2060,45 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.UserLevel">
+        <member name="T:SpiralLab.Sirius.User">
+            <summary>
+            사용자 전역 객체
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.User.UserLevel">
             <summary>
             사용자 레벨
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.UserLevel.Operator">
+        <member name="F:SpiralLab.Sirius.User.UserLevel.Operator">
             <summary>
             오퍼레이터
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.UserLevel.Maint">
+        <member name="F:SpiralLab.Sirius.User.UserLevel.Maint">
             <summary>
             메인터넌스
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.UserLevel.Engineer">
+        <member name="F:SpiralLab.Sirius.User.UserLevel.Engineer">
             <summary>
             엔지니어
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.UserLevel.Developer">
+        <member name="F:SpiralLab.Sirius.User.UserLevel.Developer">
             <summary>
             개발자
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.LoggedIn">
+        <member name="T:SpiralLab.Sirius.User.LoggedIn">
             <summary>
             로그인 델리게이트
             </summary>
             <param name="level"></param>
         </member>
-        <member name="T:SpiralLab.Sirius.LoggedOut">
+        <member name="T:SpiralLab.Sirius.User.LoggedOut">
             <summary>
             로그아웃 델리게이트
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.User">
-            <summary>
-            사용자 전역 객체
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.User.OnLoggedIn">
@@ -2123,7 +2131,7 @@
             이전 상태 복원
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.UserLevel,System.String)">
+        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.User.UserLevel,System.String)">
             <summary>
             로그인 시도
             </summary>
@@ -2132,7 +2140,7 @@
             <param name="password">암호</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.UserLevel)">
+        <member name="M:SpiralLab.Sirius.User.LogIn(System.String,SpiralLab.Sirius.User.UserLevel)">
             <summary>
             강제 로그인
             </summary>
@@ -2948,6 +2956,12 @@
             <param name="v"></param>
             <param name="angle"></param>
         </member>
+        <member name="M:SpiralLab.Sirius.Offset.Clone">
+            <summary>
+            복제
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Offset.Translate(SpiralLab.Sirius.Offset,System.Single,System.Single)">
             <summary>
             이동량
@@ -3085,7 +3099,7 @@
         <member name="T:SpiralLab.Sirius.Action">
             <summary>
             액션 객체 (사용자의 모든 이벤트를 기록하여 undo/redo 처리하기 위한 행위 객체)
-            사용자의 행위를 Undo 하기 위해서는 모든 사용자 명령이 Action 내의 Undo / Redo Stack 에서 관리되어야 한다 !
+            모든 사용자 명령이 Action 내의 Undo / Redo 스택에서 관리되는 방식
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Action.EntitySelectedChangedEvent">
@@ -3797,7 +3811,7 @@
         <member name="T:SpiralLab.Sirius.Block">
             <summary>
             블럭 객체 
-            Autocad 의 블럭 기능
+            Autocad 의 블럭 기능 모사
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Block.#ctor">
@@ -3891,7 +3905,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Dimension">
             <summary>
-            문서의 중심 위치, 가로및 세로 크기 정보
+            문서의 중심 위치, 가로 및 세로 크기 정보
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.RotateOffset">
@@ -3901,7 +3915,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.UserRectangles">
             <summary>
-            임의의 사용자 사각 영역을 지정해주면 렌더링 처리해주는 기능
+            임의의 사용자 사각 영역을 지정해주면 뷰 화면에 렌더링 처리해주는 기능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Views">
@@ -3912,7 +3926,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Blocks">
             <summary>
-            블럭 컨테이너  (내부에 복수개의 Block 가 있고, Block 안에 복수개의 Entity 가 있음)
+            블럭 컨테이너 (내부에 복수개의 Block 가 있고, Block 안에 복수개의 Entity 가 있음)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Layers">
@@ -6121,16 +6135,16 @@
             
                                      IEntity
                                         |
-              IDrawable  _____________  |
-                                     |  |
-              IExplodable _________  |  |
-                                  |  |  |
-              IHatchable  ______  |  |  |
-                               |  |  |  |
-              IMarkerable ___  |  |  |  |
-                            |  |  |  |  |
-                            |  |  |  |  |
-                           [ Your Entitiy ]
+              IDrawable  _____________  |  ___________ IScriptable
+                                     |  |  |
+              IExplodable _________  |  |  |  ________ ITextChangeable
+                                  |  |  |  |  |
+              IHatchable  ______  |  |  |  |  |
+                               |  |  |  |  |  |
+              IMarkerable ___  |  |  |  |  |  |
+                            |  |  |  |  |  |  |
+                            |  |  |  |  |  |  |
+                           [     * Entitiy     ]
             
             </summary>
         </member>
@@ -7021,17 +7035,18 @@
             0~100 %
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IMarker.OnMeasurement">
-            <summary>
-            계측 이벤트 핸들러
-            MeasurementBegin 엔티티 사용시에만 콜백되며
-            MeasurementBegin 의 Save 를 통해 계측 데이타 저장하거나 
-            GetMeasuredData 함수를 이용한 채널별 데이타를 취득가능
-            </summary>
-        </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnFinished">
             <summary>
             가공 완료 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IMarker.OnMeasurement">
+            <summary>
+            계측 이벤트 핸들러
+            가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 
+            계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨
+            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능
+            실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Index">
@@ -7061,18 +7076,18 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.MarkerArg">
             <summary>
-            마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
+            마커 Ready 호출시 전달된 MarkerArg 의 복사본 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.ScannerRotateAngle">
             <summary>
             스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
-            지정된 각도만큼 내부에서 회전 처리됨
+            지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Document">
             <summary>
-            복제된 문서(IDocument) 객체에 대한 접근 (Ready 호출시 복제됨)
+            Ready 호출시 전달된 원본 문서(Document) 의 복사본
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.IsEnablePens">
@@ -7087,17 +7102,25 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.Ready(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            마커는 내부 쓰레드에 의해 가공 데이타를 처리하게 되는데, 이때 가공 데이타(IDocument)에 
-            크로스 쓰레드 상태가 될수있으므로, 준비(Prepare)시에는 가공 데이타를 모두 복제(Clone) 하여 가공시
-            데이타에 대한 쓰레드 안전 접근을 처리하게 된다. 또한 가공중 뷰에 의해 원본 데이타가 조작, 수정되더라도 
-            준비(Ready) 즉 신규 데이타를 다운로드하지 않으면 아무런 영향이 없게 된다.
+            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 
+            이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
+            때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. 
+            때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.
             </summary>
-            <param name="markerArg">IMarkerArg 인터페이스</param>
+            <param name="markerArg">가공 인자</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.IsTargetLayer(SpiralLab.Sirius.Layer)">
+            <summary>
+            특정 레이어를 가공할지를 선택하기 위한 comparer
+            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+            </summary>
+            <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.Clear">
             <summary>
-            복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
+            복제된 내부 가공 데이타를 초기화 
             </summary>
             <returns></returns>
         </member>
@@ -7115,7 +7138,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.Reset">
             <summary>
-            리셋
+            리셋 (에러 상태 해제)
             </summary>
             <returns></returns>
         </member>
@@ -7175,27 +7198,32 @@
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnProgress">
             <summary>
             진행률 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.MarkerDefault.OnMeasurement">
-            <summary>
-            계측 이벤트 핸들러
-            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득
+            IMarkerArg 인자의 Progress 값이 0~100 범위에서 증가
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnFinished">
             <summary>
             완료 이벤트 핸들러
+            IMarkerArg 인자에 세부정보 참고 
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MarkerDefault.OnMeasurement">
+            <summary>
+            계측 이벤트 핸들러
+            가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 
+            계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨
+            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능
+            실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Index">
             <summary>
-            식별 번호
+            마커 식별 번호
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Name">
             <summary>
-            이름
+            마커 이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsReady">
@@ -7205,38 +7233,49 @@
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsBusy">
             <summary>
-            출사중 여부
+            가공중 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsError">
             <summary>
-            에러 여부
+            에러발생 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.MarkerArg">
             <summary>
-            마커 시작시 전달 인자 (Ready 에 의해 업데이트 되고, Start 시 내부적으로 사용됨)
+            마커 Ready 호출시 전달된 MarkerArg 의 복사본 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.ScannerRotateAngle">
             <summary>
             스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
-            지정된 각도만큼 내부에서 회전 처리됨
+            지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Document">
             <summary>
-            Ready 에 의해 복제된 문서(IDocument) 객체
+            Ready 호출시 전달된 원본 문서(Document) 의 복사본
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkerDefault.originalDoc">
+            <summary>
+            Ready 호출시 전달된 원본(Original) 문서(Document) 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsEnablePens">
             <summary>
-            펜 집한 기능 사용 유무 (IMarkerArg 로 전달되는 인자)
+            펜 집한 기능 사용 유무 
+            편집기(SiriusEditorForm) 의 펜 집합 기능 사용유무 전달용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Tag">
             <summary>
             사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MarkerDefault.oldMatrixStack">
+            <summary>
+            가공 시작전 RTC 의 행렬 스택 복사본
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.#ctor(System.UInt32)">
@@ -7254,17 +7293,52 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Ready(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            마커는 내부 쓰레드에 의해 가공 데이타를 처리하게 되는데, 이때 가공 데이타(IDocument)에 
-            크로스 쓰레드 상태가 될수있으므로, 준비(Prepare)시에는 가공 데이타를 모두 복제(Clone) 하여 가공시
-            데이타에 대한 쓰레드 안전 접근을 처리하게 된다. 또한 가공중 뷰에 의해 원본 데이타가 조작, 수정되더라도 
-            준비(Ready) 즉 신규 데이타를 다운로드하지 않으면 아무런 영향이 없게 된다.
+            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 
+            이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
+            때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. 
+            때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.
             </summary>
             <param name="markerArg">가공 인자</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFontsAndScriptCompile(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IDocument)">
+            <summary>
+            문자 집합 RTC 내부 버퍼(리스트3)에 다운로드
+            (비활성화됨) 스크립트 컴파일및 실행
+            </summary>
+            <param name="rtc"></param>
+            <param name="doc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFont(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IEntity)">
+            <summary>
+            문자 집합 다운로드
+            </summary>
+            <param name="rtc"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.IncrementSerialNoOrDateTime(SpiralLab.Sirius.IDocument,System.Int32)">
+            <summary>
+            TextChangeable 인터페이스를 지원하는 개체들(문자, 바코드등)
+            에 대한 날짜, 시간 포맷변환, 알련번호 증가 등 처리
+            </summary>
+            <param name="doc"></param>
+            <param name="layerIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.IncrementSerialNoOrDateTime(SpiralLab.Sirius.IEntity,System.Boolean@,System.UInt32)">
+            <summary>
+            날짜, 시간 포맷변환, 알련번호 증가 등 처리
+            </summary>
+            <param name="entity"></param>
+            <param name="isModified"></param>
+            <param name="skip"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Clear">
             <summary>
-            복제된 문서 데이타를 초기화 (다시 Ready 를 호출하여 문서 복제 필요)
+            복제된 내부 가공 데이타를 초기화 
             </summary>
             <returns></returns>
         </member>
@@ -7278,7 +7352,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.ExternalStop">
             <summary>
-            external start 를 reset 
+            External /START 사용시 이를 해제
             </summary>
             <returns></returns>
         </member>
@@ -7290,7 +7364,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Reset">
             <summary>
-            리셋 (에러 상태 해제 시도)
+            리셋 (에러 상태 해제)
             </summary>
             <returns></returns>
         </member>
@@ -7298,11 +7372,6 @@
             <summary>
             사전 작업
             순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.MarkerDefault.oldMatrixStack">
-            <summary>
-            가공 시작전 RTC 의 행렬 스택 복사본
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.MainWork">
@@ -7321,9 +7390,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetLayer(SpiralLab.Sirius.Layer)">
             <summary>
-            특정 레이어를 가공할지를 처리하는 comparer
+            특정 레이어를 가공할지를 선택하기 위한 comparer
+             내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
             </summary>
-            <param name="layer"></param>
+            <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.EntityWork(System.Int32,System.Int32,System.Int32,SpiralLab.Sirius.IEntity)">

@@ -240,7 +240,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(311, 16);
             this.label1.TabIndex = 0;
-            this.label1.Text = "2021 COPYRIGHT TO (c)SpiralLab. ALL RIGHTS RESERVED.";
+            this.label1.Text = "2022 COPYRIGHT TO (c)SpiralLAB. ALL RIGHTS RESERVED.";
             // 
             // panHeader
             // 

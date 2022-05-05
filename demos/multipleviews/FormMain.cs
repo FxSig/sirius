@@ -16,9 +16,12 @@ namespace SpiralLab.Sirius
         FormViewer formViewer;
         FormEditor formEditor1;
         FormEditor formEditor2;
+
         public FormMain()
         {
             InitializeComponent();
+
+            this.FormClosing += MainForm_FormClosing;
 
             SpiralLab.Core.Initialize();
 
@@ -28,38 +31,55 @@ namespace SpiralLab.Sirius
             //var rtc = new Rtc5(0); //create Rtc5 controller
             //var rtc = new Rtc6(0); //create Rtc6 controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
 
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc1.Initialize(1000, LaserMode.Yag1, correctionFile);
-            rtc2.Initialize(1000, LaserMode.Yag1, correctionFile);
+            rtc1.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc2.Initialize(kfactor, LaserMode.Yag1, correctionFile);
 
             //Laser 소스 객체 2개 생성
-            var laser1 = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser1 = new IPGYLP(0, "IPG YLP", 1, 20);
-            //var laser1 = new JPTTypeE(0, "JPT Type E", 1, 20);
-            //var laser1 = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser1 = new PhotonicsIndustryDX(0, "PI", 1, 20);
-            //var laser1 = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
-            //var laser1 = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser1 = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
+            //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser1.Rtc = rtc1;
+            // initialize laser source
             laser1.Initialize();
+            // set basic power output to 2W
             laser1.CtlPower(2);
 
-            var laser2 = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser2 = new IPGYLP(0, "IPG YLP", 2, 20);
-            //var laser2 = new JPTTypeE(0, "JPT Type E", 2, 20);
-            //var laser2 = new SPIG4(0, "SPI G3/4", 2, 20);
-            //var laser2 = new PhotonicsIndustryDX(0, "PI", 2, 20);
-            //var laser2 = new AdvancedOptoWaveFotia(0, "Fotia", 2, 20);
-            //var laser2 = new CoherentAviaLX(0, "Avia LX", 2, 20);
-            laser2.Rtc = rtc2;
-            laser2.Initialize();
-            laser2.CtlPower(2);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser2 = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
+            //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
-            //Marker 2개 생성
-            var marker1 = new MarkerDefault(0);
-            var marker2 = new MarkerDefault(1);
+            // assign RTC instance at laser 
+            laser2.Rtc = rtc2;
+            // initialize laser source
+            laser2.Initialize();
+            // set basic power output to 2W
+            laser2.CtlPower(2);
 
             //두개의 문서 생성
             var doc1 = new DocumentDefault();
@@ -86,11 +106,28 @@ namespace SpiralLab.Sirius
             this.formEditor1.Editor.OnDocumentSourceChanged += Editor1_OnDocumentSourceChanged;
             this.formEditor2.Editor.OnDocumentSourceChanged += Editor2_OnDocumentSourceChanged;
 
-            // 기본 펜 개체 생성
-            var pen1 = new PenDefault();
-            doc1.Action.ActEntityAdd(pen1);
-            var pen2 = new PenDefault();
-            doc2.Action.ActEntityAdd(pen2);
+            if (!this.formEditor1.Editor.EnablePens)
+            {
+                // 기본 펜 개체 생성
+                var pen1 = new PenDefault();
+                doc1.Action.ActEntityAdd(pen1);
+            }
+            if (!this.formEditor2.Editor.EnablePens)
+            {
+                var pen2 = new PenDefault();
+                doc2.Action.ActEntityAdd(pen2);
+            }
+
+            //Marker 2개 생성
+            var marker1 = new MarkerDefault(0);
+            var marker2 = new MarkerDefault(1);
+
+            // Marker 에서 뷰 업데이트가 필요할 경우를 위해
+            // 예: 통신을 통한 텍스트/바코드 내용 업데이트, 일련번호 업데이트 등
+            marker1.MarkerArg.ViewTargets.Add(this.formEditor1.Editor.View);
+            marker1.MarkerArg.ViewTargets.Add(this.formViewer.Viewer1.View);
+            marker2.MarkerArg.ViewTargets.Add(this.formEditor2.Editor.View);
+            marker2.MarkerArg.ViewTargets.Add(this.formViewer.Viewer2.View);
 
             // 에디터1 와 하드웨어 연결
             this.formEditor1.Editor.Rtc = rtc1;
@@ -104,6 +141,21 @@ namespace SpiralLab.Sirius
 
             // 뷰어를 초기화면에 출력
             SwitchForm(panel3, this.formViewer);
+        }
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.formEditor1.Editor.Marker?.Stop();
+            this.formEditor2.Editor.Marker?.Stop();
+
+            this.formEditor1.Editor.Laser?.Dispose();
+            this.formEditor1.Editor.Laser = null;
+            this.formEditor2.Editor.Laser?.Dispose();
+            this.formEditor2.Editor.Laser = null;
+
+            this.formEditor1.Editor.Rtc?.Dispose();
+            this.formEditor1.Editor.Rtc = null;
+            this.formEditor2.Editor.Rtc?.Dispose();
+            this.formEditor2.Editor.Rtc = null;
         }
 
         private void Editor1_OnDocumentSourceChanged(object sender, IDocument doc)

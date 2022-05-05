@@ -45,19 +45,19 @@
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="spirallab.core, Version=1.0.9.5, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.core, Version=1.106.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.core.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius, Version=1.0.9.5, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius, Version=1.106.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.fieldcorrection, Version=1.0.9.5, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius.fieldcorrection, Version=1.106.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.rtc, Version=1.0.9.5, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius.rtc, Version=1.106.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>

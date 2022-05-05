@@ -50,9 +50,7 @@ namespace SpiralLab.Sirius
             this.port = port;
         }
         ~SiriusTcpClient()
-        {
-            if (this.disposed)
-                return;
+        {            
             this.Dispose(false);
         }
         public void Dispose()
@@ -68,8 +66,8 @@ namespace SpiralLab.Sirius
             {
                 terminated = true;
                 this.client?.Dispose();
-                if (null != this.thread)
-                    this.thread.Join(2 * 1000);
+                //if (null != this.thread)
+                //    this.thread.Join(2 * 1000);
             }
             this.disposed = true;
         }

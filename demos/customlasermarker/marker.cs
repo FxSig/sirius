@@ -36,7 +36,8 @@ using System.Windows.Forms;
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 마커 객체 (사용자 버전)
+    /// user-defined marker concrete class 
+    /// 마커 객체 (사용자 구현 버전)
     /// </summary>
     public class YourCustomMarker : IMarker
     {
@@ -286,6 +287,13 @@ namespace SpiralLab.Sirius
             this.MarkerArg.Laser?.CtlReset();
             return true;
         }
+
+        public bool IsTargetLayer(Layer layer)
+        {
+            //targets all
+            return true;
+        }
+
         #region 쓰레드 작업
         protected virtual void WorkerThread()
         {

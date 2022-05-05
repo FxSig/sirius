@@ -40,18 +40,32 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
+            //create Rtc for dummy (가상 RTC 카드)
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //Rtc6 Ethernet
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
-            float fov = 60.0f;    // scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
+            // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // 스캐너 보정 파일 지정 : correction file
-            rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
+            // initialize rtc controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            rtc.CtlSpeed(500, 500);
+            // basic delays
+            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            rtc.CtlDelay(10, 100, 200, 200, 0);
 
             //이미 table1 에 로드 및 선택 완료 (initialize 의 인자에서 처리됨)
             //var correctionFile1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
@@ -62,15 +76,24 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize Laser (virtual)
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
+            // set basic power output to 2W
             laser.CtlPower(2);
             #endregion
 
@@ -93,46 +116,56 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
+                        // translate and rotate at each head
                         //개별 헤드에 오프셋 및 회전 처리
                         var rtcDualHead = rtc as IRtcDualHead;
                         rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
                         rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
                         DrawCircle(laser, rtc);
+                        // revert /reset head 
                         // 원복
                         rtcDualHead.CtlHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
                         rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
                         break;
                 }
-
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
+            rtc.CtlAbort();
             rtc.Dispose();
         }
         private static bool DrawCircle(ILaser laser, IRtc rtc)
         {
             bool success = true;
             var rtcDualHead = rtc as IRtcDualHead;
-            
-            //리스트 시작
+            Debug.Assert(rtcDualHead != null);
+
+            // start list
+            // 리스트 시작
             success &= rtc.ListBegin(laser);
-            //리스트 명령으로 오프셋 및 회전 처리 방법
-            //rtcDualHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
-            //rtcDualHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
+
+            // translate and rotate at each head by list command if needed
+            // 리스트 명령으로 오프셋 및 회전 처리 방법
+            //success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
+            //success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
             for (int i = 0; i < 10; i++)
             {
-                //직선을 그립니다. 
+                // draw line
+                // 직선을 그립니다
                 success &= rtc.ListJump(new Vector2(0, 0));
                 success &= rtc.ListMark(new Vector2(10, 0));
-
+                // draw circle
+                // 원을 그립니다
                 success &= rtc.ListJump(new Vector2((float)10, 0));
                 success &= rtc.ListArc(new Vector2(0, 0), 360.0f);
                 if (!success)
                     break;
             }
-            //리스트 명령으로 오프셋 및 회전 처리 방법
-            //rtcDualHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
-            //rtcDualHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
+
+            // translate and rotate at each head by list command if needed
+            // 리스트 명령으로 오프셋 및 회전 처리 방법
+            // success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
+            // success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
             //리스트 종료
             if (success)
             {

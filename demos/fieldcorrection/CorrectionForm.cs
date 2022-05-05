@@ -18,18 +18,16 @@ namespace SpiralLab.Sirius
         {
             InitializeComponent();
         }
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            SpiralLab.Core.Initialize();
-        }
+
         private void btn2DCtb_Click(object sender, EventArgs e)
         {
-            //현재 스캐너 보정 파일
+            // current correction file
+            // 현재 스캐너 보정 파일
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
-            //신규로 생성할 스캐너 보정 파일
+            // target correction file
+            // 신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ctb");
 
-            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             float fieldSize = 60;
             float interval = 20;
@@ -39,6 +37,7 @@ namespace SpiralLab.Sirius
             var correction = new Correction2DRtc(kfactor, rows, cols, interval, interval, srcFile, targetFile);
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            // 해당 X,Y 위치에서의 오차값 dx, dy 입력
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 1, new Vector2(0, 20), new Vector2(0.002f, 0.001f));
             correction.AddRelative(0, 2, new Vector2(20, 20), new Vector2(-0.0051f, 0.01f));
@@ -53,16 +52,17 @@ namespace SpiralLab.Sirius
             var form = new Correction2DRtcForm(correction);
             form.ShowDialog();
         }
-
         private void btn3DCtb_Click(object sender, EventArgs e)
         {
-            //현재 스캐너 보정 파일
+            // current correction file
+            // 현재 스캐너 보정 파일
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
-            //신규로 생성할 스캐너 보정 파일
+            // target correction file
+            // 신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ctb");
 
-            // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
-            // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
+            // it should be done with field correction at Z= 0 for 3D correction
+            // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 
             float fieldSize = 60;
             float interval = 20;
             int row = 3;
@@ -74,6 +74,8 @@ namespace SpiralLab.Sirius
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             // Z= 5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
+            // 두께 5mm 의 fixture 장착후 그 위에 마킹후 측정한다던지
+            // 혹은 스캐너 Z 축을 -5 mm 이동시켜 마킹후 측정한다던지
             correction.AddRelative(0, 0, new Vector3(-20, 20, zUpper), new Vector3(0.01f, 0.01f, 0));
             correction.AddRelative(0, 1, new Vector3(0, 20, zUpper), new Vector3(0.01f, 0.01f, 0));
             correction.AddRelative(0, 2, new Vector3(20, 20, zUpper), new Vector3(0.01f, 0.01f, 0));
@@ -85,6 +87,7 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector3(20, -20, zUpper), new Vector3(0.01f, 0.01f, 0));
 
             // Z= -5mm 위치에 포커스를 하여 레이저를 출사하고 그 오차를 입력
+            // 혹은 스캐너 Z 축을 5 mm 이동시켜 마킹후 측정한다던지
             correction.AddRelative(0, 0, new Vector3(-20, 20, zLower), new Vector3(0.01f, -0.02f, 0));
             correction.AddRelative(0, 1, new Vector3(0, 20, zLower), new Vector3(0.01f, 0.01f, 0));
             correction.AddRelative(0, 2, new Vector3(20, 20, zLower), new Vector3(0.01f, 0.01f, 0));
@@ -99,15 +102,13 @@ namespace SpiralLab.Sirius
             var form = new Correction3DRtcForm(correction);
             form.ShowDialog();
         }
-
         private void btn2DCt5_Click(object sender, EventArgs e)
         {
-            //현재 스캐너 보정 파일
+            // 현재 스캐너 보정 파일
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            //신규로 생성할 스캐너 보정 파일
+            // 신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
 
-            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             float fieldSize = 60;
             float rowInterval = 20;
@@ -132,15 +133,13 @@ namespace SpiralLab.Sirius
             var form = new Correction2DRtcForm(correction);
             form.ShowDialog();
         }
-
         private void btn3DCt5_Click(object sender, EventArgs e)
         {
-            //현재 스캐너 보정 파일
+            // 현재 스캐너 보정 파일
             var srcFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            //신규로 생성할 스캐너 보정 파일
+            // 신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
 
-            // 3차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
             float fieldSize = 60;
             float interval = 20;

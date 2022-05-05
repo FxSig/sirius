@@ -12,10 +12,16 @@ namespace SpiralLab.Sirius
 {
     public partial class FormViewer : Form
     {
+        /// <summary>
+        /// 뷰어 1번
+        /// </summary>
         public SiriusViewerForm Viewer1
         {
             get { return this.siriusViewerForm1; }
         }
+        /// <summary>
+        /// 뷰어 2번
+        /// </summary>
         public SiriusViewerForm Viewer2
         {
             get { return this.siriusViewerForm2; }

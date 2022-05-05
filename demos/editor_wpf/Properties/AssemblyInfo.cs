@@ -12,7 +12,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("editor_wpf")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Copyright to (c)SpiralLAB")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

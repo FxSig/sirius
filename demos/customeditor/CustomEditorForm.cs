@@ -38,6 +38,10 @@ using SpiralLab.Sirius;
 
 namespace CustomEditor
 {
+    /// <summary>
+    /// user defined editor
+    /// 실제 편집기의 내용과 유사
+    /// </summary>
     public partial class CustomEditorForm : Form
     {
         /// <summary>
@@ -573,7 +577,7 @@ namespace CustomEditor
         }
         private void btnImport_Click(object sender, EventArgs e)
         {
-            ofd.Filter = "Sirius data files (*.sirius)|*.sirius|DXF cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
+            ofd.Filter = "Sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
             ofd.Title = "Import File";
             ofd.FileName = string.Empty;
             DialogResult result = ofd.ShowDialog(this);
@@ -1020,7 +1024,7 @@ namespace CustomEditor
         }
         private void btnHPGL_Click(object sender, EventArgs e)
         {
-            ofd.Filter = "hpgl files (*.plt)|*.plt|All Files (*.*)|*.*";
+            ofd.Filter = "hpgl files (*.plt, *.hpgl)|*.plt;*.hpgl|All Files (*.*)|*.*";
             ofd.Title = "Import HPGL File";
             ofd.FileName = string.Empty;
             DialogResult result = ofd.ShowDialog(this);

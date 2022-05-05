@@ -269,6 +269,11 @@ namespace SpiralLab.Sirius
             return true;
         }
 
+        public bool IsTargetLayer(Layer layer)
+        {
+            // all targets
+            return true;
+        }
         #region 쓰레드 작업
         private void WorkerThread()
         {

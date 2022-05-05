@@ -35,7 +35,9 @@ namespace SpiralLab.Sirius
 {
     class Program1
     {
+        // 이론적인 FOV 크기 입력 필요
         static float fov = 60.0f;
+
         static float kfactor20bits = (float)Math.Pow(2, 20) / fov;
         static float kfactor16bits = (float)Math.Pow(2, 16) / fov;
 
@@ -90,17 +92,19 @@ namespace SpiralLab.Sirius
             //신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
 
-            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             var correction = new Correction2DRtc(kfactor20bits, 3, 3, 20, 20, srcFile, targetFile);
 
-            // 좌 상단이 0, 0
+            // 좌 상단 부터 오른쪽 방향으로 !
+            //
             // 0,0  0,1  0,2 ...
             // 1,0  1,1  1,2 ...
             // 2,0  2,1  2,2 ...
+            // 3,0  3,1  3,2 ...
             // ...
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            // 해당 X,Y 위치에서의 오차값 dx, dy 입력
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 1, new Vector2(0, 20), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 2, new Vector2(20, 20), new Vector2(0.01f, 0.01f));
@@ -113,6 +117,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region inputs absolute position values : 오차값의 절대적인 위치 정보를 넣는 방법
+            // 해당 X,Y 위치에서의 오차가 반영된 실제 X,Y 위치 입력 
             //correction.AddAbsolute(0, 0, new Vector2(-20, 20), new Vector2(-20.01f, 20.01f));
             //correction.AddAbsolute(0, 1, new Vector2(0, 20), new Vector2(0.01f, 20.01f));
             //correction.AddAbsolute(0, 2, new Vector2(20, 20), new Vector2(20.01f, 20.01f));
@@ -145,11 +150,19 @@ namespace SpiralLab.Sirius
             //신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ctb");
 
-            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 3x5 (15개) 위치에 대한 보정 테이블 입력 용 / 간격 10 mm
             var correction = new Correction2DRtc(kfactor16bits, 3, 5, 10, 10, srcFile, targetFile);
 
+            // 좌 상단 부터 오른쪽 방향으로 !
+            //
+            // 0,0  0,1  0,2 ...
+            // 1,0  1,1  1,2 ...
+            // 2,0  2,1  2,2 ...
+            // 3,0  3,1  3,2 ...
+            // ...
+
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
+            // 해당 X,Y 위치에서의 오차값 dx, dy 입력
             correction.AddRelative(0, 0, new Vector2(-20, 10), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 1, new Vector2(-10, 10), new Vector2(0.01f, 0.01f));
             correction.AddRelative(0, 2, new Vector2(0, 10), new Vector2(0.01f, 0.01f));
@@ -186,9 +199,16 @@ namespace SpiralLab.Sirius
             //신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ctb");
 
-            // 2차원 스캐너 보정용 IRtcCorrection 객체 생성
             // 3x3 (9개) 위치에 대한 보정 테이블 입력 용
             var correction = new Correction2DRtc(kfactor16bits, 3, 3, 20, 20, srcFile, targetFile);
+
+            // 좌 상단 부터 오른쪽 방향으로 !
+            //
+            // 0,0  0,1  0,2 ...
+            // 1,0  1,1  1,2 ...
+            // 2,0  2,1  2,2 ...
+            // 3,0  3,1  3,2 ...
+            // ...
 
             #region inputs relative error deviation : 상대적인 오차위치 값을 넣는 방법 (머신 비전 오차값을 넣는 것과 유사)
             correction.AddRelative(0, 0, new Vector2(-20, 20), new Vector2(0.01f, 0.01f));

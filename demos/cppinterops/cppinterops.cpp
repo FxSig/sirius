@@ -20,12 +20,16 @@
  * RTC5 제어기 및 레이저 소스를 생성/초기화 하고 도형 마킹을 실시
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  *
+ * c# dll assembly 을 COM 에 등록후 사용
+ * c:\ ... > regasm /register spirallab.core.dll 
+ * c:\ ... > regasm /register spirallab.sirius.rtc.dll
+ * 
  */
 
 #include <windows.h>
 #include <tchar.h>
 
- //tlb 파일의 경로를 변경해 사용
+// tlb 타입 라이브러리 파일 임포트 후 사용
 #import "..\..\bin\spirallab.core.tlb" raw_interfaces_only
 #import "..\..\bin\spirallab.sirius.rtc.tlb" raw_interfaces_only
 
@@ -34,16 +38,13 @@ using namespace spirallab_sirius_rtc;
 
 #include <cassert>
 
-/// <summary>
-/// COM init
-/// </summary>
-/// <returns></returns>
 bool static COMInit()
 {
-    HRESULT hr = CoInitialize(NULL);
-
-    //코어 객체 생성 및 초기화
+    //COM 초기화
+    HRESULT hr = ::CoInitialize(NULL);
+    //코어 객체 생성
     ICorePtr pCore(__uuidof(Core));
+    //코어 엔진 초기화
     VARIANT_BOOL vRet = VARIANT_TRUE;
     hr = pCore->InitializeEngine(&vRet);
     assert(hr == S_OK);
@@ -51,13 +52,10 @@ bool static COMInit()
     return true;
 }
 
-/// <summary>
-/// COM cleanup
-/// </summary>
-/// <returns></returns>
 bool static COMCleanUp()
 {
-    CoUninitialize();
+    //COM 해제
+    ::CoUninitialize();
     return true;
 }
 
@@ -101,8 +99,10 @@ int _tmain(int argc, _TCHAR* argv[])
     HRESULT hr;
     VARIANT_BOOL vRet = VARIANT_TRUE;
 
-    // Rtc5 객체 생성 및 초기화
+    // Rtc5 객체 생성
     IRtcPtr pRtc(__uuidof(Rtc5));
+
+    // 초기화
     float kFactor = (float) pow(2,20) / 60.0f;
     TCHAR szCurrentPath[MAX_PATH] = { 0, };
     ::GetCurrentDirectory(MAX_PATH, szCurrentPath);
@@ -113,10 +113,10 @@ int _tmain(int argc, _TCHAR* argv[])
     assert(hr == S_OK);
     assert(vRet == VARIANT_TRUE);
 
-    // 레이저(가상) 객체 생성 및 초기화
+    // 레이저(가상) 객체 생성
     ILaserPtr pLaser(__uuidof(LaserVirtual));
+    //초기화
     pLaser->putref_Rtc(pRtc);
-    pLaser->put_MaxPowerWatt(20);
     hr = pLaser->Initialize(&vRet);
     assert(hr == S_OK);
     assert(vRet == VARIANT_TRUE);
@@ -132,6 +132,7 @@ int _tmain(int argc, _TCHAR* argv[])
     DrawCircle(pLaser, pRtc, 10);
 
     printf("\r\nPress any key to terminate program ... \r\n");
+    
     getchar();
     pLaser->Release();
     pLaser = NULL;

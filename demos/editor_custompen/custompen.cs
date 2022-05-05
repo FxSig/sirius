@@ -398,18 +398,23 @@ namespace SpiralLab.Sirius
             var rtc = markerArg.Rtc;
             var laser = markerArg.Laser;
             bool success = true;
+            bool isDutyControlled = false;
             if (null != laser)
             {
-                var powerControl = laser as IPowerControl;
-                if (null != powerControl)
+                if (laser is IPowerControl powerControl)
+                {
                     success &= powerControl.ListPower(this.Power); // 레이저 소스 객체에 파워값을 전달한다
+                    if (powerControl.PowerControlMethod == PowerControlMethod.Duty)
+                        isDutyControlled = true;
+                }
             }
-
             if (!success)
                 return false;
             success &= rtc.ListDelay(this.LaserOnDelay, this.LaserOffDelay, this.ScannerJumpDelay, this.ScannerMarkDelay, this.ScannerPolygonDelay);
             success &= rtc.ListSpeed(this.JumpSpeed, this.MarkSpeed);
-            success &= rtc.ListFrequency(this.Frequency, this.PulseWidth);
+            if (!isDutyControlled)
+                success &= rtc.ListFrequency(this.Frequency, this.PulseWidth);
+
             if (success)
                 markerArg.PenStack.Push(this); //현재 사용중인 펜 엔티티를 펜 스텍에 삽입한다 (이는 PenReturn 을 사용할때 이전 펜 상태로 복구하는데 필요하다)
             return success;

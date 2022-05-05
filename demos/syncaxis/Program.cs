@@ -17,7 +17,7 @@
  * 
  *
  * SyncAxis 를 이용한 MOTF
- * ExcelliSCAN + ACS Controller 조합의 고정밀 가공기법
+ * SyncAxis (aka. XL-SCAN) : RTC6 + ExcelliSCAN + ACS Controller 조합의 고정밀 가공기법
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
@@ -26,6 +26,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Threading.Tasks;
 
 namespace SpiralLab.Sirius
 {
@@ -36,28 +37,43 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            //var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            var rtc = new Rtc6SyncAxis(); // Scanlab XLSCAN 솔류션
             string configXmlFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml");
-            rtc.Initialize(configXmlFileName);
-            rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
+            var rtc = new Rtc6SyncAxis(); // Scanlab XLSCAN 솔류션
+            bool success = true;
+
+            success &= rtc.Initialize(configXmlFileName);
+
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            success &= rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            success &= rtc.CtlSpeed(500, 500);
+
+            Debug.Assert(success);
             #endregion
 
             #region initialize Laser (virtual)
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
-            laser.Initialize();
-            laser.CtlPower(2);
+            // initialize laser source
+            success &= laser.Initialize();
+            // set basic power output to 2W
+            success &= laser.CtlPower(2);
+            Debug.Assert(success);
             #endregion
 
             ConsoleKeyInfo key;
@@ -68,6 +84,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'S' : simulation mode enabled");
                 Console.WriteLine("'H' : hardware mode enabled");
                 Console.WriteLine("'C' : job characteristic");
+                Console.WriteLine("'V' : syncaxis viewer with simulation result");
                 Console.WriteLine("'F1' : draw rectangle 2D with scanner only");
                 Console.WriteLine("'F2' : draw rectangle 2D with stage only");
                 Console.WriteLine("'F3' : draw rectangle 2D with scanner and stage");
@@ -89,6 +106,9 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.H:
                         rtc.CtlSimulationMode(false);
+                        break;
+                    case ConsoleKey.V:
+                        SyncAxisViewer(rtc);
                         break;
                     case ConsoleKey.F1:
                         Draw(rtc, laser, MotionType.ScannerOnly);
@@ -125,7 +145,6 @@ namespace SpiralLab.Sirius
 
                         Console.WriteLine($"band width= {rtc.BandWidth}");
                         Console.WriteLine($"simulation mode= {rtc.IsSimulationMode} with {rtc.SimulationFileName}");
-
                         break;
                     case ConsoleKey.F11:
                         rtc.CtlReset();
@@ -144,22 +163,61 @@ namespace SpiralLab.Sirius
                         break;
                 }
             } while (true);
+
+            rtc.CtlAbort();
+            laser.Dispose();
+            rtc.Dispose();
         }
 
-        static void Draw(IRtc rtc, ILaser laser, MotionType motionType)
+        static bool Draw(IRtc rtc, ILaser laser, MotionType motionType)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
+            Debug.Assert( rtcSyncAxis != null );
+
             success &= rtcSyncAxis.ListBegin(laser, motionType);
-            success &= rtc.ListJump(new Vector2(50, 50));
-            success &= rtc.ListMark(new Vector2(100, 50));
-            success &= rtc.ListMark(new Vector2(100, 100));
-            success &= rtc.ListMark(new Vector2(50, 100));
-            success &= rtc.ListMark(new Vector2(50, 50));
+            success &= rtc.ListJump(new Vector2(-20, 20));
+            success &= rtc.ListMark(new Vector2(20, 20));
+            success &= rtc.ListMark(new Vector2(20, -20));
+            success &= rtc.ListMark(new Vector2(-20, -20));
+            success &= rtc.ListMark(new Vector2(-20, 20));
             if (success)
             {
                 success &= rtc.ListEnd();
                 success &= rtc.ListExecute(false);
+            }
+            return success;
+        }
+
+        static void SyncAxisViewer(IRtcSyncAxis rtcSyncAxis)
+        {
+            var exeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer", "syncAXIS_Viewer.exe");
+            string simulatedFileName = Path.Combine(exeFileName, rtcSyncAxis.SimulationFileName);
+            if (File.Exists(simulatedFileName))
+            {
+                Task.Run(() =>
+                {
+                    ProcessStartInfo startInfo = new ProcessStartInfo();
+                    startInfo.WorkingDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer");
+                    startInfo.CreateNoWindow = false;
+                    startInfo.UseShellExecute = false;
+                    startInfo.FileName = Config.ConfigSyncAxisViewerFileName;
+                    startInfo.WindowStyle = ProcessWindowStyle.Normal;
+                    startInfo.Arguments = "-a";//string.Empty;
+                    if (!string.IsNullOrEmpty(simulatedFileName))
+                        startInfo.Arguments = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, simulatedFileName);
+                    try
+                    {
+                        using (var proc = Process.Start(startInfo))
+                        {
+                            proc.WaitForExit();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        Logger.Log(Logger.Type.Error, ex.Message);
+                    }
+                });
             }
         }
 

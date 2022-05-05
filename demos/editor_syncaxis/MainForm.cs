@@ -23,6 +23,8 @@ namespace SpiralLab.Sirius
         //syncaxis 는 확장2포트 8비트 디지털 쓰기를 지원하지 않는다
         //IDOutput RtcExt2DOutput;
 
+        ILaser Laser;
+
         public MainForm()
         {
             InitializeComponent();
@@ -48,6 +50,7 @@ namespace SpiralLab.Sirius
         private void MainForm_Load(object sender, EventArgs e)
         {
             var xmlConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml");
+            //var xmlConfigFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig2.xml");
             if (!File.Exists(xmlConfigFileName))
             {
                 MessageBox.Show($"XML configuration file is not founded : {xmlConfigFileName}");
@@ -58,9 +61,6 @@ namespace SpiralLab.Sirius
             bool success = true;
             var rtc = new Rtc6SyncAxis();
             rtc.Name = "SyncAxis";
-            float fov = 60.0f;    // scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
-            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             success &= rtc.Initialize(xmlConfigFileName);
             success &= rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
             success &= rtc.CtlSpeed(100, 100); // default scanner jump and mark speed : 100mm/s
@@ -71,15 +71,24 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region 레이저 소스 초기화
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
+            // set basic power output to 2W
             laser.CtlPower(2);
             #endregion
 
@@ -100,6 +109,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             this.Rtc = rtc;
+            this.Laser = laser;
             this.siriusEditorForm1.Rtc = rtc;
             this.siriusEditorForm1.Laser = laser;
             this.siriusEditorForm1.Marker = marker;
@@ -112,15 +122,13 @@ namespace SpiralLab.Sirius
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
+            this.siriusEditorForm1.Marker.Stop();
+            Laser?.Dispose();
+            Rtc?.Dispose();
+
             //this.siriusEditorForm1.Rtc = null;
             //this.siriusEditorForm1.Laser = null;
             //this.siriusEditorForm1.Marker = null;
-
-            Rtc?.Dispose();
-            //RtcExt1DInput?.Dispose();
-            RtcExt1DOutput?.Dispose();
-            //RtcExt2DOutput?.Dispose();
-
         }
     }
 }

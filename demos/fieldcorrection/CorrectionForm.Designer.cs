@@ -103,7 +103,6 @@ namespace SpiralLab.Sirius
             this.MaximizeBox = false;
             this.Name = "CorrectionForm";
             this.Text = "Scanner Field Correction - (c)SpiralLab";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

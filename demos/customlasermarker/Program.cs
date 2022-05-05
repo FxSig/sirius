@@ -34,42 +34,61 @@ namespace SpiralLab.Sirius
     class Program
     {
 
-
         [STAThread]
         static void Main(string[] args)
         {
+            //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
+            //create Rtc for dummy (가상 RTC 카드)
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //Rtc6 Ethernet
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
-            float fov = 60.0f;    /// scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; /// k factor (bits/mm) = 2^20 / fov
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
+            // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    ///default correction file
-            rtc.CtlFrequency(50 * 1000, 2); ///laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); /// default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); ///scanner and laser delays
+            // initialize rtc controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            rtc.CtlSpeed(500, 500);
+            // basic delays
+            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
-            #region initialize Laser source
-            //var laser = new LaserVirtual(0, "Virtual", 20);
-            var laser = new IPGYLPTypeD(0, "IPG YLP Type D", 1, 20);
+            #region initialize Laser (virtual)
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new YourCustomLaser(0, "custom laser", 20.0f);
-            //var laser = new YourCustomLaser2(0, "custom laser", 20.0f, 1);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
-            laser.CtlPower(10);
+            // set basic power output to 2W
+            laser.CtlPower(2);
             #endregion
 
             #region motor z axis
@@ -79,10 +98,12 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region prepare your marker
+            // user defined custom marker instance
             // 사용자 정의 마커 생성
             var marker = new YourCustomMarker(0);
             marker.Name = "custom marker";
-            //가공 완료 이벤트 핸들러 등록
+            // assign event handler at marker when finished 
+            // 가공 완료 이벤트 핸들러 등록
             marker.OnFinished += Marker_OnFinished;
             #endregion
 
@@ -105,7 +126,7 @@ namespace SpiralLab.Sirius
                 {
                     case ConsoleKey.M:
                         Console.WriteLine("WARNING !!! LASER IS BUSY ...");
-                        DrawByMarker(rtc, laser, marker, motorZ);
+                        MarkByMarker(rtc, laser, marker, motorZ);
                         break;
                     case ConsoleKey.F:
                         SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm();
@@ -119,7 +140,7 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }
 
-        private static bool DrawByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
+        private static bool MarkByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
         {
             #region load from sirius file
             var dlg = new OpenFileDialog();
@@ -137,6 +158,15 @@ namespace SpiralLab.Sirius
             #endregion
 
             Debug.Assert(null != doc);
+            Debug.Assert(doc.Layers.Count > 0);
+
+            // override z position value at first layer if needed
+            // 레이어에 설정된 Z 가공 위치를 변경한다 (필요하면)
+            doc.Layers[0].ZPosition = 10;
+            doc.Layers[0].ZPositionVel = 10;
+            doc.Layers[0].IsZEnabled = true;
+
+            // prepare marking argument
             // 마커 가공 준비
             marker.Ready( new MarkerArgDefault()
             {
@@ -145,9 +175,12 @@ namespace SpiralLab.Sirius
                 Laser = laser,
                 MotorZ = motor,
             });
-            // 하나의 오프셋 정보 추가
+
+            // no addition offset but center (origin location)
+            // 하나의 오프셋(원점) 추가
             marker.MarkerArg.Offsets.Clear();
             marker.MarkerArg.Offsets.Add(Offset.Zero);
+            // start to mark
             // 가공 시작
             return marker.Start();
         }

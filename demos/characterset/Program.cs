@@ -38,35 +38,60 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
+            //create Rtc for dummy (가상 RTC 카드)
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //Rtc6 Ethernet
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
-            float fov = 60.0f;    // scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
+            // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // 스캐너 보정 파일 지정 : correction file
-            rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
+            // initialize rtc controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            rtc.CtlSpeed(500, 500);
+            // basic delays
+            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
             #region initialize Laser (virtual)
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
+            // set basic power output to 2W
             laser.CtlPower(2);
             #endregion
 
             var rtcCharSet = rtc as IRtcCharacterSet;
             var rtcSerialNo = rtc as IRtcSerialNo;
+            Debug.Assert(rtcCharSet != null);
+            Debug.Assert(rtcSerialNo != null);
 
             ConsoleKeyInfo key;
             do
@@ -115,6 +140,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
+            laser.Dispose();
             rtc.Dispose();
         }
         
@@ -126,6 +152,7 @@ namespace SpiralLab.Sirius
         private static void CreateCharacterSet(ILaser laser, IRtc rtc)
         {
             var rtcCharSet = rtc as IRtcCharacterSet;
+            Debug.Assert( rtcCharSet != null );
 
             //폰트 등록
             // 총 4개의 character set 등록 가능
@@ -264,6 +291,8 @@ namespace SpiralLab.Sirius
         private static void DeleteCharacterSet(IRtc rtc)
         {
             var rtcCharSet = rtc as IRtcCharacterSet;
+            Debug.Assert(rtcCharSet != null);
+
             rtcCharSet.CtlCharacterSetClear();
             Debug.Assert(false == rtcCharSet.CtlCharacterSetIsExist('0'));
         }
@@ -279,6 +308,8 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
+            Debug.Assert(rtcCharSet != null);
+
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(new Vector2(-10, 0));
             success &= rtcCharSet.ListText("123 456");
@@ -301,6 +332,8 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
+            Debug.Assert(rtcCharSet != null);
+
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(new Vector2(-10, 0));
             success &= rtcCharSet.ListDate(DateFormat.MonthDigit, true);
@@ -324,6 +357,8 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
+            Debug.Assert(rtcCharSet != null);
+
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(new Vector2(-10, 0));
             success &= rtcCharSet.ListTime(TimeFormat.Hours24, true);
@@ -350,6 +385,8 @@ namespace SpiralLab.Sirius
             bool success = true;
             var rtcCharSet = rtc as IRtcCharacterSet;
             var rtcSerialNo = rtc as IRtcSerialNo;
+            Debug.Assert(rtcCharSet != null);
+            Debug.Assert(rtcSerialNo != null);
 
             //초기값: 1000, 증가값: 1
             rtcSerialNo.CtlSerialReset(1000, 1);

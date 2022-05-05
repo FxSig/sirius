@@ -2,16 +2,31 @@
 
 **1. Descriptions**
 
+
  SuperEasy library for Control Scanner and Laser
 
+                                                              ,--,      ,--,                              
+               ,-.----.                                     ,---.'|   ,---.'|                              
+     .--.--.   \    /  \     ,---,,-.----.      ,---,       |   | :   |   | :      ,---,           ,---,.  
+    /  /    '. |   :    \ ,`--.' |\    /  \    '  .' \      :   : |   :   : |     '  .' \        ,'  .'  \ 
+   |  :  /`. / |   |  .\ :|   :  :;   :    \  /  ;    '.    |   ' :   |   ' :    /  ;    '.    ,---.' .' | 
+   ;  |  |--`  .   :  |: |:   |  '|   | .\ : :  :       \   ;   ; '   ;   ; '   :  :       \   |   |  |: | 
+   |  :  ;_    |   |   \ :|   :  |.   : |: | :  |   /\   \  '   | |__ '   | |__ :  |   /\   \  :   :  :  / 
+    \  \    `. |   : .   /'   '  ;|   |  \ : |  :  ' ;.   : |   | :.'||   | :.'||  :  ' ;.   : :   |    ;  
+     `----.   \;   | |`-' |   |  ||   : .  / |  |  ;/  \   \'   :    ;'   :    ;|  |  ;/  \   \|   :     \ 
+     __ \  \  ||   | ;    '   :  ;;   | |  \ '  :  | \  \ ,'|   |  ./ |   |  ./ '  :  | \  \ ,'|   |   . | 
+    /  /`--'  /:   ' |    |   |  '|   | ;\  \|  |  '  '--'  ;   : ;   ;   : ;   |  |  '  '--'  '   :  '; | 
+   '--'.     / :   : :    '   :  |:   ' | \.'|  :  :        |   ,/    |   ,/    |  :  :        |   |  | ;  
+     `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
+               `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
+                 `---`            `---'                                                        `----'   
+  
  
  ![pulse on demand](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-6.png)
  
  ![scanner field correction by image](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-5.png)
  
  ![scanner field correction](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-7.png)
-
- ![script](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-8.png)
 
  ![path](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-9.png)
 
@@ -54,7 +69,6 @@
  - support powerful undo/redo actions and single document data with multiple view targets.
  - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
- - support executable C# script codes.
  - support customizable and extensible marker interface.
  - support many kinds of power meter
    - Ophir USBI
@@ -95,7 +109,16 @@
  
 ----
 
+
 **5. Version history**
+
+* 2022.5.6 v.1.106
+   - fixed) 3d (for varioscan)
+          - reset z offset/defocus to zero when start (3d 가공시작시 오프셋및 디포커스 값 자동 리셋)
+          - editable kz-factor and kz-scale (KZ-스케일값 수정및 Z-+ 공간에 대한 선형 스케일값 제공)
+   - added) hittest property with entities (모든 개체에 선택 여부 속성 제공)
+   - fixed) calculate bound area with offsets (개체 오프셋 목록 지정시 외곽 영역 포함해 처리하도록 수정)
+   - updated) comments for dll library (라이브러리 xml 주석 업데이트)
 
 * 2022.4.29 v.1.105
    - fixed) points entity (점 개체 렌더링 속도 향상)
@@ -104,6 +127,7 @@
    - fixed) skip jump position when enabled 3d option (옵션 가공시 점프 구간 가공 버그 수정)
    - fixed) support hit test option at every drawable entities (출력 개체들에 모두 Hit Test 여부 선택 지원됨)
    - fixed) disabled scripts function (스크립트 기능을 비활성화)
+   - fixed) reset 3d offset position when begin list
    - fixed) syncaxis 
       - simulated with multiple syncaxis viewers using multiple layers (다중 레이어 가공시 뷰어 결과도 레이어 개수만큼 출력)
       - syncaxis demo c++ code (c++ 환경에서 COM 객체 등록후 사용 예제 코드 추가)

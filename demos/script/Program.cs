@@ -17,6 +17,13 @@
  * 
  * 
  * C# 코드를 스크립트로 활용하여 특정 엔티티의 데이타 (텍스트 엔티티의 데이타 내용을 조합하는등) 를 변경하는 기능
+ * 
+ * warning !!!
+ * script function is disabled since v1.105
+ * 
+ * 경고 !!! 
+ * v1.105 버전 이후부터 스크립트 기능을 제공하지 않습니다
+ * 
  * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
  * 
  */
@@ -35,9 +42,13 @@ namespace SpiralLab.Sirius
     {
         static void Main(string[] args)
         {
-            //initializing spirallab.sirius library engine 
+            // initializing spirallab.sirius library engine 
             SpiralLab.Core.Initialize();
 
+            // warning!!!
+            // script function is disabled since v1.105
+            // 경고!!!
+            // v1.105 버전 이후부터 스크립트 기능을 제공하지 않습니다
             ConsoleKeyInfo key;
             do
             {
@@ -223,7 +234,7 @@ namespace SpiralLab.Sirius
             qr.ScriptPropertyName = "BarcodeData";
             qr.ScriptArguments = new string[] 
             { 
-                "Year=2021",
+                "Year=2022",
                 "Month=08",
                 "Day=31",
             };

@@ -52,7 +52,8 @@ namespace SpiralLab.Sirius
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message, "Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show(ex.Message, "Critical Exception - (c)SpiralLab", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                
             }
             mutex.ReleaseMutex();
         }

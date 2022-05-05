@@ -37,6 +37,7 @@ using SpiralLab;
 
 namespace SpiralLab.Sirius
 {
+    
     #region IPG YLP Type E 레이저의 제어방식을 RTC 확장포트 1번으로 Guide 레이저 제어, RTC 확장포트 2번으로 8비트 조합으로 레이저 파워 제어
     public class DemoIPGYLPTypeE : IPGYLPTypeE
     {
@@ -147,7 +148,7 @@ namespace SpiralLab.Sirius
             ushort data8Bits = (ushort)(percentage / 100.0f * 255.0f);
             success &= this.Rtc.ListWriteData<uint>(ExtensionChannel.ExtDO8, data8Bits);
             success &= this.Rtc.ListWait(0.5f);//500usec for delay
-            success &= this.RtcDOutExt2.SetChannel(0, data8Bits);
+            //success &= this.RtcDOutExt2.SetChannel(0, data8Bits);
             //success &= this.RtcExt2.Update();
             if (success)
             {

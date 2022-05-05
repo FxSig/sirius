@@ -11,6 +11,7 @@ using SpiralLab.Sirius;
 namespace SpiralLab.Sirius
 {
     /// <summary>
+    /// user defined scanner z axis
     /// 스캐너 Z 축 모션 제어 사용예제
     /// </summary>
     public class MotorZ : SpiralLab.Sirius.IMotor
@@ -44,9 +45,6 @@ namespace SpiralLab.Sirius
         /// 실제 위치 (unit)
         /// </summary>
         public float ActualPosition { get; private set; }
-
-        public float TargetVelocity { get; set; }
-
         /// <summary>
         /// 모터 준비 상태 여부
         /// </summary>
@@ -67,9 +65,7 @@ namespace SpiralLab.Sirius
         /// 모터 홈 초기화 여부
         /// </summary>
         public bool IsHomeSearched { get; private set; }
-        /// <summary>
-        /// InPos 여부
-        /// </summary>
+
         public bool IsInPos { get; private set; }
         /// <summary>
         /// 모터 서보 온 여부
@@ -92,12 +88,15 @@ namespace SpiralLab.Sirius
         /// </summary>
         public bool IsOrgSenOn { get; private set; }
 
+        public float TargetVelocity { get; set; }
+
         public float MaxVelocity { get; set; }
-        public float MaxSpeed { get; set; }
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
         public object Tag { get; set; }
+
+        private bool disposed = false;
 
         /// <summary>
         /// 생성자
@@ -111,8 +110,24 @@ namespace SpiralLab.Sirius
             IsBusy = false;
             IsError = true;
         }
+        ~MotorZ()
+        {
+            this.Dispose(false);
+        }
         public void Dispose()
-        { }
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (this.disposed)
+                return;
+            if (disposing)
+            {
+            }
+            this.disposed = true;
+        }
 
         public bool Initialize()
         {
@@ -121,6 +136,7 @@ namespace SpiralLab.Sirius
         public bool CtlServo(bool onOff)
         {
             IsServoOn = onOff;
+            Console.WriteLine($"{Name} has servo {onOff}");
             return true;
         }
         /// <summary>
@@ -136,6 +152,7 @@ namespace SpiralLab.Sirius
             return true;
         }
         /// <summary>
+        /// move absolutely
         /// 절대 위치 구동
         /// </summary>
         /// <param name="position">위치</param>
@@ -144,9 +161,11 @@ namespace SpiralLab.Sirius
         {
             Thread.Sleep(100);
             TargetPosition = ActualPosition = position;
+            Console.WriteLine($"{Name} has abs moved");
             return true;
         }
         /// <summary>
+        /// move relatively
         /// 상대 위치 구동
         /// </summary>
         /// <param name="distance"></param>
@@ -155,7 +174,8 @@ namespace SpiralLab.Sirius
         {
             Thread.Sleep(100);
             TargetPosition += distance;
-            ActualPosition = TargetPosition;
+            ActualPosition += distance;
+            Console.WriteLine($"{Name} has rel moved");
             return true;
         }
         public bool CtlMoveJog(float vel)
@@ -163,15 +183,18 @@ namespace SpiralLab.Sirius
             return true;
         }
         /// <summary>
+        /// soft stop
         /// 모션 정지
         /// </summary>
         /// <returns></returns>
         public bool CtlMoveStop()
         {
             this.IsReady = false;
+            Console.WriteLine($"{Name} has stopped");
             return true;
         }
         /// <summary>
+        /// reset error condition
         /// 에러 해제 시도
         /// </summary>
         /// <returns></returns>
@@ -181,7 +204,10 @@ namespace SpiralLab.Sirius
             this.IsError = false;
             return true;
         }
-
+        /// <summary>
+        /// update motor status 
+        /// </summary>
+        /// <returns></returns>
         public bool Update()
         {
             return true;

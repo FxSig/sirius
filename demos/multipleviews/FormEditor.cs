@@ -12,19 +12,18 @@ namespace SpiralLab.Sirius
 {
     public partial class FormEditor : Form
     {
+        /// <summary>
+        /// 편집기
+        /// </summary>
         public SiriusEditorForm Editor
         {
-            get
-            {
-                return this.siriusEditorForm1;
-            }
+            get { return this.siriusEditorForm1; }
         }
 
         public FormEditor()
         {
             InitializeComponent();
         }
-
 
     }
 }

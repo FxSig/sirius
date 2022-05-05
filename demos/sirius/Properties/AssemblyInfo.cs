@@ -5,13 +5,13 @@ using System.Windows;
 // As informações gerais sobre um assembly são controladas por
 // conjunto de atributos. Altere estes valores de atributo para modificar as informações
 // associada a um assembly.
-[assembly: AssemblyTitle("atLaserMarker")]
-[assembly: AssemblyDescription("powered by siriuslib")]
+[assembly: AssemblyTitle("sirius")]
+[assembly: AssemblyDescription("powered by sirius library")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("(c)SpiralLAB")]
-[assembly: AssemblyProduct("sirius program")]
-[assembly: AssemblyCopyright("http://spirallab.co.kr")]
-[assembly: AssemblyTrademark("(c)SpiralLab.Sirius")]
+[assembly: AssemblyProduct("spirallab.sirius")]
+[assembly: AssemblyCopyright("(c)SpiralLAB")]
+[assembly: AssemblyTrademark("spirallab.sirius")]
 [assembly: AssemblyCulture("")]
  
 
@@ -40,5 +40,5 @@ using System.Windows;
 // É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
 // utilizando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.106.0.0")]
+[assembly: AssemblyFileVersion("1.106.0.0")]

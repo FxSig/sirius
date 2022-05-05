@@ -65,8 +65,9 @@ namespace SpiralLab.Sirius
         /// </summary>
         public bool IsError { get; set; }
 
-        public bool IsTimedOut { get; set; }
-        public bool IsProtocolError { get; set; }
+        public bool IsTimedOut { get; protected set; }
+        public bool IsProtocolError { get; protected set; }
+
         /// <summary>
         /// IRtc 객체
         /// </summary>
@@ -98,8 +99,6 @@ namespace SpiralLab.Sirius
         }
         ~YourCustomLaser()
         {
-            if (this.disposed)
-                return;
             this.Dispose(false);
         }
         public void Dispose()
@@ -107,7 +106,7 @@ namespace SpiralLab.Sirius
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)
                 return;
@@ -173,7 +172,6 @@ namespace SpiralLab.Sirius
                 return success;
             }
         }
-
         public bool ListBegin()
         {
             return true;
@@ -182,6 +180,7 @@ namespace SpiralLab.Sirius
         {
             return true;
         }
+
         /// <summary>
         /// 지정된 출력(watt)으로 레이저 파워 변경
         /// 리스트 명령 (RTC 버퍼에 삽입되는 명령)

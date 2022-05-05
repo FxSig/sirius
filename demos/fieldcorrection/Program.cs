@@ -41,7 +41,9 @@ namespace SpiralLab.Sirius
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            // initialize sirius lib engine
             SpiralLab.Core.Initialize();
+
             try
             {
                 Application.Run(new CorrectionForm());

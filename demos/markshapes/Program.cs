@@ -35,35 +35,58 @@ namespace SpiralLab.Sirius
         static Stopwatch timer;
 
         static void Main(string[] args)
-        {            
-            SpiralLab.Core.Initialize();    //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
+        {
+            //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
+            SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy (가상 RTC 카드)
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Rtc6 Ethernet
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 
+            //create Rtc for dummy (가상 RTC 카드)
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //Rtc6 Ethernet
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
-            float fov = 60.0f;    // scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov; 
+            // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // correction file (스캐너 보정 파일)
-            rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
-            rtc.CtlSpeed(500, 500); // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
-            rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays (스캐너/레이저 지연값 설정)
+            // initialize rtc controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            rtc.CtlSpeed(500, 500);
+            // basic delays
+            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
             #region initialize Laser (virtual)
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);  
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
+            // set basic power output to 2W
             laser.CtlPower(2);
             #endregion
 
@@ -100,28 +123,40 @@ namespace SpiralLab.Sirius
                         if (!rtc.CtlGetStatus(RtcStatus.NoError))
                             Console.WriteLine($"Rtc status has an error");                        
                         break;
-                    case ConsoleKey.L:  // draw line (선 모양 가공)
+                    case ConsoleKey.L:  
+                        // draw line (선 모양 가공)
                         DrawLine(laser, rtc, -10,-10, 10, 10);
                         break;
-                    case ConsoleKey.C:  // draw circle (원 모양 가공)
+                    case ConsoleKey.C:  
+                        // draw circle (원 모양 가공)
                         DrawCircle(laser, rtc, 10);
                         break;
-                    case ConsoleKey.R:  // draw rectangle (사각형 모양 가공)
+                    case ConsoleKey.R:  
+                        // draw rectangle (사각형 모양 가공)
                         DrawRectangle(laser, rtc, 10, 10);
                         break;
-                    case ConsoleKey.D:  // draw dotted circle (점으로 이루어진 원 모양 가공)
+                    case ConsoleKey.D:  
+                        // draw dotted circle (점으로 이루어진 원 모양 가공)
                         DrawCircleWithDots(laser, rtc, 10, 1.0f);
                         break;
-                    case ConsoleKey.P:  // draw filled rectangle with raster (사각 영역을 픽셀(Raster)로 채우기
+                    case ConsoleKey.P:  
+                        // draw filled rectangle with raster (사각 영역을 픽셀(Raster)로 채우기
                         DrawSquareAreaWithPixels(laser, rtc, 10, 0.2f);
                         break;
-                    case ConsoleKey.H:  // draw with heavy works (시간이 오래 걸리는 모양을 가공 -별도 가공 쓰레드 생성하여 처리)
+                    case ConsoleKey.H:  
+                        // draw with heavy works
+                        // 시간이 오래 걸리는 모양을 가공
+                        // 별도 가공 쓰레드 생성하여 처리
                         DrawTooHeavyAndSlowJob(laser, rtc);
                         break;
-                    case ConsoleKey.A:  // abort operation (강제 가공 중지)
+                    case ConsoleKey.A:  
+                        // abort operation
+                        // 강제 가공 중지
                         StopMarkAndReset(laser, rtc);
                         break;
                     case ConsoleKey.F:
+                        // popup winforms for control laser source
+                        // 레이저 소스 제어용 윈폼 팝업
                         SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm();
                         laerForm.Laser = laser;
                         laerForm.ShowDialog();
@@ -131,9 +166,16 @@ namespace SpiralLab.Sirius
 
             if (rtc.CtlGetStatus(RtcStatus.Busy))
             {
+                // abort marking operation
                 rtc.CtlAbort();
+                // wait until busy has finished
                 rtc.CtlBusyWait();
             }
+
+            //wait for thread has finished
+            Program.thread?.Join();
+            Program.thread = null;
+
             rtc.Dispose();
         }
 
@@ -225,12 +267,13 @@ namespace SpiralLab.Sirius
             timer = Stopwatch.StartNew();
             bool success = true;
             success &= rtc.ListBegin(laser);
-            for (float angle =0; angle<360; angle+=1)
+            for (float angle = 0; angle < 360; angle += 1)
             {
                 double x = radius * Math.Sin(angle * Math.PI / 180.0);
                 double y = radius * Math.Cos(angle * Math.PI / 180.0);
                 success &= rtc.ListJump(new Vector2((float)x, (float)y));
-                //laser signal on during specific time (지정된 짧은 시간동안 레이저 출사)
+                //laser signal on during specific time
+                //지정된 짧은 시간동안 레이저 출사
                 success &= rtc.ListLaserOn(durationMsec);
                 if (!success)
                     break;
@@ -259,8 +302,11 @@ namespace SpiralLab.Sirius
             if (null == rtcRaster)
                 return false;
             int counts = (int)(length / gap);
-            float period = 200; //200 usec
-            var delta = new Vector2(gap, 0);
+            //every 200 usec
+            float period = 200; 
+            // gap = distance from pixel to pixel
+            var delta = new Vector2(gap, 0); 
+
             bool success = true;
             success &= rtc.ListBegin(laser);
             for (int i = 0; i < counts; i++)
@@ -294,7 +340,8 @@ namespace SpiralLab.Sirius
 
             Program.laser = laser;
             Program.rtc = rtc;
-            Program.thread = new Thread(DoHeavyWork); //create new thread
+            //create worker thread
+            Program.thread = new Thread(DoHeavyWork); 
             Program.thread.Start();
         }
         private static void DoHeavyWork()
@@ -305,7 +352,9 @@ namespace SpiralLab.Sirius
 
             Console.WriteLine("WARNING !!! LASER IS BUSY... DoHeavyWork thread");
             timer = Stopwatch.StartNew();
-            success &= rtc.ListBegin(laser, ListType.Auto); //auto list buffer handling (대량의 데이타를 처리하기 위해 auto 리스트 버퍼 사용)
+            //auto list buffer handling
+            //대량의 데이타를 처리하기 위해 auto 리스트 버퍼 모드 사용
+            success &= rtc.ListBegin(laser, ListType.Auto); 
             success &= rtc.ListJump(new Vector2(-width / 2, height / 2));
             for (int i = 0; i < 1000 * 1000 * 10; i++)
             {
@@ -320,7 +369,8 @@ namespace SpiralLab.Sirius
             if (success)
             {
                 success &= rtc.ListEnd();
-                success &= rtc.ListExecute();
+                //wait until list commands has finished
+                success &= rtc.ListExecute(true);
             }
             if (success)
                 Console.WriteLine("Success to mark by DoHeavyWork thread");

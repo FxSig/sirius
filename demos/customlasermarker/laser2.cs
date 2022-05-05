@@ -67,8 +67,8 @@ namespace SpiralLab.Sirius
         /// 에러 상태
         /// </summary>
         public bool IsError { get; set; }
-        public bool IsTimedOut { get; set; }
-        public bool IsProtocolError { get; set; }
+        public bool IsTimedOut { get; protected set; }
+        public bool IsProtocolError { get; protected set; }
         // <summary>
         /// IRtc 객체
         /// </summary>
@@ -101,8 +101,6 @@ namespace SpiralLab.Sirius
         }
         ~YourCustomLaser2()
         {
-            if (this.disposed)
-                return;
             this.Dispose(false);
         }
         public void Dispose()
@@ -110,7 +108,7 @@ namespace SpiralLab.Sirius
             this.Dispose(true);
             GC.SuppressFinalize(this);
         }
-        private void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)
         {
             if (this.disposed)
                 return;
@@ -184,10 +182,6 @@ namespace SpiralLab.Sirius
         {
             return true;
         }
-        public bool ListEnd()
-        {
-            return true;
-        }
 
         /// <summary>
         /// 지정된 출력(watt)으로 레이저 파워 변경
@@ -206,20 +200,23 @@ namespace SpiralLab.Sirius
                 return false;
             if (null == this.Rtc)
                 return false;
-
             bool success = true;
-            //현재 RTC 버퍼의 모든 명령을 수행 완료한다
+            // 현재 RTC 버퍼의 모든 명령을 수행 완료한다
             success &= this.Rtc.ListEnd();
             success &= this.Rtc.ListExecute(true);
             if (!success)
                 return false;
-            //통신을 통한 파워 변경 시도
+            // 통신을 통한 파워 변경 시도
             success &= this.CommandToChangePower(watt);
             if (!success)
                 return false;
-            //RTC 버퍼 준비를 새로 시작한다
+            // RTC 리스트 버퍼를 새로 시작한다
             success &= this.Rtc.ListBegin(this, this.Rtc.ListType);
             return success;
+        }
+        public bool ListEnd()
+        {
+            return true;
         }
 
         private bool CommandToChangePower(float watt)
@@ -229,17 +226,11 @@ namespace SpiralLab.Sirius
             bool success = true;
             lock (this.SyncRoot)
             {
-                //해당 레이저 소스의 통신 메뉴얼을 참고할것
-                //
-                //파워 변경에 필요한 문자열 포맷을 바이트 배열로 만들경우
-                //byte[] bytes = BitConverter.GetBytes(Convert.ToInt32(watt));
-                //this.serialPort.Write(bytes, 0, bytes.Length);
-                //or
-                //ASCII 기반 통신일 경우
+                //해당 레이저 소스의 통신 메뉴얼을 참고할것                
                 this.serialPort.Write($"{watt:F1}");
 
                 //통신 이후 실제 파워가 변경되었는지를 확인하는 추가적인 통신이 필요할 수 있음
-                //여기에서는 0.5초 지연을 통해 통신을 통한 레이저 파워 변경이 완료되었다고 가정함 
+                //여기에서는 0.5초 지연을 통해 통신을 통한 레이저 파워 변경이 완료되었다고 가정 
                 Thread.Sleep(500);
             }
             if (success)

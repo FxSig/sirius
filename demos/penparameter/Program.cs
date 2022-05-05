@@ -35,40 +35,65 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
+            //create Rtc for dummy (가상 RTC 카드)
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //Rtc6 Ethernet
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
-            float fov = 60.0f;    // scanner field of view : 60mm                                
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
+            // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    //default correction file
-            rtc.CtlFrequency(50 * 1000, 2); //laser frequency : 50KHz, pulse width : 2usec
-            rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
-            rtc.CtlDelay(10, 100, 200, 200, 0); //scanner and laser delays
+            // initialize rtc controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            // basic frequency and pulse width
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
+            rtc.CtlFrequency(50 * 1000, 2);
+            // basic sped
+            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            rtc.CtlSpeed(500, 500);
+            // basic delays
+            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
             #region initialize Laser (virtual)
-            var laser = new LaserVirtual(0, "virtual", 20);  // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            //var laser = new IPGYLP(0, "IPG YLP", 1, 20);
+            // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
+            var laser = new LaserVirtual(0, "virtual", 20);
+            //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
+            //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
+            //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+
+            // assign RTC instance at laser 
             laser.Rtc = rtc;
+            // initialize laser source
             laser.Initialize();
+            // set basic power output to 2W
             laser.CtlPower(2);
             #endregion
 
             #region create entities
+            // create document
             // 문서 생성
             var doc = new DocumentDefault("Unnamed");
-            // 레이어 생성및 문서에 추가
+            // create layer 
+            // 레이어 생성
             var layer = new Layer("default");
-            // 펜 개체(Entity) 생성및 레이어에 추가            
+            // create pen entity for laser parameter
+            // 펜 개체(Entity) 생성       
             var pen = new PenDefault()
             {
                 Frequency = 100 * 1000, //주파수 Hz
@@ -81,20 +106,29 @@ namespace SpiralLab.Sirius
                 JumpSpeed = 500, // 스캐너 점프 속도 mm/s
                 MarkSpeed = 500, // 스캐너 마크 속도 mm/s
             };
+            // add pen entity into layer
+            // 펜 개체 레이어에 추가
             layer.Add(pen);
+            // add line entity into layer
             // 선 개체 레이어에 추가
             layer.Add(new Line(0, 0, 10, 20));
+            // add circle entity into layer
             // 원 개체 레이어에 추가
             layer.Add(new Circle(0, 0, 10));
+            // add spiral entity into layer
             // 나선 개체 레이어에 추가
-            layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));            
+            layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
+            // regenerate entities (refresh and re-calculate internal data)
             //레이어의 모든 개채들 내부 데이타 계산및 갱신
             layer.Regen();
+            // add layer into document
             // 문서에 레이어 추가
             doc.Layers.Add(layer);
 
+            // save document
             // 문서를 지정된 파일에 저장
-            DocumentSerializer.Save(doc, "test.sirius");
+            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.sirius");
+            DocumentSerializer.Save(doc, filename);
             #endregion
 
             ConsoleKeyInfo key;
@@ -123,9 +157,11 @@ namespace SpiralLab.Sirius
 
             } while (true);
 
+            rtc.CtlAbort();
             rtc.Dispose();
         }
         /// <summary>
+        /// mark 3x3 spirals 
         /// 레이어 안에 있는 모든 객체들을 마킹하기 (3x3 의 나선 객체가 마킹됨)
         /// </summary>
         /// <param name="rtc"></param>
@@ -133,6 +169,8 @@ namespace SpiralLab.Sirius
         private static bool DrawForFieldCorrection(ILaser laser, IRtc rtc, IDocument doc)
         {
             bool success = true;
+            // create mark argument
+            // 가공 정보 전달용 인자 생성
             var markerArg = new MarkerArgDefault()
             {
                 Document = doc,
@@ -140,19 +178,22 @@ namespace SpiralLab.Sirius
                 Laser = laser,
             };
             success &= rtc.ListBegin(laser);
+            // iterate layers
             // 레이어 순회
             foreach (var layer in doc.Layers)
             {
-                //레이어 가공
                 success &= layer.Mark(markerArg);
-                // or
-                // 직접 하나씩 처리방법. 레이어 내의 개체들을 순회
+                // or 
+                //레이어 내의 개체(Entity)들을 순회
                 //foreach (var entity in layer)
                 //{
-                //    var markerable = entity as IMarkerable;
-                //    // 해당 개체가 레이저 가공이 가능한지 여부를 판별
-                //    if (null != markerable)
-                //        success &= markerable.Mark(markerArg);    // 레이저 가공 실시
+                //    //레이저 가공이 가능한 개체(markerable)인지를 판단
+                //    if (entity as IMarkerable markerable)
+                //    {
+                //        // mark entity
+                //        // 해당 개체(Entity) 가공 
+                //        success &= markerable.Mark(markerArg);    
+                //    }
                 //    if (!success)
                 //        break;
                 //}
