@@ -214,6 +214,12 @@
             자원 해제
             </summary>
         </member>
+        <member name="M:SpiralLab.MemoryDB.Dispose(System.Boolean)">
+            <summary>
+            상속 오버라이딩용 Dispose
+            </summary>
+            <param name="disposing"></param>
+        </member>
         <member name="M:SpiralLab.MemoryDB.Initialize">
             <summary>
             초기화 및 동기화
@@ -393,10 +399,27 @@
             비전 서비스 인터페이스
             </summary>
         </member>
+        <member name="T:SpiralLab.ICore">
+            <summary>
+            코어 인터페이스
+            </summary>
+        </member>
+        <member name="M:SpiralLab.ICore.InitializeEngine">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Core">
             <summary>
             스파이럴랩 코어 객체
             </summary>
+        </member>
+        <member name="M:SpiralLab.Core.InitializeEngine">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:SpiralLab.Core.IsInitialized">
             <summary>

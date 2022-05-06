@@ -117,7 +117,9 @@
           - reset z offset/defocus to zero when start (3d 가공시작시 오프셋및 디포커스 값 자동 리셋)
           - editable kz-factor and kz-scale (KZ-스케일값 수정및 Z-+ 공간에 대한 선형 스케일값 제공)
    - added) hittest property with entities (모든 개체에 선택 여부 속성 제공)
-   - fixed) calculate bound area with offsets (개체 오프셋 목록 지정시 외곽 영역 포함해 처리하도록 수정)
+   - added) offsetable interface 
+       - calculate bound area with offsets (개체 오프셋 목록 지정시 외곽 영역 포함해 처리하도록 수정)
+       - create group entity with offsets (그룹 생성시 마스터 개체 + 오프셋 배열 방식 생성 지원)
    - updated) comments for dll library (라이브러리 xml 주석 업데이트)
 
 * 2022.4.29 v.1.105

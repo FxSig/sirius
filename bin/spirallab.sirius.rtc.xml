@@ -8685,6 +8685,11 @@
             기본값(0) 객체 생성
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Rtc5">
+            <summary>
+            RTC5 객체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Count">
             <summary>
             인스턴스 개수
@@ -13959,6 +13964,11 @@
             RTC 점프 모드 설정용 인터페이스
             RTC5/6 만 지원됨
             Rtc5JumpMode / Rtc6JumpMode 사용
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IRtc">
+            <summary>
+            RTC 인터페이스
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.Index">
