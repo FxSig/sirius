@@ -56,16 +56,16 @@
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
  - support many kinds of power meter
-   - Ophir USBI
-   - Thorlab PM100USB
+    - Ophir USBI
+    - Thorlab PM100USB
  - support many kinds of laser sources
-   - Advanced Optowave Fotia
-   - Coherent Avia LX / Diamond J-Series
-   - Photonics Industry DX
-   - IPG YLP Type D/E, YLP N Series
-   - JPT Type E
-   - SPI G3/4
-   - Spectra Physics Talon
+    - Advanced Optowave Fotia
+    - Coherent Avia LX / Diamond J-Series
+    - Photonics Industry DX
+    - IPG YLP Type D/E, YLP N Series
+    - JPT Type E
+    - SPI G3/4
+    - Spectra Physics Talon
  
   ----
 
@@ -99,12 +99,13 @@
 
 * 2022.5.6 v.1.106
    - fixed) 3d (for varioscan)
-          - reset z offset/defocus to zero when start (3d 가공시작시 오프셋및 디포커스 값 자동 리셋)
-          - editable kz-factor and kz-scale (KZ-스케일값 수정및 Z-+ 공간에 대한 선형 스케일값 제공)
+      - reset z offset/defocus to zero when start (3d 가공시작시 오프셋및 디포커스 값 자동 리셋)
+      - editable kz-factor and kz-scale (KZ-스케일값 수정및 Z-+ 공간에 대한 선형 스케일값 제공)
+   - fixed) non-drawing issue with group entity when fast rendering (그룹 개체 화면에 렌더링 되지 않는 문제 수정)
    - added) hittest property with entities (모든 개체에 선택 여부 속성 제공)
    - added) offsetable interface 
-       - calculate bound area with offsets (개체 오프셋 목록 지정시 외곽 영역 포함해 처리하도록 수정)
-       - create group entity with offsets (그룹 생성시 마스터 개체 + 오프셋 배열 방식 생성 지원)
+      - calculate bound area with offsets (개체 오프셋 목록 지정시 외곽 영역 포함해 처리하도록 수정)
+      - create group entity with offsets (그룹 생성시 마스터 개체 + 오프셋 배열 방식 생성 지원)
    - updated) comments for dll library (라이브러리 xml 주석 업데이트)
 
 * 2022.4.29 v.1.105
@@ -166,9 +167,9 @@
 
 * 2022.3.7 v.1.98
    - added) improved hatch options (해치 옵션 기능 강화)
-     - hatch repeat count (해치 전용 반복 회수 지정가능)
-     - mark outline or not (해치시 외곽선 가공할지 여부)
-     - mark outline first (해치시 외곽선을 우선 가공할지 여부)
+      - hatch repeat count (해치 전용 반복 회수 지정가능)
+      - mark outline or not (해치시 외곽선 가공할지 여부)
+      - mark outline first (해치시 외곽선을 우선 가공할지 여부)
    - added) jump entity (점프 개체 추가됨)
    - fixed) internal angle offset within group entity bug (그룹개체내의 오프셋 사용시 x,y,angle 적용 버그)
    - fixed) negative datetime offset bug (날짜 시간 오프셋에 음수값 처리 버그)
@@ -177,21 +178,21 @@
 * 2022.2.28 v.1.97
    - added) sky writing with mode 1,2,3 at pen parameter (펜 파라메터의 sky writing 모드 1,2,3 중 선택 지원)
    - fixed) serial entity (SiriuslTextSerial, TextSerial)
-     - internal/external trigger mode (번호 증가를 위한 트리거를 내부/외부 선택 가능)
-     - internal : increased whenever try to mark manually (마킹을 수동으로 할때 마다 수동 증가)
-     - external : external /START triggger automatically (외부 트리거가 발생할때 마다 자동 증가)
+      - internal/external trigger mode (번호 증가를 위한 트리거를 내부/외부 선택 가능)
+      - internal : increased whenever try to mark manually (마킹을 수동으로 할때 마다 수동 증가)
+      - external : external /START triggger automatically (외부 트리거가 발생할때 마다 자동 증가)
    - added) text with datetime format (텍스트 개체가 시간 포맷으로 자동 변환 지원)
-     - if datetime option enabled, text data re-formatted by automatically (DateTime 옵션 활성화시 마킹 텍스트의 내용이 분석되어 변경됨)
-     - datetime start/end seperator : '%'' or '{'', '}''
-     - example1) {yyyyMMdd} -> 20220225
-     - example2) {yyyy/MM/dd HH:mm:ss} -> 2022/02/25 05:50:06
-     - example3) A123{yyyyMMdd}GOOD -> A12320220225GOOD 
-     - example4) A123{yyyy}XY{MM}AB{dd}GOOD -> A1232022XY02AB25GOOD 
+      - if datetime option enabled, text data re-formatted by automatically (DateTime 옵션 활성화시 마킹 텍스트의 내용이 분석되어 변경됨)
+      - datetime start/end seperator : '%'' or '{'', '}''
+      - example1) {yyyyMMdd} -> 20220225
+      - example2) {yyyy/MM/dd HH:mm:ss} -> 2022/02/25 05:50:06
+      - example3) A123{yyyyMMdd}GOOD -> A12320220225GOOD 
+      - example4) A123{yyyy}XY{MM}AB{dd}GOOD -> A1232022XY02AB25GOOD 
    - added) IRtcDateTimeOffset
-     - to support modify offset datetime (날짜 시간 오프셋 기능을 위해 IRtcDateTimeOffset 인터페이스 추가)
+      - to support modify offset datetime (날짜 시간 오프셋 기능을 위해 IRtcDateTimeOffset 인터페이스 추가)
    - added) IRtc3D interface 
-     - read/writable A,B,C coefficient at correction file (3D 보정 파일의 헤더 영역에 포물선 A,B,C 계수 읽고,쓰기 및 변경지원)
-     - get focal length at specific x,y,z location (특정 3D 위치에서 초점 거리 계산 기능 추가)
+      - read/writable A,B,C coefficient at correction file (3D 보정 파일의 헤더 영역에 포물선 A,B,C 계수 읽고,쓰기 및 변경지원)
+      - get focal length at specific x,y,z location (특정 3D 위치에서 초점 거리 계산 기능 추가)
    - fixed) restart versioning 1.9.6 -> 1.97 (버전 관리 번호 변경)
 
 * 2022.2.21 v1.9.6
@@ -199,72 +200,72 @@
    - added) jump to origin position after finished to mark (가공 완료후 원점으로 자동 점프 하는 옵션)
    - added) changable correction file within rtc property dialog (RTC 속성창에서 스캐너 보정 파일 변경 지원)
    - qualified) syncaxis   
-     - field tested at equipment (장비에서 필드 테스트)
+      - field tested at equipment (장비에서 필드 테스트)
    - fixed) ramp with arc/ polyline bug (arc, polyline 의 구간별 ramp 출력 버그 수정)
    - fixed) layer 
-     - always works as repeat by 1 bug (레이어 반복 회수가 1로 고정되는 문제 해결)
+      - always works as repeat by 1 bug (레이어 반복 회수가 1로 고정되는 문제 해결)
    - fixed) datamatrix /qrcode barcode when cell type line
-     - pitch error with zig zag mark
+      - pitch error with zig zag mark
 
 * 2022.2.14 v1.9.5
    - fixed) syncaxis   
-     - enumerable job history (최대 50개 까지의 작업 이력 조회가 가능합니다)
-     - auto start when job is enough (가공 데이타가 충분상태가 되면 자동 가공을 실시하는 방식 도입)
-     - multiple head offsets with matrix bug (멀티 헤드별 행렬을 통한 오프셋 버그 해결)
-     - utilization ratio with position, acc, jerk (위치, 가속도, 가가속도의 사용률 분석 지원)
+      - enumerable job history (최대 50개 까지의 작업 이력 조회가 가능합니다)
+      - auto start when job is enough (가공 데이타가 충분상태가 되면 자동 가공을 실시하는 방식 도입)
+      - multiple head offsets with matrix bug (멀티 헤드별 행렬을 통한 오프셋 버그 해결)
+      - utilization ratio with position, acc, jerk (위치, 가속도, 가가속도의 사용률 분석 지원)
    - fixed) rtc 4,5,6 
-     - laser control signal (속성창에서 레이저 출력 신호 변경 지원)
-     - laser mode (속성창에서 레이저 모드 변경 지원)
-     - external control (속성창에서 레이저 외부 신호 제어 변경 지원)
-     - marking info (속성창에서 marking info 상태 조회 지원)
+      - laser control signal (속성창에서 레이저 출력 신호 변경 지원)
+      - laser mode (속성창에서 레이저 모드 변경 지원)
+      - external control (속성창에서 레이저 외부 신호 제어 변경 지원)
+      - marking info (속성창에서 marking info 상태 조회 지원)
    - added) new barcode entity for easy to use (사용이 용이한 새로운 2D 바코드 개체 지원)
-     - datamatrix v2 
-     - qrcode v2
+      - datamatrix v2 
+      - qrcode v2
 
 * 2022.2.7 v1.9.4
    - fixed) syncaxis v1.6 (syncaxis 1.6 버전지원및 4개의 멀티 스캔헤드 * 4개의 스테이지 지원용)
-       - job characteristic (작업 특성 분석 지원)
-       - config trajectory (mark/geometry) (경로 설정 지원)
-       - config dynamics (scanner/stage) (역할 설정 지원)
+      - job characteristic (작업 특성 분석 지원)
+      - config trajectory (mark/geometry) (경로 설정 지원)
+      - config dynamics (scanner/stage) (역할 설정 지원)
    - added) datetime offset with rtc 5, 6 
 
 * 2022.2.2 v1.9.3
    - added) spirallab.sirius.fieldcorrection with hatched images
    - fixed) syncaxis
-       - pen parameter : spot distance compensation, min.mark speed 
-       - layer parameter : bandwidth 
-       - marker form with job/trajectory/dynamics 
+      - pen parameter : spot distance compensation, min.mark speed 
+      - layer parameter : bandwidth 
+      - marker form with job/trajectory/dynamics 
 
 * 2022.1.24 v1.9.2
    - fixed) vector-defined laser control bug (벡터 기반 레이저 출력 제어 버그 수정)
    - fixed) simplify automatic laser control by velocity (속도에 의한 레이저 자동 제어 간소화)
    - added) SiriusEditorForm with lock/unlock feature (편집기 내에서 잠금 기능 추가)
    - fixed) syncaxis 
-        - added) config dynamics
-        - added) job status / job event callback / job characteristic
-        - added) on/off simulation or hardware mode / simulation filename 
-        - added) get actual postion of stage, scanner(s)
-        - added) operation status (green/yellow/red)
-        - fixed) improved demo program with editor_syncaxis
+      - added) config dynamics
+      - added) job status / job event callback / job characteristic
+      - added) on/off simulation or hardware mode / simulation filename 
+      - added) get actual postion of stage, scanner(s)
+      - added) operation status (green/yellow/red)
+      - fixed) improved demo program with editor_syncaxis
 
 * 2022.1.12 v1.9.1
    - added) docs\sirius.pdf document file (사용자 문서 업데이트)
    - added) support powerful measurement of signals (강력한 계측 기능 제공)
-     - MeasurementBegin/End entity (MeasurementBegin/End 엔티티 이용)
-     - create measurement data automatically and plot to graph in Marker Form (마커 화면에서 옵션사항으로 계측 데이타 취득및 저장, 그래프로 플롯 기능 제공)
+      - MeasurementBegin/End entity (MeasurementBegin/End 엔티티 이용)
+      - create measurement data automatically and plot to graph in Marker Form (마커 화면에서 옵션사항으로 계측 데이타 취득및 저장, 그래프로 플롯 기능 제공)
    - added) measurement demo project (계측 데모 프로젝트 추가)
    - added) support various way of read/write extension i/o port (확장 포트를 이용한 데이타 읽기/쓰기 조합 지원)
-     - write data entity (다양한 확장 포트로 데이타 쓰기)
-     - write data ext16 entity (확장 1포트에 개별 비트 쓰기)
-     - write data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 출력 비트 마스크에 쓰기)
-     - wait data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 대기하기)
+      - write data entity (다양한 확장 포트로 데이타 쓰기)
+      - write data ext16 entity (확장 1포트에 개별 비트 쓰기)
+      - write data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 출력 비트 마스크에 쓰기)
+      - wait data ext16 if entity (확장 1포트 입력 비트 마스크 조건에 따라 대기하기)
     - fixed) improve scanner field correction by image  (이미지를 이용한 스캐너 보정 기능 개선)
     - fixed) property values of timer entity is not shown (타이머 개체의 속성값이 일부 표시되지 않는 문제 해결)
 
 * 2022.1.3 v1.9.0
    - added) image analyzer for scanner field correction (스캐너 보정을 위한 이미지 분석기 추가)
-     - added) spirallab.sirius.fieldcorrection.dll (해당 dll 추가됨)
-	 - copy x64\OpenCvSharpExtern.dll(or x32) into bin directory (플랫폼에 맞게 해당 파일을 bin 디렉토리에 복사할것)
+      - added) spirallab.sirius.fieldcorrection.dll (해당 dll 추가됨)
+	  - copy x64\OpenCvSharpExtern.dll(or x32) into bin directory (플랫폼에 맞게 해당 파일을 bin 디렉토리에 복사할것)
    - added) laser control demo programs (레이저 제어 활용 데모 코드 추가)
 
 * 2021.12.22 v1.8.9
@@ -288,8 +289,8 @@
    - fixed) readdata/writedata bug in rtc (RTC read/write data 호출시 인자 타입 변환 오류 수정)
    - added) adlink DAQ 입출력 지원
    - added) powermeter interface (파워메터 인터페이스 추가)
-     - ophir usbi (OPHIR 사의 USBI 제품)
-     - thorlab pm100usb (Thorlabs 사의 PM100USB 제품)
+      - ophir usbi (OPHIR 사의 USBI 제품)
+      - thorlab pm100usb (Thorlabs 사의 PM100USB 제품)
     - added) powermap interface (파워매핑 인터페이스 추가)
 
 * 2021.11.26 v1.8.5
@@ -302,7 +303,7 @@
 
 * 2021.11.21 v1.8.4
    - added) new scanner correction with (c)SCANLAB Correction Pro (스캔랩의 CorrectionPro 프로그램 기반의 보정 지원)
-     - added) Correction2DRtc / Correction2DRtcForm (두개의 신규 클래스 추가됨)
+      - added) Correction2DRtc / Correction2DRtcForm (두개의 신규 클래스 추가됨)
    - fixed) fail to scanner field correct when edge position of area has inputted (X,Y 측정위치가 영역의 가장 끝일 경우 발생하는 에러 해결)
 
 * 2021.11.19 v1.8.3
