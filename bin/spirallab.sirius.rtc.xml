@@ -10328,6 +10328,11 @@
             3D 옵션 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.IsLDSA">
+            <summary>
+            LDSA 옵션 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsScanAhead">
             <summary>
             Scan Ahead 옵션 여부
@@ -10341,6 +10346,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6.IsSyncAxis">
             <summary>
             SyncAxis (XLScan) 옵션 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.IsDCDCConverter">
+            <summary>
+            DC/DC 컨버터 옵션 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsJumpMode">
