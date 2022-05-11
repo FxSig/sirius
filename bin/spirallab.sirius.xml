@@ -5661,6 +5661,87 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Owner">
+            <summary>
+            문서(IDocument) 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Renderer">
+            <summary>
+            렌더러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Width">
+            <summary>
+            폭
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Height">
+            <summary>
+            높이
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.CameraX">
+            <summary>
+            카메라 X 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.CameraY">
+            <summary>
+            카메라 Y 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.ScaleWidth">
+            <summary>
+            가로폭 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.ScaleHeight">
+            <summary>
+            세로폭 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Scale">
+            <summary>
+            비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.SelectedBoundRect">
+            <summary>
+            선택 개체들의 외곽 사각형 정보
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.RenderTime">
+            <summary>
+            렌더링 소요 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.LaserSpot">
+            <summary>
+            레이저 시뮬레이션용 스팟 위치 정보
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.LaserSpotScale">
+            <summary>
+            레이저 시뮬레이션용 스팟 크기 비율값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.DivideRects">
+            <summary>
+            Divide 기능 사용시 격자 영역 표시 영역 정보
+            내부 사용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.EditorMode">
+            <summary>
+            편집기 모드 사용 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ViewDefault.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.ViewDefault.mouseCurrentLocation">
             <summary>
             마우스 위치 정보
@@ -5678,15 +5759,23 @@
         </member>
         <member name="M:SpiralLab.Sirius.ViewDefault.Dp2Lp(System.Int32)">
             <summary>
-            해당 픽셀크기 값을 사용자 좌표(mm)로 변환
+            픽셀크기를 사용자 좌표(mm)크기로 변환
             pixel -> mm
             </summary>
             <param name="pixel"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.ViewDefault.Lp2Dp(System.Single,System.Single,System.Drawing.Point@)">
+            <summary>
+            사용자 좌표 -> 물리 좌표 변환 mm -> pixel
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <param name="p"></param>
+        </member>
         <member name="M:SpiralLab.Sirius.ViewDefault.Lp2Dp(System.Single)">
             <summary>
-            사용자 단위 좌표 -> pixel
+             사용자 좌표(mm)크기를 픽셀 크기로 변환
             </summary>
             <param name="value"></param>
             <returns></returns>
@@ -5954,6 +6043,27 @@
             XY 좌표 색상
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.IsDocumentDrawAxes">
+            <summary>
+            XY Axis 렌더링 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.DocumentGridColor">
+            <summary>
+            Grid 선 색상
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.DocumentGridInterval">
+            <summary>
+            Grid 간격
+            기본 10 mm
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.IsDocumentDrawGrids">
+            <summary>
+            Grid 렌더링 여부
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentRubberBandRectColor">
             <summary>
             선택 사각 박스(Rubber band) 색상
@@ -6165,12 +6275,13 @@
                                      |  |  |
               IExplodable _________  |  |  |  ________ ITextChangeable
                                   |  |  |  |  |
-              IHatchable  ______  |  |  |  |  |
-                               |  |  |  |  |  |
-              IMarkerable ___  |  |  |  |  |  |
-                            |  |  |  |  |  |  |
-                            |  |  |  |  |  |  |
-                           [     * Entitiy     ]
+              IHatchable  ______  |  |  |  |  |  _____ ICloneable
+                               |  |  |  |  |  |  |
+              IMarkerable ___  |  |  |  |  |  |  |  __ IOffsetable
+                            |  |  |  |  |  |  |  |  |
+                            |  |  |  |  |  |  |  |  |
+                            
+                        [          E n t i t i y         ]
             
             </summary>
         </member>
