@@ -133,7 +133,7 @@ namespace SpiralLab.Sirius
             motorY.Initialize();
             var motorZ = new MotorVirtual(2, "Z");
             motorZ.Initialize();
-            var motorXY = new MotorXY("XY", motorX, motorY);
+            var motorXY = new MotorXY(0, "XY", motorX, motorY);
             this.siriusEditorForm1.MotorXY = motorXY;
             this.siriusEditorForm1.MotorZ = motorZ;
             #endregion

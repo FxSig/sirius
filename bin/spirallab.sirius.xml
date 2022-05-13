@@ -4137,6 +4137,11 @@
             레이어에 포함된 엔티티의 개수
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Layer.IsSelected">
+            <summary>
+            선택여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Layer.IsVisible">
             <summary>
             레이어 가시성 여부
@@ -4147,6 +4152,11 @@
             레이어 마킹(가공) 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Layer.IsDrawPath">
+            <summary>
+            가공 경로 표시 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Layer.IsLocked">
             <summary>
             레이어 편집 금지 여부
@@ -4154,8 +4164,14 @@
         </member>
         <member name="P:SpiralLab.Sirius.Layer.MotionType">
             <summary>
-            레이어 별로 가공 방식을 변경 가능 
-            해당 타입에 따라 사용자의 마커(IMarker)에서 세부 구현 가능
+            SyncAxis 전용 옵션
+            레이어 별로 모션 타입을 지정
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.BandWidth">
+            <summary>
+            SyncAxis 전용 옵션
+            LPF 주파수 설정
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.Items">
@@ -4168,9 +4184,36 @@
             레이어의 반복 가공회수
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Layer.IsXYEnabled">
+            <summary>
+            XY 스테이지 모션 사용 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.XYPosition">
+            <summary>
+            XY 스테이지 모션 사용시 이동 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.XYPositionVel">
+            <summary>
+            XY 스테이지 모션 사용시 이동 속도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.IsZEnabled">
+            <summary>
+            Z 축 모션 사용 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Layer.ZPosition">
             <summary>
-            레이어 별 Z 축 (초점 거리) 위치값(mm) 설정
+            Z 축 모션 사용시
+            초점 거리 (mm) 설정
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.ZPositionVel">
+            <summary>
+            Z 축 모션 사용시
+            이동 속도
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsALC">
@@ -6030,7 +6073,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Config.DocumentVersion">
             <summary>
-            버전
+            문서 버전 정보
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentClearColor">
@@ -6040,7 +6083,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentAxesColor">
             <summary>
-            XY 좌표 색상
+            XY Axis 색상
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.IsDocumentDrawAxes">
@@ -6136,7 +6179,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.DivideRectColor">
             <summary>
-            개체 Divide 시도시 미리보기용 사각형들의 색상
+            개체 Divide시 미리보기용 사각형들의 색상
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor1">
@@ -6186,7 +6229,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointSize">
             <summary>
-            Grip 의 기본 크기 (픽셀)
+            Grip 사격형의 기본 크기 (픽셀)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointCursor">
@@ -8799,6 +8842,16 @@
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.FileName">
             <summary>
             상태바에 출력되는 작업 파일이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusViewerForm.LabelMessage">
+            <summary>
+            좌상단 레이블 표준 컨트롤 대체용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusViewerForm.ProcessingTime">
+            <summary>
+            가공 소요 시간 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.View">

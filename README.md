@@ -97,6 +97,15 @@
 
 **5. Version history**
 
+
+* 2022.5.13 v.1.107
+   - added) syncaxis demo for multiple instances (syncAXIS 기반의 듀얼헤드 데모 기능 추가)
+   - added) create group entity with offsets (옵셋을 가진 그룹 개체 생성 추가 : 마스터 개체 + 오프셋 배열 방식)
+   - added) draw grids within view (뷰에 격자 렌더링 지원)
+   - fixed) group entity's color rendering bug (그룹 개체및 오프셋 처리시 렌더링 색상이 바뀌지 않는 문제 해결)
+   - fixed) control entities are moved to single menu (편집기에서 제어용 개체들을 단일 메뉴 아래로 이동)
+   - fixed) transit error with textarc/siriustextarc entity (원형 텍스트 개체 이동시 표시 문제 수정)
+
 * 2022.5.6 v.1.106
    - fixed) 3d (for varioscan)
       - reset z offset/defocus to zero when start (3d 가공시작시 오프셋및 디포커스 값 자동 리셋)

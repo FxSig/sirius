@@ -1596,6 +1596,91 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorXYSyncAxis">
+            <summary>
+            Motor XY SyncAxis
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MotorXYSyncAxis.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.No">
+            <summary>
+            스테이지 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.Name">
+            <summary>
+            스테이지 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsInPos">
+            <summary>
+            명령 지점 도착 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.#ctor(SpiralLab.Sirius.IRtcSyncAxis,System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="rtcSyncAxis">IRtcSyncAxis 인터페이스</param>
+            <param name="no">스테이지 번호</param>
+            <param name="name">축 이름</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveAbs(System.Numerics.Vector2,System.Single)">
+            <summary>
+            절대 위치 이동
+            </summary>
+            <param name="position">위치값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveRel(System.Numerics.Vector2,System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값 (mm)</param>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotorXYZ">
             <summary>
             XYZ 모터 
@@ -1662,6 +1747,16 @@
             XY 모터 
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.MotorXY.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXY.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorXY.X">
             <summary>
             모터 X 
@@ -1670,6 +1765,11 @@
         <member name="P:SpiralLab.Sirius.MotorXY.Y">
             <summary>
             모터 Y 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorXY.No">
+            <summary>
+            스테이지 번호
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorXY.Name">
@@ -1696,6 +1796,26 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXY.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXY.#ctor(System.Int32,System.String,SpiralLab.Sirius.IMotor,SpiralLab.Sirius.IMotor)">
+            <summary>
+            생성자
+            </summary>
+            <param name="no">스테이지 번호</param>
+            <param name="name">축 이름</param>
+            <param name="x">X 모터 인터페이스</param>
+            <param name="y">Y 모터 인터페이스</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorXY.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorXY.CtlMoveAbs(System.Numerics.Vector2,System.Single)">
             <summary>
@@ -1873,9 +1993,34 @@
             모터 Y 
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.No">
+            <summary>
+            스테이지 번호
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.Name">
             <summary>
-            모터 이름
+            스테이지 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.TargetPosition">
+            <summary>
+            명령 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.ActualPosition">
+            <summary>
+            실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorXY.TargetVelocity">
+            <summary>
+            명령 속도 (mm/s)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorXY.IsInPos">
@@ -7367,6 +7512,19 @@
             보정 파일 목록
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.UiHelper">
+            <summary>
+            UI 유틸리티 기능들
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.UiHelper.PropertyBrowsable(System.Type,System.String,System.Boolean)">
+            <summary>
+            PropertyGrid 의 속성창에서 지정된 타입의 속성 필드 출력 여부
+            </summary>
+            <param name="type">객체 타입</param>
+            <param name="name">속성 이름</param>
+            <param name="visible">표시 여부</param>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc4ExternalControlMode">
             <summary>
             RTC4 외부 트리거 모드 비트 플래그용
@@ -12129,7 +12287,7 @@
             대상 스테이지 변경및 스캐너 보정 테이블 선택
             </summary>
             <param name="stage">스테이지 번호 (1,2,3,4)</param>
-            <param name="tableIndex">보정 파일 번호 (0,1,2,3) </param>
+            <param name="tableIndex">보정 테이블 (1,2,3,4) </param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetScannerPosition(System.Numerics.Vector2)">
@@ -16908,7 +17066,7 @@
             대상 스테이지 변경및 스캐너 보정 테이블 선택
             </summary>
             <param name="stage">스테이지 번호 (1,2,3,4)</param>
-            <param name="tableIndex">보정 파일 번호 (0,1,2,3) </param>
+            <param name="tableIndex">보정 테이블 (1,2,3,4) </param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetScannerPosition(System.Numerics.Vector2)">
