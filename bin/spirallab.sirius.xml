@@ -142,16 +142,60 @@
         </member>
         <member name="T:SpiralLab.Sirius.TextChangeableHelper">
             <summary>
-            포맷된 텍스트를 분석해서 시간날짜를 변환
+            포맷된 텍스트를 분석해서 
+            시간날짜 / 일련번호 / GS1 코드 등을
+            변환 처리
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.TextChangeableHelper.DateTimeConvertHandler">
+            <summary>
+            날짜 시간 변환기 델리게이트
+            </summary>
+            <param name="rtcDateTimeOffset"></param>
+            <param name="text"></param>
+            <param name="converted"></param>
+            <returns></returns>
+        </member>
+        <member name="E:SpiralLab.Sirius.TextChangeableHelper.OnDateTimeConvert">
+            <summary>
+            날짜 시간 변환 이벤트 핸들러
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertToDateTime(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
             <summary>
-            변환시도
+            날짜 시간 변환시도
             </summary>
             <param name="rtcDateTimeOffset">RTC 의 date time offset 을 사용하기 위한 인터페이스</param>
             <param name="text">입력 문자열 </param>
             <param name="converted">변환된 문자열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertToSerial(SpiralLab.Sirius.SerialFormat,System.UInt32,System.UInt32,System.String,System.String@)">
+            <summary>
+            일련번호 변환시도
+            </summary>
+            <param name="serialFormat"></param>
+            <param name="numOfDigits"></param>
+            <param name="serialCurrentNo"></param>
+            <param name="text"></param>
+            <param name="converted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.ConvertToGS1(System.String,System.String,System.String@)">
+            <summary>
+            GS1 코드 변환시도
+            </summary>
+            <param name="separator"></param>
+            <param name="text"></param>
+            <param name="converted"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.IncrementSerialNoOrDateTime(SpiralLab.Sirius.ITextChangeable,System.UInt32)">
+            <summary>
+            일련번호 증가
+            </summary>
+            <param name="textChangeable"></param>
+            <param name="skipCount"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IScriptable">
@@ -2047,26 +2091,38 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Motor.FormMotorXYZ.components">
+        <member name="F:SpiralLab.Sirius.Motor.MotorsForm.components">
             <summary> 
             필수 디자이너 변수입니다.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Motor.FormMotorXYZ.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Motor.MotorsForm.Dispose(System.Boolean)">
             <summary> 
             사용 중인 모든 리소스를 정리합니다.
             </summary>
             <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Motor.FormMotorXYZ.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Motor.MotorsForm.InitializeComponent">
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Motor.MotorForm.AliasName">
-            <summary>
-            상태바에 출력되는 이름 (별명)
+        <member name="F:SpiralLab.Sirius.Motor.MotorXYForm.components">
+            <summary> 
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorXYForm.Dispose(System.Boolean)">
+            <summary> 
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorXYForm.InitializeComponent">
+            <summary> 
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Motor.MotorForm.components">
@@ -3428,7 +3484,7 @@
             <param name="layer">레이어</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActEntityPasteArray(SpiralLab.Sirius.Layer,System.Collections.Generic.List{System.Numerics.Vector2},System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Action.ActEntityPasteArray(SpiralLab.Sirius.Layer,System.Collections.Generic.List{System.Numerics.Vector2})">
             <summary>
             클립보드에 있는 엔티티를 복제하여 배열 붙혀넣기 (신규 엔티티가 생성됨)
             </summary>
@@ -7164,11 +7220,6 @@
             붙혀넣기 결과로 생성된 좌표 목록
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PasteForm.Position">
-            <summary>
-            기준 위치
-            </summary>
-        </member>
         <member name="F:SpiralLab.Sirius.PasteForm.components">
             <summary>
             Required designer variable.
@@ -8686,7 +8737,22 @@
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXY">
             <summary>
-            스캐너 Z 축 제어용 객체
+            스테이지 XY축 제어용 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXYZ">
+            <summary>
+            XYZ축 제어용 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXYZR">
+            <summary>
+            XYZR축 제어용 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.Motors">
+            <summary>
+            단축 모터 개별 제어용 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Input">

@@ -125,15 +125,9 @@ namespace SpiralLab.Sirius
             this.siriusEditorForm1.RtcPin2Output = rtcPin2DOutput;
             #endregion
 
-            #region XY/Z 모터
-            var motorX = new MotorVirtual(0, "X");
-            motorX.Initialize();
-            var motorY = new MotorVirtual(1, "Y");
-            motorY.Initialize();
-            var motorZ = new MotorVirtual(2, "Z");
+            #region Z 모터
+            var motorZ = new MotorVirtual(0, "Z");
             motorZ.Initialize();
-            var motorXY = new MotorXY(0, "XY", motorX, motorY);
-            this.siriusEditorForm1.MotorXY = motorXY;
             this.siriusEditorForm1.MotorZ = motorZ;
             #endregion
 

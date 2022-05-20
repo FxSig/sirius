@@ -88,7 +88,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public bool IsOrgSenOn { get; private set; }
 
-        public float TargetVelocity { get; set; }
+        public float TargetPositionVelocity { get; set; }
 
         public float MaxVelocity { get; set; }
         /// <summary>

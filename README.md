@@ -55,27 +55,38 @@
  - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
- - support many kinds of power meter
-    - Ophir USBI
-    - Thorlab PM100USB
+ - support many kinds of powermeters
+    - Ophir USBI (preliminary)
+    - Thorlab PM100USB (preliminary)
  - support many kinds of laser sources
     - Advanced Optowave Fotia
-    - Coherent Avia LX / Diamond J-Series
+    - Advanced Optowave AOPico (preliminary)
+    - Coherent Avia LX (preliminary)
+    - Coherent Diamond C-Series (preliminary)
+    - Coherent Diamond J-Series (preliminary)
     - Photonics Industry DX
-    - IPG YLP Type D/E, YLP N Series
+    - Photonics Industry RGHAIO (preliminary)
+    - IPG YLP Type D
+    - IPG YLP Type E
+    - IPG YLP N Series (preliminary)
     - JPT Type E
-    - SPI G3/4
-    - Spectra Physics Talon
+    - SPI G3/G4 (preliminary)
+    - Spectra Physics Talon (preliminary)
+    - Spectra Physics Hippo (preliminary)
+ - support many kinds of motion controllers
+    - AJINExtek 
+    - ACS SPiiPlusNET (preliminary)
+    - Newport ESP301 (preliminary)
  
   ----
 
 **3. How to use ?**
 
  - Development Environment : .NET dll library 
- - Add spirallab.core.dll, spirallab.sirius.rtc.dll and spirallab.sirius.dll file reference into Microsoft Visual Studio.
+ - Add spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll files as a .NET DLL reference
  - user control in spirallab.sirius.dll file : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
- - x64 Environment : copy files from bin\x64 to bin\  
- - x32 Environment : copy files from bin\x32 to bin\ 
+ - x64 Environment : copy files from bin\x64 to bin\
+ - x32 Environment : copy files from bin\x32 to bin\
  - There are multiple demo programs in DEMOS directory
  - There are stand-alone programs in DEMOS\Sirius directory
 
@@ -91,12 +102,25 @@
  - e-mail : labspiral@gmail.com
  - homepage : http://spirallab.co.kr                        
  
- 
+
 ----
 
 
 **5. Version history**
 
+
+* 2022.5.20 v.1.108
+   - added) laser source for advanced optowave AOPico (preliminary)
+   - added) laser source for spectra physics Hippo (preliminary)
+   - added) laser source for photonics industry RGH AIO (preliminary)
+   - added) laser source for coherent diamond c-series (preliminary)
+   - added) motion control for ESP 301 (preliminary)
+   - added) control forms for motor(s) (모터 제어용 폼 추가: 단축용, 다축용, Z축/XY축/XYZ축/XYZR축 용)
+   - added) accumulated mark counts in marker form (마커폼에 누적 가공 개수 표시)
+   - fixed) paste array with center position of clipboard entities (배열 복사 붙혀넣기시 클립모드 개체의 중심위치 기준 적용)
+   - fixed) relocated group/ungroup buttons in editor (편집기에 그룹/언그룹 버튼 위치 이동)
+   - fixed) disappered images like as bitmap (이미지 개체 렌더링시 사라지는 버그 수정)
+   - fixed) fail to register characterset into RTC (문자집합을 RTC 메모리에 다운로드 실패하는 버그 수정)
 
 * 2022.5.13 v.1.107
    - added) syncaxis demo for multiple instances (syncAXIS 기반의 듀얼헤드 데모 기능 추가)

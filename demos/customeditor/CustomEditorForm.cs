@@ -986,7 +986,7 @@ namespace CustomEditor
             if (result == DialogResult.OK)
             {
                 trvEntity.SuspendLayout();
-                this.Document.Action.ActEntityPasteArray(Document.Layers.Active, form.Result, form.Position.X, form.Position.Y);
+                this.Document.Action.ActEntityPasteArray(Document.Layers.Active, form.Result);
                 trvEntity.ResumeLayout();
             }
         }
