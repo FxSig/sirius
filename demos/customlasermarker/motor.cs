@@ -46,6 +46,11 @@ namespace SpiralLab.Sirius
         /// </summary>
         public float ActualPosition { get; private set; }
         /// <summary>
+        /// 상대 이동 위치 (unit)
+        /// </summary>
+        public float DeltaPosition { get; set; }
+
+        /// <summary>
         /// 모터 준비 상태 여부
         /// </summary>
         public bool IsReady { get; private set; }
@@ -133,10 +138,24 @@ namespace SpiralLab.Sirius
         {
             return true;
         }
+        /// <summary>
+        /// 서보 온/오프
+        /// </summary>
+        /// <param name="onOff"></param>
+        /// <returns></returns>
         public bool CtlServo(bool onOff)
         {
             IsServoOn = onOff;
             Console.WriteLine($"{Name} has servo {onOff}");
+            return true;
+        }
+        /// <summary>
+        /// 기준 위치 리셋
+        /// </summary>
+        /// <param name="position"></param>
+        /// <returns></returns>
+        public bool CtlResetCount(float position=0)
+        {
             return true;
         }
         /// <summary>

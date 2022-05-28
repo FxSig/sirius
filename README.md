@@ -108,6 +108,13 @@
 
 **5. Version history**
 
+* 2022.5.30 v.1.109
+   - fixed) support script function with text entities (텍스트 개체들에 스크립트 기능 지원)
+   - added) powermap added into laser interface to support powermap (파워매핑을 기능을 위해 레이저 인터페이스 변경)
+      - pen entity with powermap (펜 개체에 파워맵 대상 카테고리 지정)
+      - demo programs for powermeter/powermap (파워메터/파워맵 데모 프로그램 추가)
+   - fixed) motor/motors inteface (모터 단축 다축용 인터페이스 변경)
+      - with control winforms (제어용 윈폼 추가)
 
 * 2022.5.20 v.1.108
    - added) laser source for advanced optowave AOPico (preliminary)

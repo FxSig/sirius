@@ -101,16 +101,22 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 파워 변경 (즉시 명령)
         /// </summary>
-        /// <param name="watt"></param>
+        /// <param name="watt">파워 (W)</param>
+        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
-        public override bool CtlPower(float watt)
+        public override bool CtlPower(float watt, string powerMapCategory = "")
         {
             Debug.Assert(this.MaxPowerWatt > 0);
 
             bool success = true;
             if (watt > this.MaxPowerWatt)
                 watt = this.MaxPowerWatt;
-           
+            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
+            {
+                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
+                    return false;
+                watt = interpolatedValue;
+            }
             float percentage = watt / this.MaxPowerWatt * 100.0f;
             lock (SyncRoot)
             {
@@ -131,8 +137,9 @@ namespace SpiralLab.Sirius
         /// 파워 변경 (RTC의 리스트 명령)
         /// </summary>
         /// <param name="watt">파워 (W)</param>
+        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
-        public override bool ListPower(float watt)
+        public override bool ListPower(float watt, string powerMapCategory = "")
         {
             if (MathHelper.IsEqual(watt, prevPowerWatt))
                 return true;
@@ -141,7 +148,12 @@ namespace SpiralLab.Sirius
             bool success = true;
             if (watt > this.MaxPowerWatt)
                 watt = this.MaxPowerWatt;
-            
+            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
+            {
+                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
+                    return false;
+                watt = interpolatedValue;
+            }
             float percentage = watt / this.MaxPowerWatt * 100.0f;
 
             //ext2 를 이용한 방식 / 8비트 해상도로 변환

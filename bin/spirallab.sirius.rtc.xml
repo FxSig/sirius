@@ -7,7 +7,8 @@
         <member name="T:SpiralLab.Sirius.ICompensator`1">
             <summary>
             Compensator 인터페이스
-            내부 보간 알고리즘에 의해 입력에 대한 새로운 출력값을 연산하는 기능 제공
+            입력값에 대해 변환된 출력값을 연산해주는 기능 제공 
+            (사용자가 보간 알고리즘 직접 구현)
             </summary>
             <typeparam name="T">제네릭 타입</typeparam>
         </member>
@@ -394,11 +395,6 @@
             최대 파워 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.PowerCompensator">
-            <summary>
-            파워 보정기
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.IsReady">
             <summary>
             상태 (준비완료 여부)
@@ -620,11 +616,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.ListBegin">
@@ -640,11 +637,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CoherentDiamondCSeries">
@@ -785,11 +783,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.ListBegin">
@@ -805,11 +804,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (시리얼 통신으로 처리됨)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CoherentDiamondJSeries">
@@ -1012,11 +1012,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.ListBegin">
@@ -1032,11 +1033,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (시리얼 통신으로 처리됨)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IPGYLPN">
@@ -1067,11 +1069,6 @@
         <member name="P:SpiralLab.Sirius.IPGYLPN.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPN.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsReady">
@@ -1615,11 +1612,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPN.ListBegin">
@@ -1635,11 +1633,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPN.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPN.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryRGHAIO">
@@ -1670,11 +1669,6 @@
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsReady">
@@ -1867,11 +1861,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ListBegin">
@@ -1887,11 +1882,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SpectraPhysicsHippo">
@@ -1922,11 +1918,6 @@
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsReady">
@@ -2035,11 +2026,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.ListBegin">
@@ -2055,11 +2047,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SpectraPhysicsTalon">
@@ -2090,11 +2083,6 @@
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsReady">
@@ -2137,6 +2125,11 @@
             사용자 데이타
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsShutterOpen">
+            <summary>
+            Shutter 온오프
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.TriggerEdge">
             <summary>
             트리거 형태
@@ -2177,7 +2170,7 @@
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Status">
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.StatusByte">
             <summary>
             디바이스 상태 (8비트)
             </summary>
@@ -2258,11 +2251,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.ListBegin">
@@ -2278,16 +2272,18 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotorACS">
             <summary>
             Motor ACS
+            ACS 모션 단축용
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MotorACS.PropertyChanged">
@@ -2312,7 +2308,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.MotorACS.TargetPosition">
             <summary>
-            위치 (mm)
+            절대 위치 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorACS.ActualPosition">
@@ -2417,6 +2413,13 @@
             <param name="onOff"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorACS.CtlResetCount(System.Single)">
+            <summary>
+            위치 카운터 리셋
+            </summary>
+            <param name="position">리셋 위치값(오프셋값)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorACS.CtlHomeSearch">
             <summary>
             홈(원점) 검색 시작
@@ -2464,323 +2467,128 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.MotorXYSyncAxis">
+        <member name="T:SpiralLab.Sirius.MotorESP301">
             <summary>
-            Motor XY SyncAxis
+            모터 / ESP301 단축
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.MotorXYSyncAxis.PropertyChanged">
+        <member name="E:SpiralLab.Sirius.MotorESP301.PropertyChanged">
             <summary>
             속성 변경 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.SyncRoot">
+        <member name="P:SpiralLab.Sirius.MotorESP301.SyncRoot">
             <summary>
             동기화 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.No">
+        <member name="P:SpiralLab.Sirius.MotorESP301.No">
             <summary>
-            스테이지 번호
+            모터 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.Name">
+        <member name="P:SpiralLab.Sirius.MotorESP301.Name">
             <summary>
-            스테이지 이름
+            모터 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsReady">
+        <member name="P:SpiralLab.Sirius.MotorESP301.TargetPosition">
+            <summary>
+            위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.ActualPosition">
+            <summary>
+            실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsReady">
             <summary>
             준비상태 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsBusy">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsBusy">
             <summary>
             구동중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsError">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsError">
             <summary>
             알람 발생 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.IsInPos">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsInPos">
             <summary>
             명령 지점 도착 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYSyncAxis.Tag">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsHomeSearched">
             <summary>
-            사용자 정의 데이타
+            원점 검색 여부
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.#ctor">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsServoOn">
             <summary>
-            생성자
+            서보 온 여부
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.#ctor(SpiralLab.Sirius.IRtcSyncAxis,System.Int32,System.String)">
-            <summary>
-            생성자
-            </summary>
-            <param name="rtcSyncAxis">IRtcSyncAxis 인터페이스</param>
-            <param name="no">스테이지 번호</param>
-            <param name="name">축 이름</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            홈(원점) 검색 시작
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveAbs(System.Numerics.Vector2,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveRel(System.Numerics.Vector2,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">Axes</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYSyncAxis.Update">
-            <summary>
-            상태 업데이트
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.MotorXYZRVirtual">
-            <summary>
-            XYZR 모터 
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.MotorXYZRVirtual.PropertyChanged">
-            <summary>
-            속성 변경 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.No">
-            <summary>
-            스테이지 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.IsBusy">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsDriving">
             <summary>
             구동중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.IsError">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsCwSenOn">
             <summary>
-            알람 발생 여부
+            CW 센서 상태
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZRVirtual.Tag">
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsCCwSenOn">
+            <summary>
+            CCW 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsOrgSenOn">
+            <summary>
+            ORG 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.MaxVelocity">
+            <summary>
+            최대 속도를 제한값 (mm/s)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.#ctor">
+        <member name="M:SpiralLab.Sirius.MotorESP301.#ctor">
             <summary>
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.#ctor(System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.MotorESP301.#ctor(System.Int32,System.String,CommandInterfaceESP301.ESP301)">
             <summary>
             생성자
             </summary>
             <param name="no">스테이지 번호</param>
             <param name="name">축 이름</param>
+            <param name="axis">대상 축</param>
+            <param name="esp">ESP 제어 인스턴스</param>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.Initialize">
+        <member name="M:SpiralLab.Sirius.MotorESP301.Initialize">
             <summary>
             초기화 
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlHomeSearch">
             <summary>
             홈(원점) 검색 시작
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlRotateAbs(System.Single,System.Single)">
-            <summary>
-            절대 각도 이동
-            </summary>
-            <param name="angle"></param>
-            <param name="vel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlMoveRel(System.Numerics.Vector3,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlRotateRel(System.Single,System.Single)">
-            <summary>
-            상대 각도 이동
-            </summary>
-            <param name="angle"></param>
-            <param name="vel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis"></param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZRVirtual.Update">
-            <summary>
-            상태 업데이트
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.MotorXYZESP301">
-            <summary>
-            XYZ 모터 
-            ESP301
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.MotorXYZESP301.PropertyChanged">
-            <summary>
-            속성 변경 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.No">
-            <summary>
-            스테이지 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZESP301.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.#ctor(System.Int32,System.String,System.UInt32,System.UInt32)">
-            <summary>
-            생성자
-            </summary>
-            <param name="no">스테이지 번호</param>
-            <param name="name">축 이름</param>
-            <param name="comPort">통신 COM 포트 번호</param>
-            <param name="baudRate">Baud Rate (19200, USB= 921600)</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            홈(원점) 검색 시작
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlRunProgram(System.Int32,System.Int32)">
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlRunProgram(CommandInterfaceESP301.ESP301,System.Int32,System.Int32)">
             <summary>
             프로그램 실행
             </summary>
@@ -2788,407 +2596,213 @@
             <param name="number"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlMoveRel(System.Numerics.Vector3,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">0(X), 1(Y), 2(Z)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveStop">
             <summary>
             정지
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.CtlReset">
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlReset">
             <summary>
             알람 해제
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZESP301.Update">
+        <member name="M:SpiralLab.Sirius.MotorESP301.Update">
             <summary>
             상태 업데이트
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.MotorXYZVirtual">
+        <member name="T:SpiralLab.Sirius.MotorsDefault">
             <summary>
-            XYZ 모터 
+            모터 Default 버전
+            다축용
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.MotorXYZVirtual.PropertyChanged">
+        <member name="E:SpiralLab.Sirius.MotorsDefault.PropertyChanged">
             <summary>
             속성 변경 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.SyncRoot">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.SyncRoot">
             <summary>
             동기화 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.No">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.No">
             <summary>
             스테이지 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.Name">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.Name">
             <summary>
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.IsReady">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorsDefault.IsReady">
             <summary>
             준비상태 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.IsBusy">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.IsBusy">
             <summary>
             구동중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.IsError">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.IsError">
             <summary>
             알람 발생 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYZVirtual.Tag">
+        <member name="P:SpiralLab.Sirius.MotorsDefault.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.#ctor">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.#ctor">
             <summary>
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.#ctor(System.Int32,System.String)">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.#ctor(System.Int32,System.String,SpiralLab.Sirius.IMotor[])">
             <summary>
             생성자
             </summary>
             <param name="no">스테이지 번호</param>
             <param name="name">축 이름</param>
+            <param name="motors">축 목록 </param>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.Initialize">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
             <summary>
-            초기화 
+            절대 위치 이동 (다축)
             </summary>
+            <param name="positions">위치값 (mm) 배열</param>
+            <param name="vels">속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(System.Int32,System.Single,System.Single)">
             <summary>
-            홈(원점) 검색 시작
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
-            <summary>
-            절대 위치 이동
+            절대 위치 이동 (다축)
             </summary>
             <param name="position">위치값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlMoveRel(System.Numerics.Vector3,System.Single)">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
             <summary>
-            상대 위치 이동
+            상대 위치 이동 (다축)
             </summary>
-            <param name="distance">거리값 (mm)</param>
+            <param name="distances">위치값 (mm) 배열</param>
+            <param name="vels">속도 (mm/s) 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(System.Int32,System.Single,System.Single)">
+            <summary>
+            상대 위치 이동 (단축)
+            </summary>
+            <param name="no">모터 번호</param>
+            <param name="distance">위치값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">0(X), 1(Y), 2(Z)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYZVirtual.Update">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.Update">
             <summary>
             상태 업데이트
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.MotorXYVirtual">
+        <member name="T:SpiralLab.Sirius.IMotors">
             <summary>
-            XY 모터 
+            모터 집합 인터페이스
+            XY 스테이지용
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.MotorXYVirtual.PropertyChanged">
-            <summary>
-            속성 변경 이벤트 핸들러
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.SyncRoot">
+        <member name="P:SpiralLab.Sirius.IMotors.SyncRoot">
             <summary>
             동기화 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.No">
+        <member name="P:SpiralLab.Sirius.IMotors.Motors">
             <summary>
-            스테이지 번호
+            축 목록
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.Name">
+        <member name="P:SpiralLab.Sirius.IMotors.Name">
             <summary>
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.IsReady">
+        <member name="P:SpiralLab.Sirius.IMotors.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotors.IsInPos">
+            <summary>
+            InPosition 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotors.IsReady">
             <summary>
             준비상태 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.IsBusy">
+        <member name="P:SpiralLab.Sirius.IMotors.IsBusy">
             <summary>
             구동중 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.IsError">
+        <member name="P:SpiralLab.Sirius.IMotors.IsError">
             <summary>
             알람 발생 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MotorXYVirtual.Tag">
+        <member name="P:SpiralLab.Sirius.IMotors.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.#ctor">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
             <summary>
-            생성자
+            절대 위치 이동 (다축)
             </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.#ctor(System.Int32,System.String)">
-            <summary>
-            생성자
-            </summary>
-            <param name="no">스테이지 번호</param>
-            <param name="name">축 이름</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.Initialize">
-            <summary>
-            초기화 
-            </summary>
+            <param name="positions">위치값 (mm) 배열</param>
+            <param name="vels">속도 (mm/s) 배열</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Int32,System.Single,System.Single)">
             <summary>
-            홈(원점) 검색 시작
+            절대 위치 이동 (단축)
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlMoveAbs(System.Numerics.Vector2,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
+            <param name="no">모터 번호</param>
             <param name="position">위치값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlMoveRel(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
             <summary>
-            상대 위치 이동
+            상대 위치 이동 (다축)
             </summary>
-            <param name="distance">거리값 (mm)</param>
+            <param name="distances">위치값 (mm) 배열</param>
+            <param name="vels">속도 (mm/s) 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Int32,System.Single,System.Single)">
+            <summary>
+            상대 위치 이동 (단축)
+            </summary>
+            <param name="no">모터 번호</param>
+            <param name="distance">위치값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">Axes</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorXYVirtual.Update">
-            <summary>
-            상태 업데이트
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.IMotorXYZR">
-            <summary>
-            모터 인터페이스
-            XYZR 스테이지용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.No">
-            <summary>
-            스테이지 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.Name">
-            <summary>
-            모터 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.TargetPosition">
-            <summary>
-            명령 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.ActualPosition">
-            <summary>
-            실제 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.TargetPositionVelocity">
-            <summary>
-            위치 이동 속도 (mm/s)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.TargetAngle">
-            <summary>
-            명령 각도 (deg)
-            R축 전용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.ActualAngle">
-            <summary>
-            실제 각도 (deg)
-            R축 전용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.TargetAngularVelocity">
-            <summary>
-            각 이동 속도 (deg/s)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.IsInPos">
-            <summary>
-            In Position 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZR.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            원점 초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlRotateAbs(System.Single,System.Single)">
-            <summary>
-            절대 각도 이동
-            </summary>
-            <param name="angle"></param>
-            <param name="vel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlMoveRel(System.Numerics.Vector3,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlRotateRel(System.Single,System.Single)">
-            <summary>
-            상대 각도 이동
-            </summary>
-            <param name="angle"></param>
-            <param name="vel"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">0(X), 1(Y), 2(Z), 3(R)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZR.Update">
+        <member name="M:SpiralLab.Sirius.IMotors.Update">
             <summary>
             상태 업데이트
             </summary>
@@ -3210,24 +2824,9 @@
             위치 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.X">
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Position">
             <summary>
             X 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.Y">
-            <summary>
-            Y 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.Z">
-            <summary>
-            Z 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.R">
-            <summary>
-            R 회전각 (deg)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotorPosition.Velocity">
@@ -3239,6 +2838,12 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotorPosition.Clone">
+            <summary>
+            복제
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotorPositionSerializer">
             <summary>
@@ -3260,226 +2865,14 @@
             <param name="fileName">파일이름</param>
             <returns>모터 위치 집합</returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IMotorXYZ">
+        <member name="T:SpiralLab.Sirius.MotorPositionDefault">
             <summary>
-            모터 인터페이스
-            XYZ 스테이지용
+            모터 위치 (기본버전)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.SyncRoot">
+        <member name="M:SpiralLab.Sirius.MotorPositionDefault.Clone">
             <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.No">
-            <summary>
-            스테이지 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.Name">
-            <summary>
-            모터 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.TargetPosition">
-            <summary>
-            명령 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.ActualPosition">
-            <summary>
-            실제 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.TargetPositionVelocity">
-            <summary>
-            위치 이동 속도 (mm/s)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsInPos">
-            <summary>
-            In Position 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXYZ.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            원점 초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveAbs(System.Numerics.Vector3,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveRel(System.Numerics.Vector3,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">Axes 열거형</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXYZ.Update">
-            <summary>
-            상태 업데이트
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:SpiralLab.Sirius.MotorXYZRPosition">
-            <summary>
-            모터 XYZR 위치
-            </summary>
-        </member>
-        <member name="T:SpiralLab.Sirius.IMotorXY">
-            <summary>
-            모터 인터페이스
-            XY 스테이지용
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.No">
-            <summary>
-            스테이지 번호
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.Name">
-            <summary>
-            스테이지 이름
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.TargetPosition">
-            <summary>
-            명령 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.ActualPosition">
-            <summary>
-            실제 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.TargetPositionVelocity">
-            <summary>
-            위치 이동 속도 (mm/s)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.IsInPos">
-            <summary>
-            InPosition 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.IsReady">
-            <summary>
-            준비상태 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.IsError">
-            <summary>
-            알람 발생 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorXY.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlHomeSearch(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            원점 초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlMoveAbs(System.Numerics.Vector2,System.Single)">
-            <summary>
-            절대 위치 이동
-            </summary>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlMoveRel(System.Numerics.Vector2,System.Single)">
-            <summary>
-            상대 위치 이동
-            </summary>
-            <param name="distance">거리값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlMoveJog(SpiralLab.Sirius.Axes,System.Single)">
-            <summary>
-            조그 이동
-            </summary>
-            <param name="axis">Axes 열거형</param>
-            <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlMoveStop(System.Nullable{SpiralLab.Sirius.Axes})">
-            <summary>
-            정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMotorXY.Update">
-            <summary>
-            상태 업데이트
+            복제
             </summary>
             <returns></returns>
         </member>
@@ -3533,6 +2926,16 @@
         <member name="T:SpiralLab.Sirius.Plane">
             <summary>
             3D 공간의 평면 지정
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Plane.Upper">
+            <summary>
+            상부 평면
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Plane.Lower">
+            <summary>
+            하부 평면
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ICorrection3D">
@@ -4845,7 +4248,7 @@
             <summary>
             해당 채널 16비트 상태 가져오기
             </summary>
-            <param name="ch">채널</param>
+            <param name="ch">채널 (0,1,2,...)</param>
             <param name="d16bits">16비트값</param>
             <returns></returns>
         </member>
@@ -4964,7 +4367,7 @@
             <summary>
             해당 채널 16비트 상태 얻기
             </summary>
-            <param name="ch">채널</param>
+            <param name="ch">채널 (0,1,2,...)</param>
             <param name="d16bits">16비트값</param>
             <returns></returns>
         </member>
@@ -5390,11 +4793,6 @@
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsReady">
@@ -5908,11 +5306,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeE.ListBegin">
@@ -5928,11 +5327,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryDX">
@@ -5964,11 +5364,6 @@
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsReady">
@@ -6146,11 +5541,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.ListBegin">
@@ -6166,11 +5562,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.JPTTypeE">
@@ -6201,11 +5598,6 @@
         <member name="P:SpiralLab.Sirius.JPTTypeE.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTTypeE.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsReady">
@@ -6463,11 +5855,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.ListBegin">
@@ -6483,11 +5876,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.JPTTypeE.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IPGYLPTypeD">
@@ -6518,11 +5912,6 @@
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsReady">
@@ -6926,11 +6315,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeD.ListBegin">
@@ -6946,11 +6336,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia">
@@ -6981,11 +6372,6 @@
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MaxPowerWatt">
             <summary>
             최대 파워 (W)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerCompensator">
-            <summary>
-            파워 보정기
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsReady">
@@ -7244,11 +6630,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.ListBegin">
@@ -7264,11 +6651,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CoherentAviaLX">
@@ -7401,11 +6789,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.ListBegin">
@@ -7421,31 +6810,32 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (시리얼 통신으로 처리됨)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerControlMethod">
             <summary>
-            레이저 소스 파워 제어 방식 종류
+            레이저 소스의 출력 파워를 제어하는 방식들
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Unknown">
             <summary>
-            미설정
+            미 설정
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Rs232">
             <summary>
-            외부 통신
+            외부 통신 (시리얼 통신)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.TcpIp">
             <summary>
-            외부 통신 
+            외부 통신  (소켓 통신)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Duty">
@@ -7460,12 +6850,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.DigitalBits">
             <summary>
-            디지털 비트 출력을 통한 제어
+            16 비트(0~255) 와 같은 디지털 비트의 조합을 이용한 제어
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Custom">
             <summary>
-            사용자 정의
+            사용자 정의 제어
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerControl">
@@ -7478,34 +6868,44 @@
             파워 변경 방식
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single)">
+        <member name="P:SpiralLab.Sirius.IPowerControl.PowerMap">
+            <summary>
+            파워 매핑 테이블
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경 (즉시 명령)
             </summary>
             <param name="watt">출력 에너지(Watt)</param>
+            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single,System.String)">
             <summary>
-            파워 변경 (RTC제어기의 리스트 버퍼에 기록되어 실행되는 리스트 명령) 
-            마커의 내부 쓰레드에 의해 호출됨
+            파워 변경 
+            마커의 내부 작업 쓰레드에 의해 리스트 명령으로 호출되므로, RTC 카드의 리스트 버퍼를 통해 레이저 파워를 변경하는 방식으로 처리 필요
+            만약 리스트 명령으로 처리가 불가능한 파워 변경 방식의 경우, 현재까지 다운로드된 모든 리스트 명령을 닫고(List End/List Execute) 실행을 완료시킨 이후
+            파워 변경 을 수행 완료하고 신규로 리스트(List Begin)를 만들어 이후 리스트 명령들에 영향을 주는 안는 방식으로 구현 가능
             </summary>
             <param name="watt">출력 에너지(Watt)</param>
+            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IGuideControl">
             <summary>
-            레이저 소스 IGuide 인터페이스 (Guide 빔 출력을 지원하는 레이저 소스)
+            레이저 소스 IGuide 인터페이스 
+            지시용(Guide/Pilot) 레이저 빔의 출력을 지원하는 레이저 소스의 경우 이 인터페이스를 상속 구현
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IGuideControl.IsGuideOn">
             <summary>
-            가이드 빔(Guide) On/Off 상태 제어
+            지시용 레이저 빔(Guide/Pilot) On/Off 상태 제어
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IShutterControl">
             <summary>
-            레이저 소스 IShutter 인터페이스 (셔터 제어를 지원하는 레이저 소스)
+            레이저 소스 IShutter 인터페이스 (셔터 제어를 지원하는 레이저 소스의 경우 상속 구현)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IShutterControl.IsShutterOpen">
@@ -7516,16 +6916,19 @@
         <member name="T:SpiralLab.Sirius.ILaser">
             <summary>
             레이저 소스 인터페이스
+            INotifyPropertyChanged 인터페이스는 내부 속성의 값이 변경되는 시점을 통지해주기 위해 지원됨
+            IDisposable 인터페이스는 레이저 소스의 자원해제 시점에 자원 반납을 위해 지원됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
             <summary>
             동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Index">
             <summary>
-            식별번호
+            식별 번호
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Name">
@@ -7535,55 +6938,71 @@
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.MaxPowerWatt">
             <summary>
-            최대 출력 에너지 (Watt)
+            최대 출력 파워 (Watt)
+            
+                                   사용자가 지정한 출력 파워 (W)
+            출력 비율(%) =   ----------------------------------------  X 100
+                              레이저 소스에 지정된 최대 출력 파워 (W)
+                              
+            사용자의 출력 파워 지정은 통상 IPen 의 Watt 항목에서 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsReady">
             <summary>
             준비 상태
+            레이저 소스의 제어 상태가 가공 준비가 완료되었는지 여부를 나타내며
+            시스템에서 가공 준비가 완료되었는지 여부를 판단하는 여러 조건들중 하나로 사용됨
             CheckReady 상속 구현부에서 오버라이딩 가능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsBusy">
             <summary>
             출사중 여부
+            레이저 소스의 제어 상태가 출사중인지 여부 나타내며
+            시스템에서 출사중인지 여부를 판단하는 여러 조건들중 하나로 사용됨
             CheckBusy 상속 구현부에서 오버라이딩 가능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsError">
             <summary>
             알람 발생 여부
+            시스템에서 에러가 발생했는지 여부를 판단하는 여러 조건들중 하나로 사용됨
             CheckErrors 상속 구현부에서 오버라이딩 가능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스 연결용
+            레이저 소스와 RTC 카드 사이에 IO 가 연결되어 있을때 RTC 카드에 필요한 입출력 제어를 위한 연결용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsPowerControl">
             <summary>
-            파워 변경을 지원하는지 여부 (IPowerControl 인터페이스로 접근)
+            파워 변경을 지원하는지 여부 
+            레이저 소스의 출력 파워를 조절가능하면 true 로 설정하고 IPowerControl 인터페이스를 상속 구현함
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsShutterControl">
             <summary>
-            셔터 제어를 지원하는지 여부 (IShutterControl 인터페이스로 접근)
+            셔터 제어를 지원하는지 여부
+            레이저 소스내에 셔터(Shutter) Open/Close 제어가능하면 true 로 설정하고 IShutterControl 인터페이스를 상속 구현함
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsGuideControl">
             <summary>
             Guide 레이저 빔 지원하는지 여부 (IGuideControl 인터페이스로 접근)
+            레이저 소스에서 지시용 레이저 빔 출력을 지원하면 true 로 설정하고 IGuideControl 인터페이스를 상속 구현함
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsTimedOut">
             <summary>
             통신 타입아웃 여부
+            레이저 소스와의 통신중 다양한 이유로 통신 실패(타임아웃 등) 발생시 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsProtocolError">
             <summary>
-            통신 프로토콜 오류 여부
+             레이저 소스와의 통신중 다양한 이유로 송수신 데이타의 부적합등 프로토콜 오류가 발생시 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Tag">
@@ -7593,32 +7012,36 @@
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.Initialize">
             <summary>
-            초기화 (통신 등)
+            초기화 시도
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
             <summary>
             출사 중지
+            긴급정지등의 용도로 호출되며 레이저 소스내에서 이를 지원할 경우 적절히 처리
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
             <summary>
-            리셋 (에러 상태 해제 시도)
+            내부에 발생된 여러가지의 에러 상태의 해제를 시도하는 리셋 기능
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.ListBegin">
             <summary>
             리스트 시작 통지용
-            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼를 개방(begin) 한 후 각종 데이타가 다운로드되는데, 이 리스트 버퍼가 개방되는 시점을 통지하는 역할
+            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도로도 활용됨)
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.ListEnd">
             <summary>
             리스트 명령 끝 통지용
+            마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼에 모든 데이타가 다운로드된 이후 리스트가 닫히는 시점을 통지하는 역할
+            (가공 마무리시 이를 통지하는 용도)
             </summary>
             <returns></returns>
         </member>
@@ -7751,11 +7174,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.ListBegin">
@@ -7771,11 +7195,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.LaserVirtual.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SPIG4">
@@ -7896,11 +7321,12 @@
             <param name="code"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.CtlPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SPIG4.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
             <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.ListBegin">
@@ -7916,11 +7342,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.ListPower(System.Single)">
+        <member name="M:SpiralLab.Sirius.SPIG4.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
+             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.MathHelper.DegToRad">
@@ -8072,6 +7499,11 @@
             파워맵 인터페이스
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.Index">
             <summary>
             식별자
@@ -8084,7 +7516,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.XName">
             <summary>
-            X : 레이저 파워 조절 Factor( pulse width (um) / voltage(V) / duty width (%) )
+            파라메터 X : 레이저 파워 조절 Factor
+            watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.XGap">
@@ -8097,10 +7530,28 @@
             Category, (X값, 측정값)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.IsLookUpEnabled">
+            <summary>
+            매핑(룩업) 테이블 기반의 근사 연산을 할지 여부
+            기본값 true 
+            false 일 경우 입력값과 동일한 값이 출력됨 (1:1)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Clear">
             <summary>
-            시리즈 정보및 룩업테이블 모두 삭제
+            모든 카테고리 정보및 룩업테이블 모두 삭제
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Clear(System.String)">
+            <summary>
+            지정된 카테고리(시리즈) 룩업테이블 삭제
+            </summary>
+            <param name="category"></param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Update(System.String,System.Single,System.Single)">
             <summary>
@@ -8109,7 +7560,7 @@
             측정값 : 에너지 (Watt)
             </summary>
             <param name="category">Series Name</param>
-            <param name="x">펄스폭, 아날로그와 같은 가변인자</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) 가변인자</param>
             <param name="detectedWatt">측정된 실제 에너지(W)</param>
             <returns></returns>
         </member>
@@ -8118,7 +7569,7 @@
             룩업 테이블 실제값 조회
             </summary>
             <param name="category">Series Name</param>
-            <param name="x">펄스폭, 아날로그와 같은 가변인자</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) 가변인자</param>
             <param name="watt">측정된 실제 에너지(W)</param>
             <returns></returns>
         </member>
@@ -8127,7 +7578,7 @@
             룩업 테이블내의 지정된 시리즈에서의 실제 최대 에너지(W)값
             </summary>
             <param name="category">Series Name</param>
-            <param name="detectedWatt">측정된 실제 에너지(W)</param>
+            <param name="maxWatt">측정된 최대 에너지(W)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.MinMaxX(System.String,System.Single@,System.Single@)">
@@ -8135,8 +7586,8 @@
             룩업 테이블내의 지정된 시리즈에서의 X 의 최대, 최소값
             </summary>
             <param name="category">Series Name</param>
-            <param name="minX">최소값(펄스폭, 아날로그와 같은 가변인자)</param>
-            <param name="maxX">최대값(펄스폭, 아날로그와 같은 가변인자)</param>
+            <param name="minX">최소값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <param name="maxX">최대값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Lookup(System.String,System.Single,System.Single@)">
@@ -8145,14 +7596,119 @@
             </summary>
             <param name="category">Series Name</param>
             <param name="targetWatt">출력을 원하는 에너지(W)</param>
-            <param name="x">계산된 x값 (펄스폭, 아날로그와 같은 가변인자)</param>
+            <param name="x">계산된 x값 (watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMapJson">
+        <member name="T:SpiralLab.Sirius.PowerMapDefault">
             <summary>
-            파워맵
-            JSON 파일 포맷 버전
+            파워맵 (기본 버전)    
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.Index">
+            <summary>
+            식별자
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.FileName">
+            <summary>
+            파워 맵 파일 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.XName">
+            <summary>
+            파라메터 X : 레이저 파워 조절 Factor 
+            watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.XGap">
+            <summary>
+            파라메터 X값의 간격
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.Data">
+            <summary>
+            Category, (X값, 측정값)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.#ctor(System.UInt32,System.String,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="mapFileName"></param>
+            <param name="xName"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Clear">
+            <summary>
+            모든 카테고리 정보및 룩업테이블 모두 삭제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Clear(System.String)">
+            <summary>
+            지정된 카테고리(시리즈) 룩업테이블 삭제
+            </summary>
+            <param name="category"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Update(System.String,System.Single,System.Single)">
+            <summary>
+            룩업 테이블 업데이트 
+            설정값 : 시리즈 이름과 의존값(x)
+            측정값 : 에너지 (Watt)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) </param>
+            <param name="detectedWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Query(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블 실제값 조회
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) </param>
+            <param name="watt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.MaxDetectedPower(System.String,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 실제 최대 에너지(W)값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="maxWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.MinMaxX(System.String,System.Single@,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 X 의 최대, 최소값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="minX">최소값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <param name="maxX">최대값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Lookup(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="targetWatt">출력을 원하는 에너지(W)</param>
+            <param name="x">계산된 x값 (watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeterOphirUsbI">
             <summary>
@@ -8360,14 +7916,129 @@
             1:1 버전
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.Index">
+            <summary>
+            식별자
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.FileName">
+            <summary>
+            파워 맵 파일 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.XName">
+            <summary>
+            파라메터 X : 레이저 파워 조절 Factor 
+            watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.XGap">
+            <summary>
+            파라메터 X값의 간격
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.Data">
+            <summary>
+            Category, (X값, 측정값)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVirtual.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.PowerMapVirtual.#ctor">
             <summary>
             생성자
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.Clear">
+            <summary>
+            모든 카테고리 정보및 룩업테이블 모두 삭제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.Clear(System.String)">
+            <summary>
+            지정된 카테고리(시리즈) 룩업테이블 삭제
+            </summary>
+            <param name="category"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.Update(System.String,System.Single,System.Single)">
+            <summary>
+            룩업 테이블 업데이트 
+            설정값 : 시리즈 이름과 의존값(x)
+            측정값 : 에너지 (Watt)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) </param>
+            <param name="detectedWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.Query(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블 실제값 조회
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="x">watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) </param>
+            <param name="watt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.MaxDetectedPower(System.String,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 실제 최대 에너지(W)값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="maxWatt">측정된 실제 에너지(W)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.MinMaxX(System.String,System.Single@,System.Single@)">
+            <summary>
+            룩업 테이블내의 지정된 시리즈에서의 X 의 최대, 최소값
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="minX">최소값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <param name="maxX">최대값(watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVirtual.Lookup(System.String,System.Single,System.Single@)">
+            <summary>
+            룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
+            </summary>
+            <param name="category">Series Name</param>
+            <param name="targetWatt">출력을 원하는 에너지(W)</param>
+            <param name="x">계산된 x값 (watt(W), current(A), pulse width(um) / voltage(V) / duty width(%) )</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Axes">
             <summary>
             모터 축 식별자
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Axes.X">
+            <summary>
+            X 축
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Axes.Y">
+            <summary>
+            Y 축
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Axes.Z">
+            <summary>
+            Z 축
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Axes.R">
+            <summary>
+            R 회전축
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IMotor">
@@ -8398,12 +8069,19 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.TargetPosition">
             <summary>
-            명령 위치 (mm)
+            절대 위치 (mm)
+            설정시 이동됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.ActualPosition">
             <summary>
-            실제 위치 (mm)
+            실제 위치값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotor.DeltaPosition">
+            <summary>
+            상대 위치 (mm)
+            설정시 이동됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.TargetPositionVelocity">
@@ -8495,6 +8173,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IMotor.CtlResetCount(System.Single)">
+            <summary>
+            위치 카운터 리셋
+            </summary>
+            <param name="position">리셋 위치값(오프셋값)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single,System.Single)">
             <summary>
             절대 위치 이동
@@ -8539,6 +8224,7 @@
         <member name="T:SpiralLab.Sirius.MotorAjinExtek">
             <summary>
             Motor AjinExtek AXL
+            아진엑스텍 AXL 단축용
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MotorAjinExtek.PropertyChanged">
@@ -8692,6 +8378,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlResetCount(System.Single)">
+            <summary>
+            위치 카운터 리셋
+            </summary>
+            <param name="position">리셋 위치값(오프셋값)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlMoveAbs(System.Single,System.Single)">
             <summary>
             절대 위치로 이동
@@ -8750,6 +8443,7 @@
         <member name="T:SpiralLab.Sirius.MotorVirtual">
             <summary>
             Motor Virtual
+            단축용
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MotorVirtual.PropertyChanged">
@@ -8864,6 +8558,13 @@
             <summary>
             홈(원점) 검색 시작
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorVirtual.CtlResetCount(System.Single)">
+            <summary>
+            위치 카운터 리셋
+            </summary>
+            <param name="position">리셋 위치값(오프셋값)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorVirtual.CtlServo(System.Boolean)">
@@ -9054,6 +8755,11 @@
         <member name="P:SpiralLab.Sirius.Rtc4.Frequency">
             <summary>
             마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.Fpk">
@@ -10313,6 +10019,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.Frequency">
             <summary>
             마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Fpk">
@@ -11886,6 +11597,11 @@
             마지막 설정된 주파수 값(Hz)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
@@ -13240,6 +12956,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Frequency">
             <summary>
             마지막 설정된 주파수 값(Hz)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Fpk">
@@ -14687,6 +14408,11 @@
             마지막 설정된 주파수 값(Hz)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.Fpk">
             <summary>
             First Pulse Killer 신호의 시간값 (usec)
@@ -15333,13 +15059,14 @@
             <summary>
             3x3 행렬 스택 인터페이스
             스택 자료구조에 3*3 행렬구조체를 push/pop 하여 저장하고, 스택내의 모든 행렬을 곱셈 연산하는등의 유틸리티 클래스
-            스택내에 있는 행렬들의 곱셈을 빈번히 계산하지 않고 변경점이 있을때만 계산을 하기 위해 만들어짐
-            가장 마지막 (가장 최신의, 스택의 Top 위치의) 행렬값부터 변환이 적용됨
+            스택내에 있는 행렬들은 변경점이 있을때만 자동 연산된다
+            가장 마지막, 가장 최신의, 가장 상단의 행렬값부터 변환이 적용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMatrixStack.ToResult">
             <summary>
             스택에 있는 모든 변환 행렬 연산 결과 
+            변경점이 있을때만 자동 연산됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMatrixStack.Count">
@@ -15417,8 +15144,9 @@
         </member>
         <member name="T:SpiralLab.Sirius.LaserMode">
             <summary>
-            레이저 핀의 펄스 모드 (LASER1, LASER2 output pulse timing methods)
-            rf. Scanlab's Manual Doc
+            LASER1, LASER2 출력신호의 역할 지정
+            Co2, YAG 1,2,3,4,...
+            rf. 스캔랩 메뉴얼 문서 참고
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScannerHead">
@@ -15426,14 +15154,44 @@
             스캔 헤드 식별자
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.ScannerHead.Primary">
+            <summary>
+            주 스캐너
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.ScannerHead.Secondary">
+            <summary>
+            부(2nd) 스캐너
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.CorrectionTableIndex">
             <summary>
-            RTC 카드 내에는 4개의 스캐너 보정 테이블을 저장해 놓고 추후 사용 가능
+            RTC 카드 내에는 4개의 스캐너 보정 테이블을 로드한후 선택하여 사용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table1">
+            <summary>
+            테이블 1
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table2">
+            <summary>
+            테이블 2
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table3">
+            <summary>
+            테이블 3
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table4">
+            <summary>
+            테이블 4
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ExtensionChannel">
             <summary>
-            RTC 카드의 확장 IO 포트 종류
+            RTC 카드의 확장 포트 종류
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDI2">
@@ -15473,27 +15231,27 @@
         </member>
         <member name="T:SpiralLab.Sirius.RtcStatus">
             <summary>
-            RTC 상태 확인용
+            RTC 카드의 내부 상태
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.Busy">
             <summary>
-            가공중
+            가공중 (리스트 명령이 실행중)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.NotBusy">
             <summary>
-            가공중이 아님
+            가공중이 아님 (리스트 명령이 미실행중)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.List1Busy">
             <summary>
-            리스트 1번이 사용됨 (리스트 모드가 auto 일 경우 내부적으로 사용됨)
+            리스트 1번이 실행중 (리스트 모드가 auto 일 경우 더블 버퍼링 처리용으로 내부적 사용됨)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.List2Busy">
             <summary>
-            리스트 2번이 사용됨 (리스트 모드가 auto 일 경우 내부적으로 사용됨)
+            리스트 2번이 시행중 (리스트 모드가 auto 일 경우 더블 버퍼링 처리용으로 내부적 사용됨)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.NoError">
@@ -15509,28 +15267,32 @@
         <member name="F:SpiralLab.Sirius.RtcStatus.PositionAckOK">
             <summary>
             스캐너의 위치 응답 오류 발생 여부
+            스캐너 오차량 (명령 위치 - 실제 위치) 이 설정된 범위를 벋어났을때 설정됨 (기본값 : 0.28%)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.PowerOK">
             <summary>
-            스캔 헤드의 전원 공급 이상 여부
+            스캔 헤드에 공급되는 전원 이상 여부
+            SCANLAB 이외의 스캔헤드 제품 사용시 주의
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.TempOK">
             <summary>
             스캔 헤드의 사용가능 온도 도달 여부
+            전원 투입 후 대기 시간 이후 OK 로 변경됨
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcStatus.MotfOutOfRange">
             <summary>
-            MOTF 사용시 스캐너의 허용영역을 벋어났는지 여부 
+            Processing On The Fly 사용시 스캐너의 허용(Limit) 영역을 벋어났는지 여부 
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ILaserControlSignal">
             <summary>
             레이저 제어 신호의 출력 레벨 설정 (Laser1/2, On 등의 신호 레벨을 Active Low 또는 High 로 설정)
-            RTC5/6 만 지원됨 (RTC4는 제어기의 솔더링을 통해 수작업 설정)
-            Rtc5LaserControlSignal / Rtc6LaserControlSignal 사용
+            RTC4 : 납땜 필요
+            RTC5 : Rtc5LaserControlSignal 
+            RTC6 : Rtc6LaserControlSignal
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ILaserControlSignal.ToUInt">
@@ -15543,7 +15305,9 @@
             <summary>
             RTC 외부 제어 모드 값 
             RTC4/5/6 각각 비트 플래그가 다르므로 각 버전별로 구현된 객체 사용
-            Rtc4ExternalControlMode / Rtc5ExternalControlMode / Rtc6ExternalControlMode 사용
+            RTC4 : Rtc4ExternalControlMode 
+            RTC5 : Rtc5ExternalControlMode 
+            RTC6 : Rtc6ExternalControlMode 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
@@ -15555,8 +15319,14 @@
         <member name="T:SpiralLab.Sirius.IRtcJumpMode">
             <summary>
             RTC 점프 모드 설정용 인터페이스
-            RTC5/6 만 지원됨
-            Rtc5JumpMode / Rtc6JumpMode 사용
+            RTC4 : 미지원
+            RTC5 : Rtc5JumpMode 
+            RTC6 : Rtc6JumpMode
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.RtcCorrectionFile">
+            <summary>
+            RTC 보정 파일 처리용 객체
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtc">
@@ -15576,41 +15346,36 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.KFactor">
             <summary>
-            스캐너의 bits/mm 비율값 (k factor)
+            스캐너의 bits/mm 비율값 (K-Factor)
+            RTC4 : 16 bits
+            RTC5 : 20 bits
+            RTC6 : 20 bits
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.EffectiveFieldSize">
             <summary>
-            K factor 에 의해 계산된 스캐너의 유효 가공영역 크기
+            K-Factor 에 의해 계산된 스캐너의 유효 가공영역 크기
+            (ex) size (mm) = 2^20 / K-Factor
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.FieldSizeLimit">
             <summary>
-            가로 세로 가공 영역의 크기 (WxD) (mm)
-            내부 필드 영역을 벋어날 경우 에러 처리됨
+            가로x세로 가공 영역의 크기 제한값 (WxD) (mm)
+            이 값을 지정시 모든 위치 명령에 대해 영역을 벋어났는지를 검사하고 벋어날 경우 가공이 중단되고 에러로 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.LaserMode">
             <summary>
             레이저 모드(CO2, Yag1,2,3,4, ...)
-            Laser1,2 출력핀의 타이밍 종류 선택
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IRtc.Fpk">
-            <summary>
-            First Pulse Killer 신호의 시간값 (usec)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IRtc.Frequency">
-            <summary>
-            마지막 설정된 주파수 (Hz) 값
+            Laser 1,2 출력핀의 역할 변경용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.CorrectionFiles">
             <summary>
             보정 파일 테이블 목록 
-            RTC4 : 최대 2개의 테이블 (0,1)
-            RTC5/6 : 최대 4개의 테이블을 (0,1,2,3)
+            RTC4 : 2개의 테이블 (0,1)
+            RTC5 : 4개의 테이블을 (0,1,2,3)
+            RTC6 : 4개의 테이블을 (0,1,2,3)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.PrimaryHeadTable">
@@ -15621,8 +15386,8 @@
         <member name="P:SpiralLab.Sirius.IRtc.SecondaryHeadTable">
             <summary>
             Secondary 헤드의 보정 파일 테이블 번호 
-            듀얼헤드 일 경우 테이블 번호 지정 가능
-            3D 옵션 사용시 PrimaryHeadTable 과 동일한 테이블 지정 필요
+            듀얼헤드일 경우 테이블 번호 지정 가능
+            3D 옵션 사용시 PrimaryHeadTable 과 동일한 테이블이 지정되어야 한다
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.MatrixStack">
@@ -15633,12 +15398,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.IsMOTF">
             <summary>
-            MOTF(Marking on the fly) 옵션 지원 여부
+            MOTF(Processing on the fly) 옵션 지원 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.Is2ndHead">
             <summary>
-            듀얼 헤드 옵션 지원 여부
+            듀얼 헤드 (2nd) 옵션 지원 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.Is3D">
@@ -15648,7 +15413,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.IsScanAhead">
             <summary>
-            ScanAhead (for syncAxis) 옵션 지원 여부
+            ScanAhead (ExcelliSCAN 스캐너 전용) 옵션 지원 여부
             RTC6 전용
             </summary>
         </member>
@@ -15660,31 +15425,48 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.IsSyncAxis">
             <summary>
-            SyncAxis (XL-SCAN) 옵션 지원 여부
+            SyncAxis/XL-SCAN 옵션 지원 여부 (Rtc6SyncAxis 사용 필요)
             RTC6 전용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.IsJumpMode">
             <summary>
-            intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화되어 Jump and Drill 사용시 자동 적용됨
+            intelli~ 스캐너 전용 옵션
+            고속 점프에 최적화된 튜닝이 사전에 적용되어 있어야 함
+            점프 모드 설정이 성공할 경우 자동 활성화되어 Jump and Drill 사용시 자동 적용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.DuplicatedLength">
             <summary>
-            정점간 인접 검사하여 두개의 벡터를 하나로 합치기 위한 최소 거리값 (mm)
+            연속되는 벡터간 거리를 검사하고 두개의 벡터를 하나로 합치기 위한 최소 거리값 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.Fpk">
+            <summary>
+            마지막 설정된 FPK(First Pulse Killer) 시간값 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.Frequency">
+            <summary>
+            마지막 설정된 주파수 (Hz) 값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.PulseWidth">
+            <summary>
+            마지막 설정된 펄스폭 (usec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.ListType">
             <summary>
-            현재 설정된 리스트 타입
+            마지막 설정된 리스트 타입
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.IsActivateFastBuffer">
             <summary>
             고속 처리 버퍼 모드 활성화 여부 
             Auto 리스트 모드에만 유효함
-            비활성화시(기본값) : 최대 버퍼 크기(BufferMax) 를 두개 만들어 이를 더블 버퍼 처리하며 가공
-            활성화시 : 시작 버퍼크기 (FastBufferStartSize)에 데이타가 쌓이면 우선 빠른 실행이 시작되고 이후 최대 버퍼크기(BufferMax)에 도달하기 전까지 2배씩 버퍼 크기 점진적으로 증가시키며 더블 버퍼 처리하며 가공
+            비활성화시(기본값) : 최대 버퍼 크기(BufferMax)의 리스트 버퍼를 두개 만들어 이를 더블 버퍼 처리하며 가공
+            활성화시 : 리스트 버퍼를 2개 만드는것은 동일하나, 시작 버퍼크기(FastBufferStartSize)에 데이타가 쌓이면 우선 빠른 실행이 시작되고 이후 최대 버퍼크기(BufferMax)에 도달하기 전까지 2배씩 버퍼 크기 점진적으로 증가시키며 더블 버퍼 처리하며 가공 / 빠른 가공 시작을 위한 기능
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.FastBufferStartSize">
@@ -15703,12 +15485,12 @@
             </summary>
             <param name="kFactor">k factor = bits/mm</param>
             <param name="laserMode">LaserMode 열거형</param>
-            <param name="ctFileName">주 스캐너의 보정 테이블(Table1)에 Load/Select 하려는 ctb/ct5 스캐너 보정 파일</param>
+            <param name="ctFileName">주(Primary) 스캐너의 보정 테이블(Table1)에 Load/Select 하려는 ctb/ct5 스캐너 보정 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
-            보정 파일(.ctb/.ct5)을 RTC 내부 메모리(테이블)로 로딩
+            보정 파일(.ctb/.ct5)을 보정 테이블에 로딩
             </summary>
             <param name="tableIndex">CorrectionTableIndex 열거형 </param>
             <param name="ctFileName">ctb/ct5 스캐너 보정 파일</param>
@@ -15716,7 +15498,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
-            지정된 스캐너 헤드에 보정 파일(.ctb/.ct5)을 선택(로드)
+            지정된 스캐너 헤드에 보정 테이블을 선택
             </summary>
             <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
             <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
@@ -15725,7 +15507,7 @@
         <member name="M:SpiralLab.Sirius.IRtc.CtlLaserMode(SpiralLab.Sirius.LaserMode)">
             <summary>
             레이저 모드 (Yag1,2, ... Co2 등)
-            레이저1,2 Pin/레이저 ON Pin의 출력 신호 타이밍 모드 변경
+            레이저 1,2 Pin/레이저 ON Pin의 출력 신호 타이밍 모드 변경
             상세 타이밍 차트는 RTC 메뉴얼에 명시됨
             </summary>
             <param name="mode"></param>
@@ -15827,7 +15609,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlGetStatus(SpiralLab.Sirius.RtcStatus)">
             <summary>
-            RTC 카드의 내부 상태 확인
+            RTC 카드의 상태 확인
             </summary>
             <param name="status">RtcStatus 열거형</param>
             <returns></returns>
@@ -15846,7 +15628,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlReset">
             <summary>
-            에러상태를 해제
+            에러상태 해제 시도
             </summary>
             <returns></returns>
         </member>
@@ -16049,7 +15831,8 @@
         <member name="T:SpiralLab.Sirius.IRtcSerialNo">
             <summary>
             IRtcSerialNo 인터페이스
-            전용 문자 개체 (SiriusTextDate, SiriusTextTime 등...) 가공시 일련번호 리셋/증가량 처리 지원
+            리스트 버퍼3 영역이 존재하는 RTC5/6 전용 기능
+            문자 개체 (SiriusTextDate, SiriusTextTime 등...) 가공시 일련번호 리셋/증가량 처리 지원
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSerialNo.SerialStartNo">
@@ -16599,7 +16382,7 @@
         <member name="T:SpiralLab.Sirius.IRtcCharacterSet">
             <summary>
             IRtcCharacterSet 인터페이스
-            RTC5/6 전용
+            리스트 버퍼3 영역이 존재하는 RTC5/6 전용 기능
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -16844,13 +16627,13 @@
         </member>
         <member name="F:SpiralLab.Sirius.WobbelShape.Perpendicular8">
             <summary>
-            8자 수직
+            8자형 (수직)
             RTC5/6 전용
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.WobbelShape.Parallel8">
             <summary>
-            8자 수형
+            8자형 (수평)
             RTC5/6 전용
             </summary>
         </member>
@@ -16998,6 +16781,7 @@
         <member name="T:SpiralLab.Sirius.MeasurementChannel">
             <summary>
             계측 (Measurement) 채널 목록
+            RTC4 는 최대 2개, RTC5/6 는 최대 4개의 채널을 동시에 계측 가능
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.LaserOn">
@@ -17278,7 +17062,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
             <summary>
-            측정된 샘플링 데이타 가져오기
+            측정된(샘플링된) 계측 데이타 가져오기
             </summary>
             <param name="channel">채널</param>
             <param name="data">데이타 배열</param>
@@ -17286,7 +17070,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
             <summary>
-            계측으로 취득된 Raw 데이타를 사용자 분석 용이하도록 변환
+            계측으로 취득된 Raw 데이타를 친숙한 사용자 단위계로 변환
             </summary>
             <param name="channel">MeasurementChannel 채널</param>
             <param name="data">입력 데이타</param>
@@ -17297,8 +17081,8 @@
             <summary>
             리스트 명령 - 샘플링 측정 시작
             </summary>
-            <param name="frequency">샘플링 주기 (Hz : ~ 100KHz)</param>
-            <param name="channels">대상 채널 (최대 4개)</param>
+            <param name="frequency">샘플링 주기 (Hz : ~ 100KHz) (최소 해상도 : *10usec) </param>
+            <param name="channels">대상 채널 (RTC4: 2개, RTC5/6: 4개)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.ListMeasurementEnd">
@@ -17314,12 +17098,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncX">
             <summary>
-            Enc0 = X
+            X 엔코더 (0)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncY">
             <summary>
-            Enc1 = Y
+            Y 엔코더 (1)
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EncoderWaitCondition">
@@ -17515,7 +17299,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.MotionType">
             <summary>
-            모션 방식 (SYNCAXIS 기반의 MOTF 를 위한 내용)
+            모션 방식
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionType.Unknown">
@@ -18325,7 +18109,10 @@
         <member name="T:SpiralLab.Sirius.IRtcSyncAxis">
             <summary>
             IRtcSyncAxis 인터페이스
-            RTC6 + ExcelliSCAN + ACS 조합전용
+            SyncAXIS v1.6 지원
+            RTC6 + ExcelliSCAN + ACS 특화 제품
+            RTC6 : SCANa 옵션 활성화 필요 / SyncAxis 동글키 필요
+            ACS : SLEC 컨버터 필요 / ServoBoost 옵션 필요 / SyncAXIS (모션 업데이트 주기 향상) 옵션 필요)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Handle">
@@ -18357,22 +18144,22 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head1Offset">
             <summary>
-            스캔 헤드1 X,Y, Angle 오프셋
+            스캔 헤드1 에 설정된 X,Y, Angle 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head2Offset">
             <summary>
-            스캔 헤드2 X,Y, Angle 오프셋
+            스캔 헤드2 에 설정된 X,Y, Angle 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head3Offset">
             <summary>
-            스캔 헤드3 X,Y, Angle 오프셋
+            스캔 헤드3 에 설정된 X,Y, Angle 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head4Offset">
             <summary>
-            스캔 헤드4 X,Y, Angle 오프셋
+            스캔 헤드4 에 설정된 X,Y, Angle 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Trajectory">
@@ -18387,7 +18174,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.OpStatus">
             <summary>
-            SyncAxis 내부 Operation Status 상태값
+            SyncAxis 인스턴스의 내부 Operation Status 상태값
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.MotionMode">
@@ -18402,12 +18189,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveSpeed">
             <summary>
-            Stage Move 시 사용할 속도 (초기설정값 : 10mm/s)
+            Stage 이동시 사용할 속도 (초기값 : 10mm/s)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveTimeOut">
             <summary>
-            Stage Move 시 사용할 시간제한 (초)
+            Stage 이동시 적용될 시간 제한값 (초기값 : 10s)
             기본 5초
             </summary>
         </member>
@@ -18416,28 +18203,27 @@
             LPF (Low Pass Filter) 주파수 (Hz)
             높은값 : 스테이지쪽에 작업 부하를 상승
             낮은값 : 스캐너 쪽에 작업 부하를 상승
-            초기값은 XML 설정 파일에 있는 값
+            (초기값 : XML 설정 파일에 있는 값)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.IsSimulationMode">
             <summary>
-            시뮬레이션 모드 여부
+            시뮬레이션 모드 활성화 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.SimulationFileName">
             <summary>
-            시뮬레이션 모드일때 
-            현재 작업(Job Id)의 시뮬레이션 저장 파일 이름
+            시뮬레이션 모드일때 현재 작업(Job Id)결과가 저장되는 파일 이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeuristicIndex">
             <summary>
-            XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
+            XML 설정파일에 설정된 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageCount">
             <summary>
-            XML 설정된 스테이지 개수
+            XML 에 설정되어 있는 스테이지의 개수
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.Initialize(System.String)">

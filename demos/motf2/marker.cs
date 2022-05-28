@@ -109,6 +109,9 @@ namespace SpiralLab.Sirius
         /// 멀티 펜 편집기를 이용한 에디터 구성 여부
         /// </summary>
         public bool IsEnablePens { get; set; }
+        
+        public uint MarkCounts { get; protected set; }
+
         /// <summary>
         /// 부가 정보
         /// </summary>
@@ -237,6 +240,8 @@ namespace SpiralLab.Sirius
             this.thread.Name = $"Marker: {this.Name}";
             this.thread.Priority = ThreadPriority.AboveNormal;
             this.thread.Start();
+
+            MarkCounts++;
             return true;
         }
 

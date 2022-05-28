@@ -1984,6 +1984,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Laser.SpectraPhysicsTalonFom.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.SpectraPhysicsTalonFom.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.SpectraPhysicsTalonFom.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Laser.AdvancedOptoWaveFotiaForm.components">
             <summary>
             Required designer variable.
@@ -2103,23 +2120,6 @@
             <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Motor.MotorsForm.InitializeComponent">
-            <summary> 
-            디자이너 지원에 필요한 메서드입니다. 
-            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Motor.MotorXYForm.components">
-            <summary> 
-            필수 디자이너 변수입니다.
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Motor.MotorXYForm.Dispose(System.Boolean)">
-            <summary> 
-            사용 중인 모든 리소스를 정리합니다.
-            </summary>
-            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.Motor.MotorXYForm.InitializeComponent">
             <summary> 
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
@@ -3490,8 +3490,6 @@
             </summary>
             <param name="layer">레이어</param>
             <param name="targetLocations">대상 위치 목록</param>
-            <param name="x">기준 X 위치</param>
-            <param name="y">기준 Y 위치</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityPropertyChanged(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.String,System.Object,System.Object)">
@@ -4238,21 +4236,6 @@
         <member name="P:SpiralLab.Sirius.Layer.Repeat">
             <summary>
             레이어의 반복 가공회수
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Layer.IsXYEnabled">
-            <summary>
-            XY 스테이지 모션 사용 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Layer.XYPosition">
-            <summary>
-            XY 스테이지 모션 사용시 이동 위치
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Layer.XYPositionVel">
-            <summary>
-            XY 스테이지 모션 사용시 이동 속도
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsZEnabled">
@@ -7326,6 +7309,11 @@
             펜 객체 집합을 사용할지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IMarker.MarkCounts">
+            <summary>
+            가공 회수 누적 회수
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMarker.Tag">
             <summary>
             사용자 정의 데이타
@@ -7532,13 +7520,21 @@
             <param name="markerArg">가공 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFontsAndScriptCompile(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IDocument)">
+        <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFonts(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IDocument)">
             <summary>
             문자 집합 RTC 내부 버퍼(리스트3)에 다운로드
             (비활성화됨) 스크립트 컴파일및 실행
             </summary>
             <param name="rtc"></param>
             <param name="doc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptExecute(SpiralLab.Sirius.IEntity,System.Boolean)">
+            <summary>
+            스크립트 인터페이스를 가진 엔티티의 스크립트 실행을 처리
+            </summary>
+            <param name="entity">대상 개체</param>
+            <param name="applyIntoData">실행 결과를 대상 개체 데이타에 적용여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFont(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IEntity)">
@@ -7635,13 +7631,6 @@
             <param name="j">레이어 번호</param>
             <param name="k">엔티티 번호</param>
             <param name="entity">엔티티 객체</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptExecute(SpiralLab.Sirius.IEntity)">
-            <summary>
-            스크립트 인터페이스를 가진 엔티티의 스크립트 실행을 처리
-            </summary>
-            <param name="entity"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.PostWork(System.Boolean)">
@@ -8735,24 +8724,9 @@
             스캐너 Z 축 제어용 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXY">
-            <summary>
-            스테이지 XY축 제어용 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXYZ">
-            <summary>
-            XYZ축 제어용 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.MotorXYZR">
-            <summary>
-            XYZR축 제어용 객체
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Motors">
             <summary>
-            단축 모터 개별 제어용 객체
+            모터 집합을 제어하기 위한 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Input">

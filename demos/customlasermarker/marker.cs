@@ -135,6 +135,9 @@ namespace SpiralLab.Sirius
         public IDocument Document { get { return this.clonedDoc; } }
 
         public bool IsEnablePens { get; set; }
+        
+        public uint MarkCounts { get; protected set; }
+
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -250,6 +253,7 @@ namespace SpiralLab.Sirius
             this.thread.Name = $"Marker: {this.Name}";
             this.thread.Priority = ThreadPriority.AboveNormal;
             this.thread.Start();
+            MarkCounts++;
             return true;
         }
         /// <summary>
