@@ -96,10 +96,10 @@ namespace SpiralLab.Sirius
             //var powerMeter = new PowerMeterOphirUsbI(0, "USBI", "SERIALNO");
             //var powerMeter = new PowerMeterThorLabsPM100Usb(0, "PM100USB", "SERIALNO");
             powerMeter.Initialize();
-
-            //var powerMap = new PowerMapVirtual(0, "Virtual MAP");
-            //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "test.map");
+            
             IPowerMap powerMap = new PowerMapDefault();
+            //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "test.pmap");
+            //var powerMap = PowerMapSerializer.Open(mapFile);
             #endregion
 
             ConsoleKeyInfo key;
@@ -171,6 +171,8 @@ namespace SpiralLab.Sirius
                 //for preheating 
                 Thread.Sleep(5 * 1000);
                 //start measurement
+                powerMeter.PowerMeasureArg.XName = powerMap.XName;
+                powerMeter.PowerMeasureArg.XValue = currentWatt;
                 success &= powerMeter.CtlStart();
                 //during 5 secs
                 Thread.Sleep(5 * 1000);
@@ -182,10 +184,11 @@ namespace SpiralLab.Sirius
                 var avgWatt = powerMeter.Data.Average();
                 Console.WriteLine($"LASER AVG POWER= {avgWatt}");
                 Console.WriteLine($"LASER IS OFF");
-                success &= powerMap.Update("TEST", currentWatt, avgWatt);
+                success &= powerMap.Update("Default", currentWatt, avgWatt);
 
                 powerMeter.CtlClear();
                 currentWatt += increaseWatt;
+                currentWatt = (float)Math.Round(currentWatt, 3); //round up
                 if (!success)
                     break;
             }
@@ -198,7 +201,7 @@ namespace SpiralLab.Sirius
             if (null == powerControl)
                 return false;
 
-            if (!powerMap.Data.ContainsKey("TEST"))
+            if (!powerMap.Data.ContainsKey("Default"))
                 return false;
             if (targetWatt > laser.MaxPowerWatt)
                 return false;
@@ -206,18 +209,21 @@ namespace SpiralLab.Sirius
             powerMeter.CtlStop();
             powerMeter.CtlClear();
             bool success = true;
-            success &= powerMap.Lookup("TEST", targetWatt, out var xWatt);
-            success &= powerControl.CtlPower(xWatt);
+            success &= powerMap.Lookup("Default", targetWatt, out var xWatt);
+            success &= powerControl.CtlPower(xWatt, "Default");
             Console.WriteLine($"LASER COMPENSATED POWER= {xWatt}");
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to laser on with power= {targetWatt}->{xWatt}W ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
                 return false;
             }
+            
             success &= rtc.CtlLaserOn();
             Console.WriteLine("WARNING !!! LASER IS ON ...");
             //for preheating 
             Thread.Sleep(5 * 1000);
             //start measurement
+            powerMeter.PowerMeasureArg.XName = powerMap.XName;
+            powerMeter.PowerMeasureArg.XValue = xWatt;
             success &= powerMeter.CtlStart();
             //during 5 secs
             Thread.Sleep(5 * 1000);

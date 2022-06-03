@@ -15,8 +15,7 @@
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  *   
- * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
- * Copyright (C) 2020-2022 SpiralLab. All rights reserved.
+ * 2022 Copyright(C) SpiralLab. All rights reserved. labspiral@gmail.com
  * Description : spirallab.sirius lib
  * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
  * 

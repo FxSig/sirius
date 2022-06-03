@@ -49,7 +49,7 @@
  - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and customizable entities with layers.
  - support 2D barcodes with various cell type like as dots, lines, outlines, hatch and generated data with formatted datetime, serial no by automatically.
  - support rendering 3D STL(StereoLithography) file.
- - support powermeters and power mapping interface
+ - support powermeters and power mapping interface.
  - support laser beam path visualizer (simulator) and path optimizer algorithm.
  - support powerful undo/redo actions and single document data with multiple view targets.
  - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
@@ -57,7 +57,8 @@
  - support customizable and extensible marker interface.
  - support many kinds of powermeters
     - Ophir USBI (preliminary)
-    - Thorlab PM100USB (preliminary)
+    - Thorlab PM100D, PM100A, PM100USB, PM200, PM400 (preliminary)
+ - support powermap for calibrate output laser power.
  - support many kinds of laser sources
     - Advanced Optowave Fotia
     - Advanced Optowave AOPico (preliminary)
@@ -74,7 +75,7 @@
     - Spectra Physics Talon (preliminary)
     - Spectra Physics Hippo (preliminary)
  - support many kinds of motion controllers
-    - AJINExtek 
+    - AJINExtek AXL
     - ACS SPiiPlusNET (preliminary)
     - Newport ESP301 (preliminary)
  
@@ -82,13 +83,33 @@
 
 **3. How to use ?**
 
- - Development Environment : .NET dll library 
- - Add spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll files as a .NET DLL reference
- - user control in spirallab.sirius.dll file : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
+ - development environment : .NET dll library
+ - there are multiple demo programs in DEMOS directory
+ - add spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll files as a .NET DLL reference
+ - use SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm user controls
  - x64 Environment : copy files from bin\x64 to bin\
  - x32 Environment : copy files from bin\x32 to bin\
- - There are multiple demo programs in DEMOS directory
- - There are stand-alone programs in DEMOS\Sirius directory
+ - additional dll files : freetype6.dll, NLog.dll, ...
+ - subdirectory hierarchy
+
+   > config (config .ini files)
+
+   > correction (ctb/ct5 files and convert programs)
+
+   > fonts (ttf fonts)
+
+   > logo (plt, dxf, stl files)
+
+   > logs (config and output log files)
+
+   > map (powermap files)
+
+   > plot (measurement output files)
+
+   > scripts (script .cs files)
+
+   > siriusfonts (cxf font files)
+
 
  *The program running about 30 mins in evalution copy mode !*
  
@@ -108,6 +129,15 @@
 
 **5. Version history**
 
+
+* 2022.6.3 v.1.110
+   - added) powermap winform (파워맵용 윈폼 추가)
+      - open/save powermap file (파워맵 저장/불러오기 지원)
+   - added) powermeter arguments (파워메터 모델별 계측 인자 인터페이스 추가)
+      - PowerMeasureVirtualArg, PowerMeasureOphirUSBIArg, PowerMeasureThorlabArg (모델별 파워메터 인자) 
+   - fixed) busy bug with rtc4 measurement session (RTC4 계측 버그)
+   - fixed) rtc io output on/off log message (RTC 확장 DIO 변경시 부적절한 로그 메시지 수정)
+
 * 2022.5.30 v.1.109
    - fixed) support script function with text entities (텍스트 개체들에 스크립트 기능 지원)
    - added) powermap added into laser interface to support powermap (파워매핑을 기능을 위해 레이저 인터페이스 변경)
@@ -115,6 +145,7 @@
       - demo programs for powermeter/powermap (파워메터/파워맵 데모 프로그램 추가)
    - fixed) motor/motors inteface (모터 단축 다축용 인터페이스 변경)
       - with control winforms (제어용 윈폼 추가)
+   - added) motorhelper class (모터 헬퍼 클래스 추가)
 
 * 2022.5.20 v.1.108
    - added) laser source for advanced optowave AOPico (preliminary)
