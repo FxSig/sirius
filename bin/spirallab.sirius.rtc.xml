@@ -2739,38 +2739,34 @@
             <param name="name">축 이름</param>
             <param name="motors">축 목록 </param>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(SpiralLab.Sirius.PosVel[])">
             <summary>
             절대 위치 이동 (다축)
             </summary>
-            <param name="positions">위치값 (mm) 배열</param>
-            <param name="vels">속도 (mm/s)</param>
+            <param name="posVel">위치값 (mm), 속도 (mm/s) 배열</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(System.Int32,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveAbs(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             절대 위치 이동 (단축)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
+            <param name="posVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (다축)
             </summary>
-            <param name="distances">위치값 (mm) 배열</param>
-            <param name="vels">속도 (mm/s) 배열</param>
+            <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(System.Int32,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.MotorsDefault.CtlMoveRel(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (단축)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
-            <param name="distance">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
+            <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorsDefault.Update">
@@ -2922,38 +2918,34 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(SpiralLab.Sirius.PosVel[])">
             <summary>
             절대 위치 이동 (다축)
             </summary>
-            <param name="positions">위치값 (mm) 배열</param>
-            <param name="vels">속도 (mm/s) 배열</param>
+            <param name="posVel">위치값 (mm), 속도 (mm/s) 배열</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Int32,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             절대 위치 이동 (단축)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
-            <param name="position">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
+            <param name="posVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Nullable{System.Single}[],System.Nullable{System.Single}[])">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (다축)
             </summary>
-            <param name="distances">위치값 (mm) 배열</param>
-            <param name="vels">속도 (mm/s) 배열</param>
+            <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Int32,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (단축)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
-            <param name="distance">위치값 (mm)</param>
-            <param name="vel">속도 (mm/s)</param>
+            <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.Update">
@@ -2978,6 +2970,26 @@
             생성자
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PosVel">
+            <summary>
+            위치, 속도 저장용 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PosVel.Position">
+            <summary>
+            Position (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PosVel.Velocity">
+            <summary>
+            Velocity (mm/s)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PosVel.HasValue">
+            <summary>
+            값이 모두 설정되어 있는지 여부
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IMotorPosition">
             <summary>
             모터 위치 인터페이스
@@ -2988,16 +3000,7 @@
             위치 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.Position">
-            <summary>
-            X 위치 (mm)
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IMotorPosition.Velocity">
-            <summary>
-            구동시 속도 (mm/s)
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IMotorPosition.Items" -->
         <member name="P:SpiralLab.Sirius.IMotorPosition.Tag">
             <summary>
             사용자 정의 데이타
@@ -3031,7 +3034,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.MotorPositionDefault">
             <summary>
-            모터 위치 (기본버전)
+            모터 위치 (기본 버전)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotorPositionDefault.Clone">
