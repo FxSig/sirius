@@ -130,13 +130,14 @@
 **5. Version history**
 
 
-* 2022.6.3 v.1.110
+* 2022.6.6 v.1.110
    - added) powermap winform (파워맵용 윈폼 추가)
       - open/save powermap file (파워맵 저장/불러오기 지원)
    - added) powermeter arguments (파워메터 모델별 계측 인자 인터페이스 추가)
       - PowerMeasureVirtualArg, PowerMeasureOphirUSBIArg, PowerMeasureThorlabArg (모델별 파워메터 인자) 
    - fixed) busy bug with rtc4 measurement session (RTC4 계측 버그)
    - fixed) rtc io output on/off log message (RTC 확장 DIO 변경시 부적절한 로그 메시지 수정)
+   - fixed) motors winform with position table bug (모터 윈폼내의 위치 테이블 오류 수정)
 
 * 2022.5.30 v.1.109
    - fixed) support script function with text entities (텍스트 개체들에 스크립트 기능 지원)
