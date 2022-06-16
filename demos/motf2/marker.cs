@@ -279,6 +279,13 @@ namespace SpiralLab.Sirius
             // all targets
             return true;
         }
+
+        public bool IsTargetEntity(IEntity entity)
+        {
+            // all targets
+            return true;
+        }
+
         #region 쓰레드 작업
         private void WorkerThread()
         {

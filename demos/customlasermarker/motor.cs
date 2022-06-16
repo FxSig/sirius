@@ -46,10 +46,9 @@ namespace SpiralLab.Sirius
         /// </summary>
         public float ActualPosition { get; private set; }
         /// <summary>
-        /// 상대 이동 위치 (unit)
+        /// 상대 위치 이동량 (unit)
         /// </summary>
-        public float DeltaPosition { get; set; }
-
+        public float DeltaPosition { get; private set; }
         /// <summary>
         /// 모터 준비 상태 여부
         /// </summary>
@@ -139,9 +138,9 @@ namespace SpiralLab.Sirius
             return true;
         }
         /// <summary>
-        /// 서보 온/오프
+        /// 서보 온오프
         /// </summary>
-        /// <param name="onOff"></param>
+        /// <param name="onOff">온오프</param>
         /// <returns></returns>
         public bool CtlServo(bool onOff)
         {
@@ -150,12 +149,13 @@ namespace SpiralLab.Sirius
             return true;
         }
         /// <summary>
-        /// 기준 위치 리셋
+        /// 엔코더 카운터 리셋
         /// </summary>
-        /// <param name="position"></param>
+        /// <param name="position">오프셋 값</param>
         /// <returns></returns>
-        public bool CtlResetCount(float position=0)
+        public bool CtlResetCount(float position = 0)
         {
+            Console.WriteLine($"{Name} count has reset: {position}");
             return true;
         }
         /// <summary>
@@ -197,6 +197,11 @@ namespace SpiralLab.Sirius
             Console.WriteLine($"{Name} has rel moved");
             return true;
         }
+        /// <summary>
+        /// 조그 속도 이동
+        /// </summary>
+        /// <param name="vel">속도 (mm/s)</param>
+        /// <returns></returns>
         public bool CtlMoveJog(float vel)
         {
             return true;

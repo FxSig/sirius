@@ -15,6 +15,7 @@ namespace SpiralLab.Sirius
     {
 
         IRtc Rtc;
+       
 
         public MainForm()
         {
@@ -81,17 +82,21 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
-            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
+            //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 20);
 
             // assign RTC instance at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
-            // set basic power output to 2W
+            // 2W output 
             laser.CtlPower(2);
             #endregion
 
@@ -126,20 +131,47 @@ namespace SpiralLab.Sirius
             this.siriusEditorForm1.RtcPin2Output = rtcPin2DOutput;
             #endregion
 
-            #region Z 모터
+            #region XYZ 모터
+            var motorX = new MotorVirtual(0, "X");
+            motorX.Initialize();
+            var motorY = new MotorVirtual(1, "Y");
+            motorY.Initialize();
             var motorZ = new MotorVirtual(2, "Z");
-            motorZ.Initialize();            
-            this.siriusEditorForm1.MotorZ = motorZ;
+            motorZ.Initialize();
+            var motorR = new MotorVirtual(2, "R");
+            motorR.Initialize();
+
+            var motorArray = new IMotor[]
+            {
+                motorX,
+                motorY,
+                motorZ,
+                motorR,
+            };
+            var motors = new MotorsDefault(0, "Group", motorArray);
+            this.siriusEditorForm1.Motors = motors;
+            //this.siriusEditorForm1.MotorZ = motorZ;
             #endregion
 
             #region PowerMeter
             // 파워메터
             var pm = new PowerMeterVirtual(0, "Virtual");
-            //var pm = new PowerMeterOphirUsbI(0, "USBI", "SERIALNO");
-            //var pm = new PowerMeterThorLabsPM100Usb(0, "PM100USB", "SERIALNO");
+            //var pm = new PowerMeterOphir(0, "OphirJuno", "3040875");
+            //var pm = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
             pm.Initialize();
-            this.siriusEditorForm1.PowerMeter = pm; 
+            this.siriusEditorForm1.PowerMeter = pm;
             #endregion
+
+            #region Powermap
+            //var pmap = new PowerMapDefault(0, "Virtual", "Watt");
+            var powerMapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "test.pmap");
+            var pmap = PowerMapSerializer.Open(powerMapFile);
+            this.siriusEditorForm1.PowerMap = pmap;
+            #endregion
+
+            //set compensated power output to 4.5W 
+            laser.PowerMap = pmap;
+            laser.CtlPower(2, "Default");
         }
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)

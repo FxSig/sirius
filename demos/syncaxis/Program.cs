@@ -40,16 +40,12 @@ namespace SpiralLab.Sirius
             string configXmlFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml");
             var rtc = new Rtc6SyncAxis(); // Scanlab XLSCAN 솔류션
             bool success = true;
-
             success &= rtc.Initialize(configXmlFileName);
-
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             success &= rtc.CtlFrequency(50 * 1000, 2);
-            // basic sped
             // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             success &= rtc.CtlSpeed(500, 500);
-
             Debug.Assert(success);
             #endregion
 
@@ -61,10 +57,14 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
             // assign RTC instance at laser 
@@ -197,6 +197,9 @@ namespace SpiralLab.Sirius
             {
                 Task.Run(() =>
                 {
+                    // Notice
+                    // syncAxisViewer v1.6 의 버그로 인해 아래와 같이 외부에서 파일을 인자로 하여 뷰어 프로세스를 생성하면 일부 데이타 누락이 발생되기도 함
+                    // 이때는 재차 open 을 하면 해결되며, SCANLAB 에 버그 리포트 된 사항임
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.WorkingDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer");
                     startInfo.CreateNoWindow = false;

@@ -133,11 +133,8 @@ namespace SpiralLab.Sirius
         /// 복제된 문서 객체
         /// </summary>
         public IDocument Document { get { return this.clonedDoc; } }
-
+        public uint MarkCounts { get; set; }
         public bool IsEnablePens { get; set; }
-        
-        public uint MarkCounts { get; protected set; }
-
         /// <summary>
         /// 사용자 정의 데이타
         /// </summary>
@@ -253,7 +250,6 @@ namespace SpiralLab.Sirius
             this.thread.Name = $"Marker: {this.Name}";
             this.thread.Priority = ThreadPriority.AboveNormal;
             this.thread.Start();
-            MarkCounts++;
             return true;
         }
         /// <summary>
@@ -292,12 +288,16 @@ namespace SpiralLab.Sirius
             return true;
         }
 
-        public bool IsTargetLayer(Layer layer)
+        public virtual bool IsTargetLayer(Layer layer)
         {
             //targets all
             return true;
         }
-
+        public virtual bool IsTargetEntity(IEntity entity)
+        {
+            //targets all
+            return true;
+        }
         #region 쓰레드 작업
         protected virtual void WorkerThread()
         {
@@ -318,6 +318,7 @@ namespace SpiralLab.Sirius
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
                 this.OnFinished?.Invoke(this, this.MarkerArg);
+                this.MarkCounts++;
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
         }

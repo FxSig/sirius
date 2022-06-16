@@ -76,7 +76,6 @@ namespace SpiralLab.Sirius
 
         public PowerControlMethod PowerControlMethod { get; set; }
         public IPowerMap PowerMap { get; set; }
-
         public bool IsShutterControl { get; set; }
         public bool IsGuideControl { get; set; }
         public object Tag { get; set; }
@@ -157,29 +156,29 @@ namespace SpiralLab.Sirius
         /// 컨트롤 명령 (즉시 명령)
         /// </summary>
         /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public bool CtlPower(float watt, string powerMapCategory = "")
         {
-                if (null == this.Rtc)
-                    return false;
-            if (watt > this.MaxPowerWatt)
-                watt = this.MaxPowerWatt;
-            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
-            {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
-                    return false;
-                watt = interpolatedValue;
-            }
-            float ratio = watt / MaxPowerWatt;
             lock (this.SyncRoot)
             {
+                if (null == this.Rtc)
+                    return false;
+                if (watt > this.MaxPowerWatt)
+                    watt = this.MaxPowerWatt;
+                float compensatedWatt = watt;
+                if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
+                {
+                    if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
+                        return false;
+                }
                 bool success = true;
-                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, ratio); // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
+                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, analogV); // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
 
                 if (success)
                 {
-                    Logger.Log(Logger.Type.Warn, $"set laser power to {watt:F3}W");
+                    Logger.Log(Logger.Type.Warn, $"set laser power to {compensatedWatt:F3}W");
                 }
                 return success;
             }
@@ -198,25 +197,25 @@ namespace SpiralLab.Sirius
         /// 리스트 명령 (RTC 버퍼에 삽입되는 명령)
         /// </summary>
         /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public bool ListPower( float watt, string powerMapCategory = "")
         {
-                if (null == this.Rtc)
-                    return false;
-            if (watt > this.MaxPowerWatt)
-                watt = this.MaxPowerWatt;
-            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
-            {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
-                    return false;
-                watt = interpolatedValue;
-            }
             lock (this.SyncRoot)
             {
+                if (null == this.Rtc)
+                    return false;
+                if (watt > this.MaxPowerWatt)
+                    watt = this.MaxPowerWatt;
+                float compensatedWatt = watt;
+                if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
+                {
+                    if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
+                        return false;
+                }
                 bool success = true;
-                float ratio = watt / MaxPowerWatt;
-                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, ratio);   // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
+                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, analogV);   // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
                 return success;
             }
         }

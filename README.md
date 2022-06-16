@@ -56,9 +56,12 @@
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
  - support many kinds of powermeters
-    - Ophir USBI (preliminary)
+    - Ophir (preliminary)
     - Thorlab PM100D, PM100A, PM100USB, PM200, PM400 (preliminary)
  - support powermap for calibrate output laser power.
+    - Thorlab PM series
+    - Ophir products
+    - Coherent PowerMax (USB/RS) series
  - support many kinds of laser sources
     - Advanced Optowave Fotia
     - Advanced Optowave AOPico (preliminary)
@@ -130,6 +133,13 @@
 **5. Version history**
 
 
+* 2022.6.17 v.1.111
+   - added) power scaler (파워 스케일러 - 계측 에너지에 대한 사용자 비율 적용 기능)
+   - added) coherent powermax powermeter (코히런트 파워맥스 계측기 추가)
+   - fixed) ophir powermeter with scan devices (Ophir 파워메터 장치 초기화시 스캔하도록 수정)
+   - fixed) powermeter winforms (파워메터 윈폼 개선)
+   - fixed) removed unused properties at textr/siriustext (텍스트 개체의 미사용 속성 표시 삭제)
+
 * 2022.6.6 v.1.110
    - added) powermap winform (파워맵용 윈폼 추가)
       - open/save powermap file (파워맵 저장/불러오기 지원)
@@ -138,7 +148,7 @@
    - fixed) busy bug with rtc4 measurement session (RTC4 계측 버그)
    - fixed) rtc io output on/off log message (RTC 확장 DIO 변경시 부적절한 로그 메시지 수정)
    - fixed) motors winform with position table bug (모터 윈폼내의 위치 테이블 오류 수정)
-
+   
 * 2022.5.30 v.1.109
    - fixed) support script function with text entities (텍스트 개체들에 스크립트 기능 지원)
    - added) powermap added into laser interface to support powermap (파워매핑을 기능을 위해 레이저 인터페이스 변경)

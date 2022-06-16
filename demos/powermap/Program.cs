@@ -77,10 +77,14 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
             // assign RTC instance at laser 
@@ -93,8 +97,8 @@ namespace SpiralLab.Sirius
 
             #region initialize PowerMeter and PowerMap
             var powerMeter = new PowerMeterVirtual(0, "Virtual PM");
-            //var powerMeter = new PowerMeterOphirUsbI(0, "USBI", "SERIALNO");
-            //var powerMeter = new PowerMeterThorLabsPM100Usb(0, "PM100USB", "SERIALNO");
+            //var powerMeter = new PowerMeterOphirUsbI(0, "Ophir", "SERIALNO");
+            //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
             powerMeter.Initialize();
             
             IPowerMap powerMap = new PowerMapDefault();

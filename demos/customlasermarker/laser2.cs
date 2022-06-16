@@ -76,6 +76,7 @@ namespace SpiralLab.Sirius
         public bool IsPowerControl { get; set; }
         public PowerControlMethod PowerControlMethod { get; set; }
         public IPowerMap PowerMap { get; set; }
+
         public bool IsShutterControl { get; set; }
         public bool IsGuideControl { get; set; }
         public object Tag { get; set; }
@@ -168,7 +169,7 @@ namespace SpiralLab.Sirius
         /// 컨트롤 명령 (즉시 명령)
         /// </summary>
         /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public bool CtlPower(float watt, string powerMapCategory = "")
         {
@@ -177,14 +178,14 @@ namespace SpiralLab.Sirius
             bool success = true;
             if (watt > this.MaxPowerWatt)
                 watt = this.MaxPowerWatt;
+            float compensatedWatt = watt;
             if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
             {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
+                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
                     return false;
-                watt = interpolatedValue;
             }
             //통신을 통한 파워 변경 시도
-            success &= this.CommandToChangePower(watt);
+            success &= this.CommandToChangePower(compensatedWatt);
             return success;
         }
         public bool ListBegin()
@@ -202,7 +203,7 @@ namespace SpiralLab.Sirius
         /// 파워 변경 통신을 시도하고, 이후에 신규 RTC 버퍼를 시작한다
         /// </summary>
         /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public bool ListPower( float watt, string powerMapCategory = "")
         {
@@ -210,23 +211,22 @@ namespace SpiralLab.Sirius
                 return false;
             if (null == this.Rtc)
                 return false;
+            if (watt > this.MaxPowerWatt)
+                watt = this.MaxPowerWatt;
+            float compensatedWatt = watt;
+            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
+            {
+                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
+                    return false;
+            }
             bool success = true;
             // 현재 RTC 버퍼의 모든 명령을 수행 완료한다
             success &= this.Rtc.ListEnd();
             success &= this.Rtc.ListExecute(true);
             if (!success)
                 return false;
-
-            if (watt > this.MaxPowerWatt)
-                watt = this.MaxPowerWatt;
-            if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
-            {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
-                    return false;
-                watt = interpolatedValue;
-            }
             // 통신을 통한 파워 변경 시도
-            success &= this.CommandToChangePower(watt);
+            success &= this.CommandToChangePower(compensatedWatt);
             if (!success)
                 return false;
             // RTC 리스트 버퍼를 새로 시작한다

@@ -364,6 +364,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.BarcodeMaxiCode">
+            <summary>
+            barcode maxicode entity
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeMaxiCode.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeMaxiCode.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.BarcodeDataMatrix2">
             <summary>
             barcode datamatrix v2 entity
@@ -3348,6 +3366,13 @@
             엔티티 선택 명령
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntitySelect(SpiralLab.Sirius.IEntity)">
+            <summary>
+            엔티티 선택 명령
+            </summary>
+            <param name="entitiy">선택 엔티티</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityGroup(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,System.Boolean)">
@@ -7337,6 +7362,14 @@
             <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IMarker.IsTargetEntity(SpiralLab.Sirius.IEntity)">
+            <summary>
+            특정 개체를 가공할지를 선택하기 위한 comparer
+            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+            </summary>
+            <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IMarker.Clear">
             <summary>
             복제된 내부 가공 데이타를 초기화 
@@ -7529,6 +7562,14 @@
             <param name="doc"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptCompile(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IDocument)">
+            <summary>
+            문서내의 모든 개체를 순회하면서 스크립트 실행
+            </summary>
+            <param name="rtc"></param>
+            <param name="doc"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptExecute(SpiralLab.Sirius.IEntity,System.Boolean)">
             <summary>
             스크립트 인터페이스를 가진 엔티티의 스크립트 실행을 처리
@@ -7542,6 +7583,13 @@
             문자 집합 다운로드
             </summary>
             <param name="rtc"></param>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptCompile(SpiralLab.Sirius.IEntity)">
+            <summary>
+            개체 내에 설정된 스크립트 실행
+            </summary>
             <param name="entity"></param>
             <returns></returns>
         </member>
@@ -7561,6 +7609,14 @@
             <param name="entity"></param>
             <param name="isModified"></param>
             <param name="skip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.ScriptCompileFeedBack(SpiralLab.Sirius.IDocument,System.Int32)">
+            <summary>
+            스크립트 실행후 변경된 사항을 UI(윈폼)에 반영
+            </summary>
+            <param name="doc"></param>
+            <param name="layerIndex"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Clear">
@@ -7618,9 +7674,17 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetLayer(SpiralLab.Sirius.Layer)">
             <summary>
             특정 레이어를 가공할지를 선택하기 위한 comparer
-             내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
             </summary>
             <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetEntity(SpiralLab.Sirius.IEntity)">
+            <summary>
+            특정 개체를 가공할지를 선택하기 위한 comparer
+            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+            </summary>
+            <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.EntityWork(System.Int32,System.Int32,System.Int32,SpiralLab.Sirius.IEntity)">

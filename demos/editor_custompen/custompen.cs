@@ -153,8 +153,7 @@ namespace SpiralLab.Sirius
         [Browsable(false)]
         public virtual object Tag { get; set; }
 
-        [Browsable(false)]
-        [ReadOnly(true)]       
+        [Browsable(false)]  
         public virtual uint Repeat { get; set; }
 
         [Browsable(true)]

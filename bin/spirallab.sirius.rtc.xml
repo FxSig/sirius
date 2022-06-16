@@ -35,6 +35,11 @@
             <param name="output">보간된 출력값</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.ICompensator`1.Reset">
+            <summary>
+            리셋 (초기화)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.CompensatorDefault`1">
             <summary>
             CompensatorDefault 기본 버전
@@ -1614,6 +1619,175 @@
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.InnguGraceXSeries">
+            <summary>
+            INNGU LASER / Grace X Series 레이저 소스
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.InnguGraceXSeries.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsPowerControl">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsGuideControl">
+            <summary>
+            Guide 레이저 빔 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsShutterOpen">
+            <summary>
+            셔터(Shutter) 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsGuideOn">
+            <summary>
+            가이드 빔(Guide) On/Off 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsDiodeOn">
+            <summary>
+            다이오드 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.ComPort">
+            <summary>
+            통신 포트 번호
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.#ctor(System.UInt32,System.String,System.Single,System.Int32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+            <param name="comPort">통신 포트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlReset">
+            <summary>
+            리셋
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CheckErrors">
+            <summary>
+            에러(IsError) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CheckReady">
+            <summary>
+            준비(IsReady) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CheckBusy">
+            <summary>
+            출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlPower(System.Single,System.String)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.ListBegin">
+            <summary>
+            리스트 시작 통지용
+            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.ListEnd">
+            <summary>
+            리스트 명령 끝 통지용
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.ListPower(System.Single,System.String)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryRGHAIO">
             <summary>
             레이저 소스 (Photonics Industry RGH AIO)    
@@ -2273,6 +2447,155 @@
             <param name="mapFileName">파일이름</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg">
+            <summary>
+            파워 계측 전달 인자
+            Thorlab PM100D, PM100A, PM100USB, PM200, PM400 전용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.XName">
+            <summary>
+            파라메터 X 이름
+            watt(W), frequency(Hz),  current(A), pulse width(um), voltage(V), duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.XValue">
+            <summary>
+            파라메터 X 값 
+            watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.PowerCategory">
+            <summary>
+            카테고리/시리즈 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.PowerWatt">
+            <summary>
+            측정된 파워값 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.Empty">
+            <summary>
+            생성 초기값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.#ctor(System.String,System.Single,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="xName">파라메터 X 이름</param>
+            <param name="xValue">파러메터 X 값 / watt(W), current(A), pulse width(um), voltage(V), duty width(%)</param>
+            <param name="powerCategory">파워 카테고리 (Series 이름)</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMeterCoherentPowerMax">
+            <summary>
+            Coherent 파워메터 PowerMax USB/RS 시리즈
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnMeasured">
+            <summary>
+            파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMax.PowerMeasureArg">
+            <summary>
+            파워 계측시 사용되는 인자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="maxBufferCounts"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.UInt32,System.String,System.Int32,System.Single,System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">통신 포트 번호</param>
+            <param name="samplingRateHz">측정 주기</param>
+            <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.Finalize">
+            <summary>
+            종결자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.Dispose">
+            <summary>
+            자원해제
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.CtlStart">
+            <summary>
+            측정 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerScaler">
+            <summary>
+            파워값에 대한 스케일러
+            출력값 = ( PrevFactor * 이전값 + 0.2 * 현재값 ) * 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.Index">
+            <summary>
+            식별자 (0, 1, 2, ...)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.ScaleFactor">
+            <summary>
+            전체 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.PrevFactor">
+            <summary>
+            이전값 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.CurrentFactor">
+            <summary>
+            현재값 비율
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerScaler.#ctor(System.UInt32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerScaler.Interpolate(System.Single,System.Single@)">
+            <summary>
+            보간 연산하기
+            </summary>
+            <param name="input">입력값</param>
+            <param name="output">보간된 출력값</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerMeasureArg">
             <summary>
             파워 계측에 필요한 설정값및 계측결과 전달용 인자
@@ -2595,9 +2918,8 @@
             <summary>
             생성자
             </summary>
-            <param name="no">스테이지 번호</param>
+            <param name="no">축 번호</param>
             <param name="name">축 이름</param>
-            <param name="axis">대상 축</param>
             <param name="esp">ESP 제어 인스턴스</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.Initialize">
@@ -2616,8 +2938,9 @@
             <summary>
             프로그램 실행
             </summary>
-            <param name="program"></param>
-            <param name="number"></param>
+            <param name="esp301">ESP301 인스턴스</param>
+            <param name="program">프로그램</param>
+            <param name="number">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlResetCount(System.Single)">
@@ -2640,6 +2963,7 @@
             절대 위치 구동
             </summary>
             <param name="position">위치</param>
+            <param name="vel">속도</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveRel(System.Single,System.Single)">
@@ -2647,7 +2971,8 @@
             move relatively
             상대 위치 구동
             </summary>
-            <param name="distance"></param>
+            <param name="distance">거리</param>
+            <param name="vel">속도</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveJog(System.Single)">
@@ -3000,7 +3325,11 @@
             위치 이름
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IMotorPosition.Items" -->
+        <member name="P:SpiralLab.Sirius.IMotorPosition.Items">
+            <summary>
+            위치 (mm), 속도 (mm/s) 배열
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMotorPosition.Tag">
             <summary>
             사용자 정의 데이타
@@ -7891,60 +8220,65 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasureOphirUSBIArg">
+        <member name="T:SpiralLab.Sirius.PowerMeasureOphirArg">
             <summary>
              파워 계측에 필요한 설정값및 계측결과 전달용 인자
-            Ophir USBI 전용
+            Ophir 전용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.XName">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XName">
             <summary>
             파라메터 X 이름
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.XValue">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XValue">
             <summary>
             파라메터 X 값
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.XPos">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Channel">
+            <summary>
+            채널 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XPos">
             <summary>
             계측된 X 위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.YPos">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.YPos">
             <summary>
             계측된 Y 위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerWatt">
             <summary>
             계측된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.PowerStatus">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerStatus">
             <summary>
             계측 상태
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.Tag">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.Empty">
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Empty">
             <summary>
             생성 초기값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeasureOphirUSBIArg.#ctor(System.String,System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMeasureOphirArg.#ctor(System.String,System.Single,System.String)">
             <summary>
             생성자
             </summary>
@@ -7952,55 +8286,60 @@
             <param name="xValue">파러메터 X 값 / watt(W), current(A), pulse width(um), voltage(V), duty width(%)</param>
             <param name="powerCategory">파워 카테고리 (Series 이름)</param>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeterOphirUsbI">
+        <member name="T:SpiralLab.Sirius.PowerMeterOphir">
             <summary>
-            파워메터 (Ophir 사의 USBI 모델 전용)
+            파워메터 (Ophir 사의 StarLab 지원 모델)
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMeterOphirUsbI.OnMeasured">
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnMeasured">
             <summary>
             파워 측정 이벤트
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeterOphirUsbI.Channel">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphir.Channel">
             <summary>
-            활성화 채널 번호 (1~4)
-            USBI 일부 모델은 최대 4개의 채널(헤드) 지원됨
+            활성화 채널 번호 (0,1,2,3)
+            최대 4개의 채널(헤드) 지원되는 모델의 경우 (기본값 0)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.#ctor(System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.UInt32)">
             <summary>
             생성자
             </summary>
             <param name="maxBufferCounts"></param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
-            <param name="serialNo">시리얼 번호</param>
-            <param name="samplingRateHz">시리얼 번호</param>
+            <param name="serialNo">일렵번호</param>
+            <param name="samplingRateHz">샘플리 주파수(Hz)</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Finalize">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.Finalize">
             <summary>
             종결자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Dispose">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.Dispose">
             <summary>
             자원해제
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.Initialize">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.Initialize">
             <summary>
             초기화
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphirUsbI.CtlStart">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.CtlStart">
             <summary>
             측정 시작
             </summary>
@@ -8054,6 +8393,11 @@
         <member name="T:SpiralLab.Sirius.PowerMeterVirtual">
             <summary>
             PowerMeterVirtual 객체
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnMeasured">
@@ -8126,14 +8470,14 @@
             파워메터 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeter.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
-        </member>
         <member name="E:SpiralLab.Sirius.IPowerMeter.OnMeasured">
             <summary>
             파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.SyncRoot">
+            <summary>
+            동기화 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.Index">
@@ -8174,6 +8518,11 @@
         <member name="P:SpiralLab.Sirius.IPowerMeter.PowerMeasureArg">
             <summary>
             파워 계측에 필요한 설정값및 계측결과 전달용 인자
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.PowerScaler">
+            <summary>
+            측정 파워를 스케일(배율처리)하는 알고리즘
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.Tag">
@@ -8232,6 +8581,11 @@
             카테고리/시리즈 이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabPowerDensity">
+            <summary>
+            파워 밀도 / Thorlab PM100USB 용
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabEnergy">
             <summary>
             에너지 (J) / Thorlab PM100USB 용
@@ -8274,6 +8628,11 @@
             <summary>
             Thorlabs 파워메터 PM 시리즈
             PM100D, PM100A, PM100USB, PM200, PM400
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnMeasured">
@@ -9266,6 +9625,15 @@
         <member name="M:SpiralLab.Sirius.Rtc4.CtlFrequency(System.Single,System.Single)">
             <summary>
             주파수와 펄스폭 설정
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (Co2 레이저 모드 사용시 유용)
             </summary>
             <param name="frequency">주파수 (Hz)</param>
             <param name="pulseWidth">펄스폭 (usec)</param>
@@ -10590,6 +10958,15 @@
         <member name="M:SpiralLab.Sirius.Rtc5.CtlFrequency(System.Single,System.Single)">
             <summary>
             주파수와 펄스폭 설정
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (Co2 레이저 모드 사용시 유용)
             </summary>
             <param name="frequency">주파수 (Hz)</param>
             <param name="pulseWidth">펄스폭 (usec)</param>
@@ -12182,6 +12559,15 @@
             <param name="pulseWidth">펄스폭 (usec)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (Co2 레이저 모드 사용시 유용)
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlDelay(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             스캐너/ 레이저 지연값 설정
@@ -13570,6 +13956,15 @@
             <param name="pulseWidth">펄스폭 (usec)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (변경 미지원)
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlDelay(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             스캐너/ 레이저 지연값 설정
@@ -14898,6 +15293,15 @@
             <param name="coefC"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (Co2 레이저 모드 사용시 유용)
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlSetScannerPosition(System.Numerics.Vector2)">
             <summary>
             스캐너 혹은 스테이지 이동
@@ -15822,6 +16226,15 @@
         <member name="M:SpiralLab.Sirius.IRtc.CtlFrequency(System.Single,System.Single)">
             <summary>
             주파수와 펄스폭 설정
+            </summary>
+            <param name="frequency">주파수 (Hz)</param>
+            <param name="pulseWidth">펄스폭 (usec)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc.CtlStandBy(System.Single,System.Single)">
+            <summary>
+            스탠바이 주파수와 펄스폭
+            (Co2 레이저 모드 사용시 유용)
             </summary>
             <param name="frequency">주파수 (Hz)</param>
             <param name="pulseWidth">펄스폭 (usec)</param>
