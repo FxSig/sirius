@@ -139,6 +139,9 @@
    - fixed) ophir powermeter with scan devices (Ophir 파워메터 장치 초기화시 스캔하도록 수정)
    - fixed) powermeter winforms (파워메터 윈폼 개선)
    - fixed) removed unused properties at textr/siriustext (텍스트 개체의 미사용 속성 표시 삭제)
+   - fixed) syncaxis
+      - select target stage (대상 스테이지 선택 지원)
+      - show counts of scandevice / stage (스캔 헤드, 스테이지 사용 개수 표시)
 
 * 2022.6.6 v.1.110
    - added) powermap winform (파워맵용 윈폼 추가)

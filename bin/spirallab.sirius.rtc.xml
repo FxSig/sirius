@@ -1686,7 +1686,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsShutterOpen">
             <summary>
-            셔터(Shutter) 상태
+            Shutter 온오프
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsGuideOn">
@@ -1702,6 +1702,81 @@
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsDiodeOn">
             <summary>
             다이오드 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.DiodeCurrent">
+            <summary>
+            다이오드 커런트 (Amp)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PulseRepRate">
+            <summary>
+            주파수 Hz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsQSwitchOn">
+            <summary>
+            QSWITCH 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.DiodeTemperature">
+            <summary>
+            다이오드 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Temp1Temperature">
+            <summary>
+            TEMP1 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Temp2Temperature">
+            <summary>
+            TEMP2 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.EnvTemperature">
+            <summary>
+            Env 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.LaserTemperature">
+            <summary>
+            레이저 온도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Add(SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Remove(SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Contains(SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.WarningByte.Empty">
+            <summary>
+            기본값(0) 객체 생성
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.ComPort">
@@ -1728,6 +1803,23 @@
             초기화
             </summary>
             <returns></returns>
+        </member>
+        <member name="F:SpiralLab.Sirius.InnguGraceXSeries.HoldingRegister.SetDiodeCurrent">
+            <summary>
+            0~15A
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.InnguGraceXSeries.HoldingRegister.SetPRF">
+            <summary>
+            10~100000
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.InnguGraceXSeries.HoldingRegister.SetPWM">
+            <summary>
+            20~380
+            20 : 100 %
+            380 : 10%
+            </summary>
         </member>
         <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlAbort">
             <summary>
@@ -1785,7 +1877,7 @@
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
             <param name="watt">파워 (W)</param>
-            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryRGHAIO">
@@ -13843,9 +13935,14 @@
             The desired characteristics is set by slsc_cfg_select_heuristic(HeuristicIndex = [0…(DynamicReductionFunction – 1]). 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.StageCount">
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.StageCounts">
             <summary>
             스테이지 개수 (XML 파일에서 읽어 설정된 값)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.HeadCount">
+            <summary>
+            스캔헤드 개수 (XML 파일에서 읽어 설정된 값)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ActiveChannelCount">
@@ -18705,6 +18802,11 @@
             작업 특성 분석치
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Job.HeadCounts">
+            <summary>
+            헤드 개수
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Job.Head1Offset">
             <summary>
             헤드1 X,Y 오프셋 및 회전각도
@@ -18728,6 +18830,11 @@
         <member name="P:SpiralLab.Sirius.Job.UtilizedScanner">
             <summary>
             스캐너 사용률 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.StageCounts">
+            <summary>
+            헤드 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage1">
@@ -18903,9 +19010,14 @@
             XML 설정파일에 설정된 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageCount">
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageCounts">
             <summary>
             XML 에 설정되어 있는 스테이지의 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeadCount">
+            <summary>
+            XML 에 설정되어 있는 스캔 헤드 개수
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.Initialize(System.String)">
