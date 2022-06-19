@@ -44,8 +44,8 @@ namespace SpiralLab.Sirius
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             success &= rtc.CtlFrequency(50 * 1000, 2);
-            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
-            success &= rtc.CtlSpeed(500, 500);
+            // jump and mark speed : 50mm/s (점프, 마크 속도 50mm/s)
+            success &= rtc.CtlSpeed(50, 50);
             Debug.Assert(success);
             #endregion
 
@@ -83,14 +83,17 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("");
                 Console.WriteLine("'S' : simulation mode enabled");
                 Console.WriteLine("'H' : hardware mode enabled");
-                Console.WriteLine("'C' : job characteristic");
                 Console.WriteLine("'V' : syncaxis viewer with simulation result");
-                Console.WriteLine("'F1' : draw rectangle 2D with scanner only");
-                Console.WriteLine("'F2' : draw rectangle 2D with stage only");
-                Console.WriteLine("'F3' : draw rectangle 2D with scanner and stage");
+                Console.WriteLine("'F1' : draw square 2D with scanner only");
+                Console.WriteLine("'F2' : draw square 2D with stage only");
+                Console.WriteLine("'F3' : draw square 2D with scanner and stage");
+                Console.WriteLine("'F5' : draw circle 2D with scanner only");
+                Console.WriteLine("'F6' : draw circle 2D with stage only");
+                Console.WriteLine("'F7' : draw circle 2D with scanner and stage");
                 Console.WriteLine("'F10' : get status");
                 Console.WriteLine("'F11' : reset");
                 Console.WriteLine("'F12' : abort");
+                Console.WriteLine("'C' : job characteristic");
                 Console.WriteLine("'M' : move stage x and y");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
@@ -102,27 +105,41 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.S:
-                        rtc.CtlSimulationMode(true);
+                        rtc.IsSimulationMode = true;
                         break;
                     case ConsoleKey.H:
-                        rtc.CtlSimulationMode(false);
+                        rtc.IsSimulationMode = false;
                         break;
                     case ConsoleKey.V:
                         SyncAxisViewer(rtc);
                         break;
                     case ConsoleKey.F1:
-                        Draw(rtc, laser, MotionType.ScannerOnly);
+                        DrawSquare(rtc, laser, MotionType.ScannerOnly);
                         break;
                     case ConsoleKey.F2:
-                        Draw(rtc, laser, MotionType.StageOnly);
+                        DrawSquare(rtc, laser, MotionType.StageOnly);
                         break;
                     case ConsoleKey.F3:
                         //band width 변경 가능
-                        //rtc.CtlBandWidth(2.0f); 
+                        //rtc.BandWidth = 2.0f;
                         //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
-                        //rtc.CtlHeadOffset(ScanDevice.ScanDevice1, new Vector2(0.1f, 0.2f), 5);
-                        //rtc.CtlHeadOffset(ScanDevice.ScanDevice2, new Vector2(-0.1f, -0.2f), -5);
-                        Draw(rtc, laser, MotionType.StageAndScanner);
+                        //rtc.Head1Offset = new Vector3(0.1f, 0.2f, 5);
+                        //rtc.Head2Offset = new Vector3(-0.1f, -0.2f, -5);
+                        DrawSquare(rtc, laser, MotionType.StageAndScanner);
+                        break;
+                    case ConsoleKey.F5:
+                        DrawCircle(rtc, laser, MotionType.ScannerOnly);
+                        break;
+                    case ConsoleKey.F6:
+                        DrawCircle(rtc, laser, MotionType.StageOnly);
+                        break;
+                    case ConsoleKey.F7:
+                        //band width 변경 가능
+                        //rtc.BandWidth = 2.0f;
+                        //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
+                        //rtc.Head1Offset = new Vector3(0.1f, 0.2f, 5);
+                        //rtc.Head2Offset = new Vector3(-0.1f, -0.2f, -5);
+                        DrawCircle(rtc, laser, MotionType.StageAndScanner);
                         break;
                     case ConsoleKey.F10:
                         if (rtc.CtlGetStatus(RtcStatus.Busy))
@@ -142,9 +159,9 @@ namespace SpiralLab.Sirius
                             rtc.CtlGetStagePosition(out float x, out float y);
                             Console.WriteLine($"stage x= {x:F3}, y= {y:F3}");
                         }
-
                         Console.WriteLine($"band width= {rtc.BandWidth}");
-                        Console.WriteLine($"simulation mode= {rtc.IsSimulationMode} with {rtc.SimulationFileName}");
+                        if (rtc.IsSimulationMode)
+                            Console.WriteLine($"simulation mode output file= {rtc.SimulationFileName}");
                         break;
                     case ConsoleKey.F11:
                         rtc.CtlReset();
@@ -156,9 +173,10 @@ namespace SpiralLab.Sirius
                         PrintJobCharacteristic(rtc);
                         break;
                     case ConsoleKey.M:
+                        //스테이지및 스캐너 보정 테이블 선택
+                        rtc.CtlSelectStage(Stage.Stage1, CorrectionTableIndex.Table1);
                         rtc.StageMoveSpeed = 10;
                         rtc.StageMoveTimeOut = 5;
-                        rtc.CtlSelectStage(Stage.Stage1);
                         rtc.CtlSetStagePosition(10, 10);
                         break;
                 }
@@ -169,18 +187,39 @@ namespace SpiralLab.Sirius
             rtc.Dispose();
         }
 
-        static bool Draw(IRtc rtc, ILaser laser, MotionType motionType)
+        static bool DrawSquare(IRtc rtc, ILaser laser, MotionType motionType, float size=40)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             Debug.Assert( rtcSyncAxis != null );
 
             success &= rtcSyncAxis.ListBegin(laser, motionType);
-            success &= rtc.ListJump(new Vector2(-20, 20));
-            success &= rtc.ListMark(new Vector2(20, 20));
-            success &= rtc.ListMark(new Vector2(20, -20));
-            success &= rtc.ListMark(new Vector2(-20, -20));
-            success &= rtc.ListMark(new Vector2(-20, 20));
+            //success &= rtc.ListFrequency(50 * 1000, 2);
+            //success &= rtc.ListSpeed(100, 100);
+            success &= rtc.ListJump(new Vector2(-size/2.0f, size / 2.0f));
+            success &= rtc.ListMark(new Vector2(size / 2.0f, size / 2.0f));
+            success &= rtc.ListMark(new Vector2(size / 2.0f, -size / 2.0f));
+            success &= rtc.ListMark(new Vector2(-size / 2.0f, -size / 2.0f));
+            success &= rtc.ListMark(new Vector2(-size / 2.0f, size / 2.0f));
+            if (success)
+            {
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(false);
+            }
+            return success;
+        }
+
+        static bool DrawCircle(IRtc rtc, ILaser laser, MotionType motionType, float radius = 20)
+        {
+            bool success = true;
+            var rtcSyncAxis = rtc as IRtcSyncAxis;
+            Debug.Assert(rtcSyncAxis != null);
+
+            success &= rtcSyncAxis.ListBegin(laser, motionType);
+            //success &= rtc.ListFrequency(50 * 1000, 2);
+            //success &= rtc.ListSpeed(100, 100);
+            success &= rtc.ListJump(new Vector2(radius, 0));
+            success &= rtc.ListArc(Vector2.Zero, 360.0f);
             if (success)
             {
                 success &= rtc.ListEnd();
@@ -227,6 +266,24 @@ namespace SpiralLab.Sirius
         static void PrintJobCharacteristic(Rtc6SyncAxis rtc)
         {            
             Console.WriteLine($"{rtc.Job.ToString()}");
+
+            int counts = rtc.JobHistory.Length;
+            if (counts > 0)
+            {
+                var lastJob = rtc.JobHistory[counts - 1];
+                Console.WriteLine($"Scanner Utilization: {lastJob.UtilizedScanner}");
+                Console.WriteLine($"Scanner Position Max: {lastJob.Characteristic.Scanner.ScanPosMax} mm");
+                Console.WriteLine($"Scanner Velocity Max: {lastJob.Characteristic.Scanner.ScanVelMax} mm/s");
+                Console.WriteLine($"Scanner Accelation Max: {lastJob.Characteristic.Scanner.ScanAccMax} (mm/s²)");
+                Console.WriteLine("--------------------------------------------------------");
+
+                for (int i=0; i< rtc.StageCounts; i++)
+                    Console.WriteLine($"Stage{i+1} Utilization: {lastJob.UtilizedStages[i]}");
+                Console.WriteLine($"Stage Position Nax: {lastJob.Characteristic.Stage.StagePosMax} mm");
+                Console.WriteLine($"Stage Velocity Max: {lastJob.Characteristic.Stage.StageVelMax} mm/s");
+                Console.WriteLine($"Stage Accelation Max: {lastJob.Characteristic.Stage.StageAccMax} (mm/s²)");
+                Console.WriteLine($"Stage Jerk Max: {lastJob.Characteristic.Stage.StageJerkMax} (mm/s³)");
+            }
         }
     }
 }

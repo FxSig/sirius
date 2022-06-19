@@ -13895,6 +13895,11 @@
             Scanner, Stage, Mixed
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.TargetStage">
+            <summary>
+            대상 스테이지
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.StageMoveSpeed">
             <summary>
             스테이지 이동 속도 (mm/s)
@@ -13940,7 +13945,7 @@
             스테이지 개수 (XML 파일에서 읽어 설정된 값)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.HeadCount">
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.HeadCounts">
             <summary>
             스캔헤드 개수 (XML 파일에서 읽어 설정된 값)
             </summary>
@@ -14002,7 +14007,7 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
             보정 파일 선택 - syncAxis 미지원
-            (XML 설정 파일에 등록된 ct5 파일 목록들 중에서 선택됨)
+            CtlSelectStage 함수로 대체 사용
             </summary>
             <param name="primaryHeadTableIndex"></param>
             <param name="secondaryHeadTableIndex"></param>
@@ -18857,6 +18862,11 @@
             스테이지4 사용률 
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Job.UtilizedStages">
+            <summary>
+            스테이지 사용율 배열
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Job.StartTime">
             <summary>
             가공 시작 시간
@@ -18976,6 +18986,11 @@
             모션 오퍼레이션 타입
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.TargetStage">
+            <summary>
+            대상 스테이지
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveSpeed">
             <summary>
             Stage 이동시 사용할 속도 (초기값 : 10mm/s)
@@ -19015,7 +19030,7 @@
             XML 에 설정되어 있는 스테이지의 개수
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeadCount">
+        <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeadCounts">
             <summary>
             XML 에 설정되어 있는 스캔 헤드 개수
             </summary>
