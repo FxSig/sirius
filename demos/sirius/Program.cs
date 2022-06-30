@@ -17,21 +17,28 @@ namespace SpiralLab.Sirius
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             Mutex mutex = new Mutex(true, "SpiralLab.Sirius", out bool createdNew);
             if (!createdNew)
             {
-                MessageBox.Show($"Another program now executing...", "Critical");
-                return;
+                if (DialogResult.Yes != MessageBox.Show($"Executing program already ...{Environment.NewLine}Do you want to execute another program ? ", "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    return;                
             }
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
             
             //sirius library 초기화
             SpiralLab.Core.Initialize();
-            var configFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "sirius.ini");
+
+            string[] args = Environment.GetCommandLineArgs();
+            string configFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config", "sirius.ini");
+
             //설정 파일에서 실행 프로젝트 객체 생성
-            var projectName = NativeMethods.ReadIni<string>(configFileName, "PROJECT", "MainForm");
+            string projectName;
+            if (1 == args.Length)
+                projectName = NativeMethods.ReadIni<string>(configFileName, "PROJECT", "MainForm");
+            else
+                projectName = args[1];
             Type projectType = Type.GetType(projectName.Trim());
             if (null == projectType)
             {

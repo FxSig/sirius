@@ -35,8 +35,16 @@ namespace SpiralLab.Sirius
 {
     internal class Program
     {
+
+        static string mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "powermap.map");
+        static string category = "Default";
+
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 
@@ -96,13 +104,14 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region initialize PowerMeter and PowerMap
-            var powerMeter = new PowerMeterVirtual(0, "Virtual PM");
-            //var powerMeter = new PowerMeterOphirUsbI(0, "Ophir", "SERIALNO");
+            //var powerMeter = new PowerMeterVirtual(0, "Virtual PM");
+            var powerMeter = new PowerMeterOphir(0, "Ophir", "3040875");
+            //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
             powerMeter.Initialize();
             
             IPowerMap powerMap = new PowerMapDefault();
-            //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "test.pmap");
+            //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "test.pmap");
             //var powerMap = PowerMapSerializer.Open(mapFile);
             #endregion
 
@@ -116,6 +125,8 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'C' : laser on with compensated laser output power");
                 Console.WriteLine("'S' : save power map");
                 Console.WriteLine("'O' : open power map");
+                Console.WriteLine("'F1' : powermeter winforms");
+                Console.WriteLine("'F2' : powermap winforms");
                 Console.WriteLine("'Q' : quit");
                 Console.Write("Select your target : ");
                 key = Console.ReadKey(false);
@@ -135,6 +146,18 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.O:
                         OpenPowerMap(ref powerMap);
+                        break;
+                    case ConsoleKey.F1:
+                        {
+                            var form = new PowerMeterForm(powerMeter);
+                            form.ShowDialog();
+                        }
+                        break;
+                    case ConsoleKey.F2:
+                        {
+                            var form = new PowerMapForm(null, powerMap, rtc, laser, powerMeter);
+                            form.ShowDialog();
+                        }
                         break;
                 }
             } while (true);
@@ -188,7 +211,7 @@ namespace SpiralLab.Sirius
                 var avgWatt = powerMeter.Data.Average();
                 Console.WriteLine($"LASER AVG POWER= {avgWatt}");
                 Console.WriteLine($"LASER IS OFF");
-                success &= powerMap.Update("Default", currentWatt, avgWatt);
+                success &= powerMap.Update(category, currentWatt, avgWatt);
 
                 powerMeter.CtlClear();
                 currentWatt += increaseWatt;
@@ -205,7 +228,7 @@ namespace SpiralLab.Sirius
             if (null == powerControl)
                 return false;
 
-            if (!powerMap.Data.ContainsKey("Default"))
+            if (!powerMap.Data.ContainsKey(category))
                 return false;
             if (targetWatt > laser.MaxPowerWatt)
                 return false;
@@ -213,8 +236,18 @@ namespace SpiralLab.Sirius
             powerMeter.CtlStop();
             powerMeter.CtlClear();
             bool success = true;
-            success &= powerMap.Lookup("Default", targetWatt, out var xWatt);
-            success &= powerControl.CtlPower(xWatt, "Default");
+            success &= powerMap.Interpolate(category, targetWatt, out var xWatt);
+            if (!success)
+            {
+                MessageBox.Show($"Fail to look up power map interpolation table for {targetWatt}W", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            success &= powerControl.CtlPower(xWatt, category);
+            if (!success)
+            {
+                MessageBox.Show($"Fail to change output laser power for {xWatt}W", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
             Console.WriteLine($"LASER COMPENSATED POWER= {xWatt}");
             if (DialogResult.Yes != MessageBox.Show($"Do you really want to laser on with power= {targetWatt}->{xWatt}W ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
             {
@@ -250,13 +283,11 @@ namespace SpiralLab.Sirius
 
         private static bool SavePowerMap(IPowerMap powerMap)
         {
-            var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "powermap.map");
             return PowerMapSerializer.Save(powerMap, mapFile);
 
         }
         private static bool OpenPowerMap(ref IPowerMap powerMap)
         {
-            var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "map", "powermap.map");
             var pm = PowerMapSerializer.Open(mapFile);
             if (null != pm)
             {

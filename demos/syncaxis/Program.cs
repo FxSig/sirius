@@ -27,13 +27,18 @@ using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
@@ -87,9 +92,11 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'F1' : draw square 2D with scanner only");
                 Console.WriteLine("'F2' : draw square 2D with stage only");
                 Console.WriteLine("'F3' : draw square 2D with scanner and stage");
-                Console.WriteLine("'F5' : draw circle 2D with scanner only");
-                Console.WriteLine("'F6' : draw circle 2D with stage only");
-                Console.WriteLine("'F7' : draw circle 2D with scanner and stage");
+                Console.WriteLine("'F4' : draw circle 2D with scanner only");
+                Console.WriteLine("'F5' : draw circle 2D with stage only");
+                Console.WriteLine("'F6' : draw circle 2D with scanner and stage");
+                Console.WriteLine("'F7' : draw for optimize laser delays");
+                Console.WriteLine("'F8' : draw for optimize system delays");
                 Console.WriteLine("'F10' : get status");
                 Console.WriteLine("'F11' : reset");
                 Console.WriteLine("'F12' : abort");
@@ -127,13 +134,13 @@ namespace SpiralLab.Sirius
                         //rtc.Head2Offset = new Vector3(-0.1f, -0.2f, -5);
                         DrawSquare(rtc, laser, MotionType.StageAndScanner);
                         break;
-                    case ConsoleKey.F5:
+                    case ConsoleKey.F4:
                         DrawCircle(rtc, laser, MotionType.ScannerOnly);
                         break;
-                    case ConsoleKey.F6:
+                    case ConsoleKey.F5:
                         DrawCircle(rtc, laser, MotionType.StageOnly);
                         break;
-                    case ConsoleKey.F7:
+                    case ConsoleKey.F6:
                         //band width 변경 가능
                         //rtc.BandWidth = 2.0f;
                         //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
@@ -141,27 +148,21 @@ namespace SpiralLab.Sirius
                         //rtc.Head2Offset = new Vector3(-0.1f, -0.2f, -5);
                         DrawCircle(rtc, laser, MotionType.StageAndScanner);
                         break;
+                    case ConsoleKey.F7:
+                        DrawOptimizeLaserDelay(rtc, laser);
+                        break;
+                    case ConsoleKey.F8:
+                        DrawOptimizeSystemDelay(rtc, laser);
+                        break;
                     case ConsoleKey.F10:
                         if (rtc.CtlGetStatus(RtcStatus.Busy))
                             Console.WriteLine("rtc is busy now ...");
                         else
                             Console.WriteLine("rtc is not busy ...");
 
-                        rtc.CtlGetDynamicsConfig(out var dynamics);
-                        Console.WriteLine(dynamics.ToString());
-                        rtc.CtlGetTrajectory(out var trajectory);
-                        Console.WriteLine(trajectory.ToString());
-                        {
-                            rtc.CtlGetScannerPosition(ScanDevice.ScanDevice1, out float x, out float y);
-                            Console.WriteLine($"scanner x= {x:F3}, y= {y:F3}");
-                        }
-                        {
-                            rtc.CtlGetStagePosition(out float x, out float y);
-                            Console.WriteLine($"stage x= {x:F3}, y= {y:F3}");
-                        }
-                        Console.WriteLine($"band width= {rtc.BandWidth}");
-                        if (rtc.IsSimulationMode)
-                            Console.WriteLine($"simulation mode output file= {rtc.SimulationFileName}");
+                        rtc.CtlGetInternalErrMsg(out var errors);
+                        foreach( var kv in errors)
+                            Console.WriteLine($"syncaxis error: [{kv.Item1}]: {kv.Item2}");
                         break;
                     case ConsoleKey.F11:
                         rtc.CtlReset();
@@ -203,6 +204,7 @@ namespace SpiralLab.Sirius
             success &= rtc.ListMark(new Vector2(-size / 2.0f, size / 2.0f));
             if (success)
             {
+                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
                 success &= rtc.ListExecute(false);
             }
@@ -220,11 +222,163 @@ namespace SpiralLab.Sirius
             //success &= rtc.ListSpeed(100, 100);
             success &= rtc.ListJump(new Vector2(radius, 0));
             success &= rtc.ListArc(Vector2.Zero, 360.0f);
+            success &= rtc.ListJump(Vector2.Zero);
             if (success)
             {
+                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
                 success &= rtc.ListExecute(false);
             }
+            return success;
+        }
+
+        /// <summary>
+        /// Optimization – Finding Laser Delays that Suit Your Application
+        ///  • LaserSwitchOffsetTime – Time shift for the laser signals output)(1)
+        ///  • LaserPreTriggerTime – Time to trigger the laser signal in advance, if a mark segment is executed(1)
+        /// For this, CHECK_LASERDELAYS is executed.
+        /// CHECK_LASERDELAYS contains an 11 × 11 raster of small marking objects, see Figure 7, page 33. 
+        /// The laser delays are automatically changed between the marking objects:
+        ///  • LaserSwitchOffsetTime is increased in positive x direction
+        ///  • LaserPreTriggerTime is increased in positive y direction
+        /// Recommended values to start with (in step 4, page 34) are:
+        ///  • LaserSwitchOffsetTime: –40 μs ~ +10 μs
+        ///  • LaserPreTriggerTime: –10 μs ~ 10 μs
+        /// </summary>
+        /// <param name="rtc"></param>
+        /// <param name="laser"></param>
+        /// <param name="VScanner">200mm/s</param>
+        /// <param name="NumberOfGridPositions">11x11</param>
+        /// <param name="GridFactor">2.5mm interval</param>
+        /// <returns></returns>
+        static bool DrawOptimizeLaserDelay(IRtc rtc, ILaser laser, float VScanner = 200.0f, int NumberOfGridPositions = 11, float GridFactor = 2.5f)
+        {
+            bool success = true;
+            var rtcSyncAxis = rtc as IRtcSyncAxis;
+            Debug.Assert(rtcSyncAxis != null);
+
+            const float StoUSConversion = 1.0F / 1000000.0F;
+            const float Size = 1;
+            const float Gap = 0.1F;
+            double StartSwitchOffset = -40;
+            double IncrementSwitchOffset = 5;
+            double StartPreTrigger = -10;
+            double IncrementPreTrigger = 2;
+
+            var oldTrajectory = rtcSyncAxis.Trajectory;
+            var newTrajectory = rtcSyncAxis.Trajectory;
+            newTrajectory.Mark.JumpSpeed = VScanner;
+            newTrajectory.Mark.MarkSpeed = VScanner;
+
+            //left bottom
+            Vector2 offsetInitial = new Vector2(
+                -(NumberOfGridPositions - 1) / 2 * GridFactor * Size, 
+                -(NumberOfGridPositions - 1) / 2 * GridFactor * Size);
+            Vector2 offset = offsetInitial;
+
+            for (int x = 0; x < NumberOfGridPositions; ++x)
+            {
+                newTrajectory.Mark.LaserSwitchOffsetTime = (x * IncrementSwitchOffset * StoUSConversion + StartSwitchOffset * StoUSConversion);
+                offset = new Vector2( GridFactor * Size * x + offsetInitial.X, offsetInitial.Y);
+
+                for (int y = 0; y < NumberOfGridPositions; ++y)
+                {
+                    newTrajectory.Mark.LaserPreTriggerTime = (y * IncrementPreTrigger * StoUSConversion + StartPreTrigger * StoUSConversion);
+                    success &= rtcSyncAxis.CtlSetTrajectory(newTrajectory);
+
+                    success &= rtcSyncAxis.ListBegin(laser, MotionType.ScannerOnly);
+                    offset = new Vector2(offset.X, GridFactor * Size * y + offsetInitial.Y);
+                    rtc.MatrixStack.Push(offset);
+                    success &= rtc.ListJump(-Size / 2, -Size);
+                    success &= rtc.ListMark(-Gap / 2, -Size);
+                    success &= rtc.ListMark(Size / 2, -Size);
+                    success &= rtc.ListJump(0, -Size);
+                    success &= rtc.ListMark(0, Size);
+                    success &= rtc.ListJump(Size / 2, Size);
+                    success &= rtc.ListMark(Gap / 2, Size);
+                    success &= rtc.ListJump(-Gap / 2, Size);
+                    success &= rtc.ListMark(-Size / 2, Size);
+                    success &= rtc.ListJump(-Size / 2 - 0.001f, Size);
+                    rtc.MatrixStack.Pop();
+                    if (!success)
+                        break;
+                    else
+                    {
+                        success &= rtc.ListJump(Vector2.Zero);
+                        success &= rtc.ListEnd();
+                        success &= rtc.ListExecute(true);
+                    }
+                }
+            }
+            rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
+            return success;
+        }
+
+        static bool DrawOptimizeSystemDelay(IRtc rtc, ILaser laser, float VStage=100, float RStage=200)
+        {
+            bool success = true;
+            var rtcSyncAxis = rtc as IRtcSyncAxis;
+            Debug.Assert(rtcSyncAxis != null);
+
+            float v_aLimit = (float)Math.Sqrt(RStage / 2.0 * 0.42 * VStage * 10);
+            VStage = (VStage < v_aLimit ? VStage : v_aLimit);
+            float jumpSpeed = 4 * VStage;
+            float markSpeed = jumpSpeed;
+            float lineLength = 3;
+
+            var oldTrajectory = rtcSyncAxis.Trajectory;
+            var newTrajectory = rtcSyncAxis.Trajectory;
+            newTrajectory.Mark.JumpSpeed = jumpSpeed;
+            newTrajectory.Mark.MarkSpeed = markSpeed;
+
+            success &= rtcSyncAxis.CtlSetTrajectory(newTrajectory);
+            float offsetsize = 5 * lineLength;
+
+            for (int i = 0; i < 4; ++i)
+            {
+                success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
+                rtc.MatrixStack.Push(0, -offsetsize, i*90);
+                //arrow
+                success &= rtc.ListJump(-5, 0 + 2 * lineLength);
+                success &= rtc.ListMark(5, 0 + 2 * lineLength);
+                success &= rtc.ListJump(3, 2 + 2 * lineLength);
+                success &= rtc.ListMark(5, 0 + 2 * lineLength);
+                success &= rtc.ListMark(3, -2 + 2 * lineLength);
+                success &= rtc.ListJump(0, 0 + 2 * lineLength);
+                rtc.MatrixStack.Pop();
+                if (!success)
+                    break;
+                else
+                {
+                    success &= rtc.ListJump(Vector2.Zero);
+                    success &= rtc.ListEnd();
+                    success &= rtc.ListExecute(true);
+                }
+            }
+
+
+            for (int i = 0; i < 4; ++i)
+            {
+                success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
+                rtc.MatrixStack.Push(0, -offsetsize, i * 90);
+                //line block
+                success &= rtc.ListSpeed(jumpSpeed, markSpeed);
+                success &= rtc.ListJump(-RStage, 0);
+
+
+
+                rtc.MatrixStack.Pop();
+                if (!success)
+                    break;
+                else
+                {
+                    success &= rtc.ListJump(Vector2.Zero);
+                    success &= rtc.ListEnd();
+                    success &= rtc.ListExecute(true);
+                }
+            }
+
+            rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
             return success;
         }
 

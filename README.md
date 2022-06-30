@@ -73,7 +73,8 @@
     - IPG YLP Type D
     - IPG YLP Type E
     - IPG YLP N Series (preliminary)
-    - JPT Type E
+	- IPG ULPN Series (preliminary)
+    - JPT Type E	
     - SPI G3/G4 (preliminary)
     - Spectra Physics Talon (preliminary)
     - Spectra Physics Hippo (preliminary)
@@ -132,6 +133,18 @@
 
 **5. Version history**
 
+* 2022.7.1 v.1.112
+   - added) IPG YLP ULPN laser (레이저 소스 추가됨)
+      - preliminary
+   - added) MotfCall entity (개체 추가)
+   - added) pens editor with power categories (펜 편집기에서 파워 카테고리 목록 지원)
+   - fixed) simulated encoder with scale bug (시뮬레이션 엔코더 사용시 스케일 버그 수정)
+      - jump list position at begin for repeat  (반복 가공시 리스트 명령의 시작위치로 이동 지원)
+      - list type with Single only (리스트 타입을 단일로 설정 후 사용할것)
+   - fixed) powermap winform with events (파워맵 시작/정지/열기/저장에 대한 사용자 이벤트 핸들러 지원)
+	  - customizable mapping routine (사용자화 가능한 매핑 루틴 지원)
+   - fixed) powerscaler (파워메터 스케일러 개선)
+      - editable factor values (비율값 편집 가능)
 
 * 2022.6.17 v.1.111
    - added) power scaler (파워 스케일러 - 계측 에너지에 대한 사용자 비율 적용 기능)

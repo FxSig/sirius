@@ -169,7 +169,7 @@ namespace SpiralLab.Sirius
                 float compensatedWatt = watt;
                 if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
                 {
-                    if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
+                    if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
                         return false;
                 }
                 bool success = true;
@@ -210,7 +210,7 @@ namespace SpiralLab.Sirius
                 float compensatedWatt = watt;
                 if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
                 {
-                    if (false == this.PowerMap.Lookup(powerMapCategory, watt, out compensatedWatt))
+                    if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
                         return false;
                 }
                 bool success = true;

@@ -33,8 +33,11 @@ namespace SpiralLab.Sirius
 {
     class Program3
     {
+        [STAThread]
         static void Main3(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 

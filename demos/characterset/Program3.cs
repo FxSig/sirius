@@ -30,6 +30,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
@@ -39,8 +40,12 @@ namespace SpiralLab.Sirius
         static TextDate date = new TextDate();
         static TextTime time = new TextTime();
 
+        [STAThread]
         static void Main3(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 

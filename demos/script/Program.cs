@@ -35,13 +35,17 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             // initializing spirallab.sirius library engine 
             SpiralLab.Core.Initialize();
 

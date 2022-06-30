@@ -38,6 +38,8 @@ namespace SpiralLab.Sirius
     class Program2
     {
         static float kfactor = (float)Math.Pow(2, 20) / 60.0f;
+
+        [STAThread]
         static void Main2(string[] args)
         {
             Application.EnableVisualStyles();

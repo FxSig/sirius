@@ -41,6 +41,9 @@ namespace SpiralLab.Sirius
         [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             SpiralLab.Core.Initialize();    //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
 
             #region initialize RTC 

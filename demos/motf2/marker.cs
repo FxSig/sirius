@@ -317,7 +317,8 @@ namespace SpiralLab.Sirius
             // 가공을 위한 RTC 버퍼 초기화
             success &= rtc.ListBegin(laser, ListType.Single);
             var rtcMOTF = rtc as IRtcMOTF;
-            success &= rtcMOTF.ListMOTFBegin();
+            //with encoder reset
+            success &= rtcMOTF.ListMotfBegin(true);
             return success;
         }
         private bool MainWork()
@@ -368,7 +369,7 @@ namespace SpiralLab.Sirius
                                 //  Enc X 증가      <<<<<<<<<< conveyor <<<<<<<<<<< substrate moving <<<<<<<<<<<
                                 //
                                 //
-                                success &= rtcMOTF.ListMOTFWait(RtcEncoder.EncX, entity.BoundRect.Left, EncoderWaitCondition.Over);
+                                success &= rtcMOTF.ListMotfWait(RtcEncoder.EncX, entity.BoundRect.Left, EncoderWaitCondition.Over);
                                 //엔티티 가공
                                 success &= markerable.Mark(this.MarkerArg);
                             }
@@ -400,7 +401,7 @@ namespace SpiralLab.Sirius
             var laser = this.MarkerArg.Laser;
             var rtcMOTF = rtc as IRtcMOTF;
             var rtcExt = rtc as IRtcExtension;
-            success &= rtcMOTF.ListMOTFEnd(Vector2.Zero);
+            success &= rtcMOTF.ListMotfEnd(Vector2.Zero);
             success &= rtc.ListEnd();
 
             if (success)

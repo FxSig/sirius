@@ -27,6 +27,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Numerics;
 using System.Threading;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
@@ -34,8 +35,12 @@ namespace SpiralLab.Sirius
     {
         static Stopwatch timer;
 
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 
@@ -70,16 +75,20 @@ namespace SpiralLab.Sirius
 
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            var laser = new LaserVirtual(0, "virtual", 20);  
+            var laser = new LaserVirtual(0, "virtual", 20);
             //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
             // assign RTC instance at laser 

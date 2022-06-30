@@ -70,7 +70,6 @@ namespace SpiralLab.Sirius
         /// ACS SPiiPlusNET
         /// </summary>
         //ACS.SPiiPlusNET.Api api;
-
         /// <summary>
         /// Newport.ESP301.CommandInterface.dll
         /// </summary>

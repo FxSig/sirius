@@ -14,11 +14,11 @@ namespace SpiralLab.Sirius
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             // initialize spirallab core engine 
             SpiralLab.Core.Initialize();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
 
             try
             {

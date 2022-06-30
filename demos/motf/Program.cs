@@ -27,6 +27,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
@@ -36,8 +37,11 @@ namespace SpiralLab.Sirius
     /// </summary>
     class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
@@ -158,7 +162,7 @@ namespace SpiralLab.Sirius
             success &= rtc.ListBegin(laser, ListType.Single);
             // motf begin (from now ... adding external x/y encoder input values)
             // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-            success &= rtcMotf.ListMOTFBegin(true);
+            success &= rtcMotf.ListMotfBegin(true);
             // goes to origin
             // 0,0 으로 점프
             success &= rtc.ListJump(new Vector2(0, 0));
@@ -176,7 +180,7 @@ namespace SpiralLab.Sirius
 
             // motf end (from now ... stopped external x/y encoder iput values)
             // MOTF 중지
-            success &= rtcMotf.ListMOTFEnd(Vector2.Zero);
+            success &= rtcMotf.ListMotfEnd(Vector2.Zero);
             success &= rtc.ListEnd();
             if (externalStart)
             {
@@ -215,10 +219,10 @@ namespace SpiralLab.Sirius
 
             // motf begin
             // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
-            success &= rtcMotf.ListMOTFBegin();
+            success &= rtcMotf.ListMotfBegin();
             // wait until condtion has matched
             // 엔코더 X 값이 10mm 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
-            success &= rtcMotf.ListMOTFWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
+            success &= rtcMotf.ListMotfWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
 
             // draw circle
             // 엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
@@ -228,7 +232,7 @@ namespace SpiralLab.Sirius
             // goes to origin location
             // motf end
             // MOTF 중지및 0,0 위치(스캐너 중심 위치)로 jump 실시
-            success &= rtcMotf.ListMOTFEnd(Vector2.Zero);
+            success &= rtcMotf.ListMotfEnd(Vector2.Zero);
             success &= rtc.ListEnd();
 
             if (externalStart)

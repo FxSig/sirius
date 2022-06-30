@@ -1880,6 +1880,331 @@
              <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IPGYLPULPM">
+            <summary>
+            레이저 소스 (IPG YLP ULPM)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPGYLPULPM.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.MaxPowerWatt">
+            <summary>
+            최대 파워 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Rtc">
+            <summary>
+            레이저 제어에 필요한 IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsPowerControl">
+            <summary>
+            파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsShutterControl">
+            <summary>
+            셔터 제어를 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsGuideControl">
+            <summary>
+            Guide 레이저 빔 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.EmissionOn">
+            <summary>
+            0 : Emission Off
+            1 : Emission On
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.ExternalTrigger">
+            <summary>
+            0 : Internal Trigger 
+            1 : External Trigger
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.WarningUp">
+            <summary>
+            0 : Laser is not warm up mode
+            1 : Laser is in warm up mode
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.ModuleStartUpComplete">
+            <summary>
+            0 : Module is in startup mode
+            1 : Module startup is complete
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.EnabledBoosterPowerSupply">
+            <summary>
+            0 : Booster power supply is disabled
+            1 : Booster power supply is enabled
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.InternalModulation">
+            <summary>
+            0 : External modulation
+            1 : Internal modulation
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.InternalAanalogControl">
+            <summary>
+            0 : External analog control is selected
+            1 : External analog control is selected
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.PowerSupply24VOutOfRange">
+            <summary>
+            0: OK
+            1 : 24V PS Out of range
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.LaserIsOverheated">
+            <summary>
+            0 : laser Temp ok
+            1 : laser Overheated
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.HighBackReflectionLevel">
+            <summary>
+            0 : backreflection level is OK
+            1 : high backreflection level detected
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.HeadIsOverheated">
+            <summary>
+            0 : head temperature is OK
+            1 : head overheated
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Value">
+            <summary>
+            4바이트 값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Add(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+            <summary>
+            비트 설정
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Remove(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+            <summary>
+            비트 해제
+            </summary>
+            <param name="flag">비트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Contains(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+            <summary>
+            비트값 설정 여부
+            </summary>
+            <param name="flag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.ToInt">
+            <summary>
+            4바이트 int 으로 변환
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Empty">
+            <summary>
+            기본값(0) 객체 생성
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Status">
+            <summary>
+            디바이스 상태 (8비트)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.StatusBit">
+            <summary>
+            디바이스 상태 (8비트)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.TriggerModes.External">
+            <summary>
+            외부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.TriggerModes.Internal">
+            <summary>
+            내부 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.PulseRepRateInt">
+            <summary>
+            Hz
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.PulseRepRateExt">
+            <summary>
+            Hz
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.ModulationModes.External">
+            <summary>
+            외부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.ModulationModes.Internal">
+            <summary>
+            내부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.PowerControlModes.Internal">
+            <summary>
+            내부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.PowerControlModes.External">
+            <summary>
+            외부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.EmissionControlModes.Internal">
+            <summary>
+            내부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPM.EmissionControlModes.External">
+            <summary>
+            외부 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsEmissionOn">
+            <summary>
+            Emission 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsGuideOn">
+            <summary>
+            Guide Laser 온오프
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPM.ComPort">
+            <summary>
+            통신 포트 번호
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">COM 포트</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckErrors">
+            <summary>
+            에러(IsError) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckReady">
+            <summary>
+            준비(IsReady) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckBusy">
+            <summary>
+            출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlPower(System.Single,System.String)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListBegin">
+            <summary>
+            리스트 시작 통지용
+            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListEnd">
+            <summary>
+            리스트 명령 끝 통지용
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListPower(System.Single,System.String)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryRGHAIO">
             <summary>
             레이저 소스 (Photonics Industry RGH AIO)    
@@ -2536,7 +2861,7 @@
             파워맵 파일 저장
             </summary>
             <param name="map">저장할 IPowerMap 인스턴스</param>
-            <param name="mapFileName">파일이름</param>
+            <param name="mapFileName">파일이름 (powermap\*.map)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg">
@@ -2595,9 +2920,19 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnStarted">
+            <summary>
+            파워 측정 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnMeasured">
             <summary>
             파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnStopped">
+            <summary>
+            파워 측정 중단
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMax.PowerMeasureArg">
@@ -2609,7 +2944,7 @@
             <summary>
             생성자
             </summary>
-            <param name="maxBufferCounts"></param>
+            <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.UInt32,System.String,System.Int32,System.Single,System.UInt32)">
             <summary>
@@ -2658,14 +2993,14 @@
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerScaler.ScaleFactor">
-            <summary>
-            전체 비율
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.PowerScaler.PrevFactor">
+        <member name="P:SpiralLab.Sirius.PowerScaler.PreviousFactor">
             <summary>
             이전값 비율
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerScaler.InputFactor">
+            <summary>
+            입력값 비율
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerScaler.CurrentFactor">
@@ -2673,20 +3008,33 @@
             현재값 비율
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerScaler.#ctor(System.UInt32,System.String)">
+        <member name="F:SpiralLab.Sirius.PowerScaler.prevOutput">
+            <summary>
+            이전 출력값
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerScaler.#ctor(System.UInt32,System.String,System.Single,System.Single,System.Single)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
+            <param name="previousFactor">이전값 스케일 비율</param>
+            <param name="currentFactor">현재값 스케일 비율</param>
+            <param name="inputFactor">입력 스케일 비율</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerScaler.Interpolate(System.Single,System.Single@)">
             <summary>
             보간 연산하기
             </summary>
             <param name="input">입력값</param>
-            <param name="output">보간된 출력값</param>
+            <param name="output">출력값 (출력값 = 이전값 * 이전값 비율 + (입력값 * 현재값 비율) * 전체 비율)</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerScaler.Reset">
+            <summary>
+            이전 출력값 리셋
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerMeasureArg">
             <summary>
@@ -8111,7 +8459,7 @@
             카테고리/시리즈, (X값, 측정값) 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMap.IsLookUpEnabled">
+        <member name="P:SpiralLab.Sirius.IPowerMap.IsInterpolateEnabled">
             <summary>
             매핑(룩업) 테이블 기반의 근사 연산을 할지 여부
             기본값 true 
@@ -8177,7 +8525,7 @@
             <param name="maxX">최대값(watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.Lookup(System.String,System.Single,System.Single@)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.Interpolate(System.String,System.Single,System.Single@)">
             <summary>
             룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
             </summary>
@@ -8227,7 +8575,7 @@
             카테고리/시리즈, (X값, 측정값) 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMapDefault.IsLookUpEnabled">
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.IsInterpolateEnabled">
             <summary>
             룩업 검색(보간 연산) 사용여부
             </summary>
@@ -8249,6 +8597,12 @@
             <param name="index">식별 번호</param>
             <param name="name">이름</param>
             <param name="xName">X 항목 이름</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Clone">
+            <summary>
+            복제
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.Categories(System.String[]@)">
             <summary>
@@ -8303,9 +8657,9 @@
             <param name="maxX">최대값(watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.Lookup(System.String,System.Single,System.Single@)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.Interpolate(System.String,System.Single,System.Single@)">
             <summary>
-            룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
+            보간 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="targetWatt">출력을 원하는 에너지(W)</param>
@@ -8388,9 +8742,19 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnStarted">
+            <summary>
+            파워 측정 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnMeasured">
             <summary>
             파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnStopped">
+            <summary>
+            파워 측정 중단
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeterOphir.Channel">
@@ -8403,16 +8767,15 @@
             <summary>
             생성자
             </summary>
-            <param name="maxBufferCounts"></param>
+            <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.UInt32,System.String,System.String,System.UInt32)">
             <summary>
             생성자
             </summary>
             <param name="index">식별번호</param>
             <param name="name">이름</param>
             <param name="serialNo">일렵번호</param>
-            <param name="samplingRateHz">샘플리 주파수(Hz)</param>
             <param name="maxBufferCounts">최대 버퍼 크기(측정 데이타 저장용 버퍼 크기)</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterOphir.Finalize">
@@ -8492,9 +8855,19 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnStarted">
+            <summary>
+            파워 측정 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnMeasured">
             <summary>
             파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnStopped">
+            <summary>
+            파워 측정 중단
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Index">
@@ -8532,6 +8905,12 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="maxBufferCounts">버퍼의 최대 크기</param>
+        </member>
         <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Initialize">
             <summary>
             장치 및 통신 초기화
@@ -8562,9 +8941,19 @@
             파워메터 인터페이스
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.IPowerMeter.OnStarted">
+            <summary>
+            파워 측정 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.IPowerMeter.OnMeasured">
             <summary>
-            파워 측정 이벤트
+            파워 측정 데이타 전달
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMeter.OnStopped">
+            <summary>
+            파워 측정 중단
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.SyncRoot">
@@ -8727,9 +9116,19 @@
             속성 변경 이벤트 핸들러
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnStarted">
+            <summary>
+            파워 측정 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnMeasured">
             <summary>
             파워 측정 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnStopped">
+            <summary>
+            파워 측정 중단
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.PowerMeasureArg">
@@ -8741,7 +9140,7 @@
             <summary>
             생성자
             </summary>
-            <param name="maxBufferCounts"></param>
+            <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.#ctor(System.UInt32,System.String,System.String,System.Single,System.UInt32)">
             <summary>
@@ -10347,7 +10746,7 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFBegin(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
@@ -10365,7 +10764,7 @@
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
             RTC4는 미지원
             (단축 동기화 용)
@@ -10375,7 +10774,7 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             RTC4는 미지원
             /// </summary>
@@ -10385,12 +10784,20 @@
             <param name="rangeY">조건 범위 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMOTFEnd(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
             MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfCall(System.UInt32,System.UInt32)">
+            <summary>
+            특정 리스트 주소(위치)로 점프하여 연속 가공
+            </summary>
+            <param name="listPosition">리스트 위치 (0 ~ 2^16-1)</param>
+            <param name="repeats">무제한 회수로 강제됨</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc5LaserControlSignal">
@@ -11831,7 +12238,7 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFBegin(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
@@ -11874,7 +12281,7 @@
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
             리스트 명령 - 지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
@@ -11884,7 +12291,7 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -11893,12 +12300,20 @@
             <param name="positionY">Y 축 위치 (mm)</param>
             <param name="rangeY">조건 범위(mm)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFEnd(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
             MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfCall(System.UInt32,System.UInt32)">
+            <summary>
+            특정 리스트 주소(위치)로 점프하여 연속 가공
+            </summary>
+            <param name="listPosition">리스트 위치 (0 ~ 2^20-1)</param>
+            <param name="repeats">반복 회수 (0은 무제한)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -13428,7 +13843,7 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFBegin(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
@@ -13471,7 +13886,7 @@
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
             리스트 명령 - 지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
@@ -13481,7 +13896,7 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -13490,12 +13905,20 @@
             <param name="positionY">Y 축 위치 (mm)</param>
             <param name="rangeY">조건 범위 (mm)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFEnd(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
             MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfCall(System.UInt32,System.UInt32)">
+            <summary>
+            특정 리스트 주소(위치)로 점프하여 연속 가공
+            </summary>
+            <param name="listPosition">리스트 위치(0 ~ 2^20-1)</param>
+            <param name="repeats">반복 회수(1~)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -15649,7 +16072,7 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMOTFBegin(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
@@ -15667,7 +16090,7 @@
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
             리스트 명령 - 지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
@@ -15677,7 +16100,7 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -15687,7 +16110,7 @@
             <param name="rangeY">조건 범위 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMOTFEnd(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
             MOTF 종료시 스캐너를 지정된 위치로 점프 가능
@@ -18035,7 +18458,7 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMOTFBegin(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
@@ -18053,7 +18476,7 @@
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMOTFWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
             리스트 명령 - 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
@@ -18063,7 +18486,7 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMOTFWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -18073,12 +18496,20 @@
             <param name="rangeY">조건 범위 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMOTFEnd(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
             MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfCall(System.UInt32,System.UInt32)">
+            <summary>
+            특정 리스트 주소(위치)로 점프하여 연속 가공
+            </summary>
+            <param name="listPosition">리스트 위치(0~2^20-1)</param>
+            <param name="repeats">반복 회수(1~)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotionType">

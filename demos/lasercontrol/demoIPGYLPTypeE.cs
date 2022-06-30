@@ -101,8 +101,8 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 파워 변경 (즉시 명령)
         /// </summary>
-        /// <param name="watt">파워 (W)</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="watt"></param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public override bool CtlPower(float watt, string powerMapCategory = "")
         {
@@ -111,13 +111,13 @@ namespace SpiralLab.Sirius
             bool success = true;
             if (watt > this.MaxPowerWatt)
                 watt = this.MaxPowerWatt;
+            float compensatedWatt = watt;
             if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
             {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
+                if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
                     return false;
-                watt = interpolatedValue;
             }
-            float percentage = watt / this.MaxPowerWatt * 100.0f;
+            float percentage = compensatedWatt / this.MaxPowerWatt * 100.0f;
             lock (SyncRoot)
             {
                 //ext2 를 이용한 방식 / 8비트 해상도로 변환
@@ -128,7 +128,7 @@ namespace SpiralLab.Sirius
             if (success)
             {
                 prevPowerWatt = watt;
-                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {watt:F3}W (by 8bits d-out)");
+                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {compensatedWatt:F3}W (by 8bits d-out)");
             }
             return success;
         }
@@ -137,24 +137,22 @@ namespace SpiralLab.Sirius
         /// 파워 변경 (RTC의 리스트 명령)
         /// </summary>
         /// <param name="watt">파워 (W)</param>
-        /// <param name="powerMapCategory"> 파워맵 룩업 대상 카테고리</param>
+        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
         public override bool ListPower(float watt, string powerMapCategory = "")
         {
-            if (MathHelper.IsEqual(watt, prevPowerWatt))
-                return true;
             Debug.Assert(this.MaxPowerWatt > 0);
 
             bool success = true;
             if (watt > this.MaxPowerWatt)
                 watt = this.MaxPowerWatt;
+            float compensatedWatt = watt;
             if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
             {
-                if (false == this.PowerMap.Lookup(powerMapCategory, watt, out float interpolatedValue))
+                if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
                     return false;
-                watt = interpolatedValue;
             }
-            float percentage = watt / this.MaxPowerWatt * 100.0f;
+            float percentage = compensatedWatt / this.MaxPowerWatt * 100.0f;
 
             //ext2 를 이용한 방식 / 8비트 해상도로 변환
             ushort data8Bits = (ushort)(percentage / 100.0f * 255.0f);
@@ -164,11 +162,8 @@ namespace SpiralLab.Sirius
             //success &= this.RtcExt2.Update();
             if (success)
             {
-                prevPowerWatt = watt;
-                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {watt:F3}W");
+                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {compensatedWatt:F3}W");
             }
-            if (success)
-                prevPowerWatt = watt;
             return success;
         }
     }

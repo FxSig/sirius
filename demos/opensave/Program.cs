@@ -29,13 +29,17 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 
@@ -106,10 +110,14 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
             // assign RTC instance at laser 

@@ -25,13 +25,18 @@
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
-        static void Main(string[] args)
+        [STAThread]
+        static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 

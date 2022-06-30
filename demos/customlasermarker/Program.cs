@@ -37,6 +37,9 @@ namespace SpiralLab.Sirius
         [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 

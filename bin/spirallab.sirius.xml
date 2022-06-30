@@ -505,6 +505,24 @@
             </summary>
             <returns>A new color that is a copy of this instance.</returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotfRepeat">
+            <summary>
+            Motf Repeat 엔티티 객체 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfRepeat.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfRepeat.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Triangle3D">
             <summary>
             삼각형3D 엔티티
@@ -2087,9 +2105,24 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Laser.LaserForm">
+            <summary>
+            레이저 소스 윈폼
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Laser.LaserForm.AliasName">
             <summary>
             상태바에 출력되는 이름 (별명)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Laser.LaserForm.Laser">
+            <summary>
+            레이저 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Laser.LaserForm.components">
@@ -2126,6 +2159,33 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.Motor.MotorsForm">
+            <summary>
+            모터 집합 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Motor.MotorsForm.BindedMotors">
+            <summary>
+            모터 집합 바인딩 리스트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Motor.MotorsForm.Position">
+            <summary>
+            모터 위치 바인딩 리스트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Motor.MotorsForm.SelectedPosition">
+            <summary>
+            현재 선택된 모터 위치
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorsForm.#ctor(SpiralLab.Sirius.SiriusEditorForm,SpiralLab.Sirius.IMotors)">
+            <summary>
+            생성자
+            </summary>
+            <param name="editor"></param>
+            <param name="motors"></param>
+        </member>
         <member name="F:SpiralLab.Sirius.Motor.MotorsForm.components">
             <summary> 
             필수 디자이너 변수입니다.
@@ -2142,6 +2202,22 @@
             디자이너 지원에 필요한 메서드입니다. 
             이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Motor.MotorForm">
+            <summary>
+            모터 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Motor.MotorForm.Motor">
+            <summary>
+            모터 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Motor.MotorForm.#ctor(SpiralLab.Sirius.IMotor)">
+            <summary>
+            생성자
+            </summary>
+            <param name="motor">모터 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.Motor.MotorForm.components">
             <summary>
@@ -2712,6 +2788,72 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerMapForm">
+            <summary>
+            파워맵 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapForm.PowerMap">
+            <summary>
+            파워맵 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapForm.Rtc">
+            <summary>
+            IRtc 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapForm.Laser">
+            <summary>
+            ILaser 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapForm.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapForm.isMappingStarted">
+            <summary>
+            파워매핑이 시작되었는지 여부 (동작중)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapForm.isMappingTerminated">
+            <summary>
+            파워매핑이 종료되어야 하는지 여부
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapForm.#ctor(SpiralLab.Sirius.SiriusEditorForm,SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,SpiralLab.Sirius.IPowerMeter)">
+            <summary>
+            생성자
+            </summary>
+            <param name="editor">SiriusEditorForm 편집기</param>
+            <param name="powerMap">대상 파워맵</param>
+            <param name="rtc">IRtc 인터페이스</param>
+            <param name="laser">ILaser 인터페이스</param>
+            <param name="powerMeter">IPowerMeter 인터페이스</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapForm.RefreshChart">
+            <summary>
+            차트 다시 그리기
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapForm.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.UInt32,System.Int32,System.Single)">
+            <summary>
+            파워 매핑 시퀀스 (비동기 Task 생성 버전)
+            1. 상속후 override 구현 가능
+            2. OnMapStart / OnMapStop 이벤트 등록후 delegate 내에서 사용자 커스텀 구현 가능
+            </summary>
+            <param name="powerMap">IPowerMap 인터페이스</param>
+            <param name="powerMeter">IPowerMeter 인터페이스</param>
+            <param name="rtc">IRtc 인터페이스</param>
+            <param name="laser">ILaser 인터페이스</param>
+            <param name="category">대상 카테고리</param>
+            <param name="holdTimeMs">파워 측정전 대기 시간(예열 등에 활용) </param>
+            <param name="steps">X 값을 10단계로 나누어 처리</param>
+            <param name="thresholdWatt">측정된 파웍값의 차이가 해당 값보다 크면 에러로 처리됨 (W)</param>
+            <returns></returns>
+        </member>
         <member name="F:SpiralLab.Sirius.PowerMapForm.components">
             <summary>
             Required designer variable.
@@ -2731,7 +2873,22 @@
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeterForm">
             <summary>
-            파워메터 폼
+            파워메터 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterForm.AliasName">
+            <summary>
+            별명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterForm.PowerMeter">
+            <summary>
+            파워메터 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterForm.#ctor(SpiralLab.Sirius.IPowerMeter)">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerMeterForm.components">
@@ -4560,6 +4717,11 @@
         <member name="T:SpiralLab.Sirius.PenDefault">
             <summary>
             Pen 엔티티 객체 (기본 버전)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.PowerMap">
+            <summary>
+            펜 편집기 윈폼에서의 DropDownList 지원용 (내부에서 사용됨)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PenDefault.Clone">
@@ -8128,6 +8290,16 @@
             Offset 타입 변환기
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PenColorEditor">
+            <summary>
+            펜 색상 변환기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMapCategoryEditor">
+            <summary>
+            파워 카테고리 목록 변환기
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.DimensionEditor">
             <summary>
             문서 Dimension 변환기
@@ -8287,7 +8459,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.PathOptimizerForm">
             <summary>
-            경로 최적화용 폼
+            경로 최적화용 윈폼
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PathOptimizerForm.OnFinished">
@@ -8345,6 +8517,11 @@
             <summary>
             The algorithm selects chromosomes to the new generation according to their fitness values - the more fitness value chromosome has, the more chances it has to become member of new generation. Each chromosome can be selected several times to the new generation.
             The "roulette's wheel" is divided into sectors, which size is proportional to the fitness values of chromosomes - the size of the wheel is the sum of all fitness values, size of each sector equals to fitness value of chromosome.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.Method">
+            <summary>
+            선택 방식
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PathOptimizerForm.populationSize">
@@ -8459,8 +8636,25 @@
         </member>
         <member name="T:SpiralLab.Sirius.PensForm">
             <summary>
-            펜들의 집합 엔티티 편집용 폼
+            펜 집합 윈폼
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PensForm.Pens">
+            <summary>
+            펜 집합 바인딩 리스트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PensForm.SelectedPen">
+            <summary>
+            현재 선택된 펜 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PensForm.#ctor(SpiralLab.Sirius.IPen[],SpiralLab.Sirius.IPowerMap)">
+            <summary>
+            생성자
+            </summary>
+            <param name="penArray">펜 객체 배열</param>
+            <param name="powerMap">파워맵 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.PensForm.components">
             <summary>
@@ -8597,46 +8791,64 @@
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentSourceChanged">
             <summary>
-            뷰어가 렌더링할 대상 소스 문서가 변경되었을때를 처리하는 델리게이트
+            대상 문서가 변경되었을때를 처리하는 델리게이트
             </summary>
-            <param name="sender"></param>
-            <param name="doc"></param>
+            <param name="sender">SiriusEditorForm</param>
+            <param name="doc">변경된 IDocument 객체</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentNew">
             <summary>
             문서 새로 만들기
             </summary>
-            <param name="sender"></param>
+            <param name="sender">SiriusEditorForm</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentOpen">
             <summary>
             문서 열기
             </summary>
-            <param name="sender"></param>
+            <param name="sender">SiriusEditorForm</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentSave">
             <summary>
             문서 저장
             </summary>
-            <param name="sender"></param>
+            <param name="sender">SiriusEditorForm</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentSaveAs">
             <summary>
             문서 다름이름으로 저장
             </summary>
-            <param name="sender"></param>
+            <param name="sender">SiriusEditorForm</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentPenNew">
             <summary>
             편집기에서 새로운 펜을 생성할때 발생하는 이벤트
             </summary>
-            <param name="sender"></param>
+            <param name="sender">SiriusEditorForm</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusDocumentLayerNew">
             <summary>
             편집기에서 새로운 레이어를 생성할때 발생하는 이벤트
             </summary>
+            <param name="sender">SiriusEditorForm</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.SiriusPowerMapSourceChanged">
+            <summary>
+            대상 파워맵 객체가 변경되었을때를 처리하는 델리게이트
+            </summary>
+            <param name="sender">SiriusEditorForm</param>
+            <param name="powerMap">변경된 IPowerMap 객체</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.SiriusPowerMappingStarted">
+            <summary>
+            파워매핑 시도 이벤트 통지용 
+            </summary>
             <param name="sender"></param>
+            <param name="powerMap"></param>
+            <param name="rtc"></param>
+            <param name="laser"></param>
+            <param name="powerMeter"></param>
+            <param name="category"></param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusEditorForm">
             <summary>
@@ -8728,9 +8940,34 @@
             문서(Document)에서 파워측정(PowerMeter)창을 띄울때 발생하는 이벤트
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSourceChanged">
+            <summary>
+            파워맵(PowerMap)이 변경되었을때 발생하는 이벤트
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMap">
             <summary>
             문서(Document)에서 파워매핑(PowerMap) 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapOpen">
+            <summary>
+            파일을 Open 할때 발생하는 이벤트 (외부 사용자용)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSave">
+            <summary>
+            파일을 Save 할때 발생하는  이벤트 (외부 사용자용)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapStart">
+            <summary>
+            파워 매핑을 시도할때 발생하는 이벤트  (외부 사용자용)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapStop">
+            <summary>
+            파워 매핑을 시도할때 발생하는 이벤트  (외부 사용자용)
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMotor">
@@ -8956,7 +9193,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.ProcessingTime">
             <summary>
-            가공 소요 시간 
+            가공 소요 시간  (sec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.View">

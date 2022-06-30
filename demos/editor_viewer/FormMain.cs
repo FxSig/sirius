@@ -39,6 +39,8 @@ namespace SpiralLab.Sirius
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
+            siriusEditorForm1.OnPowerMapSourceChanged += SiriusEditorForm1_OnPowerMapSourceChanged;
+
             #region RTC 초기화
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
@@ -132,13 +134,16 @@ namespace SpiralLab.Sirius
 
             #region PowerMeter
             // 파워메터
-            var pm = new PowerMeterVirtual(0, "Virtual");
-            //var pm = new PowerMeterOphirUsbI(0, "Ophir", "SERIALNO");
-            //var pm = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
-            pm.Initialize();
-            this.siriusEditorForm1.PowerMeter = pm;
+            //var pm = new PowerMeterVirtual(0, "Virtual");
+            var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
+            //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
+            //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
+            powerMeter.Initialize();
+            this.siriusEditorForm1.PowerMeter = powerMeter;
             #endregion
         }
+
+
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
@@ -146,7 +151,10 @@ namespace SpiralLab.Sirius
             siriusEditorForm1.Document = doc;
             siriusViewerForm1.Document = doc;
         }
-
+        private void SiriusEditorForm1_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)
+        {
+            siriusEditorForm1.PowerMap = powerMap;
+        }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             siriusEditorForm1.Marker?.Stop();

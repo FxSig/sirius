@@ -14,9 +14,8 @@
  *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
- * 
  *
- * 
+ *
  * IRtc 인터페이스를 직접 사용하는 방법
  * 자동 레이저 제어 기법을 사용한다
  * 위치 의존적, 속도 의존적, 벡터 정의 기반의 자동 레이저 출력 제어 기법
@@ -28,14 +27,18 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
 
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
@@ -75,10 +78,14 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
-            //var laser = new PhotonicsIndustryDX(0, "PI", 1, 20);
+            //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
+            //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
-            //var laser = new CoherentDiamondJSeries(0, "Diamond J Series", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondJSeries(0, "Diamond JSeries", "10.0.0.1", 200.0f);
+            //var laser = new CoherentDiamondCSeries(0, "Diamond CSeries", 1, 100.0f);
+            //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
             // assign RTC instance at laser 
