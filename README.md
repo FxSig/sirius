@@ -33,7 +33,12 @@
 
  ![measurement](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-13.png)
 
+ ![powermeter](http://www.spirallab.co.kr/wp-content/uploads/2022/06/image-18.png)
+
  ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2022/01/ezgif.com-gif-maker.gif)
+
+ ![motors](http://www.spirallab.co.kr/wp-content/uploads/2022/06/image-15.png)
+
 
   ----
 
@@ -55,13 +60,10 @@
  - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
  - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
  - support customizable and extensible marker interface.
- - support many kinds of powermeters
-    - Ophir (preliminary)
-    - Thorlab PM100D, PM100A, PM100USB, PM200, PM400 (preliminary)
- - support powermap for calibrate output laser power.
+ - support many kinds of powermeters and powermap for calibrate output laser power.
     - Thorlab PM series
     - Ophir products
-    - Coherent PowerMax (USB/RS) series
+    - Coherent PowerMax (USB/RS) series 
  - support many kinds of laser sources
     - Advanced Optowave Fotia
     - Advanced Optowave AOPico (preliminary)
@@ -124,7 +126,7 @@
 
  - developer page : http://www.spirallab.co.kr/?page_id=229
  - git repository : https://github.com/labspiral/sirius.git
- - e-mail : labspiral@gmail.com
+ - e-mail : hcchoi@spirallab.co.kr
  - homepage : http://spirallab.co.kr                        
  
 
