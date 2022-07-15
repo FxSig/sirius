@@ -86,32 +86,22 @@
 **3. How to use ?**
 
  - development environment : .NET dll library
- - there are multiple demo programs in DEMOS directory
- - add spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll files as a .NET DLL reference
- - use SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm user controls
+  - dll assemblies : spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll 
+ - winforms user control : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
  - x64 Environment : copy files from bin\x64 to bin\
  - x32 Environment : copy files from bin\x32 to bin\
- - additional dll files : freetype6.dll, NLog.dll, ...
+ - additional dll files : freetype6.dll, NLog.dll, ... (MS VC++ redistributable package)
  - subdirectory hierarchy
-
-   > config (config .ini files)
-
-   > correction (ctb/ct5 files and convert programs)
-
-   > fonts (ttf fonts)
-
-   > logo (plt, dxf, stl files)
-
-   > logs (config and output log files)
-
-   > powermap (laser powermap files)
-
-   > plot (measurement output files)
-
-   > scripts (script .cs files)
-
-   > siriusfonts (cxf font files)
-
+    - config (ini config files)
+    - correction (ctb/ct5 files and converter programs)
+    - fonts (ttf fonts)
+    - logo (hpgl, plt, dxf, stl files)
+    - logs (output log files)
+    - powermap (laser powermap files)
+    - plot (measurement output files)
+    - scripts (csharp script files)
+    - siriusfonts (cxf font files)
+	- syncaxis (xml config file, configurator and viewer)
 
  *The program running about 30 mins in evalution copy mode !*
  
@@ -132,15 +122,16 @@
 **5. Version history**
 
 
-* 2022.7.15 v1.1.113
+* 2022.7.15 v1.113
   - fixed) powermap winforms
      - category as frequency value (카테고리값은 주파수로 처리)
      - remove category (카테고리 삭제기능)
      - apply new powermap bug (신규 파워맵 파일 미적용 되는 버그 수정)
   - fixed) IPG ULPN laser communication bug (ULPN 레이저 통신 버그 수정)
+  - fixed) very large image based scanner field correction bug (대용량 이미지 기반 스캐너 필드 보정 버그 수정)
   - fixed) syncaxis
      - modified time resolution for MarkConfig (MarkConfig 설정값의 시간 해상도 변경)
-
+	
 * 2022.7.1 v.1.112
    - added) IPG YLP ULPN laser (레이저 소스 추가됨)
       - preliminary
