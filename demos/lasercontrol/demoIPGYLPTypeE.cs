@@ -14,11 +14,11 @@
  *    `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
- * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
+ * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
  * Laser Source : IPG YLP Type E
  * Description : 
- * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 

@@ -583,6 +583,26 @@ namespace SpiralLab.Sirius.Demo.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_home_24px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_home_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_vertical_line_24px {
+            get {
+                object obj = ResourceManager.GetObject("icons8_vertical_line_24px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap img_orangeline_short {
             get {
                 object obj = ResourceManager.GetObject("img_orangeline_short", resourceCulture);
@@ -616,6 +636,26 @@ namespace SpiralLab.Sirius.Demo.Properties {
         internal static System.Drawing.Bitmap iris_scan_40px {
             get {
                 object obj = ResourceManager.GetObject("iris_scan_40px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap laser_beam_26px {
+            get {
+                object obj = ResourceManager.GetObject("laser_beam_26px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap laser_beam_26px_RED {
+            get {
+                object obj = ResourceManager.GetObject("laser_beam_26px_RED", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

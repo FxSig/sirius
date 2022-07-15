@@ -18,7 +18,7 @@
  *
  * SyncAxis 를 이용한 MOTF
  * SyncAxis (aka. XL-SCAN) : RTC6 + ExcelliSCAN + ACS Controller 조합의 고정밀 가공기법
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -84,7 +84,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'S' : simulation mode enabled");
                 Console.WriteLine("'H' : hardware mode enabled");
@@ -257,7 +257,6 @@ namespace SpiralLab.Sirius
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             Debug.Assert(rtcSyncAxis != null);
 
-            const float StoUSConversion = 1.0F / 1000000.0F;
             const float Size = 1;
             const float Gap = 0.1F;
             double StartSwitchOffset = -40;
@@ -278,12 +277,12 @@ namespace SpiralLab.Sirius
 
             for (int x = 0; x < NumberOfGridPositions; ++x)
             {
-                newTrajectory.Mark.LaserSwitchOffsetTime = (x * IncrementSwitchOffset * StoUSConversion + StartSwitchOffset * StoUSConversion);
+                newTrajectory.Mark.LaserSwitchOffsetTime = (x * IncrementSwitchOffset + StartSwitchOffset);
                 offset = new Vector2( GridFactor * Size * x + offsetInitial.X, offsetInitial.Y);
 
                 for (int y = 0; y < NumberOfGridPositions; ++y)
                 {
-                    newTrajectory.Mark.LaserPreTriggerTime = (y * IncrementPreTrigger * StoUSConversion + StartPreTrigger * StoUSConversion);
+                    newTrajectory.Mark.LaserPreTriggerTime = (y * IncrementPreTrigger + StartPreTrigger);
                     success &= rtcSyncAxis.CtlSetTrajectory(newTrajectory);
 
                     success &= rtcSyncAxis.ListBegin(laser, MotionType.ScannerOnly);

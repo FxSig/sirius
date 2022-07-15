@@ -18,7 +18,7 @@
  * 
  * IPowerMeter/IPowerMap 인터페이스를 직접 사용하는 방법 (How to use IPowerMeter and IPowerMap interface)
  * 파워메터 를 초기화하고 에너지를 계측하고 이를 매핑 테이블로 만들어 레이저 출력을 보상하는 기능을 활용
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -119,7 +119,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"----------------------------------------------------------------------------------------");
                 Console.WriteLine("'P' : start laser on and create power mapping table with vary output power");
                 Console.WriteLine("'C' : laser on with compensated laser output power");

@@ -10,7 +10,7 @@ using System.Windows;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("(c)SpiralLAB")]
 [assembly: AssemblyProduct("spirallab.sirius")]
-[assembly: AssemblyCopyright("(c)SpiralLAB")]
+[assembly: AssemblyCopyright("hcchoi@spirallab.co.kr")]
 [assembly: AssemblyTrademark("spirallab.sirius")]
 [assembly: AssemblyCulture("")]
  

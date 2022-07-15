@@ -24,7 +24,7 @@
  * 경고 !!! 
  * v1.105 버전 이후부터 스크립트 기능을 제공하지 않습니다
  * 
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -57,7 +57,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"----------------------------------------------------------------------------------------");
                 Console.WriteLine("'C' : C# script");
                 Console.WriteLine("'T' : Text entity data by script");

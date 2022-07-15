@@ -21,7 +21,7 @@
  * RTC4는 최대 2개의 채널
  * RTC5/6 는 최대 4개의 채널 
  * 계측 가능하며, 샘플링 주파수는 최대 100KHz( 주기 : 10us) 까지 지원한다
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -105,7 +105,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"----------------------------------------------------------------------------------------");
                 Console.WriteLine("'C' : draw circle with measurement");
                 Console.WriteLine("'R' : draw rectangle with measurement");

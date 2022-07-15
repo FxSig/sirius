@@ -17,7 +17,7 @@
  * 
  * 
  * 아직엑스텍(AJINEXTEK) 사의 모션제품 + DIO 사용한 예제
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -96,9 +96,12 @@ namespace SpiralLab.Sirius
                     break;
                 case "A":
                     {
-                        success &= MotorHelper.AJINEXTEKCreate();
-                        var motorParameterFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "motion", "ajinmotorparameterfile.mot");
-                        success &= MotorHelper.AJINEXTEKLoadParameterFile(motorParameterFile);
+                        if (!MotorHelper.IsAJINEXTEKCreated)
+                        {
+                            success &= MotorHelper.AJINEXTEKCreate();
+                            var motorParameterFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "motion", "ajinmotorparameterfile.mot");
+                            success &= MotorHelper.AJINEXTEKLoadParameterFile(motorParameterFile);
+                        }
                         MotorZ = new MotorAjinExtek(0, "Z Axis");
                         DigitalInput = new AjinExtekDInput(0, "D.IN");
                         DigitalOutput = new AjinExtekDOutput(0, "D.OUT");
@@ -336,7 +339,9 @@ namespace SpiralLab.Sirius
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)
                 return;
-            MotorHelper.AJINEXTEKCreate();
+            if (!MotorHelper.IsAJINEXTEKCreated)
+                MotorHelper.AJINEXTEKCreate();
+
             if (MotorHelper.AJINEXTEKLoadParameterFile(dlg.FileName))
                 textBox1.Text = dlg.FileName;
         }

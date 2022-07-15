@@ -17,7 +17,7 @@
  * 
  * customized 된 마커(Marker)를 사용자가 직접 구현한다
  * 
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -118,7 +118,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'M' : mark by your custom marker");
                 Console.WriteLine("'F' : laser form");

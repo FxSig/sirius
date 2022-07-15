@@ -14,11 +14,11 @@
  *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
- * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
+ * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
  * SiriusEditorForm
  * Description : 가공 데이타 (Document)를 화면에 출력및 사용자의 이벤트에 의해 데이타를 변경하는 등의 뷰어(viewer)및 에디터(editor) 기능을 수행한다.
- * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 

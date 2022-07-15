@@ -19,7 +19,7 @@
  * IRtc 인터페이스를 직접 사용하는 방법
  * 자동 레이저 제어 기법을 사용한다
  * 위치 의존적, 속도 의존적, 벡터 정의 기반의 자동 레이저 출력 제어 기법
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -99,7 +99,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'S' : get status");
                 Console.WriteLine("'A' : 지령 속도(Set Velocity) 기반 레이저 신호 (아나로그) 제어");

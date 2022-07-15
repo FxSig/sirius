@@ -20,7 +20,7 @@
  * 
  * IRtc 인터페이스 및 행렬 사용법
  * 행렬을 사용하여 회전하면서 직선, 사각형의 가공을 실시한다.
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -102,7 +102,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'R' : draw rectangle with rotate");
                 Console.WriteLine("'L' : draw lines with rotate");

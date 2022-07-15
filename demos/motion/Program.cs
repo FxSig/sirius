@@ -17,7 +17,7 @@
  * 
  * Digital IO and Motion 제어 예제 
  * 아진 엑스텍 AXL 라이브러리 기반의 모션및 입출력 예제  
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 

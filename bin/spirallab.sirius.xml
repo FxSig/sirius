@@ -2020,6 +2020,23 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Laser.IPGYLPULPNForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPULPNForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.IPGYLPULPNForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Laser.SpectraPhysicsTalonForm.components">
             <summary>
             Required designer variable.
@@ -2838,7 +2855,7 @@
             차트 다시 그리기
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapForm.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.UInt32,System.Int32,System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMapForm.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.Int32,System.UInt32,System.Single)">
             <summary>
             파워 매핑 시퀀스 (비동기 Task 생성 버전)
             1. 상속후 override 구현 가능
@@ -2850,7 +2867,7 @@
             <param name="laser">ILaser 인터페이스</param>
             <param name="category">대상 카테고리</param>
             <param name="holdTimeMs">파워 측정전 대기 시간(예열 등에 활용) </param>
-            <param name="steps">X 값을 10단계로 나누어 처리</param>
+            <param name="steps">X 값을 지정된 단계로 나누어 처리</param>
             <param name="thresholdWatt">측정된 파웍값의 차이가 해당 값보다 크면 에러로 처리됨 (W)</param>
             <returns></returns>
         </member>
@@ -2995,7 +3012,7 @@
             <summary>
             멀티 선택이 가능한 트리뷰 사용자 컨트롤
             original author : https://www.codeproject.com/Articles/20581/Multiselect-Treeview-Implementation
-            revisied by labspiral@gmail.com
+            revisied by hcchoi@spirallab.co.kr
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ConcurrentList`1">
@@ -8848,7 +8865,15 @@
             <param name="rtc"></param>
             <param name="laser"></param>
             <param name="powerMeter"></param>
-            <param name="category"></param>
+            <param name="category">대상 카테고리(예:Hz)</param>
+            <param name="steps">분할 개수</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.SiriusPowerMappingSave">
+            <summary>
+            파워 맵 저장시 발생 이벤트
+            </summary>
+            <param name="sender"></param>
+            <param name="powerMap">저장할 파워맵 객체</param>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusEditorForm">
             <summary>
@@ -8906,13 +8931,11 @@
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnLaser">
             <summary>
             문서(Document)에서 Laser 팝업 창을 띄울때 발생하는 이벤트
-            
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnRtc">
             <summary>
             문서(Document)에서 RTC 팝업 창을 띄울때 발생하는 이벤트
-            
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnCorrection2D">
@@ -8935,14 +8958,14 @@
             문서(Document)에서 디지털 입출력 창을 띄울때 발생하는 이벤트
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMotor">
+            <summary>
+            모터 창을 띄울때 발생하는 이벤트
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMeter">
             <summary>
             문서(Document)에서 파워측정(PowerMeter)창을 띄울때 발생하는 이벤트
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSourceChanged">
-            <summary>
-            파워맵(PowerMap)이 변경되었을때 발생하는 이벤트
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMap">
@@ -8970,9 +8993,9 @@
             파워 매핑을 시도할때 발생하는 이벤트  (외부 사용자용)
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMotor">
+        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSourceChanged">
             <summary>
-            모터 창을 띄울때 발생하는 이벤트
+            파워맵(PowerMap)이 변경되었을때 발생하는 이벤트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
@@ -28867,6 +28890,64 @@
             Obtains a string that represents the XDataRecord.
             </summary>
             <returns>A string text.</returns>
+        </member>
+        <member name="T:System.Windows.Forms.MessageBoxManager">
+            <summary>
+            How to use
+            Referance by : https://www.codeproject.com/Articles/18399/Localizing-System-MessageBox
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.OK">
+            <summary>
+            OK text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.Cancel">
+            <summary>
+            Cancel text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.Abort">
+            <summary>
+            Abort text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.Retry">
+            <summary>
+            Retry text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.Ignore">
+            <summary>
+            Ignore text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.Yes">
+            <summary>
+            Yes text
+            </summary>
+        </member>
+        <member name="F:System.Windows.Forms.MessageBoxManager.No">
+            <summary>
+            No text
+            </summary>
+        </member>
+        <member name="M:System.Windows.Forms.MessageBoxManager.Register">
+            <summary>
+            Enables MessageBoxManager functionality
+            </summary>
+            <remarks>
+            MessageBoxManager functionality is enabled on current thread only.
+            Each thread that needs MessageBoxManager functionality has to call this method.
+            </remarks>
+        </member>
+        <member name="M:System.Windows.Forms.MessageBoxManager.Unregister">
+            <summary>
+            Disables MessageBoxManager functionality
+            </summary>
+            <remarks>
+            Disables MessageBoxManager functionality on current thread only.
+            </remarks>
         </member>
     </members>
 </doc>

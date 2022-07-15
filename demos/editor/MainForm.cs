@@ -158,23 +158,21 @@ namespace SpiralLab.Sirius
             #region PowerMeter
             // 파워메터
             //var pm = new PowerMeterVirtual(0, "Virtual");
-            var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
+            //var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
             //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
-            powerMeter.Initialize();
-            this.siriusEditorForm1.PowerMeter = powerMeter;
+            //powerMeter.Initialize();
+            //this.siriusEditorForm1.PowerMeter = powerMeter;
             #endregion
 
             #region Powermap
             //var pmap = new PowerMapDefault(0, "Virtual", "Watt");
-            var powerMapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "test.pmap");
-            var pmap = PowerMapSerializer.Open(powerMapFile);
-            this.siriusEditorForm1.PowerMap = pmap;
-            #endregion
-
-            //set compensated power output to 4.5W 
-            laser.PowerMap = pmap;
-            laser.CtlPower(2, "Default");
+            //var powerMapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "default.map");
+            //var pmap = PowerMapSerializer.Open(powerMapFile);
+            //this.siriusEditorForm1.PowerMap = pmap;
+            //laser.PowerMap = pmap;
+            //laser.CtlPower(2, "Default");
+            #endregion            
         }
 
         private void SiriusEditorForm1_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)

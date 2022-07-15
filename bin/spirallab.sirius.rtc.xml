@@ -1880,258 +1880,258 @@
              <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IPGYLPULPM">
+        <member name="T:SpiralLab.Sirius.IPGYLPULPN">
             <summary>
-            레이저 소스 (IPG YLP ULPM)
+            레이저 소스 (IPG YLP ULPN)
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPGYLPULPM.PropertyChanged">
+        <member name="E:SpiralLab.Sirius.IPGYLPULPN.PropertyChanged">
             <summary>
             속성 변경 이벤트 핸들러
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.SyncRoot">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.SyncRoot">
             <summary>
             동기화 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Index">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Index">
             <summary>
             식별 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Name">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Name">
             <summary>
             이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.MaxPowerWatt">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.MaxPowerWatt">
             <summary>
             최대 파워 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsReady">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsReady">
             <summary>
             상태 (준비완료 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsBusy">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsBusy">
             <summary>
             상태 (출사중 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsError">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsError">
             <summary>
             상태 (에러 발생 여부)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Rtc">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsPowerControl">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsShutterControl">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsShutterControl">
             <summary>
             셔터 제어를 지원하는지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsGuideControl">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsGuideControl">
             <summary>
             Guide 레이저 빔 지원하는지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Tag">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Tag">
             <summary>
             사용자 데이타
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.EmissionOn">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.EmissionOn">
             <summary>
             0 : Emission Off
             1 : Emission On
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.ExternalTrigger">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.ExternalTrigger">
             <summary>
             0 : Internal Trigger 
             1 : External Trigger
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.WarningUp">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.WarningUp">
             <summary>
             0 : Laser is not warm up mode
             1 : Laser is in warm up mode
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.ModuleStartUpComplete">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.ModuleStartUpComplete">
             <summary>
             0 : Module is in startup mode
             1 : Module startup is complete
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.EnabledBoosterPowerSupply">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.EnabledBoosterPowerSupply">
             <summary>
             0 : Booster power supply is disabled
             1 : Booster power supply is enabled
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.InternalModulation">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.InternalModulation">
             <summary>
             0 : External modulation
             1 : Internal modulation
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.InternalAanalogControl">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.InternalAanalogControl">
             <summary>
             0 : External analog control is selected
             1 : External analog control is selected
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.PowerSupply24VOutOfRange">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.PowerSupply24VOutOfRange">
             <summary>
             0: OK
             1 : 24V PS Out of range
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.LaserIsOverheated">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.LaserIsOverheated">
             <summary>
             0 : laser Temp ok
             1 : laser Overheated
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.HighBackReflectionLevel">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.HighBackReflectionLevel">
             <summary>
             0 : backreflection level is OK
             1 : high backreflection level detected
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit.HeadIsOverheated">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.HeadIsOverheated">
             <summary>
             0 : head temperature is OK
             1 : head overheated
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Value">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Value">
             <summary>
             4바이트 값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Add(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Add(SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit)">
             <summary>
             비트 설정
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Remove(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Remove(SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit)">
             <summary>
             비트 해제
             </summary>
             <param name="flag">비트</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Contains(SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Bit)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Contains(SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit)">
             <summary>
             비트값 설정 여부
             </summary>
             <param name="flag"></param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.ToInt">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.ToInt">
             <summary>
             4바이트 int 으로 변환
             </summary>
             <returns></returns>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.DeviceStatus.Empty">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Empty">
             <summary>
             기본값(0) 객체 생성
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.Status">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Status">
             <summary>
             디바이스 상태 (8비트)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.StatusBit">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.StatusBit">
             <summary>
             디바이스 상태 (8비트)
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.TriggerModes.External">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.TriggerModes.External">
             <summary>
             외부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.TriggerModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.TriggerModes.Internal">
             <summary>
             내부 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.PulseRepRateInt">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.PulseRepRateInt">
             <summary>
             Hz
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.PulseRepRateExt">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.PulseRepRateExt">
             <summary>
             Hz
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.ModulationModes.External">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.ModulationModes.External">
             <summary>
             외부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.ModulationModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.ModulationModes.Internal">
             <summary>
             내부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.PowerControlModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.PowerControlModes.Internal">
             <summary>
             내부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.PowerControlModes.External">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.PowerControlModes.External">
             <summary>
             외부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.EmissionControlModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.EmissionControlModes.Internal">
             <summary>
             내부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPM.EmissionControlModes.External">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.EmissionControlModes.External">
             <summary>
             외부 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsEmissionOn">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsEmissionOn">
             <summary>
             Emission 온오프
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.IsGuideOn">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsGuideOn">
             <summary>
             Guide Laser 온오프
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPM.ComPort">
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.ComPort">
             <summary>
             통신 포트 번호
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.#ctor">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.#ctor">
             <summary>
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.#ctor(System.UInt32,System.String,System.UInt32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -2140,43 +2140,43 @@
             <param name="comPort">COM 포트</param>
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.Initialize">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.Initialize">
             <summary>
             초기화
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlAbort">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlAbort">
             <summary>
             강제 출사 정지
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlReset">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlReset">
             <summary>
             리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckErrors">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckReady">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckReady">
             <summary>
             준비(IsReady) 조건 설정
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CheckBusy">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.CtlPower(System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경
             </summary>
@@ -2184,20 +2184,20 @@
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListBegin">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.ListBegin">
             <summary>
             리스트 시작 통지용
             (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListEnd">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.ListEnd">
             <summary>
             리스트 명령 끝 통지용
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPM.ListPower(System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 (RTC의 리스트 명령으로 처리시)
             </summary>
@@ -9736,6 +9736,12 @@
             <param name="rtc5Count">설치된 RTC 5 개수</param>
             <param name="rtc6Count">설치된 RTC 6 개수</param>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.DoubleDot12TypeConverter">
+            <summary>
+            부동소수점 변환기
+            소수점 이하 12 자리표기용
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Vector2Converter">
             <summary>
@@ -18780,17 +18786,17 @@
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.LaserPreTriggerTime">
             <summary>
-            Time to trigger the  laser signal in advance, if a Mark Segment is  executed.Unit: s.
+            Time to trigger the  laser signal in advance, if a Mark Segment is executed.Unit: usec.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.LaserSwitchOffsetTime">
             <summary>
-            Time shift for the  laser signals output.Unit: s.
+            Time shift for the  laser signals output. Unit: usec.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.LaserMinOffTime">
             <summary>
-             Shortest  “Laser Standby” Operation duration. Unit: s.
+             Shortest  “Laser Standby” Operation duration. Unit: usec.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.JumpSpeed">

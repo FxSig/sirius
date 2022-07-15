@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcExtension 인터페이스를 직접 사용하는 방법
  * RTC5 + RtcExtension 카드를 초기화 하고 다양한 확장 기능을 테스트
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -98,7 +98,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'D' : draw circle with dual head offset");
                 Console.WriteLine("'Q' : quit");

@@ -14,11 +14,11 @@
  *    `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
- * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
+ * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
  * custom pen entity : 사용자가 특화시킨 펜 엔티티 
  * Description : 
- * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 

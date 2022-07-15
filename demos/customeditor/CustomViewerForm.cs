@@ -14,11 +14,11 @@
  *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
- * Copyright(C) 2020 hong chan, choi. labspiral@gmail.com
+ * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
  * SiriusViewerForm
  * Description : 가공 데이타 (Document)를 화면에 출력 하는 뷰어(viewer) 기능을 수행한다.
- * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 

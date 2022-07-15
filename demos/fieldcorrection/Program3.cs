@@ -18,7 +18,7 @@
  *
  * 스캐너 보정 파일 (ct5) 의 헤더 정보 조회 예제
  * 
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -62,7 +62,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'H' : correction file header information");
                 Console.WriteLine("'Q' : quit");

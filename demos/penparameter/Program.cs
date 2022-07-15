@@ -17,7 +17,7 @@
  * 
  * 레이저및 스캐너의 가공 파라메터를 일컬어 통상 "펜(Pen)" 파라메터라 하며, 이 펜 개체(Entity)를 사용해 다양한 가공 조건 (속도및 지연값등)을 설정한다.
  * 가공 정보를 가지고 있는 펜 개체(IPen Entity) 생성후 가공 좌표와 같이 레이어에 추가하여 사용하는 방법을 설명한다
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -144,7 +144,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'D' : draw entities by pen");
                 Console.WriteLine("'Q' : quit");

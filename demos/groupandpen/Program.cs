@@ -18,7 +18,7 @@
  * 여러 개체(Entity)를을 묶어 하나의 그룹(Group) 으로 관리가 가능한다. 
  * 이는 데이타가 매우 많거나 반복(repeat)가공이 필요할 경우 유용하다.
  * 또한 그룹개체(Group Entity)는 자체적으로 오프셋(Offset) 속성을 통해 자기 자신을 여러 오프셋 위치에 반복 가공이 가능하다
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -180,7 +180,7 @@ namespace SpiralLab.Sirius
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com(http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("'D' : draw group entities with pen");
                 Console.WriteLine("'Q' : quit");

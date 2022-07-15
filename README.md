@@ -33,11 +33,7 @@
 
  ![measurement](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-13.png)
 
- ![powermeter](http://www.spirallab.co.kr/wp-content/uploads/2022/06/image-18.png)
-
  ![path optimizer](http://www.spirallab.co.kr/wp-content/uploads/2022/01/ezgif.com-gif-maker.gif)
-
- ![motors](http://www.spirallab.co.kr/wp-content/uploads/2022/06/image-15.png)
 
 
   ----
@@ -75,7 +71,7 @@
     - IPG YLP Type D
     - IPG YLP Type E
     - IPG YLP N Series (preliminary)
-	- IPG ULPN Series (preliminary)
+	- IPG ULPN Series 
     - JPT Type E	
     - SPI G3/G4 (preliminary)
     - Spectra Physics Talon (preliminary)
@@ -134,6 +130,15 @@
 
 
 **5. Version history**
+
+*2022.7.15 v1.1.113
+  - fixed) powermap winforms
+     - category as frequency value (카테고리값은 주파수로 처리)
+     - remove category (카테고리 삭제기능)
+     - apply new powermap bug (신규 파워맵 파일 미적용 되는 버그 수정)
+  - fixed) IPG ULPN laser communication bug (ULPN 레이저 통신 버그 수정)
+  - fixed) syncaxis
+     - modified time resolution for MarkConfig (MarkConfig 설정값의 시간 해상도 변경)
 
 * 2022.7.1 v.1.112
    - added) IPG YLP ULPN laser (레이저 소스 추가됨)

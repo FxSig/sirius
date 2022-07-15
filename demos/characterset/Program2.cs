@@ -22,7 +22,7 @@
  * 시리얼 번호, 날짜, 시간등을 마킹한다
  * 리스트 버퍼가 실행될때마다 시리얼 번호, 날짜, 시간이 RTC 내부에서 자동 처리된다.
  * RTC 인터페이스가 아닌 엔티티(SiriusText)에서 제공하는 Mark 함수를 이용한 자동마킹
- * Author : hong chan, choi / labspiral@gmail.com(http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
@@ -91,7 +91,7 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
-                Console.WriteLine("Testcase for spirallab.sirius. powered by labspiral@gmail.com (http://spirallab.co.kr)");
+                Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine("");
                 Console.WriteLine("'D' : mark to date");
                 Console.WriteLine("'I' : mark to time");
