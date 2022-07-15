@@ -104,7 +104,7 @@
 
    > logs (config and output log files)
 
-   > map (powermap files)
+   > powermap (laser powermap files)
 
    > plot (measurement output files)
 
@@ -131,7 +131,8 @@
 
 **5. Version history**
 
-*2022.7.15 v1.1.113
+
+* 2022.7.15 v1.1.113
   - fixed) powermap winforms
      - category as frequency value (카테고리값은 주파수로 처리)
      - remove category (카테고리 삭제기능)
