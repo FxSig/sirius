@@ -300,6 +300,30 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.SyncAxisCalculationDynamics">
+            <summary>
+            SyncAXIS 스캔 장치의 계산 역학 제한값 설정용 
+            (점프, 마크의 가속도, 가가속도 역학 제한)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.AlcSyncAxisEnd">
             <summary>
             ALC by Vector Dependent End 엔티티 객체

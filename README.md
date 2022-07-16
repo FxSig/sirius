@@ -131,6 +131,7 @@
   - fixed) very large image based scanner field correction bug (대용량 이미지 기반 스캐너 필드 보정 버그 수정)
   - fixed) syncaxis
      - modified time resolution for MarkConfig (MarkConfig 설정값의 시간 해상도 변경)
+     - editable calculation dynamics for scan device (스캐너의 계산 역학값 변경 지원)
 	
 * 2022.7.1 v.1.112
    - added) IPG YLP ULPN laser (레이저 소스 추가됨)

@@ -14740,6 +14740,38 @@
             <param name="trajectory"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetJumpCalculationDynamics(System.Single@,System.Single@)">
+            <summary>
+            스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetJumpCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetMarkCalculationDynamics(System.Single@,System.Single@)">
+            <summary>
+            스캔 장치 마크시 각가속도, 각가가속도 계산 역학 값 
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlSetMarkCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            스캔 장치 마크시 각가속도, 각가가속도 계산 역학값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlGetInternalErrMsg(System.Collections.Generic.List{System.ValueTuple{System.UInt64,System.String}}@)">
             <summary>
             syncAXIS 인스턴스에서 제공하는 에러 개수및 목록
@@ -14993,6 +15025,22 @@
             <summary>
             리스트 명령 - ALC(Automatic Laser Control) 기능중 Linear Ramp 기능을 비활성화
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListJumpCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            현재 대상 작업(JOB)에 스캔 장치 점프시 각가속도, 각가가속도 역학 제한값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListMarkCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            현재 대상 작업(JOB)에 스캔 장치 마크시 각가속도, 각가가속도 역학 제한값
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListEnd">
@@ -19619,6 +19667,38 @@
             <param name="trajectory"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetJumpCalculationDynamics(System.Single@,System.Single@)">
+            <summary>
+            스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetJumpCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetMarkCalculationDynamics(System.Single@,System.Single@)">
+            <summary>
+            스캔 장치 마크시 각가속도, 각가가속도 계산 역학값
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetMarkCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            스캔 장치 마크시 각가속도, 각가가속도 계산 역학값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetInternalErrMsg(System.Collections.Generic.List{System.ValueTuple{System.UInt64,System.String}}@)">
             <summary>
             syncAXIS 인스턴스에서 제공하는 에러 개수및 목록
@@ -19680,6 +19760,22 @@
             <summary>
             리스트 명령 -  ALC(Automatic Laser Control)  Linear Ramp 비활성화
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListJumpCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            현재 대상 작업(JOB)에 스캔 장치 점프시 각가속도, 각가가속도 역학 제한값 변경
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListMarkCalculationDynamics(System.Single,System.Single)">
+            <summary>
+            현재 대상 작업(JOB)에 스캔 장치 마크시 각가속도, 각가가속도 역학 제한값
+            </summary>
+            <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
+            <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
             <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.MainForm.components">
