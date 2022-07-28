@@ -31,7 +31,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        public int Index { get; set; }
         /// <summary>
         /// 이름
         /// </summary>
@@ -119,7 +119,7 @@ namespace SpiralLab.Sirius
 
         private Thread thread;
 
-        public MotfMarker(uint index)
+        public MotfMarker(int index)
         {
             this.Index = index;
         }

@@ -56,7 +56,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        public int Index { get; set; }
         /// <summary>
         /// 이름
         /// </summary>
@@ -147,7 +147,7 @@ namespace SpiralLab.Sirius
         /// 생성자
         /// </summary>
         /// <param name="index"></param>
-        public YourCustomMarker(uint index)
+        public YourCustomMarker(int index)
         {
             this.Index = index;
             this.MarkerArg = new MarkerArgDefault();

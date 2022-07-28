@@ -388,24 +388,6 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.BarcodeMaxiCode">
-            <summary>
-            barcode maxicode entity
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeMaxiCode.Clone">
-            <summary>
-            복사본 생성
-            </summary>
-            <returns>A new color that is a copy of this instance.</returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.BarcodeMaxiCode.Mark(SpiralLab.Sirius.IMarkerArg)">
-            <summary>
-            laser processing
-            </summary>
-            <param name="markerArg"></param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.BarcodeDataMatrix2">
             <summary>
             barcode datamatrix v2 entity
@@ -422,6 +404,24 @@
             laser processing
             </summary>
             <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.HatchHorizontal(System.Single,System.Single,System.Single)">
+            <summary>
+            angle 0
+            </summary>
+            <param name="interval"></param>
+            <param name="shift"></param>
+            <param name="exclude"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.HatchVertical(System.Single,System.Single,System.Single)">
+            <summary>
+            angle 90
+            </summary>
+            <param name="interval"></param>
+            <param name="shift"></param>
+            <param name="exclude"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BarcodeQR">
@@ -460,6 +460,24 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR2.HatchHorizontal(System.Single,System.Single,System.Single)">
+            <summary>
+            angle 0
+            </summary>
+            <param name="interval"></param>
+            <param name="shift"></param>
+            <param name="exclude"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.BarcodeQR2.HatchVertical(System.Single,System.Single,System.Single)">
+            <summary>
+            angle 90
+            </summary>
+            <param name="interval"></param>
+            <param name="shift"></param>
+            <param name="exclude"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Barcode2D">
             <summary>
             2D 바코드 추상 객체
@@ -488,6 +506,11 @@
         <member name="P:SpiralLab.Sirius.Barcode2D.CellHatch">
             <summary>
             바코드 타입 - 해치
+            </summary>        
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode2D.CellCircle">
+            <summary>
+            바코드 타입 - 원
             </summary>        
         </member>
         <member name="F:SpiralLab.Sirius.Barcode2D.isRegen">
@@ -2156,12 +2179,12 @@
             상태바에 출력되는 이름 (별명)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Laser.LaserForm.Laser">
+        <member name="P:SpiralLab.Sirius.Laser.LaserForm.LaserSource">
             <summary>
             레이저 객체
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.LaserForm.#ctor">
+        <member name="M:SpiralLab.Sirius.Laser.LaserForm.#ctor(SpiralLab.Sirius.ILaser)">
             <summary>
             생성자
             </summary>
@@ -3592,9 +3615,16 @@
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityDelete(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
             <summary>
-            지정된 엔티티 삭제 명령
+            지정된 복수개의 엔티티 삭제 명령
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityDelete(SpiralLab.Sirius.IEntity)">
+            <summary>
+            지정된 엔티티 삭제 명령
+            </summary>
+            <param name="entitity">선택 엔티티</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityAlign(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.EntityAlign)">
@@ -7050,6 +7080,11 @@
             해치가 제외된 외곽 폐곡선
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.BarcodeShapeType.Circle">
+            <summary>
+            개별 원
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.BarcodeShapeType.Hatch">
             <summary>
             Hatch (Line)
@@ -7733,13 +7768,13 @@
             가공 시작전 RTC 의 행렬 스택 복사본
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MarkerDefault.#ctor(System.UInt32)">
+        <member name="M:SpiralLab.Sirius.MarkerDefault.#ctor(System.Int32)">
             <summary>
             생성자
             </summary>
             <param name="index">식별 번호</param>
         </member>
-        <member name="M:SpiralLab.Sirius.MarkerDefault.#ctor(System.UInt32,System.String)">
+        <member name="M:SpiralLab.Sirius.MarkerDefault.#ctor(System.Int32,System.String)">
             <summary>
             생성자
             </summary>
@@ -9235,7 +9270,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.LabelMessage">
             <summary>
-            좌상단 레이블 표준 컨트롤 대체용
+            좌상단 레이블
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusViewerForm.LabelMessage2">
+            <summary>
+            좌상단 레이블2
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.ProcessingTime">

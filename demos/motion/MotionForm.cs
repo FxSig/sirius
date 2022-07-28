@@ -319,7 +319,7 @@ namespace SpiralLab.Sirius
                 return;
             if (null == DigitalOutput)
                 return;
-            uint bitPosition = uint.Parse(dgvOutput.Rows[e.RowIndex].Cells[0].Value.ToString());
+            int bitPosition = int.Parse(dgvOutput.Rows[e.RowIndex].Cells[0].Value.ToString());
             var ioName = dgvOutput.Rows[e.RowIndex].Cells[1].Value;
             bool onOff = dgvOutput.Rows[e.RowIndex].Cells[2].Value.Equals("ON");
             if (onOff)

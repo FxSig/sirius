@@ -94,7 +94,7 @@ namespace SpiralLab.Sirius
         /// <param name="name"></param>
         /// <param name="comPort"></param>
         /// <param name="maxPowerWatt"></param>
-        public DemoIPGYLPTypeE(uint index, string name, uint comPort, float maxPowerWatt=20)
+        public DemoIPGYLPTypeE(int index, string name, uint comPort, float maxPowerWatt=20)
             : base(index, name, comPort, maxPowerWatt)
         { }
 

@@ -39,7 +39,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        public int Index { get; set; }
         /// <summary>
         /// 이름
         /// </summary>
@@ -84,7 +84,7 @@ namespace SpiralLab.Sirius
         private SerialPort serialPort;
         private bool disposed = false;
 
-        public YourCustomLaser2(uint index, string name, float maxPowerWatt, int comPort)
+        public YourCustomLaser2(int index, string name, float maxPowerWatt, int comPort)
         {
             this.SyncRoot = new object();
             this.Index = index;

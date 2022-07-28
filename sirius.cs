@@ -15,9 +15,9 @@
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  *   
- * 2022 Copyright(C) SpiralLab. All rights reserved. labspiral@gmail.com
+ * 2022 Copyright(C) SpiralLab. All rights reserved. 
  * Description : spirallab.sirius lib
- * Author : hong chan, choi / labspiral@gmail.com (http://spirallab.co.kr)
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  * 
  *   {spirallab.core.dll}

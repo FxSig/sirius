@@ -36,7 +36,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        public int Index { get; set; }
         /// <summary>
         /// 이름
         /// </summary>
@@ -87,7 +87,7 @@ namespace SpiralLab.Sirius
         /// <param name="index">식별번호</param>
         /// <param name="name">이름</param>
         /// <param name="maxPowerWatt">최대 출력 (Watt)</param>
-        public YourCustomLaser(uint index, string name, float maxPowerWatt)
+        public YourCustomLaser(int index, string name, float maxPowerWatt)
         {
             this.SyncRoot = new object();
             this.Index = index;

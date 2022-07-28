@@ -55,7 +55,7 @@ namespace SpiralLab.Sirius.Default
 
             bool success = true;
             #region RTC 초기화
-            uint i = 0;
+            int i = 0;
             //var rtcCounts = NativeMethods.ReadIni<int>(Program.ConfigFileName, "RTC", "COUNTS");
             //for (uint i = 0; i < rtcCounts; i++)
             //{

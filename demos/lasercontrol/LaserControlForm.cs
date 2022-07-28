@@ -68,9 +68,8 @@ namespace SpiralLab.Sirius
             bool success = laser.Initialize();
 
             {
-                var form = new SpiralLab.Sirius.Laser.LaserForm();
+                var form = new SpiralLab.Sirius.Laser.LaserForm(laser);
                 form.AliasName = "Avia LX";
-                form.Laser = laser;
                 form.ShowDialog(this);
             }
             
@@ -125,9 +124,8 @@ namespace SpiralLab.Sirius
             bool success = laser.Initialize();
 
             {
-                var form = new SpiralLab.Sirius.Laser.LaserForm();
+                var form = new SpiralLab.Sirius.Laser.LaserForm(laser);
                 form.AliasName = "TYPE E";
-                form.Laser = laser;
                 form.ShowDialog(this);
             }
 
@@ -140,9 +138,8 @@ namespace SpiralLab.Sirius
             bool success = laser.Initialize();
 
             {
-                var form = new SpiralLab.Sirius.Laser.LaserForm();
+                var form = new SpiralLab.Sirius.Laser.LaserForm(laser);
                 form.AliasName = "G3/4";
-                form.Laser = laser;
                 form.ShowDialog(this);
             }
 
@@ -152,7 +149,7 @@ namespace SpiralLab.Sirius
         
         private void button8_Click(object sender, EventArgs e)
         {
-            uint index = 0;
+            int index = 0;
             var rtc = new Rtc5(index); //create Rtc5 controller
             //var rtc = new Rtc6(index); //create Rtc6 controller
             
@@ -182,9 +179,8 @@ namespace SpiralLab.Sirius
             laser.RtcDOutExt2 = rtcDOutExt2;
 
             success &= laser.Initialize();
-            var form = new SpiralLab.Sirius.Laser.LaserForm();
+            var form = new SpiralLab.Sirius.Laser.LaserForm(laser);
             form.AliasName = "TYPE E";
-            form.Laser = laser;
             form.ShowDialog(this);
 
             laser.Dispose();

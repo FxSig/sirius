@@ -114,13 +114,20 @@
  - git repository : https://github.com/labspiral/sirius.git
  - e-mail : hcchoi@spirallab.co.kr
  - homepage : http://spirallab.co.kr                        
- 
+
 
 ----
 
 
 **5. Version history**
 
+
+* 2022.7.29 v1.114
+  - updated) rtc6 dlls files by v2022.7.22      
+  - added) barcode2d : hatched cross lines (2D 바코드 해치 셀 타입내에 격자 모양 해치 지원)
+  - added) barcode2d : new cell type of circle (셀 타입에 원형 추가)
+  - fixed) barcode2d : invalid start of line's cell type with zig zag (지그재그 라인 셀 타입사용시 시작 위치 오류 수정)
+  - fixed) textarc with hatch bug (원호형 텍스트내부의 해치 지원 버그 수정)
 
 * 2022.7.15 v1.113
   - fixed) powermap winforms

@@ -136,8 +136,7 @@ namespace SpiralLab.Sirius
                         MarkByMarker(rtc, laser, marker, motorZ);
                         break;
                     case ConsoleKey.F:
-                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm();
-                        laerForm.Laser = laser;
+                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
                         laerForm.ShowDialog();
                         break;
                 }
