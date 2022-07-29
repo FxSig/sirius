@@ -7,8 +7,7 @@
         <member name="T:SpiralLab.Sirius.ICompensator`1">
             <summary>
             Compensator 인터페이스
-            입력값에 대해 변환된 출력값을 연산해주는 기능 제공 
-            (사용자 보간 알고리즘 직접 구현)
+            입력값에 대해 변환된 출력값을 연산해주는 기능 (사용자 보간 알고리즘 직접 구현)
             </summary>
             <typeparam name="T">제네릭 타입</typeparam>
         </member>
@@ -33,7 +32,7 @@
             </summary>
             <param name="input">입력값</param>
             <param name="output">보간된 출력값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICompensator`1.Reset">
             <summary>
@@ -67,6 +66,11 @@
             파일 이름
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.CompensatorDefault`1.prev">
+            <summary>
+            이전 출력값
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.CompensatorDefault`1.#ctor">
             <summary>
             생성자
@@ -85,7 +89,7 @@
             </summary>
             <param name="input">입력값</param>
             <param name="output">보간된 출력값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.CompensatorDefault`1.Reset">
             <summary>
@@ -110,7 +114,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInput2Pin.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInput2Pin.ChannelCount">
@@ -212,9 +216,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.RtcDInput2Pin.Update">
             <summary>
-            입력 채널들 업데이트
+            입력 값들을 채널 메모리로 반영 (업데이트)
+            하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.RtcDOutput2Pin">
             <summary>
@@ -234,7 +239,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutput2Pin.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutput2Pin.ChannelCount">
@@ -344,7 +349,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.RtcDOutput2Pin.Update">
             <summary>
-            채널 출력 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
+            </summary>
+            <returns>성공여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutput2Pin.ReverseUpdate">
+            <summary>
+            출력 채널 상태를 내부 채널로 역반영
+            하드웨어 출력 -> 채널 메모리 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -3583,6 +3596,13 @@
             <param name="recv"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.ACSDispose(ACS.SPiiPlusNET.Api@)">
+            <summary>
+             ACS SPiiPlus 인스턴스 객체 자원 해제
+            </summary>
+            <param name="api"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorHelper.AJINEXTEKCreate">
             <summary>
             아진엑스텍 AXL 라이브러리 초기화
@@ -3646,11 +3666,12 @@
         <member name="P:SpiralLab.Sirius.IMotors.SyncRoot">
             <summary>
             동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.Motors">
             <summary>
-            축 목록
+            모터 목록
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.Name">
@@ -3691,38 +3712,42 @@
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(SpiralLab.Sirius.PosVel[])">
             <summary>
             절대 위치 이동 (다축)
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="posVel">위치값 (mm), 속도 (mm/s) 배열</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             절대 위치 이동 (단축)
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
             <param name="posVel">위치값 (mm), 속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (다축)
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (단축)
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
             <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.Update">
             <summary>
             상태 업데이트
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotorPositionTable">
             <summary>
@@ -4275,7 +4300,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput.ChannelCount">
@@ -4372,9 +4397,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.AdlinkDInput.Update">
             <summary>
-            입력 채널 업데이트
+            입력 값들을 채널 메모리로 반영 (업데이트)
+            하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.AdlinkDOutput">
             <summary>
@@ -4394,7 +4420,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDOutput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDOutput.ChannelCount">
@@ -4504,13 +4530,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.AdlinkDOutput.Update">
             <summary>
-            출력 채널들 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.AdlinkDOutput.ReverseUpdate">
             <summary>
-            출력 채널 상태를 내부 채널에 역 업데이트
+            출력 채널 상태를 내부 채널로 역반영
+            하드웨어 출력 -> 채널 메모리 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -4532,7 +4560,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDInput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDInput.ChannelCount">
@@ -4633,9 +4661,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.AjinExtekDInput.Update">
             <summary>
-            입력 채널 업데이트
+            입력 값들을 채널 메모리로 반영 (업데이트)
+            하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.AjinExtekDOutput">
             <summary>
@@ -4655,7 +4684,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDOutput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AjinExtekDOutput.ChannelCount">
@@ -4764,13 +4793,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.AjinExtekDOutput.Update">
             <summary>
-            출력 채널 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.AjinExtekDOutput.ReverseUpdate">
             <summary>
-            하드웨어적인 출력 상태를 역으로 읽어와 채널 메모리 값을 업데이트
+            출력 채널 상태를 내부 채널로 역반영
+            하드웨어 출력 -> 채널 메모리 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -4784,7 +4815,7 @@
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값</param>
-            <param name="msec">hold time (msec)</param>
+            <param name="msec">유지시간 (hold time: msec)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA">
@@ -4794,7 +4825,32 @@
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA.Status">
             <summary>
-            접점 상태
+            접점 상태 열거형
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerA.Status.Off">
+            <summary>
+            꺼짐
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerA.Status.On">
+            <summary>
+            켜짐
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerA.Status.Uncertain">
+            <summary>
+            불확실
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerA.status">
+            <summary>
+            상태
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerA.sw">
+            <summary>
+            타이머
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.DInputTriggerA.#ctor">
@@ -4807,8 +4863,8 @@
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값 </param>
-            <param name="msec">hold time (msec)</param>
-            <returns></returns>
+            <param name="msec">유지시간 (hold time: msec)</param>
+            <returns>트리거 발생여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerB">
             <summary>
@@ -4820,13 +4876,38 @@
             접점 상태
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerB.Status.Off">
+            <summary>
+            꺼짐
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerB.Status.On">
+            <summary>
+            켜짐
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerB.Status.Uncertain">
+            <summary>
+            불확실
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerB.status">
+            <summary>
+            상태
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.DInputTriggerB.sw">
+            <summary>
+            타이머
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.DInputTriggerB.IsTriggered(System.Boolean,System.Int64)">
             <summary>
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값</param>
-            <param name="msec">hold time (msec)</param>
-            <returns></returns>
+            <param name="msec">유지시간 (hold time: msec)</param>
+            <returns>트리거 발생여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputVirtual">
             <summary>
@@ -4846,7 +4927,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.DInputVirtual.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DInputVirtual.ChannelCount">
@@ -4869,11 +4950,16 @@
             종결자
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.DInputVirtual.Dispose">
+            <summary>
+            자원해제
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.Initialize">
             <summary>
             초기화
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOn``1(``0)">
             <summary>
@@ -4881,14 +4967,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 대상</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOn(System.Int32)">
             <summary>
             A On 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOff``1(``0)">
             <summary>
@@ -4896,14 +4982,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsAOff(System.Int32)">
             <summary>
             해당 접점 입력 AOff 상태
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOff``1(``0)">
             <summary>
@@ -4911,14 +4997,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOff(System.Int32)">
             <summary>
             해당 접점 입력 BOn 상태
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOn``1(``0)">
             <summary>
@@ -4926,14 +5012,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 대상</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.IsBOn(System.Int32)">
             <summary>
             B On 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.GetChannel(System.Int32,System.UInt16@)">
             <summary>
@@ -4941,13 +5027,14 @@
             </summary>
             <param name="ch">채널</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DInputVirtual.Update">
             <summary>
-            입력 채널들 업데이트
+            입력 값들을 채널 메모리로 반영 (업데이트)
+            하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.DOutputVirtual">
             <summary>
@@ -4967,7 +5054,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.DOutputVirtual.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DOutputVirtual.ChannelCount">
@@ -4990,11 +5077,16 @@
             종결자
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.DOutputVirtual.Dispose">
+            <summary>
+            자원해제
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.Initialize">
             <summary>
             초기화
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.OutOn``1(``0)">
             <summary>
@@ -5002,14 +5094,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.OutOn(System.Int32)">
             <summary>
             해당 접점 출력 Off
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.OutOff``1(``0)">
             <summary>
@@ -5017,14 +5109,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.OutOff(System.Int32)">
             <summary>
             해당 접점 출력 Off
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.IsOutOn``1(``0)">
             <summary>
@@ -5032,14 +5124,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.IsOutOn(System.Int32)">
             <summary>
             해당 접점 출력 On 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.IsOutOff``1(``0)">
             <summary>
@@ -5047,14 +5139,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.IsOutOff(System.Int32)">
             <summary>
             해당 접점 출력 Off 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.GetChannel(System.Int32,System.UInt16@)">
             <summary>
@@ -5062,7 +5154,7 @@
             </summary>
             <param name="ch">채널</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.SetChannel(System.Int32,System.UInt16)">
             <summary>
@@ -5070,17 +5162,19 @@
             </summary>
             <param name="ch">채널</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.DOutputVirtual.Update">
             <summary>
-            출력 채널들 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.IDOutput">
             <summary>
             디지털 출력 인터페이스    
+            하나의 채널은 16개의 접점으로 구성됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.SyncRoot">
@@ -5095,7 +5189,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.ChannelCount">
@@ -5112,7 +5206,7 @@
             <summary>
             초기화
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOn``1(``0)">
             <summary>
@@ -5120,14 +5214,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOn(System.Int32)">
             <summary>
             해당 접점 출력 Off
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOff``1(``0)">
             <summary>
@@ -5135,14 +5229,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.OutOff(System.Int32)">
             <summary>
             해당 접점 출력 Off
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOn``1(``0)">
             <summary>
@@ -5150,14 +5244,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOn(System.Int32)">
             <summary>
             해당 접점 출력 On 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOff``1(``0)">
             <summary>
@@ -5165,14 +5259,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.IsOutOff(System.Int32)">
             <summary>
             해당 접점 출력 Off 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.GetChannel(System.Int32,System.UInt16@)">
             <summary>
@@ -5180,7 +5274,7 @@
             </summary>
             <param name="ch">채널 (0,1,2,...)</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.SetChannel(System.Int32,System.UInt16)">
             <summary>
@@ -5188,14 +5282,14 @@
             </summary>
             <param name="ch">채널</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.Update">
             <summary>
-            출력 채널값을 모두 반영 (업데이트)
-            메모리 -> 하드웨어 출력 상태
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.IDInput">
             <summary>
@@ -5215,7 +5309,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.ChannelCount">
@@ -5232,7 +5326,7 @@
             <summary>
             초기화
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsAOn``1(``0)">
             <summary>
@@ -5240,14 +5334,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsAOn(System.Int32)">
             <summary>
             해당 접점 입력 AOn 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsAOff``1(``0)">
             <summary>
@@ -5255,14 +5349,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsAOff(System.Int32)">
             <summary>
             해당 접점 입력 AOff 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOn``1(``0)">
             <summary>
@@ -5270,14 +5364,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOn(System.Int32)">
             <summary>
             해당 접점 입력 BOn 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOff``1(``0)">
             <summary>
@@ -5285,14 +5379,14 @@
             </summary>
             <typeparam name="T">열거형</typeparam>
             <param name="no">열거형 번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.IsBOff(System.Int32)">
             <summary>
             해당 접점 입력 BOff 상태 여부
             </summary>
             <param name="no">번호</param>
-            <returns></returns>
+            <returns>접점 상태</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.GetChannel(System.Int32,System.UInt16@)">
             <summary>
@@ -5300,14 +5394,14 @@
             </summary>
             <param name="ch">채널 (0,1,2,...)</param>
             <param name="d16bits">16비트값</param>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.Update">
             <summary>
-            입력 값들을 채널에 반영 (업데이트)
+            입력 값들을 채널 메모리로 반영 (업데이트)
             하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.RtcDInputExt1">
             <summary>
@@ -5327,7 +5421,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.ChannelCount">
@@ -5429,9 +5523,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.RtcDInputExt1.Update">
             <summary>
-            입력 채널들 업데이트
+            입력 값들을 채널 메모리로 반영 (업데이트)
+            하드웨어 입력 상태 -> 메모리
             </summary>
-            <returns></returns>
+            <returns>성공여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.RtcDOutputExt2">
             <summary>
@@ -5451,7 +5546,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt2.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt2.ChannelCount">
@@ -5561,7 +5656,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.RtcDOutputExt2.Update">
             <summary>
-            출력 채널 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
+            </summary>
+            <returns>성공여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt2.ReverseUpdate">
+            <summary>
+            출력 채널 상태를 내부 채널로 역반영
+            하드웨어 출력 -> 채널 메모리 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -5583,7 +5686,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt1.Name">
             <summary>
-            모터 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt1.ChannelCount">
@@ -5693,7 +5796,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.RtcDOutputExt1.Update">
             <summary>
-            채널 출력 업데이트
+            출력 채널값을 모두 출력에 반영
+            채널 메모리 -> 하드웨어 출력 
+            </summary>
+            <returns>성공여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcDOutputExt1.ReverseUpdate">
+            <summary>
+            출력 채널 상태를 내부 채널로 역반영
+            하드웨어 출력 -> 채널 메모리 업데이트
             </summary>
             <returns></returns>
         </member>
@@ -7872,11 +7983,12 @@
             <summary>
             최대 출력 파워 (Watt)
             
-                                   사용자가 지정한 출력 파워 (W)
+            
+                               사용자가 지정한 출력 파워 (W)
             출력 비율(%) =   ----------------------------------------  X 100
-                              레이저 소스에 지정된 최대 출력 파워 (W)
+                                    최대 출력 파워 (W)
                               
-            사용자의 출력 파워 지정은 통상 IPen 의 Watt 항목에서 설정됨
+            사용자의 출력 파워값은 통상 IPen 의 Watt 항목에서 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsReady">
@@ -7905,13 +8017,13 @@
         <member name="P:SpiralLab.Sirius.ILaser.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스 연결용
-            레이저 소스와 RTC 카드 사이에 IO 가 연결되어 있을때 RTC 카드에 필요한 입출력 제어를 위한 연결용
+            RTC 카드를 이용한 레이저 출력 제어를 위해 사용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부 
-            레이저 소스의 출력 파워를 조절가능하면 true 로 설정하고 IPowerControl 인터페이스를 상속 구현함
+            레이저 소스의 출력 파워를 제어가능하면 true 로 설정하고 IPowerControl 인터페이스를 상속 구현함
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsShutterControl">
@@ -7923,7 +8035,7 @@
         <member name="P:SpiralLab.Sirius.ILaser.IsGuideControl">
             <summary>
             Guide 레이저 빔 지원하는지 여부 (IGuideControl 인터페이스로 접근)
-            레이저 소스에서 지시용 레이저 빔 출력을 지원하면 true 로 설정하고 IGuideControl 인터페이스를 상속 구현함
+            레이저 소스에서 지시용 레이저 빔 출력을 제어가능하면 true 로 설정하고 IGuideControl 인터페이스를 상속 구현함
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsTimedOut">
@@ -7944,22 +8056,22 @@
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.Initialize">
             <summary>
-            초기화 시도
+            초기화 
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
             <summary>
             출사 중지
-            긴급정지등의 용도로 호출되며 레이저 소스내에서 이를 지원할 경우 적절히 처리
+            긴급정지등의 용도
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
             <summary>
             내부에 발생된 여러가지의 에러 상태의 해제를 시도하는 리셋 기능
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.ListBegin">
             <summary>
@@ -7967,7 +8079,7 @@
             마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼를 개방(begin) 한 후 각종 데이타가 다운로드되는데, 이 리스트 버퍼가 개방되는 시점을 통지하는 역할
             (가공 시작시 출력 파워를 초기값등으로 전환하는 용도로도 활용됨)
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.ListEnd">
             <summary>
@@ -7975,7 +8087,7 @@
             마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼에 모든 데이타가 다운로드된 이후 리스트가 닫히는 시점을 통지하는 역할
             (가공 마무리시 이를 통지하는 용도)
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.LaserVirtual">
             <summary>
@@ -8483,13 +8595,13 @@
             <summary>
             카테고리/시리즈 목록 얻기
             </summary>
-            <param name="categories"></param>
+            <param name="categories">카테고리/시리즈 목록</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Clear(System.String)">
             <summary>
             카테고리/시리즈/ 룩업테이블 삭제
             </summary>
-            <param name="category">카테고리 이름</param>
+            <param name="category">카테고리 이름 (미지정일 대상은 전체) </param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Update(System.String,System.Single,System.Single)">
             <summary>
@@ -8500,7 +8612,7 @@
             <param name="category">카테고리/시리즈 이름</param>
             <param name="x">watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 가변인자</param>
             <param name="detectedWatt">측정된 실제 에너지(W)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Query(System.String,System.Single,System.Single@)">
             <summary>
@@ -8509,7 +8621,7 @@
             <param name="category">카테고리/시리즈 이름</param>
             <param name="x">watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 가변인자</param>
             <param name="watt">측정된 실제 에너지(W)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.MaxDetectedPower(System.String,System.Single@)">
             <summary>
@@ -8517,7 +8629,7 @@
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="maxWatt">측정된 최대 에너지(W)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.MinMaxX(System.String,System.Single@,System.Single@)">
             <summary>
@@ -8526,7 +8638,7 @@
             <param name="category">카테고리/시리즈 이름</param>
             <param name="minX">최소값(watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <param name="maxX">최대값(watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Interpolate(System.String,System.Single,System.Single@)">
             <summary>
@@ -8535,7 +8647,7 @@
             <param name="category">카테고리/시리즈 이름</param>
             <param name="targetWatt">출력을 원하는 에너지(W)</param>
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapDefault">
             <summary>
@@ -9013,19 +9125,19 @@
             <summary>
             장치및 통신 초기화
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.CtlStart">
             <summary>
             데이타 수집 시작
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.CtlStop">
             <summary>
             데이타 수집 종료
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.CtlClear">
             <summary>
@@ -9034,7 +9146,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMeter.CtlReset">
             <summary>
-            리셋
+            에러 등 상태 리셋
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeasureThorlabArg">
@@ -9180,6 +9292,7 @@
         <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
             <summary>
             동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.No">
@@ -9281,71 +9394,75 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.Initialize">
             <summary>
-            모터 축 생성후 내부 초기화
+            초기화
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlServo(System.Boolean)">
             <summary>
             서보 온오프
             </summary>
             <param name="onOff">온오프</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
             <summary>
             홈(원점) 검색 시작
+            비동기 함수 (완료전에 리턴됨)
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlResetCount(System.Single)">
             <summary>
             엔코더 카운터 리셋
             </summary>
             <param name="position">오프셋 값</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single,System.Single)">
             <summary>
             절대 위치 이동
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="position">위치값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single,System.Single)">
             <summary>
             상대 위치 이동
+            비동기 함수 (이동 완료전에 리턴됨)
             </summary>
             <param name="distance">거리값 (mm)</param>
             <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveJog(System.Single)">
             <summary>
             조그 속도 이동
             </summary>
             <param name="vel">속도 (mm/s)</param>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
             <summary>
             정지
+            비동기 함수 (완료전에 리턴됨)
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
             <summary>
             알람 해제
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.Update">
             <summary>
-            상태 업데이트
-            하드웨어 상태 -> 메모리
+            모터 상태 업데이트
+            하드웨어 상태 -> 내부 상태 메모리
             </summary>
-            <returns></returns>
+            <returns>성공 여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotorAjinExtek">
             <summary>
@@ -9727,13 +9844,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.RtcHelper">
+            <summary>
+            RTC 헬퍼 클래스
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcHelper.DetectRtcCardCount(System.UInt32@,System.UInt32@,System.UInt32@)">
             <summary>
             장치관리자에 등록된 RTC 카드의 개수 정보 
             </summary>
-            <param name="rtc4Count">설치된 RTC 4 개수</param>
-            <param name="rtc5Count">설치된 RTC 5 개수</param>
-            <param name="rtc6Count">설치된 RTC 6 개수</param>
+            <param name="rtc4Count">설치된 RTC 4 카드 개수</param>
+            <param name="rtc5Count">설치된 RTC 5 카드 개수</param>
+            <param name="rtc6Count">설치된 RTC 6 카드 개수</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DoubleDot12TypeConverter">
@@ -10000,6 +10122,11 @@
         <member name="P:SpiralLab.Sirius.Rtc4.EncYSimulatedSpeed">
             <summary>
             엔코더 Y 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncSimulatedAngularSpeed">
+            <summary>
+            엔코더 회전 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsDateTimeOffset">
@@ -10700,7 +10827,7 @@
             <param name="ext">아나로그 1 or 2 반드시 선택</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderReset(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             RTC4 카드는 미지원
             </summary>
@@ -10708,7 +10835,7 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.CtlEncoderSpeed(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
             둘다 0,0 입력시 비활성화됨
@@ -10717,7 +10844,7 @@
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
             현재 엔코더 값 얻기
             </summary>
@@ -10725,6 +10852,28 @@
             <param name="encY">Y 엔코더 값 (counts)</param>
             <param name="encXmm">X 엔코더의 위치 (mm)</param>
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (degree)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfAngular(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도(deg/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -10761,6 +10910,14 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (RTC4는 무조건 초기화됨) (</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfAngularBegin(System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
             리스트 명령 - 외부 트리거 시작 (External Start) 사용시 지연 설정
@@ -10779,7 +10936,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            RTC4는 미지원
+            </summary>
+            <param name="angle">각도</param>
+            <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             RTC4는 미지원
             /// </summary>
@@ -10942,7 +11107,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Rtc5ExternalControlMode.Bit.EncoderReset">
             <summary>
-            엔코더 리셋(초기화) 여부
+            엔코더 리셋 (초기화) 여부
             = 1: Encoder resets of the two internal encoder counters (initiated by the Processing-on-the-fly commands set_fly_x, set_fly_y or set_fly_rot) occur after the subsequent start trigger(i.e.the subsequent external start signal or simulate_ext_start or simulate_ext_start_ctrl command, possibly postponed by a track delay defined by simulate_ext_start, set_ext_start_delay or set_ext_start_delay_list, see also bit #2).
             = 0: Encoder resets occur immediately with each initiating Processing-on-the-fly command.
             </summary>
@@ -11324,6 +11489,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.EncYSimulatedSpeed">
             <summary>
             엔코더 Y 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.EncSimulatedAngularSpeed">
+            <summary>
+            엔코더 회전 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.SerialStartNo">
@@ -12181,7 +12351,7 @@
             <param name="ext">아나로그 1 or 2 반드시 선택</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlEncoderReset(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
@@ -12189,7 +12359,7 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlEncoderSpeed(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
             둘다 0,0 입력시 비활성화됨
@@ -12198,14 +12368,36 @@
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
-            현재 엔코더 값 얻기
+            현재 엔코더 값/X,Y 위치 얻기
             </summary>
             <param name="encX">X 엔코더 값 (counts)</param>
             <param name="encY">Y 엔코더 값 (counts)</param>
             <param name="encXmm">X 엔코더의 위치 (mm)</param>
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (degree)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfAngular(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도(deg/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -12253,16 +12445,15 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFRotateBegin(System.Numerics.Vector2,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularBegin(System.Numerics.Vector2)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
-            기구 회전부의 엔코더가 (Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 위치값
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
-            <param name="vCenter">회전 중심 (x,y)</param>
-            <param name="pulsedPerRevolution">한 회전당 발생하는 엔코더 개수 (최소 100 이상)</param>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfRange(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 사용시 해당 범위를 설정
             범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
@@ -12272,7 +12463,7 @@
             <param name="yRange">Y 영역 크기</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMOTFSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
             <summary>
             리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
             </summary>
@@ -12296,7 +12487,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            </summary>
+            <param name="angle">각도</param>
+            <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -12927,6 +13126,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6.EncYSimulatedSpeed">
             <summary>
             엔코더 Y 의 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.EncSimulatedAngularSpeed">
+            <summary>
+            엔코더 회전 가상 속도 mm/s
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialStartNo">
@@ -13787,7 +13991,7 @@
             <param name="ext">아나로그 1 or 2 반드시 선택</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlEncoderReset(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
@@ -13795,7 +13999,7 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlEncoderSpeed(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
             둘다 0,0 입력시 비활성화됨
@@ -13804,7 +14008,7 @@
             <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
             현재 엔코더 값 얻기
             </summary>
@@ -13812,6 +14016,28 @@
             <param name="encY">Y 엔코더 값 (counts)</param>
             <param name="encXmm">X 엔코더의 위치 (mm)</param>
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (degree)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfAngular(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도(deg/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -13858,7 +14084,15 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFRotateBegin(System.Numerics.Vector2,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularBegin(System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfRotateBegin(System.Numerics.Vector2,System.UInt32)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 (Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 위치값
@@ -13867,7 +14101,7 @@
             <param name="pulsedPerRevolution">한 회전당 발생하는 엔코더 개수 (최소 100 이상)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfRange(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF 사용시 해당 범위를 설정
             범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
@@ -13877,7 +14111,7 @@
             <param name="yRange">Y 영역 크기</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMOTFSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
             <summary>
             리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
             </summary>
@@ -13901,7 +14135,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            </summary>
+            <param name="angle">각도</param>
+            <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -15825,6 +16067,16 @@
             엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.EncCountsPerRevolution">
+            <summary>
+            단위 회전당 엔코더 개수 (enc/rev)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.EncSimulatedAngularSpeed">
+            <summary>
+            엔코더 가상 각속도 (degree/sec)
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.#ctor">
             <summary>
             생성자
@@ -16062,7 +16314,7 @@
             <param name="ext">아나로그 1 or 2 반드시 선택</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlEncoderReset(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
@@ -16070,7 +16322,7 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
             현재 엔코더 값 얻기
             </summary>
@@ -16080,7 +16332,29 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlEncoderSpeed(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (degree)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfAngular(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
             가상 입력 엔코더 속도를 지정하면, 내부 1MHz의 가상 엔코더가 활성화되며, 이를 사용해 사용자가 입력한 가상 속도를 연산해 내는 방식
@@ -16135,6 +16409,14 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfAngularBegin(System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
             리스트 명령 - 외부 트리거 시작 (External Start) 사용시 지연 설정
@@ -16153,7 +16435,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            </summary>
+            <param name="angle">각도</param>
+            <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
@@ -16400,6 +16690,32 @@
             LASER1, LASER2 출력신호의 역할 지정
             Co2, YAG 1,2,3,4,...
             rf. 스캔랩 메뉴얼 문서 참고
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.None">
+            <summary>
+            미지정
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Co2">
+            <summary>
+            CO2
+            LASER1: 주파수, 펄스폭 출력됨
+            LASER2: 대기(StandBy) 주파수, 펄스폭 출력됨
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Yag1">
+            <summary>
+            YAG1
+            LASER1: 주파수, 펄스폭 출력됨
+            LASER2: FPK 출력됨 (Frequency/PW 중첩됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Yag2">
+            <summary>
+            YAG2
+            LASER1: 주파수, 펄스폭 출력됨
+            LASER2: FPK 출력됨 (Frequency/PW 출력전 발생됨)
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScannerHead">
@@ -18443,7 +18759,17 @@
             엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderReset(System.Single,System.Single)">
+        <member name="P:SpiralLab.Sirius.IRtcMOTF.EncCountsPerRevolution">
+            <summary>
+            단위 회전당 엔코더 개수 (enc/rev)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcMOTF.EncSimulatedAngularSpeed">
+            <summary>
+            엔코더 가상 각속도 (degree/sec)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
@@ -18451,9 +18777,9 @@
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
-            현재 엔코더 값 얻기
+            현재 엔코더 값/X,Y 위치 얻기
             </summary>
             <param name="encX">X 엔코더 값 (counts)</param>
             <param name="encY">Y 엔코더 값 (counts)</param>
@@ -18461,7 +18787,7 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlEncoderSpeed(System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
             가상 입력 엔코더 속도를 지정하면 내부 1MHz의 가상 엔코더가 활성화되어 외부 기구부가 이동하는 효과 발생
@@ -18513,6 +18839,28 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (degree)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfAngular(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
@@ -18521,6 +18869,14 @@
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
             <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularBegin(System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - 회전에 대한 MOTF 
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            </summary>
+            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -18541,7 +18897,15 @@
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaits(System.Single,System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
+            <summary>
+            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            </summary>
+            <param name="angle">각도</param>
+            <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>

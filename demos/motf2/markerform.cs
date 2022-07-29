@@ -96,7 +96,7 @@ namespace SpiralLab.Sirius
                 var rtcMOTF = marker.MarkerArg.Rtc as IRtcMOTF;
                 if (null == rtcMOTF)
                     return;
-                rtcMOTF.CtlGetEncoder(out int encX, out int encY, out float encXmm, out float encYmm);
+                rtcMOTF.CtlMotfGetEncoder(out int encX, out int encY, out float encXmm, out float encYmm);
                 float distance = float.Parse(txtDistance.Text);
                 if (Math.Abs(encXmm) >= Math.Abs(distance))
                 {

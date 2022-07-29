@@ -75,7 +75,7 @@ namespace SpiralLab.Sirius
             //타이머가 지속적으로 현재 엔코더 펄스개수 와 실제 물리적인 이동량(mm) 를 얻어온다
             var rtc = this.siriusEditorForm1.Rtc;
             var rtcMOTF = rtc as IRtcMOTF;
-            rtcMOTF.CtlGetEncoder(out int encX, out int encY, out float encXmm, out float encYmm);
+            rtcMOTF.CtlMotfGetEncoder(out int encX, out int encY, out float encXmm, out float encYmm);
 
             lblEncXCnt.Text = $"{encX} cnt";
             lblEncYCnt.Text = $"{encY} cnt";
@@ -87,7 +87,7 @@ namespace SpiralLab.Sirius
             //현재 위치에서 엔코더 초기화 (리셋)
             var rtc = this.siriusEditorForm1.Rtc;
             var rtcMOTF = rtc as IRtcMOTF;
-            rtcMOTF.CtlEncoderReset();
+            rtcMOTF.CtlMotfEncoderReset();
         }
 
         private void lblMarker_Click(object sender, EventArgs e)

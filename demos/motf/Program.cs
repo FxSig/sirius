@@ -125,7 +125,7 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.R:
                         // reset x,y encoder 
                         // X,Y 엔코더값을 0,0 으로 리셋합니다.
-                        rtcMOTF.CtlEncoderReset();
+                        rtcMOTF.CtlMotfEncoderReset();
                         // start internal virtual encoder (simulate encoder)
                         // 가상 엔코더를 100mm/s 으로 동작시킵니다.
                         //rtcMOTF.CtlEncoderSpeed(100, 100);

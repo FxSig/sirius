@@ -222,7 +222,8 @@
         </member>
         <member name="M:SpiralLab.MemoryDB.Initialize">
             <summary>
-            초기화 및 동기화
+            초기화 
+            DB 내부 데이타를 읽어 런타임 객체의 데이타와 동기화 처리됨
             </summary>
         </member>
         <member name="M:SpiralLab.MemoryDB.PrepareTable">
