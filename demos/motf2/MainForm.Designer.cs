@@ -38,8 +38,8 @@
             this.lblEncYmm = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripSplitButton1 = new System.Windows.Forms.ToolStripSplitButton();
             this.mnuEncReset = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.lblMarker = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.siriusEditorForm1 = new SpiralLab.Sirius.SiriusEditorForm();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -48,6 +48,7 @@
             // 
             this.statusStrip1.Dock = System.Windows.Forms.DockStyle.Top;
             this.statusStrip1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1,
             this.lblEncXCnt,
@@ -68,7 +69,7 @@
             this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(80, 15);
             this.toolStripStatusLabel1.Text = "Encoder X";
             // 
             // lblEncXCnt
@@ -76,7 +77,7 @@
             this.lblEncXCnt.AutoSize = false;
             this.lblEncXCnt.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncXCnt.Name = "lblEncXCnt";
-            this.lblEncXCnt.Size = new System.Drawing.Size(80, 17);
+            this.lblEncXCnt.Size = new System.Drawing.Size(80, 15);
             this.lblEncXCnt.Text = "0 cnt";
             // 
             // lblEncXmm
@@ -84,7 +85,7 @@
             this.lblEncXmm.AutoSize = false;
             this.lblEncXmm.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncXmm.Name = "lblEncXmm";
-            this.lblEncXmm.Size = new System.Drawing.Size(80, 17);
+            this.lblEncXmm.Size = new System.Drawing.Size(80, 15);
             this.lblEncXmm.Text = "0 mm";
             // 
             // toolStripStatusLabel3
@@ -92,7 +93,7 @@
             this.toolStripStatusLabel3.AutoSize = false;
             this.toolStripStatusLabel3.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(80, 17);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(80, 15);
             this.toolStripStatusLabel3.Text = "Encoder Y";
             // 
             // lblEncYCnt
@@ -100,7 +101,7 @@
             this.lblEncYCnt.AutoSize = false;
             this.lblEncYCnt.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncYCnt.Name = "lblEncYCnt";
-            this.lblEncYCnt.Size = new System.Drawing.Size(80, 17);
+            this.lblEncYCnt.Size = new System.Drawing.Size(80, 15);
             this.lblEncYCnt.Text = "0 cnt";
             // 
             // lblEncYmm
@@ -108,7 +109,7 @@
             this.lblEncYmm.AutoSize = false;
             this.lblEncYmm.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncYmm.Name = "lblEncYmm";
-            this.lblEncYmm.Size = new System.Drawing.Size(80, 17);
+            this.lblEncYmm.Size = new System.Drawing.Size(80, 15);
             this.lblEncYmm.Text = "0 mm";
             // 
             // toolStripSplitButton1
@@ -119,36 +120,40 @@
             this.toolStripSplitButton1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripSplitButton1.Name = "toolStripSplitButton1";
-            this.toolStripSplitButton1.Size = new System.Drawing.Size(32, 20);
+            this.toolStripSplitButton1.Size = new System.Drawing.Size(21, 19);
             this.toolStripSplitButton1.Text = "toolStripSplitButton1";
             // 
             // mnuEncReset
             // 
             this.mnuEncReset.Name = "mnuEncReset";
-            this.mnuEncReset.Size = new System.Drawing.Size(156, 22);
+            this.mnuEncReset.Size = new System.Drawing.Size(229, 34);
             this.mnuEncReset.Text = "Encoder Reset";
             this.mnuEncReset.Click += new System.EventHandler(this.mnuEncReset_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // lblMarker
             // 
             this.lblMarker.AutoSize = false;
             this.lblMarker.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarker.Name = "lblMarker";
-            this.lblMarker.Size = new System.Drawing.Size(96, 17);
+            this.lblMarker.Size = new System.Drawing.Size(96, 15);
             this.lblMarker.Text = "Marker";
             this.lblMarker.Click += new System.EventHandler(this.lblMarker_Click);
+            // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // siriusEditorForm1
             // 
             this.siriusEditorForm1.AliasName = "NoName";
+            this.siriusEditorForm1.AllowDrop = true;
             this.siriusEditorForm1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.siriusEditorForm1.BackColor = System.Drawing.SystemColors.Control;
             this.siriusEditorForm1.Document = null;
+            this.siriusEditorForm1.EnablePens = true;
+            this.siriusEditorForm1.FileName = "(Empty)";
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm1.HidePropertyGrid = false;
             this.siriusEditorForm1.Index = ((uint)(0u));
@@ -156,15 +161,24 @@
             this.siriusEditorForm1.Location = new System.Drawing.Point(0, 26);
             this.siriusEditorForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusEditorForm1.Marker = null;
+            this.siriusEditorForm1.Motors = null;
+            this.siriusEditorForm1.MotorZ = null;
             this.siriusEditorForm1.Name = "siriusEditorForm1";
+            this.siriusEditorForm1.PowerMap = null;
+            this.siriusEditorForm1.PowerMeter = null;
             this.siriusEditorForm1.Progress = 0;
             this.siriusEditorForm1.Rtc = null;
+            this.siriusEditorForm1.RtcExtension1Input = null;
+            this.siriusEditorForm1.RtcExtension1Output = null;
+            this.siriusEditorForm1.RtcExtension2Output = null;
+            this.siriusEditorForm1.RtcPin2Input = null;
+            this.siriusEditorForm1.RtcPin2Output = null;
             this.siriusEditorForm1.Size = new System.Drawing.Size(1128, 889);
             this.siriusEditorForm1.TabIndex = 0;
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1128, 917);
             this.Controls.Add(this.statusStrip1);
@@ -172,7 +186,7 @@
             this.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
-            this.Text = "MOTF - (c)Autonics";
+            this.Text = "MOTF Demo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
