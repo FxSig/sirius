@@ -300,6 +300,42 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotfAngularWait">
+            <summary>
+            Motf Wait 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfAngularWait.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfAngularWait.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotfAngularBegin">
+            <summary>
+            Motf Angular Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfAngularBegin.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns>A new color that is a copy of this instance.</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotfAngularBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.SyncAxisCalculationDynamics">
             <summary>
             SyncAXIS 스캔 장치의 계산 역학 제한값 설정용 
@@ -870,7 +906,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.RasterLine.LineVectorAngle">
             <summary>
-            선분 벡터의 각도 (degree : 0~360)
+            선분 벡터의 각도 (˚ : 0~360)
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MeasurementBegin">
@@ -2424,6 +2460,16 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.TextBoxWithLabel">
+            <summary>
+            레이블을 가진 텍스트 박스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextBoxWithLabel.LabelText">
+            <summary>
+            레이블 텍스트
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.User">
             <summary>
             사용자 전역 객체
@@ -2518,6 +2564,16 @@
             로그 아웃
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.AboutForm">
+            <summary>
+            About 대화상자 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AboutForm.CreateParams">
+            <summary>
+            Drop Shadow (그림자) 효과
+            </summary>
         </member>
         <member name="F:SpiralLab.Sirius.AboutForm.components">
             <summary>
@@ -3002,11 +3058,6 @@
             IPowerMeter 인터페이스
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PowerMapForm.isMappingStarted">
-            <summary>
-            파워매핑이 시작되었는지 여부 (동작중)
-            </summary>
-        </member>
         <member name="F:SpiralLab.Sirius.PowerMapForm.isMappingTerminated">
             <summary>
             파워매핑이 종료되어야 하는지 여부
@@ -3075,11 +3126,12 @@
             파워메터 객체
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterForm.#ctor(SpiralLab.Sirius.IPowerMeter)">
+        <member name="M:SpiralLab.Sirius.PowerMeterForm.#ctor(SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.ILaser)">
             <summary>
             생성자
             </summary>
             <param name="powerMeter">파워메터 객체</param>
+            <param name="laser">레이저 소스 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.PowerMeterForm.components">
             <summary> 
@@ -7044,7 +7096,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Line.LineVectorAngle">
             <summary>
-            선분 벡터의 각도 (degree : 0~360)
+            선분 벡터의 각도 (˚ : 0~360)
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Point">
@@ -7896,6 +7948,11 @@
         <member name="T:SpiralLab.Sirius.MarkerDefault">
             <summary>
             마커 객체 (기본 버전)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MarkerDefault.OnStarted">
+            <summary>
+            가공 시작 이벤트핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnProgress">

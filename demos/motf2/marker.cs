@@ -17,6 +17,10 @@ namespace SpiralLab.Sirius
     public class MotfMarker : IMarker
     {
         /// <summary>
+        /// 가공 시작 이벤트 핸들러
+        /// </summary>
+        public event MarkerEventHandler OnStarted;
+        /// <summary>
         /// 진행 이벤트 핸들러
         /// </summary>
         public event MarkerEventHandler OnProgress;

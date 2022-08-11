@@ -149,7 +149,7 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.F1:
                         {
-                            var form = new PowerMeterForm(powerMeter);
+                            var form = new PowerMeterForm(powerMeter, laser);
                             form.ShowDialog();
                         }
                         break;

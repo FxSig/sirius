@@ -14,9 +14,6 @@ namespace SpiralLab.Sirius
     public partial class MainForm : Form
     {
 
-        IRtc Rtc;
-       
-
         public MainForm()
         {
             InitializeComponent();

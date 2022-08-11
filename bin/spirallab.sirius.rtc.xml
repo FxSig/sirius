@@ -2007,7 +2007,7 @@
         <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.InternalAanalogControl">
             <summary>
             0 : External analog control is selected
-            1 : External analog control is selected
+            1 : Internal analog control is selected
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.PowerSupply24VOutOfRange">
@@ -2079,14 +2079,14 @@
             디바이스 상태 (8비트)
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPN.TriggerModes.Internal">
-            <summary>
-            내부 
-            </summary>
-        </member>
         <member name="F:SpiralLab.Sirius.IPGYLPULPN.TriggerModes.External">
             <summary>
             외부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.TriggerModes.Internal">
+            <summary>
+            내부 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.PulseRepRateInt">
@@ -2099,17 +2099,12 @@
             Hz
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPN.ModulationModes.Internal">
-            <summary>
-            내부 
-            </summary>
-        </member>
         <member name="F:SpiralLab.Sirius.IPGYLPULPN.ModulationModes.External">
             <summary>
             외부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPN.PowerControlModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.ModulationModes.Internal">
             <summary>
             내부 
             </summary>
@@ -2119,7 +2114,7 @@
             외부 
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.IPGYLPULPN.EmissionControlModes.Internal">
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.PowerControlModes.Internal">
             <summary>
             내부 
             </summary>
@@ -2129,14 +2124,14 @@
             외부 
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.IPGYLPULPN.EmissionControlModes.Internal">
+            <summary>
+            내부 
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsEmissionOn">
             <summary>
             Emission 온오프
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsGuideOn">
-            <summary>
-            Guide Laser 온오프
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.ComPort">
@@ -2548,11 +2543,6 @@
             Status 속성을 통해 접근 !!!
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsGuideOn">
-            <summary>
-            Guide Laser 온오프
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.ComPort">
             <summary>
             통신 포트 번호
@@ -2900,6 +2890,21 @@
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.StartTime">
+            <summary>
+            측정 시작 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.EndTime">
+            <summary>
+            측정 완료 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.DateTime">
+            <summary>
+            측정 현재 시간
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
@@ -2953,18 +2958,33 @@
             파워 측정 중단
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnCleared">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMax.PowerMeasureArg">
             <summary>
             파워 계측시 사용되는 인자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.UInt32)">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMax.Data">
+            <summary>
+            버퍼 큐
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMax.MaxBufferCounts">
+            <summary>
+            측정 데이타 큐의 버퍼 최대 크기(개수)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.Int32)">
             <summary>
             생성자
             </summary>
             <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.Int32,System.String,System.Int32,System.Single,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMax.#ctor(System.Int32,System.String,System.Int32,System.Single,System.Int32)">
             <summary>
             생성자
             </summary>
@@ -3570,6 +3590,15 @@
             </summary>
             <param name="comPort"></param>
             <param name="baduRate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.ESP301Write(CommandInterfaceESP301.ESP301,System.String,System.String@)">
+            <summary>
+            NewPort/MKS ESP301에 터미널 메시지 송수신 하기
+            </summary>
+            <param name="esp">ESP301 인스턴스</param>
+            <param name="command">명령</param>
+            <param name="response">응답</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorHelper.ESP301Dispose(CommandInterfaceESP301.ESP301@)">
@@ -8543,6 +8572,16 @@
             파워맵 인터페이스
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnStarted">
+            <summary>
+            파워 매핑 시작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnFnished">
+            <summary>
+            파워 매핑 종료
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.SyncRoot">
             <summary>
             동기화 객체
@@ -8652,6 +8691,16 @@
         <member name="T:SpiralLab.Sirius.PowerMapDefault">
             <summary>
             파워맵 (기본 버전)    
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStarted">
+            <summary>
+            파워 매핑 시작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFnished">
+            <summary>
+            파워 매핑 종료
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapDefault.SyncRoot">
@@ -8799,6 +8848,21 @@
             카테고리/시리즈 이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.StartTime">
+            <summary>
+            측정 시작 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.EndTime">
+            <summary>
+            측정 완료 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.DateTime">
+            <summary>
+            측정 현재 시간
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Channel">
             <summary>
             채널 번호
@@ -8867,19 +8931,34 @@
             파워 측정 중단
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnCleared">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeterOphir.Channel">
             <summary>
             활성화 채널 번호 (0,1,2,3)
             최대 4개의 채널(헤드) 지원되는 모델의 경우 (기본값 0)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.UInt32)">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphir.Data">
+            <summary>
+            버퍼 큐
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterOphir.MaxBufferCounts">
+            <summary>
+            측정 데이타 큐의 버퍼 최대 크기(개수)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.Int32)">
             <summary>
             생성자
             </summary>
             <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.Int32,System.String,System.String,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphir.#ctor(System.Int32,System.String,System.String,System.Int32)">
             <summary>
             생성자
             </summary>
@@ -8925,6 +9004,21 @@
             <summary>
             파라메터 X 값
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.StartTime">
+            <summary>
+            측정 시작 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.EndTime">
+            <summary>
+            측정 완료 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.DateTime">
+            <summary>
+            측정 현재 시간
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.PowerCategory">
@@ -8980,6 +9074,11 @@
             파워 측정 중단
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnCleared">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Index">
             <summary>
             파워메터 식별자 (0, 1, 2, ...)
@@ -9015,7 +9114,17 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.UInt32)">
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.Data">
+            <summary>
+            버퍼 큐
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterVirtual.MaxBufferCounts">
+            <summary>
+            측정 데이타 큐의 버퍼 최대 크기(개수)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.Int32)">
             <summary>
             생성자
             </summary>
@@ -9066,6 +9175,11 @@
             파워 측정 중단
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.IPowerMeter.OnCleared">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.SyncRoot">
             <summary>
             동기화 객체
@@ -9104,6 +9218,11 @@
         <member name="P:SpiralLab.Sirius.IPowerMeter.Data">
             <summary>
             측정 데이타 큐
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMeter.MaxBufferCounts">
+            <summary>
+            측정 데이타 큐의 버퍼 최대 크기(개수)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMeter.PowerMeasureArg">
@@ -9165,6 +9284,21 @@
             <summary>
             파라메터 X 값 
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.StartTime">
+            <summary>
+            측정 시작 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.EndTime">
+            <summary>
+            측정 완료 시간
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.DateTime">
+            <summary>
+            측정 현재 시간
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.PowerCategory">
@@ -9241,18 +9375,33 @@
             파워 측정 중단
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnCleared">
+            <summary>
+            데이타 모두 삭제
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.PowerMeasureArg">
             <summary>
             파워 계측시 사용되는 인자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.#ctor(System.UInt32)">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.Data">
+            <summary>
+            버퍼 큐
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.MaxBufferCounts">
+            <summary>
+            측정 데이타 큐의 버퍼 최대 크기(개수)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.#ctor(System.Int32)">
             <summary>
             생성자
             </summary>
             <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.#ctor(System.Int32,System.String,System.String,System.Single,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.#ctor(System.Int32,System.String,System.String,System.Single,System.Int32)">
             <summary>
             생성자
             </summary>
@@ -10129,6 +10278,11 @@
             엔코더 회전 가상 속도 mm/s
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.MotfAngularCenter">
+            <summary>
+            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsDateTimeOffset">
             <summary>
             DateTime 오프셋 사용여부
@@ -10859,7 +11013,7 @@
             현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (degree)</param>
+            <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfAngular(System.Numerics.Vector2)">
@@ -10910,12 +11064,13 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (RTC4는 무조건 초기화됨) (</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfAngularBegin(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
             <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -11494,6 +11649,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.EncSimulatedAngularSpeed">
             <summary>
             엔코더 회전 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.MotfAngularCenter">
+            <summary>
+            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.SerialStartNo">
@@ -12383,7 +12543,7 @@
             현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (degree)</param>
+            <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfAngular(System.Numerics.Vector2)">
@@ -12397,7 +12557,7 @@
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <param name="encSimulatedSpeed">각속도(˚/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -12445,12 +12605,13 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularBegin(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
             <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfRange(System.Numerics.Vector2,System.Numerics.Vector2)">
@@ -13131,6 +13292,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6.EncSimulatedAngularSpeed">
             <summary>
             엔코더 회전 가상 속도 mm/s
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.MotfAngularCenter">
+            <summary>
+            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialStartNo">
@@ -14023,7 +14189,7 @@
             현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (degree)</param>
+            <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfAngular(System.Numerics.Vector2)">
@@ -14037,7 +14203,7 @@
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <param name="encSimulatedSpeed">각속도(˚/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -14084,12 +14250,13 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularBegin(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
             <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfRotateBegin(System.Numerics.Vector2,System.UInt32)">
@@ -16074,7 +16241,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.EncSimulatedAngularSpeed">
             <summary>
-            엔코더 가상 각속도 (degree/sec)
+            엔코더 가상 각속도 (˚/sec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.MotfAngularCenter">
+            <summary>
+            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.#ctor">
@@ -16337,7 +16509,7 @@
             현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (degree)</param>
+            <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfAngular(System.Numerics.Vector2)">
@@ -16351,7 +16523,7 @@
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <param name="encSimulatedSpeed">각속도(˚/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderSpeed(System.Single,System.Single)">
@@ -16409,12 +16581,13 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfAngularBegin(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
             <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -16641,7 +16814,7 @@
             <summary>
             스택에 행렬 Push : 회전 
             </summary>
-            <param name="angle">회전 각도 (degree)</param>
+            <param name="angle">회전 각도 (˚)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Double,System.Double)">
             <summary>
@@ -16662,7 +16835,7 @@
             </summary>
             <param name="dx">이동량 dX (mm)</param>
             <param name="dy">이동량 dY (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="angle">회전 각도 (˚)</param>
         </member>
         <member name="T:SpiralLab.Sirius.ListType">
             <summary>
@@ -18766,7 +18939,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncSimulatedAngularSpeed">
             <summary>
-            엔코더 가상 각속도 (degree/sec)
+            엔코더 가상 각속도 (˚/sec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcMOTF.MotfAngularCenter">
+            <summary>
+            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderReset(System.Single,System.Single)">
@@ -18844,7 +19022,7 @@
             현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (degree)</param>
+            <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfAngular(System.Numerics.Vector2)">
@@ -18858,7 +19036,7 @@
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <param name="encSimulatedSpeed">각속도(˚/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfBegin(System.Boolean)">
@@ -18871,12 +19049,13 @@
             <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularBegin(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
             <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">

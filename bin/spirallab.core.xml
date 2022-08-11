@@ -461,6 +461,11 @@
             생성자
             </summary>
         </member>
+        <member name="P:SpiralLab.FormLicense.CreateParams">
+            <summary>
+            Drop Shadow (그림자) 효과
+            </summary>
+        </member>
         <member name="M:SpiralLab.FormLicense.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
             <summary>
             오버라이드 ProcessCmdKey
