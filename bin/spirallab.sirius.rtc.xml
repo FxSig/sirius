@@ -4,6 +4,246 @@
         <name>spirallab.sirius.rtc</name>
     </assembly>
     <members>
+        <member name="E:SpiralLab.Sirius.AttenuatorVirtual.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.SyncRoot">
+            <summary>
+            동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AttenuatorVirtual.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AttenuatorVirtual.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AttenuatorVirtual.#ctor(System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AttenuatorVirtual.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns>성공 여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AttenuatorVirtual.CtlMoveRatio(System.Single)">
+            <summary>
+            구동 (비율)
+            </summary>
+            <param name="ratio">비율 (0~1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AttenuatorVirtual.CtlReset">
+            <summary>
+            에러 리셋
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.AltechnaWattPilot">
+            <summary>
+            ALTECHNA WATT PILOT 감쇄기
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.AltechnaWattPilot.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.SyncRoot">
+            <summary>
+            동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.IsReady">
+            <summary>
+            상태 (준비완료 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.IsBusy">
+            <summary>
+            상태 (출사중 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.IsError">
+            <summary>
+            상태 (에러 발생 여부)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AltechnaWattPilot.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AltechnaWattPilot.degreePerStep">
+            std 1 step = 0.0115 deg
+            big 1 step = 0.005 deg
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.#ctor(System.Int32,System.String,System.UInt32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index"></param>
+            <param name="name"></param>
+            <param name="comPort"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns>성공 여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.GetStepPosFromRatio(System.Single)">
+            <summary>
+            비율에 따른 스텝 모터 계산
+            malus' law 를 사용함
+            </summary>
+            <param name="ratio"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.AngleToSteps(System.Single)">
+            <summary>
+            각도를 모터 위치(스텝)로 변환
+            </summary>
+            <param name="angle"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.CtlMoveRatio(System.Single)">
+            <summary>
+            구동 (비율)
+            </summary>
+            <param name="ratio">비율 (0~1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.CtlMoveStep(System.Int32,System.Boolean)">
+            <summary>
+            구동 (스텝값)
+            </summary>
+            <param name="steps">스텝 값</param>
+            <param name="isAbsoulte">절대(1)/상대(0)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.CtlMoveAngle(System.Single,System.Boolean)">
+            <summary>
+            구동 (각도)
+            </summary>
+            <param name="angle">각도</param>
+            <param name="isAbsoulte">절대(1)/상대(0)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AltechnaWattPilot.CtlReset">
+            <summary>
+            에러 리셋
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.SyncRoot">
+            <summary>
+            동기화 객체
+            데이타 처리시 크로스 쓰레드 방지용으로 사용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.IsReady">
+            <summary>
+            준비 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IAttenuator.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IAttenuator.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns>성공 여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IAttenuator.CtlMoveRatio(System.Single)">
+            <summary>
+            구동
+            </summary>
+            <param name="ratio">비율 (0~1)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IAttenuator.CtlReset">
+            <summary>
+            에러 리셋
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.ICompensator`1">
             <summary>
             Compensator 인터페이스
@@ -99,7 +339,7 @@
         <member name="T:SpiralLab.Sirius.RtcDInput2Pin">
             <summary>
             디지털 입력 인터페이스    
-            RTC5/6 제품의 2 핀 출력 포트
+            RTC5/6 제품의 레이저 포트 2핀 출력 2비트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInput2Pin.SyncRoot">
@@ -224,7 +464,7 @@
         <member name="T:SpiralLab.Sirius.RtcDOutput2Pin">
             <summary>
             디지털 출력 인터페이스    
-            RTC5/6 제품의 2 핀 출력 포트
+            RTC5/6 제품의 레이저 포트 2핀 출력 2 비트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutput2Pin.SyncRoot">
@@ -567,7 +807,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -1378,7 +1618,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPN.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPN.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -2144,7 +2384,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPN.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -2393,7 +2633,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -2553,7 +2793,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -2778,7 +3018,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -3412,15 +3652,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlRunProgram(CommandInterfaceESP301.ESP301,System.Int32,System.Int32)">
-            <summary>
-            프로그램 실행
-            </summary>
-            <param name="esp301">ESP301 인스턴스</param>
-            <param name="program">프로그램</param>
-            <param name="number">번호</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlResetCount(System.Single)">
             <summary>
             엔코더 카운터 리셋
@@ -3599,6 +3830,15 @@
             <param name="esp">ESP301 인스턴스</param>
             <param name="command">명령</param>
             <param name="response">응답</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.ESP301RunProgram(CommandInterfaceESP301.ESP301,System.Int32,System.Int32)">
+            <summary>
+            프로그램 실행
+            </summary>
+            <param name="esp">ESP301 인스턴스</param>
+            <param name="program">프로그램</param>
+            <param name="number">번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorHelper.ESP301Dispose(CommandInterfaceESP301.ESP301@)">
@@ -5435,7 +5675,7 @@
         <member name="T:SpiralLab.Sirius.RtcDInputExt1">
             <summary>
             디지털 입력 인터페이스    
-            RTC4/5/6 제품의 확장1(Extension1) 16/16 포트
+            RTC4/5/6 제품의 확장1(Extension1) 16/16 비트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.SyncRoot">
@@ -5560,7 +5800,7 @@
         <member name="T:SpiralLab.Sirius.RtcDOutputExt2">
             <summary>
             디지털 출력 인터페이스    
-            RTC4/5/6 제품의 확장2(Extension2) 8 포트
+            RTC4/5/6 제품의 확장2(Extension2) 8 비트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt2.SyncRoot">
@@ -5700,7 +5940,7 @@
         <member name="T:SpiralLab.Sirius.RtcDOutputExt1">
             <summary>
             디지털 출력 인터페이스    
-            RTC4/5/6 제품의 확장1(Extension1) 16/16 포트
+            RTC4/5/6 제품의 확장1(Extension1) 16/16 비트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDOutputExt1.SyncRoot">
@@ -6177,7 +6417,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -6568,7 +6808,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -6882,7 +7122,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.JPTTypeE.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -7186,7 +7426,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -7657,7 +7897,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -7816,7 +8056,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>
@@ -8336,7 +8576,7 @@
             생성자
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.#ctor(System.Int32,System.String,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.SPIG4.#ctor(System.Int32,System.String,System.Int32,System.Single)">
             <summary>
             생성자
             </summary>

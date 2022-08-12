@@ -589,3 +589,212 @@
 
 * 2019.12.03 v0.1 
    - first release
+
+
+----
+
+
+**6. Moduels (Interfaces, Classes and Winforms)**
+
+
+* spirallab.core.dll 
+   - ICore (라이브러리 엔진 인터페이스)  
+     - Core (라이브러리 엔진 객체)
+   - Winforms 
+     - FormLicense (라이센스 정보 출력 윈폼)
+
+
+* spirallab.sirius.rtc.dll
+   - IRtc (RTC 제어기 인터페이스)
+      - IRtc3D (3D 지원 인터페이스)
+      - IRtcAutoLaserControl (자동 레이저 제어 지원 인터페이스)
+      - IRtcCharacterSet (문자 집합 지원 인터페이스)
+      - IRtcDateTimeOffset (날짜시간 오프셋 지원 인터페이스)
+      - IRtcDualHead (듀얼 헤드 지원 인터페이스)
+      - IRtcExtension (확장 기능 지원 인터페이스)
+      - IRtcMeasurement (계측 지원 인터페이스)
+      - IRtcMOTF (Processing on the fly 지원 인터페이스)
+      - IRtcRaster (레스터 픽셀 가공 지원 인터페이스)
+      - IRtcSerialNo (일련번호 가공 지원 인터페이스)
+      - IRtcSyncAxis (syncAXIS/XLSCAN 가공 지원 인터페이스)
+         - RtcVirtual (RTC 제어기 가상)
+         - Rtc4 (RTC4 제어기)
+         - Rtc5 (RTC5 제어기)
+         - Rtc6 (RTC6 제어기)
+         - Rtc6Ethernet (RTC6 이더넷 제어기)
+         - Rtc6SyncAxis (RTC6 제어기 + ExcelliSCAN + ACS 모션)
+   - ICorrection2D (스캐너 2D 보정 인터페이스)
+      - Correction2DRtc (스캐너 2D 보정. ctb/ct5 모두 지원. correXionPro.exe 기반)
+      - Correction2DRtcCt5 (스캐너 2D 보정. ct5 지원. correXion5.exe 기반)
+      - Correction2DRtcCtb (스캐너 2D 보정. ctb 지원. cfmp.exe 기반)
+   - ICorrection3D (스캐너 3D 보정 인터페이스)
+      - Correction3DRtc (스캐너 3D 보정. ctb/ct5 모두 지원. stretchcorreXion5.exe 기반)
+      - Correction3DRtcCt5  (스캐너 3D 보정. ct5 지원. stretchcorreXion5.exe 기반)
+      - Correction3DRtcCtb  (스캐너 3D 보정. ctb 지원. stretchcorreXion5.exe 기반)
+   - IMatrixStack (3x3 행렬 인터페이스)
+      - MatrixStack (3x3 행렬 기본버전)
+   - ILaser (레이저 소스 인터페이스)
+      - IShutterControl (셔터 제어 지원 인터페이스)
+      - IPowerControl (파워 변경 지원 인터페이스)
+      - IGuideControl (지시용 레이저 지원 인터페이스)
+         - LaserVirtual (레이저 가상)
+         - AdvancedOptoWaveAOPico 
+         - AdvancedOptoWaveFotia
+         - CoherentAviaLX
+         - CoherentDiamondCSeries
+         - CoherentDiamondJSeries
+         - InnguGraceXSeries
+         - IPGYLPN
+         - IPGYLPTypeD
+         - IPGYLPTypeE
+         - IPGYLPULPN
+         - JPTTypeE
+         - PhotonicsIndustryDX
+         - PhotonicsIndustryRGHAIO
+         - SpectraPhysicsHippo
+         - SPIG4
+         - SpectraPhysicsTalon
+   - IAttenuator (감쇄기 인터페이스)
+      - AttenuatorVirtual (감쇄기 가상)
+      - AltechnaWattPilot (Altechna사 Watt Pilot 제품)
+   - IMotor (모터 인터페이스)
+      - MotorVirtual (모터 가상)
+      - MotorACS (ACS.SPiiPlusNET 사용 모터)
+      - MotorAjinExtek (아진엑스텍 AXL 사용 모터)
+      - MotorESP301 (NewPort ESP301 사용 모터)
+   - IMotors (모터 집합 인터페이스)
+      - MotorsDefault (모터 집합 기본 버전)    
+   - IDInput (디지털 입력 인터페이스)
+      - DInputVirtual (디지털 입력 가상)
+      - RtcDInputExt1 (디지털 입력 RTC4/5/6 확장1 포트)
+      - RtcDInput2Pin (디지털 입력 RTC5/6 레이저 포트 2핀)
+      - AdlinkDInput (디지털 입력 ADLINK DASK 제품)
+      - AjinExtekDInput (디지털 입력 아진엑스텍 제품)
+   - IDInputTrigger (디지털 입력 트리거 인터페이스)
+      - DInputTriggerA (디지털 입력 A접점용 트리거)
+      - DInputTriggerB (디지털 입력 B접점용 트리거)
+   - IDOutput (디지털 출력 인터페이스)
+      - DOutputVirtual (디지털 출력 가상)
+      - RtcDOutputExt1 (디지털 출력 RTC4/5/6 확장1 포트)
+      - RtcDOutputExt2 (디지털 출력 RTC4/5/6 확장2 포트)
+      - RtcDOutput2Pin (디지털 출력 RTC5/6 레이저 포트 2핀)
+      - AdlinkDOutput (디지털 출력 ADLINK DASK 제품)
+      - AjinExtekDOutput (디지털 출력 아진엑스텍 제품)     
+   - IPowerMap (파워매핑 인터페이스)
+      - PowerMapDefault (파워매핑 기본버전)
+      - PowerMapSerializer (파워매핑 파일 읽기/쓰기)
+   - IPowerMeter (파워메터 인터페이스)
+      - PowerMeterVirtual (파워메터 가상)
+      - PowerMeterCoherentPowerMax (코히런트 제품)
+      - PowerMeterOphir (Ophir 제품)
+      - PowerMeterThorLabsPMSeries (Thorlabs 제품)
+         - PowerScaler (파워 배율 계산)
+
+
+* spirallab.sirius.dll
+   - SiriusViewerForm (뷰어 윈폼용 사용자 컨트롤)
+   - SiriusEditorForm (편집기 윈폼용 사용자 컨트롤)
+   - PathOptimizerForm (경로 최적화 윈폼)
+   - Correction2DRtcForm (스캐너 2D 보정용 윈폼)
+   - Correction3DRtcForm (스캐너 3D 보정용 윈폼)
+   - MarkerForm (마커용 윈폼)
+   - MarkerSyncAxisForm (syncAxis/XLSCAN 마커용 윈폼)
+   - PensForm (펜 집합 편집용 윈폼)
+   - RtcIOForm (RTC 확장 IO 제어용 윈폼)
+   - MotorForm (단축 모터 제어용 윈폼)
+   - MotorsForm (모터 집합 제어용 윈폼)
+   - PowerMapForm (파워매핑 제어용 윈폼)
+   - PowerMeterForm (파워메터 제어용 윈폼)
+   - IMarker (마커 인터페이스)
+      - MarkerDefault (마커 기본 버전)
+      - IMarkerArg (마커 인자 인터페이스)
+         - MarkerArgDefault (마커 인자 기본 버전)
+   - IPens (펜 집합 인터페이스)
+      - Pens (펜 집합 기본 버전)
+      - PensSerializer (펜 집합 읽기/쓰기)
+   - IDocument (문서)
+      - DocumentDefault (문서 기본 버전)
+      - DocumentSerializer (문서 읽기/쓰기)
+      - Layers (레이어 집합)
+   - IView (뷰 인터페이스)
+      - ViewDefault (뷰 기본 버전)
+   - IEntity (엔티티 개체 인터페이스)
+      - IPen (펜 인터페이스)
+         - PenDefault (펜 기본버전)
+      - IDrawable (렌더링 지원 인터페이스)
+      - IExplodable (분해 지원 인터페이스)
+      - IHatchable (해치 지원 인터페이스)
+      - IMarkerable (가공 지원 인터페이스)
+      - IScriptable (스크립트 지원 인터페이스)
+      - ITextChangeable (텍스트 데이타 변경 지원 인터페이스)
+         - AlcBegin (자동 레이저 제어 시작)
+         - AlcSyncAxisBegin / AlcSyncAxisEnd (syncAXIS 용 자동 레이저 제어 시작/종료)
+         - Arc (호)
+         - BarcodeDataMatrix2 (DataMatrix 바코드)
+         - BarcodeQR2 (QR 바코드)
+         - Bitmap (비트맵)
+         - BlockInsert 
+         - Circle (원)
+         - Circle3D
+         - Ellipse (타원)
+         - Fiducial (기준점)
+         - Group (그룹)
+         - HPGL (HPGL 로고)
+         - Jump (점프)
+         - Layer (레이어)
+         - Line (선분)
+         - LwPolyline (폴리라인)
+         - MeasurementBegin / MeasurementEnd (계측 시작/종료)
+         - MotfAngularBegin (MOTF 회전 기반 시작)
+         - MotfAngularWait (MOTF 회전 엔코더 각도 대기)
+         - MotfBegin (MOTF 시작)
+         - MotfEnd (MOTF 종료)
+         - MotfExternalStartDelay (MOTF 지연)
+         - MotfRepeat (MOTF 데이타 반복 가공)
+         - MotfWait (MOTF 엔코더 위치 대기)
+         - Point (점)
+         - Points (점 복수개)
+         - Raster (레스터 면적)
+         - RasterLine (레스터 선분)
+         - Rectangle (사각형)
+         - SiriusText (시리우스 텍스트)
+            - SiriusTextArc (시리우스 텍스트 호)
+            - SiriusTextDate (시리우스 텍스트 날짜)
+            - SiriusTextSerial (시리우스 텍스트 일련번호)
+            - SiriusTextTime (시리우스 텍스트 시간)
+         - Spiral  (나선)
+         - StitchedImage (머신비전 이미지)
+         - Stereolithography (STL 파일)
+         - SyncAxisCalculationDynamics (syncAXIS 역학 제한값)
+         - Text (텍스트)
+            - TextArc (텍스트 호)
+            - TextDate (텍스트 날짜)
+            - TextSerial (텍스트 일련번호)
+            - TextTime (텍스트 시간)
+         - Timer (대기 타이머)
+         - Trepan (트리팬)
+         - Triangle (삼각형)
+         - Triangle3D
+         - VectorBegin / VectorEnd (벡터 의존 자동 레이저 제어 시작/종료)
+         - WaitDataExt16If (확장1 포트 16비트 조건에 따른 대기)
+         - WriteData (확장포트/아나로그 등 데이타 출력)
+         - WriteDataExt16 (확장1 포트 16비트 출력)
+         - WriteDataExt16If (조건에 따른 확장1 포트 16비트 출력)
+         - ZDefocus (Z 디포커스)
+         - ZOffset (Z 오프셋)
+   - Action (액션 지원)
+   - Block (블럭)
+   - Blocks (블럭 집합)
+   - User (사용자 로그인, 로그아웃 및 권한 처리)
+
+
+* spirallab.sirius.fieldcorrection.dll
+   - FormGridChecker (Grid Checker 출력 윈폼)
+
+
+* spirallab.hpgl.dll, spirallab.hpglx64.dll 
+   - native dll : win32/x64 
+   - HPGLImportFile (HPGL 파일 가져오기)
+   - HPGLPolyLineCount (내부 폴리라인 개수)
+   - HPGLPolyLineVertexCount (지정된 폴라라인 정점 개수)
+   - HPGLPolyLineVertexData (지정된 폴라라인의 정점 정보)
