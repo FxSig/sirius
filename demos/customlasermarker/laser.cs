@@ -170,7 +170,10 @@ namespace SpiralLab.Sirius
                 if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
                 {
                     if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
+                    {
+                        Logger.Log(Logger.Type.Error, $"laser [{this.Index}]: fail to search target powermap category: {powerMapCategory}");
                         return false;
+                    }
                 }
                 bool success = true;
                 float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
@@ -178,7 +181,7 @@ namespace SpiralLab.Sirius
 
                 if (success)
                 {
-                    Logger.Log(Logger.Type.Warn, $"set laser power to {compensatedWatt:F3}W");
+                    Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: power to {compensatedWatt:F3} W");
                 }
                 return success;
             }

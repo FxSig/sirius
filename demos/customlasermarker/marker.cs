@@ -42,21 +42,28 @@ namespace SpiralLab.Sirius
     public class YourCustomMarker : IMarker
     {
         /// <summary>
-        /// 가공 시작 이벤트 핸들러
+        /// 가공 시작 이벤트핸들러
         /// </summary>
         public event MarkerEventHandler OnStarted;
         /// <summary>
         /// 진행률 이벤트 핸들러
+        /// IMarkerArg 인자의 Progress 값이 0~100 범위에서 증가
         /// </summary>
         public event MarkerEventHandler OnProgress;
         /// <summary>
-        /// 계측 이벤트 핸들러
-        /// </summary>
-        public event MeasureEventHandler OnMeasurement;
-        /// <summary>
         /// 완료 이벤트 핸들러
+        /// IMarkerArg 인자에 세부정보 참고 
         /// </summary>
         public event MarkerEventHandler OnFinished;
+        /// <summary>
+        /// 계측 이벤트 핸들러
+        /// 가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 
+        /// 계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨
+        /// MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능
+        /// 실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨
+        /// </summary>
+        public event MeasureEventHandler OnMeasurement;
+
         /// <summary>
         /// 식별 번호
         /// </summary>
@@ -389,6 +396,62 @@ namespace SpiralLab.Sirius
             this.MarkerArg.Progress = 100;
             this.OnProgress?.Invoke(this, this.MarkerArg);
             return true;
+        }
+        #endregion
+
+
+        #region 이벤트 호출 (상속 구현한 자식 클래스에서 호출시 사용)
+        /// <summary>
+        /// 가공 시작
+        /// </summary>
+        public virtual void NotifyStarted()
+        {
+            var receivers = this.OnStarted?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
+        }
+        /// <summary>
+        /// 가공 진행률
+        /// (MarkerArg 의 Progress 값이 0~100 사이)
+        /// </summary>
+        public virtual void NotifyProgressing()
+        {
+            var receivers = this.OnProgress?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
+        }
+
+        protected MeasurementBegin entityMeasurementBegin = null;
+        protected MeasurementEnd entityMeasurementEnd = null;
+        /// <summary>
+        /// 계측 발생시 
+        /// </summary>
+        /// <param name="rtcMeasurement"></param>
+        /// <param name="measurementBegin"></param>
+        public virtual void NotifyMeasuring(IRtcMeasurement rtcMeasurement, MeasurementBegin measurementBegin)
+        {
+            if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
+            {
+                string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
+                MeasurementHelper.Save(plotFileFullPath, measurementBegin, rtcMeasurement as IRtc);
+                MeasurementHelper.Plot(plotFileFullPath);
+            }
+            var receivers = this.OnMeasurement?.GetInvocationList();
+            if (null != receivers)
+                foreach (MeasureEventHandler receiver in receivers)
+                    receiver.Invoke(this, rtcMeasurement, measurementBegin);
+        }
+        /// <summary>
+        /// 가공 완료시
+        /// </summary>
+        public virtual void NotifyFinished()
+        {
+            var receivers = this.OnFinished?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.Invoke(this, this.MarkerArg);
         }
         #endregion
     }

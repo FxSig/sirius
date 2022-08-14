@@ -182,7 +182,10 @@ namespace SpiralLab.Sirius
             if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
             {
                 if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
+                {
+                    Logger.Log(Logger.Type.Error, $"laser [{this.Index}]: fail to search target powermap category: {powerMapCategory}");
                     return false;
+                }
             }
             //통신을 통한 파워 변경 시도
             success &= this.CommandToChangePower(compensatedWatt);

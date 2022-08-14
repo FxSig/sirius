@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text;
@@ -426,6 +427,61 @@ namespace SpiralLab.Sirius
                 }
             }
             return success;
+        }
+        #endregion
+
+        #region 이벤트 호출 (상속 구현한 자식 클래스에서 호출시 사용)
+        /// <summary>
+        /// 가공 시작
+        /// </summary>
+        public virtual void NotifyStarted()
+        {
+            var receivers = this.OnStarted?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
+        }
+        /// <summary>
+        /// 가공 진행률
+        /// (MarkerArg 의 Progress 값이 0~100 사이)
+        /// </summary>
+        public virtual void NotifyProgressing()
+        {
+            var receivers = this.OnProgress?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
+        }
+
+        protected MeasurementBegin entityMeasurementBegin;
+        protected MeasurementEnd entityMeasurementEnd;
+        /// <summary>
+        /// 계측 발생시 
+        /// </summary>
+        /// <param name="rtcMeasurement"></param>
+        /// <param name="measurementBegin"></param>
+        public virtual void NotifyMeasuring(IRtcMeasurement rtcMeasurement, MeasurementBegin measurementBegin)
+        {
+            if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
+            {
+                string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
+                MeasurementHelper.Save(plotFileFullPath, measurementBegin, rtcMeasurement as IRtc);
+                MeasurementHelper.Plot(plotFileFullPath);
+            }
+            var receivers = this.OnMeasurement?.GetInvocationList();
+            if (null != receivers)
+                foreach (MeasureEventHandler receiver in receivers)
+                    receiver.Invoke(this, rtcMeasurement, measurementBegin);
+        }
+        /// <summary>
+        /// 가공 완료시
+        /// </summary>
+        public virtual void NotifyFinished()
+        {
+            var receivers = this.OnFinished?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.Invoke(this, this.MarkerArg);
         }
         #endregion
     }

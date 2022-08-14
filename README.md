@@ -122,13 +122,13 @@
 **5. Version history**
 
 
-* 2022.8.12 v1.115
+* 2022.8.15 v1.115
   - added) processing on the fly with angular (회전축 엔코더 기반의 MOTF 지원)
      - added) motf angular begin entity (회전 시작 개체 추가)
      - added) motf angular wait entity (각도 대기 개체 추가)
      - added) motf angular with rotate center position (회전 중심 위치 변경 지원)
      - added) simulated motf with angular velocity (회전축 엔코더 시뮬레이션 지원)
-  - added) improve stability with powermap/powermeter (파워메터/파워매핑 안정성 향상)
+  - added) start/stop powermapping routines and support event handlers (파워매핑 시작/정지 루틴 지원, 이벤트 핸들러 지원)
   - fixed) mark bug with point entity at rtc4 (RTC4 에서 점 개체 가공 버그)
 
 * 2022.7.29 v1.114

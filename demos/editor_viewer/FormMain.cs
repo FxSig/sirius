@@ -39,8 +39,6 @@ namespace SpiralLab.Sirius
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
-            siriusEditorForm1.OnPowerMapSourceChanged += SiriusEditorForm1_OnPowerMapSourceChanged;
-
             #region RTC 초기화
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
@@ -143,17 +141,11 @@ namespace SpiralLab.Sirius
             #endregion
         }
 
-
-
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트
             siriusEditorForm1.Document = doc;
             siriusViewerForm1.Document = doc;
-        }
-        private void SiriusEditorForm1_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)
-        {
-            siriusEditorForm1.PowerMap = powerMap;
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {

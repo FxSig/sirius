@@ -43,13 +43,9 @@ namespace SpiralLab.Sirius
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
-            siriusEditorForm1.OnPowerMapSourceChanged += SiriusEditorForm1_OnPowerMapSourceChanged;
-
             this.Load += MainForm_Load;
             this.FormClosing += MainForm_FormClosing;
         }
-
-
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -126,10 +122,6 @@ namespace SpiralLab.Sirius
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             siriusEditorForm1.Document = doc;
-        }
-        private void SiriusEditorForm1_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)
-        {
-            siriusEditorForm1.PowerMap = powerMap;
         }
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {

@@ -3097,10 +3097,11 @@
             파워맵 시리얼라이저
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapSerializer.Open(System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMapSerializer.Open(SpiralLab.Sirius.IPowerMap,System.String)">
             <summary>
             파워맵 파일 열기
             </summary>
+            <param name="powerMap">IPowerMap 인스턴스</param>
             <param name="mapFileName">파일이름</param>
             <returns>IPowerMap 인스턴스</returns>
         </member>
@@ -3108,7 +3109,7 @@
             <summary>
             파워맵 파일 저장
             </summary>
-            <param name="map">저장할 IPowerMap 인스턴스</param>
+            <param name="powerMap">저장할 IPowerMap 인스턴스</param>
             <param name="mapFileName">파일이름 (powermap\*.map)</param>
             <returns></returns>
         </member>
@@ -3557,6 +3558,16 @@
             모터 이름
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorESP301.ESP301HomeMode">
+            <summary>
+            홈 모드 종류
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.HomeMode">
+            <summary>
+            홈 모드
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.TargetPosition">
             <summary>
             위치 (mm)
@@ -3588,6 +3599,11 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsHomeSearching">
             <summary>
             원점 검색 여부
             </summary>
@@ -3652,11 +3668,25 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlDefineHome(System.Single)">
+            <summary>
+            원점(홈) 으로 설정
+            </summary>
+            <param name="position">위치값</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlResetCount(System.Single)">
             <summary>
             엔코더 카운터 리셋
             </summary>
             <param name="position">오프셋 값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlHomePreset(System.Single)">
+            <summary>
+            홈 프리셋 위치
+            </summary>
+            <param name="position">홈 완료후 재설정 카운터 값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlServo(System.Boolean)">
@@ -3695,6 +3725,13 @@
             <summary>
             정지
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlWaitForStop(System.Int32)">
+            <summary>
+            구동 완료시 까지 대기
+            </summary>
+            <param name="delay"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlReset">
@@ -8807,6 +8844,14 @@
             <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerMapStart">
+            <summary>
+            파워 매핑 통지용
+            </summary>
+            <param name="sender">파워맵</param>
+            <param name="category">대상 카테고리</param>
+            <param name="steps">단계</param>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerMap">
             <summary>
             파워맵 인터페이스
@@ -8817,9 +8862,35 @@
             파워 매핑 시작
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnFnished">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnProgress">
+            <summary>
+            파워 매핑 진행중
+            매 Step 진행완료시 발생
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnStopped">
+            <summary>
+            파워 매핑 중지
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinished">
             <summary>
             파워 매핑 종료
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnOpen">
+            <summary>
+            파워맵 파일 열기
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnSave">
+            <summary>
+            파워맵 파일 저장
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.IsBusy">
+            <summary>
+            파뭐 매핑 진행중 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.SyncRoot">
@@ -8856,6 +8927,7 @@
         <member name="P:SpiralLab.Sirius.IPowerMap.Data">
             <summary>
             카테고리/시리즈, (X값, 측정값) 데이타
+            실제 파일에 저장되는 데이타 값들
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsInterpolateEnabled">
@@ -8928,6 +9000,58 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns>성공 여부</returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(System.String,System.Int32,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.UInt32,System.Single)">
+            <summary>
+            파워매핑 시작
+            </summary>
+            <param name="category">대상 카테고리</param>
+            <param name="steps">단계</param>
+            <param name="powerMeter">IPowerMeter 객체</param>
+            <param name="rtc">IRtc 객체</param>
+            <param name="laser">ILaser 객체</param>
+            <param name="holdTimeMs">측정을 위한 레이저 출사 시간 (msec)</param>
+            <param name="thresholdWatt">해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStop">
+            <summary>
+            파워 매핑 중지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStarted(System.String,System.Int32)">
+            <summary>
+            파워 매핑 시작
+            </summary>
+            <param name="category">대상 카테고리</param>
+            <param name="steps">단계</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyProgress">
+            <summary>
+            파워 매핑 진행중
+            매 Step 진행완료시 발생
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStopped">
+            <summary>
+            매핑 중지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinished">
+            <summary>
+            매핑 종료 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyOpening">
+            <summary>
+            매핑 파일 열기 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifySaving">
+            <summary>
+            매핑 파일 저장 이벤트 통지
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.PowerMapDefault">
             <summary>
             파워맵 (기본 버전)    
@@ -8938,9 +9062,35 @@
             파워 매핑 시작
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFnished">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnProgress">
+            <summary>
+            파워 매핑 진행중
+            매 Step 진행완료시 발생
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStopped">
+            <summary>
+            파워 매핑 중지
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinished">
             <summary>
             파워 매핑 종료
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnOpen">
+            <summary>
+            파워맵 파일 열기
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnSave">
+            <summary>
+            파워맵 파일 저장
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.IsBusy">
+            <summary>
+            파뭐 매핑 진행중 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapDefault.SyncRoot">
@@ -8977,6 +9127,7 @@
         <member name="P:SpiralLab.Sirius.PowerMapDefault.Data">
             <summary>
             카테고리/시리즈, (X값, 측정값) 데이타
+            실제 파일에 저장되는 항목
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapDefault.IsInterpolateEnabled">
@@ -9001,12 +9152,6 @@
             <param name="index">식별 번호</param>
             <param name="name">이름</param>
             <param name="xName">X 항목 이름</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.Clone">
-            <summary>
-            복제
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.Categories(System.String[]@)">
             <summary>
@@ -9064,6 +9209,72 @@
             <param name="targetWatt">출력을 원하는 에너지(W)</param>
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStart(System.String,System.Int32,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.UInt32,System.Single)">
+            <summary>
+            파워매핑 시작
+            </summary>
+            <param name="category">대상 카테고리</param>
+            <param name="steps">단계</param>
+            <param name="powerMeter">IPowerMeter 객체</param>
+            <param name="rtc">IRtc 객체</param>
+            <param name="laser">ILaser 객체</param>
+            <param name="holdTimeMs">측정을 위한 레이저 출사 시간 (msec)</param>
+            <param name="thresholdWatt">해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.Int32,System.UInt32,System.Single)">
+            <summary>
+            실제 매핑 처리 루틴
+            </summary>
+            <param name="powerMap"></param>
+            <param name="powerMeter"></param>
+            <param name="rtc"></param>
+            <param name="laser"></param>
+            <param name="category"></param>
+            <param name="steps"></param>
+            <param name="holdTimeMs"></param>
+            <param name="thresholdWatt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStop">
+            <summary>
+            파워 매핑 중지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStarted(System.String,System.Int32)">
+            <summary>
+            파워 매핑 시작
+            </summary>
+            <param name="category">대상 카테고리</param>
+            <param name="steps">단계</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyProgress">
+            <summary>
+            파워 매핑 진행중
+            매 Step 진행완료시 발생
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStopped">
+            <summary>
+            매핑 중지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinished">
+            <summary>
+            매핑 종료 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyOpening">
+            <summary>
+            매핑 파일 열기 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifySaving">
+            <summary>
+            매핑 파일 저장 이벤트 통지
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMeasureOphirArg">
             <summary>

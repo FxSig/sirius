@@ -41,8 +41,6 @@ namespace SpiralLab.Sirius
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
-            siriusEditorForm1.OnPowerMapSourceChanged += SiriusEditorForm1_OnPowerMapSourceChanged;
-
             #region RTC 초기화
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
@@ -154,27 +152,23 @@ namespace SpiralLab.Sirius
 
             #region PowerMeter
             // 파워메터
-            //var pm = new PowerMeterVirtual(0, "Virtual");
+            var powerMeter = new PowerMeterVirtual(0, "Virtual");
             //var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
             //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
-            //powerMeter.Initialize();
-            //this.siriusEditorForm1.PowerMeter = powerMeter;
+            powerMeter.Initialize();
+            this.siriusEditorForm1.PowerMeter = powerMeter;
             #endregion
 
             #region Powermap
-            //var pmap = new PowerMapDefault(0, "Virtual", "Watt");
+            var powerMap = new PowerMapDefault(0, "Virtual", "Watt");
             //var powerMapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "default.map");
-            //var pmap = PowerMapSerializer.Open(powerMapFile);
-            //this.siriusEditorForm1.PowerMap = pmap;
-            //laser.PowerMap = pmap;
-            //laser.CtlPower(2, "Default");
+            //PowerMapSerializer.Open(powerMap, powerMapFile);
+            this.siriusEditorForm1.PowerMap = powerMap;
+            laser.PowerMap = powerMap;
+            
+            //laser.CtlPower(2);
             #endregion            
-        }
-
-        private void SiriusEditorForm1_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)
-        {
-            siriusEditorForm1.PowerMap = powerMap;
         }
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)

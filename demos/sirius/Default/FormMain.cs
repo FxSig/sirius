@@ -51,7 +51,6 @@ namespace SpiralLab.Sirius.Default
             this.FormEditor.SiriusEditor.Document = doc;
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             this.FormEditor.SiriusEditor.OnDocumentSourceChanged += SiriusEditorForm_OnDocumentSourceChanged;
-            this.FormEditor.SiriusEditor.OnPowerMapSourceChanged += SiriusEditor_OnPowerMapSourceChanged;
 
             bool success = true;
             #region RTC 초기화
@@ -119,12 +118,6 @@ namespace SpiralLab.Sirius.Default
             this.FormEditor.SiriusEditor.Marker = marker;
             #endregion
             return success;
-        }
-
-        private void SiriusEditor_OnPowerMapSourceChanged(object sender, IPowerMap powerMap)
-        {
-            //powermap 객체가 변경됨 (open 등 으로 인해)
-            //사용자는 powermap 객체가 변경되었음을 인지해야함
         }
 
         private void SiriusEditorForm_OnDocumentSourceChanged(object sender, IDocument doc)

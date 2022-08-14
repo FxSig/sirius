@@ -112,7 +112,11 @@ namespace SpiralLab.Sirius
             
             IPowerMap powerMap = new PowerMapDefault();
             //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "test.pmap");
-            //var powerMap = PowerMapSerializer.Open(mapFile);
+            //PowerMapSerializer.Open(powerMap, mapFile);
+            powerMap.OnStarted += PowerMap_OnStarted;
+            powerMap.OnProgress += PowerMap_OnProgress;
+            powerMap.OnStopped += PowerMap_OnStopped;
+            powerMap.OnFinished += PowerMap_OnFinished;
             #endregion
 
             ConsoleKeyInfo key;
@@ -136,16 +140,19 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.P:
-                        StartPowerMap(laser, rtc, powerMeter, powerMap);
+                        StartPowerMap(powerMap, laser, rtc, powerMeter);
+                        break;
+                    case ConsoleKey.X:
+                        StopPowerMap(powerMap);
                         break;
                     case ConsoleKey.C:
-                        TestCompensatedOutputPower(laser, rtc, powerMeter, powerMap, 5);
+                        TestCompensatedOutputPower(powerMap, laser, rtc, powerMeter , 5);
                         break;
                     case ConsoleKey.S:
                         SavePowerMap(powerMap);
                         break;
                     case ConsoleKey.O:
-                        OpenPowerMap(ref powerMap);
+                        OpenPowerMap(powerMap);
                         break;
                     case ConsoleKey.F1:
                         {
@@ -162,67 +169,43 @@ namespace SpiralLab.Sirius
                 }
             } while (true);
 
+            powerMap.OnStarted -= PowerMap_OnStarted;
+            powerMap.OnProgress -= PowerMap_OnProgress;
+            powerMap.OnStopped -= PowerMap_OnStopped;
+            powerMap.OnFinished -= PowerMap_OnFinished;
             powerMeter.Dispose();
             laser.Dispose();
             rtc.Dispose();
         }
 
-        private static bool StartPowerMap(ILaser laser, IRtc rtc, IPowerMeter powerMeter, IPowerMap powerMap)
+        private static void PowerMap_OnStarted(IPowerMap sender, string category, int steps)
         {
-            var powerControl = laser as IPowerControl;
-            if (null == powerControl)
-                return false;
-
-            powerMeter.CtlStop();
-            powerMeter.CtlClear();
-            powerMap.Clear();
-
-            bool success = true;
-            var maxWatt = laser.MaxPowerWatt;
-            float increaseWatt = maxWatt * 0.1f;
-            float currentWatt = increaseWatt;
-            powerMap.XName = "Watt";
-            powerMap.XGap = increaseWatt;
-
-            while (currentWatt <= maxWatt)
-            {
-                success &= powerControl.CtlPower(currentWatt);
-                Console.WriteLine($"LASER TARGET POWER= {currentWatt}");
-                if (DialogResult.Yes != MessageBox.Show($"Do you really want to laser on with power= {currentWatt}W ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    break;
-                }
-                //laser on (WARNING !!!)
-                success &= rtc.CtlLaserOn();
-                Console.WriteLine("WARNING !!! LASER IS ON ...");
-                //for preheating 
-                Thread.Sleep(5 * 1000);
-                //start measurement
-                powerMeter.PowerMeasureArg.XName = powerMap.XName;
-                powerMeter.PowerMeasureArg.XValue = currentWatt;
-                success &= powerMeter.CtlStart();
-                //during 5 secs
-                Thread.Sleep(5 * 1000);
-                //stop measurement
-                success &= powerMeter.CtlStop();
-                //laser off
-                success &= rtc.CtlLaserOff();
-                // average power (watt)
-                var avgWatt = powerMeter.Data.Average();
-                Console.WriteLine($"LASER AVG POWER= {avgWatt}");
-                Console.WriteLine($"LASER IS OFF");
-                success &= powerMap.Update(category, currentWatt, avgWatt);
-
-                powerMeter.CtlClear();
-                currentWatt += increaseWatt;
-                currentWatt = (float)Math.Round(currentWatt, 3); //round up
-                if (!success)
-                    break;
-            }
-
-            return success;
+            Console.WriteLine("Powermapping has started");
         }
-        private static bool TestCompensatedOutputPower(ILaser laser, IRtc rtc, IPowerMeter powerMeter, IPowerMap powerMap, float targetWatt)
+        private static void PowerMap_OnProgress(object sender, EventArgs e)
+        {
+            Console.WriteLine("Powermapping working next step ...");
+        }
+        private static void PowerMap_OnStopped(object sender, EventArgs e)
+        {
+            Console.WriteLine("Powermapping has stopped");
+        }
+        private static void PowerMap_OnFinished(object sender, EventArgs e)
+        {
+            Console.WriteLine("Powermapping has finished");
+        }
+
+        private static bool StartPowerMap(IPowerMap powerMap, ILaser laser, IRtc rtc, IPowerMeter powerMeter)
+        {
+            // 100 khz
+            // 10 steps
+            return powerMap.CtlStart("100000", 10, powerMeter, rtc, laser);
+        }
+        private static bool StopPowerMap(IPowerMap powerMap)
+        {
+            return powerMap.CtlStop();
+        }
+        private static bool TestCompensatedOutputPower(IPowerMap powerMap, ILaser laser, IRtc rtc, IPowerMeter powerMeter, float targetWatt)
         {
             var powerControl = laser as IPowerControl;
             if (null == powerControl)
@@ -284,17 +267,10 @@ namespace SpiralLab.Sirius
         private static bool SavePowerMap(IPowerMap powerMap)
         {
             return PowerMapSerializer.Save(powerMap, mapFile);
-
         }
-        private static bool OpenPowerMap(ref IPowerMap powerMap)
+        private static bool OpenPowerMap(IPowerMap powerMap)
         {
-            var pm = PowerMapSerializer.Open(mapFile);
-            if (null != pm)
-            {
-                powerMap = pm;
-                return true;
-            }
-            return false;
+            return PowerMapSerializer.Open(powerMap, mapFile);
         }
     }
 }

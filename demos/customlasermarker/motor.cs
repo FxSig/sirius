@@ -168,6 +168,7 @@ namespace SpiralLab.Sirius
             IsError = false;
             IsHomeSearched = true;
             TargetPosition = ActualPosition = 0;
+            // 원점 검색 완료후 NotifyHomed() 호출
             return true;
         }
         /// <summary>
@@ -236,5 +237,16 @@ namespace SpiralLab.Sirius
         {
             return true;
         }
+
+
+        #region 원점 초기화(홈) 이벤트 통지 (상속 구현시 외부에서 호출 지원)
+        public virtual void NotifyHomed()
+        {
+            var receivers = this.MotorHomed?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+        }
+        #endregion
     }
 }

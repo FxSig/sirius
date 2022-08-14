@@ -1854,8 +1854,9 @@
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.PenStack">
             <summary>
-            펜(IPen) 개체의 스택
-            Sirius 라이브러리 내부에서 사용됨
+            가공중 복수개의 펜 개체를 사용시 스택 공간에 저장 관리된다
+            이때 스택에 삽입/삭제 하기 위한 자료구조
+            (내부에서 사용됨)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsRegisteringFonts">
@@ -1868,7 +1869,7 @@
             <summary>
             펜 집합 사용 여부 
             SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
-            (내부적으로 사용됨)
+            (내부적으로 사용되며, 항상 True 로 사용할 것을 추천)
             </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
@@ -1898,7 +1899,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.MarkTargets">
             <summary>
-            가공 대상 종류
+            대상의 가공 방식
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MarkTargets.All">
@@ -1925,7 +1926,7 @@
         <member name="T:SpiralLab.Sirius.IMarkerArg">
             <summary>
             마커 인자 인터페이스
-            가공 인자 전달용
+            가공 인자 정보를 가진다
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Document">
@@ -2033,7 +2034,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">
             <summary>
-            가공중 복수개의 펜 개체를 삽입/삭제 하기 위한 스택 
+            가공중 복수개의 펜 개체를 사용시 스택 공간에 저장 관리된다
+            이때 스택에 삽입/삭제 하기 위한 자료구조
             (내부에서 사용됨)
             </summary>
         </member>
@@ -2047,7 +2049,7 @@
             <summary>
             펜 집합 사용 여부 
             SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
-            (내부적으로 사용됨)
+            (내부적으로 사용되며, 항상 True 로 사용할 것을 추천)
             </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
@@ -3058,7 +3060,7 @@
             IPowerMeter 인터페이스
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PowerMapForm.isMappingTerminated">
+        <member name="F:SpiralLab.Sirius.PowerMapForm.isTerminated">
             <summary>
             파워매핑이 종료되어야 하는지 여부
             </summary>
@@ -3077,22 +3079,6 @@
             <summary>
             차트 다시 그리기
             </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.PowerMapForm.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.Int32,System.UInt32,System.Single)">
-            <summary>
-            파워 매핑 시퀀스 (비동기 Task 생성 버전)
-            1. 상속후 override 구현 가능
-            2. OnMapStart / OnMapStop 이벤트 등록후 delegate 내에서 사용자 커스텀 구현 가능
-            </summary>
-            <param name="powerMap">IPowerMap 인터페이스</param>
-            <param name="powerMeter">IPowerMeter 인터페이스</param>
-            <param name="rtc">IRtc 인터페이스</param>
-            <param name="laser">ILaser 인터페이스</param>
-            <param name="category">대상 카테고리</param>
-            <param name="holdTimeMs">파워 측정전 대기 시간(예열 등에 활용) </param>
-            <param name="steps">X 값을 지정된 단계로 나누어 처리</param>
-            <param name="thresholdWatt">측정된 파웍값의 차이가 해당 값보다 크면 에러로 처리됨 (W)</param>
-            <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.PowerMapForm.components">
             <summary>
@@ -7857,22 +7843,6 @@
             <param name="markerArg">가공 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMarker.IsTargetLayer(SpiralLab.Sirius.Layer)">
-            <summary>
-            특정 레이어를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
-            </summary>
-            <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMarker.IsTargetEntity(SpiralLab.Sirius.IEntity)">
-            <summary>
-            특정 개체를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
-            </summary>
-            <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IMarker.Clear">
             <summary>
             복제된 내부 가공 데이타를 초기화 
@@ -7896,6 +7866,45 @@
             리셋 (에러 상태 해제)
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.IsTargetLayer(SpiralLab.Sirius.Layer)">
+            <summary>
+            특정 레이어를 가공할지를 선택하기 위한 comparer
+            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+            </summary>
+            <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.IsTargetEntity(SpiralLab.Sirius.IEntity)">
+            <summary>
+            특정 개체를 가공할지를 선택하기 위한 comparer
+            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+            </summary>
+            <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyStarted">
+            <summary>
+            가공 시작
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyProgressing">
+            <summary>
+            가공 진행률
+            (MarkerArg 의 Progress 값이 0~100 사이)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyMeasuring(SpiralLab.Sirius.IRtcMeasurement,SpiralLab.Sirius.MeasurementBegin)">
+            <summary>
+            계측 발생시 
+            </summary>
+            <param name="rtcMeasurement"></param>
+            <param name="measurementBegin"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyFinished">
+            <summary>
+            가공 완료시
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.RasterDirection">
             <summary>
@@ -8158,6 +8167,29 @@
             리셋 (에러 상태 해제)
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyStarted">
+            <summary>
+            가공 시작
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyProgressing">
+            <summary>
+            가공 진행률
+            (MarkerArg 의 Progress 값이 0~100 사이)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyMeasuring(SpiralLab.Sirius.IRtcMeasurement,SpiralLab.Sirius.MeasurementBegin)">
+            <summary>
+            계측 발생시 
+            </summary>
+            <param name="rtcMeasurement"></param>
+            <param name="measurementBegin"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyFinished">
+            <summary>
+            가공 완료시
+            </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.PreWork">
             <summary>
@@ -9189,32 +9221,6 @@
             </summary>
             <param name="sender">SiriusEditorForm</param>
         </member>
-        <member name="T:SpiralLab.Sirius.SiriusPowerMapSourceChanged">
-            <summary>
-            대상 파워맵 객체가 변경되었을때를 처리하는 델리게이트
-            </summary>
-            <param name="sender">SiriusEditorForm</param>
-            <param name="powerMap">변경된 IPowerMap 객체</param>
-        </member>
-        <member name="T:SpiralLab.Sirius.SiriusPowerMappingStarted">
-            <summary>
-            파워매핑 시도 이벤트 통지용 
-            </summary>
-            <param name="sender"></param>
-            <param name="powerMap"></param>
-            <param name="rtc"></param>
-            <param name="laser"></param>
-            <param name="powerMeter"></param>
-            <param name="category">대상 카테고리(예:Hz)</param>
-            <param name="steps">분할 개수</param>
-        </member>
-        <member name="T:SpiralLab.Sirius.SiriusPowerMappingSave">
-            <summary>
-            파워 맵 저장시 발생 이벤트
-            </summary>
-            <param name="sender"></param>
-            <param name="powerMap">저장할 파워맵 객체</param>
-        </member>
         <member name="T:SpiralLab.Sirius.SiriusEditorForm">
             <summary>
             가공 데이타 (Document)를 화면에 출력및 사용자의 이벤트에 의해 데이타를 변경하는 등의 에디터및 뷰어 기능을 수행
@@ -9311,31 +9317,6 @@
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMap">
             <summary>
             문서(Document)에서 파워매핑(PowerMap) 창을 띄울때 발생하는 이벤트
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapOpen">
-            <summary>
-            파일을 Open 할때 발생하는 이벤트 (외부 사용자용)
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSave">
-            <summary>
-            파일을 Save 할때 발생하는  이벤트 (외부 사용자용)
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapStart">
-            <summary>
-            파워 매핑을 시도할때 발생하는 이벤트  (외부 사용자용)
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapStop">
-            <summary>
-            파워 매핑을 시도할때 발생하는 이벤트  (외부 사용자용)
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnPowerMapSourceChanged">
-            <summary>
-            파워맵(PowerMap)이 변경되었을때 발생하는 이벤트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Index">
