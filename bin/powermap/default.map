@@ -1,0 +1,11 @@
+{
+  "$type": "ConcurrentDictionary`2",
+  "100000": {
+    "$type": "SortedDictionary`2",
+    "1": 0.5,
+    "2": 1.4,
+    "3": 2.5
+	"4": 3.7
+	"5": 4.5
+  }
+}
