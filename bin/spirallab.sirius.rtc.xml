@@ -3092,6 +3092,176 @@
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IPowerMapStartArg">
+            <summary>
+            파워맵 구동 인자 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Categories">
+            <summary>
+            목표 카테고리 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Steps">
+            <summary>
+            단계
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Rtc">
+            <summary>
+            IRtc 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Laser">
+            <summary>
+            ILaser 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.HoldTimeMsec">
+            <summary>
+            측정을 위한 레이저 출사 시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.ThresholdWatt">
+            <summary>
+            해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMapStartDefaultArg">
+            <summary>
+            파워맵 구동 인자 (기본 버전)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Categories">
+            <summary>
+            목표 카테고리 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Steps">
+            <summary>
+            단계
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Rtc">
+            <summary>
+            IRtc 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Laser">
+            <summary>
+            ILaser 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.HoldTimeMsec">
+            <summary>
+            측정을 위한 레이저 출사 시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.ThresholdWatt">
+            <summary>
+            해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IPowerMapVerifyArg">
+            <summary>
+            파워맵 검증 구동 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.CategoryAndTargetWatts">
+            <summary>
+            목표 카테고리, 출력 파워(W) 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Rtc">
+            <summary>
+            IRtc 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Laser">
+            <summary>
+            ILaser 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.HoldTimeMsec">
+            <summary>
+            출사 유지시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.ThresholdWatt">
+            <summary>
+            오차로 처리할 출력값 범위 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMapVerifyDefaultArg">
+            <summary>
+            파워맵 검증 구동 (기본버전)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.CategoryAndTargetWatts">
+            <summary>
+            목표 카테고리,출력밧(W) 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Rtc">
+            <summary>
+            IRtc 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Laser">
+            <summary>
+            ILaser 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.HoldTimeMsec">
+            <summary>
+            출사 유지시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.ThresholdWatt">
+            <summary>
+            오차로 처리할 출력값 범위 (W)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.PowerMapSerializer">
             <summary>
             파워맵 시리얼라이저
@@ -8846,36 +9016,52 @@
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapStart">
             <summary>
-            파워 매핑 통지용
+            파워 매핑 시작 통지용
             </summary>
             <param name="sender">파워맵</param>
-            <param name="category">대상 카테고리</param>
-            <param name="steps">단계</param>
+            <param name="arg">인자</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerVerifyStart">
+            <summary>
+            파워 검증 시작 통지용
+            </summary>
+            <param name="sender">파워맵</param>
+            <param name="arg">인자</param>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerMap">
             <summary>
             파워맵 인터페이스
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnStarted">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnStartedMapping">
             <summary>
             파워 매핑 시작
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnStartedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 시작
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnProgress">
             <summary>
-            파워 매핑 진행중
-            매 Step 진행완료시 발생
+            파워 매핑시 : 카테고리 개수 * 매 Step 진행완료 개수만큼 발생
+            파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnStopped">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnFailed">
             <summary>
-            파워 매핑 중지
+            파워 매핑 실패
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinished">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinishedMapping">
             <summary>
             파워 매핑 종료
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinishedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnOpen">
@@ -8888,9 +9074,19 @@
             파워맵 파일 저장
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.IsReady">
+            <summary>
+            파뭐 매핑/검증 진행 가능 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsBusy">
             <summary>
-            파뭐 매핑 진행중 여부
+            파뭐 매핑/검증 진행중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMap.IsError">
+            <summary>
+            파워 매핑/검증 에러 발생 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.SyncRoot">
@@ -8941,6 +9137,12 @@
             <summary>
             사용자 정의 데이타
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Categories(System.String[]@)">
             <summary>
@@ -9000,17 +9202,11 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns>성공 여부</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(System.String,System.Int32,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워매핑 시작
             </summary>
-            <param name="category">대상 카테고리</param>
-            <param name="steps">단계</param>
-            <param name="powerMeter">IPowerMeter 객체</param>
-            <param name="rtc">IRtc 객체</param>
-            <param name="laser">ILaser 객체</param>
-            <param name="holdTimeMs">측정을 위한 레이저 출사 시간 (msec)</param>
-            <param name="thresholdWatt">해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)</param>
+            <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.CtlStop">
@@ -9019,27 +9215,52 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStarted(System.String,System.Int32)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlReset">
+            <summary>
+            에러 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+            <summary>
+            보정된 출력 파워 검증 시작
+            파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고
+            오차(threshold Watt)값 이내에서 측정이 되는지 여부를 시도한다
+            </summary>
+            <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStartedMapping(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워 매핑 시작
             </summary>
-            <param name="category">대상 카테고리</param>
-            <param name="steps">단계</param>
+            <param name="arg">IPowerMapStartArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStartVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
+            </summary>
+            <param name="arg">IPowerMapVerifyArg 인자</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyProgress">
             <summary>
             파워 매핑 진행중
-            매 Step 진행완료시 발생
+            카테고리 개수 * 매 Step 진행완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStopped">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFailed">
             <summary>
-            매핑 중지
+            매핑/검증 중지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinished">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinishedMapping">
             <summary>
             매핑 종료 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinishedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyOpening">
@@ -9057,25 +9278,35 @@
             파워맵 (기본 버전)    
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStarted">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStartedMapping">
             <summary>
             파워 매핑 시작
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMapDefault.OnProgress">
             <summary>
-            파워 매핑 진행중
-            매 Step 진행완료시 발생
+            파워 매핑시 : 카테고리 개수 * 매 Step 진행완료 개수만큼 발생
+            파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStopped">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFailed">
             <summary>
             파워 매핑 중지
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinished">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinishedMapping">
             <summary>
             파워 매핑 종료
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStartedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 시작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinishedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMapDefault.OnOpen">
@@ -9088,9 +9319,19 @@
             파워맵 파일 저장
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.IsReady">
+            <summary>
+            파뭐 매핑/검증 진행 가능 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMapDefault.IsBusy">
             <summary>
-            파뭐 매핑 진행중 여부
+            파뭐 매핑/검증 진행중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapDefault.IsError">
+            <summary>
+            파워 매핑/검증 에러 발생 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapDefault.SyncRoot">
@@ -9210,31 +9451,18 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStart(System.String,System.Int32,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStart(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워매핑 시작
             </summary>
-            <param name="category">대상 카테고리</param>
-            <param name="steps">단계</param>
-            <param name="powerMeter">IPowerMeter 객체</param>
-            <param name="rtc">IRtc 객체</param>
-            <param name="laser">ILaser 객체</param>
-            <param name="holdTimeMs">측정을 위한 레이저 출사 시간 (msec)</param>
-            <param name="thresholdWatt">해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)</param>
+            <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerMapping(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IPowerMeter,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,System.String,System.Int32,System.UInt32,System.Single)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerMapping(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             실제 매핑 처리 루틴
             </summary>
-            <param name="powerMap"></param>
-            <param name="powerMeter"></param>
-            <param name="rtc"></param>
-            <param name="laser"></param>
-            <param name="category"></param>
-            <param name="steps"></param>
-            <param name="holdTimeMs"></param>
-            <param name="thresholdWatt"></param>
+            <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStop">
@@ -9243,12 +9471,39 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStarted(System.String,System.Int32)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlReset">
+            <summary>
+            에러 초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+            <summary>
+            보정된 출력 파워 검증 시작
+            파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고
+            오차(threshold Watt)값 이내에서 측정이 되는지 여부를 시도한다
+            </summary>
+            <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+             <summary>
+             보정된 파워 출력 검증 테스트
+             </summary>
+            <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
+             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStartedMapping(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워 매핑 시작
             </summary>
-            <param name="category">대상 카테고리</param>
-            <param name="steps">단계</param>
+            <param name="arg">IPowerMapStartArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStartVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
+            </summary>
+            <param name="arg">IPowerMapVerifyArg 인자</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyProgress">
             <summary>
@@ -9256,14 +9511,19 @@
             매 Step 진행완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStopped">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFailed">
             <summary>
             매핑 중지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinished">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinishedMapping">
             <summary>
             매핑 종료 이벤트 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinishedVerify">
+            <summary>
+            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyOpening">

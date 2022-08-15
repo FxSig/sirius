@@ -15,10 +15,6 @@ namespace SpiralLab.Sirius
     public class PowerMapUserDefined : PowerMapDefault
     {
 
-        bool stop = false;
-        string category;
-        int steps;
-
         /// <summary>
         /// 생성자
         /// </summary>
@@ -40,78 +36,166 @@ namespace SpiralLab.Sirius
             this.XName = xName;
         }
 
-        public override bool CtlStart(string category, int steps, IPowerMeter powerMeter, IRtc rtc, ILaser laser, uint holdTimeMs = 6000, float thresholdWatt = 0)
+        public override bool CtlStart(IPowerMapStartArg powerMapStartArg)
         {
             if (this.IsBusy)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. it's busy running ...");
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. it's busy running ...");
                 return false;
             }
-
-            if (!float.TryParse(category, out float hz))
+            if (null == powerMapStartArg.Categories || 0 == powerMapStartArg.Categories.Length)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. target category is not valid hz= {category}");
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. target categories is not valid");
                 return false;
             }
-
-            if (null == powerMeter || powerMeter.IsError || powerMeter.IsReady)
+            foreach (var category in powerMapStartArg.Categories)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. invalid powermeter status");
-                return false;
+                if (!float.TryParse(category, out float hz))
+                {
+                    this.IsError = true;
+                    Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. target category is not valid hz= {category}");
+                    return false;
+                }
             }
-            if (null == laser || laser.IsBusy || laser.IsError || !laser.IsReady)
+            if (null == powerMapStartArg.PowerMeter || powerMapStartArg.PowerMeter.IsError || !powerMapStartArg.PowerMeter.IsReady)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. invalid laser status");
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. invalid powermeter status");
                 return false;
             }
-
-            if (null == rtc || rtc.CtlGetStatus(RtcStatus.Busy))
+            if (null == powerMapStartArg.Laser || powerMapStartArg.Laser.IsBusy || powerMapStartArg.Laser.IsError || !powerMapStartArg.Laser.IsReady)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. rtc status is invalid (busy ?)");
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. invalid laser status");
                 return false;
             }
-
-            var powerControl = laser as SpiralLab.Sirius.IPowerControl;
+            if (null == powerMapStartArg.Rtc || powerMapStartArg.Rtc.CtlGetStatus(RtcStatus.Busy))
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. rtc status is invalid (busy ?)");
+                return false;
+            }
+            var powerControl = powerMapStartArg.Laser as SpiralLab.Sirius.IPowerControl;
             if (null == powerControl)
             {
-                Logger.Log(Logger.Type.Error, $"fail to start powermapping. laser is not support power control function");
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start powermapping. laser is not support power control function");
                 return false;
             }
 
-            this.stop = false;
-            this.category = category;
-            this.steps = steps;
-            return this.DoPowerMapping();
+
+            return this.YourDoPowerMapping(powerMapStartArg);
         }
 
-        protected bool DoPowerMapping()
+        bool YourDoPowerMapping(IPowerMapStartArg powerMapStartArg)
         {
             bool success = true;
-            base.NotifyStarted(this.category, this.steps);
-
-            for (int step = 0; step < this.steps; step++)
+            base.NotifyStartedMapping(powerMapStartArg);
+            this.IsBusy = true;
+            foreach (var category in powerMapStartArg.Categories)
             {
-                if (stop)
-                    break;
+                for (int step = 0; step < powerMapStartArg.Steps; step++)
+                {
 
-                base.NotifyProgress();
-                // your power mapping routines
-                //
-                //
+                    base.NotifyProgress();
+                    // your codes ...
+                    //
+                    //
+                }
             }
             if (success)
-                base.NotifyFinished();
+                base.NotifyFinishedMapping();
             else
-                base.NotifyStopped();
+                base.NotifyFailed();
+
+            this.IsBusy = false;
+            return success;
+        }
+
+        public virtual bool CtlVerify(IPowerMapVerifyArg powerMapVerifyArg)
+        {
+            if (this.IsBusy)
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. it's busy running ...");
+                return false;
+            }
+            if (null == powerMapVerifyArg.CategoryAndTargetWatts || 0 == powerMapVerifyArg.CategoryAndTargetWatts.Length)
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. target category is not valid");
+                return false;
+            }
+            foreach (var kv in powerMapVerifyArg.CategoryAndTargetWatts)
+            {
+                if (!float.TryParse(kv.category, out float hz))
+                {
+                    this.IsError = true;
+                    Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. target category is not valid hz= {kv.category}");
+                    return false;
+                }
+            }
+            if (null == powerMapVerifyArg.PowerMeter || powerMapVerifyArg.PowerMeter.IsError || !powerMapVerifyArg.PowerMeter.IsReady)
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. invalid powermeter status");
+                return false;
+            }
+            if (null == powerMapVerifyArg.Laser || powerMapVerifyArg.Laser.IsBusy || powerMapVerifyArg.Laser.IsError || !powerMapVerifyArg.Laser.IsReady)
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. invalid laser status");
+                return false;
+            }
+            if (null == powerMapVerifyArg.Rtc || powerMapVerifyArg.Rtc.CtlGetStatus(RtcStatus.Busy))
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. rtc status is invalid (busy ?)");
+                return false;
+            }
+            var powerControl = powerMapVerifyArg.Laser as SpiralLab.Sirius.IPowerControl;
+            if (null == powerControl)
+            {
+                this.IsError = true;
+                Logger.Log(Logger.Type.Error, $"powermap [{this.Index}]: fail to start verify power. laser is not support power control function");
+                return false;
+            }
+            return this.YourPowerVerify(powerMapVerifyArg);
+        }
+
+        bool YourPowerVerify(IPowerMapVerifyArg powerMapVerifyArg)
+        {
+            bool success = true;
+            var powerControl = powerMapVerifyArg.Laser as SpiralLab.Sirius.IPowerControl;
+
+            this.IsBusy = true;
+            this.NotifyStartVerify(powerMapVerifyArg);
+            foreach (var kv in powerMapVerifyArg.CategoryAndTargetWatts)
+            {
+                float hz = float.Parse(kv.category);
+                float targetWatt = kv.watt;
+                if (powerControl.CtlPower(targetWatt, kv.category))
+                {
+                    //your codes ...
+                    //
+                    //
+                }
+            }
+            this.NotifyFinishedVerify();
+            this.IsBusy = false;
             return success;
         }
 
         public override bool CtlStop()
         {
-            // try to stop
-            stop = true;
             return true;
         }
 
+        public override bool CtlReset()
+        {
+            return true;
+        }
     }
 }

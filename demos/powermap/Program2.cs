@@ -38,7 +38,6 @@ namespace SpiralLab.Sirius
     {
 
         static string mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "powermap.map");
-        static string category = "Default";
 
         [STAThread]
         static void Main2(string[] args)
@@ -114,10 +113,12 @@ namespace SpiralLab.Sirius
             IPowerMap powerMap = new PowerMapUserDefined();
             //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "test.pmap");
             //PowerMapSerializer.Open(powerMap, mapFile);
-            powerMap.OnStarted += PowerMap_OnStarted;
+            powerMap.OnStartedMapping += PowerMap_OnStartedMapping;
             powerMap.OnProgress += PowerMap_OnProgress;
-            powerMap.OnStopped += PowerMap_OnStopped;
-            powerMap.OnFinished += PowerMap_OnFinished;
+            powerMap.OnFailed += PowerMap_OnFailed;
+            powerMap.OnFinishedMapping += PowerMap_OnFinishedMapping;
+            powerMap.OnStartedVerify += PowerMap_OnStartedVerify;
+            powerMap.OnFinishedVerify += PowerMap_OnFinishedVerify;
             #endregion
 
             ConsoleKeyInfo key;
@@ -126,8 +127,8 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"----------------------------------------------------------------------------------------");
-                Console.WriteLine("'P' : start laser on and create power mapping table with vary output power");
-                Console.WriteLine("'C' : laser on with compensated laser output power");
+                Console.WriteLine("'P' : start power mapping");
+                Console.WriteLine("'C' : start power verication");
                 Console.WriteLine("'S' : save power map");
                 Console.WriteLine("'O' : open power map");
                 Console.WriteLine("'F1' : powermeter winforms");
@@ -147,7 +148,7 @@ namespace SpiralLab.Sirius
                         StopPowerMap(powerMap);
                         break;
                     case ConsoleKey.C:
-                        TestCompensatedOutputPower(powerMap, laser, rtc, powerMeter , 5);
+                        StartPowerVeification(powerMap, laser, rtc, powerMeter , 5);
                         break;
                     case ConsoleKey.S:
                         SavePowerMap(powerMap);
@@ -170,99 +171,76 @@ namespace SpiralLab.Sirius
                 }
             } while (true);
 
-            powerMap.OnStarted -= PowerMap_OnStarted;
+            powerMap.OnStartedMapping -= PowerMap_OnStartedMapping;
             powerMap.OnProgress -= PowerMap_OnProgress;
-            powerMap.OnStopped -= PowerMap_OnStopped;
-            powerMap.OnFinished -= PowerMap_OnFinished;
+            powerMap.OnFailed -= PowerMap_OnFailed;
+            powerMap.OnFinishedMapping -= PowerMap_OnFinishedMapping;
+            powerMap.OnStartedVerify -= PowerMap_OnStartedVerify;
+            powerMap.OnFinishedVerify -= PowerMap_OnFinishedVerify;
             powerMeter.Dispose();
             laser.Dispose();
             rtc.Dispose();
         }
-
-        private static void PowerMap_OnStarted(IPowerMap sender, string category, int steps)
+        private static void PowerMap_OnStartedMapping(IPowerMap sender, IPowerMapStartArg arg)
         {
-            Console.WriteLine("Powermapping has started");
+            Console.WriteLine("Power mapping has started");
         }
         private static void PowerMap_OnProgress(object sender, EventArgs e)
         {
-            Console.WriteLine("Powermapping working next step ...");
+            Console.WriteLine("Power mapping working next step ...");
         }
-        private static void PowerMap_OnStopped(object sender, EventArgs e)
+        private static void PowerMap_OnFailed(object sender, EventArgs e)
         {
-            Console.WriteLine("Powermapping has stopped");
+            Console.WriteLine("Power mapping/verfication has failed");
         }
-        private static void PowerMap_OnFinished(object sender, EventArgs e)
+        private static void PowerMap_OnFinishedMapping(object sender, EventArgs e)
         {
-            Console.WriteLine("Powermapping has finished");
+            Console.WriteLine("Power mapping has finished");
+        }
+        private static void PowerMap_OnStartedVerify(object sender, IPowerMapVerifyArg arg)
+        {
+            Console.WriteLine("Power verification has started");
+        }
+        private static void PowerMap_OnFinishedVerify(object sender, EventArgs e)
+        {
+            Console.WriteLine("Power verification has finished");
         }
 
         private static bool StartPowerMap(IPowerMap powerMap, ILaser laser, IRtc rtc, IPowerMeter powerMeter)
         {
             // 100 khz
             // 10 steps
-            return powerMap.CtlStart("100000", 10, powerMeter, rtc, laser);
+            var arg = new PowerMapStartDefaultArg()
+            {
+                Categories = new string[] { "100000" },
+                Steps = 10,
+                PowerMeter = powerMeter,
+                Laser = laser,
+                Rtc = rtc,
+                HoldTimeMsec = 5000,
+                ThresholdWatt = 5,
+            };
+
+            return powerMap.CtlStart(arg);
         }
         private static bool StopPowerMap(IPowerMap powerMap)
         {
             return powerMap.CtlStop();
         }
-        private static bool TestCompensatedOutputPower(IPowerMap powerMap, ILaser laser, IRtc rtc, IPowerMeter powerMeter, float targetWatt)
+        private static bool StartPowerVeification(IPowerMap powerMap, ILaser laser, IRtc rtc, IPowerMeter powerMeter, float targetWatt)
         {
-            var powerControl = laser as IPowerControl;
-            if (null == powerControl)
-                return false;
 
-            if (!powerMap.Data.ContainsKey(category))
-                return false;
-            if (targetWatt > laser.MaxPowerWatt)
-                return false;
+            var arg = new PowerMapVerifyDefaultArg()
+            {
+                CategoryAndTargetWatts = new (string category, float watt)[] { ("100000", targetWatt) },
+                PowerMeter = powerMeter,
+                Laser = laser,
+                Rtc = rtc,
+                HoldTimeMsec = 5000,
+                ThresholdWatt = 0.5f,
+            };
 
-            powerMeter.CtlStop();
-            powerMeter.CtlClear();
-            bool success = true;
-            success &= powerMap.Interpolate(category, targetWatt, out var xWatt);
-            if (!success)
-            {
-                MessageBox.Show($"Fail to look up power map interpolation table for {targetWatt}W", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            success &= powerControl.CtlPower(xWatt, category);
-            if (!success)
-            {
-                MessageBox.Show($"Fail to change output laser power for {xWatt}W", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            Console.WriteLine($"LASER COMPENSATED POWER= {xWatt}");
-            if (DialogResult.Yes != MessageBox.Show($"Do you really want to laser on with power= {targetWatt}->{xWatt}W ?", "WARNING!!! LASER", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-            {
-                return false;
-            }
-            
-            success &= rtc.CtlLaserOn();
-            Console.WriteLine("WARNING !!! LASER IS ON ...");
-            //for preheating 
-            Thread.Sleep(5 * 1000);
-            //start measurement
-            powerMeter.PowerMeasureArg.XName = powerMap.XName;
-            powerMeter.PowerMeasureArg.XValue = xWatt;
-            success &= powerMeter.CtlStart();
-            //during 5 secs
-            Thread.Sleep(5 * 1000);
-            //stop measurement
-            success &= powerMeter.CtlStop();
-            //laser off
-            success &= rtc.CtlLaserOff();
-            // average power (watt)
-            var avgWatt = powerMeter.Data.Average();
-            Console.WriteLine($"LASER AVG POWER= {avgWatt}");
-            Console.WriteLine($"LASER IS OFF");
-
-            powerMeter.CtlClear();
-            var deviationWatt = Math.Abs(targetWatt - avgWatt);
-            //+-0.2W 이내 출력 오차를 성공으로 판단
-            success &= deviationWatt < 0.2f;
-            Console.WriteLine($"LASER POWER DEVIATION = {targetWatt - xWatt}W");
-            return success;
+            return powerMap.CtlVerify(arg);
         }
 
         private static bool SavePowerMap(IPowerMap powerMap)

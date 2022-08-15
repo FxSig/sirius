@@ -2462,6 +2462,85 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerMapVerifyForm">
+            <summary>
+            파뭐 검증 인자 편집용 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyForm.CategoryWatts">
+            <summary>
+            카테고리/파워 리스트 (바인딩 용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyForm.HoldTimeMs">
+            <summary>
+            유지시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyForm.Threshold">
+            <summary>
+            오차값(W)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapVerifyForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVerifyForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVerifyForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMapCategoriesForm">
+            <summary>
+            파뭐 매핑 인자 편집용 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCategoriesForm.Categories">
+            <summary>
+            카테고리 리스트 (바인딩 용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCategoriesForm.Steps">
+            <summary>
+            단계
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCategoriesForm.HoldTimeMs">
+            <summary>
+            유지시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCategoriesForm.Threshold">
+            <summary>
+            오차값(W)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapCategoriesForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCategoriesForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCategoriesForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.TextBoxWithLabel">
             <summary>
             레이블을 가진 텍스트 박스
