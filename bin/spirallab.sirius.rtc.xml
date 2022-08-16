@@ -9033,35 +9033,44 @@
             파워맵 인터페이스
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnStartedMapping">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingStarted">
             <summary>
             파워 매핑 시작
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnStartedVerify">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingProgress">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 시작
+            카테고리 개수 * 매 Step 진행완료 개수만큼 발생
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnProgress">
-            <summary>
-            파워 매핑시 : 카테고리 개수 * 매 Step 진행완료 개수만큼 발생
-            파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
-            </summary>
-        </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnFailed">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingFailed">
             <summary>
             파워 매핑 실패
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinishedMapping">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingFinished">
             <summary>
             파워 매핑 종료
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.IPowerMap.OnFinishedVerify">
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyStarted">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료
+            파워 검증 시작
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyProgress">
+            <summary>
+            파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyFailed">
+            <summary>
+            파워 검증 실패
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyFinished">
+            <summary>
+            파워 검증 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnOpen">
@@ -9230,37 +9239,48 @@
             <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStartedMapping(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워 매핑 시작
             </summary>
             <param name="arg">IPowerMapStartArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyStartVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
-            <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
-            </summary>
-            <param name="arg">IPowerMapVerifyArg 인자</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyProgress">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingProgress">
             <summary>
             파워 매핑 진행중
-            카테고리 개수 * 매 Step 진행완료시 발생
+            매 Step 진행 완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFailed">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFailed">
             <summary>
-            매핑/검증 중지
+            매핑 중지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinishedMapping">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFinished">
             <summary>
             매핑 종료 이벤트 통지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyFinishedVerify">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyStarted(SpiralLab.Sirius.IPowerMapVerifyArg)">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
+            파워 검증 완료 이벤트 통지
+            </summary>
+            <param name="arg">IPowerMapVerifyArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyProgress">
+            <summary>
+            파워 검증 진행중
+            매 (카테고리,목표파워) 진행 완료시 발생
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFailed">
+            <summary>
+            검증 중지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFinished">
+            <summary>
+            파워 검증 완료 이벤트 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyOpening">
@@ -9278,35 +9298,45 @@
             파워맵 (기본 버전)    
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStartedMapping">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnMappingStarted">
             <summary>
             파워 매핑 시작
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnProgress">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnMappingProgress">
             <summary>
             파워 매핑시 : 카테고리 개수 * 매 Step 진행완료 개수만큼 발생
             파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFailed">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnMappingFailed">
             <summary>
-            파워 매핑 중지
+            파워 매핑 실패
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinishedMapping">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnMappingFinished">
             <summary>
             파워 매핑 종료
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnStartedVerify">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnVerifyStarted">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 시작
+            파워 검증 시작
             </summary>
         </member>
-        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnFinishedVerify">
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnVerifyProgress">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료
+            파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnVerifyFailed">
+            <summary>
+            파워 검증 실패
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnVerifyFinished">
+            <summary>
+            파워 검증 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMapDefault.OnOpen">
@@ -9493,37 +9523,48 @@
             <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
              <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStartedMapping(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapStartArg)">
             <summary>
             파워 매핑 시작
             </summary>
             <param name="arg">IPowerMapStartArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyStartVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
-            <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
-            </summary>
-            <param name="arg">IPowerMapVerifyArg 인자</param>
-        </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyProgress">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingProgress">
             <summary>
             파워 매핑 진행중
             매 Step 진행완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFailed">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFailed">
             <summary>
             매핑 중지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinishedMapping">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFinished">
             <summary>
             매핑 종료 이벤트 통지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyFinishedVerify">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyStarted(SpiralLab.Sirius.IPowerMapVerifyArg)">
             <summary>
-            파워 매핑 테이블을 참조한 출력 테스트 검증 완료 이벤트 통지
+            파워 검증 완료 이벤트 통지
+            </summary>
+            <param name="arg">IPowerMapVerifyArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyProgress">
+            <summary>
+            파워 검증 진행중
+            매 Step 진행완료시 발생
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFailed">
+            <summary>
+            검증 중지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFinished">
+            <summary>
+            파워 검증 완료 이벤트 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyOpening">

@@ -109,16 +109,19 @@ namespace SpiralLab.Sirius
             //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
             powerMeter.Initialize();
-            
-            IPowerMap powerMap = new PowerMapUserDefined();
+
+            IPowerMap powerMap = new PowerMapDefault();
             //var mapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "test.pmap");
             //PowerMapSerializer.Open(powerMap, mapFile);
-            powerMap.OnStartedMapping += PowerMap_OnStartedMapping;
-            powerMap.OnProgress += PowerMap_OnProgress;
-            powerMap.OnFailed += PowerMap_OnFailed;
-            powerMap.OnFinishedMapping += PowerMap_OnFinishedMapping;
-            powerMap.OnStartedVerify += PowerMap_OnStartedVerify;
-            powerMap.OnFinishedVerify += PowerMap_OnFinishedVerify;
+            powerMap.OnMappingStarted += PowerMap_OnMappingStarted;
+            powerMap.OnMappingProgress += PowerMap_OnMappingProgress;
+            powerMap.OnMappingFailed += PowerMap_OnMappingFailed;
+            powerMap.OnMappingFinished += PowerMap_OnMappingFinished;
+
+            powerMap.OnVerifyStarted += PowerMap_OnVerifyStarted;
+            powerMap.OnVerifyProgress += PowerMap_OnVerifyProgress;
+            powerMap.OnVerifyFailed += PowerMap_OnVerifyFailed;
+            powerMap.OnVerifyFinished += PowerMap_OnVerifyFinished;
             #endregion
 
             ConsoleKeyInfo key;
@@ -171,37 +174,49 @@ namespace SpiralLab.Sirius
                 }
             } while (true);
 
-            powerMap.OnStartedMapping -= PowerMap_OnStartedMapping;
-            powerMap.OnProgress -= PowerMap_OnProgress;
-            powerMap.OnFailed -= PowerMap_OnFailed;
-            powerMap.OnFinishedMapping -= PowerMap_OnFinishedMapping;
-            powerMap.OnStartedVerify -= PowerMap_OnStartedVerify;
-            powerMap.OnFinishedVerify -= PowerMap_OnFinishedVerify;
+            powerMap.OnMappingStarted -= PowerMap_OnMappingStarted;
+            powerMap.OnMappingProgress -= PowerMap_OnMappingProgress;
+            powerMap.OnMappingFailed -= PowerMap_OnMappingFailed;
+            powerMap.OnMappingFinished -= PowerMap_OnMappingFinished;
+
+            powerMap.OnVerifyStarted -= PowerMap_OnVerifyStarted;
+            powerMap.OnVerifyProgress -= PowerMap_OnVerifyProgress;
+            powerMap.OnVerifyFailed -= PowerMap_OnVerifyFailed;
+            powerMap.OnVerifyFinished -= PowerMap_OnVerifyFinished;
             powerMeter.Dispose();
             laser.Dispose();
             rtc.Dispose();
         }
-        private static void PowerMap_OnStartedMapping(IPowerMap sender, IPowerMapStartArg arg)
+        private static void PowerMap_OnMappingStarted(IPowerMap sender, IPowerMapStartArg arg)
         {
             Console.WriteLine("Power mapping has started");
         }
-        private static void PowerMap_OnProgress(object sender, EventArgs e)
+        private static void PowerMap_OnMappingProgress(object sender, EventArgs e)
         {
             Console.WriteLine("Power mapping working next step ...");
         }
-        private static void PowerMap_OnFailed(object sender, EventArgs e)
+        private static void PowerMap_OnMappingFailed(object sender, EventArgs e)
         {
             Console.WriteLine("Power mapping/verfication has failed");
         }
-        private static void PowerMap_OnFinishedMapping(object sender, EventArgs e)
+        private static void PowerMap_OnMappingFinished(object sender, EventArgs e)
         {
             Console.WriteLine("Power mapping has finished");
         }
-        private static void PowerMap_OnStartedVerify(object sender, IPowerMapVerifyArg arg)
+
+        private static void PowerMap_OnVerifyStarted(object sender, IPowerMapVerifyArg arg)
         {
             Console.WriteLine("Power verification has started");
         }
-        private static void PowerMap_OnFinishedVerify(object sender, EventArgs e)
+        private static void PowerMap_OnVerifyFailed(object sender, EventArgs e)
+        {
+            Console.WriteLine("Power verification has failed");
+        }
+        private static void PowerMap_OnVerifyProgress(object sender, EventArgs e)
+        {
+            Console.WriteLine("Power verification working next step ...");
+        }
+        private static void PowerMap_OnVerifyFinished(object sender, EventArgs e)
         {
             Console.WriteLine("Power verification has finished");
         }

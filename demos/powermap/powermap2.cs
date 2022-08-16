@@ -92,23 +92,23 @@ namespace SpiralLab.Sirius
         bool YourDoPowerMapping(IPowerMapStartArg powerMapStartArg)
         {
             bool success = true;
-            base.NotifyStartedMapping(powerMapStartArg);
+            base.NotifyMappingStarted(powerMapStartArg);
             this.IsBusy = true;
             foreach (var category in powerMapStartArg.Categories)
             {
                 for (int step = 0; step < powerMapStartArg.Steps; step++)
                 {
 
-                    base.NotifyProgress();
+                    base.NotifyMappingProgress();
                     // your codes ...
                     //
                     //
                 }
             }
             if (success)
-                base.NotifyFinishedMapping();
+                base.NotifyMappingFinished();
             else
-                base.NotifyFailed();
+                base.NotifyMappingFailed();
 
             this.IsBusy = false;
             return success;
@@ -171,7 +171,7 @@ namespace SpiralLab.Sirius
             var powerControl = powerMapVerifyArg.Laser as SpiralLab.Sirius.IPowerControl;
 
             this.IsBusy = true;
-            this.NotifyStartVerify(powerMapVerifyArg);
+            this.NotifyVerifyStarted(powerMapVerifyArg);
             foreach (var kv in powerMapVerifyArg.CategoryAndTargetWatts)
             {
                 float hz = float.Parse(kv.category);
@@ -183,7 +183,7 @@ namespace SpiralLab.Sirius
                     //
                 }
             }
-            this.NotifyFinishedVerify();
+            this.NotifyVerifyFinished();
             this.IsBusy = false;
             return success;
         }
