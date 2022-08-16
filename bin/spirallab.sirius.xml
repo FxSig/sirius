@@ -2482,6 +2482,11 @@
             오차값(W)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVerifyForm.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.PowerMapVerifyForm.components">
             <summary>
             Required designer variable.
