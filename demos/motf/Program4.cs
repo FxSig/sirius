@@ -19,7 +19,7 @@
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
  * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
- * Motf with Angular (스테이지 회전 MOTF)
+ * Motf with angular (회전물체를 대상으로 MOTF 가공)
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -34,7 +34,7 @@ namespace SpiralLab.Sirius
 {
     /// <summary>
     /// 스테이지 회전에 대한 MOTF(marking on the fly) 예제
-    /// by input external encoder0 into RTC controller
+    /// 엔코더0 입력핀으로 회전축의 엔코더가 입력됨 (by input external encoder0 into RTC controller)
     /// </summary>
     class Program4
     {
@@ -146,7 +146,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// scanner continous following origin (0,0) location during list executing
-        /// 스캐너가 0,0 을 지속적으로 포인팅 한다 (스테이지나 컨베이어를 손으로 밀어보면서 테스트)
+        /// 스캐너가 0,0 을 지속적으로 포인팅 한다 (스테이지를 손으로 돌려보면서 테스트)
         /// </summary>
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
@@ -163,12 +163,15 @@ namespace SpiralLab.Sirius
             // 리스트 시작 
             success &= rtc.ListBegin(laser, ListType.Single);
             // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값에 의해 회전적용됩니다
-            var rotateCenter = new Vector2(0, 0);
+
+            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx ,dy 거리를 입력)
+            var rotateCenter = new Vector2(-50, -50);
             success &= rtcMotf.ListMotfAngularBegin(rotateCenter);
+
             // goes to origin
-            // 10,0 으로 점프
-            // motf 동작시 10, 0 위치가 회전 중심과 같이 회전 처리됨
-            success &= rtc.ListJump(new Vector2(10, 0));
+            // 0,0 으로 점프
+            // motf 동작시 0, 0 위치가 회전 중심과 같이 회전 처리됨
+            success &= rtc.ListJump(new Vector2(0, 0));
 
             // laser on!
             // for safety reason
@@ -222,12 +225,14 @@ namespace SpiralLab.Sirius
             success &= rtc.ListMark(new Vector2(0, 10));
 
             // motf begin
-            // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값이 회전 적용됩니다
-            var rotateCenter = new Vector2(0, 0);
+            // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값이 회전 적용됩니다
+
+            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx ,dy 거리를 입력)
+            var rotateCenter = new Vector2(-50, -50);
             success &= rtcMotf.ListMotfAngularBegin(rotateCenter);
             // wait until condition has matched
-            // 엔코더 X 값이 10mm 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
-            success &= rtcMotf.ListMotfWait(RtcEncoder.EncX, 10, EncoderWaitCondition.Over);
+            // 엔코더 값이 10도 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
+            success &= rtcMotf.ListMotfAngularWait(10, EncoderWaitCondition.Over);
 
             // draw circle
             // 엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
