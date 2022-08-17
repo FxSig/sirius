@@ -17,13 +17,13 @@
  * 
  *
  * 지금까지 소개한 
- * 1. 가공 데이타(Document)
- * 2. 레이저 소스(Laser)
- * 3. 벡터 가공 장치(Rtc) 
+ * 1. 가공 데이타 (Document)
+ * 2. 레이저 소스 (Laser)
+ * 3. 벡터 가공 장치 (Rtc) 
  * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
  * 
  * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로
- *  상태 (IsReady, IsBusy, IsError)및 오프셋 가공( List<Offset> )을 처리할수있다.
+ *  상태 (IsReady, IsBusy, IsError)및 오프셋 가공 (List<Offset>)을 처리할수있다.
  *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
  *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
  *  
@@ -113,7 +113,27 @@ namespace SpiralLab.Sirius
             var layer = new Layer("default");
             // create spiral entity
             // 나선 개체 레이어에 추가
-            layer.Add(new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true));
+            var spiral = new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true);
+            spiral.Color2 = System.Drawing.Color.White;
+
+            layer.Add(spiral);
+
+            // query white pen
+            // 펜 집합에서 흰색 펜 정보 변경
+            var pen = doc.Pens.ColorOf(System.Drawing.Color.White);
+            // 파라메터 값을 변경
+            // configure pen parameters
+            var penDefault = pen as PenDefault;
+            penDefault.Frequency = 100 * 1000; //주파수 Hz
+            penDefault.PulseWidth = 2; //펄스폭 usec
+            penDefault.LaserOnDelay = 0; // 레이저 시작 지연 usec
+            penDefault.LaserOffDelay = 0; // 레이저 끝 지연 usec
+            penDefault.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
+            penDefault.ScannerMarkDelay = 200; // 스캐너 마크 지연 usec
+            penDefault.ScannerPolygonDelay = 0; // 스캐너 폴리곤 지연 usec
+            penDefault.JumpSpeed = 500; // 스캐너 점프 속도 mm/s
+            penDefault.MarkSpeed = 500; // 스캐너 마크 속도 mm/s
+
             // regen entities within layer
             // 레이어의 모든 개채들 내부 데이타 계산및 갱신
             layer.Regen();
@@ -174,6 +194,7 @@ namespace SpiralLab.Sirius
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
+                IsEnablePens = true,
             };
 
             bool success = true;
@@ -202,6 +223,7 @@ namespace SpiralLab.Sirius
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
+                IsEnablePens = true,
             };
             // multiple 9 offsets 
             // 9개의 오프셋 정보를 추가한다

@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * 스캐너 보정 파일 (ct5) 의 헤더 정보 조회 예제
+ * 스캐너 보정 파일 (ct5) 의 헤더 정보를 조회하는 예제
  * 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 

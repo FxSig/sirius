@@ -313,6 +313,7 @@ namespace SpiralLab.Sirius
         protected virtual void WorkerThread()
         {
             MarkerArg.StartTime = DateTime.Now;
+            this.NotifyStarted();
             var rtc = this.MarkerArg.Rtc;
             var oldMatrix = (IMatrixStack)rtc.MatrixStack.Clone();
             rtc.MatrixStack.Clear();
@@ -328,7 +329,7 @@ namespace SpiralLab.Sirius
             if (this.IsFinished)
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
-                this.OnFinished?.Invoke(this, this.MarkerArg);
+                this.NotifyFinished();
                 this.MarkCounts++;
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
@@ -359,11 +360,15 @@ namespace SpiralLab.Sirius
                     var layer = this.clonedDoc.Layers[j];
                     if (layer.IsMarkerable)
                     {
+                        if (!this.IsTargetLayer(layer))
+                            continue;
                         if (!success)
                             break;
                         success &= rtc.ListBegin(laser);
                         foreach (var entity in layer)
                         {
+                            if (!this.IsTargetEntity(entity))
+                                continue;
                             var markerable = entity as IMarkerable;
                             if (null != markerable)
                                 success &= markerable.Mark(this.MarkerArg);
@@ -371,7 +376,7 @@ namespace SpiralLab.Sirius
                                 break;
                             float progress = ((float)i / (float)offsets.Count * (float)j / (float)this.clonedDoc.Layers.Count * 100.0f);
                             this.MarkerArg.Progress = progress;
-                            this.OnProgress?.Invoke(this, this.MarkerArg);
+                            this.NotifyProgressing();
                         }
                         if (success)
                         {
@@ -394,7 +399,7 @@ namespace SpiralLab.Sirius
         {
             this.IsFinished = true;
             this.MarkerArg.Progress = 100;
-            this.OnProgress?.Invoke(this, this.MarkerArg);
+            this.NotifyProgressing();
             return true;
         }
         #endregion

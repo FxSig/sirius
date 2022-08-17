@@ -168,6 +168,8 @@ namespace SpiralLab.Sirius
             IsError = false;
             IsHomeSearched = true;
             TargetPosition = ActualPosition = 0;
+
+            // ... 
             // 원점 검색 완료후 NotifyHomed() 호출
             return true;
         }

@@ -43,6 +43,10 @@ namespace SpiralLab.Sirius
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
             SpiralLab.Core.Initialize();
 
+            Console.WriteLine($"{Environment.NewLine}");
+            Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
+            Console.WriteLine($"{Environment.NewLine}");
+
             #region create entities 
             // 신규 문서 (Create document) 생성
             var doc1 = new DocumentDefault("Unnamed");

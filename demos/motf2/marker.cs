@@ -172,7 +172,7 @@ namespace SpiralLab.Sirius
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}]: fail to register character into rtc");
 
             this.MarkerArg.Progress = 0;
-            this.OnProgress?.Invoke(this, this.MarkerArg);
+            this.NotifyProgressing();
             return true;
         }
 
@@ -239,7 +239,7 @@ namespace SpiralLab.Sirius
                 return false;
             }
             this.MarkerArg.Progress = 0;
-            this.OnProgress?.Invoke(this, this.MarkerArg);
+            this.NotifyProgressing();
             this.IsFinished = false;
             this.thread = new Thread(this.WorkerThread);
             this.thread.Name = $"Marker: {this.Name}";
@@ -298,6 +298,7 @@ namespace SpiralLab.Sirius
             var rtc = this.MarkerArg.Rtc;
             var oldMatrix = (IMatrixStack)rtc.MatrixStack.Clone();
             rtc.MatrixStack.Clear();
+            this.NotifyStarted();
             bool success =
                 PreWork() &&
                 MainWork() &&
@@ -310,7 +311,7 @@ namespace SpiralLab.Sirius
             if (this.IsFinished)
             {
                 var timeSpan = MarkerArg.EndTime - MarkerArg.StartTime;
-                this.OnFinished?.Invoke(this, this.MarkerArg);
+                this.NotifyFinished();
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}]: job finished. time= {timeSpan.TotalSeconds:F3}s");
             }
         }
@@ -385,7 +386,7 @@ namespace SpiralLab.Sirius
                         // 진행률 (0~100 의 범위)
                         float progress = (float)current / (float)total * 100.0f;
                         this.MarkerArg.Progress = progress;
-                        this.OnProgress?.BeginInvoke(this, this.MarkerArg, null, null);
+                        this.NotifyProgressing();
                     }
                     if (!success)
                         break;

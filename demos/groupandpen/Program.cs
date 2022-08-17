@@ -17,6 +17,8 @@
  * 
  * 여러 개체(Entity)를을 묶어 하나의 그룹(Group) 으로 관리가 가능한다. 
  * 이는 데이타가 매우 많거나 반복(repeat)가공이 필요할 경우 유용하다.
+ * 그룹 개체에 개별 펜 파라메터를 설정하여 가공한다.
+ *
  * 또한 그룹개체(Group Entity)는 자체적으로 오프셋(Offset) 속성을 통해 자기 자신을 여러 오프셋 위치에 반복 가공이 가능하다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
@@ -98,27 +100,14 @@ namespace SpiralLab.Sirius
             // create document
             // 신규 문서 생성
             var doc = new DocumentDefault("Unnamed");
+
             // create layer
             // 레이어 생성
             var layer = new Layer("default");          
             // create group entity
             // 첫번째 그룹 객체 생성
             var group1 = new Group();
-            // add pen entity into group 
-            group1.Add(
-               new PenDefault() // 그룹내에 펜 개체 생성하여 추가
-               {
-                   Frequency = 100 * 1000,
-                   PulseWidth = 2,
-                   LaserOnDelay = 0,
-                   LaserOffDelay = 0,
-                   ScannerJumpDelay = 100,
-                   ScannerMarkDelay = 200,
-                   ScannerPolygonDelay = 0,
-                   JumpSpeed = 500,
-                   MarkSpeed = 500,
-               }
-            );
+            // add pen entity into group             
             // add line entity into group
             // 그룹내에 선 개체 생성하여 추가
             group1.Add(new Line(0, 0, 10, 20));
@@ -131,6 +120,25 @@ namespace SpiralLab.Sirius
             // group repeat counts = 10 times
             // 그룹의 반복 회수 설정 (10회 가공)
             group1.Repeat = 10;
+
+            // query white pen
+            // 펜 집합에서 흰색 펜 정보 변경
+            var pen1 = doc.Pens.ColorOf(System.Drawing.Color.White);
+            // 파라메터 값을 변경
+            // configure pen parameters
+            var penDefault1 = pen1 as PenDefault;
+            penDefault1.Frequency = 100 * 1000; //주파수 Hz
+            penDefault1.PulseWidth = 2; //펄스폭 usec
+            penDefault1.LaserOnDelay = 0; // 레이저 시작 지연 usec
+            penDefault1.LaserOffDelay = 0; // 레이저 끝 지연 usec
+            penDefault1.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
+            penDefault1.ScannerMarkDelay = 200; // 스캐너 마크 지연 usec
+            penDefault1.ScannerPolygonDelay = 0; // 스캐너 폴리곤 지연 usec
+            penDefault1.JumpSpeed = 500; // 스캐너 점프 속도 mm/s
+            penDefault1.MarkSpeed = 500; // 스캐너 마크 속도 mm/s
+            // group with white pen parameters 
+            // 흰색 펜 가공 파라메터 사용
+            group1.Color2 = System.Drawing.Color.White;
             // add group into layer
             layer.Add(group1);
 
@@ -138,29 +146,39 @@ namespace SpiralLab.Sirius
             // 두번째 그룹 객체 생성
             var group2 = new Group();
             // add pen entity into group
-            group2.Add(
-               new PenDefault()    // 그룹내에 펜 개체 생성하여 추가
-               {
-                   Frequency = 50 * 1000,
-                   PulseWidth = 2,
-                   LaserOnDelay = 0,
-                   LaserOffDelay = 0,
-                   ScannerJumpDelay = 100,
-                   ScannerMarkDelay = 200,
-                   ScannerPolygonDelay = 0,
-                   JumpSpeed = 500,
-                   MarkSpeed = 500,
-               }
-            );
             // add line entity into group
-            group1.Add(new Line(0, 0, 5, 10));
+            group2.Add(new Line(0, 0, 5, 10));
             // add circle entity into group
-            group1.Add(new Circle(0, 0, 50));
+            group2.Add(new Circle(0, 0, 50));
             // add spiral entity into group
-            group1.Add(new Spiral(-10.0f, 0.0f, 0.5f, 2.0f, 10, true));
+            group2.Add(new Spiral(-10.0f, 0.0f, 0.5f, 2.0f, 10, true));
             // group repeat counts = 20 times
             // 그룹의 반복 회수 설정 (20회 가공)
-            group1.Repeat = 20;
+            group2.Repeat = 20;
+            // query white pen
+            // 펜 집합에서 흰색 펜 정보 변경
+            var pen2 = doc.Pens.ColorOf(System.Drawing.Color.Yellow);
+            // 파라메터 값을 변경
+            // configure pen parameters
+            var penDefault2 = pen2 as PenDefault;
+            penDefault2.Frequency = 100 * 1000; //주파수 Hz
+            penDefault2.PulseWidth = 2; //펄스폭 usec
+            penDefault2.LaserOnDelay = 100; // 레이저 시작 지연 usec
+            penDefault2.LaserOffDelay = 200; // 레이저 끝 지연 usec
+            penDefault2.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
+            penDefault2.ScannerMarkDelay = 350; // 스캐너 마크 지연 usec
+            penDefault2.ScannerPolygonDelay = 0; // 스캐너 폴리곤 지연 usec
+            penDefault2.JumpSpeed = 1000; // 스캐너 점프 속도 mm/s
+            penDefault2.MarkSpeed = 1000; // 스캐너 마크 속도 mm/s
+            // group with white pen parameters 
+            // 흰색 펜 가공 파라메터 사용
+            group2.Color2 = System.Drawing.Color.Yellow;
+            // addition dx, dy offset location
+            // dx= 10, dy= 0 오프셋 위치해 추가 가공
+            group2.Offsets = new Offset[1]
+            {
+                new Offset(10, 0),
+            };
             // add group into layer
             layer.Add(group2);
 
@@ -216,6 +234,7 @@ namespace SpiralLab.Sirius
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
+                IsEnablePens = true,
             };
             bool success = true;
             success &= rtc.ListBegin(laser);

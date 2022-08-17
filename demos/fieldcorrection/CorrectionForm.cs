@@ -12,6 +12,9 @@ using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
+    /// <summary>
+    /// 다양한 스캐너 보정용 윈폼
+    /// </summary>
     public partial class CorrectionForm : Form
     {
         public CorrectionForm()
