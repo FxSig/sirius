@@ -122,6 +122,14 @@
 **5. Version history**
 
 
+* 2022.8.19 v1.115
+  - updated) Demos projects (데모 프로젝트 업데이트)
+     - customeditor project : customizable editor/view winforms (에디터, 뷰어 윈폼 소스 공개를 통한 사용자화 지원)
+     - customeditor project : customizable marker winforms (마커 윈폼 소스  공개를 통한 사용자화 지원)
+     - customlasermarker project : customizable marker (마커 구현부 소스  공개를 통한 사용자화 지원)
+  - added) IMarker with OnFailed event handler (마커 가공 실패 이벤트 핸들러 추가됨)
+  - added) enable/disable powermap/verify category items (파워매핑, 검증 항목의 사용 여부 체크 지원)
+
 * 2022.8.15 v1.115
   - added) processing on the fly with angular (회전축 엔코더 기반의 MOTF 지원)
      - added) motf angular begin entity (회전 시작 개체 추가)

@@ -16,8 +16,8 @@
  *               `---`            `---'                                                        `----'   
  * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
- * SiriusEditorForm
- * Description : 가공 데이타 (Document)를 화면에 출력및 사용자의 이벤트에 의해 데이타를 변경하는 등의 뷰어(viewer)및 에디터(editor) 기능을 수행한다.
+ * CUstomEditorForm
+ * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -34,29 +34,254 @@ using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Numerics;
-using SpiralLab.Sirius;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
+using System.ComponentModel;
 
-namespace CustomEditor
+namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// user defined editor
-    /// 실제 편집기의 내용과 유사
+    /// 커스텀 시리우스 편집기
     /// </summary>
     public partial class CustomEditorForm : Form
     {
+        #region 이벤트 핸들러
         /// <summary>
         /// 문서(Document) 가 변경되었을때 발생하는 이벤트
         /// </summary>
-        public event SiriusDocumentSourceChanged OnDocumentSourceChanged;
+        public virtual event SiriusDocumentSourceChanged OnDocumentSourceChanged;
+        /// <summary>
+        /// 문서(Document)를 신규로 생성할때 발생하는 이벤트
+        /// Document.Action.ActNew() 가 호출되어야 함
+        /// </summary>
+        public virtual event SiriusDocumentNew OnDocumentNew;
+        /// <summary>
+        /// 문서(Document)가 로드될때 발생하는 이벤트
+        /// DocumentSerializer.OpenSirius(파일이름) 으로 불러들인후 Document 에 문서객체를 설정
+        /// </summary>
+        public virtual event SiriusDocumentOpen OnDocumentOpen;
+        /// <summary>
+        /// 문서(Document)가 저장될때 발생하는 이벤트
+        /// 미리 지정된 파일이름(FileName)에 덮어쓰기 저장됨
+        /// Document.Action.ActSave(파일이름) 가 호출되어야 함
+        /// </summary>
+        public virtual event SiriusDocumentSave OnDocumentSave;
+        /// 문서(Document)가 다른이름으로 저장될때 발생하는 이벤트
+        /// Document.Action.ActSave(파일이름) 가 호출되어야 함
+        /// 파일이름(FileName ) 속성 변경이 호출되어야 함
+        public virtual event SiriusDocumentSave OnDocumentSaveAs;
+        /// <summary>
+        /// 편집기에서 새로운 펜을 생성할때 발생하는 이벤트
+        /// </summary>
+        public virtual event SiriusDocumentPenNew OnDocumentPenNew;
+        /// <summary>
+        /// 편집기에서 새로운 레이어를 생성할때 발생하는 이벤트
+        /// </summary>
+        public virtual event SiriusDocumentLayerNew OnDocumentLayerNew;
+
+        /// <summary>
+        /// 문서(Document)에서 Marker 팝업 창을 띄울때 발생하는 이벤트
+        /// 미 등록시 자체 Marker Form 이 팝업됨
+        /// </summary>
+        public virtual event EventHandler OnMarker;
+        /// <summary>
+        /// 문서(Document)에서 Laser 팝업 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnLaser;
+        /// <summary>
+        /// 문서(Document)에서 RTC 팝업 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnRtc;
+        /// <summary>
+        /// 문서(Document)에서 스캐너 보정 2D 팝업 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnCorrection2D;
+        /// <summary>
+        /// 문서(Document)에서 스캐너 보정 3D 팝업 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnCorrection3D;
+        /// <summary>
+        /// 문서(Document)에서 계측(Measurement) 팝업 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual  event EventHandler OnMeasurement;
+        /// <summary>
+        /// 문서(Document)에서 디지털 입출력 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnIO;
+        /// <summary>
+        /// 모터 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public event EventHandler OnMotor;
+        /// <summary>
+        /// 문서(Document)에서 파워측정(PowerMeter)창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnPowerMeter;
+        /// <summary>
+        /// 문서(Document)에서 파워매핑(PowerMap) 창을 띄울때 발생하는 이벤트
+        /// </summary>
+        public virtual event EventHandler OnPowerMap;
+        #endregion
+
+        #region 이벤트 호출 
+        protected virtual void OnDocumentSourceChanging()
+        {
+            var receivers = this.OnDocumentSourceChanged?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentSourceChanged receiver in receivers)
+                    receiver.Invoke(this, this.doc);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document source has changed");
+        }
+        protected virtual void OnDocumentNewing()
+        {
+            var receivers = this.OnDocumentNew?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentNew receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document has new");
+        }
+        protected virtual void OnDocumentOpening()
+        {
+            var receivers = this.OnDocumentOpen?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentOpen receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document has opening");
+        }
+        protected virtual void OnDocumentSaving()
+        {
+            var receivers = this.OnDocumentSave?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentSave receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document saving");
+        }
+        protected virtual void OnDocumentSaveAsing()
+        {
+            var receivers = this.OnDocumentSaveAs?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentSave receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document save as");
+        }
+        protected virtual void OnDocumentPenNewing()
+        {
+            var receivers = this.OnDocumentPenNew?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentPenNew receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document pen new");
+        }
+        protected virtual void OnDocumentLayerNewing()
+        {
+            var receivers = this.OnDocumentLayerNew?.GetInvocationList();
+            if (null != receivers)
+                foreach (SiriusDocumentLayerNew receiver in receivers)
+                    receiver.Invoke(this);
+            Logger.Log(Logger.Type.Debug, $"sirius editor document layer new");
+        }
+        protected virtual void OnMarkerShow()
+        {
+            var receivers = this.OnMarker?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor marker show");
+        }
+        protected virtual void OnLaserShow()
+        {
+            var receivers = this.OnLaser?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor laser show");
+        }
+        protected virtual void OnRtcShow()
+        {
+            var receivers = this.OnRtc?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor rtc show");
+        }
+        protected virtual void OnCorrection2DShow()
+        {
+            var receivers = this.OnCorrection2D?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor correction 2d show");
+        }
+        protected virtual void OnCorrection3DShow()
+        {
+            var receivers = this.OnCorrection3D?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor correction 3d show");
+        }
+        protected virtual void OnMeasurementShow()
+        {
+            var receivers = this.OnMeasurement?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor measurement show");
+        }
+        protected virtual void OnIOShow()
+        {
+            var receivers = this.OnIO?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor io show");
+        }
+        protected virtual void OnPowerMeterShow()
+        {
+            var receivers = this.OnPowerMeter?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor power meter show");
+        }
+        protected virtual void OnPowerMapShow()
+        {
+            var receivers = this.OnPowerMap?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor power map show");
+        }
+        protected virtual void OnMotorShow()
+        {
+            var receivers = this.OnMotor?.GetInvocationList();
+            if (null != receivers)
+                foreach (EventHandler receiver in receivers)
+                    receiver.Invoke(this, EventArgs.Empty);
+            Logger.Log(Logger.Type.Debug, $"sirius editor motor show");
+        }
+        #endregion
 
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Sirius")]
+        [DisplayName("식별번호")]
+        [Description("고유 식별 번호")]
+        public virtual uint Index { get; set; }
+
         /// <summary>
         /// 상태바에 출력되는 이름
         /// </summary>
-        public string AliasName
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Sirius")]
+        [DisplayName("별명")]
+        [Description("상태바에 표시되는 별명")]
+        public virtual string AliasName
         {
             get
             {
@@ -67,10 +292,17 @@ namespace CustomEditor
                 this.lblName.Text = value;
             }
         }
+
         /// <summary>
         /// 상태바에 출력되는 진행상태 (0~100)
         /// </summary>
-        public int Progress
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Sirius")]
+        [DisplayName("진행률")]
+        [Description("가공 진행률 (0~100)")]
+        public virtual int Progress
         {
             get
             {
@@ -78,35 +310,48 @@ namespace CustomEditor
             }
             set
             {
+                if (!this.IsHandleCreated || this.IsDisposed)
+                    return;
                 this.pgbProgress.Value = value;
+                //CustomPrecentage(this.pgbProgress);
             }
         }
+
         /// <summary>
         /// 상태바에 출력되는 작업 파일이름
         /// </summary>
-        public string FileName
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Sirius")]
+        [DisplayName("작업파일이름")]
+        [Description("파일명")]
+        public virtual string FileName
         {
             get
             {
                 return this.lblFileName.Text;
             }
-            private set
+            set
             {
                 this.lblFileName.Text = value;
             }
         }
+
         /// <summary>
         /// 뷰 객체
         /// </summary>
-        public IView View
+        [Browsable(false)]
+        public virtual IView View
         {
             get { return this.view; }
         }
-        private IView view;
+        protected IView view;
         /// <summary>
         /// 문서 컨테이너 객체
         /// </summary>
-        public IDocument Document
+        [Browsable(false)]
+        public virtual IDocument Document
         {
             get { return this.doc; }
             set
@@ -116,7 +361,8 @@ namespace CustomEditor
                 if (value.Equals(this.doc))
                     return;
                 this.doc = value;
-                if (0 == this.doc.Layers.Count)  //default layer create if no exist
+                this.ppgEntity.SelectedObject = null;
+                if (0 == this.doc.Layers.Count)  //default layer create
                     this.doc.Action.ActNew();
                 List<IView> oldViews = new List<IView>();
                 if (null != this.Document)
@@ -135,7 +381,6 @@ namespace CustomEditor
                 this.doc.Action.OnEntitySelectedChanged += Action_OnSelectedEntityChanged;
                 this.doc.Layers.OnAddItem += Layer_OnAddItem;
                 this.doc.Layers.OnRemoveItem += Layer_OnRemoveItem;
-                this.trvEntity.Nodes.Clear();
                 this.FileName = this.doc.FileName;
 
                 this.view = new ViewDefault(doc, this.GLcontrol);
@@ -144,37 +389,213 @@ namespace CustomEditor
                 this.view.Render();
                 this.view.OnZoomFit();
                 this.RegenTreeView();
-
-                //this.OnDocumentSourceChanged?.Invoke(this, this.doc);
-                var receivers = this.OnDocumentSourceChanged?.GetInvocationList();
-                if (null != receivers)
-                    foreach (SiriusDocumentSourceChanged receiver in receivers)
-                        receiver.Invoke(this, this.doc);
+                this.OnDocumentSourceChanging();
+                this.chbLock.Checked = this.doc.IsEditorLock;       
             }
         }
-        IDocument doc;
+        protected IDocument doc;
         /// <summary>
         /// RTC 제어 객체
         /// </summary>
-        public IRtc Rtc
+        [Browsable(false)]
+        public virtual IRtc Rtc
         {
             get { return this.rtc; }
-            set { this.rtc = value; }
+            set
+            {
+                this.rtc = value;
+                if (this.rtc == null)
+                    return;
+                var rtc5 = this.rtc as Rtc5;
+                var rtc6 = this.rtc as Rtc6;
+
+                if (this.rtc is RtcVirtual rtcVirtual)
+                {
+
+                }
+                else if (this.rtc is Rtc4 rtc4)
+                {
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", false); 
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "TimeLag", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "AngularLimit", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "MinMarkSpeed", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", false);
+                    
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelShape", false);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMinValue", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", false);
+
+                    btnRaster.Enabled = true;
+                    btnImage.Enabled = true;
+                    mnuMOTF.Enabled = true;
+                    mnuMOTFExtStartDelay.Enabled = false;
+                    mnuMOTFWait.Enabled = false;
+
+                    mnuAlc.Enabled = false;
+                    mnuPoD.Enabled = false;
+                    mnuVectorBeginEnd.Enabled = false;
+                    mnuAlcSyncAxisBeginEnd.Enabled = false;
+                    mnuCalculationDynamics.Enabled = false;
+
+                    mnuMeasurementBeginEnd.Enabled = true;
+                    ext16IfToolStripMenuItem.Enabled = false;
+                    waitExt16IfToolStripMenuItem1.Enabled = false;
+                    zOffsetToolStripMenuItem.Enabled = true;
+                    mnuZOffset.Enabled = false;
+
+                    mnuSiriusTime.Enabled = false;
+                    mnuSiriusDate.Enabled = false;
+                    mnuSiriusSerial.Enabled = false;
+                    mnuTextTime.Enabled = false;
+                    mnuTextDate.Enabled = false;
+                    mnuTextSerial.Enabled = false;
+                }
+                else if (null != rtc5 || null != rtc6)
+                {
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "TimeLag", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "AngularLimit", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "MinMarkSpeed", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", false);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMinValue", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", false);
+
+                    btnRaster.Enabled = true;
+                    btnImage.Enabled = true;
+                    mnuMOTF.Enabled = true;
+
+                    mnuAlc.Enabled = true;
+                    mnuPoD.Enabled = true;
+                    mnuVectorBeginEnd.Enabled = true;
+                    mnuAlcSyncAxisBeginEnd.Enabled = false;
+                    mnuCalculationDynamics.Enabled = false;
+
+                    mnuMeasurementBeginEnd.Enabled = true;
+                    ext16IfToolStripMenuItem.Enabled = true;
+                    waitExt16IfToolStripMenuItem1.Enabled = true;
+                    zOffsetToolStripMenuItem.Enabled = true;
+
+                    mnuSiriusTime.Enabled = true;
+                    mnuSiriusDate.Enabled = true;
+                    mnuSiriusSerial.Enabled = true;
+                    //mnuTextTime.Enabled = true;
+                    //mnuTextDate.Enabled = true;
+                    //mnuTextSerial.Enabled = true;
+                }
+                else if (this.rtc is IRtcSyncAxis rtcSyncAxis) //rtcvirtual 도 해당되네 -_-;
+                {
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnDelay", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOffDelay", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserFpk", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerJumpDelay", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerMarkDelay", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerPolygonDelay", false);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "TimeLag", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "AngularLimit", false);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsWobbelEnabled", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelPerpendicular", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelParallel", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelFrequency", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelShape", false);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "MinMarkSpeed", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", true);
+
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMinValue", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", true);
+
+                    btnRaster.Enabled = false;
+                    btnImage.Enabled = false;
+                    mnuMOTF.Enabled = false;
+
+                    mnuAlc.Enabled = true; 
+                    mnuPoD.Enabled = false;
+                    mnuVectorBeginEnd.Enabled = false;
+                    mnuAlcSyncAxisBeginEnd.Enabled = true;
+                    mnuCalculationDynamics.Enabled = true;
+
+                    mnuMeasurementBeginEnd.Enabled = false;
+                    ext16IfToolStripMenuItem.Enabled = false;
+                    waitExt16IfToolStripMenuItem1.Enabled = false;
+                    zOffsetToolStripMenuItem.Enabled = false;
+
+                    mnuSiriusTime.Enabled = false;
+                    mnuSiriusDate.Enabled = false;
+                    mnuSiriusSerial.Enabled = false;
+                    //mnuTextTime.Enabled = false;
+                    //mnuTextDate.Enabled = false;
+                    //mnuTextSerial.Enabled = false;
+                    mnuMeasurementFile.Enabled = false;
+                }
+            }
         }
-        IRtc rtc;
+        protected IRtc rtc;
         /// <summary>
         /// 레이저 소스 제어 객체
         /// </summary>
-        public ILaser Laser
+        [Browsable(false)]
+        public virtual ILaser Laser
         {
             get { return this.laser; }
-            set { this.laser = value; }
+            set { this.laser = value;
+
+                if (this.laser == null)
+                    return;
+                if (this.laser.IsPowerControl)
+                {
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "PowerMax", true);
+                    SpiralLab.Sirius.PenDefault.powerMax = laser.MaxPowerWatt;
+                }
+                else
+                {
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "PowerMax", false);
+                    SpiralLab.Sirius.PenDefault.powerMax = 0;
+                }
+            }
         }
-        ILaser laser;
+        protected ILaser laser;
         /// <summary>
         /// 마커 제어 객체
         /// </summary>
-        public IMarker Marker
+        [Browsable(false)]
+        public virtual IMarker Marker
         {
             get { return this.marker; }
             set
@@ -182,53 +603,130 @@ namespace CustomEditor
                 if (null != this.marker)
                 {
                     this.marker.OnProgress -= Marker_OnProgress;
-                    this.pgbProgress.Value = 0;
+                    this.marker.OnFinished -= Marker_OnFinished;
+                    this.Progress = 0;
                 }
                 this.marker = value;
                 if (null != this.marker)
                 {
                     this.marker.OnProgress += Marker_OnProgress;
+                    this.marker.OnFinished += Marker_OnFinished;
+                    this.marker.IsEnablePens = true;
                 }
             }
         }
-        IMarker marker;
+        protected IMarker marker;
 
-        private void Marker_OnProgress(IMarker sender, IMarkerArg arg)
-        {
-            if (statusStrip1.InvokeRequired)
-            {
-                statusStrip1.Invoke(new MarkerEventHandler(Marker_OnProgress), new object[] { sender, arg });
-                return;
-            }
-            else
-            {
-                pgbProgress.Value = (int)arg.Progress;
-            }
-        }
         /// <summary>
-        /// 오른쪽 속성창 보여주기 여부
+        /// 스캐너 Z 축 제어용 객체
         /// </summary>
-        public bool HidePropertyGrid
+        [Browsable(false)]
+        public virtual IMotor MotorZ
         {
-            get { return hidePropertyGrid; }
-            set
-            {
-                hidePropertyGrid = value;
-                if (hidePropertyGrid)
+            get { return this.motorZ; }
+            set {
+                this.motorZ = value;
+                if (null != this.motorZ)
                 {
-                    splitContainer1.Panel2Collapsed = true;
-                    splitContainer1.Panel2.Hide();
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", true);
                 }
                 else
                 {
-                    splitContainer1.Panel2Collapsed = false;
-                    splitContainer1.Panel2.Show();
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
                 }
+                if (null != this.motorZ || null != this.motors)
+                    mnuMotor.Enabled = true;
+                else
+                    mnuMotor.Enabled = false;
             }
         }
-        bool hidePropertyGrid;
+        protected IMotor motorZ;
 
-        System.Drawing.Point currentMousePos;
+        /// <summary>
+        /// 모터 집합을 제어하기 위한 객체
+        /// </summary>
+        [Browsable(false)]
+        public virtual IMotors Motors
+        {
+            get { return this.motors; }
+            set
+            {
+                this.motors = value;
+                if (null != this.motorZ || null != this.motors)
+                    mnuMotor.Enabled = true;
+                else
+                    mnuMotor.Enabled = false;
+            }
+        }
+        protected IMotors motors;
+
+        /// <summary>
+        /// RTC Pin2 포트 2입력
+        /// </summary>
+        [Browsable(false)]
+        public virtual IDInput RtcPin2Input { get; set; }
+        /// <summary>
+        /// RTC Pin2 포트 2출력
+        /// </summary>
+        [Browsable(false)]
+        public virtual IDOutput RtcPin2Output { get; set; }
+        /// <summary>
+        /// RTC 확장1 포트 16입력
+        /// </summary>
+        [Browsable(false)]
+        public virtual IDInput RtcExtension1Input { get; set; }
+        /// <summary>
+        /// RTC 확장1 포트 16출력
+        /// </summary>
+        [Browsable(false)]
+        public virtual IDOutput RtcExtension1Output { get; set; }
+        /// <summary>
+        /// RTC 확장2 포트 8출력
+        /// </summary>
+        [Browsable(false)]
+        public virtual IDOutput RtcExtension2Output { get; set; }
+        /// <summary>
+        /// 파워메터
+        /// </summary>
+        [Browsable(false)]
+        public virtual IPowerMeter PowerMeter 
+        {
+            get { return this.powerMeter; }
+            set
+            {
+                this.powerMeter = value;
+                if (null != this.powerMeter)
+                    mnuPowerMeter.Enabled = true;
+                else
+                    mnuPowerMeter.Enabled = false;
+            }
+        }
+        protected IPowerMeter powerMeter;
+
+        /// <summary>
+        /// 파워맵
+        /// </summary>
+        /// 
+        [Browsable(false)]
+        public virtual IPowerMap PowerMap
+        {
+            get { return this.powerMap; }
+            set
+            {                
+                this.powerMap = value;                
+                if (null != this.powerMap)
+                    mnuPowerMap.Enabled = true;
+                else
+                    mnuPowerMap.Enabled = false;
+            }
+        }
+        protected IPowerMap powerMap;
+
+        protected System.Drawing.Point currentMousePos;
 
 
         /// <summary>
@@ -238,6 +736,7 @@ namespace CustomEditor
         {
             InitializeComponent();
 
+            this.GLcontrol.OpenGLInitialized += new EventHandler(this.OnInitialized);
             this.GLcontrol.Resize += new EventHandler(this.OnResized);
             this.GLcontrol.MouseDown += new MouseEventHandler(this.OnMouseDown);
             this.GLcontrol.MouseUp += new MouseEventHandler(this.OnMouseUp);
@@ -247,67 +746,160 @@ namespace CustomEditor
 
             this.ppgEntity.PropertySort = PropertySort.Categorized;
             this.Disposed += SiriusEditorForm_Disposed;
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(SiriusEditorForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(SiriusEditorForm_DragEnter);
+            if (null == CustomEditorForm.logForm)
+            {
+                CustomEditorForm.logForm = new LogForm();
+                Logger.OnLogged += Logger_OnLogged;
+            }
 
-            MyInitialize();
+            //기본 false, MotorZ 지정시 true
+            UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
+            UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
+            UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
         }
-
-        private bool MyInitialize()
+        protected virtual void SiriusEditorForm_Disposed(object sender, EventArgs e)
         {
-            #region 사용자의 초기화 코드 예제
-            bool success = true;
-
-            success &= SpiralLab.Core.Initialize();
-            var doc = new DocumentDefault();
-            this.Document = doc;
-
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
-
-            float fov = 60.0f;    ///scanner field of view : 60mm            
-            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            success &= rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // 스캐너 보정 파일 지정 : correction file
-            success &= rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
-            success &= rtc.CtlSpeed(100, 100); // default jump and mark speed : 100mm/s
-            success &= rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays
-            this.Rtc = rtc;
-
-            var laser = new LaserVirtual(0, "virtual", 20.0f);
-            laser.Rtc = rtc;
-            success &= laser.Initialize();
-            success &= laser.CtlPower(10);
-            this.Laser = laser;
-
-            var marker = new MarkerDefault(0);
-            this.Marker = marker;
-            #endregion
-            return success;
-        }
-
-        private void SiriusEditorForm_Disposed(object sender, EventArgs e)
-        {
-            // 가공 시뮬레이션 중이면 중단
             Document?.Action?.ActEntityLaserPathSimulateStop();
-            //RTC 가공 중이면 가공 정지
-            Rtc?.CtlAbort();
+        }
+        protected virtual void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.markerForm = null;
+        }
+        protected virtual void SiriusEditorForm_DragDrop(object sender, DragEventArgs e)
+        {
+            var data = e.Data.GetData(DataFormats.FileDrop);
+            if (data != null)
+            {
+                string[] fileNames = data as string[];
+                string ext = System.IO.Path.GetExtension(fileNames[0]);
+                switch (ext.ToLower())
+                {
+                    case ".sirius":
+                    case ".dxf":
+                        this.OnOpen(fileNames[0]);
+                        break;
+                }
+            }
+        }
+        protected virtual void SiriusEditorForm_DragEnter(object sender, DragEventArgs e)
+        {
+            // if the extension is not *.txt or *.stl change drag drop effect symbol
+            var data = e.Data.GetData(DataFormats.FileDrop);
+            if (data != null)
+            {
+                string[] fileNames = data as string[];
+                string ext = System.IO.Path.GetExtension(fileNames[0]);
+                switch (ext.ToLower())
+                {
+                    case ".sirius":
+                    case ".dxf":
+                        e.Effect = DragDropEffects.Copy;
+                        break;
+                    default:
+                        e.Effect = DragDropEffects.None;
+                        break;
+                }
+            }
         }
 
-        private void OnResized(object sender, EventArgs e)
+        internal static LogForm logForm = null;
+        protected virtual void Logger_OnLogged(Logger.Type type, string message)
+        {
+            if (!this.IsHandleCreated || this.IsDisposed)
+                return;            
+            if (null == logForm || logForm.IsDisposed)
+                return;
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                try
+                {
+                    logForm.Log(type, message);
+                }
+                catch(Exception ex)
+                {
+
+                }
+            }));
+        }
+        protected virtual void Marker_OnProgress(IMarker sender, IMarkerArg arg)
+        {
+            if (!this.IsHandleCreated || this.IsDisposed)
+                return;
+            var span = arg.EndTime - arg.StartTime;
+            stsBottom.BeginInvoke(new MethodInvoker(delegate ()
+            {
+                //lblTime.Text = $"{span.TotalSeconds:F3} sec";
+                this.Progress = (int)arg.Progress;
+            }));
+        }
+        protected virtual void Marker_OnFinished(IMarker sender, IMarkerArg arg)
+        {
+            if (!this.IsHandleCreated || this.IsDisposed)
+                return;
+            var span = arg.EndTime - arg.StartTime;
+            stsBottom.BeginInvoke(new MethodInvoker(delegate ()
+            {
+                //lblTime.Text = $"{span.TotalSeconds:F3} sec";
+                this.Progress = (int)arg.Progress;
+            }));
+        }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F1))
+            {
+                mnuMarker_Click(this, EventArgs.Empty);
+                return true;
+            }
+            else if (keyData == (Keys.F2))
+            {
+                mnuLaser_Click(this, EventArgs.Empty);
+                return true;
+            }
+            else if (keyData == (Keys.F3))
+            {
+                mnuIO_Click(this, EventArgs.Empty);
+                return true;
+            }
+            else if (keyData == (Keys.F4))
+            {
+                mnuRtc_Click(this, EventArgs.Empty);
+                return true;
+            }
+            else if (keyData == (Keys.F12))
+            {
+                mnuLogWindow_Click(this, EventArgs.Empty);
+                return true;
+            }
+            else
+                return base.ProcessCmdKey(ref msg, keyData);
+        }
+        public override void Refresh()
+        {
+            base.Refresh();
+            this.trvEntity.Refresh();
+            this.ppgEntity.Refresh();
+            this.view.Render();
+        }
+        protected virtual void OnInitialized(object sender, EventArgs e)
+        {
+            this.view?.OnInitialized(sender, e);
+        }
+        protected virtual void OnResized(object sender, EventArgs e)
         {
             this.view?.OnResized(sender, e);
         }
-        private void OnMouseDown(object sender, MouseEventArgs e)
+        protected virtual void OnMouseDown(object sender, MouseEventArgs e)
         {
             this.view?.OnMouseDown(sender, e);
         }
-        private void OnMouseUp(object sender, MouseEventArgs e)
+        protected virtual void OnMouseUp(object sender, MouseEventArgs e)
         {
             this.view?.OnMouseUp(sender, e);
+            this.GroupButtonEnableOrNot();
         }
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        protected virtual void OnMouseMove(object sender, MouseEventArgs e)
         {
             this.currentMousePos = e.Location;
             if (null != this.view)
@@ -318,38 +910,40 @@ namespace CustomEditor
                 this.lblYPos.Text = $"Y: {y:F3}";
             }
         }
-        private void OnMouseWheel(object sender, MouseEventArgs e)
+        protected virtual void OnMouseWheel(object sender, MouseEventArgs e)
         {
             this.view?.OnMouseWheel(sender, e);
         }
-        private void OnDraw(object sender, RenderEventArgs args)
+        protected virtual void OnDraw(object sender, RenderEventArgs args)
         {
+            if (!this.IsHandleCreated || this.IsDisposed)
+                return;
             if (null == this.view)
                 return;
-            //화면 렌더링
-            long msec = this.view.OnDraw();
-            lblRenderTime.Text = $"Render: {msec} ms";
-            //선택된 사각영역이 있으면 해당 크기 업데이트
-            if (this.view.SelectedBoundRect.IsEmpty)
+            this.Invoke(new MethodInvoker(delegate ()
             {
-                lblBound.Text = string.Empty;
-                lblCenter.Text = string.Empty;
-                lblWH.Text = string.Empty;
-            }
-            else
-            {
-                lblBound.Text = this.view.SelectedBoundRect.ToString();
-                lblCenter.Text = $"{this.view.SelectedBoundRect.Center.X:F3}, {this.view.SelectedBoundRect.Center.Y:F3}";
-                lblWH.Text = $"{this.view.SelectedBoundRect.Width:F3}, {this.view.SelectedBoundRect.Height:F3}";
-            }
+                long msec = this.view.OnDraw();
+                lblRenderTime.Text = $"Render: {msec} ms";
+                if (this.view.SelectedBoundRect.IsEmpty)
+                {
+                    lblBound.Text = $" Left/Top, Right/Bottom ";
+                    lblCenter.Text = $" Center ";
+                    lblWH.Text = $" Width, Height ";
+                }
+                else
+                {
+                    lblBound.Text = this.view.SelectedBoundRect.ToString();
+                    lblCenter.Text = $" {this.view.SelectedBoundRect.Center.X:F3}, {this.view.SelectedBoundRect.Center.Y:F3} ";
+                    lblWH.Text = $" {this.view.SelectedBoundRect.Width:F3}, {this.view.SelectedBoundRect.Height:F3} ";
+                }
+            }));
         }
-        private void RegenTreeView()
+        protected virtual void RegenTreeView()
         {
-            //트리뷰 업데이트
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
             trvEntity.Nodes.Clear();
             int i = 0;
-            foreach (var layer in this.Document.Layers)
+            foreach(var layer in this.Document.Layers)
             {
                 this.Layer_OnAddItem(this.Document.Layers, i++, layer);
                 int j = 0;
@@ -358,92 +952,143 @@ namespace CustomEditor
                     this.Entity_OnAddItem(layer, j++, entity);
                 }
             }
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
+        protected virtual void Layer_OnAddItem(ObservableList<Layer> sender, int index, Layer l)
+        {
+            if (trvEntity.IsDisposed)
+                return;
+            //trvEntity.Invoke(new MethodInvoker(delegate ()
+            //{
+                //trvEntity.BeginUpdate();
+                l.OnAddItem += Entity_OnAddItem;
+                l.OnRemoveItem += Entity_OnRemoveItem;
+                l.Node.Tag = l;
 
-        private void Layer_OnAddItem(ObservableList<Layer> sender, int index, Layer l)
-        {
-            l.OnAddItem += Entity_OnAddItem;
-            l.OnRemoveItem += Entity_OnRemoveItem;
-            l.Node.Tag = l;
+                var layers = sender as Layers;
+                if (layers.Count == index)
+                    trvEntity.Nodes.Add(l.Node);
+                else
+                    trvEntity.Nodes.Insert(index, l.Node);
 
-            var layers = sender as Layers;
-            if (layers.Count == index)
-                trvEntity.Nodes.Add(l.Node);
-            else
-                trvEntity.Nodes.Insert(index, l.Node);
-
-            l.Index = index;
+                l.Index = index;
+                trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
+                //trvEntity.EndUpdate();
+            //}));
         }
-        private void Layer_OnRemoveItem(ObservableList<Layer> sender, int index, Layer l)
+        protected virtual void Layer_OnRemoveItem(ObservableList<Layer> sender, int index, Layer l)
         {
-            l.OnAddItem -= Entity_OnAddItem;
-            l.OnRemoveItem -= Entity_OnRemoveItem;
-            trvEntity.Nodes.Remove(l.Node);
+            if (trvEntity.IsDisposed)
+                return;
+            //trvEntity.Invoke(new MethodInvoker(delegate ()
+            //{
+                trvEntity.BeginUpdate();
+                l.OnAddItem -= Entity_OnAddItem;
+                l.OnRemoveItem -= Entity_OnRemoveItem;
+                trvEntity.Nodes.Remove(l.Node);
+                trvEntity.EndUpdate();
+            //}));
         }
-        private void Entity_OnAddItem(ObservableList<IEntity> sender, int index, IEntity e)
+        protected virtual void Entity_OnAddItem(ObservableList<IEntity> sender, int index, IEntity e)
         {
-            e.Node.Tag = e;
-            var layer = sender as Layer;
-            if (layer.Node.Nodes.Count == index)
-                layer.Node.Nodes.Add(e.Node);
-            else
-                layer.Node.Nodes.Insert(index, e.Node);
-            e.Owner = layer;
-            e.Index = index;
+            if (trvEntity.IsDisposed)
+                return;
+            //trvEntity.Invoke(new MethodInvoker(delegate ()
+            //{
+                //trvEntity.BeginUpdate();
+                e.Node.Tag = e;
+                var layer = sender as Layer;
+                e.Node.Text = $"{e.ToString()}";
+                if (layer.Node.Nodes.Count == index)
+                    layer.Node.Nodes.Add(e.Node);
+                else
+                {
+                    layer.Node.Nodes.Insert(index, e.Node);
+                    //기존 index 위치에 있는 e.Index 가 변경되어야 하지 않나??
+                }
+                e.Owner = layer;
+                e.Index = index;
+                trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
+                //trvEntity.EndUpdate();
+            //}));
         }
-        private void Entity_OnRemoveItem(ObservableList<IEntity> sender, int index, IEntity e)
+        protected virtual void Entity_OnRemoveItem(ObservableList<IEntity> sender, int index, IEntity e)
         {
-            var layer = sender as Layer;
-            layer.Node.Nodes.Remove(e.Node);
+            if (trvEntity.IsDisposed)
+                return;
+            //trvEntity.Invoke(new MethodInvoker(delegate ()
+            //{
+                trvEntity.BeginUpdate();
+                var layer = sender as Layer;
+                layer.Node.Nodes.Remove(e.Node);
+                trvEntity.EndUpdate();
+            //}));
         }
         /// <summary>
-        /// 마우스 선택, 트리뷰 선택 등의 이벤트 발생시 내부 action 에 의해 호출됨
+        /// 마우스 선택, 트리뷰 선택 등의 이벤트 발생시 내부 action 에 의해 콜백됨
         /// </summary>
         /// <param name="doc"></param>
         /// <param name="list"></param>
-        private void Action_OnSelectedEntityChanged(IDocument doc, List<IEntity> list)
+        protected virtual void Action_OnSelectedEntityChanged(IDocument doc, List<IEntity> list)
         {
-            //treeview
-            var nodes = new List<TreeNode>(list.Count);
-            trvEntity.SuspendLayout();
-            foreach (var e in list)
-                nodes.Add(e.Node);
-            trvEntity.SelectedNodes = nodes;
-            if (nodes.Count > 0)
-                nodes[nodes.Count - 1].EnsureVisible();
-            trvEntity.ResumeLayout();
-            trvEntity.Refresh();
+            if ( trvEntity.IsDisposed)
+                return;
+            trvEntity.Invoke(new MethodInvoker(delegate ()
+            {
+                var nodes = new List<TreeNode>(list.Count);
+                trvEntity.BeginUpdate();
+                foreach (var e in list)
+                {
+                    //make bold ? e.Node.NodeFont 
+                    nodes.Add(e.Node);
+                }
+                if (nodes.Count > 0)
+                    trvEntity.SelectedNodes = nodes;
+                else
+                    trvEntity.SelectedNodes = null;
+                if (nodes.Count > 0)
+                    nodes[nodes.Count - 1].EnsureVisible();
+                trvEntity.EndUpdate();
+                trvEntity.Refresh();
 
-            lblEntityCount.Text = $"Selected: {list.Count.ToString()}";
-            if (0 == list.Count)
-                this.ppgEntity.SelectedObjects = null;
-            else
-                this.ppgEntity.SelectedObjects = list.ToArray();
+                //propertygrid
+                lblEntityCount.Text = $"Selected: {list.Count.ToString()}";
+                if (0 == list.Count)
+                    this.ppgEntity.SelectedObjects = null;
+                else
+                    this.ppgEntity.SelectedObjects = list.ToArray();
+            }));
+
         }
         /// <summary>
         /// 트리뷰에서 엔티티 선택시
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void trvEntity_AfterSelect(object sender, TreeViewEventArgs e)
+        protected virtual void trvEntity_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            var list = new List<IEntity>(trvEntity.SelectedNodes.Count);
-            //foreach (var n in trvEntity.SelectedNodes)
-            //    list.Add(n.Tag as IEntity);
-            //treeview 순서가 섞이니 다시 정렬
-            foreach (var layer in Document.Layers)
+            if (trvEntity.IsDisposed)
+                return;
+            trvEntity.Invoke(new MethodInvoker(delegate ()
             {
-                if (trvEntity.SelectedNodes.Contains(layer.Node)) // O(N*N)
-                    list.Add(layer);
-                foreach (var entity in layer)
-                    if (trvEntity.SelectedNodes.Contains(entity.Node)) // O(N*N )
-                        list.Add(entity);
-            }
+                var list = new List<IEntity>(trvEntity.SelectedNodes.Count);
+                //foreach (var n in trvEntity.SelectedNodes)
+                //    list.Add(n.Tag as IEntity);
+                //treeview 순서가 섞이니 다시 정렬
+                foreach (var layer in Document.Layers)
+                {
+                    if (trvEntity.SelectedNodes.Contains(layer.Node)) // O(N*N)
+                        list.Add(layer);
+                    foreach (var entity in layer)
+                        if (trvEntity.SelectedNodes.Contains(entity.Node)) // O(N*N )
+                            list.Add(entity);
+                }
 
-            this.Document.Action.ActEntitySelect(list);
+                this.Document.Action.ActEntitySelect(list);
+                this.GroupButtonEnableOrNot();
+            }));
         }
-        private void trvEntity_DragEnter(object sender, DragEventArgs e)
+        protected virtual void trvEntity_DragEnter(object sender, DragEventArgs e)
         {
             bool layer = false;
             foreach (var entity in Document.Action.SelectedEntity)
@@ -459,12 +1104,12 @@ namespace CustomEditor
             else
                 e.Effect = e.AllowedEffect;
         }
-        private void trvEntity_ItemDrag(object sender, ItemDragEventArgs e)
+        protected virtual void trvEntity_ItemDrag(object sender, ItemDragEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
                 DoDragDrop(e.Item, DragDropEffects.Move);
         }
-        private void trvEntity_DragDrop(object sender, DragEventArgs e)
+        protected virtual void trvEntity_DragDrop(object sender, DragEventArgs e)
         {
             if (!e.Data.GetDataPresent(typeof(TreeNode)))
                 return;
@@ -477,7 +1122,7 @@ namespace CustomEditor
                 if (trvEntity.SelectedNodes[0].Equals(targetNode))
                     return;
 
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
             var targetEntity = (IEntity)targetNode.Tag;
             Layer targetLayer = null;
 
@@ -491,6 +1136,7 @@ namespace CustomEditor
                     if (trvEntity.SelectedNodes[0].Tag is Layer)
                     {
                         Document.Action.ActLayerDragMove(trvEntity.SelectedNodes[0].Tag as Layer, targetLayer, targetNode.Index);
+                        trvEntity.EndUpdate();
                         return;
                     }
                 }
@@ -503,9 +1149,9 @@ namespace CustomEditor
                 //엔티티 이동
                 Document.Action.ActEntityDragMove(this.Document.Action.SelectedEntity, targetLayer, targetNode.Index);
             }
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
-        private void trvEntity_DragOver(object sender, DragEventArgs e)
+        protected virtual void trvEntity_DragOver(object sender, DragEventArgs e)
         {
             var p = trvEntity.PointToClient(new System.Drawing.Point(e.X, e.Y));
             TreeNode targetNode = trvEntity.GetNodeAt(p);
@@ -514,7 +1160,7 @@ namespace CustomEditor
             else
                 e.Effect = DragDropEffects.Move;
         }
-        private void ppgEntity_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        protected virtual void ppgEntity_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             string propertyName = e.ChangedItem.PropertyDescriptor.Name;
             var oldValue = e.OldValue;
@@ -522,119 +1168,228 @@ namespace CustomEditor
             Document.Action.ActEntityPropertyChanged(Document.Action.SelectedEntity, propertyName, oldValue, newValue);
         }
 
-        #region ToolStrip 버튼들
-        private void btnNew_Click(object sender, EventArgs e)
+        #region 툴바 버튼
+        protected virtual void btnNew_Click(object sender, EventArgs e)
         {
-            if (DialogResult.Yes != MessageBox.Show($"Do you really want to clear the document ?", "Document New", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                return;
+            if (null != this.OnDocumentNew)
+            {
+                this.OnDocumentNewing();
+            }
+            else
+            {
+                if (DialogResult.Yes != MessageBox.Show($"Do you really want to clear the document ?", "Document New", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    return;
+                this.OnNew();
+            }
+        }
+        /// <summary>
+        /// 문서를 신규로 생성시 호출되는 내부 함수
+        /// OnDocumentNew 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
+        /// 반드시 OnNew를 호출해 주어야 한다
+        /// </summary>
+        public virtual void OnNew()
+        {
+            trvEntity.BeginUpdate();
             trvEntity.Nodes.Clear();
             this.FileName = string.Empty;
             this.Document.Action.ActNew();
-
-           
-            // 기본 펜 생성후 문서에 추가            
-            var pen = new PenDefault();
-            doc.Action.ActEntityAdd(pen);
+            trvEntity.EndUpdate();
+            chbLock.Checked = this.Document.IsEditorLock;
         }
-        private void btnOpen_Click(object sender, EventArgs e)
+        protected virtual void btnOpen_Click(object sender, EventArgs e)
         {
-            ofd.Filter = "sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
-            ofd.Title = "Open File";
-            ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog(this);
-            if (result == DialogResult.OK)
+            if (null != this.OnDocumentOpen)
             {
-                string ext = Path.GetExtension(ofd.FileName);
-                if (0 == string.Compare(ext, ".dxf", true))
-                {
-                    trvEntity.SuspendLayout();
-                    var doc = DocumentSerializer.OpenDxf(ofd.FileName);
-                    trvEntity.ResumeLayout();
-                    if (null == doc)
-                    {
-                        MessageBox.Show($"Fail to open : {ofd.FileName}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    this.Document = doc;
-                }
-                else if (0 == string.Compare(ext, ".sirius", true))
-                {
-                    trvEntity.SuspendLayout();
-                    var doc = DocumentSerializer.OpenSirius(ofd.FileName);
-                    trvEntity.ResumeLayout();
-                    if (null == doc)
-                    {
-                        MessageBox.Show($"Fail to open : {ofd.FileName}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    this.Document = doc;
-                }
-                else
-                {
-                    MessageBox.Show($"Unsupported file extension : {ofd.FileName}", "File Type Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                this.OnDocumentOpening();
             }
-        }
-        private void btnImport_Click(object sender, EventArgs e)
-        {
-            ofd.Filter = "Sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
-            ofd.Title = "Import File";
-            ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog(this);
-            if (result == DialogResult.OK)
-            {
-                string ext = Path.GetExtension(ofd.FileName);
-                if (0 == string.Compare(ext, ".dxf", true))
-                {
-                    this.Document.Action.ActImportDxf(ofd.FileName, out var dummy);
-                }
-                else if (0 == string.Compare(ext, ".sirius", true))
-                {
-                    this.Document.Action.ActImportSirius(ofd.FileName, out var dummy);
-                }
-                else
-                {
-                    MessageBox.Show($"Unsupported file extension : {ofd.FileName}", "File Type Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrEmpty(this.FileName))
-                this.btnSaveAs_Click(sender, e);
             else
             {
-                if (true == this.Document.Action.ActSave(this.FileName))
-                    MessageBox.Show($"Success to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                    MessageBox.Show($"Fail to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var dlg = new OpenFileDialog();
+                dlg.Title = "Open File";
+                dlg.Filter = "Supported files (*.sirius, *.dxf)|*.sirius;*.dxf|sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
+                //dlg.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
+                dlg.FileName = string.Empty;
+                dlg.Multiselect = false;
+                DialogResult result = dlg.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    ppgEntity.SelectedObject = null;
+                    this.OnOpen(dlg.FileName);
+                }
             }
         }
-        private void btnSaveAs_Click(object sender, EventArgs e)
+        /// <summary>
+        /// OnDocumentOpen 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
+        /// 반드시 OnOpen 호출해 주어야 한다
+        /// </summary>
+        /// <param name="fileName">파일 이름</param>
+        /// <returns></returns>
+        public virtual bool OnOpen(string fileName)
         {
-            sfd.Filter = "sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
-            sfd.Title = "Save As ...";
-            sfd.FileName = string.Empty;
-            DialogResult result = sfd.ShowDialog(this);
+            string ext = Path.GetExtension(fileName);
+            if (0 == string.Compare(ext, ".dxf", true))
+            {
+                trvEntity.BeginUpdate();
+                var doc = DocumentSerializer.OpenDxf(fileName);
+                trvEntity.EndUpdate();
+                if (null == doc)
+                {
+                    MessageBox.Show($"Fail to open : {fileName}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                this.Document = doc;
+                this.FileName = fileName; // Path.GetFileNameWithoutExtension(fileName) + ".sirius";
+                return true;
+            }
+            else if (0 == string.Compare(ext, ".sirius", true))
+            {
+                trvEntity.BeginUpdate();
+                var doc = DocumentSerializer.OpenSirius(fileName);
+                trvEntity.EndUpdate();
+                if (null == doc)
+                {
+                    //MessageBox.Show($"Fail to open : {fileName}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                this.Document = doc;
+                this.FileName = fileName;
+                return true;
+            }
+            MessageBox.Show($"Unsupported file extension: {fileName}", "File Type Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            return false;
+        }
+        protected virtual void btnImport_Click(object sender, EventArgs e)
+        {
+            var form = new SiriusPreviewForm();
+            DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                this.Document.Action.ActSave(sfd.FileName);
-                this.FileName = sfd.FileName;
+                if (null != form.Entity)
+                {
+                    ppgEntity.SelectedObject = null;
+                    this.Document.Action.ActEntityAdd(form.Entity);
+                }
+            }
+
+            //ofd.Filter = "Support files (*.sirius, *.dxf, *.plt)|*.sirius;*.dxf;*.plt|Sirius data file (*.sirius)|*.sirius|DXF file (*.dxf)|*.dxf|HPGL plt file (*.plt)|*.plt|All Files (*.*)|*.*";
+            //ofd.Title = "Import File";
+            //ofd.FileName = string.Empty;
+            //ofd.Multiselect = false;
+            //DialogResult result = ofd.ShowDialog(this);
+            //if (result == DialogResult.OK)
+            //{
+            //    string ext = Path.GetExtension(ofd.FileName);
+            //    if (0 == string.Compare(ext, ".dxf", true))
+            //    {
+            //        this.Document.Action.ActImportDxf(ofd.FileName);
+            //    }
+            //    else if (0 == string.Compare(ext, ".plt", true))
+            //    {
+            //        this.Document.Action.ActImportHPGL(ofd.FileName);
+            //    }
+            //    else if (0 == string.Compare(ext, ".sirius", true))
+            //    {
+            //        this.Document.Action.ActImportSirius(ofd.FileName);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show($"Unsupported file extension : {ofd.FileName}", "File Type Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+        }
+        protected virtual void btnSave_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnDocumentSave)
+            {
+                this.OnDocumentSaving();
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(this.FileName))
+                {
+                    this.btnSaveAs_Click(null, EventArgs.Empty);
+                }
+                else if (true == this.OnSave(this.FileName))
+                {
+                    MessageBox.Show($"Success to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Fail to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
-        private void btnUndo_Click(object sender, EventArgs e)
+        /// <summary>
+        /// OnDocumentSave 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
+        /// 반드시 OnSave 호출해 주어야 한다
+        /// </summary>
+        /// <param name="fileName">파일 이름</param>
+        /// <returns></returns>
+        public virtual bool OnSave(string fileName)
         {
-            trvEntity.SuspendLayout();
+            if (string.IsNullOrEmpty(fileName))
+            {
+                this.btnSaveAs_Click(null, EventArgs.Empty);
+                return true;
+            }
+            else
+            {
+                this.FileName = fileName;
+                return this.Document.Action.ActSave(fileName);
+            }
+        }
+        protected virtual void btnSaveAs_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnDocumentSaveAs)
+            {
+                this.OnDocumentSaveAsing();
+            }
+            else
+            {
+                var dlg = new SaveFileDialog();
+                dlg.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
+                dlg.Title = "Save As ...";
+                dlg.FileName = string.Empty;
+                DialogResult result = dlg.ShowDialog(this);
+                if (result == DialogResult.OK)
+                {
+                    if (true == this.OnSaveAs(dlg.FileName))
+                    {
+                        MessageBox.Show($"Success to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Fail to save : {this.FileName}", "Document Save", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+        /// <summary>
+        /// OnDocumentSaveAs 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
+        /// 반드시 OnSaveAs 호출해 주어야 한다
+        /// </summary>
+        /// <param name="fileName">파일 이름</param>
+        /// <returns></returns>
+        public virtual bool OnSaveAs(string fileName)
+        {
+            this.Document.Action.ActSave(fileName);
+            this.FileName = fileName;
+            return true;
+        }
+
+        protected virtual void btnUndo_Click(object sender, EventArgs e)
+        {
+            trvEntity.BeginUpdate();
             Document.Action.ActUndo();
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
-        private void btnReDo_Click(object sender, EventArgs e)
+        protected virtual void btnReDo_Click(object sender, EventArgs e)
         {
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
             Document.Action.ActRedo();
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
-        private void btnZoomOut_Click(object sender, EventArgs e)
+        protected virtual void btnZoomOut_Click(object sender, EventArgs e)
         {
             if (null == Document.Action.SelectedEntity || 0 == Document.Action.SelectedEntity.Count)
                 this.view?.OnZoomOut(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
@@ -646,7 +1401,7 @@ namespace CustomEditor
                 this.view?.OnZoomOut(br);
             }
         }
-        private void btnZoomIn_Click(object sender, EventArgs e)
+        protected virtual void btnZoomIn_Click(object sender, EventArgs e)
         {
             if (null == Document.Action.SelectedEntity || 0 == Document.Action.SelectedEntity.Count)
                 this.view?.OnZoomIn(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
@@ -658,15 +1413,22 @@ namespace CustomEditor
                 this.view?.OnZoomIn(br);
             }
         }
-        private void btnZoomFit_Click(object sender, EventArgs e)
+        protected virtual void btnZoomFit_Click(object sender, EventArgs e)
         {
-            this.view?.OnZoomFit();
+            var br = new BoundRect();
+            if (null != Document.Action.SelectedEntity)
+                foreach (var entity in Document.Action.SelectedEntity)
+                    br.Union(entity.BoundRect);
+            if (!br.IsEmpty)
+                this.view?.OnZoomFit(br);
+            else
+                this.view?.OnZoomFit();
         }
-        private void btnPan_Click(object sender, EventArgs e)
+        protected virtual void btnPan_Click(object sender, EventArgs e)
         {
-            this.view?.OnPan(btnPan.Checked);
+            this.view?.OnPan(chbPan.Checked);
         }
-        private void btnPoint_Click(object sender, EventArgs e)
+        protected virtual void btnPoint_Click(object sender, EventArgs e)
         {
             var point = new SpiralLab.Sirius.Point(0,0);
             var form = new PropertyForm(point);
@@ -675,22 +1437,21 @@ namespace CustomEditor
 
             this.Document.Action.ActEntityAdd(point);
         }
-        private void btnPoints_Click(object sender, EventArgs e)
+        protected virtual void btnPoints_Click(object sender, EventArgs e)
         {
-            var point = new Points(new List<Vertex>()
+            var points = new SpiralLab.Sirius.Points();
+            Random rand = new Random((int)DateTime.Now.Ticks);
+            for (int i = 0; i < 100; i++)
             {
-                new Vertex(1,1),
-                new Vertex(1,2),
-                new Vertex(2,2),
-                new Vertex(3,4),
-            });
-            var form = new PropertyForm(point);
+                points.Add(new Vertex(rand.Next(100) - 50, rand.Next(100) - 50));
+            }
+            var form = new PropertyForm(points);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
 
-            this.Document.Action.ActEntityAdd(point);
+            this.Document.Action.ActEntityAdd(points);
         }
-        private void btnRaster_Click(object sender, EventArgs e)
+        protected virtual void btnRaster_Click(object sender, EventArgs e)
         {
             var raster = new Raster();
             var form = new PropertyForm(raster);
@@ -699,7 +1460,7 @@ namespace CustomEditor
 
             this.Document.Action.ActEntityAdd(raster);
         }
-        private void btnLine_Click(object sender, EventArgs e)
+        protected virtual void btnLine_Click(object sender, EventArgs e)
         {
             var line = new Line(0, 0, 10, 10);
             var form = new PropertyForm(line);
@@ -708,7 +1469,7 @@ namespace CustomEditor
 
             this.Document.Action.ActEntityAdd(line);
         }
-        private void btnArc_Click(object sender, EventArgs e)
+        protected virtual void btnArc_Click(object sender, EventArgs e)
         {
             var arc = new Arc(0, 0, 10, 0, 90);
             var form = new PropertyForm(arc);
@@ -716,15 +1477,15 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(arc);
         }
-        private void btnCircle_Click(object sender, EventArgs e)
+        protected virtual void btnCircle_Click(object sender, EventArgs e)
         {
-            var circle = new Circle(0, 0, 10);
+            var circle = new Circle(0, 0, 20);
             var form = new PropertyForm(circle);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(circle);
         }
-        private void btnTrepan_Click(object sender, EventArgs e)
+        protected virtual void btnTrepan_Click(object sender, EventArgs e)
         {
             var trepan = new Trepan(0, 0, 10, 2);
             var form = new PropertyForm(trepan);
@@ -732,15 +1493,23 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(trepan);
         }
-        private void btnRectangle_Click(object sender, EventArgs e)
+        protected virtual void btnTriangle_Click(object sender, EventArgs e)
         {
-            var rectangle = new SpiralLab.Sirius.Rectangle(0, 0, 10, 10);
+            var triangle = new Triangle(0, 0, 5, 5);
+            var form = new PropertyForm(triangle);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(triangle);
+        }
+        protected virtual void btnRectangle_Click(object sender, EventArgs e)
+        {
+            var rectangle = new Rectangle(0, 0, 20, 20);
             var form = new PropertyForm(rectangle);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(rectangle);
         }
-        private void btnLWPolyline_Click(object sender, EventArgs e)
+        protected virtual void btnLWPolyline_Click(object sender, EventArgs e)
         {
             var poly = new LwPolyline();
             poly.Add(new LwPolyLineVertex(55.3005f, 125.1903f, 0));
@@ -754,32 +1523,64 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(poly);
         }
-        private void mnuPen_Click(object sender, EventArgs e)
+        protected virtual void mnuPen_Click(object sender, EventArgs e)
         {
-            IPen pen = new PenDefault();
+            if (null != this.OnDocumentPenNew)
+            {
+                this.OnDocumentPenNewing();
+            }
+            else
+            {
+                IPen pen = new PenDefault();
+                //현재 활성 레이어 의 마지막 펜을 복제해 준디
+                //같은 파라메터를 사용할 일이 많으므로 ...
+                if (null != this.Document.Layers.Active)
+                {
+                    IPen lastPen = null;
+                    foreach (var entity in this.Document.Layers.Active)
+                        if (entity is IPen)
+                            lastPen = entity as IPen;
+                    if (null != lastPen)
+                        pen = lastPen.Clone() as IPen;
+                }
+                var form = new PropertyForm(pen);
+                if (DialogResult.OK != form.ShowDialog(this))
+                    return;
+                this.OnPenNew(pen);
+            }
+        }
+        /// <summary>
+        /// OnDocumentPenNew 이벤트 사용시 사용자가 원하는 펜(IPen) 생성후 OnPenNew 함수를 통해 생성된 펜 개체를 전달해 주어야 한다
+        /// </summary>
+        /// <param name="pen">IPen 상속 구현 객체</param>
+        /// <returns></returns>
+        public virtual bool OnPenNew(IPen pen)
+        {
+            if (null == pen)
+                return false;
+            return this.Document.Action.ActEntityAdd(pen);
+        }
+        protected virtual void mnuPenMOTF_Click(object sender, EventArgs e)
+        {
+            var pen = new PenMotf();
             var form = new PropertyForm(pen);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(pen);
         }
-        private void mnuMOTFBeginEnd_Click(object sender, EventArgs e)
+        protected virtual void mnuMOTFBeginEnd_Click(object sender, EventArgs e)
         {
             {
-                var motf = new MotfBegin();
-                var form = new PropertyForm(motf);
+                var motfBegin = new MotfBegin();
+                var form = new PropertyForm(motfBegin);
                 if (DialogResult.OK != form.ShowDialog(this))
                     return;
-                this.Document.Action.ActEntityAdd(motf);
-            }
-            {
-                var motf = new MotfEnd();
-                var form = new PropertyForm(motf);
-                if (DialogResult.OK != form.ShowDialog(this))
-                    return;
-                this.Document.Action.ActEntityAdd(motf);
+                this.Document.Action.ActEntityAdd(motfBegin);
+                var motfEnd = new MotfEnd();
+                this.Document.Action.ActEntityAdd(motfEnd);
             }
         }
-        private void mnuOTFExtStartDelay_Click(object sender, EventArgs e)
+        protected virtual void mnuOTFExtStartDelay_Click(object sender, EventArgs e)
         {
             var motf = new MotfExternalStartDelay();
             var form = new PropertyForm(motf);
@@ -787,7 +1588,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(motf);
         }
-        private void mnuMOTFWait_Click(object sender, EventArgs e)
+        protected virtual void mnuMOTFWait_Click(object sender, EventArgs e)
         {
             var motf = new MotfWait();
             var form = new PropertyForm(motf);
@@ -795,7 +1596,16 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(motf);
         }
-        private void btnTimer_Click(object sender, EventArgs e)
+        protected virtual void mnuMOTFCall_Click(object sender, EventArgs e)
+        {
+            var motf = new MotfRepeat();
+            var form = new PropertyForm(motf);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(motf);
+        }
+
+        protected virtual void btnTimer_Click(object sender, EventArgs e)
         {
             var timer = new SpiralLab.Sirius.Timer();
             var form = new PropertyForm(timer);
@@ -803,7 +1613,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(timer);
         }
-        private void mnuVectorBeginEnd_Click(object sender, EventArgs e)
+        protected virtual void mnuVectorBeginEnd_Click(object sender, EventArgs e)
         {
             {
                 var vec = new VectorBegin();
@@ -814,13 +1624,38 @@ namespace CustomEditor
             }
             {
                 var vec = new VectorEnd();
+                //var form = new PropertyForm(vec);
+                //if (DialogResult.OK != form.ShowDialog(this))
+                //    return;
+                this.Document.Action.ActEntityAdd(vec);
+            }
+        }
+        protected virtual void mnuPoDSyncAxisBeginEnd_Click(object sender, EventArgs e)
+        {
+            {
+                var vec = new AlcSyncAxisBegin();
                 var form = new PropertyForm(vec);
                 if (DialogResult.OK != form.ShowDialog(this))
                     return;
                 this.Document.Action.ActEntityAdd(vec);
             }
+            {
+                var vec = new AlcSyncAxisEnd();
+                //var form = new PropertyForm(vec);
+                //if (DialogResult.OK != form.ShowDialog(this))
+                //    return;
+                this.Document.Action.ActEntityAdd(vec);
+            }
         }
-        private void btnSpiral_Click(object sender, EventArgs e)
+        protected virtual void mnuPoDBeginEnd_Click(object sender, EventArgs e)
+        {
+            var vec = new AlcBegin();
+            var form = new PropertyForm(vec);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(vec);
+        }
+        protected virtual void btnSpiral_Click(object sender, EventArgs e)
         {
             var spiral = new Spiral(2, 10, 10, true);
             var form = new PropertyForm(spiral);
@@ -828,7 +1663,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(spiral);
         }
-        private void btnSiriusText_Click(object sender, EventArgs e)
+        protected virtual void btnSiriusText_Click(object sender, EventArgs e)
         {
             var text = new SiriusText("HELLO");
             var form = new PropertyForm(text);
@@ -836,7 +1671,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void timeToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuTime_Click(object sender, EventArgs e)
         {
             var text = new SiriusTextTime();
             var form = new PropertyForm(text);
@@ -844,7 +1679,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void dateToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuDate_Click(object sender, EventArgs e)
         {
             var text = new SiriusTextDate();
             var form = new PropertyForm(text);
@@ -852,7 +1687,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void serialToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuSerial_Click(object sender, EventArgs e)
         {
             var text = new SiriusTextSerial();
             var form = new PropertyForm(text);
@@ -860,7 +1695,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void siriusTextToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuSirius_Click(object sender, EventArgs e)
         {
             var text = new SiriusText("HELLO");
             var form = new PropertyForm(text);
@@ -868,7 +1703,7 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void btnRotateCW_Click(object sender, EventArgs e)
+        protected virtual void btnRotateCW_Click(object sender, EventArgs e)
         {
             var br = new BoundRect();
             foreach (var entity in this.Document.Action.SelectedEntity)
@@ -878,7 +1713,7 @@ namespace CustomEditor
 
             this.Document.Action.ActEntityRotate(this.Document.Action.SelectedEntity, -90, br.Center.X, br.Center.Y);
         }
-        private void btnRotateCCW_Click(object sender, EventArgs e)
+        protected virtual void btnRotateCCW_Click(object sender, EventArgs e)
         {
             var br = new BoundRect();
             foreach (var entity in this.Document.Action.SelectedEntity)
@@ -888,43 +1723,54 @@ namespace CustomEditor
 
             this.Document.Action.ActEntityRotate(this.Document.Action.SelectedEntity, 90, br.Center.X, br.Center.Y);
         }
-        private void originToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void btnRotateCustom_Click(object sender, EventArgs e)
+        {
+            var br = new BoundRect();
+            foreach (var entity in this.Document.Action.SelectedEntity)
+                br.Union(entity.BoundRect);
+            if (br.IsEmpty)
+                return;
+
+            var form = new RotateForm(this.Document, br.Center.X, br.Center.Y);
+            form.ShowDialog(this);
+        }
+        protected virtual void mnuOrigin_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntityAlign(this.Document.Action.SelectedEntity, EntityAlign.Origin);
         }
-        private void leftToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void mnuLeft_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntityAlign(this.Document.Action.SelectedEntity, EntityAlign.Left);
         }
-        private void rightToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void mnuRight_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntityAlign(this.Document.Action.SelectedEntity, EntityAlign.Right);
         }
-        private void topToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void mnuTop_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntityAlign(this.Document.Action.SelectedEntity, EntityAlign.Top);
         }
-        private void bottomToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void mnuBottom_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntityAlign(this.Document.Action.SelectedEntity, EntityAlign.Bottom);
         }
-        private void bottomTopToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuBottomTop_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntitySort(this.Document.Action.SelectedEntity, this.Document.Layers.Active, EntitySort.BottomToTop);
         }
-        private void topBottomToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuTopBottom_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntitySort(this.Document.Action.SelectedEntity, this.Document.Layers.Active, EntitySort.TopToBottom);
         }
-        private void leftRightToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuLeftRight_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntitySort(this.Document.Action.SelectedEntity, this.Document.Layers.Active, EntitySort.LeftToRight);
         }
-        private void rightLeftToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuRightLeft_Click(object sender, EventArgs e)
         {
             this.Document.Action.ActEntitySort(this.Document.Action.SelectedEntity, this.Document.Layers.Active, EntitySort.RightToLeft);
         }
-        private void btnDocumentInfo_Click(object sender, EventArgs e)
+        protected virtual void btnDocumentInfo_Click(object sender, EventArgs e)
         {
             var form = new PropertyForm(this.Document);
             form.PropertyGrid.PropertyValueChanged += Document_PropertyValueChanged;
@@ -938,67 +1784,109 @@ namespace CustomEditor
                 form.PropertyGrid.PropertyValueChanged -= Document_PropertyValueChanged;
             }
         }
-        private void Document_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        protected virtual void Document_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             string propertyName = e.ChangedItem.PropertyDescriptor.Name;
             var oldValue = e.OldValue;
             var newValue = e.ChangedItem.Value;
             Document.Action.ActDocumentPropertyChanged(Document, propertyName, oldValue, newValue);
         }
-        private void btnExplode_Click(object sender, EventArgs e)
+        protected virtual void btnExplode_Click(object sender, EventArgs e)
         {
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
             this.Document.Action.ActEntityExplode(this.Document.Action.SelectedEntity);
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
-        private void btnHatch_Click(object sender, EventArgs e)
+        protected virtual void btnHatch_Click(object sender, EventArgs e)
         {
+            if (null == this.Document.Action.SelectedEntity || 0 == this.Document.Action.SelectedEntity.Count)
+            {
+                MessageBox.Show($"Please select target entity at first", "Hatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var form = new HatchForm();
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
-
             this.Document.Action.ActEntityHatch(this.Document.Action.SelectedEntity, form.Mode, form.ZigZag, form.Angle, form.Angle2, form.Interval, form.Exclude, form.Shift);
         }
-        private void btnDelete_Click(object sender, EventArgs e)
+        protected virtual void btnDelete_Click(object sender, EventArgs e)
         {
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
             this.Document.Action.ActEntityDelete(this.Document.Action.SelectedEntity);
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
-        private void btnCopy_Click(object sender, EventArgs e)
+        protected virtual void btnCopy_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityCopy(Document.Action.SelectedEntity);
         }
-        private void btnCut_Click(object sender, EventArgs e)
+        protected virtual void btnCut_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityCut(Document.Action.SelectedEntity);
         }
-        private void btnPaste_Click(object sender, EventArgs e)
+        protected virtual void btnPaste_Click(object sender, EventArgs e)
         {
+            if (Action.ClipBoard.Count <= 0)
+            {
+                MessageBox.Show($"No Data in ClipBoard", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             this.view.Dp2Lp(this.currentMousePos, out float x, out float y);
             Document.Action.ActEntityPaste( Document.Layers.Active, x, y);
         }
-        private void btnPasteArray_Click(object sender, EventArgs e)
+        protected virtual void btnPasteArray_Click(object sender, EventArgs e)
         {
+            if (Action.ClipBoard.Count <=0)
+            {
+                MessageBox.Show($"No Data in ClipBoard", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
             var form = new PasteForm();
-            form.Clipboard = SpiralLab.Sirius.Action.ClipBoard;
+            form.Clipboard = Action.ClipBoard;
             DialogResult result = form.ShowDialog(this);
             if (result == DialogResult.OK)
             {
-                trvEntity.SuspendLayout();
+                //this.view.Dp2Lp(this.CurrentMousePos, out float x, out float y);
+                trvEntity.BeginUpdate();
                 this.Document.Action.ActEntityPasteArray(Document.Layers.Active, form.Result);
-                trvEntity.ResumeLayout();
+                trvEntity.EndUpdate();
             }
         }
-        private void btnLayer_Click(object sender, EventArgs e)
+        protected virtual void btnPasteClone_Click(object sender, EventArgs e)
         {
-            var layer = new Layer($"NoName{this.Document.Action.NewLayerIndex++}");
-            var form = new PropertyForm(layer);
-            if (DialogResult.OK != form.ShowDialog(this))
+            if (Action.ClipBoard.Count <= 0)
+            {
+                MessageBox.Show($"No Data in ClipBoard", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
-            this.Document.Action.ActEntityAdd(layer);
+            }
+            Document.Action.ActEntityPasteClone(Document.Layers.Active);
         }
-        private void btnBarcode1D_Click(object sender, EventArgs e)
+        protected virtual void btnLayer_Click(object sender, EventArgs e)
+        {
+            if (null != OnDocumentLayerNew)
+            {
+                OnDocumentLayerNewing();
+            }
+            else
+            {
+                var layer = new Layer($"NoName{this.Document.Action.NewLayerIndex++}");
+                var form = new PropertyForm(layer);
+                if (DialogResult.OK != form.ShowDialog(this))
+                    return;
+                this.OnLayerNew(layer);
+            }
+        }
+        /// <summary>
+        /// OnDocumentLayerNew 이벤트 사용시 사용자가 원하는 레이어(Layer) 생성후 OnLayerNew 함수를 통해 생성된 레이어 개체를 전달해 주어야 한다
+        /// </summary>
+        /// <param name="layer">Layer 상속 구현 객체</param>
+        /// <returns></returns>
+        public virtual bool OnLayerNew(Layer layer)
+        {
+            if (null == layer)
+                return false;
+            return this.Document.Action.ActEntityAdd(layer);
+        }
+        protected virtual void btnBarcode1D_Click(object sender, EventArgs e)
         {
             var bcd = new Barcode1D("123456789");
             var form = new PropertyForm(bcd);
@@ -1006,89 +1894,93 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(bcd);
         }
-        private void mnuDataMatrix_Click(object sender, EventArgs e)
+        protected virtual void mnuDataMatrix_Click(object sender, EventArgs e)
         {
-            var text = new BarcodeDataMatrix("SIRIUS");
+            var text = new BarcodeDataMatrix2("SIRIUS");
             var form = new PropertyForm(text);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void mnuQRCode_Click(object sender, EventArgs e)
+        protected virtual void mnuQRCode_Click(object sender, EventArgs e)
         {
-            var text = new BarcodeQR("SIRIUS");
+            var text = new BarcodeQR2("SIRIUS");
             var form = new PropertyForm(text);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-        private void btnHPGL_Click(object sender, EventArgs e)
-        {
-            ofd.Filter = "hpgl files (*.plt, *.hpgl)|*.plt;*.hpgl|All Files (*.*)|*.*";
-            ofd.Title = "Import HPGL File";
-            ofd.FileName = string.Empty;
-            DialogResult result = ofd.ShowDialog(this);
-            if (result != DialogResult.OK)
-                return;
 
-            this.Document.Action.ActImportHPGL(ofd.FileName, out var dummy);
-        }
-        private void btmImage_Click(object sender, EventArgs e)
+        protected virtual void btnHPGL_Click(object sender, EventArgs e)
         {
-            ofd.Filter = "image files (*.bmp)|*.bmp|All Files (*.*)|*.*";
+            btnImport_Click(sender, e);
+        }
+        protected virtual void btmImage_Click(object sender, EventArgs e)
+        {
+            ofd.Filter = "";
+            ofd.Multiselect = false;
+            ofd.Filter = "Supported image files (*.bmp, *.png, *.jpg, *.jpeg, *.gif, *.tif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif|All Files (*.*)|*.*";
+            ofd.DefaultExt = ".bmp"; // Default file extension 
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
             DialogResult result = ofd.ShowDialog(this);
             if (result != DialogResult.OK)
                 return;
-
             var bitmap = new SpiralLab.Sirius.Bitmap(ofd.FileName);
-            this.Document.Action.ActEntityAdd(bitmap);
+            if (null != bitmap)
+                this.Document.Action.ActEntityAdd(bitmap);
         }
-        private void textToolStripMenuItem1_Click(object sender, EventArgs e)
+        protected virtual void mnuStitchedImage_Click(object sender, EventArgs e)
         {
-            var text = new Text("HELLO");
-            var form = new PropertyForm(text);
+            var stitchedImage = new StitchedImage();
+            var form = new PropertyForm(stitchedImage);
             if (DialogResult.OK != form.ShowDialog(this))
                 return;
-            this.Document.Action.ActEntityAdd(text);
+            this.Document.Action.ActEntityAdd(stitchedImage);
         }
-        private void btnTextArc_Click(object sender, EventArgs e)
+        protected virtual void mnuLoadCellImages_Click(object sender, EventArgs e)
         {
-            var text = new TextArc("HELLO");
-            var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog(this))
+            if (0 == Document.Action.SelectedEntity.Count)
                 return;
-            this.Document.Action.ActEntityAdd(text);
-        }
+            var stitchedImage = Document.Action.SelectedEntity[0] as StitchedImage;
+            if (null == stitchedImage)
+                return;
 
-        private void timeToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            var text = new TextTime();
-            var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog(this))
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageEncoders();
+            string sep = string.Empty;
+            ofd.Filter = "";
+            foreach (var c in codecs)
+            {
+                string codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                ofd.Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, codecName, c.FilenameExtension);
+                sep = "|";
+            }
+            ofd.Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, "All Files", "*.*");
+            ofd.DefaultExt = ".bmp"; // Default file extension 
+            ofd.Title = "Import Image File";
+            ofd.FileName = string.Empty;
+            ofd.Multiselect = true;
+            DialogResult result = ofd.ShowDialog(this);
+            if (result != DialogResult.OK)
                 return;
-            this.Document.Action.ActEntityAdd(text);
-        }
 
-        private void dateToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            var text = new TextDate();
-            var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog(this))
-                return;
-            this.Document.Action.ActEntityAdd(text);
-        }
+            Array.Sort(ofd.FileNames);
+            for (int i = 0; i < ofd.FileNames.Length; i++)
+                stitchedImage.UpdateImage(i, ofd.FileNames[i]);
 
-        private void serialToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-            var text = new TextSerial();
-            var form = new PropertyForm(text);
-            if (DialogResult.OK != form.ShowDialog(this))
-                return;
-            this.Document.Action.ActEntityAdd(text);
+            this.view.Render();
         }
-        private void btnSiriusArcText_Click(object sender, EventArgs e)
+        protected virtual void mnuClearCells_Click(object sender, EventArgs e)
+        {
+            if (0 == Document.Action.SelectedEntity.Count)
+                return;
+            var stitchedImage = Document.Action.SelectedEntity[0] as StitchedImage;
+            if (null == stitchedImage)
+                return;
+            stitchedImage.ClearImages();
+            this.view.Render();
+        }
+        protected virtual void btnSiriusArcText_Click(object sender, EventArgs e)
         {
             var text = new SiriusTextArc("HELLO");
             var form = new PropertyForm(text);
@@ -1096,15 +1988,13 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-
-        private void mnuPenReturn_Click(object sender, EventArgs e)
+        protected virtual void mnuPenReturn_Click(object sender, EventArgs e)
         {
             var layer = this.Document.Layers.Active;
             uint counts = 0;
             foreach (var entity in layer)
                 if (entity is IPen)
                     counts++;
-            //현재 활성 레이어에 2개 이상의 펜이 있을 경우 생성가능하도록 처리
             if (counts < 2)
             {
                 MessageBox.Show($"Pen entity counts must be greater than 2");
@@ -1116,8 +2006,7 @@ namespace CustomEditor
             //    return;
             this.Document.Action.ActEntityAdd(pen);
         }
-
-        private void btnEllipse_Click(object sender, EventArgs e)
+        protected virtual void btnEllipse_Click(object sender, EventArgs e)
         {
             var ellipse = new Ellipse(0, 0, 10, 6, 0, 360, 0);
             var form = new PropertyForm(ellipse);
@@ -1125,66 +2014,687 @@ namespace CustomEditor
                 return;
             this.Document.Action.ActEntityAdd(ellipse);
         }
+        protected virtual void btnJump_Click(object sender, EventArgs e)
+        {
+            var jump = new SpiralLab.Sirius.Jump();
+            var form = new PropertyForm(jump);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(jump);
+        }
+        protected virtual void mnuWriteData_Click(object sender, EventArgs e)
+        {
+            var data = new WriteData();
+            var form = new PropertyForm(data);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(data);
+        }
+        protected virtual void mnuWriteExt16_Click(object sender, EventArgs e)
+        {
+            var data = new WriteDataExt16();
+            var form = new PropertyForm(data);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(data);
+        }
+        protected virtual void mnuWriteDataExt16If_Click(object sender, EventArgs e)
+        {
+            var data = new WriteDataExt16If();
+            var form = new PropertyForm(data);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(data);
+        }
+        protected virtual void waitExt16IfToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var data = new WaitDataExt16If();
+            var form = new PropertyForm(data);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(data);
+        }
+        protected virtual void mnuText_Click(object sender, EventArgs e)
+        {
+            var text = new Text("HELLO");
+            var form = new PropertyForm(text);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(text);
+        }
+        protected virtual void btnTextArc_Click(object sender, EventArgs e)
+        {
+            var text = new TextArc("HELLO");
+            var form = new PropertyForm(text);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(text);
+        }
+        protected virtual void mnuTextTime_Click(object sender, EventArgs e)
+        {
+            var text = new TextTime();
+            var form = new PropertyForm(text);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(text);
+        }
+        protected virtual void mnuTextDate_Click(object sender, EventArgs e)
+        {
+            var text = new TextDate();
+            var form = new PropertyForm(text);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(text);
+        }
+        protected virtual void mnuTextSerial_Click(object sender, EventArgs e)
+        {
+            var text = new TextSerial();
+            var form = new PropertyForm(text);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(text);
+        }
+        protected virtual void mnuZOffset_Click(object sender, EventArgs e)
+        {
+            var zOffset = new ZOffset();
+            var form = new PropertyForm(zOffset);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(zOffset);
+        }
+        protected virtual void mnuZDefocus_Click(object sender, EventArgs e)
+        {
+            var zDefocus = new ZDefocus();
+            var form = new PropertyForm(zDefocus);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(zDefocus);
+        }
         #endregion
 
-        private void contextMenuStrip2_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        protected virtual void GroupButtonEnableOrNot()
         {
-            // 그룹(Group), 언그룹(UnGroup) 메뉴의 활성화 여부 처리
-            bool groupVisible = false;
-            bool ungroupVisible = false;
             bool layer = false;
             bool group = false;
+            if (null == Document || null == Document.Action || null == Document.Action.SelectedEntity || 0 == Document.Action.SelectedEntity.Count)
+            {
+                ddbGroup.Enabled = false;
+                return;
+            }
+            else
+                ddbGroup.Enabled = true;
+
             foreach (var entity in Document.Action.SelectedEntity)
             {
                 if (entity is Layer)
-                {
-                    layer = true;
-                    break;
-                }
-                if (entity is Group)
+                    layer |= true;
+                else if (entity is Group)
                     group |= true;
             }
+
             if (layer)
             {
-                e.Cancel = true;
-                return;
+                mnuGroup.Enabled = false;
+                //mnuGroupConti.Enabled = false;
+                mnuGroupOffset.Enabled = false;
+                mnuUnGroup.Enabled = false;
             }
-            groupVisible = Document.Action.SelectedEntity.Count >= 1;
-            groupToolStripMenuItem.Enabled = groupVisible;            
-            ungroupVisible = group;
-            ungroupToolStripMenuItem.Enabled = ungroupVisible;
-            e.Cancel = !groupVisible && !ungroupVisible;
+            else
+            {
+                mnuGroup.Enabled = true;
+                if (Document.Action.SelectedEntity.Count > 0)
+                    mnuGroupOffset.Enabled = true;
+                //mnuGroupConti.Enabled = true;
+                mnuUnGroup.Enabled = true;
+            }
         }
-        private void groupToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuGroup_Click(object sender, EventArgs e)
         {
-            trvEntity.SuspendLayout();
-            Document.Action.ActEntityGroup(Document.Action.SelectedEntity);
-            trvEntity.ResumeLayout();
+            trvEntity.BeginUpdate();
+            Document.Action.ActEntityGroup(Document.Action.SelectedEntity, Document.Layers.Active);
+            trvEntity.EndUpdate();
         }
-        private void ungroupToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuGroupOffset_Click(object sender, EventArgs e)
         {
-            trvEntity.SuspendLayout();
+            trvEntity.BeginUpdate();
+            Document.Action.ActEntityGroupWithOffsets(Document.Action.SelectedEntity, Document.Layers.Active);
+            trvEntity.EndUpdate();
+        }
+        protected virtual void mnuUngroup_Click(object sender, EventArgs e)
+        {
+            trvEntity.BeginUpdate();
             Document.Action.ActEntityUngroup(Document.Action.SelectedEntity);
-            trvEntity.ResumeLayout();
+            trvEntity.EndUpdate();
         }
 
-        private void slowToolStripMenuItem_Click(object sender, EventArgs e)
+        Form markerForm = null;
+        protected virtual void mnuMarker_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnMarker)
+            {
+                this.OnMarkerShow();
+            }
+            else
+            {
+                if (null == this.Document)
+                {
+                    MessageBox.Show($"Document is not assigned ", "WARNING!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (null == this.Laser)
+                {
+                    MessageBox.Show($"Laser source is not assigned ", "WARNING!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (null == this.Rtc)
+                {
+                    MessageBox.Show($"Rtc controller is not assigned ", "WARNING!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (null == this.Marker)
+                {
+                    MessageBox.Show($"Marker is not assigned ", "WARNING!!!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                if (null == this.Marker.MarkerArg)
+                    return;
+                if (null != this.markerForm)
+                    return; //already showing...
+                if (this.Marker.IsBusy)
+                {
+                    if (DialogResult.Yes == MessageBox.Show($"Do you really want to abort the mark process ?", "WARNING!!! LASER IS BUSY", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        this.Marker.Stop();
+                        //0 ,0 으로 초기화 (이전 오프셋이 남아 있으므로)
+                        this.marker.MarkerArg.Offsets.Clear();
+                    }
+                    else
+                        return; //no control ! no download
+                 }
+                else
+                {
+                    //0 ,0 으로 초기화 (이전 오프셋이 남아 있으므로)
+                    //this.marker.MarkerArg.Offsets.Clear();
+                }
+
+                var rtcSyncAxis = this.Rtc as IRtcSyncAxis;
+                if (null != rtcSyncAxis)
+                {
+                    var form = new CustomMarkerSyncAxisForm();
+                    form.AliasName = this.Marker?.Name;
+                    form.Marker = this.Marker;
+                    form.Document = this.Document;
+                    form.Rtc = this.Rtc;
+                    form.Laser = this.Laser;
+                    form.MotorZ = this.MotorZ;
+                    form.Editor = this; //ready / downloaded !
+                    form.PowerMap = this.PowerMap;
+                    //form.TopMost = true;
+                    form.FormClosed += Form_FormClosed;
+                    form.Show(this);
+                    form.BringToFront();
+                    this.markerForm = form;
+                }
+                else
+                {
+                    var form = new CustomMarkerForm();
+                    form.AliasName = this.Marker?.Name;
+                    form.Marker = this.Marker;
+                    form.Document = this.Document;
+                    form.Rtc = this.Rtc;
+                    form.Laser = this.Laser;
+                    form.MotorZ = this.MotorZ;
+                    form.Editor = this; //ready / downloaded !
+                    form.PowerMap = this.PowerMap;
+                    //form.TopMost = true;
+                    form.FormClosed += Form_FormClosed;
+                    form.Show(this);
+                    form.BringToFront();
+                    this.markerForm = form;
+                }
+            }
+        }
+
+        protected Laser.LaserForm laserForm = null;
+        protected virtual void mnuLaser_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnLaser)
+            {
+                this.OnLaserShow();
+            }
+            else
+            {
+                if (null == this.Laser)
+                    return;
+                if (null == laserForm || laserForm.IsDisposed)
+                {
+                    this.laserForm = new Laser.LaserForm(this.Laser);
+                }
+                laserForm.Show();
+                laserForm.BringToFront();
+            }
+        }
+
+        protected Correction2DRtcForm correction2DForm = null;
+        protected virtual void mnuCorrection2D_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnCorrection2D)
+            {
+                this.OnCorrection2DShow();
+            }
+            else
+            {
+                if (null == this.Rtc)
+                    return;
+
+                if (null == correction2DForm || correction2DForm.IsDisposed)
+                {
+                    int rows = 5;
+                    int cols = 5;
+                    float interval = 10.0f;
+                    var correction2D = new Correction2DRtc(this.Rtc.KFactor, rows, cols, interval, interval, this.Rtc.CorrectionFiles[0].FileName, string.Empty);
+                    float left = -interval * (float)(int)(cols / 2);
+                    float top = interval * (float)(int)(rows / 2);
+                    var rand = new Random();
+                    for (int row = 0; row < rows; row++)
+                    {
+                        for (int col = 0; col < cols; col++)
+                        {
+                            correction2D.AddRelative(row, col,
+                                new Vector2(
+                                    left + col * interval,
+                                    top - row * interval),
+                                new Vector2(
+                                    rand.Next(20) / 1000.0f - 0.01f,
+                                    rand.Next(20) / 1000.0f - 0.01f)
+                                );
+                        }
+                    }
+                    this.correction2DForm = new Correction2DRtcForm(correction2D);
+                }
+                correction2DForm.Show();
+                correction2DForm.BringToFront();
+            }
+        }
+
+        protected Correction3DRtcForm correction3DRtcForm = null;
+        protected virtual void mnuCorrection3D_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnCorrection3D)
+            {
+                this.OnCorrection3DShow();
+            }
+            else
+            {
+                if (null == this.Rtc)
+                    return;
+                
+                if (null == correction2DForm || correction2DForm.IsDisposed)
+                {
+                    int rows = 3;
+                    int cols = 3;
+                    float interval = 30;
+                    float upper = 0;
+                    float lower = -20;
+                    var correction3D = new Correction3DRtc(this.Rtc.KFactor, rows, cols, interval, upper, lower, this.Rtc.CorrectionFiles[0].FileName, string.Empty);
+                    float left = -interval * (float)(int)(cols / 2);
+                    float top = interval * (float)(int)(rows / 2);
+                    var rand = new Random();
+                    for (int row = 0; row < rows; row++)
+                    {
+                        for (int col = 0; col < cols; col++)
+                        {
+                            correction3D.AddRelative(row, col,
+                                new Vector3(
+                                    left + col * interval,
+                                    top - row * interval,
+                                    upper),
+                                new Vector3(
+                                    rand.Next(20) / 1000.0f - 0.01f,
+                                    rand.Next(20) / 1000.0f - 0.01f,
+                                    upper)
+                                );
+                        }
+                    }
+                    for (int row = 0; row < rows; row++)
+                    {
+                        for (int col = 0; col < cols; col++)
+                        {
+                            correction3D.AddRelative(row, col,
+                                new Vector3(
+                                    left + col * interval,
+                                    top - row * interval,
+                                    lower),
+                                new Vector3(
+                                    rand.Next(20) / 1000.0f - 0.01f,
+                                    rand.Next(20) / 1000.0f - 0.01f,
+                                    lower)
+                                );
+                        }
+                    }
+                    this.correction3DRtcForm = new Correction3DRtcForm(correction3D);
+                }
+                correction3DRtcForm.Show();
+                correction3DRtcForm.BringToFront();
+            }
+        }
+        protected virtual void mnuMeasurementFilePlotTool_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnMeasurement)
+            {
+                this.OnMeasurementShow();
+            }
+            else
+            {
+                var dlg = new OpenFileDialog();
+                dlg.Filter = "measurement data files (*.txt)|*.txt|All Files (*.*)|*.*";
+                dlg.Title = "Open measurement data file";
+                dlg.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot");
+                DialogResult result = dlg.ShowDialog();
+                if (result != DialogResult.OK)
+                    return;
+                MeasurementHelper.Plot(dlg.FileName);
+            }
+        }
+
+        protected RtcIOForm rtcIOForm = null;
+        protected virtual void mnuIO_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnIO)
+            {
+                this.OnIOShow();
+            }
+            else
+            {
+                if (null == rtcIOForm || rtcIOForm.IsDisposed)
+                {
+                    this.rtcIOForm = new RtcIOForm(this.Rtc, RtcPin2Input, RtcPin2Output, RtcExtension1Input, RtcExtension1Output, RtcExtension2Output);
+                }
+                rtcIOForm.Show();
+                rtcIOForm.BringToFront();
+            }
+        }
+
+        protected PowerMeterForm powerMeterForm = null;
+        protected virtual void mnuPowerMeter_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnPowerMeter)
+            {
+                this.OnPowerMeterShow();
+            }
+            else
+            {
+                if (null != this.PowerMeter)
+                {
+                    if (null == powerMeterForm || powerMeterForm.IsDisposed)
+                    {
+                        this.powerMeterForm = new PowerMeterForm(this.PowerMeter, this.Laser);
+                    }
+                    powerMeterForm.Show();
+                    powerMeterForm.BringToFront();
+                }
+            }
+        }
+
+        protected PowerMapForm powerMapForm = null;
+        protected virtual void mnuPowerMap_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnPowerMap)
+            {
+                this.OnPowerMapShow();
+            }
+            else
+            {
+                if (null != this.PowerMap)
+                {
+
+                    if (null == powerMapForm || powerMapForm.IsDisposed)
+                    {
+                        this.powerMapForm = new PowerMapForm(this.PowerMap, this.Rtc, this.Laser, this.PowerMeter);
+                    }
+                    powerMapForm.Show(); 
+                    powerMapForm.BringToFront();
+
+                    //ShowDialog() 후 Cancel 선택할 경우 데이타 원복하는 기능인데 ....흠 
+                    //
+                    //var oldData = new System.Collections.Concurrent.ConcurrentDictionary<string, SortedDictionary<float, float>>(this.PowerMap.Data);
+                    ////var cloned = (IPowerMap)this.PowerMap.Clone(); 
+                    //var form = new PowerMapForm(this, this.PowerMap, this.Rtc, this.Laser, this.PowerMeter);
+                    //if (form.ShowDialog(this) == DialogResult.OK)
+                    //{
+                    //}
+                    //else
+                    //{ 
+                    //    //revert to old data
+                    //    this.PowerMap.Data = oldData;
+                    //}
+                }
+            }
+        }
+
+        protected Motor.MotorForm motorForm = null;
+        protected Motor.MotorsForm motorsForm = null;
+        protected virtual void mnuMotor_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnMotor)
+            {
+                this.OnMotorShow();
+            }
+            else
+            {
+                if (null != this.MotorZ)
+                {
+                    if (null == motorForm || motorForm.IsDisposed)
+                    {
+                        this.motorForm = new SpiralLab.Sirius.Motor.MotorForm(this.MotorZ);
+                    }
+                    motorForm.Show();
+                    motorForm.BringToFront();
+                }
+                if (null != this.Motors)
+                {
+                    if (null == motorsForm || motorsForm.IsDisposed)
+                    {
+                        this.motorsForm = new SpiralLab.Sirius.Motor.MotorsForm(this.Document, this.Motors);
+                    }
+                    motorsForm.Show();
+                    motorsForm.BringToFront();
+                }
+            }
+        }
+        protected virtual void mnuSimulateSlow_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Slow);
         }
-
-        private void normalToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuSimulateNormal_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Normal);
         }
-
-        private void fastToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuSimulateFast_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Fast);
         }
-        private void stopToolStripMenuItem_Click(object sender, EventArgs e)
+        protected virtual void mnuSimulateStop_Click(object sender, EventArgs e)
         {
             Document.Action.ActEntityLaserPathSimulateStop();
+        }
+        protected virtual void mnuJog_Click(object sender, EventArgs e)
+        {
+            var item = sender as ToolStripMenuItem;
+            string[] tokens = ((string)item.Tag).Split(',');
+            Debug.Assert(tokens.Length == 2);
+            float dx = float.Parse(tokens[0]);
+            float dy = float.Parse(tokens[1]);
+            Document.Action.ActEntityTransit(Document.Action.SelectedEntity, dx, dy);
+        }
+        protected virtual void mnuLogWindow_Click(object sender, EventArgs e)
+        {
+            if (null == logForm || logForm.IsDisposed)
+            {
+                CustomEditorForm.logForm = new LogForm();
+                Logger.OnLogged += Logger_OnLogged;
+            }
+            logForm.Show();
+            logForm.BringToFront();
+        }
+        protected virtual void btnDivide_Click(object sender, EventArgs e)
+        {
+            if (null == this.Document.Action.SelectedEntity || 0 == this.Document.Action.SelectedEntity.Count)
+            {
+                MessageBox.Show($"Please select target entity at first", "Hatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            var form = new DivideForm(this.Document.Action.SelectedEntity, this.View);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+
+            this.Document.Action.ActEntityDivide(this.Document.Action.SelectedEntity, form.Rects);
+        }
+        protected virtual void mnuMeasurementBegin_Click(object sender, EventArgs e)
+        {
+            {
+                var begin = new MeasurementBegin();
+                var form = new PropertyForm(begin);
+                if (DialogResult.OK != form.ShowDialog(this))
+                    return;
+                this.Document.Action.ActEntityAdd(begin);
+            }
+            {
+                var end = new MeasurementEnd();
+                //var form = new PropertyForm(end);
+                //if (DialogResult.OK != form.ShowDialog(this))
+                //return;
+                this.Document.Action.ActEntityAdd(end);
+            }
+        }
+        protected virtual void btnToArc_Click(object sender, EventArgs e)
+        {
+            if (null == this.Document.Action.SelectedEntity || 1 != this.Document.Action.SelectedEntity.Count || !(this.Document.Action.SelectedEntity[0] is LwPolyline))
+            {
+                MessageBox.Show($"Please select target polyline at first", "Hatch", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            trvEntity.BeginUpdate();
+            this.Document.Action.ActEntityLWPolylineToArc(this.Document.Action.SelectedEntity[0] as LwPolyline);
+            trvEntity.EndUpdate();
+        }
+        protected virtual void btnTransit_Click(object sender, EventArgs e)
+        {
+            var form = new TransitForm(this.Document);
+            form.ShowDialog(this);
+        }
+        protected virtual void btnPens_Click(object sender, EventArgs e)
+        {
+            var doc = this.Document as DocumentDefault;
+            if (null == doc)
+                return;
+
+            var clonedPens = (Pens)doc.Pens.Clone();
+            clonedPens.Owner = doc;
+            var form = new PensForm(clonedPens.ToArray(), this.PowerMap);
+            DialogResult result = form.ShowDialog(this);
+            if (result != DialogResult.OK)
+                return;
+            doc.Pens.Clear();
+            for (int i = 0; i < form.Pens.Count; i++)
+            {
+                doc.Pens.Add((IPen)form.Pens[i].Clone());
+            }
+            Logger.Log(Logger.Type.Debug, $"updated pen list at editor");
+        }
+        protected virtual void chbLock_CheckedChanged(object sender, EventArgs e)
+        {
+            if (null == this.Document)
+                return;
+            this.Document.IsEditorLock = chbLock.Checked;
+            if (this.Document.IsEditorLock)
+            {
+                trvEntity.Enabled = false;
+                ppgEntity.Enabled = false;
+            }
+            else
+            {
+                trvEntity.Enabled = true;
+                ppgEntity.Enabled = true;
+            }
+        }
+
+        protected PropertyForm rtcForm = null;
+        protected virtual void mnuRtc_Click(object sender, EventArgs e)
+        {
+            if (null != this.OnRtc)
+            {
+                this.OnRtcShow();
+            }
+            else
+            {
+                if (null == this.Rtc)
+                    return;
+
+                if (null == rtcForm || rtcForm.IsDisposed)
+                {
+                    this.rtcForm = new PropertyForm(this.Rtc);
+                }
+                rtcForm.Show();
+                rtcForm.BringToFront();
+            }
+        }
+        protected virtual void mnuAbout_Click(object sender, EventArgs e)
+        {
+            var form = new AboutForm();
+            form.ShowDialog();
+        }
+        protected virtual void mnuCircle_Click(object sender, EventArgs e)
+        {
+            var circle = new Circle3D(0, 0, 0, 10);
+            var form = new PropertyForm(circle);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(circle);
+        }
+        protected virtual void mnuTriangle_Click(object sender, EventArgs e)
+        {
+            var triangle = new Triangle3D(0, 0, 0, 10, 10);
+            var form = new PropertyForm(triangle);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(triangle);
+        }
+        protected virtual void mnuFiducial_Click(object sender, EventArgs e)
+        {
+            var fiducial = new Fiducial(0, 0);
+            var form = new PropertyForm(fiducial);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(fiducial);
+        }
+        protected virtual void mnuCalculationDynamics_Click(object sender, EventArgs e)
+        {
+            var cd = new SyncAxisCalculationDynamics();
+            var form = new PropertyForm(cd);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(cd);
+        }
+        protected virtual void mnuMOTFAngularBeginEnd_Click(object sender, EventArgs e)
+        {
+            {
+                var motfBegin = new MotfAngularBegin();
+                var form = new PropertyForm(motfBegin);
+                if (DialogResult.OK != form.ShowDialog(this))
+                    return;
+                this.Document.Action.ActEntityAdd(motfBegin);
+                var motfEnd = new MotfEnd();
+                this.Document.Action.ActEntityAdd(motfEnd);
+            }
+        }
+        protected virtual void mnuMotfAngularWait_Click(object sender, EventArgs e)
+        {
+            var motf = new MotfAngularWait();
+            var form = new PropertyForm(motf);
+            if (DialogResult.OK != form.ShowDialog(this))
+                return;
+            this.Document.Action.ActEntityAdd(motf);
         }
     }
 }

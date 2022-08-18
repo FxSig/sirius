@@ -26,6 +26,10 @@ namespace SpiralLab.Sirius
         /// </summary>
         public event MarkerEventHandler OnProgress;
         /// <summary>
+        /// 가공 실패
+        /// </summary>
+        public event MarkerEventHandler OnFailed;
+        /// <summary>
         /// 계측 이벤트 핸들러
         /// </summary>
         public event MeasureEventHandler OnMeasurement;
@@ -453,7 +457,17 @@ namespace SpiralLab.Sirius
                 foreach (MarkerEventHandler receiver in receivers)
                     receiver.BeginInvoke(this, this.MarkerArg, null, null);
         }
-
+        /// <summary>
+        /// 가공 진행률
+        /// (MarkerArg 의 Progress 값이 0~100 사이)
+        /// </summary>
+        public virtual void NotifyFailed()
+        {
+            var receivers = this.OnFailed?.GetInvocationList();
+            if (null != receivers)
+                foreach (MarkerEventHandler receiver in receivers)
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
+        }
         protected MeasurementBegin entityMeasurementBegin;
         protected MeasurementEnd entityMeasurementEnd;
         /// <summary>

@@ -16,8 +16,8 @@
  *               `---`            `---'                                                        `----'   
  * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
- * SiriusViewerForm
- * Description : 가공 데이타 (Document)를 화면에 출력 하는 뷰어(viewer) 기능을 수행한다.
+ * CustomViewerForm
+ * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -33,20 +33,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using SharpGL;
 using System.Diagnostics;
-using SpiralLab.Sirius;
 
-namespace CustomEditor
+namespace SpiralLab.Sirius
 {
+    /// <summary>
+    /// 커스텀 시리우스 뷰어
+    /// </summary>
     public partial class CustomViewerForm : Form
     {
         /// <summary>
         /// 식별 번호
         /// </summary>
-        public uint Index { get; set; }
+        public virtual uint Index { get; set; }
         /// <summary>
         /// 상태바에 출력되는 이름
         /// </summary>
-        public string AliasName
+        public virtual string AliasName
         {
             get
             {
@@ -60,7 +62,7 @@ namespace CustomEditor
         /// <summary>
         /// 상태바에 출력되는 진행상태 (0~100)
         /// </summary>
-        public int Progress
+        public virtual int Progress
         {
             get
             {
@@ -68,36 +70,55 @@ namespace CustomEditor
             }
             set
             {
-                this.pgbProgress.Value = value;
+                if (!this.IsHandleCreated || this.IsDisposed)
+                    return;
+                statusStrip1.BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    this.pgbProgress.Value = value;
+                }));
             }
         }
         /// <summary>
         /// 상태바에 출력되는 작업 파일이름
         /// </summary>
-        public string FileName
+        public virtual string FileName
         {
             get
             {
                 return this.lblFileName.Text;
             }
-            private set
+            set
             {
-                this.lblFileName.Text = value;
+                if (!this.IsHandleCreated)
+                    return;
+                statusStrip1.BeginInvoke(new MethodInvoker(delegate ()
+                {
+                    this.lblFileName.Text = value;
+                }));
             }
         }
-
+        /// <summary>
+        /// 가공 소요 시간  (sec)
+        /// </summary>
+        public virtual float ProcessingTime
+        {          
+            set
+            {
+                lblProcessingTime.Text = $"{value:F1} s"; ;
+            }
+        }
         /// <summary>
         /// 뷰 객체
         /// </summary>
-        public IView View
+        public virtual IView View
         {
             get { return this.view; }
         }
-        IView view;
+        protected IView view;
         /// <summary>
         /// 문서 컨테이너 객체
         /// </summary>
-        public IDocument Document
+        public virtual IDocument Document
         {
             get { return this.doc; }
             set
@@ -130,7 +151,7 @@ namespace CustomEditor
                 this.view.OnZoomFit();
             }
         }
-        IDocument doc;
+        protected IDocument doc;
 
         /// <summary>
         /// 생성자
@@ -147,23 +168,23 @@ namespace CustomEditor
             this.GLcontrol.MouseWheel += new MouseEventHandler(this.OnMouseWheel);
             this.GLcontrol.OpenGLDraw += new RenderEventHandler(this.OnDraw);
         }
-        private void OnInitialized(object sender, EventArgs e)
+        protected virtual void OnInitialized(object sender, EventArgs e)
         {
             this.view?.OnInitialized(sender, e);
         }
-        private void OnResized(object sender, EventArgs e)
+        protected virtual void OnResized(object sender, EventArgs e)
         {
             this.view?.OnResized(sender, e);
         }
-        private void OnMouseDown(object sender, MouseEventArgs e)
+        protected virtual void OnMouseDown(object sender, MouseEventArgs e)
         {           
             this.view?.OnMouseDown(sender, e);
         }
-        private void OnMouseUp(object sender, MouseEventArgs e)
+        protected virtual void OnMouseUp(object sender, MouseEventArgs e)
         {
             this.view?.OnMouseUp(sender, e);
         }
-        private void OnMouseMove(object sender, MouseEventArgs e)
+        protected virtual void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (null != this.view)
             {
@@ -173,35 +194,43 @@ namespace CustomEditor
                 this.lblYPos.Text = $"Y: {y:F3}";
             }
         }
-        private void OnMouseWheel(object sender, MouseEventArgs e)
+        protected virtual void OnMouseWheel(object sender, MouseEventArgs e)
         {
             this.view?.OnMouseWheel(sender, e);
         }
-        private void OnDraw(object sender, RenderEventArgs args)
+        protected virtual void OnDraw(object sender, RenderEventArgs args)
         {
             if (null == this.view)
                 return;
             var sw = Stopwatch.StartNew();
             this.view.OnDraw();
-            lblRenderTime.Text = $"Render: {sw.ElapsedMilliseconds} ms";            
+            //lblRenderTime.Text = $"Render: {sw.ElapsedMilliseconds} ms";            
         }
-
-        private void btnZoomOut_Click(object sender, EventArgs e)
+        public override void Refresh()
+        {
+            base.Refresh();
+            this.view.Render();
+        }
+        protected virtual void btnZoomOut_Click(object sender, EventArgs e)
         {
             this.view?.OnZoomOut(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
         }
-
-        private void btnZoomIn_Click(object sender, EventArgs e)
+        protected virtual void btnZoomIn_Click(object sender, EventArgs e)
         {
             this.view?.OnZoomIn(new System.Drawing.Point(GLcontrol.Width / 2, GLcontrol.Height / 2));
         }
-
-        private void btnZoomFit_Click(object sender, EventArgs e)
+        protected virtual void btnZoomFit_Click(object sender, EventArgs e)
         {
-            this.view?.OnZoomFit();
+            var br = new BoundRect();
+            if (null != Document.Action.SelectedEntity)
+                foreach (var entity in Document.Action.SelectedEntity)
+                    br.Union(entity.BoundRect);
+            if (!br.IsEmpty)
+                this.view?.OnZoomFit(br);
+            else
+                this.view?.OnZoomFit();
         }
-
-        private void btnPan_Click(object sender, EventArgs e)
+        protected virtual void btnPan_Click(object sender, EventArgs e)
         {
             this.view?.OnPan(btnPan.Checked);
         }

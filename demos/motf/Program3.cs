@@ -100,7 +100,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'D' : draw circle with dual head offset");
+                Console.WriteLine("'D' : write data to extension ports");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");

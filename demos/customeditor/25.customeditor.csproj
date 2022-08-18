@@ -74,6 +74,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomMarkerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMarkerForm.Designer.cs">
+      <DependentUpon>CustomMarkerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomMarkerSyncAxisForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomMarkerSyncAxisForm.Designer.cs">
+      <DependentUpon>CustomMarkerSyncAxisForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CustomEditorForm.cs">
@@ -88,6 +100,12 @@
     <Compile Include="CustomViewerForm.Designer.cs">
       <DependentUpon>CustomViewerForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CustomMarkerForm.resx">
+      <DependentUpon>CustomMarkerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomMarkerSyncAxisForm.resx">
+      <DependentUpon>CustomMarkerSyncAxisForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

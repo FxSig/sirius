@@ -167,7 +167,7 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.F2:
                         {
-                            var form = new PowerMapForm(null, powerMap, rtc, laser, powerMeter);
+                            var form = new PowerMapForm(powerMap, rtc, laser, powerMeter);
                             form.ShowDialog();
                         }
                         break;

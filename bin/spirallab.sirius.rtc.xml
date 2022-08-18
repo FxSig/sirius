@@ -3122,6 +3122,11 @@
             ILaser 인터페이스 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Location">
+            <summary>
+            스캐너 출사 위치 (기본값 : 0,0 원점)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMapStartArg.HoldTimeMsec">
             <summary>
             측정을 위한 레이저 출사 시간 (msec)
@@ -3167,6 +3172,11 @@
             ILaser 인터페이스 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Location">
+            <summary>
+            스캐너 출사 위치 (기본값 : 0,0 원점)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.HoldTimeMsec">
             <summary>
             측정을 위한 레이저 출사 시간 (msec)
@@ -3207,6 +3217,11 @@
             ILaser 인터페이스 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Location">
+            <summary>
+            스캐너 출사 위치 (기본값 : 0,0 원점)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.HoldTimeMsec">
             <summary>
             출사 유지시간 (msec)
@@ -3245,6 +3260,11 @@
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Laser">
             <summary>
             ILaser 인터페이스 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Location">
+            <summary>
+            스캐너 출사 위치 (기본값 : 0,0 원점)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.HoldTimeMsec">
@@ -8610,6 +8630,16 @@
             상태 (에러 발생 여부)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsTimedOut">
+            <summary>
+            통신 타임아웃 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.IsProtocolError">
+            <summary>
+            통신 프로토콜 포맷 에러 여부
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스
@@ -8618,6 +8648,16 @@
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.PowerControlMethod">
+            <summary>
+            파워 변경 방식
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.PowerMap">
+            <summary>
+            파워 매핑 테이블
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterControl">
@@ -9253,7 +9293,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFailed">
             <summary>
-            매핑 중지
+            파워 매핑 실패
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFinished">
@@ -9275,7 +9315,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFailed">
             <summary>
-            검증 중지
+            파워 검증 실패
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFinished">
@@ -9537,7 +9577,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFailed">
             <summary>
-            매핑 중지
+            파워 매핑 실패
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFinished">
@@ -9559,7 +9599,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFailed">
             <summary>
-            검증 중지
+            파워 검증 실패
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFinished">
@@ -9876,10 +9916,20 @@
             측정 데이타 큐의 버퍼 최대 크기(개수)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.Int32)">
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.Single,System.Int32)">
             <summary>
             생성자
             </summary>
+            <param name="maxWatt">가상 출력 최대 크기 (W)</param>
+            <param name="maxBufferCounts">버퍼의 최대 크기</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMeterVirtual.#ctor(System.Int32,System.String,System.Single,System.Int32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="maxWatt">가상 출력 최대 크기 (W)</param>
             <param name="maxBufferCounts">버퍼의 최대 크기</param>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMeterVirtual.Initialize">

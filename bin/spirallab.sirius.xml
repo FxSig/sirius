@@ -2405,11 +2405,11 @@
             현재 선택된 모터 위치
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Motor.MotorsForm.#ctor(SpiralLab.Sirius.SiriusEditorForm,SpiralLab.Sirius.IMotors)">
+        <member name="M:SpiralLab.Sirius.Motor.MotorsForm.#ctor(SpiralLab.Sirius.IDocument,SpiralLab.Sirius.IMotors)">
             <summary>
             생성자
             </summary>
-            <param name="editor">편집기</param>
+            <param name="doc">문서</param>
             <param name="motors">모터 집합 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.Motor.MotorsForm.components">
@@ -2467,6 +2467,14 @@
             파뭐 검증 인자 편집용 윈폼
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVerifyForm.CategoryWattValue.#ctor(System.String,System.Single,System.Boolean)">
+            <summary>
+            생성자
+            </summary>
+            <param name="category">카테고리</param>
+            <param name="watt">목표 파워</param>
+            <param name="enable">활성화 여부</param>
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyForm.CategoryWatts">
             <summary>
             카테고리/파워 리스트 (바인딩 용)
@@ -2508,6 +2516,13 @@
             <summary>
             파뭐 매핑 인자 편집용 윈폼
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCategoriesForm.CategoryValue.#ctor(System.String,System.Boolean)">
+            <summary>
+            생성자
+            </summary>
+            <param name="category">카테고리</param>
+            <param name="enable">활성화 여부</param>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapCategoriesForm.Categories">
             <summary>
@@ -3149,11 +3164,10 @@
             파워매핑이 종료되어야 하는지 여부
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapForm.#ctor(SpiralLab.Sirius.SiriusEditorForm,SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,SpiralLab.Sirius.IPowerMeter)">
+        <member name="M:SpiralLab.Sirius.PowerMapForm.#ctor(SpiralLab.Sirius.IPowerMap,SpiralLab.Sirius.IRtc,SpiralLab.Sirius.ILaser,SpiralLab.Sirius.IPowerMeter)">
             <summary>
             생성자
             </summary>
-            <param name="editor">SiriusEditorForm 편집기</param>
             <param name="powerMap">대상 파워맵</param>
             <param name="rtc">IRtc 인터페이스</param>
             <param name="laser">ILaser 인터페이스</param>
@@ -5116,6 +5130,11 @@
         <member name="T:SpiralLab.Sirius.PenDefault">
             <summary>
             Pen 엔티티 객체 (기본 버전)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PenDefault.powerMax">
+            <summary>
+            설정 가능한 최대 파워값 (W)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.PowerMap">
@@ -7841,10 +7860,20 @@
             다양한 오프셋 위치에 레이저 가공을 수행하는 마커(Marker) 인터페이스
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.IMarker.OnStarted">
+            <summary>
+            가공 시작 이벤트 핸들러
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnProgress">
             <summary>
             가공 진행률 이벤트 핸들러
             0~100 %
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IMarker.OnFailed">
+            <summary>
+            가공 실패 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnFinished">
@@ -7904,7 +7933,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.IsEnablePens">
             <summary>
-            펜 객체 집합을 사용할지 여부
+            펜 객체 집합을 사용할지 여부 (기본값 true)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.MarkCounts">
@@ -7969,7 +7998,12 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.NotifyStarted">
             <summary>
-            가공 시작
+            가공 시작 통지
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyFailed">
+            <summary>
+            가공 실패 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.NotifyProgressing">
@@ -7978,17 +8012,17 @@
             (MarkerArg 의 Progress 값이 0~100 사이)
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.IMarker.NotifyFinished">
+            <summary>
+            가공 완료시 통지
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IMarker.NotifyMeasuring(SpiralLab.Sirius.IRtcMeasurement,SpiralLab.Sirius.MeasurementBegin)">
             <summary>
-            계측 발생시 
+            계측 발생 통지
             </summary>
             <param name="rtcMeasurement"></param>
             <param name="measurementBegin"></param>
-        </member>
-        <member name="M:SpiralLab.Sirius.IMarker.NotifyFinished">
-            <summary>
-            가공 완료시
-            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.RasterDirection">
             <summary>
@@ -8052,6 +8086,11 @@
             <summary>
             진행률 이벤트 핸들러
             IMarkerArg 인자의 Progress 값이 0~100 범위에서 증가
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MarkerDefault.OnFailed">
+            <summary>
+            가공 실패 이벤트 핸들러
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnFinished">
@@ -8261,6 +8300,11 @@
             <summary>
             가공 진행률
             (MarkerArg 의 Progress 값이 0~100 사이)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyFailed">
+            <summary>
+            가공 실패 통지
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyMeasuring(SpiralLab.Sirius.IRtcMeasurement,SpiralLab.Sirius.MeasurementBegin)">
@@ -9159,7 +9203,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.SiriusPreviewForm">
             <summary>
-            PLT, DXF 파일 미리보기용 폼
+            PLT, DXF, STL 파일 미리보기용 폼
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SiriusPreviewForm.components">

@@ -152,7 +152,7 @@ namespace SpiralLab.Sirius
 
             #region PowerMeter
             // 파워메터
-            var powerMeter = new PowerMeterVirtual(0, "Virtual");
+            var powerMeter = new PowerMeterVirtual(0, "Virtual", laser.MaxPowerWatt);
             //var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
             //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
