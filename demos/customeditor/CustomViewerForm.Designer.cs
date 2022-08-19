@@ -77,14 +77,14 @@
             // 
             this.lblName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(55, 24);
+            this.lblName.Size = new System.Drawing.Size(85, 22);
             this.lblName.Text = "NoName";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel1.Text = " ";
             // 
             // pgbProgress
@@ -92,7 +92,7 @@
             this.pgbProgress.AutoSize = false;
             this.pgbProgress.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pgbProgress.Name = "pgbProgress";
-            this.pgbProgress.Size = new System.Drawing.Size(50, 23);
+            this.pgbProgress.Size = new System.Drawing.Size(50, 21);
             this.pgbProgress.Step = 1;
             // 
             // lblProcessingTime
@@ -100,7 +100,7 @@
             this.lblProcessingTime.AutoSize = false;
             this.lblProcessingTime.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProcessingTime.Name = "lblProcessingTime";
-            this.lblProcessingTime.Size = new System.Drawing.Size(60, 24);
+            this.lblProcessingTime.Size = new System.Drawing.Size(60, 22);
             this.lblProcessingTime.Text = "0.000";
             // 
             // lblXPos
@@ -108,7 +108,7 @@
             this.lblXPos.AutoSize = false;
             this.lblXPos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXPos.Name = "lblXPos";
-            this.lblXPos.Size = new System.Drawing.Size(70, 24);
+            this.lblXPos.Size = new System.Drawing.Size(70, 22);
             this.lblXPos.Text = "X: 0.000";
             // 
             // lblYPos
@@ -116,21 +116,21 @@
             this.lblYPos.AutoSize = false;
             this.lblYPos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYPos.Name = "lblYPos";
-            this.lblYPos.Size = new System.Drawing.Size(70, 24);
+            this.lblYPos.Size = new System.Drawing.Size(70, 22);
             this.lblYPos.Text = "Y: 0.000";
             // 
             // toolStripStatusLabel3
             // 
             this.toolStripStatusLabel3.AutoSize = false;
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel3.Text = " ";
             // 
             // lblFileName
             // 
             this.lblFileName.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(46, 24);
+            this.lblFileName.Size = new System.Drawing.Size(69, 22);
             this.lblFileName.Text = "NoName";
             // 
             // toolStrip1
@@ -150,14 +150,14 @@
             this.toolStripSeparator9});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(784, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(784, 33);
             this.toolStrip1.TabIndex = 11;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
             // 
             // btnZoomOut
             // 
@@ -165,7 +165,7 @@
             this.btnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.Image")));
             this.btnZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomOut.Size = new System.Drawing.Size(34, 28);
             this.btnZoomOut.Text = "toolStripButton3";
             this.btnZoomOut.ToolTipText = "Zoom Out";
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
@@ -176,7 +176,7 @@
             this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
             this.btnZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomIn.Size = new System.Drawing.Size(34, 28);
             this.btnZoomIn.Text = "toolStripButton2";
             this.btnZoomIn.ToolTipText = "Zoom In";
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
@@ -184,7 +184,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // btnZoomFit
             // 
@@ -192,7 +192,7 @@
             this.btnZoomFit.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomFit.Image")));
             this.btnZoomFit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomFit.Name = "btnZoomFit";
-            this.btnZoomFit.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomFit.Size = new System.Drawing.Size(34, 28);
             this.btnZoomFit.Text = "toolStripButton1";
             this.btnZoomFit.ToolTipText = "Zoom Fit";
             this.btnZoomFit.Click += new System.EventHandler(this.btnZoomFit_Click);
@@ -200,7 +200,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // btnPan
             // 
@@ -209,7 +209,7 @@
             this.btnPan.Image = ((System.Drawing.Image)(resources.GetObject("btnPan.Image")));
             this.btnPan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPan.Name = "btnPan";
-            this.btnPan.Size = new System.Drawing.Size(28, 28);
+            this.btnPan.Size = new System.Drawing.Size(34, 28);
             this.btnPan.Text = "toolStripButton1";
             this.btnPan.ToolTipText = "Pan";
             this.btnPan.Click += new System.EventHandler(this.btnPan_Click);
@@ -217,25 +217,25 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 33);
             // 
             // GLcontrol
             // 
             this.GLcontrol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GLcontrol.DrawFPS = false;
             this.GLcontrol.FrameRate = 60;
-            this.GLcontrol.Location = new System.Drawing.Point(0, 31);
+            this.GLcontrol.Location = new System.Drawing.Point(0, 33);
             this.GLcontrol.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.GLcontrol.Name = "GLcontrol";
             this.GLcontrol.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.GLcontrol.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.GLcontrol.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.GLcontrol.Size = new System.Drawing.Size(784, 541);
+            this.GLcontrol.Size = new System.Drawing.Size(784, 539);
             this.GLcontrol.TabIndex = 12;
             // 
             // CustomViewerForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(784, 601);
@@ -245,6 +245,7 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CustomViewerForm";
+            this.Text = "Custom Viewer - (c)SpiralLAB";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);

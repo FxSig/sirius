@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
- * CustomViewerForm
+ * Custom Viewer Form
  * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
@@ -39,7 +39,9 @@ namespace SpiralLab.Sirius
     /// <summary>
     /// 커스텀 시리우스 뷰어
     /// </summary>
-    public partial class CustomViewerForm : Form
+    public partial class CustomViewerForm 
+        : Form
+        //: UserControl
     {
         /// <summary>
         /// 식별 번호
@@ -50,24 +52,15 @@ namespace SpiralLab.Sirius
         /// </summary>
         public virtual string AliasName
         {
-            get
-            {
-                return this.lblName.Text;
-            }
-            set
-            {
-                this.lblName.Text = value;
-            }
+            get { return this.lblName.Text; }
+            set { this.lblName.Text = value; }
         }
         /// <summary>
         /// 상태바에 출력되는 진행상태 (0~100)
         /// </summary>
         public virtual int Progress
         {
-            get
-            {
-                return this.pgbProgress.Value;
-            }
+            get { return this.pgbProgress.Value; }
             set
             {
                 if (!this.IsHandleCreated || this.IsDisposed)
@@ -83,10 +76,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public virtual string FileName
         {
-            get
-            {
-                return this.lblFileName.Text;
-            }
+            get { return this.lblFileName.Text; }
             set
             {
                 if (!this.IsHandleCreated)
@@ -102,10 +92,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public virtual float ProcessingTime
         {          
-            set
-            {
-                lblProcessingTime.Text = $"{value:F1} s"; ;
-            }
+            set { lblProcessingTime.Text = $"{value:F1} s"; ; }
         }
         /// <summary>
         /// 뷰 객체

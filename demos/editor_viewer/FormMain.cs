@@ -21,6 +21,7 @@ namespace SpiralLab.Sirius
             this.FormClosing += MainForm_FormClosing;
 
             SpiralLab.Core.Initialize();
+            siriusEditorForm1.EnablePens = true;
 
             // 문서 생성
             var doc = new DocumentDefault();
@@ -28,13 +29,6 @@ namespace SpiralLab.Sirius
             //에디터에 문서 지정시 레이어가 없으면 자동 생성됨
             siriusEditorForm1.Document = doc;
             siriusViewerForm1.Document = doc;
-
-            if (!siriusEditorForm1.EnablePens)
-            {
-                // 기본 펜 생성후 문서에 추가
-                var pen = new PenDefault();
-                doc.Action.ActEntityAdd(pen);
-            }
 
             // 소스 문서(IDocument) 가 변경될경우 다른 멀티 뷰에 이를 통지하는 이벤트 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
@@ -130,15 +124,47 @@ namespace SpiralLab.Sirius
             #endregion
 
 
+            #region XYZ 모터
+            var motorX = new MotorVirtual(0, "X");
+            motorX.Initialize();
+            var motorY = new MotorVirtual(1, "Y");
+            motorY.Initialize();
+            var motorZ = new MotorVirtual(2, "Z");
+            motorZ.Initialize();
+            var motorR = new MotorVirtual(2, "R");
+            motorR.Initialize();
+
+            var motorArray = new IMotor[]
+            {
+                motorX,
+                motorY,
+                motorZ,
+                motorR,
+            };
+            var motors = new MotorsDefault(0, "Group", motorArray);
+            this.siriusEditorForm1.Motors = motors;
+
+            //var motorZ = new MotorVirtual(0, "Z");
+            //this.siriusEditorForm1.MotorZ = motorZ;
+            #endregion
+
             #region PowerMeter
             // 파워메터
-            //var pm = new PowerMeterVirtual(0, "Virtual");
-            var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
+            var powerMeter = new PowerMeterVirtual(0, "Virtual", laser.MaxPowerWatt);
+            //var powerMeter = new PowerMeterOphir(0, "OphirJuno", "3040875");
             //var powerMeter = new PowerMeterCoherentPowerMax(0, "CoherentPM", 1);
             //var powerMeter = new PowerMeterThorLabsPMSeries(0, "PM100USB", "SERIALNO");
             powerMeter.Initialize();
             this.siriusEditorForm1.PowerMeter = powerMeter;
             #endregion
+
+            #region Powermap
+            var powerMap = new PowerMapDefault(0, "Virtual", "Watt");
+            //var powerMapFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "powermap", "default.map");
+            //PowerMapSerializer.Open(powerMap, powerMapFile);
+            this.siriusEditorForm1.PowerMap = powerMap;
+            laser.PowerMap = powerMap;
+            #endregion            
         }
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
@@ -150,21 +176,18 @@ namespace SpiralLab.Sirius
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             siriusEditorForm1.Marker?.Stop();
-
             siriusEditorForm1.PowerMeter?.Dispose();
-            siriusEditorForm1.PowerMeter = null;
-
             siriusEditorForm1.Laser?.Dispose();
-            siriusEditorForm1.Laser = null;
-
             siriusEditorForm1.RtcExtension1Input?.Dispose();
             siriusEditorForm1.RtcExtension1Output?.Dispose();
             siriusEditorForm1.RtcExtension2Output?.Dispose();
             siriusEditorForm1.RtcPin2Input?.Dispose();
             siriusEditorForm1.RtcPin2Output?.Dispose();
-
             siriusEditorForm1.Rtc?.Dispose();
-            siriusEditorForm1.Rtc = null;
+            siriusEditorForm1.MotorZ?.Dispose();
+            if (null != siriusEditorForm1.Motors)
+                foreach (var motor in siriusEditorForm1.Motors.Motors)
+                    motor?.Dispose();
         }
     }
 }

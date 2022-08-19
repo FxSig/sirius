@@ -16,6 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
+ * Scanner Field Correction / 스캐너 필드 보정
  * 스캐너 보정 파일 (ct5) 의 헤더 정보를 조회하는 예제
  * 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)

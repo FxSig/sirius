@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * 스캐너 필드 보정
+ * Scanner Field Correction / 스캐너 필드 보정
  * 
  * 스캐너 필드 왜곡 보정을 윈폼 없이 직접 데이타를 입력하여 시도한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)

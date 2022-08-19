@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * 스캐너 필드 보정
+ * Scanner Field Correction / 스캐너 필드 보정
  * 
  * 스캐너 필드 왜곡 보정을 지원해주는 윈폼을 생성하여 처리한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)

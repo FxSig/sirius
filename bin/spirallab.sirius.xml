@@ -2093,6 +2093,34 @@
             </summary>
             <param name="name">이름</param>
         </member>
+        <member name="P:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.LaserSource">
+            <summary>
+            Advanced OptoWave Fotia 레이저용 윈폼
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.#ctor(SpiralLab.Sirius.AdvancedOptoWaveAOPico)">
+            <summary>
+            생성자
+            </summary>
+            <param name="fotia">레이저 소스 객체</param>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Laser.CoherentDiamondJSeriesForm">
             <summary>
             코히런트 Diamond J 시리즈용 윈폼
@@ -2149,6 +2177,40 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:SpiralLab.Sirius.Laser.IPGYLPULPNForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryRGHAIOForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryRGHAIOForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryRGHAIOForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Laser.SpectraPhysicsHIPPOForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.SpectraPhysicsHIPPOForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.SpectraPhysicsHIPPOForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

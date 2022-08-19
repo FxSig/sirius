@@ -218,10 +218,6 @@
             this.toolStripMenuItem11 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuClearCells = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.ddbPen = new System.Windows.Forms.ToolStripDropDownButton();
-            this.mnuPen = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem16 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnuPenReturn = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
             this.mnuTimer = new System.Windows.Forms.ToolStripMenuItem();
@@ -329,14 +325,14 @@
             this.ddbSimulate});
             this.tlsTop.Location = new System.Drawing.Point(0, 0);
             this.tlsTop.Name = "tlsTop";
-            this.tlsTop.Size = new System.Drawing.Size(1075, 31);
+            this.tlsTop.Size = new System.Drawing.Size(1075, 33);
             this.tlsTop.TabIndex = 10;
             this.tlsTop.Text = "toolStrip1";
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 33);
             // 
             // btnDocumentInfo
             // 
@@ -344,7 +340,7 @@
             this.btnDocumentInfo.Image = ((System.Drawing.Image)(resources.GetObject("btnDocumentInfo.Image")));
             this.btnDocumentInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDocumentInfo.Name = "btnDocumentInfo";
-            this.btnDocumentInfo.Size = new System.Drawing.Size(28, 28);
+            this.btnDocumentInfo.Size = new System.Drawing.Size(34, 28);
             this.btnDocumentInfo.Text = "File Information";
             this.btnDocumentInfo.ToolTipText = "File Information";
             this.btnDocumentInfo.Click += new System.EventHandler(this.btnDocumentInfo_Click);
@@ -352,7 +348,7 @@
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 33);
             // 
             // btnNew
             // 
@@ -360,7 +356,7 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(28, 28);
+            this.btnNew.Size = new System.Drawing.Size(34, 28);
             this.btnNew.Text = "New";
             this.btnNew.ToolTipText = "New";
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -371,7 +367,7 @@
             this.btnOpen.Image = ((System.Drawing.Image)(resources.GetObject("btnOpen.Image")));
             this.btnOpen.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(28, 28);
+            this.btnOpen.Size = new System.Drawing.Size(34, 28);
             this.btnOpen.Text = "Open";
             this.btnOpen.ToolTipText = "Open";
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
@@ -382,7 +378,7 @@
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
             this.btnSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(28, 28);
+            this.btnSave.Size = new System.Drawing.Size(34, 28);
             this.btnSave.Text = "Save";
             this.btnSave.ToolTipText = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -393,7 +389,7 @@
             this.btnSaveAs.Image = ((System.Drawing.Image)(resources.GetObject("btnSaveAs.Image")));
             this.btnSaveAs.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSaveAs.Name = "btnSaveAs";
-            this.btnSaveAs.Size = new System.Drawing.Size(28, 28);
+            this.btnSaveAs.Size = new System.Drawing.Size(34, 28);
             this.btnSaveAs.Text = "Save As";
             this.btnSaveAs.ToolTipText = "Save As ...";
             this.btnSaveAs.Click += new System.EventHandler(this.btnSaveAs_Click);
@@ -401,7 +397,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 33);
             // 
             // btnCopy
             // 
@@ -409,7 +405,7 @@
             this.btnCopy.Image = ((System.Drawing.Image)(resources.GetObject("btnCopy.Image")));
             this.btnCopy.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCopy.Name = "btnCopy";
-            this.btnCopy.Size = new System.Drawing.Size(28, 28);
+            this.btnCopy.Size = new System.Drawing.Size(34, 28);
             this.btnCopy.Text = "Copy";
             this.btnCopy.ToolTipText = "Copy";
             this.btnCopy.Click += new System.EventHandler(this.btnCopy_Click);
@@ -420,7 +416,7 @@
             this.btnCut.Image = ((System.Drawing.Image)(resources.GetObject("btnCut.Image")));
             this.btnCut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCut.Name = "btnCut";
-            this.btnCut.Size = new System.Drawing.Size(28, 28);
+            this.btnCut.Size = new System.Drawing.Size(34, 28);
             this.btnCut.Text = "Cut";
             this.btnCut.ToolTipText = "Cut";
             this.btnCut.Click += new System.EventHandler(this.btnCut_Click);
@@ -431,7 +427,7 @@
             this.btnPaste.Image = ((System.Drawing.Image)(resources.GetObject("btnPaste.Image")));
             this.btnPaste.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPaste.Name = "btnPaste";
-            this.btnPaste.Size = new System.Drawing.Size(28, 28);
+            this.btnPaste.Size = new System.Drawing.Size(34, 28);
             this.btnPaste.Text = "Paste";
             this.btnPaste.ToolTipText = "Paste";
             this.btnPaste.Click += new System.EventHandler(this.btnPaste_Click);
@@ -442,7 +438,7 @@
             this.btnPasteClone.Image = ((System.Drawing.Image)(resources.GetObject("btnPasteClone.Image")));
             this.btnPasteClone.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPasteClone.Name = "btnPasteClone";
-            this.btnPasteClone.Size = new System.Drawing.Size(28, 28);
+            this.btnPasteClone.Size = new System.Drawing.Size(34, 28);
             this.btnPasteClone.Text = "Paste Clone";
             this.btnPasteClone.ToolTipText = "Paste Clone";
             this.btnPasteClone.Click += new System.EventHandler(this.btnPasteClone_Click);
@@ -453,7 +449,7 @@
             this.btnPasteArray.Image = ((System.Drawing.Image)(resources.GetObject("btnPasteArray.Image")));
             this.btnPasteArray.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPasteArray.Name = "btnPasteArray";
-            this.btnPasteArray.Size = new System.Drawing.Size(28, 28);
+            this.btnPasteArray.Size = new System.Drawing.Size(34, 28);
             this.btnPasteArray.Text = "Paste Array";
             this.btnPasteArray.ToolTipText = "Paste Array";
             this.btnPasteArray.Click += new System.EventHandler(this.btnPasteArray_Click);
@@ -461,7 +457,7 @@
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(6, 33);
             // 
             // btnUndo
             // 
@@ -469,7 +465,7 @@
             this.btnUndo.Image = ((System.Drawing.Image)(resources.GetObject("btnUndo.Image")));
             this.btnUndo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnUndo.Name = "btnUndo";
-            this.btnUndo.Size = new System.Drawing.Size(28, 28);
+            this.btnUndo.Size = new System.Drawing.Size(34, 28);
             this.btnUndo.Text = "Undo";
             this.btnUndo.ToolTipText = "UnDo";
             this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
@@ -480,7 +476,7 @@
             this.btnReDo.Image = ((System.Drawing.Image)(resources.GetObject("btnReDo.Image")));
             this.btnReDo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnReDo.Name = "btnReDo";
-            this.btnReDo.Size = new System.Drawing.Size(28, 28);
+            this.btnReDo.Size = new System.Drawing.Size(34, 28);
             this.btnReDo.Text = "Redo";
             this.btnReDo.ToolTipText = "ReDo";
             this.btnReDo.Click += new System.EventHandler(this.btnReDo_Click);
@@ -488,7 +484,7 @@
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(6, 33);
             // 
             // btnZoomOut
             // 
@@ -496,7 +492,7 @@
             this.btnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomOut.Image")));
             this.btnZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomOut.Size = new System.Drawing.Size(34, 28);
             this.btnZoomOut.Text = "Zoom Out";
             this.btnZoomOut.ToolTipText = "Zoom Out";
             this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
@@ -507,7 +503,7 @@
             this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
             this.btnZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomIn.Size = new System.Drawing.Size(34, 28);
             this.btnZoomIn.Text = "Zoom In";
             this.btnZoomIn.ToolTipText = "Zoom In";
             this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
@@ -518,7 +514,7 @@
             this.btnZoomFit.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomFit.Image")));
             this.btnZoomFit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnZoomFit.Name = "btnZoomFit";
-            this.btnZoomFit.Size = new System.Drawing.Size(28, 28);
+            this.btnZoomFit.Size = new System.Drawing.Size(34, 28);
             this.btnZoomFit.Text = "Zoom Fit";
             this.btnZoomFit.ToolTipText = "Zoom Fit";
             this.btnZoomFit.Click += new System.EventHandler(this.btnZoomFit_Click);
@@ -530,7 +526,7 @@
             this.chbPan.Image = ((System.Drawing.Image)(resources.GetObject("chbPan.Image")));
             this.chbPan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.chbPan.Name = "chbPan";
-            this.chbPan.Size = new System.Drawing.Size(28, 28);
+            this.chbPan.Size = new System.Drawing.Size(34, 28);
             this.chbPan.Text = "Pan";
             this.chbPan.ToolTipText = "Pan";
             this.chbPan.Click += new System.EventHandler(this.btnPan_Click);
@@ -538,7 +534,7 @@
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(6, 33);
             // 
             // btnExplode
             // 
@@ -546,7 +542,7 @@
             this.btnExplode.Image = ((System.Drawing.Image)(resources.GetObject("btnExplode.Image")));
             this.btnExplode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnExplode.Name = "btnExplode";
-            this.btnExplode.Size = new System.Drawing.Size(28, 28);
+            this.btnExplode.Size = new System.Drawing.Size(34, 28);
             this.btnExplode.Text = "Explode";
             this.btnExplode.ToolTipText = "Explode";
             this.btnExplode.Click += new System.EventHandler(this.btnExplode_Click);
@@ -557,7 +553,7 @@
             this.btnToArc.Image = ((System.Drawing.Image)(resources.GetObject("btnToArc.Image")));
             this.btnToArc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnToArc.Name = "btnToArc";
-            this.btnToArc.Size = new System.Drawing.Size(28, 28);
+            this.btnToArc.Size = new System.Drawing.Size(34, 28);
             this.btnToArc.Text = "toolStripButton1";
             this.btnToArc.ToolTipText = "Polyline To Arc";
             this.btnToArc.Click += new System.EventHandler(this.btnToArc_Click);
@@ -568,7 +564,7 @@
             this.btnHatch.Image = ((System.Drawing.Image)(resources.GetObject("btnHatch.Image")));
             this.btnHatch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHatch.Name = "btnHatch";
-            this.btnHatch.Size = new System.Drawing.Size(28, 28);
+            this.btnHatch.Size = new System.Drawing.Size(34, 28);
             this.btnHatch.Text = "Hatch";
             this.btnHatch.ToolTipText = "Hatch";
             this.btnHatch.Click += new System.EventHandler(this.btnHatch_Click);
@@ -579,7 +575,7 @@
             this.btnDivide.Image = ((System.Drawing.Image)(resources.GetObject("btnDivide.Image")));
             this.btnDivide.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDivide.Name = "btnDivide";
-            this.btnDivide.Size = new System.Drawing.Size(28, 28);
+            this.btnDivide.Size = new System.Drawing.Size(34, 28);
             this.btnDivide.Text = "Divide";
             this.btnDivide.ToolTipText = "Divide";
             this.btnDivide.Click += new System.EventHandler(this.btnDivide_Click);
@@ -590,7 +586,7 @@
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(28, 28);
+            this.btnDelete.Size = new System.Drawing.Size(34, 28);
             this.btnDelete.Text = "Delete";
             this.btnDelete.ToolTipText = "Delete";
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -598,7 +594,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 33);
             // 
             // btnRotateCCW
             // 
@@ -606,7 +602,7 @@
             this.btnRotateCCW.Image = ((System.Drawing.Image)(resources.GetObject("btnRotateCCW.Image")));
             this.btnRotateCCW.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRotateCCW.Name = "btnRotateCCW";
-            this.btnRotateCCW.Size = new System.Drawing.Size(28, 28);
+            this.btnRotateCCW.Size = new System.Drawing.Size(34, 28);
             this.btnRotateCCW.Text = "Rotate CCW";
             this.btnRotateCCW.ToolTipText = "Rotate CCW";
             this.btnRotateCCW.Click += new System.EventHandler(this.btnRotateCCW_Click);
@@ -617,7 +613,7 @@
             this.btnRotateCW.Image = ((System.Drawing.Image)(resources.GetObject("btnRotateCW.Image")));
             this.btnRotateCW.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRotateCW.Name = "btnRotateCW";
-            this.btnRotateCW.Size = new System.Drawing.Size(28, 28);
+            this.btnRotateCW.Size = new System.Drawing.Size(34, 28);
             this.btnRotateCW.Text = "Rotate CW";
             this.btnRotateCW.ToolTipText = "Rotate CW";
             this.btnRotateCW.Click += new System.EventHandler(this.btnRotateCW_Click);
@@ -628,7 +624,7 @@
             this.btnRotateCustom.Image = ((System.Drawing.Image)(resources.GetObject("btnRotateCustom.Image")));
             this.btnRotateCustom.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRotateCustom.Name = "btnRotateCustom";
-            this.btnRotateCustom.Size = new System.Drawing.Size(28, 28);
+            this.btnRotateCustom.Size = new System.Drawing.Size(34, 28);
             this.btnRotateCustom.Text = "Rotate Custom";
             this.btnRotateCustom.Click += new System.EventHandler(this.btnRotateCustom_Click);
             // 
@@ -638,14 +634,14 @@
             this.btnTransit.Image = ((System.Drawing.Image)(resources.GetObject("btnTransit.Image")));
             this.btnTransit.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTransit.Name = "btnTransit";
-            this.btnTransit.Size = new System.Drawing.Size(28, 28);
+            this.btnTransit.Size = new System.Drawing.Size(34, 28);
             this.btnTransit.Text = "Transit";
             this.btnTransit.Click += new System.EventHandler(this.btnTransit_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(6, 33);
             // 
             // ddbAlignment
             // 
@@ -660,7 +656,7 @@
             this.ddbAlignment.Image = ((System.Drawing.Image)(resources.GetObject("ddbAlignment.Image")));
             this.ddbAlignment.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbAlignment.Name = "ddbAlignment";
-            this.ddbAlignment.Size = new System.Drawing.Size(37, 28);
+            this.ddbAlignment.Size = new System.Drawing.Size(42, 28);
             this.ddbAlignment.Text = "Alignment";
             this.ddbAlignment.ToolTipText = "Alignment";
             // 
@@ -668,7 +664,7 @@
             // 
             this.mnuOrigin.Image = ((System.Drawing.Image)(resources.GetObject("mnuOrigin.Image")));
             this.mnuOrigin.Name = "mnuOrigin";
-            this.mnuOrigin.Size = new System.Drawing.Size(124, 30);
+            this.mnuOrigin.Size = new System.Drawing.Size(173, 34);
             this.mnuOrigin.Text = "Origin";
             this.mnuOrigin.ToolTipText = "Origin Location";
             this.mnuOrigin.Click += new System.EventHandler(this.mnuOrigin_Click);
@@ -676,13 +672,13 @@
             // toolStripMenuItem10
             // 
             this.toolStripMenuItem10.Name = "toolStripMenuItem10";
-            this.toolStripMenuItem10.Size = new System.Drawing.Size(121, 6);
+            this.toolStripMenuItem10.Size = new System.Drawing.Size(170, 6);
             // 
             // mnuLeft
             // 
             this.mnuLeft.Image = ((System.Drawing.Image)(resources.GetObject("mnuLeft.Image")));
             this.mnuLeft.Name = "mnuLeft";
-            this.mnuLeft.Size = new System.Drawing.Size(124, 30);
+            this.mnuLeft.Size = new System.Drawing.Size(173, 34);
             this.mnuLeft.Text = "Left";
             this.mnuLeft.ToolTipText = "To Left";
             this.mnuLeft.Click += new System.EventHandler(this.mnuLeft_Click);
@@ -691,7 +687,7 @@
             // 
             this.mnuRight.Image = ((System.Drawing.Image)(resources.GetObject("mnuRight.Image")));
             this.mnuRight.Name = "mnuRight";
-            this.mnuRight.Size = new System.Drawing.Size(124, 30);
+            this.mnuRight.Size = new System.Drawing.Size(173, 34);
             this.mnuRight.Text = "Right";
             this.mnuRight.ToolTipText = "To Right";
             this.mnuRight.Click += new System.EventHandler(this.mnuRight_Click);
@@ -700,7 +696,7 @@
             // 
             this.mnuTop.Image = ((System.Drawing.Image)(resources.GetObject("mnuTop.Image")));
             this.mnuTop.Name = "mnuTop";
-            this.mnuTop.Size = new System.Drawing.Size(124, 30);
+            this.mnuTop.Size = new System.Drawing.Size(173, 34);
             this.mnuTop.Text = "Top";
             this.mnuTop.ToolTipText = "To Top";
             this.mnuTop.Click += new System.EventHandler(this.mnuTop_Click);
@@ -709,7 +705,7 @@
             // 
             this.mnuBottom.Image = ((System.Drawing.Image)(resources.GetObject("mnuBottom.Image")));
             this.mnuBottom.Name = "mnuBottom";
-            this.mnuBottom.Size = new System.Drawing.Size(124, 30);
+            this.mnuBottom.Size = new System.Drawing.Size(173, 34);
             this.mnuBottom.Text = "Bottom";
             this.mnuBottom.ToolTipText = "To Bottom";
             this.mnuBottom.Click += new System.EventHandler(this.mnuBottom_Click);
@@ -725,7 +721,7 @@
             this.ddbSort.Image = ((System.Drawing.Image)(resources.GetObject("ddbSort.Image")));
             this.ddbSort.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSort.Name = "ddbSort";
-            this.ddbSort.Size = new System.Drawing.Size(37, 28);
+            this.ddbSort.Size = new System.Drawing.Size(42, 28);
             this.ddbSort.Text = "Sort";
             this.ddbSort.ToolTipText = "Sort";
             // 
@@ -733,7 +729,7 @@
             // 
             this.mnuBottomTop.Image = ((System.Drawing.Image)(resources.GetObject("mnuBottomTop.Image")));
             this.mnuBottomTop.Name = "mnuBottomTop";
-            this.mnuBottomTop.Size = new System.Drawing.Size(164, 30);
+            this.mnuBottomTop.Size = new System.Drawing.Size(236, 34);
             this.mnuBottomTop.Text = "Bottom -> Top";
             this.mnuBottomTop.ToolTipText = "Bottom To Top";
             this.mnuBottomTop.Click += new System.EventHandler(this.mnuBottomTop_Click);
@@ -742,7 +738,7 @@
             // 
             this.mnuTopBottom.Image = ((System.Drawing.Image)(resources.GetObject("mnuTopBottom.Image")));
             this.mnuTopBottom.Name = "mnuTopBottom";
-            this.mnuTopBottom.Size = new System.Drawing.Size(164, 30);
+            this.mnuTopBottom.Size = new System.Drawing.Size(236, 34);
             this.mnuTopBottom.Text = "Top -> Bottom";
             this.mnuTopBottom.ToolTipText = "Top To Bottom";
             this.mnuTopBottom.Click += new System.EventHandler(this.mnuTopBottom_Click);
@@ -751,7 +747,7 @@
             // 
             this.mnuLeftRight.Image = ((System.Drawing.Image)(resources.GetObject("mnuLeftRight.Image")));
             this.mnuLeftRight.Name = "mnuLeftRight";
-            this.mnuLeftRight.Size = new System.Drawing.Size(164, 30);
+            this.mnuLeftRight.Size = new System.Drawing.Size(236, 34);
             this.mnuLeftRight.Text = "Left -> Right";
             this.mnuLeftRight.ToolTipText = "Left To Right";
             this.mnuLeftRight.Click += new System.EventHandler(this.mnuLeftRight_Click);
@@ -760,7 +756,7 @@
             // 
             this.mnuRightLeft.Image = ((System.Drawing.Image)(resources.GetObject("mnuRightLeft.Image")));
             this.mnuRightLeft.Name = "mnuRightLeft";
-            this.mnuRightLeft.Size = new System.Drawing.Size(164, 30);
+            this.mnuRightLeft.Size = new System.Drawing.Size(236, 34);
             this.mnuRightLeft.Text = "Right -> Left";
             this.mnuRightLeft.ToolTipText = "Right To Left";
             this.mnuRightLeft.Click += new System.EventHandler(this.mnuRightLeft_Click);
@@ -768,7 +764,7 @@
             // toolStripSeparator13
             // 
             this.toolStripSeparator13.Name = "toolStripSeparator13";
-            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator13.Size = new System.Drawing.Size(6, 33);
             // 
             // ddbSimulate
             // 
@@ -782,14 +778,14 @@
             this.ddbSimulate.Image = ((System.Drawing.Image)(resources.GetObject("ddbSimulate.Image")));
             this.ddbSimulate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSimulate.Name = "ddbSimulate";
-            this.ddbSimulate.Size = new System.Drawing.Size(37, 28);
+            this.ddbSimulate.Size = new System.Drawing.Size(42, 28);
             this.ddbSimulate.Text = "Laser Path Simulator";
             // 
             // mnuSlow
             // 
             this.mnuSlow.Image = ((System.Drawing.Image)(resources.GetObject("mnuSlow.Image")));
             this.mnuSlow.Name = "mnuSlow";
-            this.mnuSlow.Size = new System.Drawing.Size(123, 30);
+            this.mnuSlow.Size = new System.Drawing.Size(172, 34);
             this.mnuSlow.Text = "Slow";
             this.mnuSlow.ToolTipText = "Slow";
             this.mnuSlow.Click += new System.EventHandler(this.mnuSimulateSlow_Click);
@@ -798,7 +794,7 @@
             // 
             this.mnuNormal.Image = ((System.Drawing.Image)(resources.GetObject("mnuNormal.Image")));
             this.mnuNormal.Name = "mnuNormal";
-            this.mnuNormal.Size = new System.Drawing.Size(123, 30);
+            this.mnuNormal.Size = new System.Drawing.Size(172, 34);
             this.mnuNormal.Text = "Normal";
             this.mnuNormal.ToolTipText = "Normal";
             this.mnuNormal.Click += new System.EventHandler(this.mnuSimulateNormal_Click);
@@ -807,7 +803,7 @@
             // 
             this.mnuFast.Image = ((System.Drawing.Image)(resources.GetObject("mnuFast.Image")));
             this.mnuFast.Name = "mnuFast";
-            this.mnuFast.Size = new System.Drawing.Size(123, 30);
+            this.mnuFast.Size = new System.Drawing.Size(172, 34);
             this.mnuFast.Text = "Fast";
             this.mnuFast.ToolTipText = "Fast";
             this.mnuFast.Click += new System.EventHandler(this.mnuSimulateFast_Click);
@@ -815,13 +811,13 @@
             // toolStripMenuItem15
             // 
             this.toolStripMenuItem15.Name = "toolStripMenuItem15";
-            this.toolStripMenuItem15.Size = new System.Drawing.Size(120, 6);
+            this.toolStripMenuItem15.Size = new System.Drawing.Size(169, 6);
             // 
             // mnuStop
             // 
             this.mnuStop.Image = ((System.Drawing.Image)(resources.GetObject("mnuStop.Image")));
             this.mnuStop.Name = "mnuStop";
-            this.mnuStop.Size = new System.Drawing.Size(123, 30);
+            this.mnuStop.Size = new System.Drawing.Size(172, 34);
             this.mnuStop.Text = "Stop";
             this.mnuStop.ToolTipText = "Stop";
             this.mnuStop.Click += new System.EventHandler(this.mnuSimulateStop_Click);
@@ -829,7 +825,7 @@
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter1.Location = new System.Drawing.Point(0, 31);
+            this.splitter1.Location = new System.Drawing.Point(0, 33);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(1075, 1);
             this.splitter1.TabIndex = 11;
@@ -858,7 +854,7 @@
             this.toolStripMenuItem14,
             this.mnuAbout});
             this.ctmsMain.Name = "contextMenuStrip1";
-            this.ctmsMain.Size = new System.Drawing.Size(187, 466);
+            this.ctmsMain.Size = new System.Drawing.Size(246, 496);
             // 
             // fileToolStripMenuItem
             // 
@@ -872,7 +868,7 @@
             this.infoToolStripMenuItem});
             this.fileToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fileToolStripMenuItem.Image")));
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(186, 30);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(245, 32);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // newToolStripMenuItem
@@ -880,7 +876,7 @@
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(323, 34);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.btnNew_Click);
             // 
@@ -889,7 +885,7 @@
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(323, 34);
             this.openToolStripMenuItem.Text = "&Open ...";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.btnOpen_Click);
             // 
@@ -899,7 +895,7 @@
             this.btnImport.Name = "btnImport";
             this.btnImport.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.I)));
-            this.btnImport.Size = new System.Drawing.Size(223, 30);
+            this.btnImport.Size = new System.Drawing.Size(323, 34);
             this.btnImport.Text = "Import ...";
             this.btnImport.ToolTipText = "Import";
             this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
@@ -909,7 +905,7 @@
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(323, 34);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.btnSave_Click);
             // 
@@ -919,21 +915,21 @@
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
             this.saveAsToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.S)));
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(323, 34);
             this.saveAsToolStripMenuItem.Text = "Save &As ...";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.btnSaveAs_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(220, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(320, 6);
             // 
             // infoToolStripMenuItem
             // 
             this.infoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem.Image")));
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
-            this.infoToolStripMenuItem.Size = new System.Drawing.Size(223, 30);
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(323, 34);
             this.infoToolStripMenuItem.Text = "File &Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.btnDocumentInfo_Click);
             // 
@@ -947,7 +943,7 @@
             this.panToolStripMenuItem});
             this.zoomToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("zoomToolStripMenuItem.Image")));
             this.zoomToolStripMenuItem.Name = "zoomToolStripMenuItem";
-            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(186, 30);
+            this.zoomToolStripMenuItem.Size = new System.Drawing.Size(245, 32);
             this.zoomToolStripMenuItem.Text = "&Zoom";
             // 
             // iNToolStripMenuItem
@@ -955,7 +951,7 @@
             this.iNToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("iNToolStripMenuItem.Image")));
             this.iNToolStripMenuItem.Name = "iNToolStripMenuItem";
             this.iNToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Oemplus)));
-            this.iNToolStripMenuItem.Size = new System.Drawing.Size(201, 30);
+            this.iNToolStripMenuItem.Size = new System.Drawing.Size(289, 34);
             this.iNToolStripMenuItem.Text = "In";
             this.iNToolStripMenuItem.Click += new System.EventHandler(this.btnZoomIn_Click);
             // 
@@ -964,7 +960,7 @@
             this.outToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("outToolStripMenuItem.Image")));
             this.outToolStripMenuItem.Name = "outToolStripMenuItem";
             this.outToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.OemMinus)));
-            this.outToolStripMenuItem.Size = new System.Drawing.Size(201, 30);
+            this.outToolStripMenuItem.Size = new System.Drawing.Size(289, 34);
             this.outToolStripMenuItem.Text = "Out";
             this.outToolStripMenuItem.Click += new System.EventHandler(this.btnZoomOut_Click);
             // 
@@ -973,21 +969,21 @@
             this.fitToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fitToolStripMenuItem.Image")));
             this.fitToolStripMenuItem.Name = "fitToolStripMenuItem";
             this.fitToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.fitToolStripMenuItem.Size = new System.Drawing.Size(201, 30);
+            this.fitToolStripMenuItem.Size = new System.Drawing.Size(289, 34);
             this.fitToolStripMenuItem.Text = "Fit";
             this.fitToolStripMenuItem.Click += new System.EventHandler(this.btnZoomFit_Click);
             // 
             // toolStripMenuItem9
             // 
             this.toolStripMenuItem9.Name = "toolStripMenuItem9";
-            this.toolStripMenuItem9.Size = new System.Drawing.Size(198, 6);
+            this.toolStripMenuItem9.Size = new System.Drawing.Size(286, 6);
             // 
             // panToolStripMenuItem
             // 
             this.panToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("panToolStripMenuItem.Image")));
             this.panToolStripMenuItem.Name = "panToolStripMenuItem";
             this.panToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.panToolStripMenuItem.Size = new System.Drawing.Size(201, 30);
+            this.panToolStripMenuItem.Size = new System.Drawing.Size(289, 34);
             this.panToolStripMenuItem.Text = "Pan";
             this.panToolStripMenuItem.Click += new System.EventHandler(this.btnPan_Click);
             // 
@@ -1011,7 +1007,7 @@
             this.toolStripMenuItem17});
             this.editToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("editToolStripMenuItem.Image")));
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(186, 30);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(245, 32);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // undoToolStripMenuItem
@@ -1019,7 +1015,7 @@
             this.undoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("undoToolStripMenuItem.Image")));
             this.undoToolStripMenuItem.Name = "undoToolStripMenuItem";
             this.undoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.undoToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.undoToolStripMenuItem.Text = "Undo";
             this.undoToolStripMenuItem.Click += new System.EventHandler(this.btnUndo_Click);
             // 
@@ -1028,14 +1024,14 @@
             this.redoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("redoToolStripMenuItem.Image")));
             this.redoToolStripMenuItem.Name = "redoToolStripMenuItem";
             this.redoToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Y)));
-            this.redoToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.redoToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.redoToolStripMenuItem.Text = "Redo";
             this.redoToolStripMenuItem.Click += new System.EventHandler(this.btnReDo_Click);
             // 
             // toolStripMenuItem8
             // 
             this.toolStripMenuItem8.Name = "toolStripMenuItem8";
-            this.toolStripMenuItem8.Size = new System.Drawing.Size(249, 6);
+            this.toolStripMenuItem8.Size = new System.Drawing.Size(363, 6);
             // 
             // rotateToolStripMenuItem
             // 
@@ -1044,14 +1040,14 @@
             this.cCWToolStripMenuItem,
             this.customToolStripMenuItem});
             this.rotateToolStripMenuItem.Name = "rotateToolStripMenuItem";
-            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.rotateToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.rotateToolStripMenuItem.Text = "Rotate";
             // 
             // cWToolStripMenuItem
             // 
             this.cWToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cWToolStripMenuItem.Image")));
             this.cWToolStripMenuItem.Name = "cWToolStripMenuItem";
-            this.cWToolStripMenuItem.Size = new System.Drawing.Size(127, 30);
+            this.cWToolStripMenuItem.Size = new System.Drawing.Size(177, 34);
             this.cWToolStripMenuItem.Text = "CW";
             this.cWToolStripMenuItem.Click += new System.EventHandler(this.btnRotateCW_Click);
             // 
@@ -1059,7 +1055,7 @@
             // 
             this.cCWToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cCWToolStripMenuItem.Image")));
             this.cCWToolStripMenuItem.Name = "cCWToolStripMenuItem";
-            this.cCWToolStripMenuItem.Size = new System.Drawing.Size(127, 30);
+            this.cCWToolStripMenuItem.Size = new System.Drawing.Size(177, 34);
             this.cCWToolStripMenuItem.Text = "CCW";
             this.cCWToolStripMenuItem.Click += new System.EventHandler(this.btnRotateCCW_Click);
             // 
@@ -1067,7 +1063,7 @@
             // 
             this.customToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("customToolStripMenuItem.Image")));
             this.customToolStripMenuItem.Name = "customToolStripMenuItem";
-            this.customToolStripMenuItem.Size = new System.Drawing.Size(127, 30);
+            this.customToolStripMenuItem.Size = new System.Drawing.Size(177, 34);
             this.customToolStripMenuItem.Text = "Custom";
             this.customToolStripMenuItem.Click += new System.EventHandler(this.btnRotateCustom_Click);
             // 
@@ -1076,7 +1072,7 @@
             this.deleteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("deleteToolStripMenuItem.Image")));
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
             this.deleteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Delete)));
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.deleteToolStripMenuItem.Text = "Delete";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -1091,7 +1087,7 @@
             this.bottomToolStripMenuItem});
             this.alignToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("alignToolStripMenuItem.Image")));
             this.alignToolStripMenuItem.Name = "alignToolStripMenuItem";
-            this.alignToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.alignToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.alignToolStripMenuItem.Text = "Align";
             // 
             // originToolStripMenuItem
@@ -1099,20 +1095,20 @@
             this.originToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("originToolStripMenuItem.Image")));
             this.originToolStripMenuItem.Name = "originToolStripMenuItem";
             this.originToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.originToolStripMenuItem.Size = new System.Drawing.Size(160, 30);
+            this.originToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
             this.originToolStripMenuItem.Text = "Origin";
             this.originToolStripMenuItem.Click += new System.EventHandler(this.mnuOrigin_Click);
             // 
             // toolStripMenuItem7
             // 
             this.toolStripMenuItem7.Name = "toolStripMenuItem7";
-            this.toolStripMenuItem7.Size = new System.Drawing.Size(157, 6);
+            this.toolStripMenuItem7.Size = new System.Drawing.Size(225, 6);
             // 
             // leftToolStripMenuItem
             // 
             this.leftToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("leftToolStripMenuItem.Image")));
             this.leftToolStripMenuItem.Name = "leftToolStripMenuItem";
-            this.leftToolStripMenuItem.Size = new System.Drawing.Size(160, 30);
+            this.leftToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
             this.leftToolStripMenuItem.Text = "Left";
             this.leftToolStripMenuItem.Click += new System.EventHandler(this.mnuLeft_Click);
             // 
@@ -1120,7 +1116,7 @@
             // 
             this.rightToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("rightToolStripMenuItem.Image")));
             this.rightToolStripMenuItem.Name = "rightToolStripMenuItem";
-            this.rightToolStripMenuItem.Size = new System.Drawing.Size(160, 30);
+            this.rightToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
             this.rightToolStripMenuItem.Text = "Right";
             this.rightToolStripMenuItem.Click += new System.EventHandler(this.mnuRight_Click);
             // 
@@ -1128,7 +1124,7 @@
             // 
             this.topToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("topToolStripMenuItem.Image")));
             this.topToolStripMenuItem.Name = "topToolStripMenuItem";
-            this.topToolStripMenuItem.Size = new System.Drawing.Size(160, 30);
+            this.topToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
             this.topToolStripMenuItem.Text = "Top";
             this.topToolStripMenuItem.Click += new System.EventHandler(this.mnuTop_Click);
             // 
@@ -1136,7 +1132,7 @@
             // 
             this.bottomToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("bottomToolStripMenuItem.Image")));
             this.bottomToolStripMenuItem.Name = "bottomToolStripMenuItem";
-            this.bottomToolStripMenuItem.Size = new System.Drawing.Size(160, 30);
+            this.bottomToolStripMenuItem.Size = new System.Drawing.Size(228, 34);
             this.bottomToolStripMenuItem.Text = "Bottom";
             this.bottomToolStripMenuItem.Click += new System.EventHandler(this.mnuBottom_Click);
             // 
@@ -1149,14 +1145,14 @@
             this.rightLeftToolStripMenuItem1});
             this.sortToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("sortToolStripMenuItem.Image")));
             this.sortToolStripMenuItem.Name = "sortToolStripMenuItem";
-            this.sortToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.sortToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.sortToolStripMenuItem.Text = "Sort";
             // 
             // bottomTopToolStripMenuItem1
             // 
             this.bottomTopToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("bottomTopToolStripMenuItem1.Image")));
             this.bottomTopToolStripMenuItem1.Name = "bottomTopToolStripMenuItem1";
-            this.bottomTopToolStripMenuItem1.Size = new System.Drawing.Size(164, 30);
+            this.bottomTopToolStripMenuItem1.Size = new System.Drawing.Size(236, 34);
             this.bottomTopToolStripMenuItem1.Text = "Bottom -> Top";
             this.bottomTopToolStripMenuItem1.Click += new System.EventHandler(this.mnuBottomTop_Click);
             // 
@@ -1164,7 +1160,7 @@
             // 
             this.topBottomToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("topBottomToolStripMenuItem1.Image")));
             this.topBottomToolStripMenuItem1.Name = "topBottomToolStripMenuItem1";
-            this.topBottomToolStripMenuItem1.Size = new System.Drawing.Size(164, 30);
+            this.topBottomToolStripMenuItem1.Size = new System.Drawing.Size(236, 34);
             this.topBottomToolStripMenuItem1.Text = "Top -> Bottom";
             this.topBottomToolStripMenuItem1.Click += new System.EventHandler(this.mnuTopBottom_Click);
             // 
@@ -1172,7 +1168,7 @@
             // 
             this.leftRightToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("leftRightToolStripMenuItem1.Image")));
             this.leftRightToolStripMenuItem1.Name = "leftRightToolStripMenuItem1";
-            this.leftRightToolStripMenuItem1.Size = new System.Drawing.Size(164, 30);
+            this.leftRightToolStripMenuItem1.Size = new System.Drawing.Size(236, 34);
             this.leftRightToolStripMenuItem1.Text = "Left -> Right";
             this.leftRightToolStripMenuItem1.Click += new System.EventHandler(this.mnuLeftRight_Click);
             // 
@@ -1180,7 +1176,7 @@
             // 
             this.rightLeftToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("rightLeftToolStripMenuItem1.Image")));
             this.rightLeftToolStripMenuItem1.Name = "rightLeftToolStripMenuItem1";
-            this.rightLeftToolStripMenuItem1.Size = new System.Drawing.Size(164, 30);
+            this.rightLeftToolStripMenuItem1.Size = new System.Drawing.Size(236, 34);
             this.rightLeftToolStripMenuItem1.Text = "Right -> Left";
             this.rightLeftToolStripMenuItem1.Click += new System.EventHandler(this.mnuRightLeft_Click);
             // 
@@ -1203,14 +1199,14 @@
             this.down001MmToolStripMenuItem});
             this.translateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("translateToolStripMenuItem.Image")));
             this.translateToolStripMenuItem.Name = "translateToolStripMenuItem";
-            this.translateToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.translateToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.translateToolStripMenuItem.Text = "Jog";
             // 
             // rightToolStripMenuItem1
             // 
             this.rightToolStripMenuItem1.Name = "rightToolStripMenuItem1";
             this.rightToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Right)));
-            this.rightToolStripMenuItem1.Size = new System.Drawing.Size(260, 22);
+            this.rightToolStripMenuItem1.Size = new System.Drawing.Size(395, 34);
             this.rightToolStripMenuItem1.Tag = "1,0";
             this.rightToolStripMenuItem1.Text = "Right (1 mm)";
             this.rightToolStripMenuItem1.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1219,7 +1215,7 @@
             // 
             this.leftToolStripMenuItem1.Name = "leftToolStripMenuItem1";
             this.leftToolStripMenuItem1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Left)));
-            this.leftToolStripMenuItem1.Size = new System.Drawing.Size(260, 22);
+            this.leftToolStripMenuItem1.Size = new System.Drawing.Size(395, 34);
             this.leftToolStripMenuItem1.Tag = "-1,0";
             this.leftToolStripMenuItem1.Text = "Left (1 mm)";
             this.leftToolStripMenuItem1.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1228,7 +1224,7 @@
             // 
             this.forwardToolStripMenuItem.Name = "forwardToolStripMenuItem";
             this.forwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Up)));
-            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.forwardToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.forwardToolStripMenuItem.Tag = "0,1";
             this.forwardToolStripMenuItem.Text = "Up (1 mm)";
             this.forwardToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1237,7 +1233,7 @@
             // 
             this.backwardToolStripMenuItem.Name = "backwardToolStripMenuItem";
             this.backwardToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Down)));
-            this.backwardToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.backwardToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.backwardToolStripMenuItem.Tag = "0,-1";
             this.backwardToolStripMenuItem.Text = "Down(1 mm)";
             this.backwardToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1245,13 +1241,13 @@
             // toolStripMenuItem18
             // 
             this.toolStripMenuItem18.Name = "toolStripMenuItem18";
-            this.toolStripMenuItem18.Size = new System.Drawing.Size(257, 6);
+            this.toolStripMenuItem18.Size = new System.Drawing.Size(392, 6);
             // 
             // right01MmToolStripMenuItem
             // 
             this.right01MmToolStripMenuItem.Name = "right01MmToolStripMenuItem";
             this.right01MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Right)));
-            this.right01MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.right01MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.right01MmToolStripMenuItem.Tag = "0.1,0";
             this.right01MmToolStripMenuItem.Text = "Right (0.1 mm)";
             this.right01MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1260,7 +1256,7 @@
             // 
             this.left01MmToolStripMenuItem.Name = "left01MmToolStripMenuItem";
             this.left01MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Left)));
-            this.left01MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.left01MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.left01MmToolStripMenuItem.Tag = "-0.1,0";
             this.left01MmToolStripMenuItem.Text = "Left (0.1 mm)";
             this.left01MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1269,7 +1265,7 @@
             // 
             this.upToolStripMenuItem.Name = "upToolStripMenuItem";
             this.upToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Up)));
-            this.upToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.upToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.upToolStripMenuItem.Tag = "0,0.1";
             this.upToolStripMenuItem.Text = "Up (0.1 mm)";
             this.upToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1278,7 +1274,7 @@
             // 
             this.down01mmToolStripMenuItem.Name = "down01mmToolStripMenuItem";
             this.down01mmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Alt | System.Windows.Forms.Keys.Down)));
-            this.down01mmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.down01mmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.down01mmToolStripMenuItem.Tag = "0,-0.1";
             this.down01mmToolStripMenuItem.Text = "Down (0,1mm)";
             this.down01mmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1286,14 +1282,14 @@
             // toolStripMenuItem19
             // 
             this.toolStripMenuItem19.Name = "toolStripMenuItem19";
-            this.toolStripMenuItem19.Size = new System.Drawing.Size(257, 6);
+            this.toolStripMenuItem19.Size = new System.Drawing.Size(392, 6);
             // 
             // right001MmToolStripMenuItem
             // 
             this.right001MmToolStripMenuItem.Name = "right001MmToolStripMenuItem";
             this.right001MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Right)));
-            this.right001MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.right001MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.right001MmToolStripMenuItem.Tag = "0.01,0";
             this.right001MmToolStripMenuItem.Text = "Right (0.01 mm)";
             this.right001MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1303,7 +1299,7 @@
             this.left001MmToolStripMenuItem.Name = "left001MmToolStripMenuItem";
             this.left001MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Left)));
-            this.left001MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.left001MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.left001MmToolStripMenuItem.Tag = "-0.01,0";
             this.left001MmToolStripMenuItem.Text = "Left (0.01 mm)";
             this.left001MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1313,7 +1309,7 @@
             this.up001MmToolStripMenuItem.Name = "up001MmToolStripMenuItem";
             this.up001MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Up)));
-            this.up001MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.up001MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.up001MmToolStripMenuItem.Tag = "0,0.01";
             this.up001MmToolStripMenuItem.Text = "Up (0.01 mm)";
             this.up001MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1323,7 +1319,7 @@
             this.down001MmToolStripMenuItem.Name = "down001MmToolStripMenuItem";
             this.down001MmToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Down)));
-            this.down001MmToolStripMenuItem.Size = new System.Drawing.Size(260, 22);
+            this.down001MmToolStripMenuItem.Size = new System.Drawing.Size(395, 34);
             this.down001MmToolStripMenuItem.Tag = "0,-0.01";
             this.down001MmToolStripMenuItem.Text = "Down (0.01 mm)";
             this.down001MmToolStripMenuItem.Click += new System.EventHandler(this.mnuJog_Click);
@@ -1331,14 +1327,14 @@
             // toolStripMenuItem5
             // 
             this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-            this.toolStripMenuItem5.Size = new System.Drawing.Size(249, 6);
+            this.toolStripMenuItem5.Size = new System.Drawing.Size(363, 6);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyToolStripMenuItem.Image")));
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
             this.copyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.btnCopy_Click);
             // 
@@ -1347,7 +1343,7 @@
             this.cutToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("cutToolStripMenuItem.Image")));
             this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
             this.cutToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.cutToolStripMenuItem.Text = "Cut";
             this.cutToolStripMenuItem.Click += new System.EventHandler(this.btnCut_Click);
             // 
@@ -1356,7 +1352,7 @@
             this.pasteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pasteToolStripMenuItem.Image")));
             this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
             this.pasteToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.pasteToolStripMenuItem.Text = "Paste";
             this.pasteToolStripMenuItem.Click += new System.EventHandler(this.btnPaste_Click);
             // 
@@ -1366,7 +1362,7 @@
             this.pasteCloneToolStripMenuItem.Name = "pasteCloneToolStripMenuItem";
             this.pasteCloneToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)(((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.V)));
-            this.pasteCloneToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.pasteCloneToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.pasteCloneToolStripMenuItem.Text = "Paste Clone";
             this.pasteCloneToolStripMenuItem.Click += new System.EventHandler(this.btnPasteClone_Click);
             // 
@@ -1377,14 +1373,14 @@
             this.pasteArrayToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Alt) 
             | System.Windows.Forms.Keys.Shift) 
             | System.Windows.Forms.Keys.V)));
-            this.pasteArrayToolStripMenuItem.Size = new System.Drawing.Size(252, 30);
+            this.pasteArrayToolStripMenuItem.Size = new System.Drawing.Size(366, 34);
             this.pasteArrayToolStripMenuItem.Text = "Paste Array";
             this.pasteArrayToolStripMenuItem.Click += new System.EventHandler(this.btnPasteArray_Click);
             // 
             // toolStripMenuItem17
             // 
             this.toolStripMenuItem17.Name = "toolStripMenuItem17";
-            this.toolStripMenuItem17.Size = new System.Drawing.Size(249, 6);
+            this.toolStripMenuItem17.Size = new System.Drawing.Size(363, 6);
             // 
             // simulatorToolStripMenuItem
             // 
@@ -1396,7 +1392,7 @@
             this.stopToolStripMenuItem});
             this.simulatorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("simulatorToolStripMenuItem.Image")));
             this.simulatorToolStripMenuItem.Name = "simulatorToolStripMenuItem";
-            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(186, 30);
+            this.simulatorToolStripMenuItem.Size = new System.Drawing.Size(245, 32);
             this.simulatorToolStripMenuItem.Text = "Simulator";
             // 
             // slowToolStripMenuItem
@@ -1404,7 +1400,7 @@
             this.slowToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("slowToolStripMenuItem.Image")));
             this.slowToolStripMenuItem.Name = "slowToolStripMenuItem";
             this.slowToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F9)));
-            this.slowToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.slowToolStripMenuItem.Size = new System.Drawing.Size(259, 34);
             this.slowToolStripMenuItem.Text = "Slow";
             this.slowToolStripMenuItem.Click += new System.EventHandler(this.mnuSimulateSlow_Click);
             // 
@@ -1413,7 +1409,7 @@
             this.normalToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("normalToolStripMenuItem.Image")));
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
             this.normalToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F10)));
-            this.normalToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.normalToolStripMenuItem.Size = new System.Drawing.Size(259, 34);
             this.normalToolStripMenuItem.Text = "Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.mnuSimulateNormal_Click);
             // 
@@ -1422,35 +1418,35 @@
             this.fastToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fastToolStripMenuItem.Image")));
             this.fastToolStripMenuItem.Name = "fastToolStripMenuItem";
             this.fastToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F11)));
-            this.fastToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.fastToolStripMenuItem.Size = new System.Drawing.Size(259, 34);
             this.fastToolStripMenuItem.Text = "Fast";
             this.fastToolStripMenuItem.Click += new System.EventHandler(this.mnuSimulateFast_Click);
             // 
             // toolStripMenuItem13
             // 
             this.toolStripMenuItem13.Name = "toolStripMenuItem13";
-            this.toolStripMenuItem13.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem13.Size = new System.Drawing.Size(256, 6);
             // 
             // stopToolStripMenuItem
             // 
             this.stopToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("stopToolStripMenuItem.Image")));
             this.stopToolStripMenuItem.Name = "stopToolStripMenuItem";
             this.stopToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F12)));
-            this.stopToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.stopToolStripMenuItem.Size = new System.Drawing.Size(259, 34);
             this.stopToolStripMenuItem.Text = "Stop";
             this.stopToolStripMenuItem.Click += new System.EventHandler(this.mnuSimulateStop_Click);
             // 
             // toolStripMenuItem3
             // 
             this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-            this.toolStripMenuItem3.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuMarker
             // 
             this.mnuMarker.Image = ((System.Drawing.Image)(resources.GetObject("mnuMarker.Image")));
             this.mnuMarker.Name = "mnuMarker";
             this.mnuMarker.ShortcutKeys = System.Windows.Forms.Keys.F1;
-            this.mnuMarker.Size = new System.Drawing.Size(186, 30);
+            this.mnuMarker.Size = new System.Drawing.Size(245, 32);
             this.mnuMarker.Text = "Marker";
             this.mnuMarker.Click += new System.EventHandler(this.mnuMarker_Click);
             // 
@@ -1459,7 +1455,7 @@
             this.mnuLaser.Image = ((System.Drawing.Image)(resources.GetObject("mnuLaser.Image")));
             this.mnuLaser.Name = "mnuLaser";
             this.mnuLaser.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.mnuLaser.Size = new System.Drawing.Size(186, 30);
+            this.mnuLaser.Size = new System.Drawing.Size(245, 32);
             this.mnuLaser.Text = "Laser";
             this.mnuLaser.Click += new System.EventHandler(this.mnuLaser_Click);
             // 
@@ -1467,7 +1463,7 @@
             // 
             this.mnuIO.Name = "mnuIO";
             this.mnuIO.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.mnuIO.Size = new System.Drawing.Size(186, 30);
+            this.mnuIO.Size = new System.Drawing.Size(245, 32);
             this.mnuIO.Text = "I/O";
             this.mnuIO.Click += new System.EventHandler(this.mnuIO_Click);
             // 
@@ -1476,7 +1472,7 @@
             this.mnuRtc.Image = ((System.Drawing.Image)(resources.GetObject("mnuRtc.Image")));
             this.mnuRtc.Name = "mnuRtc";
             this.mnuRtc.ShortcutKeys = System.Windows.Forms.Keys.F4;
-            this.mnuRtc.Size = new System.Drawing.Size(186, 30);
+            this.mnuRtc.Size = new System.Drawing.Size(245, 32);
             this.mnuRtc.Text = "RTC";
             this.mnuRtc.Click += new System.EventHandler(this.mnuRtc_Click);
             // 
@@ -1486,20 +1482,20 @@
             this.mnuCorrection2D,
             this.mnuCorrection3D});
             this.fieldCorrectionToolStripMenuItem.Name = "fieldCorrectionToolStripMenuItem";
-            this.fieldCorrectionToolStripMenuItem.Size = new System.Drawing.Size(186, 30);
+            this.fieldCorrectionToolStripMenuItem.Size = new System.Drawing.Size(245, 32);
             this.fieldCorrectionToolStripMenuItem.Text = "Field Correction";
             // 
             // mnuCorrection2D
             // 
             this.mnuCorrection2D.Name = "mnuCorrection2D";
-            this.mnuCorrection2D.Size = new System.Drawing.Size(90, 22);
+            this.mnuCorrection2D.Size = new System.Drawing.Size(135, 34);
             this.mnuCorrection2D.Text = "2D";
             this.mnuCorrection2D.Click += new System.EventHandler(this.mnuCorrection2D_Click);
             // 
             // mnuCorrection3D
             // 
             this.mnuCorrection3D.Name = "mnuCorrection3D";
-            this.mnuCorrection3D.Size = new System.Drawing.Size(90, 22);
+            this.mnuCorrection3D.Size = new System.Drawing.Size(135, 34);
             this.mnuCorrection3D.Text = "3D";
             this.mnuCorrection3D.Click += new System.EventHandler(this.mnuCorrection3D_Click);
             // 
@@ -1507,7 +1503,7 @@
             // 
             this.mnuMeasurementFile.Image = ((System.Drawing.Image)(resources.GetObject("mnuMeasurementFile.Image")));
             this.mnuMeasurementFile.Name = "mnuMeasurementFile";
-            this.mnuMeasurementFile.Size = new System.Drawing.Size(186, 30);
+            this.mnuMeasurementFile.Size = new System.Drawing.Size(245, 32);
             this.mnuMeasurementFile.Text = "Measurement File";
             this.mnuMeasurementFile.Click += new System.EventHandler(this.mnuMeasurementFilePlotTool_Click);
             // 
@@ -1517,7 +1513,7 @@
             this.mnuPowerMeter.Image = ((System.Drawing.Image)(resources.GetObject("mnuPowerMeter.Image")));
             this.mnuPowerMeter.Name = "mnuPowerMeter";
             this.mnuPowerMeter.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.mnuPowerMeter.Size = new System.Drawing.Size(186, 30);
+            this.mnuPowerMeter.Size = new System.Drawing.Size(245, 32);
             this.mnuPowerMeter.Text = "PowerMeter";
             this.mnuPowerMeter.Click += new System.EventHandler(this.mnuPowerMeter_Click);
             // 
@@ -1527,7 +1523,7 @@
             this.mnuPowerMap.Image = ((System.Drawing.Image)(resources.GetObject("mnuPowerMap.Image")));
             this.mnuPowerMap.Name = "mnuPowerMap";
             this.mnuPowerMap.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.mnuPowerMap.Size = new System.Drawing.Size(186, 30);
+            this.mnuPowerMap.Size = new System.Drawing.Size(245, 32);
             this.mnuPowerMap.Text = "PowerMap";
             this.mnuPowerMap.Click += new System.EventHandler(this.mnuPowerMap_Click);
             // 
@@ -1537,7 +1533,7 @@
             this.mnuMotor.Image = ((System.Drawing.Image)(resources.GetObject("mnuMotor.Image")));
             this.mnuMotor.Name = "mnuMotor";
             this.mnuMotor.ShortcutKeys = System.Windows.Forms.Keys.F10;
-            this.mnuMotor.Size = new System.Drawing.Size(186, 30);
+            this.mnuMotor.Size = new System.Drawing.Size(245, 32);
             this.mnuMotor.Text = "Motor";
             this.mnuMotor.Click += new System.EventHandler(this.mnuMotor_Click);
             // 
@@ -1546,20 +1542,20 @@
             this.mnuLogWindow.Image = ((System.Drawing.Image)(resources.GetObject("mnuLogWindow.Image")));
             this.mnuLogWindow.Name = "mnuLogWindow";
             this.mnuLogWindow.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.mnuLogWindow.Size = new System.Drawing.Size(186, 30);
+            this.mnuLogWindow.Size = new System.Drawing.Size(245, 32);
             this.mnuLogWindow.Text = "Log Window";
             this.mnuLogWindow.Click += new System.EventHandler(this.mnuLogWindow_Click);
             // 
             // toolStripMenuItem14
             // 
             this.toolStripMenuItem14.Name = "toolStripMenuItem14";
-            this.toolStripMenuItem14.Size = new System.Drawing.Size(183, 6);
+            this.toolStripMenuItem14.Size = new System.Drawing.Size(242, 6);
             // 
             // mnuAbout
             // 
             this.mnuAbout.Image = ((System.Drawing.Image)(resources.GetObject("mnuAbout.Image")));
             this.mnuAbout.Name = "mnuAbout";
-            this.mnuAbout.Size = new System.Drawing.Size(186, 30);
+            this.mnuAbout.Size = new System.Drawing.Size(245, 32);
             this.mnuAbout.Text = "About";
             this.mnuAbout.Click += new System.EventHandler(this.mnuAbout_Click);
             // 
@@ -1567,7 +1563,7 @@
             // 
             this.lblName.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(55, 24);
+            this.lblName.Size = new System.Drawing.Size(85, 22);
             this.lblName.Text = "NoName";
             // 
             // pgbProgress
@@ -1575,7 +1571,7 @@
             this.pgbProgress.AutoSize = false;
             this.pgbProgress.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pgbProgress.Name = "pgbProgress";
-            this.pgbProgress.Size = new System.Drawing.Size(50, 23);
+            this.pgbProgress.Size = new System.Drawing.Size(50, 21);
             this.pgbProgress.Step = 1;
             // 
             // lblXPos
@@ -1583,7 +1579,7 @@
             this.lblXPos.AutoSize = false;
             this.lblXPos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblXPos.Name = "lblXPos";
-            this.lblXPos.Size = new System.Drawing.Size(80, 24);
+            this.lblXPos.Size = new System.Drawing.Size(80, 22);
             this.lblXPos.Text = "X: 0.000";
             // 
             // lblYPos
@@ -1591,7 +1587,7 @@
             this.lblYPos.AutoSize = false;
             this.lblYPos.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYPos.Name = "lblYPos";
-            this.lblYPos.Size = new System.Drawing.Size(80, 24);
+            this.lblYPos.Size = new System.Drawing.Size(80, 22);
             this.lblYPos.Text = "Y: 0.000";
             // 
             // lblEntityCount
@@ -1599,21 +1595,21 @@
             this.lblEntityCount.AutoSize = false;
             this.lblEntityCount.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEntityCount.Name = "lblEntityCount";
-            this.lblEntityCount.Size = new System.Drawing.Size(80, 24);
+            this.lblEntityCount.Size = new System.Drawing.Size(80, 22);
             this.lblEntityCount.Text = "Selected: 0";
             // 
             // lblRenderTime
             // 
             this.lblRenderTime.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRenderTime.Name = "lblRenderTime";
-            this.lblRenderTime.Size = new System.Drawing.Size(64, 24);
+            this.lblRenderTime.Size = new System.Drawing.Size(98, 22);
             this.lblRenderTime.Text = "Render: 0 ms";
             // 
             // lblFileName
             // 
             this.lblFileName.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(41, 24);
+            this.lblFileName.Size = new System.Drawing.Size(61, 22);
             this.lblFileName.Text = "(Empty)";
             // 
             // stsBottom
@@ -1644,14 +1640,14 @@
             // 
             this.toolStripStatusLabel3.AutoSize = false;
             this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel3.Text = " ";
             // 
             // toolStripStatusLabel1
             // 
             this.toolStripStatusLabel1.AutoSize = false;
             this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel1.Text = " ";
             // 
             // toolStripStatusLabel2
@@ -1659,21 +1655,21 @@
             this.toolStripStatusLabel2.AutoSize = false;
             this.toolStripStatusLabel2.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel2.Text = " ";
             // 
             // lblWH
             // 
             this.lblWH.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWH.Name = "lblWH";
-            this.lblWH.Size = new System.Drawing.Size(88, 24);
+            this.lblWH.Size = new System.Drawing.Size(129, 22);
             this.lblWH.Text = "WH: 0.000 x 0.000";
             // 
             // toolStripStatusLabel4
             // 
             this.toolStripStatusLabel4.AutoSize = false;
             this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
-            this.toolStripStatusLabel4.Size = new System.Drawing.Size(8, 24);
+            this.toolStripStatusLabel4.Size = new System.Drawing.Size(8, 22);
             this.toolStripStatusLabel4.Text = " ";
             // 
             // tlsTop2
@@ -1704,7 +1700,6 @@
             this.btnImage,
             this.ddbStitchedImage,
             this.toolStripSeparator1,
-            this.ddbPen,
             this.toolStripSeparator3,
             this.toolStripDropDownButton1,
             this.toolStripSeparator6,
@@ -1713,16 +1708,16 @@
             this.ddbGroup,
             this.btnPens});
             this.tlsTop2.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
-            this.tlsTop2.Location = new System.Drawing.Point(0, 32);
+            this.tlsTop2.Location = new System.Drawing.Point(0, 34);
             this.tlsTop2.Name = "tlsTop2";
-            this.tlsTop2.Size = new System.Drawing.Size(1075, 31);
+            this.tlsTop2.Size = new System.Drawing.Size(1075, 33);
             this.tlsTop2.TabIndex = 13;
             this.tlsTop2.Text = "toolStrip2";
             // 
             // toolStripSeparator12
             // 
             this.toolStripSeparator12.Name = "toolStripSeparator12";
-            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator12.Size = new System.Drawing.Size(6, 33);
             // 
             // btnPoint
             // 
@@ -1730,7 +1725,7 @@
             this.btnPoint.Image = ((System.Drawing.Image)(resources.GetObject("btnPoint.Image")));
             this.btnPoint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPoint.Name = "btnPoint";
-            this.btnPoint.Size = new System.Drawing.Size(28, 28);
+            this.btnPoint.Size = new System.Drawing.Size(34, 28);
             this.btnPoint.Text = "Point Entity";
             this.btnPoint.ToolTipText = "Point";
             this.btnPoint.Click += new System.EventHandler(this.btnPoint_Click);
@@ -1741,7 +1736,7 @@
             this.btnPoints.Image = ((System.Drawing.Image)(resources.GetObject("btnPoints.Image")));
             this.btnPoints.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnPoints.Name = "btnPoints";
-            this.btnPoints.Size = new System.Drawing.Size(28, 28);
+            this.btnPoints.Size = new System.Drawing.Size(34, 28);
             this.btnPoints.Text = "Points Entity";
             this.btnPoints.ToolTipText = "Points";
             this.btnPoints.Click += new System.EventHandler(this.btnPoints_Click);
@@ -1752,7 +1747,7 @@
             this.btnRaster.Image = ((System.Drawing.Image)(resources.GetObject("btnRaster.Image")));
             this.btnRaster.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRaster.Name = "btnRaster";
-            this.btnRaster.Size = new System.Drawing.Size(28, 28);
+            this.btnRaster.Size = new System.Drawing.Size(34, 28);
             this.btnRaster.Text = "Raster";
             this.btnRaster.ToolTipText = "Raster";
             this.btnRaster.Click += new System.EventHandler(this.btnRaster_Click);
@@ -1763,7 +1758,7 @@
             this.btnLine.Image = ((System.Drawing.Image)(resources.GetObject("btnLine.Image")));
             this.btnLine.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLine.Name = "btnLine";
-            this.btnLine.Size = new System.Drawing.Size(28, 28);
+            this.btnLine.Size = new System.Drawing.Size(34, 28);
             this.btnLine.Text = "Line Entity";
             this.btnLine.ToolTipText = "Line";
             this.btnLine.Click += new System.EventHandler(this.btnLine_Click);
@@ -1774,7 +1769,7 @@
             this.btnArc.Image = ((System.Drawing.Image)(resources.GetObject("btnArc.Image")));
             this.btnArc.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnArc.Name = "btnArc";
-            this.btnArc.Size = new System.Drawing.Size(28, 28);
+            this.btnArc.Size = new System.Drawing.Size(34, 28);
             this.btnArc.Text = "Arc Entity";
             this.btnArc.ToolTipText = "Arc";
             this.btnArc.Click += new System.EventHandler(this.btnArc_Click);
@@ -1785,7 +1780,7 @@
             this.btnCircle.Image = ((System.Drawing.Image)(resources.GetObject("btnCircle.Image")));
             this.btnCircle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnCircle.Name = "btnCircle";
-            this.btnCircle.Size = new System.Drawing.Size(28, 28);
+            this.btnCircle.Size = new System.Drawing.Size(34, 28);
             this.btnCircle.Text = "Circle Entity";
             this.btnCircle.ToolTipText = "Circle";
             this.btnCircle.Click += new System.EventHandler(this.btnCircle_Click);
@@ -1796,7 +1791,7 @@
             this.btnEllipse.Image = ((System.Drawing.Image)(resources.GetObject("btnEllipse.Image")));
             this.btnEllipse.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnEllipse.Name = "btnEllipse";
-            this.btnEllipse.Size = new System.Drawing.Size(28, 28);
+            this.btnEllipse.Size = new System.Drawing.Size(34, 28);
             this.btnEllipse.Text = "Ellipse";
             this.btnEllipse.Click += new System.EventHandler(this.btnEllipse_Click);
             // 
@@ -1806,7 +1801,7 @@
             this.btnTrepan.Image = ((System.Drawing.Image)(resources.GetObject("btnTrepan.Image")));
             this.btnTrepan.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTrepan.Name = "btnTrepan";
-            this.btnTrepan.Size = new System.Drawing.Size(28, 28);
+            this.btnTrepan.Size = new System.Drawing.Size(34, 28);
             this.btnTrepan.ToolTipText = "Trepan";
             this.btnTrepan.Click += new System.EventHandler(this.btnTrepan_Click);
             // 
@@ -1816,7 +1811,7 @@
             this.btnTriangle.Image = ((System.Drawing.Image)(resources.GetObject("btnTriangle.Image")));
             this.btnTriangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnTriangle.Name = "btnTriangle";
-            this.btnTriangle.Size = new System.Drawing.Size(28, 28);
+            this.btnTriangle.Size = new System.Drawing.Size(34, 28);
             this.btnTriangle.Text = "Triangle";
             this.btnTriangle.Click += new System.EventHandler(this.btnTriangle_Click);
             // 
@@ -1826,7 +1821,7 @@
             this.btnRectangle.Image = ((System.Drawing.Image)(resources.GetObject("btnRectangle.Image")));
             this.btnRectangle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnRectangle.Name = "btnRectangle";
-            this.btnRectangle.Size = new System.Drawing.Size(28, 28);
+            this.btnRectangle.Size = new System.Drawing.Size(34, 28);
             this.btnRectangle.Text = "Rectangle Entity";
             this.btnRectangle.ToolTipText = "Rectangle";
             this.btnRectangle.Click += new System.EventHandler(this.btnRectangle_Click);
@@ -1837,7 +1832,7 @@
             this.btnLWPolyline.Image = ((System.Drawing.Image)(resources.GetObject("btnLWPolyline.Image")));
             this.btnLWPolyline.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnLWPolyline.Name = "btnLWPolyline";
-            this.btnLWPolyline.Size = new System.Drawing.Size(28, 28);
+            this.btnLWPolyline.Size = new System.Drawing.Size(34, 28);
             this.btnLWPolyline.Text = "Polyline Entity";
             this.btnLWPolyline.ToolTipText = "LW Polyline";
             this.btnLWPolyline.Click += new System.EventHandler(this.btnLWPolyline_Click);
@@ -1848,7 +1843,7 @@
             this.btnSpiral.Image = ((System.Drawing.Image)(resources.GetObject("btnSpiral.Image")));
             this.btnSpiral.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnSpiral.Name = "btnSpiral";
-            this.btnSpiral.Size = new System.Drawing.Size(28, 28);
+            this.btnSpiral.Size = new System.Drawing.Size(34, 28);
             this.btnSpiral.Text = "Spiral Entity";
             this.btnSpiral.ToolTipText = "Spiral";
             this.btnSpiral.Click += new System.EventHandler(this.btnSpiral_Click);
@@ -1866,7 +1861,7 @@
             this.ddbSiriusText.Image = ((System.Drawing.Image)(resources.GetObject("ddbSiriusText.Image")));
             this.ddbSiriusText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbSiriusText.Name = "ddbSiriusText";
-            this.ddbSiriusText.Size = new System.Drawing.Size(37, 28);
+            this.ddbSiriusText.Size = new System.Drawing.Size(42, 28);
             this.ddbSiriusText.Text = "Special text entity";
             this.ddbSiriusText.ToolTipText = "Sirius Text";
             // 
@@ -1874,7 +1869,7 @@
             // 
             this.mnuSiriusText.Image = ((System.Drawing.Image)(resources.GetObject("mnuSiriusText.Image")));
             this.mnuSiriusText.Name = "mnuSiriusText";
-            this.mnuSiriusText.Size = new System.Drawing.Size(138, 30);
+            this.mnuSiriusText.Size = new System.Drawing.Size(196, 34);
             this.mnuSiriusText.Text = "Text";
             this.mnuSiriusText.ToolTipText = "Text";
             this.mnuSiriusText.Click += new System.EventHandler(this.btnSiriusText_Click);
@@ -1883,20 +1878,20 @@
             // 
             this.mnuSiriusTextArc.Image = ((System.Drawing.Image)(resources.GetObject("mnuSiriusTextArc.Image")));
             this.mnuSiriusTextArc.Name = "mnuSiriusTextArc";
-            this.mnuSiriusTextArc.Size = new System.Drawing.Size(138, 30);
+            this.mnuSiriusTextArc.Size = new System.Drawing.Size(196, 34);
             this.mnuSiriusTextArc.Text = "Text (Arc)";
             this.mnuSiriusTextArc.Click += new System.EventHandler(this.btnSiriusArcText_Click);
             // 
             // toolStripMenuItem6
             // 
             this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-            this.toolStripMenuItem6.Size = new System.Drawing.Size(135, 6);
+            this.toolStripMenuItem6.Size = new System.Drawing.Size(193, 6);
             // 
             // mnuSiriusTime
             // 
             this.mnuSiriusTime.Image = ((System.Drawing.Image)(resources.GetObject("mnuSiriusTime.Image")));
             this.mnuSiriusTime.Name = "mnuSiriusTime";
-            this.mnuSiriusTime.Size = new System.Drawing.Size(138, 30);
+            this.mnuSiriusTime.Size = new System.Drawing.Size(196, 34);
             this.mnuSiriusTime.Text = "Time";
             this.mnuSiriusTime.ToolTipText = "Time";
             this.mnuSiriusTime.Click += new System.EventHandler(this.mnuTime_Click);
@@ -1905,7 +1900,7 @@
             // 
             this.mnuSiriusDate.Image = ((System.Drawing.Image)(resources.GetObject("mnuSiriusDate.Image")));
             this.mnuSiriusDate.Name = "mnuSiriusDate";
-            this.mnuSiriusDate.Size = new System.Drawing.Size(138, 30);
+            this.mnuSiriusDate.Size = new System.Drawing.Size(196, 34);
             this.mnuSiriusDate.Text = "Date";
             this.mnuSiriusDate.ToolTipText = "Date";
             this.mnuSiriusDate.Click += new System.EventHandler(this.mnuDate_Click);
@@ -1914,7 +1909,7 @@
             // 
             this.mnuSiriusSerial.Image = ((System.Drawing.Image)(resources.GetObject("mnuSiriusSerial.Image")));
             this.mnuSiriusSerial.Name = "mnuSiriusSerial";
-            this.mnuSiriusSerial.Size = new System.Drawing.Size(138, 30);
+            this.mnuSiriusSerial.Size = new System.Drawing.Size(196, 34);
             this.mnuSiriusSerial.Text = "Serial No";
             this.mnuSiriusSerial.ToolTipText = "Serial No";
             this.mnuSiriusSerial.Click += new System.EventHandler(this.mnuSerial_Click);
@@ -1932,7 +1927,7 @@
             this.ddbText.Image = ((System.Drawing.Image)(resources.GetObject("ddbText.Image")));
             this.ddbText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbText.Name = "ddbText";
-            this.ddbText.Size = new System.Drawing.Size(37, 28);
+            this.ddbText.Size = new System.Drawing.Size(42, 28);
             this.ddbText.Text = "True type font";
             this.ddbText.ToolTipText = "True Type Font";
             // 
@@ -1940,7 +1935,7 @@
             // 
             this.mnuText.Image = ((System.Drawing.Image)(resources.GetObject("mnuText.Image")));
             this.mnuText.Name = "mnuText";
-            this.mnuText.Size = new System.Drawing.Size(138, 30);
+            this.mnuText.Size = new System.Drawing.Size(196, 34);
             this.mnuText.Text = "Text";
             this.mnuText.ToolTipText = "Text";
             this.mnuText.Click += new System.EventHandler(this.mnuText_Click);
@@ -1949,21 +1944,21 @@
             // 
             this.mnuTextArc.Image = ((System.Drawing.Image)(resources.GetObject("mnuTextArc.Image")));
             this.mnuTextArc.Name = "mnuTextArc";
-            this.mnuTextArc.Size = new System.Drawing.Size(138, 30);
+            this.mnuTextArc.Size = new System.Drawing.Size(196, 34);
             this.mnuTextArc.Text = "Text (Arc)";
             this.mnuTextArc.Click += new System.EventHandler(this.btnTextArc_Click);
             // 
             // toolStripMenuItem12
             // 
             this.toolStripMenuItem12.Name = "toolStripMenuItem12";
-            this.toolStripMenuItem12.Size = new System.Drawing.Size(135, 6);
+            this.toolStripMenuItem12.Size = new System.Drawing.Size(193, 6);
             // 
             // mnuTextTime
             // 
             this.mnuTextTime.Enabled = false;
             this.mnuTextTime.Image = ((System.Drawing.Image)(resources.GetObject("mnuTextTime.Image")));
             this.mnuTextTime.Name = "mnuTextTime";
-            this.mnuTextTime.Size = new System.Drawing.Size(138, 30);
+            this.mnuTextTime.Size = new System.Drawing.Size(196, 34);
             this.mnuTextTime.Text = "Time";
             this.mnuTextTime.ToolTipText = "Time";
             this.mnuTextTime.Click += new System.EventHandler(this.mnuTextTime_Click);
@@ -1973,7 +1968,7 @@
             this.mnuTextDate.Enabled = false;
             this.mnuTextDate.Image = ((System.Drawing.Image)(resources.GetObject("mnuTextDate.Image")));
             this.mnuTextDate.Name = "mnuTextDate";
-            this.mnuTextDate.Size = new System.Drawing.Size(138, 30);
+            this.mnuTextDate.Size = new System.Drawing.Size(196, 34);
             this.mnuTextDate.Text = "Date";
             this.mnuTextDate.ToolTipText = "Date";
             this.mnuTextDate.Click += new System.EventHandler(this.mnuTextDate_Click);
@@ -1983,7 +1978,7 @@
             this.mnuTextSerial.Enabled = false;
             this.mnuTextSerial.Image = ((System.Drawing.Image)(resources.GetObject("mnuTextSerial.Image")));
             this.mnuTextSerial.Name = "mnuTextSerial";
-            this.mnuTextSerial.Size = new System.Drawing.Size(138, 30);
+            this.mnuTextSerial.Size = new System.Drawing.Size(196, 34);
             this.mnuTextSerial.Text = "Serial No";
             this.mnuTextSerial.ToolTipText = "Serial No";
             this.mnuTextSerial.Click += new System.EventHandler(this.mnuTextSerial_Click);
@@ -1994,7 +1989,7 @@
             this.btnBarcode1D.Image = ((System.Drawing.Image)(resources.GetObject("btnBarcode1D.Image")));
             this.btnBarcode1D.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnBarcode1D.Name = "btnBarcode1D";
-            this.btnBarcode1D.Size = new System.Drawing.Size(28, 28);
+            this.btnBarcode1D.Size = new System.Drawing.Size(34, 28);
             this.btnBarcode1D.Text = "1D Barcode";
             this.btnBarcode1D.ToolTipText = "1D Barcode";
             this.btnBarcode1D.Click += new System.EventHandler(this.btnBarcode1D_Click);
@@ -2008,7 +2003,7 @@
             this.ddbBarcode.Image = ((System.Drawing.Image)(resources.GetObject("ddbBarcode.Image")));
             this.ddbBarcode.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbBarcode.Name = "ddbBarcode";
-            this.ddbBarcode.Size = new System.Drawing.Size(37, 28);
+            this.ddbBarcode.Size = new System.Drawing.Size(42, 28);
             this.ddbBarcode.Text = "Data matrix entity";
             this.ddbBarcode.ToolTipText = "2D Barcode";
             // 
@@ -2016,7 +2011,7 @@
             // 
             this.mnuDataMatrix.Image = ((System.Drawing.Image)(resources.GetObject("mnuDataMatrix.Image")));
             this.mnuDataMatrix.Name = "mnuDataMatrix";
-            this.mnuDataMatrix.Size = new System.Drawing.Size(145, 30);
+            this.mnuDataMatrix.Size = new System.Drawing.Size(206, 34);
             this.mnuDataMatrix.Text = "DataMatrix";
             this.mnuDataMatrix.ToolTipText = "DataMatrix";
             this.mnuDataMatrix.Click += new System.EventHandler(this.mnuDataMatrix_Click);
@@ -2025,7 +2020,7 @@
             // 
             this.mnuQRCode.Image = ((System.Drawing.Image)(resources.GetObject("mnuQRCode.Image")));
             this.mnuQRCode.Name = "mnuQRCode";
-            this.mnuQRCode.Size = new System.Drawing.Size(145, 30);
+            this.mnuQRCode.Size = new System.Drawing.Size(206, 34);
             this.mnuQRCode.Text = "QR Code";
             this.mnuQRCode.ToolTipText = "QR Code";
             this.mnuQRCode.Click += new System.EventHandler(this.mnuQRCode_Click);
@@ -2036,7 +2031,7 @@
             this.btnHPGL.Image = ((System.Drawing.Image)(resources.GetObject("btnHPGL.Image")));
             this.btnHPGL.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnHPGL.Name = "btnHPGL";
-            this.btnHPGL.Size = new System.Drawing.Size(28, 28);
+            this.btnHPGL.Size = new System.Drawing.Size(34, 28);
             this.btnHPGL.Text = "DXF & PLT";
             this.btnHPGL.ToolTipText = "Logo Files (DXF, PLT, STL, ...)";
             this.btnHPGL.Click += new System.EventHandler(this.btnHPGL_Click);
@@ -2047,7 +2042,7 @@
             this.btnImage.Image = ((System.Drawing.Image)(resources.GetObject("btnImage.Image")));
             this.btnImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.btnImage.Name = "btnImage";
-            this.btnImage.Size = new System.Drawing.Size(28, 28);
+            this.btnImage.Size = new System.Drawing.Size(34, 28);
             this.btnImage.Text = "Image";
             this.btnImage.Click += new System.EventHandler(this.btmImage_Click);
             // 
@@ -2062,7 +2057,7 @@
             this.ddbStitchedImage.Image = ((System.Drawing.Image)(resources.GetObject("ddbStitchedImage.Image")));
             this.ddbStitchedImage.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbStitchedImage.Name = "ddbStitchedImage";
-            this.ddbStitchedImage.Size = new System.Drawing.Size(37, 28);
+            this.ddbStitchedImage.Size = new System.Drawing.Size(42, 28);
             this.ddbStitchedImage.Text = "Stitched Image";
             this.ddbStitchedImage.ToolTipText = "Stitched Image";
             // 
@@ -2070,7 +2065,7 @@
             // 
             this.mnuStitchedImage.Image = ((System.Drawing.Image)(resources.GetObject("mnuStitchedImage.Image")));
             this.mnuStitchedImage.Name = "mnuStitchedImage";
-            this.mnuStitchedImage.Size = new System.Drawing.Size(145, 30);
+            this.mnuStitchedImage.Size = new System.Drawing.Size(206, 34);
             this.mnuStitchedImage.Text = "Create";
             this.mnuStitchedImage.ToolTipText = "Create Stitched Image";
             this.mnuStitchedImage.Click += new System.EventHandler(this.mnuStitchedImage_Click);
@@ -2079,7 +2074,7 @@
             // 
             this.mnuLoadCells.Image = ((System.Drawing.Image)(resources.GetObject("mnuLoadCells.Image")));
             this.mnuLoadCells.Name = "mnuLoadCells";
-            this.mnuLoadCells.Size = new System.Drawing.Size(145, 30);
+            this.mnuLoadCells.Size = new System.Drawing.Size(206, 34);
             this.mnuLoadCells.Text = "Load Cells";
             this.mnuLoadCells.ToolTipText = "Load Cells";
             this.mnuLoadCells.Click += new System.EventHandler(this.mnuLoadCellImages_Click);
@@ -2087,13 +2082,13 @@
             // toolStripMenuItem11
             // 
             this.toolStripMenuItem11.Name = "toolStripMenuItem11";
-            this.toolStripMenuItem11.Size = new System.Drawing.Size(142, 6);
+            this.toolStripMenuItem11.Size = new System.Drawing.Size(203, 6);
             // 
             // mnuClearCells
             // 
             this.mnuClearCells.Image = ((System.Drawing.Image)(resources.GetObject("mnuClearCells.Image")));
             this.mnuClearCells.Name = "mnuClearCells";
-            this.mnuClearCells.Size = new System.Drawing.Size(145, 30);
+            this.mnuClearCells.Size = new System.Drawing.Size(206, 34);
             this.mnuClearCells.Text = "Clear Cells";
             this.mnuClearCells.ToolTipText = "Clear Cells";
             this.mnuClearCells.Click += new System.EventHandler(this.mnuClearCells_Click);
@@ -2101,49 +2096,12 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
-            // 
-            // ddbPen
-            // 
-            this.ddbPen.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.ddbPen.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuPen,
-            this.toolStripMenuItem16,
-            this.mnuPenReturn});
-            this.ddbPen.Image = ((System.Drawing.Image)(resources.GetObject("ddbPen.Image")));
-            this.ddbPen.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ddbPen.Name = "ddbPen";
-            this.ddbPen.Size = new System.Drawing.Size(37, 28);
-            this.ddbPen.Text = "Pen";
-            this.ddbPen.ToolTipText = "Pen";
-            // 
-            // mnuPen
-            // 
-            this.mnuPen.Image = ((System.Drawing.Image)(resources.GetObject("mnuPen.Image")));
-            this.mnuPen.Name = "mnuPen";
-            this.mnuPen.Size = new System.Drawing.Size(147, 30);
-            this.mnuPen.Text = "&Pen";
-            this.mnuPen.ToolTipText = "Pen";
-            this.mnuPen.Click += new System.EventHandler(this.mnuPen_Click);
-            // 
-            // toolStripMenuItem16
-            // 
-            this.toolStripMenuItem16.Name = "toolStripMenuItem16";
-            this.toolStripMenuItem16.Size = new System.Drawing.Size(144, 6);
-            // 
-            // mnuPenReturn
-            // 
-            this.mnuPenReturn.Image = ((System.Drawing.Image)(resources.GetObject("mnuPenReturn.Image")));
-            this.mnuPenReturn.Name = "mnuPenReturn";
-            this.mnuPenReturn.Size = new System.Drawing.Size(147, 30);
-            this.mnuPenReturn.Text = "Pen Return";
-            this.mnuPenReturn.ToolTipText = "Pen Return";
-            this.mnuPenReturn.Click += new System.EventHandler(this.mnuPenReturn_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 33);
             // 
             // toolStripDropDownButton1
             // 
@@ -2162,7 +2120,7 @@
             this.toolStripDropDownButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripDropDownButton1.Image")));
             this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
-            this.toolStripDropDownButton1.Size = new System.Drawing.Size(37, 28);
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(42, 28);
             this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
             this.toolStripDropDownButton1.ToolTipText = "Control Entities";
             // 
@@ -2170,7 +2128,7 @@
             // 
             this.mnuTimer.Image = ((System.Drawing.Image)(resources.GetObject("mnuTimer.Image")));
             this.mnuTimer.Name = "mnuTimer";
-            this.mnuTimer.Size = new System.Drawing.Size(225, 30);
+            this.mnuTimer.Size = new System.Drawing.Size(325, 34);
             this.mnuTimer.Text = "Timer";
             this.mnuTimer.ToolTipText = "Timer";
             this.mnuTimer.Click += new System.EventHandler(this.btnTimer_Click);
@@ -2179,7 +2137,7 @@
             // 
             this.mnuMeasurementBeginEnd.Image = ((System.Drawing.Image)(resources.GetObject("mnuMeasurementBeginEnd.Image")));
             this.mnuMeasurementBeginEnd.Name = "mnuMeasurementBeginEnd";
-            this.mnuMeasurementBeginEnd.Size = new System.Drawing.Size(225, 30);
+            this.mnuMeasurementBeginEnd.Size = new System.Drawing.Size(325, 34);
             this.mnuMeasurementBeginEnd.Text = "Measurement Begin/End";
             this.mnuMeasurementBeginEnd.ToolTipText = "Measurement Begin/End";
             this.mnuMeasurementBeginEnd.Click += new System.EventHandler(this.mnuMeasurementBegin_Click);
@@ -2191,7 +2149,7 @@
             this.mnuZDefocus});
             this.zOffsetToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("zOffsetToolStripMenuItem.Image")));
             this.zOffsetToolStripMenuItem.Name = "zOffsetToolStripMenuItem";
-            this.zOffsetToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
+            this.zOffsetToolStripMenuItem.Size = new System.Drawing.Size(325, 34);
             this.zOffsetToolStripMenuItem.Text = "Z Control";
             this.zOffsetToolStripMenuItem.ToolTipText = "Z Control";
             // 
@@ -2199,7 +2157,7 @@
             // 
             this.mnuZOffset.Image = ((System.Drawing.Image)(resources.GetObject("mnuZOffset.Image")));
             this.mnuZOffset.Name = "mnuZOffset";
-            this.mnuZOffset.Size = new System.Drawing.Size(129, 30);
+            this.mnuZOffset.Size = new System.Drawing.Size(182, 34);
             this.mnuZOffset.Text = "Offset";
             this.mnuZOffset.ToolTipText = "Z Offset";
             this.mnuZOffset.Click += new System.EventHandler(this.mnuZOffset_Click);
@@ -2208,7 +2166,7 @@
             // 
             this.mnuZDefocus.Image = ((System.Drawing.Image)(resources.GetObject("mnuZDefocus.Image")));
             this.mnuZDefocus.Name = "mnuZDefocus";
-            this.mnuZDefocus.Size = new System.Drawing.Size(129, 30);
+            this.mnuZDefocus.Size = new System.Drawing.Size(182, 34);
             this.mnuZDefocus.Text = "Defocus";
             this.mnuZDefocus.ToolTipText = "Z Defocus";
             this.mnuZDefocus.Click += new System.EventHandler(this.mnuZDefocus_Click);
@@ -2222,7 +2180,7 @@
             this.waitExt16IfToolStripMenuItem1});
             this.writeDataToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("writeDataToolStripMenuItem.Image")));
             this.writeDataToolStripMenuItem.Name = "writeDataToolStripMenuItem";
-            this.writeDataToolStripMenuItem.Size = new System.Drawing.Size(225, 30);
+            this.writeDataToolStripMenuItem.Size = new System.Drawing.Size(325, 34);
             this.writeDataToolStripMenuItem.Text = "Read/Write Data";
             this.writeDataToolStripMenuItem.ToolTipText = "Read/Write Data";
             // 
@@ -2230,7 +2188,7 @@
             // 
             this.writeToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("writeToolStripMenuItem.Image")));
             this.writeToolStripMenuItem.Name = "writeToolStripMenuItem";
-            this.writeToolStripMenuItem.Size = new System.Drawing.Size(157, 30);
+            this.writeToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.writeToolStripMenuItem.Text = "Write";
             this.writeToolStripMenuItem.ToolTipText = "Write";
             this.writeToolStripMenuItem.Click += new System.EventHandler(this.mnuWriteData_Click);
@@ -2239,7 +2197,7 @@
             // 
             this.ext16ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ext16ToolStripMenuItem.Image")));
             this.ext16ToolStripMenuItem.Name = "ext16ToolStripMenuItem";
-            this.ext16ToolStripMenuItem.Size = new System.Drawing.Size(157, 30);
+            this.ext16ToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.ext16ToolStripMenuItem.Text = "Ext16";
             this.ext16ToolStripMenuItem.ToolTipText = "Extension16";
             this.ext16ToolStripMenuItem.Click += new System.EventHandler(this.mnuWriteExt16_Click);
@@ -2248,7 +2206,7 @@
             // 
             this.ext16IfToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ext16IfToolStripMenuItem.Image")));
             this.ext16IfToolStripMenuItem.Name = "ext16IfToolStripMenuItem";
-            this.ext16IfToolStripMenuItem.Size = new System.Drawing.Size(157, 30);
+            this.ext16IfToolStripMenuItem.Size = new System.Drawing.Size(223, 34);
             this.ext16IfToolStripMenuItem.Text = "Ext16 If";
             this.ext16IfToolStripMenuItem.ToolTipText = "Extension16 If Cond";
             this.ext16IfToolStripMenuItem.Click += new System.EventHandler(this.mnuWriteDataExt16If_Click);
@@ -2257,7 +2215,7 @@
             // 
             this.waitExt16IfToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("waitExt16IfToolStripMenuItem1.Image")));
             this.waitExt16IfToolStripMenuItem1.Name = "waitExt16IfToolStripMenuItem1";
-            this.waitExt16IfToolStripMenuItem1.Size = new System.Drawing.Size(157, 30);
+            this.waitExt16IfToolStripMenuItem1.Size = new System.Drawing.Size(223, 34);
             this.waitExt16IfToolStripMenuItem1.Text = "Wait Ext16 If";
             this.waitExt16IfToolStripMenuItem1.ToolTipText = "Wait Extension16 If cond";
             this.waitExt16IfToolStripMenuItem1.Click += new System.EventHandler(this.waitExt16IfToolStripMenuItem_Click);
@@ -2274,7 +2232,7 @@
             this.mnuMotfAngularWait});
             this.mnuMOTF.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTF.Image")));
             this.mnuMOTF.Name = "mnuMOTF";
-            this.mnuMOTF.Size = new System.Drawing.Size(225, 30);
+            this.mnuMOTF.Size = new System.Drawing.Size(325, 34);
             this.mnuMOTF.Text = "MOTF";
             this.mnuMOTF.ToolTipText = "Marking On The Fly";
             // 
@@ -2282,7 +2240,7 @@
             // 
             this.mnuMOTFBeginEnd.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTFBeginEnd.Image")));
             this.mnuMOTFBeginEnd.Name = "mnuMOTFBeginEnd";
-            this.mnuMOTFBeginEnd.Size = new System.Drawing.Size(190, 30);
+            this.mnuMOTFBeginEnd.Size = new System.Drawing.Size(271, 34);
             this.mnuMOTFBeginEnd.Text = "Begin/End";
             this.mnuMOTFBeginEnd.ToolTipText = "MOTF Begin/End";
             this.mnuMOTFBeginEnd.Click += new System.EventHandler(this.mnuMOTFBeginEnd_Click);
@@ -2291,7 +2249,7 @@
             // 
             this.mnuMOTFExtStartDelay.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTFExtStartDelay.Image")));
             this.mnuMOTFExtStartDelay.Name = "mnuMOTFExtStartDelay";
-            this.mnuMOTFExtStartDelay.Size = new System.Drawing.Size(190, 30);
+            this.mnuMOTFExtStartDelay.Size = new System.Drawing.Size(271, 34);
             this.mnuMOTFExtStartDelay.Text = "Ext Start Delay";
             this.mnuMOTFExtStartDelay.ToolTipText = "MOTF Ext Start Delay";
             this.mnuMOTFExtStartDelay.Click += new System.EventHandler(this.mnuOTFExtStartDelay_Click);
@@ -2300,7 +2258,7 @@
             // 
             this.mnuMOTFWait.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTFWait.Image")));
             this.mnuMOTFWait.Name = "mnuMOTFWait";
-            this.mnuMOTFWait.Size = new System.Drawing.Size(190, 30);
+            this.mnuMOTFWait.Size = new System.Drawing.Size(271, 34);
             this.mnuMOTFWait.Text = "Wait";
             this.mnuMOTFWait.ToolTipText = "MOTF Wait";
             this.mnuMOTFWait.Click += new System.EventHandler(this.mnuMOTFWait_Click);
@@ -2309,7 +2267,7 @@
             // 
             this.mnuMOTFRepeat.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTFRepeat.Image")));
             this.mnuMOTFRepeat.Name = "mnuMOTFRepeat";
-            this.mnuMOTFRepeat.Size = new System.Drawing.Size(190, 30);
+            this.mnuMOTFRepeat.Size = new System.Drawing.Size(271, 34);
             this.mnuMOTFRepeat.Text = "Repeat";
             this.mnuMOTFRepeat.ToolTipText = "MOTF Repeat";
             this.mnuMOTFRepeat.Click += new System.EventHandler(this.mnuMOTFCall_Click);
@@ -2317,13 +2275,13 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(187, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(268, 6);
             // 
             // mnuMOTFAngularBeginEnd
             // 
             this.mnuMOTFAngularBeginEnd.Image = ((System.Drawing.Image)(resources.GetObject("mnuMOTFAngularBeginEnd.Image")));
             this.mnuMOTFAngularBeginEnd.Name = "mnuMOTFAngularBeginEnd";
-            this.mnuMOTFAngularBeginEnd.Size = new System.Drawing.Size(190, 30);
+            this.mnuMOTFAngularBeginEnd.Size = new System.Drawing.Size(271, 34);
             this.mnuMOTFAngularBeginEnd.Text = "Angular Begin/End";
             this.mnuMOTFAngularBeginEnd.ToolTipText = "MOTF Angular Begin/End";
             this.mnuMOTFAngularBeginEnd.Click += new System.EventHandler(this.mnuMOTFAngularBeginEnd_Click);
@@ -2332,7 +2290,7 @@
             // 
             this.mnuMotfAngularWait.Image = ((System.Drawing.Image)(resources.GetObject("mnuMotfAngularWait.Image")));
             this.mnuMotfAngularWait.Name = "mnuMotfAngularWait";
-            this.mnuMotfAngularWait.Size = new System.Drawing.Size(190, 30);
+            this.mnuMotfAngularWait.Size = new System.Drawing.Size(271, 34);
             this.mnuMotfAngularWait.Text = "Angular Wait";
             this.mnuMotfAngularWait.ToolTipText = "MOTF Angular Wait";
             this.mnuMotfAngularWait.Click += new System.EventHandler(this.mnuMotfAngularWait_Click);
@@ -2346,7 +2304,7 @@
             this.mnuAlcSyncAxisBeginEnd});
             this.mnuAlc.Image = ((System.Drawing.Image)(resources.GetObject("mnuAlc.Image")));
             this.mnuAlc.Name = "mnuAlc";
-            this.mnuAlc.Size = new System.Drawing.Size(225, 30);
+            this.mnuAlc.Size = new System.Drawing.Size(325, 34);
             this.mnuAlc.Text = "Automatic Laser Control";
             this.mnuAlc.ToolTipText = "Automatic Laser Control";
             // 
@@ -2354,7 +2312,7 @@
             // 
             this.mnuPoD.Image = ((System.Drawing.Image)(resources.GetObject("mnuPoD.Image")));
             this.mnuPoD.Name = "mnuPoD";
-            this.mnuPoD.Size = new System.Drawing.Size(252, 30);
+            this.mnuPoD.Size = new System.Drawing.Size(364, 34);
             this.mnuPoD.Text = "Pulse On Demand";
             this.mnuPoD.ToolTipText = "Pulse On Demand";
             this.mnuPoD.Click += new System.EventHandler(this.mnuPoDBeginEnd_Click);
@@ -2363,7 +2321,7 @@
             // 
             this.mnuVectorBeginEnd.Image = ((System.Drawing.Image)(resources.GetObject("mnuVectorBeginEnd.Image")));
             this.mnuVectorBeginEnd.Name = "mnuVectorBeginEnd";
-            this.mnuVectorBeginEnd.Size = new System.Drawing.Size(252, 30);
+            this.mnuVectorBeginEnd.Size = new System.Drawing.Size(364, 34);
             this.mnuVectorBeginEnd.Text = "Vector Defined Begin/End";
             this.mnuVectorBeginEnd.ToolTipText = "Vector Defined Begin/End";
             this.mnuVectorBeginEnd.Click += new System.EventHandler(this.mnuVectorBeginEnd_Click);
@@ -2371,13 +2329,13 @@
             // toolStripMenuItem20
             // 
             this.toolStripMenuItem20.Name = "toolStripMenuItem20";
-            this.toolStripMenuItem20.Size = new System.Drawing.Size(249, 6);
+            this.toolStripMenuItem20.Size = new System.Drawing.Size(361, 6);
             // 
             // mnuAlcSyncAxisBeginEnd
             // 
             this.mnuAlcSyncAxisBeginEnd.Image = ((System.Drawing.Image)(resources.GetObject("mnuAlcSyncAxisBeginEnd.Image")));
             this.mnuAlcSyncAxisBeginEnd.Name = "mnuAlcSyncAxisBeginEnd";
-            this.mnuAlcSyncAxisBeginEnd.Size = new System.Drawing.Size(252, 30);
+            this.mnuAlcSyncAxisBeginEnd.Size = new System.Drawing.Size(364, 34);
             this.mnuAlcSyncAxisBeginEnd.Text = "Pulse On Demand Begin/End";
             this.mnuAlcSyncAxisBeginEnd.ToolTipText = "Pulse On Demand Begin/End for SyncAxis";
             this.mnuAlcSyncAxisBeginEnd.Click += new System.EventHandler(this.mnuPoDSyncAxisBeginEnd_Click);
@@ -2385,13 +2343,13 @@
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-            this.toolStripMenuItem4.Size = new System.Drawing.Size(222, 6);
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(322, 6);
             // 
             // mnuJump
             // 
             this.mnuJump.Image = ((System.Drawing.Image)(resources.GetObject("mnuJump.Image")));
             this.mnuJump.Name = "mnuJump";
-            this.mnuJump.Size = new System.Drawing.Size(225, 30);
+            this.mnuJump.Size = new System.Drawing.Size(325, 34);
             this.mnuJump.Text = "Jump";
             this.mnuJump.ToolTipText = "Jump";
             this.mnuJump.Click += new System.EventHandler(this.btnJump_Click);
@@ -2400,7 +2358,7 @@
             // 
             this.mnuFiducial.Image = ((System.Drawing.Image)(resources.GetObject("mnuFiducial.Image")));
             this.mnuFiducial.Name = "mnuFiducial";
-            this.mnuFiducial.Size = new System.Drawing.Size(225, 30);
+            this.mnuFiducial.Size = new System.Drawing.Size(325, 34);
             this.mnuFiducial.Text = "Fiducial";
             this.mnuFiducial.ToolTipText = "Fiducial";
             this.mnuFiducial.Click += new System.EventHandler(this.mnuFiducial_Click);
@@ -2409,7 +2367,7 @@
             // 
             this.mnuCalculationDynamics.Image = ((System.Drawing.Image)(resources.GetObject("mnuCalculationDynamics.Image")));
             this.mnuCalculationDynamics.Name = "mnuCalculationDynamics";
-            this.mnuCalculationDynamics.Size = new System.Drawing.Size(225, 30);
+            this.mnuCalculationDynamics.Size = new System.Drawing.Size(325, 34);
             this.mnuCalculationDynamics.Text = "Calculation Dynamics";
             this.mnuCalculationDynamics.ToolTipText = "Calculation Dynamics (Scan Device)";
             this.mnuCalculationDynamics.Click += new System.EventHandler(this.mnuCalculationDynamics_Click);
@@ -2417,7 +2375,7 @@
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 31);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(6, 33);
             // 
             // chbLock
             // 
@@ -2456,14 +2414,14 @@
             this.ddbGroup.Image = ((System.Drawing.Image)(resources.GetObject("ddbGroup.Image")));
             this.ddbGroup.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ddbGroup.Name = "ddbGroup";
-            this.ddbGroup.Size = new System.Drawing.Size(37, 28);
+            this.ddbGroup.Size = new System.Drawing.Size(42, 28);
             this.ddbGroup.Text = "toolStripDropDownButton2";
             // 
             // mnuGroup
             // 
             this.mnuGroup.Image = ((System.Drawing.Image)(resources.GetObject("mnuGroup.Image")));
             this.mnuGroup.Name = "mnuGroup";
-            this.mnuGroup.Size = new System.Drawing.Size(190, 30);
+            this.mnuGroup.Size = new System.Drawing.Size(281, 34);
             this.mnuGroup.Text = "Group";
             this.mnuGroup.Click += new System.EventHandler(this.mnuGroup_Click);
             // 
@@ -2471,7 +2429,7 @@
             // 
             this.mnuGroupOffset.Image = ((System.Drawing.Image)(resources.GetObject("mnuGroupOffset.Image")));
             this.mnuGroupOffset.Name = "mnuGroupOffset";
-            this.mnuGroupOffset.Size = new System.Drawing.Size(190, 30);
+            this.mnuGroupOffset.Size = new System.Drawing.Size(281, 34);
             this.mnuGroupOffset.Text = "Group (with Offset)";
             this.mnuGroupOffset.Click += new System.EventHandler(this.mnuGroupOffset_Click);
             // 
@@ -2479,7 +2437,7 @@
             // 
             this.mnuUnGroup.Image = ((System.Drawing.Image)(resources.GetObject("mnuUnGroup.Image")));
             this.mnuUnGroup.Name = "mnuUnGroup";
-            this.mnuUnGroup.Size = new System.Drawing.Size(190, 30);
+            this.mnuUnGroup.Size = new System.Drawing.Size(281, 34);
             this.mnuUnGroup.Text = "UnGroup";
             this.mnuUnGroup.Click += new System.EventHandler(this.mnuUngroup_Click);
             // 
@@ -2500,7 +2458,7 @@
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 63);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 67);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -2512,8 +2470,8 @@
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
             this.splitContainer1.Panel2MinSize = 100;
-            this.splitContainer1.Size = new System.Drawing.Size(1075, 615);
-            this.splitContainer1.SplitterDistance = 785;
+            this.splitContainer1.Size = new System.Drawing.Size(1075, 611);
+            this.splitContainer1.SplitterDistance = 786;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 14;
             // 
@@ -2529,7 +2487,7 @@
             this.GLcontrol.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
             this.GLcontrol.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.GLcontrol.RenderTrigger = SharpGL.RenderTrigger.Manual;
-            this.GLcontrol.Size = new System.Drawing.Size(785, 615);
+            this.GLcontrol.Size = new System.Drawing.Size(786, 611);
             this.GLcontrol.TabIndex = 3;
             // 
             // splitContainer2
@@ -2547,8 +2505,8 @@
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.ppgEntity);
-            this.splitContainer2.Size = new System.Drawing.Size(287, 615);
-            this.splitContainer2.SplitterDistance = 184;
+            this.splitContainer2.Size = new System.Drawing.Size(286, 611);
+            this.splitContainer2.SplitterDistance = 182;
             this.splitContainer2.TabIndex = 2;
             // 
             // trvEntity
@@ -2560,7 +2518,7 @@
             this.trvEntity.Location = new System.Drawing.Point(0, 0);
             this.trvEntity.Name = "trvEntity";
             this.trvEntity.SelectedNodes = ((System.Collections.Generic.List<System.Windows.Forms.TreeNode>)(resources.GetObject("trvEntity.SelectedNodes")));
-            this.trvEntity.Size = new System.Drawing.Size(287, 162);
+            this.trvEntity.Size = new System.Drawing.Size(286, 153);
             this.trvEntity.TabIndex = 3;
             this.trvEntity.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.trvEntity_ItemDrag);
             this.trvEntity.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.trvEntity_AfterSelect);
@@ -2575,9 +2533,9 @@
             this.stsDimension.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.lblBound,
             this.lblCenter});
-            this.stsDimension.Location = new System.Drawing.Point(0, 162);
+            this.stsDimension.Location = new System.Drawing.Point(0, 153);
             this.stsDimension.Name = "stsDimension";
-            this.stsDimension.Size = new System.Drawing.Size(287, 22);
+            this.stsDimension.Size = new System.Drawing.Size(286, 29);
             this.stsDimension.SizingGrip = false;
             this.stsDimension.TabIndex = 2;
             this.stsDimension.Text = "statusStrip2";
@@ -2587,14 +2545,14 @@
             this.lblBound.BorderStyle = System.Windows.Forms.Border3DStyle.RaisedOuter;
             this.lblBound.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBound.Name = "lblBound";
-            this.lblBound.Size = new System.Drawing.Size(123, 17);
+            this.lblBound.Size = new System.Drawing.Size(186, 22);
             this.lblBound.Text = " 0.000, 0.000  0.000, 0.000 ";
             // 
             // lblCenter
             // 
             this.lblCenter.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCenter.Name = "lblCenter";
-            this.lblCenter.Size = new System.Drawing.Size(56, 17);
+            this.lblCenter.Size = new System.Drawing.Size(86, 22);
             this.lblCenter.Text = "0.000 0.000";
             // 
             // ppgEntity
@@ -2604,14 +2562,14 @@
             this.ppgEntity.Location = new System.Drawing.Point(0, 0);
             this.ppgEntity.Name = "ppgEntity";
             this.ppgEntity.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.ppgEntity.Size = new System.Drawing.Size(287, 427);
+            this.ppgEntity.Size = new System.Drawing.Size(286, 425);
             this.ppgEntity.TabIndex = 1;
             this.ppgEntity.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.ppgEntity_PropertyValueChanged);
             // 
             // CustomEditorForm
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1075, 707);
@@ -2623,6 +2581,7 @@
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "CustomEditorForm";
+            this.Text = "Custom Editor - (c)SpralLAB";
             this.tlsTop.ResumeLayout(false);
             this.tlsTop.PerformLayout();
             this.ctmsMain.ResumeLayout(false);
@@ -2742,8 +2701,6 @@
         private System.Windows.Forms.ToolStripButton btnPoints;
         private System.Windows.Forms.ToolStripButton btnHatch;
         private System.Windows.Forms.ToolStripButton btnTrepan;
-        private System.Windows.Forms.ToolStripDropDownButton ddbPen;
-        private System.Windows.Forms.ToolStripMenuItem mnuPen;
         private System.Windows.Forms.ToolStripDropDownButton ddbSiriusText;
         private System.Windows.Forms.ToolStripMenuItem mnuSiriusText;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem6;
@@ -2785,8 +2742,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuTextArc;
         private System.Windows.Forms.ToolStripButton btnBarcode1D;
         private System.Windows.Forms.ToolStripButton btnHPGL;
-        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem16;
-        private System.Windows.Forms.ToolStripMenuItem mnuPenReturn;
         private System.Windows.Forms.ToolStripMenuItem mnuLaser;
         private System.Windows.Forms.ToolStripButton btnImage;
         private System.Windows.Forms.ToolStripButton btnRaster;

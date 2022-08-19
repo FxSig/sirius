@@ -110,17 +110,8 @@ namespace SpiralLab.Sirius
             this.formEditor1.Editor.OnDocumentSourceChanged += Editor1_OnDocumentSourceChanged;
             this.formEditor2.Editor.OnDocumentSourceChanged += Editor2_OnDocumentSourceChanged;
 
-            if (!this.formEditor1.Editor.EnablePens)
-            {
-                // 기본 펜 개체 생성
-                var pen1 = new PenDefault();
-                doc1.Action.ActEntityAdd(pen1);
-            }
-            if (!this.formEditor2.Editor.EnablePens)
-            {
-                var pen2 = new PenDefault();
-                doc2.Action.ActEntityAdd(pen2);
-            }
+            this.formEditor1.Editor.EnablePens = true;
+            this.formEditor2.Editor.EnablePens = true;
 
             //Marker 2개 생성
             var marker1 = new MarkerDefault(0);

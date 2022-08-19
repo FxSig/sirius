@@ -16,7 +16,7 @@
  *               `---`            `---'                                                        `----'   
  * 
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
- * CUstomEditorForm
+ * CustomEditorForm
  * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
@@ -43,7 +43,9 @@ namespace SpiralLab.Sirius
     /// <summary>
     /// 커스텀 시리우스 편집기
     /// </summary>
-    public partial class CustomEditorForm : Form
+    public partial class CustomEditorForm 
+        : Form
+        //: UserControl
     {
         #region 이벤트 핸들러
         /// <summary>
@@ -70,10 +72,6 @@ namespace SpiralLab.Sirius
         /// Document.Action.ActSave(파일이름) 가 호출되어야 함
         /// 파일이름(FileName ) 속성 변경이 호출되어야 함
         public virtual event SiriusDocumentSave OnDocumentSaveAs;
-        /// <summary>
-        /// 편집기에서 새로운 펜을 생성할때 발생하는 이벤트
-        /// </summary>
-        public virtual event SiriusDocumentPenNew OnDocumentPenNew;
         /// <summary>
         /// 편집기에서 새로운 레이어를 생성할때 발생하는 이벤트
         /// </summary>
@@ -162,15 +160,7 @@ namespace SpiralLab.Sirius
                 foreach (SiriusDocumentSave receiver in receivers)
                     receiver.Invoke(this);
             Logger.Log(Logger.Type.Debug, $"sirius editor document save as");
-        }
-        protected virtual void OnDocumentPenNewing()
-        {
-            var receivers = this.OnDocumentPenNew?.GetInvocationList();
-            if (null != receivers)
-                foreach (SiriusDocumentPenNew receiver in receivers)
-                    receiver.Invoke(this);
-            Logger.Log(Logger.Type.Debug, $"sirius editor document pen new");
-        }
+        }     
         protected virtual void OnDocumentLayerNewing()
         {
             var receivers = this.OnDocumentLayerNew?.GetInvocationList();
@@ -313,7 +303,6 @@ namespace SpiralLab.Sirius
                 if (!this.IsHandleCreated || this.IsDisposed)
                     return;
                 this.pgbProgress.Value = value;
-                //CustomPrecentage(this.pgbProgress);
             }
         }
 
@@ -394,6 +383,7 @@ namespace SpiralLab.Sirius
             }
         }
         protected IDocument doc;
+
         /// <summary>
         /// RTC 제어 객체
         /// </summary>
@@ -415,6 +405,7 @@ namespace SpiralLab.Sirius
                 }
                 else if (this.rtc is Rtc4 rtc4)
                 {
+                    //지원되지 않는 기능에 대해 객체 속성을 가린다
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", false); 
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
@@ -463,6 +454,7 @@ namespace SpiralLab.Sirius
                 }
                 else if (null != rtc5 || null != rtc6)
                 {
+                    //지원되지 않는 기능에 대해 객체 속성을 가린다
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", true);
@@ -500,11 +492,8 @@ namespace SpiralLab.Sirius
                     mnuSiriusTime.Enabled = true;
                     mnuSiriusDate.Enabled = true;
                     mnuSiriusSerial.Enabled = true;
-                    //mnuTextTime.Enabled = true;
-                    //mnuTextDate.Enabled = true;
-                    //mnuTextSerial.Enabled = true;
                 }
-                else if (this.rtc is IRtcSyncAxis rtcSyncAxis) //rtcvirtual 도 해당되네 -_-;
+                else if (this.rtc is IRtcSyncAxis rtcSyncAxis)
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOffDelay", false);
@@ -557,9 +546,7 @@ namespace SpiralLab.Sirius
                     mnuSiriusTime.Enabled = false;
                     mnuSiriusDate.Enabled = false;
                     mnuSiriusSerial.Enabled = false;
-                    //mnuTextTime.Enabled = false;
-                    //mnuTextDate.Enabled = false;
-                    //mnuTextSerial.Enabled = false;
+
                     mnuMeasurementFile.Enabled = false;
                 }
             }
@@ -576,6 +563,7 @@ namespace SpiralLab.Sirius
 
                 if (this.laser == null)
                     return;
+                //지원되지 않는 기능에 대해 객체 속성을 가린다
                 if (this.laser.IsPowerControl)
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", true);
@@ -626,6 +614,7 @@ namespace SpiralLab.Sirius
             get { return this.motorZ; }
             set {
                 this.motorZ = value;
+                //지원되지 않는 기능에 대해 객체 속성을 가린다
                 if (null != this.motorZ)
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", true);
@@ -754,7 +743,8 @@ namespace SpiralLab.Sirius
                 Logger.OnLogged += Logger_OnLogged;
             }
 
-            //기본 false, MotorZ 지정시 true
+            //지원되지 않는 기능에 대해 객체 속성을 가린다
+            //기본 false, MotorZ 지정시 보여주도록
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
@@ -785,7 +775,6 @@ namespace SpiralLab.Sirius
         }
         protected virtual void SiriusEditorForm_DragEnter(object sender, DragEventArgs e)
         {
-            // if the extension is not *.txt or *.stl change drag drop effect symbol
             var data = e.Data.GetData(DataFormats.FileDrop);
             if (data != null)
             {
@@ -817,7 +806,7 @@ namespace SpiralLab.Sirius
                 {
                     logForm.Log(type, message);
                 }
-                catch(Exception ex)
+                catch(Exception )
                 {
 
                 }
@@ -830,7 +819,6 @@ namespace SpiralLab.Sirius
             var span = arg.EndTime - arg.StartTime;
             stsBottom.BeginInvoke(new MethodInvoker(delegate ()
             {
-                //lblTime.Text = $"{span.TotalSeconds:F3} sec";
                 this.Progress = (int)arg.Progress;
             }));
         }
@@ -841,7 +829,6 @@ namespace SpiralLab.Sirius
             var span = arg.EndTime - arg.StartTime;
             stsBottom.BeginInvoke(new MethodInvoker(delegate ()
             {
-                //lblTime.Text = $"{span.TotalSeconds:F3} sec";
                 this.Progress = (int)arg.Progress;
             }));
         }
@@ -958,71 +945,55 @@ namespace SpiralLab.Sirius
         {
             if (trvEntity.IsDisposed)
                 return;
-            //trvEntity.Invoke(new MethodInvoker(delegate ()
-            //{
-                //trvEntity.BeginUpdate();
-                l.OnAddItem += Entity_OnAddItem;
-                l.OnRemoveItem += Entity_OnRemoveItem;
-                l.Node.Tag = l;
+            l.OnAddItem += Entity_OnAddItem;
+            l.OnRemoveItem += Entity_OnRemoveItem;
+            l.Node.Tag = l;
 
-                var layers = sender as Layers;
-                if (layers.Count == index)
-                    trvEntity.Nodes.Add(l.Node);
-                else
-                    trvEntity.Nodes.Insert(index, l.Node);
+            var layers = sender as Layers;
+            if (layers.Count == index)
+                trvEntity.Nodes.Add(l.Node);
+            else
+                trvEntity.Nodes.Insert(index, l.Node);
 
-                l.Index = index;
-                trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
-                //trvEntity.EndUpdate();
-            //}));
+            l.Index = index;
+            trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
         }
         protected virtual void Layer_OnRemoveItem(ObservableList<Layer> sender, int index, Layer l)
         {
             if (trvEntity.IsDisposed)
                 return;
-            //trvEntity.Invoke(new MethodInvoker(delegate ()
-            //{
-                trvEntity.BeginUpdate();
-                l.OnAddItem -= Entity_OnAddItem;
-                l.OnRemoveItem -= Entity_OnRemoveItem;
-                trvEntity.Nodes.Remove(l.Node);
-                trvEntity.EndUpdate();
-            //}));
+            trvEntity.BeginUpdate();
+            l.OnAddItem -= Entity_OnAddItem;
+            l.OnRemoveItem -= Entity_OnRemoveItem;
+            trvEntity.Nodes.Remove(l.Node);
+            trvEntity.EndUpdate();
         }
         protected virtual void Entity_OnAddItem(ObservableList<IEntity> sender, int index, IEntity e)
         {
             if (trvEntity.IsDisposed)
                 return;
-            //trvEntity.Invoke(new MethodInvoker(delegate ()
-            //{
-                //trvEntity.BeginUpdate();
-                e.Node.Tag = e;
-                var layer = sender as Layer;
-                e.Node.Text = $"{e.ToString()}";
-                if (layer.Node.Nodes.Count == index)
-                    layer.Node.Nodes.Add(e.Node);
-                else
-                {
-                    layer.Node.Nodes.Insert(index, e.Node);
-                    //기존 index 위치에 있는 e.Index 가 변경되어야 하지 않나??
-                }
-                e.Owner = layer;
-                e.Index = index;
-                trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
-                //trvEntity.EndUpdate();
-            //}));
+            
+            e.Node.Tag = e;
+            var layer = sender as Layer;
+            e.Node.Text = $"{e.ToString()}";
+            if (layer.Node.Nodes.Count == index)
+                layer.Node.Nodes.Add(e.Node);
+            else
+            {
+                layer.Node.Nodes.Insert(index, e.Node);
+            }
+            e.Owner = layer;
+            e.Index = index;
+            trvEntity.Nodes[trvEntity.Nodes.Count - 1].EnsureVisible();
         }
         protected virtual void Entity_OnRemoveItem(ObservableList<IEntity> sender, int index, IEntity e)
         {
             if (trvEntity.IsDisposed)
                 return;
-            //trvEntity.Invoke(new MethodInvoker(delegate ()
-            //{
-                trvEntity.BeginUpdate();
-                var layer = sender as Layer;
-                layer.Node.Nodes.Remove(e.Node);
-                trvEntity.EndUpdate();
-            //}));
+            trvEntity.BeginUpdate();
+            var layer = sender as Layer;
+            layer.Node.Nodes.Remove(e.Node);
+            trvEntity.EndUpdate();
         }
         /// <summary>
         /// 마우스 선택, 트리뷰 선택 등의 이벤트 발생시 내부 action 에 의해 콜백됨
@@ -1039,7 +1010,6 @@ namespace SpiralLab.Sirius
                 trvEntity.BeginUpdate();
                 foreach (var e in list)
                 {
-                    //make bold ? e.Node.NodeFont 
                     nodes.Add(e.Node);
                 }
                 if (nodes.Count > 0)
@@ -1051,7 +1021,6 @@ namespace SpiralLab.Sirius
                 trvEntity.EndUpdate();
                 trvEntity.Refresh();
 
-                //propertygrid
                 lblEntityCount.Text = $"Selected: {list.Count.ToString()}";
                 if (0 == list.Count)
                     this.ppgEntity.SelectedObjects = null;
@@ -1072,15 +1041,12 @@ namespace SpiralLab.Sirius
             trvEntity.Invoke(new MethodInvoker(delegate ()
             {
                 var list = new List<IEntity>(trvEntity.SelectedNodes.Count);
-                //foreach (var n in trvEntity.SelectedNodes)
-                //    list.Add(n.Tag as IEntity);
-                //treeview 순서가 섞이니 다시 정렬
                 foreach (var layer in Document.Layers)
                 {
                     if (trvEntity.SelectedNodes.Contains(layer.Node)) // O(N*N)
                         list.Add(layer);
                     foreach (var entity in layer)
-                        if (trvEntity.SelectedNodes.Contains(entity.Node)) // O(N*N )
+                        if (trvEntity.SelectedNodes.Contains(entity.Node)) // O(N*N)
                             list.Add(entity);
                 }
 
@@ -1116,8 +1082,6 @@ namespace SpiralLab.Sirius
 
             var pos = trvEntity.PointToClient(new System.Drawing.Point(e.X, e.Y));
             TreeNode targetNode = trvEntity.GetNodeAt(pos);
-
-            // do nothing if itself
             if (trvEntity.SelectedNodes.Count == 1)
                 if (trvEntity.SelectedNodes[0].Equals(targetNode))
                     return;
@@ -1130,7 +1094,6 @@ namespace SpiralLab.Sirius
             {
                 targetLayer = targetEntity as Layer;
 
-                // 레이어 이동
                 if (trvEntity.SelectedNodes.Count == 1)
                 {
                     if (trvEntity.SelectedNodes[0].Tag is Layer)
@@ -1140,13 +1103,11 @@ namespace SpiralLab.Sirius
                         return;
                     }
                 }
-                // 엔티티 이동
                 Document.Action.ActEntityDragMove(this.Document.Action.SelectedEntity, targetLayer, 0);
             }
             else
             {
                 targetLayer = targetEntity.Owner as Layer;
-                //엔티티 이동
                 Document.Action.ActEntityDragMove(this.Document.Action.SelectedEntity, targetLayer, targetNode.Index);
             }
             trvEntity.EndUpdate();
@@ -1207,7 +1168,6 @@ namespace SpiralLab.Sirius
                 var dlg = new OpenFileDialog();
                 dlg.Title = "Open File";
                 dlg.Filter = "Supported files (*.sirius, *.dxf)|*.sirius;*.dxf|sirius data files (*.sirius)|*.sirius|dxf cad files (*.dxf)|*.dxf|All Files (*.*)|*.*";
-                //dlg.Filter = "Sirius data files (*.sirius)|*.sirius|All Files (*.*)|*.*";
                 dlg.FileName = string.Empty;
                 dlg.Multiselect = false;
                 DialogResult result = dlg.ShowDialog(this);
@@ -1238,7 +1198,7 @@ namespace SpiralLab.Sirius
                     return false;
                 }
                 this.Document = doc;
-                this.FileName = fileName; // Path.GetFileNameWithoutExtension(fileName) + ".sirius";
+                this.FileName = fileName;
                 return true;
             }
             else if (0 == string.Compare(ext, ".sirius", true))
@@ -1248,7 +1208,6 @@ namespace SpiralLab.Sirius
                 trvEntity.EndUpdate();
                 if (null == doc)
                 {
-                    //MessageBox.Show($"Fail to open : {fileName}", "File Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
                 this.Document = doc;
@@ -1270,32 +1229,6 @@ namespace SpiralLab.Sirius
                     this.Document.Action.ActEntityAdd(form.Entity);
                 }
             }
-
-            //ofd.Filter = "Support files (*.sirius, *.dxf, *.plt)|*.sirius;*.dxf;*.plt|Sirius data file (*.sirius)|*.sirius|DXF file (*.dxf)|*.dxf|HPGL plt file (*.plt)|*.plt|All Files (*.*)|*.*";
-            //ofd.Title = "Import File";
-            //ofd.FileName = string.Empty;
-            //ofd.Multiselect = false;
-            //DialogResult result = ofd.ShowDialog(this);
-            //if (result == DialogResult.OK)
-            //{
-            //    string ext = Path.GetExtension(ofd.FileName);
-            //    if (0 == string.Compare(ext, ".dxf", true))
-            //    {
-            //        this.Document.Action.ActImportDxf(ofd.FileName);
-            //    }
-            //    else if (0 == string.Compare(ext, ".plt", true))
-            //    {
-            //        this.Document.Action.ActImportHPGL(ofd.FileName);
-            //    }
-            //    else if (0 == string.Compare(ext, ".sirius", true))
-            //    {
-            //        this.Document.Action.ActImportSirius(ofd.FileName);
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show($"Unsupported file extension : {ofd.FileName}", "File Type Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //    }
-            //}
         }
         protected virtual void btnSave_Click(object sender, EventArgs e)
         {
@@ -1375,6 +1308,32 @@ namespace SpiralLab.Sirius
             this.Document.Action.ActSave(fileName);
             this.FileName = fileName;
             return true;
+        }
+        /// <summary>
+        /// OnDocumentLayerNew 이벤트 사용시 사용자가 원하는 레이어(Layer) 생성후 OnLayerNew 함수를 통해 생성된 레이어 개체를 전달해 주어야 한다
+        /// </summary>
+        /// <param name="layer">Layer 상속 구현 객체</param>
+        /// <returns></returns>
+        public virtual bool OnLayerNew(Layer layer)
+        {
+            if (null == layer)
+                return false;
+            return this.Document.Action.ActEntityAdd(layer);
+        }
+        protected virtual void btnLayer_Click(object sender, EventArgs e)
+        {
+            if (null != OnDocumentLayerNew)
+            {
+                OnDocumentLayerNewing();
+            }
+            else
+            {
+                var layer = new Layer($"NoName{this.Document.Action.NewLayerIndex++}");
+                var form = new PropertyForm(layer);
+                if (DialogResult.OK != form.ShowDialog(this))
+                    return;
+                this.OnLayerNew(layer);
+            }
         }
 
         protected virtual void btnUndo_Click(object sender, EventArgs e)
@@ -1523,51 +1482,6 @@ namespace SpiralLab.Sirius
                 return;
             this.Document.Action.ActEntityAdd(poly);
         }
-        protected virtual void mnuPen_Click(object sender, EventArgs e)
-        {
-            if (null != this.OnDocumentPenNew)
-            {
-                this.OnDocumentPenNewing();
-            }
-            else
-            {
-                IPen pen = new PenDefault();
-                //현재 활성 레이어 의 마지막 펜을 복제해 준디
-                //같은 파라메터를 사용할 일이 많으므로 ...
-                if (null != this.Document.Layers.Active)
-                {
-                    IPen lastPen = null;
-                    foreach (var entity in this.Document.Layers.Active)
-                        if (entity is IPen)
-                            lastPen = entity as IPen;
-                    if (null != lastPen)
-                        pen = lastPen.Clone() as IPen;
-                }
-                var form = new PropertyForm(pen);
-                if (DialogResult.OK != form.ShowDialog(this))
-                    return;
-                this.OnPenNew(pen);
-            }
-        }
-        /// <summary>
-        /// OnDocumentPenNew 이벤트 사용시 사용자가 원하는 펜(IPen) 생성후 OnPenNew 함수를 통해 생성된 펜 개체를 전달해 주어야 한다
-        /// </summary>
-        /// <param name="pen">IPen 상속 구현 객체</param>
-        /// <returns></returns>
-        public virtual bool OnPenNew(IPen pen)
-        {
-            if (null == pen)
-                return false;
-            return this.Document.Action.ActEntityAdd(pen);
-        }
-        protected virtual void mnuPenMOTF_Click(object sender, EventArgs e)
-        {
-            var pen = new PenMotf();
-            var form = new PropertyForm(pen);
-            if (DialogResult.OK != form.ShowDialog(this))
-                return;
-            this.Document.Action.ActEntityAdd(pen);
-        }
         protected virtual void mnuMOTFBeginEnd_Click(object sender, EventArgs e)
         {
             {
@@ -1604,7 +1518,6 @@ namespace SpiralLab.Sirius
                 return;
             this.Document.Action.ActEntityAdd(motf);
         }
-
         protected virtual void btnTimer_Click(object sender, EventArgs e)
         {
             var timer = new SpiralLab.Sirius.Timer();
@@ -1860,32 +1773,6 @@ namespace SpiralLab.Sirius
             }
             Document.Action.ActEntityPasteClone(Document.Layers.Active);
         }
-        protected virtual void btnLayer_Click(object sender, EventArgs e)
-        {
-            if (null != OnDocumentLayerNew)
-            {
-                OnDocumentLayerNewing();
-            }
-            else
-            {
-                var layer = new Layer($"NoName{this.Document.Action.NewLayerIndex++}");
-                var form = new PropertyForm(layer);
-                if (DialogResult.OK != form.ShowDialog(this))
-                    return;
-                this.OnLayerNew(layer);
-            }
-        }
-        /// <summary>
-        /// OnDocumentLayerNew 이벤트 사용시 사용자가 원하는 레이어(Layer) 생성후 OnLayerNew 함수를 통해 생성된 레이어 개체를 전달해 주어야 한다
-        /// </summary>
-        /// <param name="layer">Layer 상속 구현 객체</param>
-        /// <returns></returns>
-        public virtual bool OnLayerNew(Layer layer)
-        {
-            if (null == layer)
-                return false;
-            return this.Document.Action.ActEntityAdd(layer);
-        }
         protected virtual void btnBarcode1D_Click(object sender, EventArgs e)
         {
             var bcd = new Barcode1D("123456789");
@@ -1910,7 +1797,6 @@ namespace SpiralLab.Sirius
                 return;
             this.Document.Action.ActEntityAdd(text);
         }
-
         protected virtual void btnHPGL_Click(object sender, EventArgs e)
         {
             btnImport_Click(sender, e);
@@ -1920,7 +1806,7 @@ namespace SpiralLab.Sirius
             ofd.Filter = "";
             ofd.Multiselect = false;
             ofd.Filter = "Supported image files (*.bmp, *.png, *.jpg, *.jpeg, *.gif, *.tif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif|All Files (*.*)|*.*";
-            ofd.DefaultExt = ".bmp"; // Default file extension 
+            ofd.DefaultExt = ".bmp"; 
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
             DialogResult result = ofd.ShowDialog(this);
@@ -1956,7 +1842,7 @@ namespace SpiralLab.Sirius
                 sep = "|";
             }
             ofd.Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, "All Files", "*.*");
-            ofd.DefaultExt = ".bmp"; // Default file extension 
+            ofd.DefaultExt = ".bmp"; 
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
             ofd.Multiselect = true;
@@ -2111,7 +1997,6 @@ namespace SpiralLab.Sirius
             this.Document.Action.ActEntityAdd(zDefocus);
         }
         #endregion
-
         protected virtual void GroupButtonEnableOrNot()
         {
             bool layer = false;
@@ -2135,7 +2020,6 @@ namespace SpiralLab.Sirius
             if (layer)
             {
                 mnuGroup.Enabled = false;
-                //mnuGroupConti.Enabled = false;
                 mnuGroupOffset.Enabled = false;
                 mnuUnGroup.Enabled = false;
             }
@@ -2144,7 +2028,6 @@ namespace SpiralLab.Sirius
                 mnuGroup.Enabled = true;
                 if (Document.Action.SelectedEntity.Count > 0)
                     mnuGroupOffset.Enabled = true;
-                //mnuGroupConti.Enabled = true;
                 mnuUnGroup.Enabled = true;
             }
         }
@@ -2213,8 +2096,6 @@ namespace SpiralLab.Sirius
                  }
                 else
                 {
-                    //0 ,0 으로 초기화 (이전 오프셋이 남아 있으므로)
-                    //this.marker.MarkerArg.Offsets.Clear();
                 }
 
                 var rtcSyncAxis = this.Rtc as IRtcSyncAxis;
@@ -2227,9 +2108,8 @@ namespace SpiralLab.Sirius
                     form.Rtc = this.Rtc;
                     form.Laser = this.Laser;
                     form.MotorZ = this.MotorZ;
-                    form.Editor = this; //ready / downloaded !
+                    form.Editor = this; 
                     form.PowerMap = this.PowerMap;
-                    //form.TopMost = true;
                     form.FormClosed += Form_FormClosed;
                     form.Show(this);
                     form.BringToFront();
@@ -2244,9 +2124,8 @@ namespace SpiralLab.Sirius
                     form.Rtc = this.Rtc;
                     form.Laser = this.Laser;
                     form.MotorZ = this.MotorZ;
-                    form.Editor = this; //ready / downloaded !
+                    form.Editor = this; 
                     form.PowerMap = this.PowerMap;
-                    //form.TopMost = true;
                     form.FormClosed += Form_FormClosed;
                     form.Show(this);
                     form.BringToFront();
@@ -2454,20 +2333,6 @@ namespace SpiralLab.Sirius
                     }
                     powerMapForm.Show(); 
                     powerMapForm.BringToFront();
-
-                    //ShowDialog() 후 Cancel 선택할 경우 데이타 원복하는 기능인데 ....흠 
-                    //
-                    //var oldData = new System.Collections.Concurrent.ConcurrentDictionary<string, SortedDictionary<float, float>>(this.PowerMap.Data);
-                    ////var cloned = (IPowerMap)this.PowerMap.Clone(); 
-                    //var form = new PowerMapForm(this, this.PowerMap, this.Rtc, this.Laser, this.PowerMeter);
-                    //if (form.ShowDialog(this) == DialogResult.OK)
-                    //{
-                    //}
-                    //else
-                    //{ 
-                    //    //revert to old data
-                    //    this.PowerMap.Data = oldData;
-                    //}
                 }
             }
         }
@@ -2561,9 +2426,6 @@ namespace SpiralLab.Sirius
             }
             {
                 var end = new MeasurementEnd();
-                //var form = new PropertyForm(end);
-                //if (DialogResult.OK != form.ShowDialog(this))
-                //return;
                 this.Document.Action.ActEntityAdd(end);
             }
         }
@@ -2600,7 +2462,7 @@ namespace SpiralLab.Sirius
             {
                 doc.Pens.Add((IPen)form.Pens[i].Clone());
             }
-            Logger.Log(Logger.Type.Debug, $"updated pen list at editor");
+            Logger.Log(Logger.Type.Debug, $"updated pens list at editor");
         }
         protected virtual void chbLock_CheckedChanged(object sender, EventArgs e)
         {
@@ -2618,8 +2480,6 @@ namespace SpiralLab.Sirius
                 ppgEntity.Enabled = true;
             }
         }
-
-        protected PropertyForm rtcForm = null;
         protected virtual void mnuRtc_Click(object sender, EventArgs e)
         {
             if (null != this.OnRtc)
@@ -2631,12 +2491,8 @@ namespace SpiralLab.Sirius
                 if (null == this.Rtc)
                     return;
 
-                if (null == rtcForm || rtcForm.IsDisposed)
-                {
-                    this.rtcForm = new PropertyForm(this.Rtc);
-                }
-                rtcForm.Show();
-                rtcForm.BringToFront();
+                var form = new PropertyForm(this.Rtc);
+                form.ShowDialog();
             }
         }
         protected virtual void mnuAbout_Click(object sender, EventArgs e)

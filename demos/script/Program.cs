@@ -18,11 +18,6 @@
  * 
  * C# 코드를 스크립트로 활용하여 특정 엔티티의 데이타 (텍스트 엔티티의 데이타 내용을 조합하는등) 를 변경하는 기능
  * 
- * warning !!!
- * script function is disabled since v1.105
- * 
- * 경고 !!! 
- * v1.105 버전 이후부터 스크립트 기능을 제공하지 않습니다
  * 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 

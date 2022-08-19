@@ -210,7 +210,7 @@ namespace SpiralLab.Sirius
                  MeasurementChannel.LaserOn, //Gate
                  MeasurementChannel.OutputPeriod, //KHz
             };
-            float hz = 10000; //10 KHz
+            float hz = 10e3f; //10 KHz
             bool success = true;
             success &= rtc.ListBegin(laser);
             success &= rtcMeasurement.ListMeasurementBegin(hz, channels); //10 Khz, 4개 채널
