@@ -140,6 +140,7 @@ namespace SpiralLab.Sirius
 
             rtc.CtlAbort();
             rtc.Dispose();
+            laser.Dispose();
         }
        
         /// <summary>

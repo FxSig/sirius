@@ -137,6 +137,7 @@ namespace SpiralLab.Sirius
 
             rtc.CtlAbort();
             rtc.Dispose();
+            laser.Dispose();
         }
         private static bool DrawCircle(ILaser laser, IRtc rtc)
         {

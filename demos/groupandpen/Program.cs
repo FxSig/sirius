@@ -220,6 +220,7 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }
         /// <summary>
         /// 레이어 안에 있는 모든 객체들을 마킹하기

@@ -34,21 +34,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="spirallab.core, Version=1.113.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.core, Version=1.115.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
+      <HintPath>..\..\..\sirius\bin\spirallab.core.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius, Version=1.113.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius, Version=1.115.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
+      <HintPath>..\..\..\sirius\bin\spirallab.sirius.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.fieldcorrection, Version=1.113.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius.fieldcorrection, Version=1.115.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
+      <HintPath>..\..\..\sirius\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
     </Reference>
-    <Reference Include="spirallab.sirius.rtc, Version=1.113.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="spirallab.sirius.rtc, Version=1.115.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
+      <HintPath>..\..\..\sirius\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -141,6 +141,7 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }
         /// <summary>
         /// scanner continous following origin (0,0) location during list executing

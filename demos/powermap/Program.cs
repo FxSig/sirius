@@ -182,6 +182,7 @@ namespace SpiralLab.Sirius
             powerMap.OnVerifyProgress -= PowerMap_OnVerifyProgress;
             powerMap.OnVerifyFailed -= PowerMap_OnVerifyFailed;
             powerMap.OnVerifyFinished -= PowerMap_OnVerifyFinished;
+
             powerMeter.Dispose();
             laser.Dispose();
             rtc.Dispose();

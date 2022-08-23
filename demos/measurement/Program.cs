@@ -143,6 +143,7 @@ namespace SpiralLab.Sirius
                 rtc.CtlBusyWait();
             }
             rtc.Dispose();
+            laser.Dispose();
         }
 
         /// <summary>

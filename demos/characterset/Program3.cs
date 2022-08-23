@@ -123,6 +123,7 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }        
 
         private static bool MarkToDate(ILaser laser, IRtc rtc)

@@ -174,6 +174,7 @@ namespace SpiralLab.Sirius
 
             rtc.CtlAbort();
             rtc.Dispose();
+            laser.Dispose();
         }
         /// <summary>
         /// mark 3x3 spirals 

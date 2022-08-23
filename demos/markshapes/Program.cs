@@ -185,6 +185,7 @@ namespace SpiralLab.Sirius
             Program.thread = null;
 
             rtc.Dispose();
+            laser.Dispose();
         }
 
         /// <summary>

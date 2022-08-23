@@ -121,8 +121,8 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }
-
 
         private static bool DrawWithExtensionDataOutput(ILaser laser, IRtc rtc)
         {

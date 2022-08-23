@@ -176,6 +176,7 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }
         private static bool DoMarkByMarker(IDocument doc, IRtc rtc, ILaser laser)
         {

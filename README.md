@@ -122,6 +122,13 @@
 **5. Version history**
 
 
+
+* 2022.8.24 v1.116
+  - added) path optimizer with simple/custom sort (단순 경로: 상하좌우및 최단), 사용자 정의 경로 최적화 추가)
+  - added) powermeter chart are zoomable/scrollable now (확대 및 스크롤 가능한 파워맵 그래픽 차트)
+    - added) experimental. bitmap font entity (실험적 기능. 비트맵 기반 폰트 개체 추가됨)
+  - fixed) bypass raster line unless exist data at mark bitmap (비트맵 레스터 가공시 빈 데이타줄은 자동 스킵 처리)
+
 * 2022.8.19 v1.115
   - updated) Demos projects (데모 프로젝트 업데이트)
      - customeditor project : customizable editor/view winforms (에디터, 뷰어 윈폼 소스 공개를 통한 사용자화 지원)

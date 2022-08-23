@@ -2093,6 +2093,28 @@
             </summary>
             <param name="name">이름</param>
         </member>
+        <member name="T:SpiralLab.Sirius.BitmapFontForm">
+            <summary>
+            비트맵 폰트 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.BitmapFontForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapFontForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.BitmapFontForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.LaserSource">
             <summary>
             Advanced OptoWave Fotia 레이저용 윈폼
@@ -2102,7 +2124,7 @@
             <summary>
             생성자
             </summary>
-            <param name="fotia">레이저 소스 객체</param>
+            <param name="Pico">레이저 소스 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.components">
             <summary>
@@ -2198,6 +2220,12 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Laser.SpectraPhysicsHIPPOForm.#ctor(SpiralLab.Sirius.SpectraPhysicsHippo)">
+            <summary>
+            생성자
+            </summary>
+            <param name="Hippo">레이저 소스 객체</param>
         </member>
         <member name="F:SpiralLab.Sirius.Laser.SpectraPhysicsHIPPOForm.components">
             <summary>
@@ -8190,6 +8218,11 @@
             가공중 여부
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.MarkerDefault.isThreadBusy">
+            <summary>
+            작업 쓰레드 동작중 여부 플래그
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsError">
             <summary>
             에러발생 여부
@@ -9025,14 +9058,33 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.CustomSort">
+            <summary>
+            커스텀 경로 최적화용 델리게이트
+            </summary>
+            <param name="sender">경로최적화 윈폼</param>
+            <param name="sourceMap">입력 좌표및 인덱스 튜플 ( x/y, index) </param>
+            <param name="sortedMap">경로 연산된 출력 좌표및 인덱스 튜플 ( x/y, index)</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PathOptimizerForm">
             <summary>
             경로 최적화 윈폼
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PathOptimizerForm.OnStarted">
+            <summary>
+            검색 시작 이벤트 핸들러
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.PathOptimizerForm.OnFinished">
             <summary>
             검색 완료후 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PathOptimizerForm.OnCustomSort">
+            <summary>
+            알고리즘을 사용자가 직접 구현시 사용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PathOptimizerForm.OriginalLength">
@@ -9050,11 +9102,6 @@
             효율 (100% 기준 보다 낮으면 하락, 높으면 향상)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PathOptimizerForm.Iterations">
-            <summary>
-            반복 회수 (유전자 세대값)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.PathOptimizerForm.ResultOrder">
             <summary>
             최적 경로에 대한 결과 = 인덱스 배열
@@ -9065,34 +9112,39 @@
             완료 여부
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.PathOptimizerForm.SelectionMethod">
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.HeuristicIterations">
+            <summary>
+            반복 회수 (유전자 세대값)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PathOptimizerForm.HeuristicSelectionMethod">
             <summary>
             유전자 알고리즘 자식 세대 선택 방식
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PathOptimizerForm.SelectionMethod.Elite">
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.HeuristicSelectionMethod.Elite">
             <summary>
             Elite selection method selects specified amount of best chromosomes to the next generation
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PathOptimizerForm.SelectionMethod.Rank">
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.HeuristicSelectionMethod.Rank">
             <summary>
             The algorithm selects chromosomes to the new generation depending on their fitness values - the better fitness value chromosome has, the more chances it has to become member of the new generation. Each chromosome can be selected several times to the new generation.
             This algorithm is similar to Roulette Wheel Selection algorithm, but the difference is in "wheel" and its sectors' size calculation method. The size of the wheel equals to size * ( size + 1 ) / 2, where size is the current size of population. The worst chromosome has its sector's size equal to 1, the next chromosome has its sector's size equal to 2, etc.
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PathOptimizerForm.SelectionMethod.RouletteWheel">
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.HeuristicSelectionMethod.RouletteWheel">
             <summary>
             The algorithm selects chromosomes to the new generation according to their fitness values - the more fitness value chromosome has, the more chances it has to become member of new generation. Each chromosome can be selected several times to the new generation.
             The "roulette's wheel" is divided into sectors, which size is proportional to the fitness values of chromosomes - the size of the wheel is the sum of all fitness values, size of each sector equals to fitness value of chromosome.
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PathOptimizerForm.Method">
+        <member name="P:SpiralLab.Sirius.PathOptimizerForm.HeuristicMethod">
             <summary>
             선택 방식
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PathOptimizerForm.populationSize">
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.heuristicPopulationSize">
             <summary>
             초기 인구수
             </summary>
@@ -9102,7 +9154,7 @@
             xy 좌표 데이타의 수
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.PathOptimizerForm.greedyCrossover">
+        <member name="F:SpiralLab.Sirius.PathOptimizerForm.heuristicGreedyCrossover">
             <summary>
             인접 우선 여부 
             </summary>
@@ -9112,6 +9164,35 @@
             생성자
             </summary>
             <param name="xyPosition">X,Y 위치 데이타 리스트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.NearestPoint(System.Numerics.Vector2,System.Collections.Generic.List{System.ValueTuple{System.Numerics.Vector2,System.Int32}})">
+            <summary>
+            점 배열에서 현재 점과 가장 가까운 점 찾아 인덱스 위치 리턴
+            이전 점들의 진행 방향(normal) 각도를 구해서 중복된 최단점이 있을때 각도 변화량이 가장 작은것을 찾는 방식
+            </summary>
+            <param name="pt"></param>
+            <param name="map"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.SortByDistance(System.Numerics.Vector2,System.Collections.Generic.List{System.ValueTuple{System.Numerics.Vector2,System.Int32}})">
+            <summary>
+            최단점 검색 알고리즘
+            </summary>
+            <param name="from"></param>
+            <param name="lst"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.SimpleSort(System.Object)">
+            <summary>
+            상하좌우, 최단거리 와 같이 단순 알고리즘을 기반으로 동작
+            </summary>
+            <param name="tag"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.CustomSort">
+            <summary>
+            이벤트 핸들러를 사용해 외부 사용자가 알고리즘을 직접 구현하였을때 처리
+            </summary>
+            <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.PathOptimizerForm.components">
             <summary>

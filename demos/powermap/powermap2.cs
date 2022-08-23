@@ -14,6 +14,7 @@ namespace SpiralLab.Sirius
     /// </summary>
     public class PowerMapUserDefined : PowerMapDefault
     {
+
         /// <summary>
         /// 생성자
         /// </summary>
@@ -35,12 +36,6 @@ namespace SpiralLab.Sirius
             this.XName = xName;
         }
 
-        /// <summary>
-        /// 파워 매핑 사용자 상속 구현 
-        /// implemented power mapping by user 
-        /// </summary>
-        /// <param name="powerMapStartArg"></param>
-        /// <returns></returns>
         public override bool CtlStart(IPowerMapStartArg powerMapStartArg)
         {
             if (this.IsBusy)
@@ -170,13 +165,6 @@ namespace SpiralLab.Sirius
             return this.YourPowerVerify(powerMapVerifyArg);
         }
 
-
-        /// <summary>
-        /// 파워 검증 사용자 상속 구현 
-        /// implemented power verfiying by user 
-        /// </summary>
-        /// <param name="powerMapStartArg"></param>
-        /// <returns></returns>
         bool YourPowerVerify(IPowerMapVerifyArg powerMapVerifyArg)
         {
             bool success = true;
@@ -200,20 +188,11 @@ namespace SpiralLab.Sirius
             return success;
         }
 
-        /// <summary>
-        /// 파워 매핑/검증 중지 사용자 상속 구현
-        /// implemented stop power mapping/verfiying by user 
-        /// </summary>
-        /// <returns></returns>
         public override bool CtlStop()
         {
             return true;
         }
-        /// <summary>
-        /// 내부 에러 상태 리셋 사용자 상속 구현
-        /// implemented reset internal error status by user 
-        /// </summary>
-        /// <returns></returns>
+
         public override bool CtlReset()
         {
             return true;

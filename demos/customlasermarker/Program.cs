@@ -144,6 +144,7 @@ namespace SpiralLab.Sirius
             } while (true);
 
             rtc.Dispose();
+            laser.Dispose();
         }
 
         private static bool MarkByMarker(IRtc rtc, ILaser laser, IMarker marker, IMotor motor)
