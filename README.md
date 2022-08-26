@@ -122,6 +122,9 @@
 **5. Version history**
 
 
+* 2022.8.29 v1.116
+  - added) demo project 'custom entity'
+  - fixed) fail to create SiriusEditorForm/SIriusViewerForm user control 
 
 * 2022.8.24 v1.116
   - added) path optimizer with simple/custom sort (단순 경로: 상하좌우및 최단), 사용자 정의 경로 최적화 추가)

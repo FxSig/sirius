@@ -291,7 +291,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.AlcBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -309,7 +309,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfAngularWait.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -327,7 +327,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfAngularBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -351,7 +351,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -374,7 +374,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -397,7 +397,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -415,7 +415,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -433,7 +433,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -469,7 +469,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -487,7 +487,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR2.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -568,7 +568,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Circle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -586,7 +586,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotfRepeat">
             <summary>
@@ -597,7 +597,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfRepeat.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -615,7 +615,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Triangle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -633,7 +633,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Triangle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -651,7 +651,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Jump.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -670,7 +670,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ZDefocus.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -689,7 +689,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ZOffset.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -707,7 +707,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -725,7 +725,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.WaitDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -743,7 +743,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -884,7 +884,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.RasterLine">
             <summary>
@@ -895,7 +895,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RasterLine.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -942,7 +942,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -968,7 +968,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.StitchedImage.ClearImages">
             <summary>
@@ -1016,7 +1016,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Barcode1D">
             <summary>
@@ -1027,7 +1027,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Barcode1D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1050,7 +1050,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.WriteData.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1068,7 +1068,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.VectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1086,7 +1086,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.VectorBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1111,7 +1111,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Raster.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1154,7 +1154,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.HPGL.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1172,7 +1172,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Bitmap.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1199,7 +1199,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1217,7 +1217,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1235,7 +1235,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfExternalStartDelay.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1253,7 +1253,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotfWait.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1276,7 +1276,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PenReturn.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1296,7 +1296,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PenMotf.Equals(SpiralLab.Sirius.PenMotf)">
             <summary>
@@ -1321,7 +1321,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusText">
             <summary>
@@ -1332,7 +1332,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusTextTime">
             <summary>
@@ -1343,7 +1343,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.SiriusTextDate">
             <summary>
@@ -1354,7 +1354,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="F:SpiralLab.Sirius.SerialTriggerMode.External">
             <summary>
@@ -1377,7 +1377,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.TextArc">
             <summary>
@@ -1388,7 +1388,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.TextTime">
             <summary>
@@ -1399,7 +1399,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.TextTime.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1417,7 +1417,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.TextSerial.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1435,7 +1435,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.TextDate.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -1453,7 +1453,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Trepan.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -4805,7 +4805,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IPen">
             <summary>
@@ -5236,7 +5236,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PenDefault.Equals(SpiralLab.Sirius.PenDefault)">
             <summary>
@@ -5261,7 +5261,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Points.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -6609,7 +6609,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BoundRect">
             <summary>
@@ -6695,7 +6695,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.BoundRect.Equals(SpiralLab.Sirius.BoundRect)">
             <summary>
@@ -6798,7 +6798,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Circle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -6961,6 +6961,26 @@
         <member name="F:SpiralLab.Sirius.Config.NodeFontSize">
             <summary>
             트리뷰 노드의 기본 폰트 크기
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFont">
+            <summary>
+            트리뷰 노드 폰트 (기본)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFontBold">
+            <summary>
+            트리뷰 노드 폰트 (강조)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFontStrikeOut">
+            <summary>
+            트리뷰 노드 폰트 (취소)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.NodeFontBoldStrikeOut">
+            <summary>
+            트리뷰 노드 폰트 (강조+취소)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.HitTestThreshold">
@@ -7157,7 +7177,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Group.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7264,7 +7284,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Line.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7287,7 +7307,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Point.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7311,7 +7331,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyline.ToVertices">
             <summary>
@@ -7342,7 +7362,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rectangle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7360,7 +7380,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Spiral.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7417,6 +7437,11 @@
         <member name="F:SpiralLab.Sirius.Alignment.RightBottom">
             <summary>
             우하단
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.GripPoints">
+            <summary>
+            Grip 위치에 대한 정의
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.GripPoints.LeftTop">
@@ -7537,22 +7562,19 @@
         <member name="T:SpiralLab.Sirius.IDrawable">
             <summary>
             화면에 출력(렌더)이 가능한 엔티티(Entity)에 대한 인터페이스
-            주요기능 : 그리기(렌더링) 및 변환(이동, 회전등), 선택
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.IDrawable.IsHighlighted">
-            <summary>
-            마우스 over 등에 의한 시각 효과 (현재 미지원)
+            주요기능 : 그리기(렌더링) 및 변환 (이동, 회전, 크기 변환 등), 선택
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsHitTest">
             <summary>
-            마우스를 이용한 선택을 처리할지 여부
+            마우스를 이용한 선택(HitTest)을 처리할 지 여부
+            enable/disable hit test
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsDrawPath">
             <summary>
-            가공 경로를 나타내는 사각정보 표시여부 (엔티티 선택시 보여짐)
+            가공 경로를 나타내는 경로 표시 여부 (엔티티 선택 상태일때 그려짐)
+            visibility mark path
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsVisible">
@@ -7570,56 +7592,64 @@
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.Color2">
             <summary>
-            엔티티 색상
+            엔티티 색상 (펜 가공 정보의 색상과 연계 동작됨)
+            entity color = pen color
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.Angle">
             <summary>
             회전량
+            angle of degree
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDrawable.IsHighlighted">
+            <summary>
+            마우스 over 등에 의한 시각 효과 (현재 미지원)
+            not implemented yet
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Draw(SpiralLab.Sirius.IView)">
             <summary>
             엔티티 렌더링 (by OpenGL)
+            draw into target view
             </summary>
-            <param name="view">대상 뷰</param>
+            <param name="view">대상 뷰(IView)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Transit(System.Numerics.Vector2)">
             <summary>
             엔티티 이동
             </summary>
-            <param name="delta">이동량 벡터</param>
+            <param name="delta">이동량 (dx, dy)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Rotate(System.Single)">
             <summary>
             자신의 기준점을 중심으로 회전
             </summary>
-            <param name="angle">회전 각도</param>
+            <param name="angle">회전 각도 (degree)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Rotate(System.Single,System.Numerics.Vector2)">
             <summary>
             지점된 회전 중심을 기준으로 회전
             </summary>
-            <param name="angle">회전 각도</param>
-            <param name="rotateCenter">회전 중심 벡터</param>
+            <param name="angle">회전 각도 (degree)</param>
+            <param name="rotateCenter">회전 중심 좌표 (cx, cy)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Scale(System.Numerics.Vector2)">
             <summary>
-            원점을 중심으로 크기 변환
-            (내부적으로 사용되므로, 외부사용자는 호출 금지)
+            자신의 기준점을 중심으로 크기 변환
             </summary>
-            <param name="scale">스케일 (1.0)</param>
+            <param name="scale">스케일 (sx, sy)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.Scale(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
-            지정된 위치를 중심으로 크기변환
+            지정된 위치를 중심으로 크기 변환
             </summary>
-            <param name="scale">스케일 (1.0)</param>
-            <param name="scaleCenter">스케일 변환 벡터</param>
+            <param name="scale">스케일 (sx, sy)</param>
+            <param name="scaleCenter">기준 위치</param>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.GetInOut(System.Numerics.Vector2@,System.Numerics.Vector2@)">
             <summary>
-            시작점과 끝점 얻기
+            가공 시작점과 끝점 얻기
             </summary>
             <param name="vIn">시작 점</param>
             <param name="vOut">끝 점</param>
@@ -7631,7 +7661,7 @@
             </summary>
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
-            <param name="threshold">문턱값 (mm)</param>
+            <param name="threshold">충돌 거리 문턱값 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.HitTest(System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -7642,7 +7672,7 @@
             <param name="top">상 (mm)</param>
             <param name="right">우 (mm)</param>
             <param name="bottom">하 (mm)</param>
-            <param name="threshold">문턱값 (mm)</param>
+            <param name="threshold">충돌 거리 문턱값 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.HitTest(SpiralLab.Sirius.BoundRect,System.Single)">
@@ -7650,7 +7680,7 @@
             엔티티 선택 (사각 영역으로)
             </summary>
             <param name="rect">사각 영역</param>
-            <param name="threshold">문턱값 (mm)</param>
+            <param name="threshold">충돌 거리 문턱값 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.DrawGrips(SpiralLab.Sirius.IView)">
@@ -7662,7 +7692,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.DrawGripping(SpiralLab.Sirius.IView,System.Int32,System.Single,System.Single)">
             <summary>
-            선택된 그립(Grip) 영역을 dx, dy 동작했을때의 실시간 변화를 그린다
+            선택된 그립(Grip) 영역을 마우스로 드래그 (Dragging) 동작할때 이동량 (dx, dy)을 화면에 그린다
             </summary>
             <param name="view">IView 인터페이스</param>
             <param name="gripId">그립(Grip) 영역 식별자</param>
@@ -7672,7 +7702,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IDrawable.TransitGrip(System.Int32,System.Numerics.Vector2@,System.Boolean)">
             <summary>
-            선택된 그립(Grip) 영역을 dx, dy 적용한다
+            선택된 그립(Grip) 영역이 마우스로 드래그 (Dragging) 동작 완료되어 dx, dy 적용한다
             Action 적용되어 Undo 등에 활용된다
             </summary>
             <param name="gripId">그립(Grip) 영역 식별자</param>
@@ -7689,7 +7719,7 @@
             <param name="y">Y 위치 (mm)</param>
             <param name="threshold">선택 거리 문턱값</param>
             <param name="gripId">그립(Grip) 영역 식별자</param>
-            <param name="cursor">그립에 적합한 커서 모양</param>
+            <param name="cursor">그립(Grip)에 적합한 커서 모양</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Text">
@@ -7701,7 +7731,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Text.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
@@ -7719,7 +7749,7 @@
             <summary>
             복사본 생성
             </summary>
-            <returns>A new color that is a copy of this instance.</returns>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Timer.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
