@@ -67,6 +67,11 @@
             십자선 높이 크기 (mm)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.FormGridChecker.RectTracker">
+            <summary>
+            이미지  잘라내기 사각 트랙커
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.FormGridChecker.#ctor">
             <summary>
             생성자
@@ -152,6 +157,11 @@
               재정의합니다.
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.rectangular">
+            <summary>
+              (아이콘)과(와) 유사한 System.Drawing.Icon 형식의 지역화된 리소스를 찾습니다.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Properties.Resources.thic_cross">
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
@@ -161,6 +171,13 @@
             <summary>
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
+        </member>
+        <member name="M:ImageView.RectTracker.GetCursor(ImageView.RectTracker.PosSizableRect)">
+            <summary>
+            Get cursor for the handle
+            </summary>
+            <param name="p"></param>
+            <returns></returns>
         </member>
     </members>
 </doc>

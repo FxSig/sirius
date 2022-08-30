@@ -43,7 +43,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
-
 namespace SpiralLab.Sirius
 {
     /// <summary>
@@ -58,14 +57,14 @@ namespace SpiralLab.Sirius
     /// 저장이 불필요한 속성의 경우  [JsonIgnore] 를 처리해 준다
     /// </summary>
     public class CustomLine
-        : IEntity
-        , IMarkerable // 레이저 가공(Mark)을 지원하는 인터페이스 구현
-        , IDrawable // 화면에 렌더링(Draw)을 지원하는 인터페이스 구현
-        , ICloneable // 복제(Clone) 를 지원하는 인터페이스 구현
-        //, IExplodable // 분해(Explode) 지원시 상속 구현해야 하는 인터페이스
-        //, IHatchable // 해치(Hatch) 지원시 상속 구현해야 하는 인터페이스
-        //, IScriptable // 스크립트 (C# 코드) 지원시 상속 구현해야 하는 인터페이스
-        //. ITextChangeable // 가공 데이타 문자열 변환 지원시 상속 구현해야 하는 인터페이스
+        : IEntity           // 기본 엔티티(개체) 인터페이스 구현
+        , IMarkerable       // 레이저 가공(Mark)을 지원하는 인터페이스 구현
+        , IDrawable         // 화면에 렌더링(Draw)을 지원하는 인터페이스 구현
+        , ICloneable        // 복제(Clone) 를 지원하는 인터페이스 구현
+        //, IExplodable     // 분해(Explode) 지원시 상속 구현해야 하는 인터페이스
+        //, IHatchable      // 해치(Hatch) 지원시 상속 구현해야 하는 인터페이스
+        //, IScriptable     // 스크립트 (C# 코드) 지원시 상속 구현해야 하는 인터페이스
+        //, ITextChangeable // 가공 데이타 문자열 변환 지원시 상속 구현해야 하는 인터페이스
     {
         /// <summary>
         /// 부모 엔티티
@@ -377,6 +376,10 @@ namespace SpiralLab.Sirius
             return $"{Name}";
         }
 
+        /// <summary>
+        /// 내부 데이타 변경으로 인한 재계산이 필요 상태
+        /// need to re-generate internal data
+        /// </summary>
         protected bool isRegen;
 
 
@@ -418,6 +421,7 @@ namespace SpiralLab.Sirius
         #region ICloneable 복제 구현
         /// <summary>
         /// 복사본 생성
+        /// cloneable 
         /// </summary>
         /// <returns></returns>
         public virtual object Clone()
@@ -454,6 +458,7 @@ namespace SpiralLab.Sirius
         #region IMarkerable 가공 구현
         /// <summary>
         /// 레이저 가공 구현
+        /// markerable
         /// </summary>
         /// <param name="markerArg">IMarkerArg 인자</param>
         /// <returns></returns>
@@ -481,6 +486,7 @@ namespace SpiralLab.Sirius
         }
         #endregion
 
+        #region IDrawable 데이타 갱신, 데이타를 기반으로 대상 뷰에 그리기 구현
         /// <summary>
         /// 내부 데이타를 재 갱신하는 부분
         /// 데이타 (속성) 변경후 재 계산
@@ -501,7 +507,6 @@ namespace SpiralLab.Sirius
             float bottom = this.Start.Y > this.End.Y ? this.End.Y : this.Start.Y;
             this.BoundRect = new BoundRect(left, top, right, bottom);
         }
-
         /// <summary>
         /// 데이타 (속성) 변경에 의해 내부 재 계산 루틴 실시
         /// </summary>
@@ -532,7 +537,7 @@ namespace SpiralLab.Sirius
 
             // opengl 
             var gl = view.Renderer;
-         
+
             // openg 행렬 스택 push
             gl.PushMatrix();
 
@@ -542,9 +547,9 @@ namespace SpiralLab.Sirius
 
             // 색상 지정
             if (this.IsSelected)
-                gl.Color( (Config.EntitySelectedColor[0]), (Config.EntitySelectedColor[1]), (Config.EntitySelectedColor[2]), Config.EntitySelectedColor[3]);
+                gl.Color((Config.EntitySelectedColor[0]), (Config.EntitySelectedColor[1]), (Config.EntitySelectedColor[2]), Config.EntitySelectedColor[3]);
             else
-                gl.Color( this.Color2.R, this.Color2.G, this.Color2.B);
+                gl.Color(this.Color2.R, this.Color2.G, this.Color2.B);
             // 시작 점
             gl.Vertex(Start.X, Start.Y);
 
@@ -570,7 +575,8 @@ namespace SpiralLab.Sirius
             vIn = this.Start;
             vOut = this.End;
             return true;
-        }
+        } 
+        #endregion
 
         #region 선형 변환 처리 (Linear Transformation)
         /// <summary>
@@ -657,7 +663,7 @@ namespace SpiralLab.Sirius
         }
         #endregion
 
-        #region Hit Test 처리
+        #region Hit Test 선택 처리
         /// <summary>
         /// Hit 테스트 (선택 여부를 판단하는 알고리즘 필요)
         /// 마우스 선택 (한점 클릭) 위치와 현 개체의 좌표점과의 거리(충돌/교차 지점)가

@@ -2762,6 +2762,11 @@
             파워 변경을 지원하는지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.StatusCodes">
+            <summary>
+            8개의 시스템 상태 이력 (첫번째가 가장 최근 이력)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsShutterControl">
             <summary>
             셔터 제어를 지원하는지 여부
@@ -3092,52 +3097,52 @@
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.IPowerMapStartArg">
+        <member name="T:SpiralLab.Sirius.IPowerMapArg">
             <summary>
             파워맵 구동 인자 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Categories">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Categories">
             <summary>
             목표 카테고리 배열
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Steps">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Steps">
             <summary>
             단계
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.PowerMeter">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.PowerMeter">
             <summary>
             IPowerMeter 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Rtc">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Rtc">
             <summary>
             IRtc 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Laser">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Laser">
             <summary>
             ILaser 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Location">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Location">
             <summary>
             스캐너 출사 위치 (기본값 : 0,0 원점)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.HoldTimeMsec">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.HoldTimeMsec">
             <summary>
             측정을 위한 레이저 출사 시간 (msec)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.ThresholdWatt">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.ThresholdWatt">
             <summary>
             해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapStartArg.Tag">
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
@@ -3192,47 +3197,47 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.IPowerMapVerifyArg">
+        <member name="T:SpiralLab.Sirius.IPowerVerifyArg">
             <summary>
             파워맵 검증 구동 인터페이스
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.CategoryAndTargetWatts">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.CategoryAndTargetWatts">
             <summary>
             목표 카테고리, 출력 파워(W) 배열
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.PowerMeter">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.PowerMeter">
             <summary>
             IPowerMeter 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Rtc">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Rtc">
             <summary>
             IRtc 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Laser">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Laser">
             <summary>
             ILaser 인터페이스 객체
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Location">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Location">
             <summary>
-            스캐너 출사 위치 (기본값 : 0,0 원점)
+            스캐너 출사시 이동 위치 (기본값: 0,0 원점)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.HoldTimeMsec">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.HoldTimeMsec">
             <summary>
             출사 유지시간 (msec)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.ThresholdWatt">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.ThresholdWatt">
             <summary>
             오차로 처리할 출력값 범위 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMapVerifyArg.Tag">
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
@@ -3264,7 +3269,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Location">
             <summary>
-            스캐너 출사 위치 (기본값 : 0,0 원점)
+            스캐너 출사시 이동 위치 (기본값: 0,0 원점)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.HoldTimeMsec">
@@ -3280,6 +3285,11 @@
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Tag">
             <summary>
             사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapVerifyDefaultArg.#ctor">
+            <summary>
+            생성자
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapSerializer">
@@ -3303,60 +3313,60 @@
             <param name="mapFileName">파일이름 (powermap\*.map)</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg">
+        <member name="T:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg">
             <summary>
             파워 계측 전달 인자
             Thorlab PM100D, PM100A, PM100USB, PM200, PM400 전용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.XName">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.XName">
             <summary>
             파라메터 X 이름
             watt(W), frequency(Hz),  current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.XValue">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.XValue">
             <summary>
             파라메터 X 값 
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.StartTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.StartTime">
             <summary>
             측정 시작 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.EndTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.EndTime">
             <summary>
             측정 완료 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.DateTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.DateTime">
             <summary>
             측정 현재 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.PowerWatt">
             <summary>
             측정된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.Tag">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.Empty">
+        <member name="P:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.Empty">
             <summary>
             생성 초기값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeasureCoherentPowerMaxArg.#ctor(System.String,System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMeterCoherentPowerMaxArg.#ctor(System.String,System.Single,System.String)">
             <summary>
             생성자
             </summary>
@@ -3387,6 +3397,11 @@
         <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnStopped">
             <summary>
             파워 측정 중단
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnFinished">
+            <summary>
+            파워 측정 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterCoherentPowerMax.OnCleared">
@@ -3505,34 +3520,34 @@
             이전 출력값 리셋
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.IPowerMeasureArg">
+        <member name="T:SpiralLab.Sirius.IPowerMeterArg">
             <summary>
             파워 계측에 필요한 설정값및 계측결과 전달용 인자
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeasureArg.XName">
+        <member name="P:SpiralLab.Sirius.IPowerMeterArg.XName">
             <summary>
             파라메터 X 이름
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeasureArg.XValue">
+        <member name="P:SpiralLab.Sirius.IPowerMeterArg.XValue">
             <summary>
             파라메터 X 값 
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeasureArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.IPowerMeterArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeasureArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.IPowerMeterArg.PowerWatt">
             <summary>
             측정된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IPowerMeasureArg.Tag">
+        <member name="P:SpiralLab.Sirius.IPowerMeterArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
@@ -9054,18 +9069,18 @@
             <param name="dy">이동량 dY (mm)</param>
             <param name="angle">회전 (각도)</param>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMapStart">
+        <member name="T:SpiralLab.Sirius.PowerMapEvent">
             <summary>
             파워 매핑 시작 통지용
             </summary>
-            <param name="sender">파워맵</param>
+            <param name="powerMap">파워맵</param>
             <param name="arg">인자</param>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerVerifyStart">
+        <member name="T:SpiralLab.Sirius.PowerVerifyEvent">
             <summary>
             파워 검증 시작 통지용
             </summary>
-            <param name="sender">파워맵</param>
+            <param name="powerMap">파워맵</param>
             <param name="arg">인자</param>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerMap">
@@ -9251,7 +9266,7 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns>성공 여부</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워매핑 시작
             </summary>
@@ -9270,7 +9285,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.CtlVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlVerify(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             보정된 출력 파워 검증 시작
             파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고
@@ -9279,46 +9294,46 @@
             <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 시작
             </summary>
             <param name="arg">IPowerMapStartArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingProgress">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingProgress(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 진행중
             매 Step 진행 완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFailed">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFailed(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 실패
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFinished">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingFinished(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             매핑 종료 이벤트 통지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyStarted(SpiralLab.Sirius.IPowerMapVerifyArg)">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyStarted(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 완료 이벤트 통지
             </summary>
             <param name="arg">IPowerMapVerifyArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyProgress">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyProgress(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 진행중
             매 (카테고리,목표파워) 진행 완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFailed">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFailed(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 실패
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFinished">
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyVerifyFinished(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 완료 이벤트 통지
             </summary>
@@ -9521,18 +9536,18 @@
             <param name="x">계산된 x값 (watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStart(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStart(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워매핑 시작
             </summary>
-            <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
+            <param name="arg">IPowerMapStartArg 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerMapping(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerMapping(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             실제 매핑 처리 루틴
             </summary>
-            <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
+            <param name="arg">IPowerMapArg 인자</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlStop">
@@ -9547,62 +9562,62 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.CtlVerify(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             보정된 출력 파워 검증 시작
             파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고
             오차(threshold Watt)값 이내에서 측정이 되는지 여부를 시도한다
             </summary>
-            <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
+            <param name="arg">IPowerVerifyArg 인자</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerVerify(SpiralLab.Sirius.IPowerMapVerifyArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.DoPowerVerify(SpiralLab.Sirius.IPowerVerifyArg)">
              <summary>
              보정된 파워 출력 검증 테스트
              </summary>
-            <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
+            <param name="arg">IPowerVerifyArg 인자</param>
              <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapStartArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 시작
             </summary>
             <param name="arg">IPowerMapStartArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingProgress">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingProgress(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 진행중
             매 Step 진행완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFailed">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFailed(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 실패
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFinished">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyMappingFinished(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             매핑 종료 이벤트 통지
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyStarted(SpiralLab.Sirius.IPowerMapVerifyArg)">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyStarted(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 완료 이벤트 통지
             </summary>
             <param name="arg">IPowerMapVerifyArg 인자</param>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyProgress">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyProgress(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 진행중
             매 Step 진행완료시 발생
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFailed">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFailed(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 실패
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFinished">
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFinished(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             파워 검증 완료 이벤트 통지
             </summary>
@@ -9617,80 +9632,80 @@
             매핑 파일 저장 이벤트 통지
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasureOphirArg">
+        <member name="T:SpiralLab.Sirius.PowerMeterOphirArg">
             <summary>
              파워 계측에 필요한 설정값및 계측결과 전달용 인자
             Ophir 전용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XName">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.XName">
             <summary>
             파라메터 X 이름
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XValue">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.XValue">
             <summary>
             파라메터 X 값
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.StartTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.StartTime">
             <summary>
             측정 시작 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.EndTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.EndTime">
             <summary>
             측정 완료 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.DateTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.DateTime">
             <summary>
             측정 현재 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Channel">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.Channel">
             <summary>
             채널 번호
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.XPos">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.XPos">
             <summary>
             계측된 X 위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.YPos">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.YPos">
             <summary>
             계측된 Y 위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.PowerWatt">
             <summary>
             계측된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.PowerStatus">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.PowerStatus">
             <summary>
             계측 상태
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Tag">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureOphirArg.Empty">
+        <member name="P:SpiralLab.Sirius.PowerMeterOphirArg.Empty">
             <summary>
             생성 초기값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeasureOphirArg.#ctor(System.String,System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMeterOphirArg.#ctor(System.String,System.Single,System.String)">
             <summary>
             생성자
             </summary>
@@ -9721,6 +9736,11 @@
         <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnStopped">
             <summary>
             파워 측정 중단
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnFinished">
+            <summary>
+            파워 측정 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterOphir.OnCleared">
@@ -9781,59 +9801,59 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasureVirtualArg">
+        <member name="T:SpiralLab.Sirius.PowerMeaterVirtualArg">
             <summary>
             파워 계측 전달 인자
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.XName">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.XName">
             <summary>
             파라메터 X 이름 
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.XValue">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.XValue">
             <summary>
             파라메터 X 값
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.StartTime">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.StartTime">
             <summary>
             측정 시작 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.EndTime">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.EndTime">
             <summary>
             측정 완료 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.DateTime">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.DateTime">
             <summary>
             측정 현재 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.PowerWatt">
             <summary>
             측정된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.Tag">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureVirtualArg.Empty">
+        <member name="P:SpiralLab.Sirius.PowerMeaterVirtualArg.Empty">
             <summary>
             생성 초기값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeasureVirtualArg.#ctor(System.String,System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMeaterVirtualArg.#ctor(System.String,System.Single,System.String)">
             <summary>
             생성자
             </summary>
@@ -9864,6 +9884,11 @@
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnStopped">
             <summary>
             파워 측정 중단
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnFinished">
+            <summary>
+            파워 측정 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterVirtual.OnCleared">
@@ -9950,12 +9975,12 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasured">
+        <member name="T:SpiralLab.Sirius.PowerMeterEvent">
             <summary>
             파워메터 측정값 이벤트 통지용 
             </summary>
-            <param name="sender">IPowerMeter 인터페이스</param>
-            <param name="arg">IPowerMeasureArg 인자 (PowerMeasureVirtualArg, PowerMeasureOphirUSBIArg, PowerMeasureThorlabArg 로 변환하여 사용) </param>
+            <param name="powerMeter">IPowerMeter 인터페이스</param>
+            <param name="arg">IPowerMeterArg 인자 (PowerMeterVirtualArg, PowerMeterOphirUSBIArg, PowerMeterThorlabArg 로 변환하여 사용) </param>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerMeter">
             <summary>
@@ -9975,6 +10000,11 @@
         <member name="E:SpiralLab.Sirius.IPowerMeter.OnStopped">
             <summary>
             파워 측정 중단
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMeter.OnFinished">
+            <summary>
+            파워 측정 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMeter.OnCleared">
@@ -10070,80 +10100,110 @@
             에러 등 상태 리셋
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.PowerMeasureThorlabArg">
+        <member name="M:SpiralLab.Sirius.IPowerMeter.NotifyStarted(SpiralLab.Sirius.IPowerMeterArg)">
+            <summary>
+            측정 시작
+            </summary>
+            <param name="arg">IPowerMeterArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.NotifyMeasure(SpiralLab.Sirius.IPowerMeterArg)">
+            <summary>
+            측정 값 전달
+            </summary>
+            <param name="arg">IPowerMeterArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.NotifyStopped(SpiralLab.Sirius.IPowerMeterArg)">
+            <summary>
+            측정 중단
+            </summary>
+            <param name="arg">IPowerMeterArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.NotifyFinished(SpiralLab.Sirius.IPowerMeterArg)">
+            <summary>
+            측정 종료
+            </summary>
+            <param name="arg">IPowerMeterArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMeter.NotifyCleared(SpiralLab.Sirius.IPowerMeterArg)">
+            <summary>
+            측정 데이타 삭제
+            </summary>
+            <param name="arg">IPowerMeterArg 인자</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMeterThorlabArg">
             <summary>
             파워 계측 전달 인자
             Thorlab PM100D, PM100A, PM100USB, PM200, PM400 전용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.XName">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.XName">
             <summary>
             파라메터 X 이름
             watt(W), frequency(Hz),  current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.XValue">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.XValue">
             <summary>
             파라메터 X 값 
             watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.StartTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.StartTime">
             <summary>
             측정 시작 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.EndTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.EndTime">
             <summary>
             측정 완료 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.DateTime">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.DateTime">
             <summary>
             측정 현재 시간
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.PowerCategory">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.PowerCategory">
             <summary>
             카테고리/시리즈 이름
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabPowerDensity">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.ThorlabPowerDensity">
             <summary>
             파워 밀도 / Thorlab PM100USB 용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabEnergy">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.ThorlabEnergy">
             <summary>
             에너지 (J) / Thorlab PM100USB 용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabCurrent">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.ThorlabCurrent">
             <summary>
             커런트 (A) / Thorlab PM100USB 용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.ThorlabFrequency">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.ThorlabFrequency">
             <summary>
             측정 주기 (Hz) / Thorlab PM100USB 용
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.PowerWatt">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.PowerWatt">
             <summary>
             측정된 파워값 (W)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.Tag">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PowerMeasureThorlabArg.Empty">
+        <member name="P:SpiralLab.Sirius.PowerMeterThorlabArg.Empty">
             <summary>
             생성 초기값
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.PowerMeasureThorlabArg.#ctor(System.String,System.Single,System.String)">
+        <member name="M:SpiralLab.Sirius.PowerMeterThorlabArg.#ctor(System.String,System.Single,System.String)">
             <summary>
             생성자
             </summary>
@@ -10175,6 +10235,11 @@
         <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnStopped">
             <summary>
             파워 측정 중단
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnFinished">
+            <summary>
+            파워 측정 완료
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PowerMeterThorLabsPMSeries.OnCleared">
@@ -11560,24 +11625,34 @@
             두번째 스캐너 헤드 보정 테이블 번호 (1~2)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc4.BaseDistanceToSecondaryHead">
             <summary>
-            주(Primary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
+            이 거리값은 듀얼헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadBaseOffset">
             <summary>
-            주(Priamry) 스캔 헤드 회전 (각도)
+            주(Primary 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc4.PrimaryHeadUserOffset">
             <summary>
-            부(Secondary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadBaseOffset">
             <summary>
-            부(Secondary) 스캔 헤드 회전 (각도)
+            부(Secondary) 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadUserOffset">
+            <summary>
+            부(Secondary) 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.ZOffset">
@@ -12212,6 +12287,23 @@
             <summary>
             리스트 명령 - 계측 끝
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            </summary>
+            <param name="head">primary or secondary</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            (Z 오프셋과 함께 사용불가)
+            </summary>
+            <param name="head">primary or secondary</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMove(System.Numerics.Vector3)">
@@ -12910,24 +13002,34 @@
             두번째 스캐너 헤드 보정 테이블 번호 (1~4)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc5.PrimaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc5.BaseDistanceToSecondaryHead">
             <summary>
-            주(Primary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
+            이 거리값은 듀얼헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc5.PrimaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc5.PrimaryHeadBaseOffset">
             <summary>
-            주(Priamry) 스캔 헤드 회전 (각도)
+            주(Primary 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc5.SecondaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc5.PrimaryHeadUserOffset">
             <summary>
-            부(Secondary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc5.SecondaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc5.SecondaryHeadBaseOffset">
             <summary>
-            부(Secondary) 스캔 헤드 회전 (각도)
+            부(Secondary) 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.SecondaryHeadUserOffset">
+            <summary>
+            부(Secondary) 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.ZOffset">
@@ -13727,25 +13829,15 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
             <summary>
             듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
             </summary>
             <param name="head">primary or secondary</param>
-            <param name="offset">dx,dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
-            <summary>
-            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
-            (Z 오프셋과 함께 사용불가)
-            </summary>
-            <param name="head">primary or secondary</param>
-            <param name="offset">dx, dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)" -->
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
@@ -14553,24 +14645,34 @@
             두번째 스캐너 헤드 보정 테이블 번호 (1~4)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6.PrimaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc6.BaseDistanceToSecondaryHead">
             <summary>
-            주(Primary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
+            이 거리값은 듀얼헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6.PrimaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc6.PrimaryHeadBaseOffset">
             <summary>
-            주(Priamry) 스캔 헤드 회전 (각도)
+            주(Primary 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6.SecondaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.Rtc6.PrimaryHeadUserOffset">
             <summary>
-            부(Secondary) 스캐너 헤드 X,Y 오프셋 (mm)
+            주(Primary 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Rtc6.SecondaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.Rtc6.SecondaryHeadBaseOffset">
             <summary>
-            부(Secondary) 스캔 헤드 회전 (각도)
+            부(Secondary) 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.SecondaryHeadUserOffset">
+            <summary>
+            부(Secondary) 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.ZOffset">
@@ -15374,23 +15476,21 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
             <summary>
             듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
             </summary>
             <param name="head">primary or secondary</param>
-            <param name="offset">dx,dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
             <summary>
             리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
             (Z 오프셋과 함께 사용불가)
             </summary>
             <param name="head">primary or secondary</param>
-            <param name="offset">dx, dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMove(System.Numerics.Vector3)">
@@ -17502,6 +17602,36 @@
             두번째 스캐너 헤드 보정 테이블 번호 (1~4)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.BaseDistanceToSecondaryHead">
+            <summary>
+            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
+            이 거리값은 듀얼헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.PrimaryHeadBaseOffset">
+            <summary>
+            주(Primary 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.PrimaryHeadUserOffset">
+            <summary>
+            주(Primary 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.SecondaryHeadBaseOffset">
+            <summary>
+            부(Secondary) 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.SecondaryHeadUserOffset">
+            <summary>
+            부(Secondary) 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.IsDateTimeOffset">
             <summary>
             DateTime 오프셋 사용여부
@@ -17720,6 +17850,23 @@
             </summary>
             <param name="errors">(에러코드, 에러메시지) 튜플 리스트</param>
             <returns>에러 메시지를 모두 합쳐 제공</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            </summary>
+            <param name="head">primary or secondary</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            (Z 오프셋과 함께 사용불가)
+            </summary>
+            <param name="head">primary or secondary</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMove(System.Numerics.Vector3)">
             <summary>
@@ -18841,7 +18988,7 @@
             리스트 명령 - 아크 (Arc : 호)
             </summary>
             <param name="vCenter">회전 중심 위치 (cx, cy)</param>
-            <param name="sweepAngle">각도 이동량 (+: CCW, -: CW)</param>
+            <param name="sweepAngle">각도 이동량 (°) (+: CCW, -: CW)</param>
             <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
@@ -18851,7 +18998,7 @@
             </summary>
             <param name="cx">회전 중심 위치 (cx)</param>
             <param name="cy">회전 중심 위치 (cy)</param>
-            <param name="sweepAngle">각도 이동량 (+: CCW, -: CW)</param>
+            <param name="sweepAngle">각도 이동량 (°) (+: CCW, -: CW)</param>
             <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
@@ -18862,7 +19009,7 @@
             <param name="vCenter">중심</param>
             <param name="majorHalf">A</param>
             <param name="minorHalf">B</param>
-            <param name="startAngle">시작 각도</param>
+            <param name="startAngle">시작 각도 (°)</param>
             <param name="sweepAngle">각도 이동량 (+ : CCW, - : CW)</param>
             <param name="rotateAngle">타원 자체 회전량 (+ : CCW, - : CW)</param>
             <param name="angleDelta">각도 미분량</param>
@@ -19201,7 +19348,7 @@
             Z 축과 평행가공
             </summary>
             <param name="vCenter">중심 위치 (cx, cy, cz) (mm)</param>
-            <param name="sweepAngleZ">회전 각도 (+ : 반시계방향)</param>
+            <param name="sweepAngleZ">회전 각도 (°) (+ : 반시계방향)</param>
             <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
             <returns></returns>
         </member>
@@ -19563,42 +19710,51 @@
             Secondary 헤드의 보정 파일 테이블 번호 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcDualHead.PrimaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.IRtcDualHead.BaseDistanceToSecondaryHead">
             <summary>
-            Primary 헤드의 오프셋 (듀얼 헤드 사용시)
+            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
+            이 거리값은 듀얼헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcDualHead.PrimaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.IRtcDualHead.PrimaryHeadBaseOffset">
             <summary>
-            Primary 헤드의 회전각도 (듀얼 헤드 사용시)
+            주(Primary 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcDualHead.SecondaryHeadOffset">
+        <member name="P:SpiralLab.Sirius.IRtcDualHead.PrimaryHeadUserOffset">
             <summary>
-            Secondary 헤드의 오프셋 (듀얼 헤드 사용시)
+            주(Primary 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IRtcDualHead.SecondaryHeadAngle">
+        <member name="P:SpiralLab.Sirius.IRtcDualHead.SecondaryHeadBaseOffset">
             <summary>
-            Secondary 헤드의 회전각도 (듀얼 헤드 사용시)
+            부(Secondary) 헤드의 기구 Base 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcDualHead.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
+        <member name="P:SpiralLab.Sirius.IRtcDualHead.SecondaryHeadUserOffset">
             <summary>
-            듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            부(Secondary) 헤드의 사용자 오프셋 (듀얼 헤드 사용시)
+            dx, dy, angle (mm, mm, °)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcDualHead.CtlHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            듀얼 헤드 사용시 개별 헤드에 대한 오프셋 설정
             </summary>
             <param name="head">primary or secondary</param>
-            <param name="offset">dx,dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcDualHead.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcDualHead.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
             <summary>
-            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 설정
+            (Z 오프셋과 함께 사용불가)
             </summary>
             <param name="head">primary or secondary</param>
-            <param name="offset">dx, dy (mm)</param>
-            <param name="angle">회전 (각도)</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionFileHeaderParam">
@@ -20438,7 +20594,7 @@
             <summary>
             리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
             </summary>
-            <param name="angle">각도</param>
+            <param name="angle">각도 (°)</param>
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
@@ -20464,8 +20620,8 @@
             <summary>
             특정 리스트 주소(위치)로 점프하여 연속 가공
             </summary>
-            <param name="listPosition">리스트 위치(0~2^20-1)</param>
-            <param name="repeats">반복 회수(1~)</param>
+            <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1). 단 리스트 타입을 Single 로 사용해야 한다</param>
+            <param name="repeats">반복 회수(0 : 무제한, 1 이상 : 지정된 회수만큼 반복)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MotionType">
@@ -21330,22 +21486,22 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head1Offset">
             <summary>
-            스캔 헤드1 에 설정된 X,Y, Angle 오프셋
+            스캔 헤드1 에 설정된 X,Y, Angle(°) 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head2Offset">
             <summary>
-            스캔 헤드2 에 설정된 X,Y, Angle 오프셋
+            스캔 헤드2 에 설정된 X,Y, Angle(°) 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head3Offset">
             <summary>
-            스캔 헤드3 에 설정된 X,Y, Angle 오프셋
+            스캔 헤드3 에 설정된 X,Y, Angle(°) 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head4Offset">
             <summary>
-            스캔 헤드4 에 설정된 X,Y, Angle 오프셋
+            스캔 헤드4 에 설정된 X,Y, Angle(°) 오프셋
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Trajectory">
@@ -21534,7 +21690,7 @@
             </summary>
             <param name="scanDevice">ScanDevice 열거형</param>
             <param name="offset">dx, dy 이동량 (mm)</param>
-            <param name="angle">회전량 (각도 : +: CCW, -: CW) </param>
+            <param name="angle">회전량 각도 (°) (+: CCW, -: CW) </param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
@@ -21544,7 +21700,7 @@
             <param name="scanDevice">멀티헤드번호</param>
             <param name="dx">오프셋 X (mm)</param>
             <param name="dy">오프셋 Y (mm)</param>
-            <param name="angle">회전량 (각도 : +: CCW, -: CW) </param>
+            <param name="angle">회전량 각도 (°) (+: CCW, -: CW) </param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">

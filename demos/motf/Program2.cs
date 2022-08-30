@@ -71,13 +71,24 @@ namespace SpiralLab.Sirius
             // scanner and laser delays (스캐너/레이저 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
 
+            // RTC 카드 옵션에 2nd head 가 활성화 되어 있어야 한다
+            Debug.Assert(rtc.Is2ndHead);
+
             //이미 table1 에 로드 및 선택 완료 (initialize 의 인자에서 처리됨)
             //var correctionFile1 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             //rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, correctionFile1);
             var correctionFile2 = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table2, correctionFile2);
             rtc.CtlSelectCorrection(CorrectionTableIndex.Table1, CorrectionTableIndex.Table2);
+
+            // 헤드간 거리값
+            // distance bewteen primary/secondary heads
+            // 중첩 되는 구간은 10mm 로 처리
+            // overlap length is 10mm
+            rtc.BaseDistanceToSecondaryHead = new Vector2(fov-10, 0);
             #endregion
+
+            var rtcDualHead = rtc as IRtcDualHead;
 
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
@@ -107,8 +118,10 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'D' : draw circle with dual head offset");
-                Console.WriteLine("'Q' : quit");
+                Console.WriteLine("'D' : draw circle with global offset");
+                Console.WriteLine("'D' : draw circle with base offset");
+                Console.WriteLine("'E' : draw circle with user offset");
+                Console.WriteLine("'F' : quit");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
@@ -120,16 +133,30 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
-                        // translate and rotate at each head
+                        // translate and rotate each head
                         //개별 헤드에 오프셋 및 회전 처리
-                        var rtcDualHead = rtc as IRtcDualHead;
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
+                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Vector3(5, 0, 0.1f));
+                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Vector3(-5, 0, -0.1f));
                         DrawCircle(laser, rtc);
-                        // revert /reset head 
+                        // revert, reset head offsets
                         // 원복
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
+                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, Vector3.Zero);
+                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, Vector3.Zero);
+                        break;
+                    case ConsoleKey.E:
+                        // 2개의 오프셋 (base + user) 으로 지정 가능
+                        // 우선 base offset : 두개의 헤드를 하드웨어(기구적으로) 간에 평행하도록 개별 헤드의 위치를 보정
+                        rtcDualHead.PrimaryHeadBaseOffset = new Vector3(10, 0, 0.1f);
+                        rtcDualHead.SecondaryHeadBaseOffset = new Vector3(-10, 0, 0.1f);
+                        DrawCircle(laser, rtc);
+                        break;
+                    case ConsoleKey.F:
+                        // 이후 자재(혹은 레시피)별로 사용자가 헤드의 중심 위치를 이동하고자 할 경우
+                        // user offset 을 각각 지정
+                        // 헤드에 적용되는 최종 오프셋은 global offset = base + user offset
+                        rtcDualHead.PrimaryHeadUserOffset = new Vector3(-5, 0, 0);
+                        rtcDualHead.SecondaryHeadUserOffset = new Vector3(5, 0, 0);
+                        DrawCircle(laser, rtc);
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");

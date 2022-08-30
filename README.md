@@ -5,8 +5,7 @@
 
  SuperEasy library for Control Scanner and Laser
 
-
- 
+  
  ![pulse on demand](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-6.png)
  
  ![scanner field correction by image](http://www.spirallab.co.kr/wp-content/uploads/2022/01/image-5.png)
@@ -37,6 +36,7 @@
 
 
   ----
+
 
 **2. Features**
 
@@ -81,7 +81,9 @@
     - ACS SPiiPlusNET (preliminary)
     - Newport ESP301 (preliminary)
  
+
   ----
+
 
 **3. How to use ?**
 
@@ -108,6 +110,7 @@
  
  ----
 
+
 **4. Author**
 
  - developer page : http://www.spirallab.co.kr/?page_id=229
@@ -121,6 +124,11 @@
 
 **5. Version history**
 
+* 2022.8.31 v1.117
+  - added) grid checker with crop ROI and save  (스캐너 보정용 이미지의 ROI 영역 자르기, 저장 기능 추가)
+  - added) IRtcDualHead with base/user offset (듀얼헤드사용시 헤드별 오프셋 확장 지원 :  base + user)
+  - fixed) IRtcMotf with Motf Repeat bug (MOTF 반복 가공시 무제한 및 회수 지정 가능)
+  - fixed) powermeter/powermap/verify event handler with notification bugs (파워메터/파워맵/검증시 호출 버그 수정및 인자 통일)
 
 * 2022.8.29 v1.116
   - added) demo project 'custom entity'

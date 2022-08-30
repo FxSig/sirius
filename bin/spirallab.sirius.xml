@@ -2204,6 +2204,12 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Laser.PhotonicsIndustryRGHAIOForm.#ctor(SpiralLab.Sirius.PhotonicsIndustryRGHAIO)">
+            <summary>
+            생성자
+            </summary>
+            <param name="photonicsIndustryRGHAIO">레이저 소스 객체</param>
+        </member>
         <member name="F:SpiralLab.Sirius.Laser.PhotonicsIndustryRGHAIOForm.components">
             <summary>
             Required designer variable.

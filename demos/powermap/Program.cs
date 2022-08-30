@@ -189,36 +189,36 @@ namespace SpiralLab.Sirius
         }
 
 
-        private static void PowerMap_OnMappingStarted(IPowerMap sender, IPowerMapStartArg arg)
+        private static void PowerMap_OnMappingStarted(IPowerMap sender, IPowerMapArg arg)
         {
             Console.WriteLine("Power mapping has started");
         }
-        private static void PowerMap_OnMappingProgress(object sender, EventArgs e)
+        private static void PowerMap_OnMappingProgress(IPowerMap sender, IPowerMapArg arg)
         {
             Console.WriteLine("Power mapping working next step ...");
         }
-        private static void PowerMap_OnMappingFailed(object sender, EventArgs e)
+        private static void PowerMap_OnMappingFailed(IPowerMap sender, IPowerMapArg arg)
         {
             Console.WriteLine("Power mapping/verfication has failed");
         }
-        private static void PowerMap_OnMappingFinished(object sender, EventArgs e)
+        private static void PowerMap_OnMappingFinished(IPowerMap sender, IPowerMapArg arg)
         {
             Console.WriteLine("Power mapping has finished");
         }
 
-        private static void PowerMap_OnVerifyStarted(object sender, IPowerMapVerifyArg arg)
+        private static void PowerMap_OnVerifyStarted(IPowerMap sender, IPowerVerifyArg arg)
         {
             Console.WriteLine("Power verification has started");
         }
-        private static void PowerMap_OnVerifyFailed(object sender, EventArgs e)
+        private static void PowerMap_OnVerifyFailed(IPowerMap sender, IPowerVerifyArg arg)
         {
             Console.WriteLine("Power verification has failed");
         }
-        private static void PowerMap_OnVerifyProgress(object sender, EventArgs e)
+        private static void PowerMap_OnVerifyProgress(IPowerMap sender, IPowerVerifyArg arg)
         {
             Console.WriteLine("Power verification working next step ...");
         }
-        private static void PowerMap_OnVerifyFinished(object sender, EventArgs e)
+        private static void PowerMap_OnVerifyFinished(IPowerMap sender, IPowerVerifyArg arg)
         {
             Console.WriteLine("Power verification has finished");
         }

@@ -36,7 +36,7 @@ namespace SpiralLab.Sirius
             this.XName = xName;
         }
 
-        public override bool CtlStart(IPowerMapStartArg powerMapStartArg)
+        public override bool CtlStart(IPowerMapArg powerMapStartArg)
         {
             if (this.IsBusy)
             {
@@ -89,32 +89,32 @@ namespace SpiralLab.Sirius
             return this.YourDoPowerMapping(powerMapStartArg);
         }
 
-        bool YourDoPowerMapping(IPowerMapStartArg powerMapStartArg)
+        bool YourDoPowerMapping(IPowerMapArg arg)
         {
             bool success = true;
-            base.NotifyMappingStarted(powerMapStartArg);
+            base.NotifyMappingStarted(arg);
             this.IsBusy = true;
-            foreach (var category in powerMapStartArg.Categories)
+            foreach (var category in arg.Categories)
             {
-                for (int step = 0; step < powerMapStartArg.Steps; step++)
+                for (int step = 0; step < arg.Steps; step++)
                 {
 
-                    base.NotifyMappingProgress();
+                    base.NotifyMappingProgress(arg);
                     // your codes ...
                     //
                     //
                 }
             }
             if (success)
-                base.NotifyMappingFinished();
+                base.NotifyMappingFinished(arg);
             else
-                base.NotifyMappingFailed();
+                base.NotifyMappingFailed(arg);
 
             this.IsBusy = false;
             return success;
         }
 
-        public override bool CtlVerify(IPowerMapVerifyArg powerMapVerifyArg)
+        public override bool CtlVerify(IPowerVerifyArg powerMapVerifyArg)
         {
             if (this.IsBusy)
             {
@@ -165,14 +165,14 @@ namespace SpiralLab.Sirius
             return this.YourPowerVerify(powerMapVerifyArg);
         }
 
-        bool YourPowerVerify(IPowerMapVerifyArg powerMapVerifyArg)
+        bool YourPowerVerify(IPowerVerifyArg arg)
         {
             bool success = true;
-            var powerControl = powerMapVerifyArg.Laser as SpiralLab.Sirius.IPowerControl;
+            var powerControl = arg.Laser as SpiralLab.Sirius.IPowerControl;
 
             this.IsBusy = true;
-            this.NotifyVerifyStarted(powerMapVerifyArg);
-            foreach (var kv in powerMapVerifyArg.CategoryAndTargetWatts)
+            this.NotifyVerifyStarted(arg);
+            foreach (var kv in arg.CategoryAndTargetWatts)
             {
                 float hz = float.Parse(kv.category);
                 float targetWatt = kv.watt;
@@ -183,7 +183,7 @@ namespace SpiralLab.Sirius
                     //
                 }
             }
-            this.NotifyVerifyFinished();
+            this.NotifyVerifyFinished(arg);
             this.IsBusy = false;
             return success;
         }
