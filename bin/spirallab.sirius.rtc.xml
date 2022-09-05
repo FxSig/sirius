@@ -21724,6 +21724,11 @@
             완료
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.CalculationStatus.Failed">
+            <summary>
+            실패
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.TransferStatus">
             <summary>
             전송 상태 
