@@ -352,7 +352,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 복사본 생성
         /// </summary>
-        /// <returns>A new color that is a copy of this instance.</returns>
+        /// <returns></returns>
         public virtual object Clone()
         {
             CustomPen pen = new CustomPen

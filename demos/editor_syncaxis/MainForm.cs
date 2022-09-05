@@ -1,27 +1,4 @@
-﻿/*
- *                                                            ,--,      ,--,                              
- *             ,-.----.                                     ,---.'|   ,---.'|                              
- *   .--.--.   \    /  \     ,---,,-.----.      ,---,       |   | :   |   | :      ,---,           ,---,.  
- *  /  /    '. |   :    \ ,`--.' |\    /  \    '  .' \      :   : |   :   : |     '  .' \        ,'  .'  \ 
- * |  :  /`. / |   |  .\ :|   :  :;   :    \  /  ;    '.    |   ' :   |   ' :    /  ;    '.    ,---.' .' | 
- * ;  |  |--`  .   :  |: |:   |  '|   | .\ : :  :       \   ;   ; '   ;   ; '   :  :       \   |   |  |: | 
- * |  :  ;_    |   |   \ :|   :  |.   : |: | :  |   /\   \  '   | |__ '   | |__ :  |   /\   \  :   :  :  / 
- *  \  \    `. |   : .   /'   '  ;|   |  \ : |  :  ' ;.   : |   | :.'||   | :.'||  :  ' ;.   : :   |    ;  
- *   `----.   \;   | |`-' |   |  ||   : .  / |  |  ;/  \   \'   :    ;'   :    ;|  |  ;/  \   \|   :     \ 
- *   __ \  \  ||   | ;    '   :  ;;   | |  \ '  :  | \  \ ,'|   |  ./ |   |  ./ '  :  | \  \ ,'|   |   . | 
- *  /  /`--'  /:   ' |    |   |  '|   | ;\  \|  |  '  '--'  ;   : ;   ;   : ;   |  |  '  '--'  '   :  '; | 
- * '--'.     / :   : :    '   :  |:   ' | \.'|  :  :        |   ,/    |   ,/    |  :  :        |   |  | ;  
- *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
- *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
- *               `---`            `---'                                                        `----'   
- * 
- * 
- * IRtcSyncAxis 인터페이스를 이용해 syncAXIS/XL-SCAN 제어기를 구동한다
- * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -146,6 +123,7 @@ namespace SpiralLab.Sirius
         {
             siriusEditorForm1.Document = doc;
         }
+
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.siriusEditorForm1.Marker.Stop();

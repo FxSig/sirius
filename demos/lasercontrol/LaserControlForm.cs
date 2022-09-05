@@ -1,28 +1,4 @@
-﻿/*
- *                                                            ,--,      ,--,                              
- *             ,-.----.                                     ,---.'|   ,---.'|                              
- *   .--.--.   \    /  \     ,---,,-.----.      ,---,       |   | :   |   | :      ,---,           ,---,.  
- *  /  /    '. |   :    \ ,`--.' |\    /  \    '  .' \      :   : |   :   : |     '  .' \        ,'  .'  \ 
- * |  :  /`. / |   |  .\ :|   :  :;   :    \  /  ;    '.    |   ' :   |   ' :    /  ;    '.    ,---.' .' | 
- * ;  |  |--`  .   :  |: |:   |  '|   | .\ : :  :       \   ;   ; '   ;   ; '   :  :       \   |   |  |: | 
- * |  :  ;_    |   |   \ :|   :  |.   : |: | :  |   /\   \  '   | |__ '   | |__ :  |   /\   \  :   :  :  / 
- *  \  \    `. |   : .   /'   '  ;|   |  \ : |  :  ' ;.   : |   | :.'||   | :.'||  :  ' ;.   : :   |    ;  
- *   `----.   \;   | |`-' |   |  ||   : .  / |  |  ;/  \   \'   :    ;'   :    ;|  |  ;/  \   \|   :     \ 
- *   __ \  \  ||   | ;    '   :  ;;   | |  \ '  :  | \  \ ,'|   |  ./ |   |  ./ '  :  | \  \ ,'|   |   . | 
- *  /  /`--'  /:   ' |    |   |  '|   | ;\  \|  |  '  '--'  ;   : ;   ;   : ;   |  |  '  '--'  '   :  '; | 
- * '--'.     / :   : :    '   :  |:   ' | \.'|  :  :        |   ,/    |   ,/    |  :  :        |   |  | ;  
- *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
- *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
- *               `---`            `---'                                                        `----'   
- * 
- * 
- * Create winforms for specific laser source
- * 레이저 소스 통신/제어를 위한 전용 윈폼을 생성하는 방법
- * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
- * 
- */
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -38,9 +14,7 @@ namespace SpiralLab.Sirius
     public partial class LaserControlForm : Form
     {
 
-        /// <summary>
-        /// 생성자
-        /// </summary>
+
         public LaserControlForm()
         {
             InitializeComponent();
@@ -172,6 +146,7 @@ namespace SpiralLab.Sirius
             laser.Dispose();
         }
 
+        
         private void button8_Click(object sender, EventArgs e)
         {
             int index = 0;

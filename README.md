@@ -124,6 +124,17 @@
 
 **5. Version history**
 
+* 2022.9.6 v1.118
+  - added) serial communication with monitoring/dump data (시리얼 통신 16진수로 모니터링/덤프 지원)
+  - added) ditial input triggers (디지털 입력 트리거 집합 추가)
+  - added) rtc serial comm interface (RTC 제어기 내부 시리얼 통신포트 사용을 위한 인터페이스 추가)
+  - added) view with custom rendering handler (뷰에 사용자가 직접 opengl 렌더링 처리 지원)
+  - added) MOTF angular with measurement (회전 MOTF 계측 데이타 각도 변환 지원)
+  - fixed) MOTF angular wait bug (회전 MOTF 대기 각도 처리 버그)
+  - fixed) motor homed event with argument (모터 원점 초기화 이벤트 인자 개선)
+  - fixed) LWPpolyline hatch bug (폴리라인 해치 사용시 버그 수정)
+  - fixed) SiriusEditor out of memory bug at treeview (편집기에서 트리뷰 노드 전체 삭제시 메모리 관련 오류 수정)
+
 * 2022.8.31 v1.117
   - added) grid checker with crop ROI and save  (스캐너 보정용 이미지의 ROI 영역 자르기, 저장 기능 추가)
   - added) IRtcDualHead with base/user offset (듀얼헤드사용시 헤드별 오프셋 확장 지원 :  base + user)

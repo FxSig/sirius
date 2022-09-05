@@ -11,6 +11,17 @@ using SpiralLab.Sirius;
 namespace SpiralLab.Sirius
 {
     /// <summary>
+    /// MotorZ Arg 인자
+    /// </summary>
+    public class MotorZArg : IMotorArg
+    {
+        public object Tag { get; set; }
+
+        public MotorZArg()
+        { }
+    }
+
+    /// <summary>
     /// user defined scanner z axis
     /// 스캐너 Z 축 모션 제어 사용예제
     /// </summary>
@@ -19,7 +30,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 원점 탐색 완료시 발생되는 이벤트 핸들러
         /// </summary>
-        public event EventHandler MotorHomed;
+        public event MotorEvent MotorHomed;
         /// <summary>
         /// INotifyPropertyChanged 인터페이스 구현
         /// 속성값 변경시 발생되는 이벤트 핸들러 
@@ -100,6 +111,8 @@ namespace SpiralLab.Sirius
         /// </summary>
         public object Tag { get; set; }
 
+
+        protected MotorZArg arg;
         private bool disposed = false;
 
         /// <summary>
@@ -113,6 +126,7 @@ namespace SpiralLab.Sirius
             IsReady = false;
             IsBusy = false;
             IsError = true;
+            arg = new MotorZArg();
         }
         ~MotorZ()
         {
@@ -170,7 +184,7 @@ namespace SpiralLab.Sirius
             TargetPosition = ActualPosition = 0;
 
             // ... 
-            // 원점 검색 완료후 NotifyHomed() 호출
+            // 원점 검색 완료후 NotifyHomed(this.arg) 호출
             return true;
         }
         /// <summary>
@@ -242,7 +256,7 @@ namespace SpiralLab.Sirius
 
 
         #region 원점 초기화(홈) 이벤트 통지 (상속 구현시 외부에서 호출 지원)
-        public virtual void NotifyHomed()
+        public virtual void NotifyHomed(IMotorArg arg)
         {
             var receivers = this.MotorHomed?.GetInvocationList();
             if (null != receivers)

@@ -336,6 +336,166 @@
             초기화
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.DInputTriggerEvent">
+            <summary>
+            트리거 발생 이벤트 핸들러 
+            </summary>
+            <param name="dInput">디지털 입력 객체</param>
+            <param name="trigger">트리거 발생 객체</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.IDInputTriggers">
+            <summary>
+            디지털 입력 트리거 집합 인터페이스
+            복수개의 디지털 입력 트리거를 모아 관리하는 객체
+            개별 입력 상태에 따른 트리거 발생 여부 확인 후 이벤트 핸들러 처리
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IDInputTriggers.OnTriggered">
+            <summary>
+            트리거 이벤트 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.DInput">
+            <summary>
+            대상 디지털 입력 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.HoldingTime">
+            <summary>
+            트리거 발생 유지 시간 (holding time) (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.Items">
+            <summary>
+            트리거 리스트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTriggers.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDInputTriggers.Add(SpiralLab.Sirius.IDInputTrigger)">
+            <summary>
+            트리거 추가
+            </summary>
+            <param name="dInputTrigger"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDInputTriggers.Remove(SpiralLab.Sirius.IDInputTrigger)">
+            <summary>
+            트리거 제거
+            </summary>
+            <param name="dInputTrigger"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDInputTriggers.Remove(System.Int32)">
+            <summary>
+            트리거 제거
+            </summary>
+            <param name="no"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IDInputTriggers.Update">
+            <summary>
+            입력 상태에 따른 트리거 발생 여부 확인
+            트리거 발생시 이벤트 핸들러 호출 처리
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.DInputTriggersDefault">
+            <summary>
+            디지털 입력 트리거 집합 (기본 버전)
+            복수개의 디지털 입력 트리거를 모아 관리하는 객체
+            개별 입력 상태에 따른 트리거 발생 여부 확인 후 이벤트 핸들러 처리
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.DInputTriggersDefault.OnTriggered">
+            <summary>
+            트리거 이벤트 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.Index">
+            <summary>
+            식별 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.DInput">
+            <summary>
+            대상 디지털 입력 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.HoldingTime">
+            <summary>
+            트리거 발생 유지 시간 (holding time) (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.Items">
+            <summary>
+            트리거 리스트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggersDefault.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggersDefault.#ctor(System.Int32,System.String,SpiralLab.Sirius.IDInput,System.Int64)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별 번호</param>
+            <param name="name">이름</param>
+            <param name="dInput">대상 디지털 입력 객체</param>
+            <param name="msec">트리거 발생 유지 시간 (holding time) (msec)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggersDefault.Add(SpiralLab.Sirius.IDInputTrigger)">
+            <summary>
+            트리거 추가
+            </summary>
+            <param name="dInputTrigger">대상 트리거 객체</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggersDefault.Remove(SpiralLab.Sirius.IDInputTrigger)">
+            <summary>
+            트리거 제거
+            </summary>
+            <param name="dInputTrigger">대상 트리거 객체</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggersDefault.Remove(System.Int32)">
+            <summary>
+            트리거 제거
+            </summary>
+            <param name="no">입력 IO 번호</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggersDefault.Update">
+            <summary>
+            입력 상태에 따른 트리거 발생 여부 확인
+            트리거 발생시 이벤트 핸들러 호출 처리
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.RtcDInput2Pin">
             <summary>
             디지털 입력 인터페이스    
@@ -822,18 +982,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -849,6 +997,18 @@
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -1004,6 +1164,12 @@
         <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.CheckReady">
             <summary>
             준비(IsReady) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.CheckBusy">
+            <summary>
+            출사중(IsBusy) 조건 설정
             </summary>
             <returns></returns>
         </member>
@@ -1818,18 +1984,6 @@
             reset alarms
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IPGYLPN.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -1845,6 +1999,18 @@
         <member name="M:SpiralLab.Sirius.IPGYLPN.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPN.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -2079,18 +2245,6 @@
             380 : 10%
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlReset">
-            <summary>
-            리셋
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -2106,6 +2260,18 @@
         <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlReset">
+            <summary>
+            리셋
             </summary>
             <returns></returns>
         </member>
@@ -2399,18 +2565,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -2426,6 +2580,18 @@
         <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPULPN.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -2648,18 +2814,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -2675,6 +2829,18 @@
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -2813,18 +2979,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -2840,6 +2994,18 @@
         <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -3038,18 +3204,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -3065,6 +3219,18 @@
         <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -3096,6 +3262,218 @@
             <param name="watt">파워 (W)</param>
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorFastechPlusEArg">
+            <summary>
+            Motor Fastech Plus E Arg 인자
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorFastechPlusE">
+            <summary>
+            Fastech Plus E 
+            단축용
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MotorFastechPlusE.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.SyncRoot">
+            <summary>
+            동기화 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.No">
+            <summary>
+            모터 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.Name">
+            <summary>
+            모터 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.TargetPosition">
+            <summary>
+            위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.ActualPosition">
+            <summary>
+            실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsReady">
+            <summary>
+            준비상태 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsBusy">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsError">
+            <summary>
+            알람 발생 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsHomeSearching">
+            <summary>
+            원점 검색중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsInPos">
+            <summary>
+            명령 지점 도착 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsHomeSearched">
+            <summary>
+            원점 검색 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsServoOn">
+            <summary>
+            서보 온 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsDriving">
+            <summary>
+            구동중 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsCwSenOn">
+            <summary>
+            CW 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsCCwSenOn">
+            <summary>
+            CCW 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.IsOrgSenOn">
+            <summary>
+            ORG 센서 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.PulsePerMm">
+            <summary>
+            모터 스케일 설정 : Pulses/mm
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.MaxVelocity">
+            <summary>
+            최대 속도를 제한값 (mm/s)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.ConvertMmToPulse(System.Single)">
+            <summary>
+            mm -> pulse
+            </summary>
+            <param name="mm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.ConvertPulseToMm(System.Single)">
+            <summary>
+            pulse -> mm
+            </summary>
+            <param name="pulse"></param>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorFastechPlusE.Tag">
+            <summary>
+            사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.#ctor(System.Int32,System.String,System.Int32,System.String,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="no">축 번호</param>
+            <param name="name">축 이름</param>
+            <param name="boardId">보드 번호 (0, ... )</param>
+            <param name="ipAddress">IP 주소</param>
+            <param name="pulsePerMm">펄스와 사용자 단위(mm)간 비율값</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.Initialize">
+            <summary>
+            초기화 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlHomeSearch">
+            <summary>
+            홈(원점) 검색 시작
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlResetCount(System.Single)">
+            <summary>
+            엔코더 카운터 리셋
+            </summary>
+            <param name="position">오프셋 값</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlServo(System.Boolean)">
+            <summary>
+            서보 온 오프
+            </summary>
+            <param name="onOff"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlMoveAbs(System.Single,System.Single)">
+            <summary>
+            절대 위치로 이동
+            </summary>
+            <param name="position">위치 (units)</param>
+            <param name="vel">속도(units/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlMoveRel(System.Single,System.Single)">
+            <summary>
+            상대 위치 이동
+            </summary>
+            <param name="distance">거리값(units)</param>
+            <param name="vel">속도(units/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlMoveJog(System.Single)">
+            <summary>
+            조그 속도 이동
+            </summary>
+            <param name="vel">속도 (units/s)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlMoveStop">
+            <summary>
+            정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlReset">
+            <summary>
+            알람 해제
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorFastechPlusE.Update">
+            <summary>
+            update motor status 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMotorArg.Tag">
+            <summary>
+            사용자 데이타
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerMapArg">
             <summary>
@@ -3552,6 +3930,11 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorACSArg">
+            <summary>
+            Motor ACS Arg 인자
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.MotorACS">
             <summary>
             Motor ACS
@@ -3737,6 +4120,11 @@
             상태 업데이트
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorESP301Arg">
+            <summary>
+            Motor ESP301 Arg 인자
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MotorESP301">
             <summary>
@@ -4125,7 +4513,7 @@
             아진엑스텍 설정파일 로드
             전체 축의 서보 오프상태 확인 후 사용
             </summary>
-            <param name="fileName"></param>
+            <param name="motorParameterFileName"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorHelper.AJINEXTEKAxisCounts">
@@ -4166,6 +4554,30 @@
             ADLINK DASK 자원 해제
             </summary>
             <param name="cardNumber"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.FastechPluseEConnect(System.Int32,System.String)">
+            <summary>
+            Fastech Pluse E 이더넷(TCP) 통신 연결 시도
+            </summary>
+            <param name="boradID">보드 번호 (0, ... )</param>
+            <param name="ipAddress">IP 주소 (192.168.0.2 와 같은)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.FastechPluseEInfo(System.Int32,System.Byte@,System.String@)">
+            <summary>
+             Fastech Pluse E 드라이버 정보 출력
+            </summary>
+            <param name="boradID">보드 번호 (0, ... )</param>
+            <param name="type">타입</param>
+            <param name="version">버전</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MotorHelper.FastechPluseEDisconnect(System.Int32)">
+            <summary>
+            Fastech Pluse E 이더넷(TCP) 통신 연결 해제
+            </summary>
+            <param name="boradID">보드 번호 (0, ... )</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IMotors">
@@ -5316,9 +5728,36 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.InputType">
+            <summary>
+            입력 접점 타입
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.InputType.A">
+            <summary>
+            Active Hight
+            Low -> High
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.InputType.B">
+            <summary>
+            Active Low
+            High -> Low
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.IDInputTrigger">
             <summary>
             디지털 입력 트리거 인터페이스
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTrigger.Type">
+            <summary>
+            입력 접점 타입 ( A/B)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IDInputTrigger.No">
+            <summary>
+            접점 번호
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDInputTrigger.IsTriggered(System.Boolean,System.Int64)">
@@ -5326,12 +5765,27 @@
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값</param>
-            <param name="msec">유지시간 (hold time: msec)</param>
+            <param name="msec">유지시간 (holding time: msec)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA">
             <summary>
             디지털 입력 A 접점 트리거
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerA.Type">
+            <summary>
+            입력 접점 타입 ( A/B)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerA.No">
+            <summary>
+            접점 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerA.Name">
+            <summary>
+            이름
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerA.Status">
@@ -5364,22 +5818,39 @@
             타이머
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.DInputTriggerA.#ctor">
+        <member name="M:SpiralLab.Sirius.DInputTriggerA.#ctor(System.Int32,System.String)">
             <summary>
             생성자
             </summary>
+            <param name="no">접점 번호</param>
+            <param name="name">이름</param>
         </member>
         <member name="M:SpiralLab.Sirius.DInputTriggerA.IsTriggered(System.Boolean,System.Int64)">
             <summary>
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값 </param>
-            <param name="msec">유지시간 (hold time: msec)</param>
+            <param name="msec">유지시간 (holding time: msec)</param>
             <returns>트리거 발생여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerB">
             <summary>
             디지털 입력 B 접점 트리거
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerB.Type">
+            <summary>
+            입력 접점 타입 ( A/B)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerB.No">
+            <summary>
+            접점 번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DInputTriggerB.Name">
+            <summary>
+            이름
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.DInputTriggerB.Status">
@@ -5412,12 +5883,19 @@
             타이머
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.DInputTriggerB.#ctor(System.Int32,System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="no">접점 번호</param>
+            <param name="name">이름</param>
+        </member>
         <member name="M:SpiralLab.Sirius.DInputTriggerB.IsTriggered(System.Boolean,System.Int64)">
             <summary>
             트리거 동작 여부
             </summary>
             <param name="inputStatus">접점 입력값</param>
-            <param name="msec">유지시간 (hold time: msec)</param>
+            <param name="msec">유지시간 (holding time: msec)</param>
             <returns>트리거 발생여부</returns>
         </member>
         <member name="T:SpiralLab.Sirius.DInputVirtual">
@@ -6830,18 +7308,6 @@
             reset alarms
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -6857,6 +7323,18 @@
         <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeE.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -7065,18 +7543,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -7092,6 +7558,18 @@
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -7379,18 +7857,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -7406,6 +7872,18 @@
         <member name="M:SpiralLab.Sirius.JPTTypeE.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTTypeE.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -7839,18 +8317,6 @@
             reset alarms
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -7866,6 +8332,18 @@
         <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPGYLPTypeD.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -8154,18 +8632,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -8181,6 +8647,18 @@
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -8313,18 +8791,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlReset">
-            <summary>
-            리셋
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -8340,6 +8806,18 @@
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.CoherentAviaLX.CtlReset">
+            <summary>
+            리셋
             </summary>
             <returns></returns>
         </member>
@@ -8713,24 +9191,6 @@
             <param name="name">이름</param>
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlReset">
-            <summary>
-            리셋
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -8746,6 +9206,24 @@
         <member name="M:SpiralLab.Sirius.LaserVirtual.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.LaserVirtual.Initialize">
+            <summary>
+            초기화
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.LaserVirtual.CtlReset">
+            <summary>
+            리셋
             </summary>
             <returns></returns>
         </member>
@@ -8853,18 +9331,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.CtlAbort">
-            <summary>
-            강제 출사 정지
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.SPIG4.CtlReset">
-            <summary>
-            리셋 (에러 상태 해제 시도)
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.SPIG4.CheckErrors">
             <summary>
             에러(IsError) 조건 설정
@@ -8880,6 +9346,18 @@
         <member name="M:SpiralLab.Sirius.SPIG4.CheckBusy">
             <summary>
             출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SPIG4.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.SPIG4.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
             </summary>
             <returns></returns>
         </member>
@@ -10294,6 +10772,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MotorEvent">
+            <summary>
+            모터 이벤트 통지 핸들러
+            </summary>
+            <param name="motor">모터</param>
+            <param name="arg">인자</param>
+        </member>
         <member name="T:SpiralLab.Sirius.IMotor">
             <summary>
             모터 인터페이스
@@ -10479,6 +10964,17 @@
             하드웨어 상태 -> 내부 상태 메모리
             </summary>
             <returns>성공 여부</returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IMotor.NotifyHomed(SpiralLab.Sirius.IMotorArg)">
+            <summary>
+            원점 초기화(홈) 이벤트 통지 (상속 구현시 외부에서 호출 지원)
+            </summary>
+            <param name="arg">IMotorArg 인자</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorAjinExtekArg">
+            <summary>
+            Motor AjinExtek AXL Arg 인자
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MotorAjinExtek">
             <summary>
@@ -10684,6 +11180,11 @@
             상태 업데이트
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotorVirtualArg">
+            <summary>
+            Motor Virtual Arg 인자
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MotorVirtual">
             <summary>
@@ -11622,7 +12123,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.SecondaryHeadTable">
             <summary>
-            두번째 스캐너 헤드 보정 테이블 번호 (1~2)
+            두번째 스캐너 헤드 보정 테이블 번호 (1~4)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.BaseDistanceToSecondaryHead">
@@ -11684,6 +12185,11 @@
         <member name="F:SpiralLab.Sirius.Rtc4.vLogical3D">
             <summary>
             논리적인 마지막 위치값
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncoderType">
+            <summary>
+            실행중인 리스트 명령의 MOTF 엔코더 타입
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.EncXCountsPerMm">
@@ -12552,7 +13058,7 @@
         <member name="M:SpiralLab.Sirius.Rtc4.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             RTC4는 미지원
-            /// </summary>
+            </summary>
             <param name="positionX">X 축 위치 (mm)</param>
             <param name="rangeX">조건 범위 (mm)</param>
             <param name="positionY">Y 축 위치 (mm)</param>
@@ -13084,6 +13590,11 @@
         <member name="P:SpiralLab.Sirius.Rtc5.AutoLaserControlSignal">
             <summary>
             현재 활성화된 ALC 제어 신호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.EncoderType">
+            <summary>
+            실행중인 리스트 명령의 MOTF 엔코더 타입
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.EncXCountsPerMm">
@@ -13837,7 +14348,15 @@
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:SpiralLab.Sirius.Rtc5.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)" -->
+        <member name="M:SpiralLab.Sirius.Rtc5.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 대한 오프셋 이동 회전량 설정
+            (Z 오프셋과 함께 사용불가)
+            </summary>
+            <param name="head">primary or secondary</param>
+            <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
@@ -14204,6 +14723,52 @@
             <param name="numOfDigits">최대 자리수 (최대 15자)</param>
             <param name="serialFormat">SerialFormat 열거형</param>
             <param name="characterSet">CharacterSet 열거형</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialConfig(System.UInt32)">
+            <summary>
+            시리얼 통신 환경 설정
+             Data bits: 8
+             Start bits: 1
+             Stop bits: 1
+             Parity: none
+            </summary>
+            <param name="baudRate">9600, ...</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialWrite(System.Byte[])">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialWrite(System.String)">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="text">문자열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialRead(System.Byte[]@)">
+            <summary>
+            시리얼 통신 읽기
+            </summary>
+            <param name="bytes">읽은 바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListSerialWrite(System.Byte[])">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListSerialWrite(System.String)">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="text">바이트 배열</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6LaserControlSignal">
@@ -14727,6 +15292,11 @@
         <member name="P:SpiralLab.Sirius.Rtc6.AutoLaserControlSignal">
             <summary>
             현재 활성화된 ALC 제어 신호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.EncoderType">
+            <summary>
+            실행중인 리스트 명령의 MOTF 엔코더 타입
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.EncXCountsPerMm">
@@ -15866,6 +16436,52 @@
             <param name="numOfDigits">최대 자리수 (최대 15자)</param>
             <param name="serialFormat">SerialFormat 열거형</param>
             <param name="characterSet">CharacterSet 열거형</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialConfig(System.UInt32)">
+            <summary>
+            시리얼 통신 환경 설정
+             Data bits: 8
+             Start bits: 1
+             Stop bits: 1
+             Parity: none
+            </summary>
+            <param name="baudRate">9600, ...</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialWrite(System.Byte[])">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialWrite(System.String)">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="text">문자열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialRead(System.Byte[]@)">
+            <summary>
+            시리얼 통신 읽기
+            </summary>
+            <param name="bytes">읽은 바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListSerialWrite(System.Byte[])">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListSerialWrite(System.String)">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="text">바이트 배열</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6Ethernet">
@@ -19084,6 +19700,53 @@
             <param name="busyWait">모든 리스트 명령이 실행 완료될때까지 대기 여부 (blocking 여부)</param>
             <returns></returns>
         </member>
+        <!-- Badly formed XML comment ignored for member "T:SpiralLab.Sirius.IRtcSerialComm" -->
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialConfig(System.UInt32)">
+            <summary>
+            시리얼 통신 환경 설정
+             Data bits: 8
+             Start bits: 1
+             Stop bits: 1
+             Parity: none
+            </summary>
+            <param name="baudRate">9600, ...</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialWrite(System.Byte[])">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialWrite(System.String)">
+            <summary>
+            시리얼 통신 쓰기
+            </summary>
+            <param name="text">문자열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialRead(System.Byte[]@)">
+            <summary>
+            시리얼 통신 읽기
+            </summary>
+            <param name="bytes">읽은 바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.ListSerialWrite(System.Byte[])">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="bytes">바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.ListSerialWrite(System.String)">
+            <summary>
+            리스트 명령 - 시리얼 통신 쓰기
+            </summary>
+            <param name="text">문자열</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IRtcSerialNo">
             <summary>
             IRtcSerialNo 인터페이스
@@ -20409,6 +21072,27 @@
         <member name="F:SpiralLab.Sirius.EncoderRangeCondition.OverFlow">
             <summary>
             입력 엔코더 + 위치값이 지정된 영역 외부일 때
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MotfEncoderType">
+            <summary>
+            MOTF 구동 타입
+            현재 리스트 에서 실행중인 MOTF 종류 구분용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MotfEncoderType.None">
+            <summary>
+            미정
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MotfEncoderType.XY">
+            <summary>
+            X/Y 엔코더 리스트 명령 구동중
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MotfEncoderType.Angular">
+            <summary>
+            Angular (회전) 엔코더 리스트 명령 구동중
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcMOTF">

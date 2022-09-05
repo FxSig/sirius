@@ -2115,6 +2115,65 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.HexForm">
+            <summary>
+            HexForm 편집 폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HexForm.FileName">
+            <summary>
+            파일을 읽어 출력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HexForm.Bytes">
+            <summary>
+            바이트 배열을 출력
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.HexForm.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.HexForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.HexForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.HexForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.LayerForm">
+            <summary>
+            그룹 엔티티 편집용 폼
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LayerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.LayerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.LayerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.LaserSource">
             <summary>
             Advanced OptoWave Fotia 레이저용 윈폼
@@ -6247,9 +6306,20 @@
               System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.DrawEvent">
+            <summary>
+            뷰 렌더링 이벤트
+            </summary>
+            <param name="view"></param>
+        </member>
         <member name="T:SpiralLab.Sirius.IView">
             <summary>
             뷰 인터페이스 (UI 측의 마우스및 윈도우의 이벤트 연결용)
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IView.OnCustomDraw">
+            <summary>
+            사용자 렌더링 추가 루틴 용 이벤트
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IView.Owner">
@@ -6444,6 +6514,11 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="E:SpiralLab.Sirius.ViewDefault.OnCustomDraw">
+            <summary>
+            사용자 렌더링 추가 루틴 용 이벤트
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ViewDefault.Owner">
             <summary>
             문서(IDocument) 객체
@@ -6569,6 +6644,12 @@
             </summary>
             <param name="gl"></param>
         </member>
+        <member name="M:SpiralLab.Sirius.ViewDefault.DrawGrips(SharpGL.OpenGL)">
+            <summary>
+            그립(Grip) 렌더링
+            </summary>
+            <param name="gl"></param>
+        </member>
         <member name="M:SpiralLab.Sirius.ViewDefault.DrawDoucmentInfo(SharpGL.OpenGL)">
             <summary>
             문서 정보 렌더링
@@ -6578,6 +6659,12 @@
         <member name="M:SpiralLab.Sirius.ViewDefault.DrawAxes(SharpGL.OpenGL)">
             <summary>
             X,Y 축 렌더링
+            </summary>
+            <param name="gl"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ViewDefault.DrawGrids(SharpGL.OpenGL)">
+            <summary>
+            격자 렌더링
             </summary>
             <param name="gl"></param>
         </member>
@@ -6599,6 +6686,20 @@
             선택된 엔티티를 아우르는 외곽 사각형 렌더링
             </summary>
             <param name="gl"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ViewDefault.DrawDivideRects(SharpGL.OpenGL)">
+            <summary>
+            나누기(Divide) 동작시 영역 구분 렌더링
+            </summary>
+            <param name="gl"></param>
+        </member>
+        <member name="M:SpiralLab.Sirius.ViewDefault.DrawLaserSpot(SharpGL.OpenGL,System.Numerics.Vector2,System.Single)">
+            <summary>
+            레이저 시뮬레이션 가공용 스팟 렌더링
+            </summary>
+            <param name="gl"></param>
+            <param name="v"></param>
+            <param name="scale"></param>
         </member>
         <member name="M:SpiralLab.Sirius.ViewDefault.PrepareStartList">
             <summary>
@@ -8960,6 +9061,11 @@
         <member name="T:SpiralLab.Sirius.OffsetsEditor">
             <summary>
             offsets 배열 변환기 (group)
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.LayerEditor">
+            <summary>
+            레이어 편집기 (layer)
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.GroupEditor">

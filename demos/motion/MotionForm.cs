@@ -42,6 +42,7 @@ namespace SpiralLab.Sirius
     {
         IDInput DigitalInput;
         IDOutput DigitalOutput;
+        IDInputTriggers DigitalInputTriggers;
         IMotor MotorZ;
         IRtc Rtc;
         string[] dInputNames = new string[16];
@@ -78,7 +79,6 @@ namespace SpiralLab.Sirius
         /// ADLINK DASK Card No
         /// </summary>
         ushort cardNumber = 0;
-
 
 
         private void MotionForm_Load(object sender, EventArgs e)
@@ -133,8 +133,27 @@ namespace SpiralLab.Sirius
             success &= DigitalInput.Initialize();
             success &= DigitalOutput.Initialize();
 
+            // 트리거 집합 (그룹) 생성, 유지 시간 100msec
+            DigitalInputTriggers = new DInputTriggersDefault(0, "triggers", DigitalInput, 100);
+            DigitalInputTriggers.OnTriggered += Triggers_OnTriggered;
+
+            // 트리거 생성후 집합에 등록
+            // 입력 io 1번에 low->high edge 처리를 위해
+            DigitalInputTriggers.Add ( new DInputTriggerA(1, "USER1") );
+
             if (success)
                 timer.Enabled = true;
+        }
+
+        private void Triggers_OnTriggered(IDInput dInput, IDInputTrigger trigger)
+        {
+            switch(trigger.No)
+            {
+                case 1:
+                    //입력 io 1번에 low->high edge 발생
+                    // ..
+                    break;
+            }
         }
 
         private void MotionForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -200,6 +219,8 @@ namespace SpiralLab.Sirius
                 if (null != DigitalInput)
                 {
                     DigitalInput.Update();
+                    DigitalInputTriggers.Update();
+                    
                     DigitalInput.GetChannel(0, out ushort bits);
                     dgvInput.SuspendLayout();
                     for (int i = 0; i < dgvInput.RowCount; i++)

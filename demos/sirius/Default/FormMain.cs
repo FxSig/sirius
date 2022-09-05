@@ -119,7 +119,6 @@ namespace SpiralLab.Sirius.Default
             #endregion
             return success;
         }
-
         private void SiriusEditorForm_OnDocumentSourceChanged(object sender, IDocument doc)
         {
             // 변경된 문서 소스를 상대에게 통지하여 업데이트

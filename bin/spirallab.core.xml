@@ -380,6 +380,35 @@
             사용자 데이타
             </summary>
         </member>
+        <member name="T:SpiralLab.ISerialPort">
+            <summary>
+            시리우스 라이브러리 모니터링용
+            시리얼 포트 객체 인터페이스
+            이를 상속 구현하면 시리얼 포트에 대한 모니터링이 지원됨 (Hexa Dump 등)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.ISerialPort.Serial">
+            <summary>
+            시리얼 포트 객체
+            </summary>
+        </member>
+        <member name="T:SpiralLab.SerialPortUITypeEditor">
+            <summary>
+            시리얼 통신 모니터링 폼 편집기
+            </summary>
+        </member>
+        <member name="T:SpiralLab.SerialPort">
+            <summary>
+            시리우스 라이브러리 내부에서 시리얼 포트를 모니터링하기 위해
+            System.IO.Ports.SerialPort 의 상속 구현 버전
+            송수신 데이타 덤프 (모니터링) 처리
+            </summary>
+        </member>
+        <member name="P:SpiralLab.SerialPort.SerialPortForm">
+            <summary>
+            송수신 데이타를 기록한 모니터링용 폼
+            </summary>
+        </member>
         <member name="T:SpiralLab.IServiceAuxiliary">
             <summary>
             Aux 서비스 인터페이스
@@ -767,6 +796,50 @@
         <member name="M:SpiralLab.Rockey4ND.MaxLicense">
             <summary>
             라이센스 개수 초과 
+            </summary>
+        </member>
+        <member name="T:SpiralLab.CommunicationMonitorForm">
+            <summary>
+            통신 모니터링 폼
+            Send/Recv 헥사 모니터
+            </summary>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.#ctor(SpiralLab.SerialPort)">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.SendBytesBuffer(System.Byte[])">
+            <summary>
+            송신 바이트 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.RecvBytesBuffer(System.Byte[])">
+            <summary>
+            수신 바이트 
+            </summary>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.ClearBuffer">
+            <summary>
+            버퍼 삭제
+            UI 데이타도 모두 제거
+            </summary>
+        </member>
+        <member name="F:SpiralLab.CommunicationMonitorForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.CommunicationMonitorForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
     </members>
