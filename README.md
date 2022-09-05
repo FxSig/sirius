@@ -132,7 +132,7 @@
   - added) MOTF angular with measurement (회전 MOTF 계측 데이타 각도 변환 지원)
   - fixed) MOTF angular wait bug (회전 MOTF 대기 각도 처리 버그)
   - fixed) motor homed event with argument (모터 원점 초기화 이벤트 인자 개선)
-  - fixed) LWPpolyline hatch bug (폴리라인 해치 사용시 버그 수정)
+  - fixed) LWPolyline hatch bug (폴리라인 해치 사용시 버그 수정)
   - fixed) SiriusEditor out of memory bug at treeview (편집기에서 트리뷰 노드 전체 삭제시 메모리 관련 오류 수정)
 
 * 2022.8.31 v1.117
