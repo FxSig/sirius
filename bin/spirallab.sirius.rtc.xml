@@ -3118,6 +3118,16 @@
             트리거 형태
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.EPRF">
+            <summary>
+            For example, if the energy at 100 kHz is 100 μJ per pulse and EPRF is chosen to be 100 kHz, 
+            then at any triggering rate below EPRF the energy per pulse is fixed at 100 μJ.
+            As an example, if EPRF is set to 100 kHz and Q is set to 50 kHz, 
+            the pulses emitted by the laser have a repetition rate of 50 kHz, but a pulse width, energy, 
+            and stability equivalent to the 100 kHz operation of the laser.
+            
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.TalonStatus.Value">
             <summary>
             4바이트 값

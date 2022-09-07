@@ -2174,29 +2174,29 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.LaserSource">
+        <member name="P:SpiralLab.Sirius.Laser.AdvancedOptowaveAOPicoForm.LaserSource">
             <summary>
             Advanced OptoWave Fotia 레이저용 윈폼
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.#ctor(SpiralLab.Sirius.AdvancedOptoWaveAOPico)">
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowaveAOPicoForm.#ctor(SpiralLab.Sirius.AdvancedOptoWaveAOPico)">
             <summary>
             생성자
             </summary>
             <param name="Pico">레이저 소스 객체</param>
         </member>
-        <member name="F:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.components">
+        <member name="F:SpiralLab.Sirius.Laser.AdvancedOptowaveAOPicoForm.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.Dispose(System.Boolean)">
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowaveAOPicoForm.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowavePicoForm.InitializeComponent">
+        <member name="M:SpiralLab.Sirius.Laser.AdvancedOptowaveAOPicoForm.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
