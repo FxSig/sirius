@@ -19,21 +19,20 @@
  * SyncAxis 를 이용한 MOTF
  * SyncAxis (aka. XL-SCAN) : RTC6 + ExcelliSCAN + ACS Controller 조합의 고정밀 가공기법
  *
- * please copy dll files into working directory (bin\)
- *  syncAXIS.dll  
- *  syncAXIS.NET.dll
- *  syncAXISWrapper.dll
- *  RTC6DLL.dll
- *  RTC6DLLx64.dll
- *  RTC6DAT.dat
- *  RTC6OUT.out
- *  RTC6RBF.rbf
- *  RTC6ETH.out
- *  ACSCL_x64.dll
- *  ACS.SPiiPlusNET.dll
- *  ACS.SPiiPlusNET.StrongSigned.dll
- *  ACS.SPiiPlusNETStandard.dll
- *  ACS.SPiiPlusNETStandard.StrongSigned.dll
+ * 1. please copy dll files into working directory (absolute path of  ~\bin\)
+ * 
+ * copy C:\Program Files (x86)\ACS Motion Control\SPiiPlus Runtime Kit\Redist\x64 to ~\bin\
+ * copy syncAxis-1.6.0\RTC6\ProgramFiles to  ~\bin\
+ * copy syncAxis-1.6.0\syncAXIS_control\bin64\dll to ~\bin\
+ * copy syncAxis-1.6.0\syncAXIS_control\bin64\Wrapper\C# to ~\bin\
+ * 
+ * 2. xml configuration file
+ *  general configuration
+ *   - base directory path : absolute path of ~\bin\
+ *   - log file path : [BaseDirectoryPath]/Logs/syncAxisLog.txt
+ *   - sim output file directory : [BaseDirectoryPath]/Logs/
+ *  RTC configuration
+ *   - program file path : [BaseDirectoryPath]
  * 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
