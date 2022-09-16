@@ -263,84 +263,117 @@ namespace SpiralLab.Sirius
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="laser"></param>
-        /// <param name="VScanner">200mm/s</param>
-        /// <param name="NumberOfGridPositions">11x11</param>
-        /// <param name="GridFactor">2.5mm interval</param>
+        /// <param name="vScanner">200mm/s</param>
+        /// <param name="numberOfGridPositions">11x11</param>
+        /// <param name="gridFactor">2.5mm interval</param>
         /// <returns></returns>
-        static bool DrawOptimizeLaserDelay(IRtc rtc, ILaser laser, float VScanner = 200.0f, int NumberOfGridPositions = 11, float GridFactor = 2.5f)
+        static bool DrawOptimizeLaserDelay(IRtc rtc, ILaser laser, float vScanner=200, int numberOfGridPositions = 11, float gridFactor = 2.5f)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             Debug.Assert(rtcSyncAxis != null);
 
-            const float Size = 1;
-            const float Gap = 0.1F;
-            double StartSwitchOffset = -40;
-            double IncrementSwitchOffset = 5;
-            double StartPreTrigger = -10;
-            double IncrementPreTrigger = 2;
+            const float size = 1;
+            const float gap = 0.1F;
+            double startSwitchOffset = -40; //us
+            double incrementSwitchOffset = 5; //us
+            double startPreTrigger = -10; //us
+            double incrementPreTrigger = 2; //us
 
+            var oldMode = rtcSyncAxis.MotionMode;
             var oldTrajectory = rtcSyncAxis.Trajectory;
             var newTrajectory = rtcSyncAxis.Trajectory;
-            newTrajectory.Mark.JumpSpeed = VScanner;
-            newTrajectory.Mark.MarkSpeed = VScanner;
+            newTrajectory.Mark.JumpSpeed = vScanner;
+            newTrajectory.Mark.MarkSpeed = vScanner;
 
             //left bottom
             Vector2 offsetInitial = new Vector2(
-                -(NumberOfGridPositions - 1) / 2 * GridFactor * Size, 
-                -(NumberOfGridPositions - 1) / 2 * GridFactor * Size);
+                -(numberOfGridPositions - 1) / 2 * gridFactor * size, 
+                -(numberOfGridPositions - 1) / 2 * gridFactor * size);
             Vector2 offset = offsetInitial;
+            int gridCounter = 0;
 
-            for (int x = 0; x < NumberOfGridPositions; ++x)
+            for (int x = 0; x < numberOfGridPositions; ++x)
             {
-                newTrajectory.Mark.LaserSwitchOffsetTime = (x * IncrementSwitchOffset + StartSwitchOffset);
-                offset = new Vector2( GridFactor * Size * x + offsetInitial.X, offsetInitial.Y);
+                newTrajectory.Mark.LaserSwitchOffsetTime = (x * incrementSwitchOffset + startSwitchOffset);
+                offset = new Vector2( gridFactor * size * x + offsetInitial.X, offsetInitial.Y);
 
-                for (int y = 0; y < NumberOfGridPositions; ++y)
+                for (int y = 0; y < numberOfGridPositions; ++y)
                 {
-                    newTrajectory.Mark.LaserPreTriggerTime = (y * IncrementPreTrigger + StartPreTrigger);
+                    newTrajectory.Mark.LaserPreTriggerTime = (y * incrementPreTrigger + startPreTrigger);
                     success &= rtcSyncAxis.CtlSetTrajectory(newTrajectory);
 
                     success &= rtcSyncAxis.ListBegin(laser, MotionType.ScannerOnly);
-                    offset = new Vector2(offset.X, GridFactor * Size * y + offsetInitial.Y);
+                    offset = new Vector2(offset.X, gridFactor * size * y + offsetInitial.Y);
+                    /*
+                     *  +
+                     *  
+                     *  L       ---     ---     ---      ---  
+                     *  a        |       |       |        |   
+                     *  s        |       |       |        |   
+                     *  e       ---     ---     ---      ---  
+                     *  r       ---     ---     ---      ---  
+                     *  P        |       |       |        |   
+                     *  r        |       |       |        |   
+                     *  e       ---     ---     ---      ---  
+                     *  T       ---     ---     ---      ---  
+                     *  r        |       |       |        |   
+                     *  i        |       |       |        |   
+                     *  g       ---     ---     ---      ---  
+                     *  g       ---     ---     ---      ---  
+                     *  e        |       |       |        |   
+                     *  r        |       |       |        |   
+                     *  T       ---     ---     ---      ---  
+                     *  i                              
+                     *  m      
+                     *  e      -  Laser Switch Offset Time  +
+                     *  
+                     *  -
+                     */
                     rtc.MatrixStack.Push(offset);
-                    success &= rtc.ListJump(-Size / 2, -Size);
-                    success &= rtc.ListMark(-Gap / 2, -Size);
-                    success &= rtc.ListMark(Size / 2, -Size);
-                    success &= rtc.ListJump(0, -Size);
-                    success &= rtc.ListMark(0, Size);
-                    success &= rtc.ListJump(Size / 2, Size);
-                    success &= rtc.ListMark(Gap / 2, Size);
-                    success &= rtc.ListJump(-Gap / 2, Size);
-                    success &= rtc.ListMark(-Size / 2, Size);
-                    success &= rtc.ListJump(-Size / 2 - 0.001f, Size);
+                    success &= rtc.ListJump(-size / 2, -size);
+                    success &= rtc.ListMark(-gap / 2, -size);
+                    success &= rtc.ListJump(gap/ 2, -size);
+                    success &= rtc.ListMark(size / 2, -size);
+                    success &= rtc.ListJump(0, -size);
+                    success &= rtc.ListMark(0, size);
+                    success &= rtc.ListJump(size / 2, size);
+                    success &= rtc.ListMark(gap / 2, size);
+                    success &= rtc.ListJump(-gap / 2, size);
+                    success &= rtc.ListMark(-size / 2, size);
+                    success &= rtc.ListJump(-size / 2 - 0.001f, size);
                     rtc.MatrixStack.Pop();
                     if (!success)
                         break;
                     else
                     {
+                        gridCounter++;
                         success &= rtc.ListJump(Vector2.Zero);
                         success &= rtc.ListEnd();
                         success &= rtc.ListExecute(true);
                     }
                 }
+                if (!success)
+                    break;
             }
             rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
+            rtcSyncAxis.MotionMode = oldMode;
             return success;
         }
 
-        static bool DrawOptimizeSystemDelay(IRtc rtc, ILaser laser, float VStage=100, float RStage=200)
+        static bool DrawOptimizeSystemDelay(IRtc rtc, ILaser laser, float vStage=100, float rStage=200)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             Debug.Assert(rtcSyncAxis != null);
 
-            float v_aLimit = (float)Math.Sqrt(RStage / 2.0 * 0.42 * VStage * 10);
-            VStage = (VStage < v_aLimit ? VStage : v_aLimit);
-            float jumpSpeed = 4 * VStage;
+            float v_aLimit = (float)Math.Sqrt(rStage / 2.0 * 0.42 * vStage * 10);
+            vStage = (vStage < v_aLimit ? vStage : v_aLimit);
+            float jumpSpeed = 4 * vStage;
             float markSpeed = jumpSpeed;
             float lineLength = 3;
 
+            var oldMode = rtcSyncAxis.MotionMode;
             var oldTrajectory = rtcSyncAxis.Trajectory;
             var newTrajectory = rtcSyncAxis.Trajectory;
             newTrajectory.Mark.JumpSpeed = jumpSpeed;
@@ -371,16 +404,17 @@ namespace SpiralLab.Sirius
                 }
             }
 
-
             for (int i = 0; i < 4; ++i)
             {
                 success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
+
                 rtc.MatrixStack.Push(0, -offsetsize, i * 90);
                 //line block
                 success &= rtc.ListSpeed(jumpSpeed, markSpeed);
-                success &= rtc.ListJump(-RStage, 0);
-
-
+                success &= rtc.ListJump(-rStage, 0);
+                // ...
+                // ...
+                // codes 'executeSystemDelayCheck' are not ported yet
 
                 rtc.MatrixStack.Pop();
                 if (!success)
@@ -394,6 +428,7 @@ namespace SpiralLab.Sirius
             }
 
             rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
+            rtcSyncAxis.MotionMode = oldMode;
             return success;
         }
 
