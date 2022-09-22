@@ -498,6 +498,8 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOffDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserFpk", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserQSwitchDelay", false);
+                    
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerJumpDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerMarkDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerPolygonDelay", false);

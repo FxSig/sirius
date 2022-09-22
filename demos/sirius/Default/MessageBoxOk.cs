@@ -114,7 +114,7 @@ namespace SpiralLab.Sirius.Default
             {
                 this.btnOk.Text = $"&Ok";
             }
-
+            this.TopMost = true;
             return this.ShowDialog();
         }
 

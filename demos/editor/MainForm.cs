@@ -62,6 +62,11 @@ namespace SpiralLab.Sirius
             // basic delays
             // scanner and laser delays (스캐너/레이저 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
+            
+            // processing on the fly 용 스케일 설정
+            rtc.EncYCountsPerMm = 2000;
+            rtc.EncYCountsPerMm = 2000;
+            rtc.EncCountsPerRevolution = 3600;
             #endregion
             this.siriusEditorForm1.Rtc = rtc;
 
@@ -129,7 +134,7 @@ namespace SpiralLab.Sirius
             motorY.Initialize();
             var motorZ = new MotorVirtual(2, "Z");
             motorZ.Initialize();
-            var motorR = new MotorVirtual(2, "R");
+            var motorR = new MotorVirtual(3, "R");
             motorR.Initialize();
 
             var motorArray = new IMotor[]

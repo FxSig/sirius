@@ -115,7 +115,10 @@ namespace SpiralLab.Sirius
             if (null != this.PowerMap && !string.IsNullOrEmpty(powerMapCategory))
             {
                 if (false == this.PowerMap.Interpolate(powerMapCategory, watt, out compensatedWatt))
+                {
+                    Logger.Log(Logger.Type.Error, $"laser [{this.Index}]: fail to search target powermap category: {powerMapCategory}");
                     return false;
+                }
             }
             float percentage = compensatedWatt / this.MaxPowerWatt * 100.0f;
             lock (SyncRoot)
@@ -128,7 +131,7 @@ namespace SpiralLab.Sirius
             if (success)
             {
                 prevPowerWatt = watt;
-                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {compensatedWatt:F3}W (by 8bits d-out)");
+                Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: trying to change power to {compensatedWatt:F3} W (by 8-bits)");
             }
             return success;
         }

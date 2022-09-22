@@ -81,13 +81,10 @@ namespace SpiralLab.Sirius.Default
         {
             this.Title = title;
             this.Message = message;
+            this.TopMost = true;
             var dlgResult = this.ShowDialog();
-
             Logger.Log(Logger.Type.Info, $"Dialog Result [{Title}]= {dlgResult}");
             return dlgResult;
         }
-
-
-
     }
 }

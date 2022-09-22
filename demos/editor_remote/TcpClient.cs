@@ -202,7 +202,11 @@ namespace SpiralLab.Sirius
                 Type type = entity.GetType();
                 var propInfo = type.GetProperty(propOrMethodName, BindingFlags.Public | BindingFlags.Instance);
                 if (null == propInfo || !propInfo.CanWrite)
+                {
+                    //not exist
+                    this.Send(NG);
                     return;
+                }
 
                 bool success = false;
                 try
