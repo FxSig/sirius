@@ -402,7 +402,9 @@ namespace SpiralLab.Sirius
         private void button8_MouseDown(object sender, MouseEventArgs e)
         {
             var vel = float.Parse(textBox3.Text);
-            MotorZ?.CtlMoveJog(-Math.Abs(vel));
+
+            if (MotorZ is IJogControl jog)
+                jog.CtlMoveJog(-Math.Abs(vel));
         }
 
         private void button8_MouseUp(object sender, MouseEventArgs e)
@@ -413,7 +415,8 @@ namespace SpiralLab.Sirius
         private void button9_MouseDown(object sender, MouseEventArgs e)
         {
             var vel = float.Parse(textBox3.Text);
-            MotorZ?.CtlMoveJog(Math.Abs(vel));
+            if (MotorZ is IJogControl jog)
+                jog.CtlMoveJog(Math.Abs(vel));
         }
 
         private void button9_MouseUp(object sender, MouseEventArgs e)

@@ -831,11 +831,6 @@
             사용자 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.IsDiodeOn">
-            <summary>
-            다이오드 온오프
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.IsShutterOpen">
             <summary>
             셔터 온오프
@@ -855,6 +850,21 @@
             <summary>
             파워 비율값 
             0~100 (%)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerModes.Internal">
+            <summary>
+            내부 트리거
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerModes.External">
+            <summary>
+            외부 트리거
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerMode">
+            <summary>
+            트리거 모드 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TargetCrystal1Temperature">
@@ -3485,6 +3495,18 @@
             사용자 데이타
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.IJogControl">
+            <summary>
+            레이저 소스 IShutter 인터페이스 (셔터 제어를 지원하는 레이저 소스의 경우 상속 구현)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IJogControl.CtlMoveJog(System.Single)">
+            <summary>
+            조그 속도 이동
+            </summary>
+            <param name="vel">속도 (mm/s)</param>
+            <returns>성공 여부</returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerMapArg">
             <summary>
             파워맵 구동 인자 인터페이스
@@ -4315,13 +4337,6 @@
             </summary>
             <param name="distance">거리</param>
             <param name="vel">속도</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveJog(System.Single)">
-            <summary>
-            조그 속도 이동
-            </summary>
-            <param name="vel">속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveStop">
@@ -10948,13 +10963,6 @@
             <param name="vel">속도 (mm/s)</param>
             <returns>성공 여부</returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IMotor.CtlMoveJog(System.Single)">
-            <summary>
-            조그 속도 이동
-            </summary>
-            <param name="vel">속도 (mm/s)</param>
-            <returns>성공 여부</returns>
-        </member>
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
             <summary>
             정지
@@ -11028,9 +11036,10 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsBusy">
-            <summary>
-            구동중 여부
-            </summary>
+             <summary>
+             구동중 여부
+             </summary>
+            [RefreshProperties(RefreshProperties.All)]
         </member>
         <member name="P:SpiralLab.Sirius.MotorAjinExtek.IsError">
             <summary>
@@ -12076,6 +12085,12 @@
             First Pulse Killer 신호의 시간값 (usec)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.QSwitchDelay">
+            <summary>
+            QSwitch 지연 신호의 시간값 (usec)
+            RTC4 는 미지원
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.ListType">
             <summary>
             마지막 or 현재 설정된  리스트 타입 값 
@@ -12312,6 +12327,15 @@
             </summary>
             <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
             <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlLaserMode(SpiralLab.Sirius.LaserMode)">
+            <summary>
+            레이저 모드 (Yag1,2, ... Co2 등)
+            레이저 1,2 Pin/레이저 ON Pin의 출력 신호 타이밍 모드 변경
+            상세 타이밍 차트는 RTC 메뉴얼에 명시됨
+            </summary>
+            <param name="mode"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlLaserOn">
@@ -12655,6 +12679,14 @@
             <param name="usec">usec</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            RTC4 는 미지원
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
             <summary>
             레이저 출력 신호 레벨 설정 (RTC4는 미지원. 보드상의 접점을 납땜하시오)
@@ -12710,6 +12742,14 @@
         <member name="M:SpiralLab.Sirius.Rtc4.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            RTC4 는 미지원
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -13458,6 +13498,11 @@
             First Pulse Killer 신호의 시간값 (usec)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.QSwitchDelay">
+            <summary>
+            QSwitch 지연 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.ListType">
             <summary>
             마지막 or 현재 설정된  리스트 타입 값 
@@ -13734,6 +13779,15 @@
             </summary>
             <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
             <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlLaserMode(SpiralLab.Sirius.LaserMode)">
+            <summary>
+            레이저 모드 (Yag1,2, ... Co2 등)
+            레이저 1,2 Pin/레이저 ON Pin의 출력 신호 타이밍 모드 변경
+            상세 타이밍 차트는 RTC 메뉴얼에 명시됨
+            </summary>
+            <param name="mode"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlLaserOn">
@@ -14098,6 +14152,18 @@
             <param name="usec">usec</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
             <summary>
             레이저 출력 신호 레벨 설정
@@ -14176,6 +14242,18 @@
         <member name="M:SpiralLab.Sirius.Rtc5.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -15150,6 +15228,11 @@
             First Pulse Killer 신호의 시간값 (usec)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.QSwitchDelay">
+            <summary>
+            QSwitch 지연 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.ListType">
             <summary>
             마지막 or 현재 설정된  리스트 타입 값 
@@ -15437,6 +15520,15 @@
             </summary>
             <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
             <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlLaserMode(SpiralLab.Sirius.LaserMode)">
+            <summary>
+            레이저 모드 (Yag1,2, ... Co2 등)
+            레이저 1,2 Pin/레이저 ON Pin의 출력 신호 타이밍 모드 변경
+            상세 타이밍 차트는 RTC 메뉴얼에 명시됨
+            </summary>
+            <param name="mode"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlLaserOn">
@@ -15801,6 +15893,18 @@
             <param name="usec">usec</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
             <summary>
             레이저 출력 신호 레벨 설정
@@ -15879,6 +15983,18 @@
         <member name="M:SpiralLab.Sirius.Rtc6.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -16494,6 +16610,16 @@
             <param name="text">바이트 배열</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlPulseSynchronizationMode(System.Boolean,System.Single)">
+            <summary>
+            LASER1 펄스 출력이 D.IN1 핀 입력 신호와 동기 처리됨
+            D.IN 입력은 TTL 신호여야 하며, 최소 펄스 유지시간은 80nsec
+            set_laser_control 비트 5를 통해 신호의 edge 형태 (rising/falling) 변경가능
+            </summary>
+            <param name="enable">사용여부</param>
+            <param name="delay">지연시간 (usec). 레이저 출력 주파수의 주기보다는 짧아야 한다.</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc6Ethernet">
             <summary>
             RTC6 이더넷 객체
@@ -16791,11 +16917,15 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Trajectory">
             <summary>
             경로(Trajectory = MarkConfig, GeometryConfig) 설정값
+            get : 복사본 객체가 리턴됨
+            set : 객체가 복사되어 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Dynamics">
             <summary>
             역학(Dynamics = Stage Dynamic + Scanner Dynamic) 설정값
+            get : 복사본 객체가 리턴됨
+            set : 객체가 복사되어 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.OpStatus">
@@ -18153,6 +18283,11 @@
             First Pulse Killer 신호의 시간값 (usec)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.QSwitchDelay">
+            <summary>
+            QSwitch 지연 신호의 시간값 (usec)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.ListType">
             <summary>
             마지막 or 현재 설정된  리스트 타입 값 
@@ -19004,22 +19139,59 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Co2">
             <summary>
             CO2
-            LASER1: 주파수, 펄스폭 출력됨
-            LASER2: 대기(StandBy) 주파수, 펄스폭 출력됨
+            LASERON : 켜짐
+            LASER1: 스위치 주파수, 펄스폭 출력됨 (펄스 짤림 보완 사용 여부 설정 가능)
+            LASER2: 대기(StandBy) 주파수, 펄스폭이 Phase shift 되어 출력됨
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LaserMode.Yag1">
             <summary>
             YAG1
-            LASER1: 주파수, 펄스폭 출력됨
-            LASER2: FPK 출력됨 (Frequency/PW 중첩됨)
+            LASERON : 켜짐
+            LASER1: Q 스위치 주파수, 펄스폭 출력 + 대기 주파수 출력 (LASERON 과 중첩 않됨)
+            LASER2: FPK 출력 (Q 스위치 출력과 중첩됨)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LaserMode.Yag2">
             <summary>
             YAG2
-            LASER1: 주파수, 펄스폭 출력됨
-            LASER2: FPK 출력됨 (Frequency/PW 출력전 발생됨)
+            LASERON : 켜짐
+            LASER1: Q 스위치 주파수, 펄스폭 출력 + 대기 주파수 출력 (LASERON 과 중첩 않됨)
+            LASER2: FPK 출력 (Q 스위치 출력과 중첩 않됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Yag3">
+            <summary>
+            YAG3 LASER
+            LASERON : 켜짐
+            LASER1: Q 스위치 주파수, 펄스폭 출력 (펄스 짤림 보완) + 대기 주파수 출력 (LASERON 과 중첩 않됨)
+            LASER2: FPK 출력 (10 usec 지연후 스위치 출력과 중첩됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Mode4">
+            <summary>
+            MODE4
+            LASERON : 켜짐
+            LASER1: 대기 주파수, 펄스폭 출력 
+            LASER2: FPK 출력 (대기 주파수 출력과 중첩됨)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Yag5">
+            <summary>
+            YAG5 LASER
+            LASERON : 켜짐
+            LASER1: 주파수, 펄스폭 출력 (Q 스위치 지연시간 설정가능, 펄스 짤림 보완됨) + 대기 주파수 출력 (LASERON 과 중첩 않됨)   
+            LASER2: FPK 출력 (주파수 출력과 중첩됨)
+            RTC5 이상 지원 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserMode.Mode6">
+            <summary>
+            MODE6
+            LASERON : 켜짐 (대기 주파수과 시작, 끝 주기를 맞추기 위해 펄스 보완됨)
+            LASER1: 대기 주파수, 펄스폭 출력 
+            LASER2: FPK 출력 (대기 주파수 출력과 중첩됨)
+            RTC5 이상 지원 
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScannerHead">
@@ -19239,8 +19411,9 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.LaserMode">
             <summary>
-            레이저 모드(CO2, Yag1,2,3,4, ...)
-            Laser 1,2 출력핀의 역할 변경용
+            레이저 모드 (Laser On, 1,2 출력핀의 역할 변경)
+            CO2, Yag 1,2, 3,4
+            모드 5,6 은 RTC5 이상만 지원
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.CorrectionFiles">
@@ -20082,7 +20255,7 @@
         <member name="F:SpiralLab.Sirius.AutoLaserControlMode.ActualVelocityWithSCANAhead">
             <summary>
             ActualVelocity(ScanAhead 기능으로) + EncoderSpeed 복합 속도
-            RTC6 + ExcelliSCAN 스캐너 전용
+            RTC6 + ScanAhead 스캐너 전용
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.AutoLaserControlSignal">
@@ -20133,9 +20306,10 @@
         </member>
         <member name="F:SpiralLab.Sirius.AutoLaserControlSignal.SpotDistance">
             <summary>
-            RTC6 + excelliSCAN 전용
+            RTC6 + SCANahead 지원 스캐너 전용 (예: excelliSCAN)
             T 타입은 float
-            주파수 출력 방식과 동일하나 RTC6 + excelliSCAN 조합에서 지원하는 Spot Distance Control 전용
+            Mode 는 ActualVelocityWithSCANAhead 사용
+            주파수 출력 방식과 동일하나 RTC6 + SCANahead 조합에서 지원하는 Spot Distance Control 전용
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcAutoLaserControl">
@@ -20600,6 +20774,18 @@
             <param name="usec">usec</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.CtlQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.CtlLaserSignalLevel(SpiralLab.Sirius.ILaserControlSignal)">
             <summary>
             레이저 출력 신호 레벨 설정
@@ -20660,6 +20846,18 @@
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
             <summary>
             FPK(First Pulse Killer) 시간값 설정
+            </summary>
+            <param name="usec">usec</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListQSwitchDelay(System.Single)">
+            <summary>
+            Q 스위치 지연 시간값 설정
+            레이저 모드에 따라 다르게 적용됨
+            Yag1 : 0
+            Yag2 : FPK 로 설정
+            Yag3 : 10usec 고정
+            Yag5 : 이 함수로 설정된 값
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -21143,6 +21341,8 @@
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncCountsPerRevolution">
             <summary>
             단위 회전당 엔코더 개수 (enc/rev)
+            |Resolution| > 100.0
+            Resolution can be negative depending on the rotation direction of the workpiece. The restricted value range applies only to the absolute value.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncSimulatedAngularSpeed">
@@ -22206,11 +22406,15 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Trajectory">
             <summary>
             Mark/Geometry 정보
+            get : 복사본 객체가 리턴됨
+            set : 객체가 복사되어 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Dynamics">
             <summary>
             Dynamics 정보
+            get : 복사본 객체가 리턴됨
+            set : 객체가 복사되어 설정됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.OpStatus">

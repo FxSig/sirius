@@ -647,6 +647,11 @@
             점프 엔티티
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.Jump.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.Jump.Clone">
             <summary>
             복사본 생성
@@ -5003,6 +5008,14 @@
             <summary>
             Z 축 모션 사용시
             이동 속도
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.ZIsPositionCheck">
+            <summary>
+            Z 축 모션 사용시
+            이동후 Actual Position 을 비교할지 여부
+            엔코더 피드백 모터의 경우 true
+            스텝 모터(피드백 없는)의 경우 false
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsALC">

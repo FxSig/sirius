@@ -124,6 +124,20 @@
 
 **5. Version history**
 
+
+* 2022.9.23 v1.119
+  - updated) (c)SCANLAB's correXionPro.exe up-to-date v1.06 (스캔랩의 correXionPro 1.06 버전 업데이트)
+  - added) more laser modes
+     - yag3,5 and mode 4,6 (레이저 모드 추가됨)
+     - Qswitch delay (Yag5 사용시 Q 스위치 지연시간 설정 지원)
+  - added) layer with z motor control 
+     - actual position check option (Z 모터 이동후 위치 비교 여부 옵션 지원. 엔코더 피드백 없는 모터 지원용)
+  - added) motor with IJogControl interface (모터 조그 제어용 인터페이스 추가)
+  - fixed) angular motf with simulated encoder generate invalid position value (회전 기반 MOTF 와 엔코더 시뮬레이션을 같이 사용시 각도 이동량 연산 버그)
+  - fixed) angular motf begin with encoder reset option (회전 기반 MOTF 시작시 엔코더 리셋 여부 처리)
+  - fixed) syncaxis 
+     - remove log messages when get scanner/stage position (syncaxis 사용시 대량의 에러 로그 메시지 생성 제거)
+
 * 2022.9.6 v1.118
   - added) serial communication with monitoring/dump data (시리얼 통신 16진수로 모니터링/덤프 지원)
   - added) ditial input triggers (디지털 입력 트리거 집합 추가)
