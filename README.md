@@ -17,6 +17,8 @@
  ![barcode](https://user-images.githubusercontent.com/58460570/191867673-c81fdb44-d645-4c53-858c-0fcdde0fe566.png)
  
  ![motf text](https://user-images.githubusercontent.com/58460570/191867682-bda75230-b909-43f3-836b-7b248da5d2aa.png)
+ 
+ ![motf wait](https://user-images.githubusercontent.com/58460570/193395419-1c99bd2f-e8bb-4b61-8f43-9793729a96d2.png) 
 
  ![stitched image](https://user-images.githubusercontent.com/58460570/191867691-e47ea8fb-8a97-4c1c-914d-453e50e37bdd.png)
 
