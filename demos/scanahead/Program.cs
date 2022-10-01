@@ -86,12 +86,12 @@ namespace SpiralLab.Sirius
             //품질 인자 스케일 설정 (0~100)
             rtc.ScanAheadLineParamsCornerScale = 100;
             rtc.ScanAheadLineParamsEndScale = 100;
-            rtc.ScanAheadLineParamsAccScale = 100;
+            rtc.ScanAheadLineParamsAccScale = 0;
 
             // scanner and laser delays (스캐너/레이저 지연값 설정)
             //rtc.CtlDelay(10, 100, 200, 200, 0);
             //this command has replaced as below (ignored jum/mark/polygon delays)
-            // 위 이 명령은 자동으로 아래 명령으로 대체됨 (점프/마크/폴리곤 지연값은 무시됨)
+            // 위 이 명령은 자동으로 아래 명령으로 대체됨
             //or
             rtc.CtlDelayScanAhead(10, 100);
 
