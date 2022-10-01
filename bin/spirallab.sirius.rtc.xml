@@ -852,21 +852,6 @@
             0~100 (%)
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerModes.Internal">
-            <summary>
-            내부 트리거
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerModes.External">
-            <summary>
-            외부 트리거
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TriggerMode">
-            <summary>
-            트리거 모드 
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.TargetCrystal1Temperature">
             <summary>
             크리스털1 목표 온도
@@ -15171,6 +15156,27 @@
             기본값(0) 객체 생성
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.AutoDelayParamMode">
+            <summary>
+            자동 지연 파라메터 모드    
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AutoDelayParamMode.Deactivate">
+            <summary>
+            비활성화 , 2: 지정된 인자로 설정됨. 개발 테스트용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AutoDelayParamMode.Load">
+            <summary>
+            스캔헤드에 미리 설정된 값을 로드하여 적용
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.AutoDelayParamMode.Develop">
+            <summary>
+            개발용 
+            지정된 인자가 적용됨
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.Rtc6">
             <summary>
             RTC6 객체
@@ -15260,7 +15266,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsScanAhead">
             <summary>
-            Scan Ahead 옵션 여부
+            SCANa 옵션 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsUFPM">
@@ -15281,6 +15287,33 @@
         <member name="P:SpiralLab.Sirius.Rtc6.IsJumpMode">
             <summary>
             intelli~ 스캐너 기반으로 점프 모드 설정이 성공할 경우 자동 활성화됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.IsActivateAutoDelays">
+            <summary>
+            ScanA 옵션 (+excelliSCNA) 사용시 
+            스캐너/레이저 지연값 자동 계산 기능 활성화 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.ScanAheadLineParamsCornerScale">
+            <summary>
+            SCANa 사용시 선 가공(line param) / 모서리(corner) 품질 스케일 값 (0~100)
+            마크/마크 명령간 모서리의 뽀족함 정도
+            CtlDelayScanAheadByAuto 우선 활성화 필요
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.ScanAheadLineParamsEndScale">
+            <summary>
+            SCANa 사용시 선 가공(line param) / 끝(end) 품질 스케일 값 (0~100)
+            마크/점프, 점프/마크 전환간에 마킹의 정확도
+            CtlDelayScanAheadByAuto 우선 활성화 필요
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.ScanAheadLineParamsAccScale">
+            <summary>
+            SCANa 사용시 선 가공(line param) / 가속(acc) 품질 스케일 값 (0~100)
+            가속 시간의 비율
+            CtlDelayScanAheadByAuto 우선 활성화 필요
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.DuplicatedLength">
@@ -15373,7 +15406,7 @@
             ScaleNo = Value
             ...
              N 1-50
-            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
+            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5/6 경우) 
             Scale : 0- 4
             </summary>
         </member>
@@ -15593,6 +15626,32 @@
             <param name="scannerPolygon">스캐너 폴리곤(코너) 지연 (usec)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayScanAhead(System.Single,System.Single)">
+            <summary>
+            레이저 지연값 설정 (SCANa 옵션 + excelliSCAN 전용)
+            CtlDelayScanAheadByAuto 에서 활성화 후에 사용
+            </summary>
+            <param name="laserOnShift">레이저 온 쉬프트 시간 (usec)</param>
+            <param name="laserOffShift">레이저 오프 쉬프트 시간(usec)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayScanAheadByAuto(System.Boolean)">
+            <summary>
+            RTC6 SCANahead 기능을 활성화 (excelliSCAN 스캐너 전용)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlAutoDelayParams(SpiralLab.Sirius.AutoDelayParamMode,SpiralLab.Sirius.ScannerHead,SpiralLab.Sirius.CorrectionTableIndex,System.Single,System.Single,System.Single)">
+            <summary>
+            RTC6 SCANahead 설정값 (excelliSCAN 스캐너 전용)
+            </summary>
+            <param name="mode"> </param>
+            <param name="headNo">스캔 헤드</param>
+            <param name="tableNo">보정 테이블</param>
+            <param name="previewTime">사전계산 소요 시간값 (usec)</param>
+            <param name="vMax">속도 제한값 (mm/s)</param>
+            <param name="aMax">가속도 제한값 (mm/s^2)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlSpeed(System.Single,System.Single)">
             <summary>
             스캐너 점프/마크 속도 설정
@@ -15687,6 +15746,14 @@
             <param name="scannerMark">스캐너 마크 지연 (usec)</param>
             <param name="scannerPolygon">스캐너 폴리곤(코너) 지연 (usec)</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListDelayScanAhead(System.Single,System.Single)">
+            <summary>
+            레이저 지연값 설정 (SCANa 옵션 + excelliSCAN 전용)
+            CtlDelayScanAheadByAuto 에서 활성화 후에 사용 
+            </summary>
+            <param name="laserOnShift">레이저 온 쉬프트 (usec)</param>
+            <param name="laserOffShift">레이저 오프 쉬프트 (usec)</param>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListSpeed(System.Single,System.Single)">
             <summary>
@@ -16676,6 +16743,28 @@
             RTC6 내부 에러코드에 해당하는 메시지
             </summary>
             <param name="errorCode">에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.CtlBootControl(System.Boolean)">
+            <summary>
+            자동 부팅 활성화 
+            </summary>
+            <param name="activate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.CtlReadImage(System.String)">
+            <summary>
+            NAND 메모리로 부터 이미지를 읽어 저장
+            (단독 모드용)
+            </summary>
+            <param name="fileName">바이너리를 저장할 파일 이름</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.CtlWriteImage(System.String)">
+            <summary>
+            이미지를 읽어 NAND 메모리에 기록
+            </summary>
+            <param name="fileName">바이너리가 저장되어 있는 파일 이름</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6SyncAxis">
@@ -19120,8 +19209,8 @@
         <member name="F:SpiralLab.Sirius.ListType.Auto">
             <summary>
             double buffered list (auto)
-            자동 리스트 버퍼 사용 (예를 들어 두개의 리스트 버퍼를 번갈아 가며 사용하는 등 내부 처리됨)
-            Fast Buffer 옵션을 통해 초기 버퍼 크기 및 최대 버퍼 크기 설정 가능
+            두개의 리스트 버퍼를 번갈아 가며 사용
+            옵션: Fast Buffer 속성을 통해 초기 버퍼 크기 및 최대 버퍼 크기 설정 가능
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.LaserMode">

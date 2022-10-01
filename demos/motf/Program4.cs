@@ -228,7 +228,7 @@ namespace SpiralLab.Sirius
             // motf begin
             // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값이 회전 적용됩니다
 
-            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx ,dy 거리를 입력)
+            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx, dy 거리를 입력)
             var rotateCenter = new Vector2(-50, -50);
             success &= rtcMotf.ListMotfAngularBegin(rotateCenter);
             // wait until condition has matched

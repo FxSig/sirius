@@ -810,7 +810,7 @@ namespace SpiralLab.Sirius
             var receivers = this.OnMeasurement?.GetInvocationList();
             if (null != receivers)
                 foreach (MeasureEventHandler receiver in receivers)
-                    receiver.Invoke(this, rtcMeasurement, measurementBegin);
+                    receiver.BeginInvoke(this, rtcMeasurement, measurementBegin, null, null);
         }
         /// <summary>
         /// 가공 완료시
@@ -820,7 +820,7 @@ namespace SpiralLab.Sirius
             var receivers = this.OnFinished?.GetInvocationList();
             if (null != receivers)
                 foreach (MarkerEventHandler receiver in receivers)
-                    receiver.Invoke(this, this.MarkerArg);
+                    receiver.BeginInvoke(this, this.MarkerArg, null, null);
         }
         #endregion
 
@@ -922,60 +922,84 @@ namespace SpiralLab.Sirius
                     #region Z 축 모션 제어
                     if (null != motorZ && layer.IsZEnabled)
                     {
+                        success &= motorZ.Update(); //현재 상태 강제 업데이트
+                        float actualPosition = motorZ.ActualPosition;
+
                         float cmdPosition = layer.ZPosition;
                         float cmdVelocity = layer.ZPositionVel;
-                        motorZ.Update(); //현재 Z 상태 업데이트
-                        if (!MathHelper.IsEqual(cmdPosition, motorZ.ActualPosition, 0.01f)) //inpos 비교
+                        bool isActualPositionCheck = layer.ZIsPositionCheck;
+
+                        if (!motorZ.IsReady)
                         {
-                            if (!motorZ.IsReady)
+                            success &= false;
+                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's not ready");
+                        }
+                        if (motorZ.IsBusy)
+                        {
+                            success &= false;
+                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's busy status");
+                        }
+                        if (motorZ.IsError)
+                        {
+                            success &= false;
+                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's alarm status");
+                        }
+                        if (!success)
+                            break;
+
+                        switch (layer.ZMode)
+                        {
+                            case Layer.ZPositionMode.Absoulte:
+                                success &= motorZ.CtlMoveAbs(cmdPosition, cmdVelocity);
+                                break;
+                            case Layer.ZPositionMode.Relative:
+                                success &= motorZ.CtlMoveRel(cmdPosition, cmdVelocity);
+                                cmdPosition += actualPosition;
+                                break;
+                        }
+                        if (!success)
+                            break;
+                        var sw = Stopwatch.StartNew();
+                        do
+                        {
+                            Thread.Sleep(50);
+                            motorZ.Update(); //현재 상태 강제 업데이트
+                            if (sw.ElapsedMilliseconds > 10 * 1000) //10s
                             {
+                                Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis. timed out ?");
                                 success &= false;
-                                Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's not ready");
-                            }
-                            if (motorZ.IsBusy)
-                            {
-                                success &= false;
-                                Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's busy status");
+                                break;
                             }
                             if (motorZ.IsError)
                             {
                                 success &= false;
-                                Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's alarm status");
+                                break;
                             }
-                            if (!success)
-                                break;
-                            success &= motorZ.CtlMoveAbs(cmdPosition, cmdVelocity);
-                            if (!success)
-                                break;
-                            var sw = Stopwatch.StartNew();
-                            do
+                            if (this.isAborted)
                             {
-                                motorZ.Update(); //현재 Z 상태 업데이트
-                                if (sw.ElapsedMilliseconds > 10 * 1000) //10s time out
-                                {
-                                    Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis. timed out ?");
-                                    success &= false;
-                                    break;
-                                }
-                                if (motorZ.IsError)
-                                {
-                                    success &= false;
-                                    break;
-                                }
-                                if (this.isAborted)
-                                {
-                                    success &= false; //marker has stopped
-                                    break;
-                                }
-                                if (MathHelper.IsEqual(cmdPosition, motorZ.ActualPosition, 0.01f) && !motorZ.IsDriving) //inpos 비교
-                                    break;
-                                Thread.Sleep(10);
-                            } while (success);
-                            if (!success)
+                                success &= false; //marker trying to stop
                                 break;
-                        }
+                            }
+                            if (isActualPositionCheck)
+                            {
+                                if (MathHelper.IsEqual(cmdPosition, motorZ.ActualPosition, 0.05f) && !motorZ.IsDriving) //inpos 50um 헌팅 무시 ?
+                                {
+                                    // succes to move
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                // busy (driving) 이 꺼지면 이동 성공으로 처리
+                                if (!motorZ.IsDriving)
+                                    break;
+                            }
+                        } while (success);
                         if (!success)
+                        {
                             Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis");
+                            break;
+                        }
                     }
                     #endregion
                     if (!success)

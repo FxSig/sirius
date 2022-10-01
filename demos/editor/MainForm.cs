@@ -147,8 +147,8 @@ namespace SpiralLab.Sirius
             var motors = new MotorsDefault(0, "Group", motorArray);
             this.siriusEditorForm1.Motors = motors;
 
-            //var motorZ = new MotorVirtual(0, "Z");
-            //this.siriusEditorForm1.MotorZ = motorZ;
+            // layer z 제어 지원
+            this.siriusEditorForm1.MotorZ = motorZ;
             #endregion
 
             #region PowerMeter

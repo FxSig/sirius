@@ -620,12 +620,14 @@ namespace SpiralLab.Sirius
                 if (null != this.motorZ)
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", true);
                 }
                 else
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
                 }
@@ -748,6 +750,7 @@ namespace SpiralLab.Sirius
             //지원되지 않는 기능에 대해 객체 속성을 가린다
             //기본 false, MotorZ 지정시 보여주도록
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
+            UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
         }

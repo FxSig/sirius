@@ -3548,7 +3548,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyLineVertex.Ramp">
             <summary>
-            Bulge 값 (1/4 atan)
+            자동 레이저 출력 (Vector Defined) 사용 비율값
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyLineVertex.#ctor(System.Single,System.Single,System.Single)">
@@ -4996,6 +4996,26 @@
         <member name="P:SpiralLab.Sirius.Layer.IsZEnabled">
             <summary>
             Z 축 모션 사용 여부
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.Layer.ZPositionMode">
+            <summary>
+            Z 위치 모드
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Layer.ZPositionMode.Absoulte">
+            <summary>
+            절대 위치
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Layer.ZPositionMode.Relative">
+            <summary>
+            상대 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.ZMode">
+            <summary>
+            Z 축 제어모드
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.ZPosition">

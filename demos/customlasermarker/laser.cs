@@ -26,7 +26,7 @@ namespace SpiralLab.Sirius
 
         protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.BeginInvoke(this, new PropertyChangedEventArgs(propertyName), null, null);
         }
 
         /// <summary>

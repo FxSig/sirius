@@ -17,8 +17,8 @@
  * 
  *
  * 
- * IRtc + IRtcExtension 인터페이스를 직접 사용하는 방법
- * RTC5 + RtcExtension 카드를 초기화 하고 다양한 확장 기능을 테스트
+ * IRtc 인터페이스의 확장 기능을 사용하는 방법
+ * RTC5 카드를 초기화 하고 다양한 확장 기능을 테스트
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -32,7 +32,8 @@ using System.Windows.Forms;
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 확장 기능 예제
+    /// 확장기능 예제 (raster operation, read/write data)
+    /// Raster operation, read/write data
     /// </summary>
     class Program3
     {

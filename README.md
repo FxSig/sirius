@@ -42,29 +42,29 @@
 
 **2. Features**
 
- - support SCANLAB's RTC4, RTC5, RTC6 products with multiples.
- - support SyncAxis(XL-SCAN) with multiple heads/stages combination.
+ - support SCANLAB's multiples RTC4, RTC5, RTC6 products.
+ - support SCANLAB's SyncAxis(XL-SCAN) with multiple heads/stages combination.
  - support powerful 3x3 matrix operations with stack.
  - support processing unlimited vector data by internally.
  - support MOTF(marking on the fly), dual head, 3d (like as VarioSCAN) features.
  - support 2D/3D field correction with easy to use and with powerful image analyzer.
- - support scanner motion/signal profiles with plotted graph.
+ - support profile scanner motion and signals with plotted graph.
  - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and customizable entities with layers.
  - support 2D barcodes with various cell type like as dots, lines, outlines, hatch and generated data with formatted datetime, serial no by automatically.
  - support rendering 3D STL(StereoLithography) file.
- - support powermeters and power mapping interface.
- - support laser beam path visualizer (simulator) and path optimizer algorithm.
  - support powerful undo/redo actions and single document data with multiple view targets.
- - support vary laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
- - support vary laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, sky writing , ...)
+ - support laser beam path visualizer (simulator) and path optimizer algorithm.
+ - support vary output laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
+ - support vary scanner/laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, ...)
  - support customizable and extensible marker interface.
- - support many kinds of powermeters and powermap for calibrate output laser power.
+ - support many kinds of powermeters.
     - Thorlab PM series
     - Ophir products
     - Coherent PowerMax (USB/RS) series 
+ - support power mapping interface for compensate output laser power.
  - support many kinds of laser sources
     - Advanced Optowave Fotia
-    - Advanced Optowave AOPico (preliminary)
+    - Advanced Optowave AOPico 
     - Coherent Avia LX (preliminary)
     - Coherent Diamond C-Series
     - Coherent Diamond J-Series (preliminary)
@@ -90,7 +90,7 @@
 **3. How to use ?**
 
  - development environment : .NET dll library
-  - dll assemblies : spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll 
+ - dll assemblies : spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll 
  - winforms user control : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
  - x64 Environment : copy files from bin\x64 to bin\
  - x32 Environment : copy files from bin\x32 to bin\
@@ -126,6 +126,22 @@
 
 **5. Version history**
 
+* 2022.10.1 v1.120
+  - added) rectangle with reverse winding (가공 순서 뒤집기 지원)
+  - added) support SCANa options at RTC6 (SCANa 옵션 기능 지원)
+     - enable/disable auto delays (자동 지연 사용 지원)
+     - added) excelliscan demo project (데모 프로젝트 추가)
+     - delay values are converted automatically (SCANa + 자동 지연 활성화시 기존 레이저 지연 시간이 scan ahead 용 지연값으로 자동 변환됨
+  - added) move z axis in layer with abs/relative (레이어 속성에서 스캐너 Z 축 사용시 절대/상대 이동 기능 추가)
+  - fixed) remove duplicated data when divide (영역 나누기 실행시 중복 정점 데이타 제거)
+  - fixed) notify event handler with async (이벤트들을 비동기 처리되는 방식으로 일원화)
+     - log message
+     - user log in/log out
+     - motor event (home/property changed)
+     - laser event (property changed)
+     - marker, powermeter, powermap 
+  - fixed) motf demo project by load external file (MOTF 사용 예제 및 파일 제공)
+     - bin\recipes\motf.sirius 
 
 * 2022.9.23 v1.119
   - updated) (c)SCANLAB's correXionPro.exe up-to-date v1.06 (스캔랩의 correXionPro 1.06 버전 업데이트)

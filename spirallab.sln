@@ -70,6 +70,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "32.powermap", "demos\powerm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "34.customentity", "demos\customentity\34.customentity.csproj", "{0A71041D-8D1A-4B00-BFDE-4D263271FA87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "35.scanahead", "demos\scanahead\35.scanahead.csproj", "{BF35277C-A905-493B-B829-97B72E10E35E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -623,6 +625,24 @@ Global
 		{0A71041D-8D1A-4B00-BFDE-4D263271FA87}.Remote|x64.Build.0 = Release|Any CPU
 		{0A71041D-8D1A-4B00-BFDE-4D263271FA87}.Remote|x86.ActiveCfg = Release|Any CPU
 		{0A71041D-8D1A-4B00-BFDE-4D263271FA87}.Remote|x86.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|x64.Build.0 = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Debug|x86.Build.0 = Debug|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|x64.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|x64.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|x86.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Release|x86.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|Any CPU.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|Any CPU.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|x64.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|x64.Build.0 = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|x86.ActiveCfg = Release|Any CPU
+		{BF35277C-A905-493B-B829-97B72E10E35E}.Remote|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

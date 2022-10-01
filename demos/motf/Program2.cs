@@ -32,7 +32,8 @@ using System.Windows.Forms;
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 듀얼 헤드 예제
+    /// 2nd Head 예제
+    /// Primary/Secondary Heads 
     /// </summary>
     class Program2
     {

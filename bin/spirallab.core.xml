@@ -687,21 +687,6 @@
             Rockey 인증용 내부 객체
             </summary>
         </member>
-        <member name="M:SpiralLab.Rockey4ND.Rockey(System.UInt16,System.UInt16@,System.UInt32@,System.UInt32@,System.UInt16@,System.UInt16@,System.UInt16@,System.UInt16@,System.Byte@)">
-            <summary>
-            인증용 내부 dll 함수 32/64 겸용
-            </summary>
-            <param name="function"></param>
-            <param name="handle"></param>
-            <param name="lp1"></param>
-            <param name="lp2"></param>
-            <param name="p1"></param>
-            <param name="p2"></param>
-            <param name="p3"></param>
-            <param name="p4"></param>
-            <param name="buffer"></param>
-            <returns></returns>
-        </member>
         <member name="P:SpiralLab.Rockey4ND.SerialNo">
             <summary>
             인증키 시리얼 번호

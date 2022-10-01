@@ -20,7 +20,11 @@
  * 계측 결과를 그래프를 이용해 출력(Plot) 한다
  * RTC4는 최대 2개의 채널
  * RTC5/6 는 최대 4개의 채널 
- * 계측 가능하며, 샘플링 주파수는 최대 100KHz( 주기 : 10us) 까지 지원한다
+ * 계측 가능하며, 샘플링 주파수는 최대 100KHz(주기: 10us) 까지 지원한다
+ * 
+ * 주의: gnuplot 유틸리티를 사용하기 때문에 bin\plot\gnuplot 디렉토리에 압축해제하여 준비히ㅐ야 한다
+ * 경로: bin\plot\gnuplot\ 디렉토리에 wgnuplot.exe 및 관련 파일들이 모두 있어야 한다
+ * 다운로드 링크: http://tmacchant33.starfree.jp/gnuplot_files/gp550-20220921-win64-mingw.zip
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -160,11 +164,14 @@ namespace SpiralLab.Sirius
             Debug.Assert(rtcMeasurement != null);
             Console.WriteLine("WARNING !!! LASER IS BUSY ... Draw Circle");
             timer = Stopwatch.StartNew();
+
+            //RTC4는 최대 2개의 채널
+            //RTC5,6 는 최대 4개의 채널
             var channels = new MeasurementChannel[4]
             {
-                 MeasurementChannel.SampleX, //X
-                 MeasurementChannel.SampleY, //Y
-                 MeasurementChannel.LaserOn, //Gate 0/1
+                 MeasurementChannel.SampleX, //X commanded
+                 MeasurementChannel.SampleY, //Y commanded
+                 MeasurementChannel.LaserOn, //Gate signal 0/1
                  MeasurementChannel.OutputPeriod, //KHz
             };
             float hz = 10*1000; //10KHz (샘플링 주기 : 100usec)
@@ -228,6 +235,7 @@ namespace SpiralLab.Sirius
             if (success)
                 success &= rtc.ListExecute(true);
             var measurementFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", "measurement_rectangle.txt");
+            //계측시 내부적으로 bit, half period 등의 단위로 처리(rawData = true 로 저장시)되나, rawData= false 지정시 사용자 단위계(KHz, mm 등)로 변환됨
             success &= MeasurementHelper.Save(measurementFile, rtcMeasurement, hz, channels, false);
             if (success)
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s. plot to file = {measurementFile}");

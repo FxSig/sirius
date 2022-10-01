@@ -261,7 +261,7 @@ namespace SpiralLab.Sirius
             var receivers = this.MotorHomed?.GetInvocationList();
             if (null != receivers)
                 foreach (EventHandler receiver in receivers)
-                    receiver.Invoke(this, EventArgs.Empty);
+                    receiver.BeginInvoke(this, EventArgs.Empty, null, null);
         }
         #endregion
     }
