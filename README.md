@@ -128,7 +128,7 @@
 
 **5. Version history**
 
-* 2022.10.1 v1.120
+* 2022.10.2 v1.120
   - added) rectangle with reverse winding (가공 순서 뒤집기 지원)
   - added) support SCANa options at RTC6 (SCANa 옵션 기능 지원)
      - enable/disable auto delays (자동 지연 사용 지원)
@@ -142,8 +142,9 @@
      - motor event (home/property changed)
      - laser event (property changed)
      - marker, powermeter, powermap 
-  - fixed) motf demo project by load external file (MOTF 사용 예제 및 파일 제공)
-     - bin\recipes\motf.sirius 
+  - fixed) motf demo project 
+     - by xy encoder : load bin\recipes\motf.sirius file (XY 엔코더 기반 MOTF 사용 예제)
+     - by angular encoder : load bin\recipes\motf_angular.sirius file (회전 엔코더 기반 MOTF 사용 예제)
 
 * 2022.9.23 v1.119
   - updated) (c)SCANLAB's correXionPro.exe up-to-date v1.06 (스캔랩의 correXionPro 1.06 버전 업데이트)

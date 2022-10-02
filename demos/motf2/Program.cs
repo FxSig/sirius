@@ -16,7 +16,12 @@ namespace SpiralLab.Sirius
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+
+            //XY 엔코더 기반
+            Application.Run((Form)new Sirius.MainFormXY());
+
+            //회전 엔코더 기반
+            //Application.Run((Form)new Sirius.MainFormAngular());
         }
     }
 }
