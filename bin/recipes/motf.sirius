@@ -113,6 +113,274 @@
                 "IsHatchOutlineFirst": false
               },
               {
+                "$type": "SiriusTextTime",
+                "Name": "Sirius Text Time",
+                "FontText": "HH",
+                "ConvertedTextData": "HH",
+                "ReverseMark": false,
+                "Align": 3,
+                "IsTextDataDateTime": false,
+                "IsTextDataSerialNo": false,
+                "SerialNoFormat": 0,
+                "SerialNoDigits": 0,
+                "SerialNo": 0,
+                "SerialNoIncrementStep": 0,
+                "IsScriptEnabled": false,
+                "ScriptFileName": "test.cs",
+                "ScriptInstanceName": "SpiralLab.Sirius.ScriptDemo",
+                "ScriptPropertyName": "CustomFormat1",
+                "ScriptArguments": {
+                  "$type": "String[]",
+                  "$values": [
+                    ""
+                  ]
+                },
+                "TimeFormat": 0,
+                "IsLeadingWithZero": true,
+                "Description": null,
+                "Color2": "White",
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": []
+                },
+                "OffsetSerialNoIncrementStep": 0,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsHitTest": true,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "FontName": "normal.cxf",
+                "IsFixedAspectRatio": true,
+                "Width": 4.995429,
+                "CapHeight": 5.0,
+                "LetterSpacing": 0.5,
+                "LetterSpace": 1,
+                "WordSpacing": 3.0,
+                "LineSpacing": 0.0,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 83.08298,
+                  "Y": 0.152828932
+                },
+                "OriginLeftLocation": {
+                  "$type": "Vector2",
+                  "X": 83.08298,
+                  "Y": 0.152828932
+                },
+                "OriginRightLocation": {
+                  "$type": "Vector2",
+                  "X": 94.07384,
+                  "Y": 0.152828932
+                },
+                "Angle": 0.0,
+                "IsTextDataGS1": false,
+                "GS1Separator": "<GS>"
+              },
+              {
+                "$type": "SiriusTextTime",
+                "Name": "Sirius Text Time",
+                "FontText": "MM",
+                "ConvertedTextData": "MM",
+                "ReverseMark": false,
+                "Align": 3,
+                "IsTextDataDateTime": false,
+                "IsTextDataSerialNo": false,
+                "SerialNoFormat": 0,
+                "SerialNoDigits": 0,
+                "SerialNo": 0,
+                "SerialNoIncrementStep": 0,
+                "IsScriptEnabled": false,
+                "ScriptFileName": "test.cs",
+                "ScriptInstanceName": "SpiralLab.Sirius.ScriptDemo",
+                "ScriptPropertyName": "CustomFormat1",
+                "ScriptArguments": {
+                  "$type": "String[]",
+                  "$values": [
+                    ""
+                  ]
+                },
+                "TimeFormat": 1,
+                "IsLeadingWithZero": true,
+                "Description": null,
+                "Color2": "White",
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": []
+                },
+                "OffsetSerialNoIncrementStep": 0,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsHitTest": true,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "FontName": "normal.cxf",
+                "IsFixedAspectRatio": true,
+                "Width": 4.995429,
+                "CapHeight": 5.0,
+                "LetterSpacing": 0.5,
+                "LetterSpace": 1,
+                "WordSpacing": 3.0,
+                "LineSpacing": 0.0,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 95.38025,
+                  "Y": 0.152828932
+                },
+                "OriginLeftLocation": {
+                  "$type": "Vector2",
+                  "X": 95.38025,
+                  "Y": 0.152828932
+                },
+                "OriginRightLocation": {
+                  "$type": "Vector2",
+                  "X": 106.371109,
+                  "Y": 0.152828932
+                },
+                "Angle": 0.0,
+                "IsTextDataGS1": false,
+                "GS1Separator": "<GS>"
+              },
+              {
+                "$type": "SiriusTextTime",
+                "Name": "Sirius Text Time",
+                "FontText": "SS",
+                "ConvertedTextData": "SS",
+                "ReverseMark": false,
+                "Align": 3,
+                "IsTextDataDateTime": false,
+                "IsTextDataSerialNo": false,
+                "SerialNoFormat": 0,
+                "SerialNoDigits": 0,
+                "SerialNo": 0,
+                "SerialNoIncrementStep": 0,
+                "IsScriptEnabled": false,
+                "ScriptFileName": "test.cs",
+                "ScriptInstanceName": "SpiralLab.Sirius.ScriptDemo",
+                "ScriptPropertyName": "CustomFormat1",
+                "ScriptArguments": {
+                  "$type": "String[]",
+                  "$values": [
+                    ""
+                  ]
+                },
+                "TimeFormat": 2,
+                "IsLeadingWithZero": true,
+                "Description": null,
+                "Color2": "White",
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": []
+                },
+                "OffsetSerialNoIncrementStep": 0,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsHitTest": true,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "FontName": "normal.cxf",
+                "IsFixedAspectRatio": true,
+                "Width": 4.995429,
+                "CapHeight": 5.0,
+                "LetterSpacing": 0.5,
+                "LetterSpace": 1,
+                "WordSpacing": 3.0,
+                "LineSpacing": 0.0,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 107.67057,
+                  "Y": 0.152828932
+                },
+                "OriginLeftLocation": {
+                  "$type": "Vector2",
+                  "X": 107.67057,
+                  "Y": 0.152828932
+                },
+                "OriginRightLocation": {
+                  "$type": "Vector2",
+                  "X": 118.66143,
+                  "Y": 0.152828932
+                },
+                "Angle": 0.0,
+                "IsTextDataGS1": false,
+                "GS1Separator": "<GS>"
+              },
+              {
+                "$type": "SiriusTextSerial",
+                "Name": "Sirius Text Serial",
+                "FontText": "0001",
+                "ConvertedTextData": "0001",
+                "ReverseMark": false,
+                "Align": 3,
+                "IsTextDataDateTime": false,
+                "IsTextDataSerialNo": false,
+                "SerialNoFormat": 0,
+                "SerialNoDigits": 0,
+                "IsScriptEnabled": false,
+                "ScriptFileName": "test.cs",
+                "ScriptInstanceName": "SpiralLab.Sirius.ScriptDemo",
+                "ScriptPropertyName": "CustomFormat1",
+                "ScriptArguments": {
+                  "$type": "String[]",
+                  "$values": [
+                    ""
+                  ]
+                },
+                "NumOfDigits": 4,
+                "SerialFormat": 0,
+                "SerialNo": 1,
+                "SerialNoIncrementStep": 1,
+                "Description": null,
+                "Color2": "White",
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": []
+                },
+                "OffsetSerialNoIncrementStep": 0,
+                "IsSelected": false,
+                "IsHighlighted": false,
+                "IsHitTest": true,
+                "IsVisible": true,
+                "IsMarkerable": true,
+                "IsDrawPath": false,
+                "IsLocked": false,
+                "Repeat": 1,
+                "FontName": "normal.cxf",
+                "IsFixedAspectRatio": true,
+                "Width": 4.995429,
+                "CapHeight": 5.0,
+                "LetterSpacing": 0.5,
+                "LetterSpace": 1,
+                "WordSpacing": 3.0,
+                "LineSpacing": 0.0,
+                "Location": {
+                  "$type": "Vector2",
+                  "X": 90.4509354,
+                  "Y": -7.659695
+                },
+                "OriginLeftLocation": {
+                  "$type": "Vector2",
+                  "X": 90.4509354,
+                  "Y": -7.659695
+                },
+                "OriginRightLocation": {
+                  "$type": "Vector2",
+                  "X": 112.432648,
+                  "Y": -7.659695
+                },
+                "Angle": 0.0,
+                "IsTextDataGS1": false,
+                "GS1Separator": "<GS>"
+              },
+              {
                 "$type": "MotfEnd",
                 "Name": "MOTF End",
                 "Description": null,
@@ -202,8 +470,8 @@
           "ScannerJumpDelay": 250.0,
           "ScannerMarkDelay": 50.0,
           "ScannerPolygonDelay": 0.0,
-          "JumpSpeed": 200.0,
-          "MarkSpeed": 200.0,
+          "JumpSpeed": 1000.0,
+          "MarkSpeed": 1000.0,
           "IsSkyWritingEnabled": false,
           "SkyWritingMode": 3,
           "LaserOnShift": 10.0,
