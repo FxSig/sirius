@@ -158,7 +158,7 @@ namespace SpiralLab.Sirius
             // override z position value at first layer if needed
             // 레이어에 설정된 Z 가공 위치를 변경한다 (필요하면)
             doc.Layers[0].ZPosition = 10;
-            doc.Layers[0].ZMode = Layer.ZPositionMode.Absoulte;
+            doc.Layers[0].ZMode = Layer.ZPositionMode.Absolute;
             doc.Layers[0].ZPositionVel = 10;
             doc.Layers[0].IsZEnabled = true;
 

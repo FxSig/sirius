@@ -949,7 +949,7 @@ namespace SpiralLab.Sirius
 
                         switch (layer.ZMode)
                         {
-                            case Layer.ZPositionMode.Absoulte:
+                            case Layer.ZPositionMode.Absolute:
                                 success &= motorZ.CtlMoveAbs(cmdPosition, cmdVelocity);
                                 break;
                             case Layer.ZPositionMode.Relative:

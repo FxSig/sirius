@@ -5003,7 +5003,7 @@
             Z 위치 모드
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Layer.ZPositionMode.Absoulte">
+        <member name="F:SpiralLab.Sirius.Layer.ZPositionMode.Absolute">
             <summary>
             절대 위치
             </summary>
