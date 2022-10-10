@@ -17,6 +17,16 @@
             <param name="rect"></param>
             <param name="subLwPolylines"></param>
         </member>
+        <member name="M:SpiralLab.Sirius.UndoRedoEntityDivide.#ctor(SpiralLab.Sirius.IDocument,SpiralLab.Sirius.Layer,System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Collections.Generic.List{SpiralLab.Sirius.BoundRect},System.Single)">
+            <summary>
+            개체 영역으로 나누기
+            </summary>
+            <param name="doc"></param>
+            <param name="layer"></param>
+            <param name="entities"></param>
+            <param name="rects">영역 목록</param>
+            <param name="threshold">영역 경계면에 있는 개체들중 가로/세로 크기가 지정된 길이(threshold) 보다 작을 경우 대상 개체는 예외적으로 나누지 않고 첫 영역에 포함시킨다</param>
+        </member>
         <member name="T:SpiralLab.Sirius.UndoRedoEntityGroupOffsets">
             <summary>
             엔티티 그룹으로 만들기 (나머지 데이타를 모두 오프셋 정보로 전환)
@@ -1826,6 +1836,11 @@
             미 지정시 원점(0,0) 으로 자동 처리됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.OffsetIndex">
+            <summary>
+            현재 가공 오프셋 위치
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.StartTime">
             <summary>
             가공 시작 시간
@@ -2002,6 +2017,11 @@
             <summary>
             중복적으로 가공할때의 위치 배열 정보
             미 지정시 원점(0,0) 으로 자동 처리됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.OffsetIndex">
+            <summary>
+            현재 가공 오프셋 위치
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.StartTime">
@@ -3244,6 +3264,34 @@
             엔티티 나누기 편집용 폼
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.DivideForm.Rects">
+            <summary>
+            영역 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DivideForm.Entities">
+            <summary>
+            대상 개체 목록
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DivideForm.Threshold">
+            <summary>
+            나누지 않을 가로세로 크기(mm)
+            영역 경계면에서 충돌되는 개체들중 가로/세로 크기가 지정된 길이(threshold) 보다 작을 경우 대상 개체는 예외적으로 나누지 않고 첫 영역에 포함시킨다
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.DivideForm.Overlap">
+            <summary>
+            오버랩 영역 길이 (mm)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.DivideForm.#ctor(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.IView)">
+            <summary>
+            생성자
+            </summary>
+            <param name="targetEntities"></param>
+            <param name="view"></param>
+        </member>
         <member name="F:SpiralLab.Sirius.DivideForm.components">
             <summary>
             Required designer variable.
@@ -3661,7 +3709,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.Offset">
             <summary>
-            오프셋 (X,Y, 회전각도) 정보를 가지는 구조체
+            오프셋 (X, Y, 회전각도) 정보를 가지는 구조체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Offset.X">
@@ -4186,13 +4234,14 @@
             <param name="replaceEntity">교체할 엔티티</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.ActEntityDivide(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Collections.Generic.List{SpiralLab.Sirius.BoundRect})">
+        <member name="M:SpiralLab.Sirius.Action.ActEntityDivide(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Collections.Generic.List{SpiralLab.Sirius.BoundRect},System.Single)">
             <summary>
             지정된 그룹 엔티티를 지정된 사각영역에 포함되어 있는 엔티티들로 골라 분해 복제하고, 대상 그룹은 삭제한다
             (experimental)
             </summary>
             <param name="targets">대상 엔티티 </param>
             <param name="rects">사각 영역 집합</param>
+            <param name="threshold">가로/세로 크기가 지정된 길이(threshold) 보다 작을 경우 대상 개체는 예외적으로 나누지 않는다</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityLWPolylineToArc(SpiralLab.Sirius.LwPolyline)">

@@ -168,7 +168,7 @@ namespace SpiralLab.Sirius
                 default:
                     break;
                 case "A":
-                    //MotorHelper.AJINEXTEKDispose();
+                    MotorHelper.AJINEXTEKDispose();
                     break;
                 case "B":
                     //MotorHelper.ACSDispose(ref api);

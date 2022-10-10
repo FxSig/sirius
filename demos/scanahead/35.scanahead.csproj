@@ -35,16 +35,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="spirallab.core">
-      <HintPath>..\..\..\bin\spirallab.core.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
     </Reference>
     <Reference Include="spirallab.sirius">
-      <HintPath>..\..\..\bin\spirallab.sirius.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.dll</HintPath>
     </Reference>
     <Reference Include="spirallab.sirius.fieldcorrection">
-      <HintPath>..\..\..\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.fieldcorrection.dll</HintPath>
     </Reference>
     <Reference Include="spirallab.sirius.rtc">
-      <HintPath>..\..\..\bin\spirallab.sirius.rtc.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

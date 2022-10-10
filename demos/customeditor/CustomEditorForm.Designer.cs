@@ -2484,8 +2484,6 @@
             this.GLcontrol.Location = new System.Drawing.Point(0, 0);
             this.GLcontrol.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GLcontrol.Name = "GLcontrol";
-            //this.GLcontrol.OpenGLVersion = SharpGL.Version.OpenGLVersion.OpenGL2_1;
-            this.GLcontrol.RenderContextType = SharpGL.RenderContextType.DIBSection;
             this.GLcontrol.RenderTrigger = SharpGL.RenderTrigger.Manual;
             this.GLcontrol.Size = new System.Drawing.Size(786, 611);
             this.GLcontrol.TabIndex = 3;

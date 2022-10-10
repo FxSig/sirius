@@ -47,28 +47,36 @@ namespace SpiralLab.Sirius
             #region initialize RTC 
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
-            //create Rtc5 controller
+
+            //create Rtc5 controller (RTC5 카드)
             var rtc = new Rtc5(0);
-            //create Rtc6 controller
+            rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
+            //create Rtc6 controller (RTC6 카드)
             //var rtc = new Rtc6(0); 
-            //Rtc6 Ethernet
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
+            //create Rtc6 Ethernet (RTC6e 카드)
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;
-            // k factor (bits/mm) = 2^20 / fov
+            // k factor (bits/mm) = 2^20 / fov (2^16 if RTC4)
             float kfactor = (float)Math.Pow(2, 20) / fov; 
             // full path of correction file
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5"); //"cor_1to1.ctb" if RTC4
+
             // initialize rtc controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
-            // basic frequency and pulse width
+            // default frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
-            // basic sped
+            // default speed
             // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
-            // basic delays
+            // default delays
             // scanner and laser delays (스캐너/레이저 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
@@ -310,7 +318,8 @@ namespace SpiralLab.Sirius
             var rtcRaster = rtc as IRtcRaster;
             if (null == rtcRaster)
                 return false;
-            int counts = (int)(length / gap);
+            // pixel counts per line
+            uint counts = (uint)(length / gap);
             //every 200 usec
             float period = 200; 
             // gap = distance from pixel to pixel
@@ -323,7 +332,8 @@ namespace SpiralLab.Sirius
                 //jumtp to start position (줄의 시작위치로 점프)
                 success &= rtc.ListJump(new Vector2(0, i * gap));
                 // pixel period : 200us, intervael : gap, total pixel counts, output analog channel : analog 2
-                success &= rtcRaster.ListPixelLine(period, delta, (uint)counts, ExtensionChannel.ExtAO2);
+                success &= rtcRaster.ListPixelLine(period, delta, counts, ExtensionChannel.ExtAO2);
+                // each pixels
                 for (int j = 0; j < counts; j++)
                     success &= rtcRaster.ListPixel(50, 0.5f); // each pixel with 50usec, 5V
                 if (!success)
@@ -361,13 +371,14 @@ namespace SpiralLab.Sirius
 
             Console.WriteLine("WARNING !!! LASER IS BUSY... DoHeavyWork thread");
             timer = Stopwatch.StartNew();
-            //auto list buffer handling
+            //auto list buffer handling (double buffered lists)
             //대량의 데이타를 처리하기 위해 auto 리스트 버퍼 모드 사용
             success &= rtc.ListBegin(laser, ListType.Auto); 
             success &= rtc.ListJump(new Vector2(-width / 2, height / 2));
             for (int i = 0; i < 1000 * 1000 * 10; i++)
             {
-                //list commands = 4 * 1000*1000*10 = 40M counts (4천만개의 리스트 명령)
+                //list commands = 4 * 1000*1000*10 = approx. 40M counts (약 4천 만개의 리스트 명령)
+                //warning!!! laser will be activated if buffer is enough to start (주의: 리스트 버퍼에 충분한 데이타가 쌓이면 자동 가공 시작됨)
                 success &= rtc.ListMark(new Vector2(width / 2, height / 2));
                 success &= rtc.ListMark(new Vector2(width / 2, -height / 2));
                 success &= rtc.ListMark(new Vector2(-width / 2, -height / 2));
@@ -397,12 +408,14 @@ namespace SpiralLab.Sirius
             //wait for rtc busy off
             rtc.CtlBusyWait();
 
-            //wait for thread has finished
+            //waiting to finish if thread has running ...
             Program.thread?.Join();
             Program.thread = null;
 
-            //reset rtc's status
+            //reset rtc's status 
+            //Debug.Assert(rtc.CtlGetStatus(RtcStatus.Aborted));
             rtc.CtlReset();
+            //Debug.Assert(rtc.CtlGetStatus(RtcStatus.NoError));
         }
     }
 }

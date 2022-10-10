@@ -44,10 +44,17 @@ namespace SpiralLab.Sirius
             #region initialize RTC 
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
+
             //create Rtc5 controller
             var rtc = new Rtc5(0);
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
             //create Rtc6 controller
             //var rtc = new Rtc6(0); 
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
             //Rtc6 Ethernet
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 

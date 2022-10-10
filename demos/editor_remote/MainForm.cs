@@ -77,6 +77,9 @@ namespace SpiralLab.Sirius
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
             //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
 
+            rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
             float fov = 60.0f;    ///scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");

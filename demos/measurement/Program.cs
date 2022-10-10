@@ -55,6 +55,9 @@ namespace SpiralLab.Sirius
             //var rtc = new RtcVirtual(0); 
             //create Rtc5 controller
             var rtc = new Rtc5(0);
+            rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
             //create Rtc6 controller
             //var rtc = new Rtc6(0); 
             //Rtc6 Ethernet

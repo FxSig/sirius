@@ -31,6 +31,8 @@ namespace SpiralLab.Sirius
             //var rtc = new Rtc5(0); //create Rtc5 controller
             //var rtc = new Rtc6(0); //create Rtc6 controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;

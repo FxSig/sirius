@@ -71,7 +71,7 @@
     - Coherent Diamond C-Series
     - Coherent Diamond J-Series (preliminary)
     - Photonics Industry DX
-    - Photonics Industry RGHAIO (preliminary)
+    - Photonics Industry RGHAIO 
     - IPG YLP Type D
     - IPG YLP Type E
     - IPG YLP N Series (preliminary)
@@ -79,11 +79,12 @@
     - JPT Type E
     - SPI G3/G4 (preliminary)
     - Spectra Physics Talon (preliminary)
-    - Spectra Physics Hippo (preliminary)
+    - Spectra Physics Hippo 
+    - Inngu GraceX Series (preliminary)
  - support many kinds of motion controllers
     - AJINExtek AXL
     - ACS SPiiPlusNET (preliminary)
-    - Newport ESP301 (preliminary)
+    - Newport ESP301 
  
 
   ----
@@ -127,6 +128,19 @@
 
 
 **5. Version history**
+
+* 2022.10.11 v1.121
+  - added) configure rtc signal level (active high/low) before initialize (RTC5/6 초기화 시점에 레이저1,2및 ON 출력 신호 레벨 설정 지원)
+  - added) divide regions with threshold (개체를 영역으로 나누기 할 경우 제외할 최소 크기 지정 지원)
+  - added) demo project head4_bcd_text (데모 프로젝트 추가)
+     - multiple 4 instances  (4개의 인스턴스 사용)
+     - mark user defined text data with offsets (오프셋 위치에 사용자 데이타 적용하여 가공)
+  - tested) Photonics Industry RGHAIO, Spectra Physics Hippo has tested for communication (레이저 2종 통신 테스트 완료)
+  - fixed) invalid 2nd head offset (2nd 스캔 헤드에 적용된 오프셋값이 초기화되는 문제 수정)
+  - fixed) exception of SiriusEditorForm/SIriusViewerForm usercontrol when create (사용자 컨트롤 생성시 예외 발생 버그)
+  - fixed) Newport ESP301 (ESP301 모션 제어기 테스트 완료)
+    - motor status takes too much time (상태 업데이트에 시간이 많이 소요되는 문제 해결)
+    - defined home offset (사용자 지정 홈 오프셋 지원)
 
 * 2022.10.2 v1.120
   - added) rectangle with reverse winding (가공 순서 뒤집기 지원)

@@ -2272,7 +2272,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.InnguGraceXSeries.CtlPower(System.Single,System.String)">
             <summary>
-            파워 변경
+            파워 변경 (컨트롤 명령)
             </summary>
             <param name="watt">파워 (W)</param>
             <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
@@ -2677,6 +2677,7 @@
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsShutterControl">
             <summary>
             셔터 제어를 지원하는지 여부
+            Seed/Amp1 의 2중 셔터지원으로 이 속성은 false 처리됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsGuideControl">
@@ -2689,34 +2690,64 @@
             사용자 데이타
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsShutterOpen">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsSeedShutterOpen">
             <summary>
-            Shutter 온오프
+            Shutter 온오프 (Seed)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsLDDEnable">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsAmp1ShutterOpen">
             <summary>
-            LDD 온오프
+            Shutter 온오프 (Amp1)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SetCurrentAmp">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsSeedLDDEnable">
             <summary>
-            다이오드 커런트 (Amp)
+            Seed LDD 온오프
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.MaxCurrentAmp">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsAmp1LDDEnable">
             <summary>
-            다이오드 커런트 (Amp)
+            Amp1 LDD 온오프 
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ActualCurrentAmp">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SetSeedCurrent">
             <summary>
-            실제 다이오드 커런트 (Amp)
+            Seed 다이오드 커런트 (A)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.DiodeVoltage">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SetAmp1Current">
             <summary>
-            다이오드 전압 (V)
+            Amp1 다이오드 커런트 (A)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.MaxSeedCurrent">
+            <summary>
+            Seed 최대 다이오드 커런트 (A)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.MaxAmp1Current">
+            <summary>
+            AMp1 최대 다이오드 커런트 (A)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ActualSeedCurrent">
+            <summary>
+            Seed 실제 다이오드 커런트 (A)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ActualAmp1Current">
+            <summary>
+            Amp1 실제 다이오드 커런트 (A)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SeedDiodeVoltage">
+            <summary>
+            Seed 다이오드 전압 (V)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Amp1DiodeVoltage">
+            <summary>
+            Amp1 다이오드 전압 (V)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PulseRepRate">
@@ -2729,14 +2760,24 @@
             PEC Level (%)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.ActualTemperature">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SeedDiodeActualTemperature">
             <summary>
-            degree
+            Seed Diode TEC (degree)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.LDDHours">
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.AmpDiodeActualTemperature">
             <summary>
-            LDD 사용 시간 (Hrs)
+            Amp Diode (degree)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SeedLDDHours">
+            <summary>
+            Seed LDD 사용 시간 (Hrs)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Amp1LDDHours">
+            <summary>
+            Amp1 LDD 사용 시간 (Hrs)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerWatt">
@@ -4288,15 +4329,9 @@
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlResetCount(System.Single)">
             <summary>
             엔코더 카운터 리셋
+            (미지원. Define Home 기능 사용 추천)
             </summary>
             <param name="position">오프셋 값</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlHomePreset(System.Single)">
-            <summary>
-            홈 프리셋 위치
-            </summary>
-            <param name="position">홈 완료후 재설정 카운터 값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlServo(System.Boolean)">
@@ -13468,6 +13503,20 @@
             Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.InitLaser12SignalLevel">
+            <summary>
+            RTC5 카드의 15핀 레이저 커넥터 설정
+            Laser1(Pin1), Laser2(Pin9) 출력 신호 레벨
+            초기화(Initialize) 시 적용됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.InitLaserOnSignalLevel">
+            <summary>
+            RTC5 카드의 15핀 레이저 커넥터 설정
+            LaserOn(Pin2) 출력 신호 레벨
+            초기화(Initialize) 시 적용됨
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Frequency">
             <summary>
             마지막 설정된 주파수 값(Hz)
@@ -15217,6 +15266,20 @@
             <summary>
             레이저 모드(CO2, Yag1,2,3,4, ...)
             Laser1,2 출력핀의 타이밍 종류 선택
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.InitLaser12SignalLevel">
+            <summary>
+            RTC6 카드의 15핀 레이저 커넥터 설정
+            Laser1(Pin1), Laser2(Pin9) 출력 신호 레벨
+            초기화(Initialize) 시 적용됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.InitLaserOnSignalLevel">
+            <summary>
+            RTC5 카드의 15핀 레이저 커넥터 설정
+            LaserOn(Pin2) 출력 신호 레벨
+            초기화(Initialize) 시 적용됨
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.Frequency">
@@ -20836,6 +20899,22 @@
             <summary>
             8자형 (수평)
             RTC5/6 전용
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.RtcSignalLevel">
+            <summary>
+            RTC 카드의 출력및 LASER1,2 및 ON 의 활성화시 신호 레벨
+            (RTC5,6 설정 전용)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcSignalLevel.ActiveHigh">
+            <summary>
+            active high
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcSignalLevel.ActiveLow">
+            <summary>
+            active low
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcMarkingInfo">
