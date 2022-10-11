@@ -310,6 +310,29 @@
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.JumpMode">
+            <summary>
+            점프 튜닝 모드 엔티티
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JumpMode.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JumpMode.Clone">
+            <summary>
+            복사본 생성
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JumpMode.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            laser processing
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MotfAngularWait">
             <summary>
             Motf Wait 엔티티 객체
