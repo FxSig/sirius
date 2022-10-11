@@ -135,6 +135,7 @@
   - added) demo project head4_bcd_text (데모 프로젝트 추가)
      - multiple 4 instances  (4개의 인스턴스 사용)
      - mark user defined text data with offsets (오프셋 위치에 사용자 데이타 적용하여 가공)
+  - added) selectable jump tuning mode (점프 튜닝 모드 선택 지원)
   - tested) Photonics Industry RGHAIO, Spectra Physics Hippo has tested for communication (레이저 2종 통신 테스트 완료)
   - fixed) invalid 2nd head offset (2nd 스캔 헤드에 적용된 오프셋값이 초기화되는 문제 수정)
   - fixed) exception of SiriusEditorForm/SIriusViewerForm usercontrol when create (사용자 컨트롤 생성시 예외 발생 버그)
