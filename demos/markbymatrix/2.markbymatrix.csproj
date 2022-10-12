@@ -59,7 +59,7 @@
     </Reference>
     <Reference Include="spirallab.sirius.rtc, Version=1.121.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\siriuslib\bin\spirallab.sirius.rtc.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.sirius.rtc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -354,8 +354,9 @@ namespace SpiralLab.Sirius
         private void button1_Click(object sender, EventArgs e)
         {
             var dlg = new OpenFileDialog();
-            dlg.Filter = "ajinextek motor parameter data files (*.dat)|*.dat|All Files (*.*)|*.*";
+            dlg.Filter = "AJINEXTEK motor parameter files (*.mot)|*.dat|All Files (*.*)|*.*";
             dlg.Title = "Open to motor parameter file";
+            dlg.DefaultExt = "*.mot";
             dlg.InitialDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "motion");
             DialogResult result = dlg.ShowDialog();
             if (result != DialogResult.OK)

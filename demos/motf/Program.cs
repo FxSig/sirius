@@ -18,7 +18,7 @@
  *
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
- * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
+ * RTC5 + MOTF 카드를 초기화 하고 XY 엔코더 리셋, MOTF 마킹을 한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */

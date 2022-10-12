@@ -40,8 +40,10 @@ namespace SpiralLab.Sirius
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
+            //log configuration file: working directory\logs\NLogSpiralLab.config
+            //로그 파일 설정은 작업 디렉토리\logs\NLogSpiralLab.config 파일이 사용됨
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 

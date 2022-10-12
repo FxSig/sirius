@@ -113,6 +113,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'B' : 위치 의존적(Position Dependent) + 지령 속도(Set Velocity) 기반 레이저 신호 (아나로그 ~10V) 제어");
                 Console.WriteLine("'C' : 실제 속도(Actual Velocity) 기반 레이저 신호 (주파수 변조) 제어");
                 Console.WriteLine("'D' : 벡터 위치(Vector Defined) 기반 레이저 신호(아나로그) 제어");
+                Console.WriteLine("'O' : 벡터 위치(Vector Defined) 기반 레이저 신호(아나로그) 제어 및 계측 후 그래프로 출력");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine("");
                 Console.Write("select your target : ");
@@ -150,6 +151,10 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.D:
                         Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
                         DrawLine4(laser, rtc, -10, -10, 10, 10);
+                        break;
+                    case ConsoleKey.O:
+                        Console.WriteLine("\r\nWARNING !!! LASER IS BUSY ...");
+                        DrawLine5(laser, rtc, -10, -10, 10, 10);
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
@@ -255,6 +260,54 @@ namespace SpiralLab.Sirius
             {
                 success &= rtc.ListEnd();
                 success &= rtc.ListExecute(true);
+            }
+            return success;
+        }
+
+        /// <summary>
+        /// 선 그리기 = 벡터 위치 기반 레이저 신호(아나로그) 제어 
+        /// 이후 계측 데이타 그래프로 출력(Plot)
+        /// </summary>
+        /// <param name="laser"></param>
+        /// <param name="rtc"></param>
+        /// <param name="x1"></param>
+        /// <param name="y1"></param>
+        /// <param name="x2"></param>
+        /// <param name="y2"></param>
+        /// <returns></returns>
+        private static bool DrawLine5(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
+        {
+            var rtcAlc = rtc as IRtcAutoLaserControl;
+            var rtcMeasurement = rtc as IRtcMeasurement;
+            if (null == rtcAlc || null == rtcMeasurement)
+                return false;
+            bool success = true;
+
+            //RTC5,6 는 최대 4개의 채널
+            var channels = new MeasurementChannel[4]
+            {
+                 MeasurementChannel.SampleX, //X commanded
+                 MeasurementChannel.SampleY, //Y commanded
+                 MeasurementChannel.LaserOn, //Gate signal 0/1
+                 MeasurementChannel.ExtAO1, //Analog1
+            };
+            float hz = 10 * 1000; //10KHz (샘플링 주기 : 100usec)
+
+            success &= rtc.ListBegin(laser);
+            success &= rtcMeasurement.ListMeasurementBegin(hz, channels); //1Khz, 4개 채널
+            success &= rtcAlc.ListAlcByVectorBegin<float>(AutoLaserControlSignal.Analog1, 5F); // 아나로그 출력 초기값 : 5V
+            success &= rtc.ListJump(new Vector2(x1, y1), 0.5F); //시작 위치로 점프 5V * 0.5 = 2.5V 로 시작
+            success &= rtc.ListMark(new Vector2(x2, y2), 1.5F); //끝 위치로 마크 5V * 1.5 = 7.5V 로 끝
+            success &= rtcAlc.ListAlcByVectorEnd();
+            if (success)
+            {
+                success &= rtcMeasurement.ListMeasurementEnd();
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+                var measurementFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", "measurement_alc.txt");
+                success &= MeasurementHelper.Save(measurementFile, rtcMeasurement, hz, channels, false);
+                if (success)
+                    MeasurementHelper.Plot(measurementFile);
             }
             return success;
         }

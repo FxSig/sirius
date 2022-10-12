@@ -17,8 +17,7 @@
  * 
  * 
  * C# 코드를 스크립트로 활용하여 특정 엔티티의 데이타 (텍스트 엔티티의 데이타 내용을 조합하는등) 를 변경하는 기능
- * 
- * 
+ * Description : 텍스트및 바코드 개체들은 Script 기능 지원을 위해 IScriptable 인터페이스를 제공함
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -43,11 +42,7 @@ namespace SpiralLab.Sirius
             Application.SetCompatibleTextRenderingDefault(false);
             // initializing spirallab.sirius library engine 
             SpiralLab.Core.Initialize();
-
-            // warning!!!
-            // script function is disabled since v1.105
-            // 경고!!!
-            // v1.105 버전 이후부터 스크립트 기능을 제공하지 않습니다
+            
             ConsoleKeyInfo key;
             do
             {

@@ -34,6 +34,8 @@
  *  RTC configuration
  *   - program file path : [BaseDirectoryPath]
  *  
+ * 3. XLSCAN dongle key must be plugged into your computer 
+ * 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */

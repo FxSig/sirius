@@ -1,4 +1,28 @@
-﻿using System;
+﻿/*
+ *                                                            ,--,      ,--,                              
+ *             ,-.----.                                     ,---.'|   ,---.'|                              
+ *   .--.--.   \    /  \     ,---,,-.----.      ,---,       |   | :   |   | :      ,---,           ,---,.  
+ *  /  /    '. |   :    \ ,`--.' |\    /  \    '  .' \      :   : |   :   : |     '  .' \        ,'  .'  \ 
+ * |  :  /`. / |   |  .\ :|   :  :;   :    \  /  ;    '.    |   ' :   |   ' :    /  ;    '.    ,---.' .' | 
+ * ;  |  |--`  .   :  |: |:   |  '|   | .\ : :  :       \   ;   ; '   ;   ; '   :  :       \   |   |  |: | 
+ * |  :  ;_    |   |   \ :|   :  |.   : |: | :  |   /\   \  '   | |__ '   | |__ :  |   /\   \  :   :  :  / 
+ *  \  \    `. |   : .   /'   '  ;|   |  \ : |  :  ' ;.   : |   | :.'||   | :.'||  :  ' ;.   : :   |    ;  
+ *   `----.   \;   | |`-' |   |  ||   : .  / |  |  ;/  \   \'   :    ;'   :    ;|  |  ;/  \   \|   :     \ 
+ *   __ \  \  ||   | ;    '   :  ;;   | |  \ '  :  | \  \ ,'|   |  ./ |   |  ./ '  :  | \  \ ,'|   |   . | 
+ *  /  /`--'  /:   ' |    |   |  '|   | ;\  \|  |  '  '--'  ;   : ;   ;   : ;   |  |  '  '--'  '   :  '; | 
+ * '--'.     / :   : :    '   :  |:   ' | \.'|  :  :        |   ,/    |   ,/    |  :  :        |   |  | ;  
+ *   `--'---'  |   | :    ;   |.' :   : :-'  |  | ,'        '---'     '---'     |  | ,'        |   :   /   
+ *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
+ *               `---`            `---'                                                        `----'   
+ * 
+ *
+ * 사용자가 직접 PowerMap 기능을 커스텀 구현
+ * Description * 파워매핑 객체는 매핑 테이블 생성 (Start)/ 검증 (Verify) 등이 제공되어야 한다
+ * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
+ * 
+ */
+
+using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +60,12 @@ namespace SpiralLab.Sirius
             this.XName = xName;
         }
 
+        /// <summary>
+        /// 파워 매핑 시작
+        /// 파워메터를 이용해 대상 카테고리 (예 : 주파수)로 설정 후 출사&계측을 통해 매핑 테이블을 생성한다
+        /// </summary>
+        /// <param name="powerMapStartArg"></param>
+        /// <returns></returns>
         public override bool CtlStart(IPowerMapArg powerMapStartArg)
         {
             if (this.IsBusy)
@@ -114,6 +144,12 @@ namespace SpiralLab.Sirius
             return success;
         }
 
+        /// <summary>
+        /// 파워 매핑 검증
+        /// 매핑 테이블을 사용해 사용자가 원하는 출력(W) 에 적합한 X 값을 조회 및 설정 후 출사를 시도하고 오차 범위내에 있는지 검증한다
+        /// </summary>
+        /// <param name="powerMapVerifyArg"></param>
+        /// <returns></returns>
         public override bool CtlVerify(IPowerVerifyArg powerMapVerifyArg)
         {
             if (this.IsBusy)
@@ -188,11 +224,18 @@ namespace SpiralLab.Sirius
             return success;
         }
 
+        /// <summary>
+        /// 매핑/검증 중지
+        /// </summary>
+        /// <returns></returns>
         public override bool CtlStop()
         {
             return true;
         }
-
+        /// <summary>
+        /// 에러 리셋 시도
+        /// </summary>
+        /// <returns></returns>
         public override bool CtlReset()
         {
             return true;

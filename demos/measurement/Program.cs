@@ -22,7 +22,7 @@
  * RTC5/6 는 최대 4개의 채널 
  * 계측 가능하며, 샘플링 주파수는 최대 100KHz(주기: 10us) 까지 지원한다
  * 
- * 주의: gnuplot 유틸리티를 사용하기 때문에 bin\plot\gnuplot 디렉토리에 압축해제하여 준비히ㅐ야 한다
+ * 주의: gnuplot 유틸리티를 사용하기 때문에 bin\plot\gnuplot 디렉토리에 압축 해제하여 준비히야 한다
  * 경로: bin\plot\gnuplot\ 디렉토리에 wgnuplot.exe 및 관련 파일들이 모두 있어야 한다
  * 다운로드 링크: http://tmacchant33.starfree.jp/gnuplot_files/gp550-20220921-win64-mingw.zip
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)

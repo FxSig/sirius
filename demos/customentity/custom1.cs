@@ -18,7 +18,6 @@
  * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
  * 
  * Create custom entity (사용자 정의 개체 만들기)
- * 
  * Description : 
  * add references (참조 추가)
  * - Newtonsoft.Json.dll (JSON 파일 처리용)

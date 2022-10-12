@@ -50,13 +50,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.siriusViewerForm1);
-            this.splitContainer1.Size = new System.Drawing.Size(1112, 704);
-            this.splitContainer1.SplitterDistance = 692;
+            this.splitContainer1.Size = new System.Drawing.Size(1264, 561);
+            this.splitContainer1.SplitterDistance = 786;
             this.splitContainer1.TabIndex = 0;
             // 
             // siriusEditorForm1
             // 
             this.siriusEditorForm1.AliasName = "NoName";
+            this.siriusEditorForm1.AllowDrop = true;
             this.siriusEditorForm1.BackColor = System.Drawing.SystemColors.Control;
             this.siriusEditorForm1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.siriusEditorForm1.Document = null;
@@ -69,6 +70,7 @@
             this.siriusEditorForm1.Location = new System.Drawing.Point(0, 0);
             this.siriusEditorForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusEditorForm1.Marker = null;
+            this.siriusEditorForm1.Motors = null;
             this.siriusEditorForm1.MotorZ = null;
             this.siriusEditorForm1.Name = "siriusEditorForm1";
             this.siriusEditorForm1.PowerMap = null;
@@ -78,7 +80,9 @@
             this.siriusEditorForm1.RtcExtension1Input = null;
             this.siriusEditorForm1.RtcExtension1Output = null;
             this.siriusEditorForm1.RtcExtension2Output = null;
-            this.siriusEditorForm1.Size = new System.Drawing.Size(692, 704);
+            this.siriusEditorForm1.RtcPin2Input = null;
+            this.siriusEditorForm1.RtcPin2Output = null;
+            this.siriusEditorForm1.Size = new System.Drawing.Size(786, 561);
             this.siriusEditorForm1.TabIndex = 1;
             // 
             // siriusViewerForm1
@@ -94,14 +98,14 @@
             this.siriusViewerForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.siriusViewerForm1.Name = "siriusViewerForm1";
             this.siriusViewerForm1.Progress = 0;
-            this.siriusViewerForm1.Size = new System.Drawing.Size(416, 704);
+            this.siriusViewerForm1.Size = new System.Drawing.Size(474, 561);
             this.siriusViewerForm1.TabIndex = 0;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1112, 704);
+            this.ClientSize = new System.Drawing.Size(1264, 561);
             this.Controls.Add(this.splitContainer1);
             this.Name = "FormMain";
             this.Text = "Viewer and Editor - (c)SpiralLab";

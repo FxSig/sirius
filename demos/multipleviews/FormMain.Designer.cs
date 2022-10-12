@@ -101,10 +101,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(3, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(443, 15);
+            this.label1.Size = new System.Drawing.Size(430, 15);
             this.label1.TabIndex = 0;
-            this.label1.Text = "This is a demo for multiple views and editor screen. powered by spirallab.sirius." +
-    "";
+            this.label1.Text = "This is a demo for multiple viewer and editor screen. powered by (c)SpiralLAB";
             // 
             // panel3
             // 

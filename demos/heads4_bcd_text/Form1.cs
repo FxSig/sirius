@@ -184,6 +184,8 @@ namespace SpiralLab.Sirius
                 Marker[i].OnStarted -= Marker_OnStarted;
                 Marker[i].OnFailed -= Marker_OnFailed;
                 Marker[i].OnFinished -= Marker_OnFinished;
+
+                //disposing
                 //Marker[i].Stop();
                 //Rtc[i].Dispose();
                 //Laser[i].Dispose();

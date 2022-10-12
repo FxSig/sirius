@@ -183,7 +183,6 @@ namespace SpiralLab.Sirius
             } while (true);
 
             Console.WriteLine("Terminating ...");
-            Console.ReadKey(false);
             if (rtc.CtlGetStatus(RtcStatus.Busy))
             {
                 // abort marking operation

@@ -165,6 +165,9 @@ namespace SpiralLab.Sirius
         /// <param name="rtc"></param>
         private static void CreateCharacterSet(ILaser laser, IRtc rtc)
         {
+            // set list mode to single by forcily
+            // 폰트 다운로드를 위해 더블버퍼링 모드 중지. 단일 리스트 모드로 설정
+            rtc.ListType = ListType.Single;
             var rtcCharSet = rtc as IRtcCharacterSet;
             Debug.Assert( rtcCharSet != null );
 

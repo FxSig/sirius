@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpiralLab.Sirius;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,16 @@ namespace CustomEditor
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SpiralLab.Sirius.CustomEditorForm());
+
+            var doc = new DocumentDefault();
+
+            var editor = new SpiralLab.Sirius.CustomEditorForm();
+            editor.Document = doc;
+            Application.Run(editor);
+            // or
+            //var viewer = new SpiralLab.Sirius.CustomViewerForm();
+            //viewer.Document = doc;
+            //Application.Run(viewer);
         }
     }
 }

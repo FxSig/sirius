@@ -157,7 +157,8 @@ namespace SpiralLab.Sirius
             group2.Repeat = 20;
             // query white pen
             // 펜 집합에서 흰색 펜 정보 변경
-            var pen2 = doc.Pens.ColorOf(System.Drawing.Color.Yellow);
+            var penColor = System.Drawing.Color.Yellow;
+            var pen2 = doc.Pens.ColorOf(penColor);
             // 파라메터 값을 변경
             // configure pen parameters
             var penDefault2 = pen2 as PenDefault;
@@ -172,7 +173,7 @@ namespace SpiralLab.Sirius
             penDefault2.MarkSpeed = 1000; // 스캐너 마크 속도 mm/s
             // group with white pen parameters 
             // 흰색 펜 가공 파라메터 사용
-            group2.Color2 = System.Drawing.Color.Yellow;
+            group2.Color2 = penColor;
             // addition dx, dy offset location
             // dx= 10, dy= 0 오프셋 위치해 추가 가공
             group2.Offsets = new Offset[1]

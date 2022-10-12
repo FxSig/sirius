@@ -54,11 +54,19 @@ namespace SpiralLab.Sirius
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
             #region RTC 초기화
-            //var rtc = new RtcVirtual(0); //create Rtc for dummy
-            var rtc = new Rtc5(0); //create Rtc5 controller
-            //var rtc = new Rtc6(0); //create Rtc6 controller
-            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Scanlab Rtc6 Ethernet 제어기
-            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 솔류션
+            //create Rtc for dummy
+            //var rtc = new RtcVirtual(0); 
+            //create Rtc5 controller
+            var rtc = new Rtc5(0);
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+
+            //create Rtc6 controller
+            //var rtc = new Rtc6(0); 
+            //create Rtc6 Ethernet controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0");
+            //create XLSCAN instance
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml"));
 
             float fov = 60.0f;    // scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov

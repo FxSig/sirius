@@ -47,7 +47,7 @@
   <ItemGroup>
     <Reference Include="spirallab.core, Version=1.121.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\siriuslib\bin\spirallab.core.dll</HintPath>
+      <HintPath>..\..\bin\spirallab.core.dll</HintPath>
     </Reference>
     <Reference Include="spirallab.sirius, Version=1.121.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

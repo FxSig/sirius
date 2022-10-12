@@ -18,7 +18,7 @@
  *
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
- * RTC5 + MOTF 카드를 초기화 하고 엔코더 리셋, MOTF 마킹을 한다
+ * RTC5 + MOTF 카드를 초기화 하고 X 엔코더(회전) 리셋, MOTF 마킹을 한다
  * Motf with angular (회전물체를 대상으로 MOTF 가공)
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
