@@ -1940,6 +1940,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MarkerArgDefault.InternalClone(SpiralLab.Sirius.MarkerArgDefault.TargetLayerDel)">
+            <summary>
+            특정 레이어 선택 복제용 (내부사용)
+            </summary>
+            <param name="del"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.MarkTargets">
             <summary>
             대상의 가공 방식
@@ -4893,6 +4900,13 @@
             <summary>
             문서 복제
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.DocumentDefault.InternalClone(SpiralLab.Sirius.MarkerArgDefault.TargetLayerDel)">
+            <summary>
+            특정 레이어 선택 복제용 (내부사용)
+            </summary>
+            <param name="del"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.DocumentDefault.New">
