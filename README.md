@@ -129,7 +129,9 @@
 
 **5. Version history**
 
-* 2022.10.11 v1.121
+* 2022.10.13 v1.121
+  - fixed) speed up when open/import/clone sirius file (시리우스 파일 읽기 속도 향상)
+  - fixed) initialize rtc6 with auto delay and corner,end,acc scale values if scanahead activated (SCANa 옵션을 가진 RTC6 초기화시 자동 지연 기능 활성화및 라인 품질 파라메터 자동 설정)
   - added) configure rtc signal level (active high/low) before initialize (RTC5/6 초기화 시점에 레이저1,2및 ON 출력 신호 레벨 설정 지원)
   - added) divide regions with threshold (개체를 영역으로 나누기 할 경우 제외할 최소 크기 지정 지원)
   - added) demo project head4_bcd_text (데모 프로젝트 추가)
@@ -142,7 +144,7 @@
   - fixed) Newport ESP301 (ESP301 모션 제어기 테스트 완료)
     - motor status takes too much time (상태 업데이트에 시간이 많이 소요되는 문제 해결)
     - defined home offset (사용자 지정 홈 오프셋 지원)
-
+  
 * 2022.10.2 v1.120
   - added) rectangle with reverse winding (가공 순서 뒤집기 지원)
   - added) support SCANa options at RTC6 (SCANa 옵션 기능 지원)
