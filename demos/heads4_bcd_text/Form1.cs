@@ -186,9 +186,10 @@ namespace SpiralLab.Sirius
                 Marker[i].OnFailed -= Marker_OnFailed;
                 Marker[i].OnFinished -= Marker_OnFinished;
                 //disposing
-                //Marker[i].Stop();
-                //Rtc[i].Dispose();
-                //Laser[i].Dispose();
+                
+                Marker[i].Stop();
+                Rtc[i].Dispose();
+                Laser[i].Dispose();
             }
         }
 
@@ -318,9 +319,8 @@ namespace SpiralLab.Sirius
             foreach (var info in infos)
             {
                 var offset = new Offset(info.X, info.Y, info.Angle);
-                marker.MarkerArg.Offsets.Add(offset);
-
                 offset.UserData = (info.BarcodeEntityData, info.TextData);
+                marker.MarkerArg.Offsets.Add(offset);
             }
 
             return marker.Start();
