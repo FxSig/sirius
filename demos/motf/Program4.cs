@@ -62,7 +62,7 @@ namespace SpiralLab.Sirius
             // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
@@ -133,13 +133,13 @@ namespace SpiralLab.Sirius
                         rtcMOTF.CtlMotfEncoderAngularSpeed(0);
                         break;
                     case ConsoleKey.N:
-                        MotfWithFollowOnly(laser, rtc, false);
+                        MotfWithFollowOnly(laser, rtc);
                         break;
                     case ConsoleKey.C:
-                        MotfWithCircleAndWaitEncoder(laser, rtc, false);
+                        MotfWithCircleAndWaitEncoder(laser, rtc);
                         break;
                 }
-                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3} s");
             } while (true);
 
             rtc.Dispose();
@@ -152,7 +152,7 @@ namespace SpiralLab.Sirius
         /// <param name="laser"></param>
         /// <param name="rtc"></param>
         /// <param name="externalStart"></param>
-        private static bool MotfWithFollowOnly(ILaser laser, IRtc rtc, bool externalStart)
+        private static bool MotfWithFollowOnly(ILaser laser, IRtc rtc, bool externalStart = false)
         {
             var rtcMotf = rtc as IRtcMOTF;
             var rtcExtension = rtc as IRtcExtension;
@@ -163,15 +163,14 @@ namespace SpiralLab.Sirius
             // start list buffer
             // 리스트 시작 
             success &= rtc.ListBegin(laser, ListType.Single);
-            // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값에 의해 회전적용됩니다
 
-            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx ,dy 거리를 입력)
-            var rotateCenter = new Vector2(-50, -50);
+            // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값에 의해 회전적용됩니다            
+            var rotateCenter = new Vector2(-50, 0);
             success &= rtcMotf.ListMotfAngularBegin(rotateCenter);
 
             // goes to origin
             // 0,0 으로 점프
-            // motf 동작시 0, 0 위치가 회전 중심과 같이 회전 처리됨
+            // 점프 위치는 rotateCenter 을 기준으로 상대적 위치인 (50, 0)로 연산 처리됨
             success &= rtc.ListJump(new Vector2(0, 0));
 
             // laser on!
@@ -209,7 +208,7 @@ namespace SpiralLab.Sirius
             }
             return success;
         }
-        private static bool MotfWithCircleAndWaitEncoder(ILaser laser, IRtc rtc, bool externalStart)
+        private static bool MotfWithCircleAndWaitEncoder(ILaser laser, IRtc rtc, bool externalStart = false)
         {
             var rtcMotf = rtc as IRtcMOTF;
             var rtcExtension = rtc as IRtcExtension;
@@ -227,25 +226,90 @@ namespace SpiralLab.Sirius
 
             // motf begin
             // ListMotfAngularBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더 증감값이 회전 적용됩니다
+            // 실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx, dy 거리를 입력)
+            var rotateCenter = new Vector2(-50, 0);
 
-            //실제 물리적인 회전 중심 (스캐너 중심에서 회전중심까지의 dx, dy 거리를 입력)
-            var rotateCenter = new Vector2(-50, -50);
+            /* global coordinate system
+             * 
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                 |--------|--------|                    
+             *                                 |                 |        |        |
+             *                                 |                 |        |        |       
+             *                                 |                 |        |        |    
+             *  ------------------------ Rotate Center --------------- Scanner ----|
+             *                                 |                 |      0 , 0      |    
+             *                                 |                 |        |        |      
+             *                                 |                 |        |        |
+             *                                 |                 |--------|--------|                    
+             *                                 |                          .          
+             *                                 |                         .           
+             *                                 |                        .            
+             *                                 |                      .             
+             *                                 |                    .                
+             *                                 |                 .                   
+             *                                 |             . 
+             *                                 |     <- Clock Wise = Angle + = Enc + 
+             *                          
+             */
+
             success &= rtcMotf.ListMotfAngularBegin(rotateCenter);
+
+            /* new scanner coordinate system
+             * 
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                                    
+             *                                 |                 |--------|--------|                    
+             *                                 |                 |        |        |
+             *                                 |                 |        |        |       
+             *                                 |                 |        |        |    
+             *  ------------------------ Rotate Center --------------- Scanner ----|
+             *                               0 , 0               |     50 , 0      |    
+             *                                 |                 |        |        |      
+             *                                 |                 |        |        |
+             *                                 |                 |--------|--------|                    
+             *                                 |                          .          
+             *                                 |                         .           
+             *                                 |                        .            
+             *                                 |                      .             
+             *                                 |                    .                
+             *                                 |                 .                   
+             *                                 |             . 
+             *                                 |     <- Clock Wise = Angle + = Enc + 
+             *                          
+             */
+
             // wait until condition has matched
             // 엔코더 값이 10도 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
-            success &= rtcMotf.ListMotfAngularWait(10, EncoderWaitCondition.Over);
+            success &= rtcMotf.ListMotfAngularWait(0, EncoderWaitCondition.Over);
 
             // draw circle
             // 엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
-            for (int i = 0; i < 10; i++)
-            {
-                //10,0 원 중심에서 반지름 10mm 짜리 원을 총 10 회 그린다
-                //이때 엔코더 (Enc0) 입력에 의해 스테이지 회전이 적용된다
-                success &= rtc.ListJump(new Vector2((float)20, 0));
-                success &= rtc.ListArc(new Vector2(10, 0), 360.0f);
-                if (!success)
-                    break;
-            }
+            // 반지름이 10 인 원을 0 도 위치에 가공
+            success &= rtc.ListJump(-rotateCenter + new Vector2(10, 0));
+            success &= rtc.ListArc(-rotateCenter, 360.0f);
+
+            // wait until condition has matched
+            // 엔코더 값이 10도 가 넘을때(Over) 까지 리스트 명령들이 모두 대기됨
+            success &= rtcMotf.ListMotfAngularWait(180, EncoderWaitCondition.Over);
+
+            // draw circle
+            // 엔코더 X 값이 위 조건을 만족한 이후 원 을 그린다
+            // 반지름이 10 인 원을 180 도 위치에 가공
+            success &= rtc.ListJump(rotateCenter + rotateCenter + new Vector2(10, 0));
+            success &= rtc.ListArc(rotateCenter + rotateCenter, 360.0f);
 
             // goes to origin location
             // motf end

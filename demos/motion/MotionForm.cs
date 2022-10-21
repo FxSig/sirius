@@ -122,7 +122,7 @@ namespace SpiralLab.Sirius
                         //MotorZ = new MotorESP301(1, "Z Axis", esp);
                         Rtc = new Rtc5(0);
                         var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-                        success &= Rtc.Initialize((float)Math.Pow(2, 20) / 100.0f, LaserMode.Yag1, correctionFile);
+                        success &= Rtc.Initialize((float)Math.Pow(2, 20) / 100.0f, LaserMode.Yag5, correctionFile);
                         DigitalInput = new RtcDInputExt1(Rtc, 0, "D.IN");
                         DigitalOutput = new RtcDOutputExt1(Rtc, 0, "D.OUT");
                     }

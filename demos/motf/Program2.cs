@@ -61,7 +61,7 @@ namespace SpiralLab.Sirius
             // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
@@ -87,9 +87,19 @@ namespace SpiralLab.Sirius
             // 중첩 되는 구간은 10mm 로 처리
             // overlap length is 10mm
             rtc.BaseDistanceToSecondaryHead = new Vector2(fov-10, 0);
-            #endregion
+            
+            // 헤드 기준 오프셋 초기화
+            // reset each head's base offset
+            rtc.PrimaryHeadBaseOffset = Vector3.Zero;
+            rtc.SecondaryHeadBaseOffset = Vector3.Zero;
 
-            var rtcDualHead = rtc as IRtcDualHead;
+            // 헤드 사용자 오프셋 초기화
+            // reset each head's user offset
+            rtc.PrimaryHeadUserOffset = Vector3.Zero;
+            rtc.SecondaryHeadUserOffset = Vector3.Zero;
+
+            // global offset (최종 오프셋) =  base(기준) offset + user (사용자) offset
+            #endregion
 
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
@@ -113,13 +123,15 @@ namespace SpiralLab.Sirius
             laser.CtlPower(2);
             #endregion
 
+            var rtcDualHead = rtc as IRtcDualHead;
+
             ConsoleKeyInfo key;
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'D' : draw circle with global offset");
+                Console.WriteLine("'D' : draw circle without offset");
                 Console.WriteLine("'D' : draw circle with base offset");
                 Console.WriteLine("'E' : draw circle with user offset");
                 Console.WriteLine("'F' : quit");
@@ -134,33 +146,28 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
-                        // translate and rotate each head
-                        //개별 헤드에 오프셋 및 회전 처리
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, new Vector3(5, 0, 0.1f));
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, new Vector3(-5, 0, -0.1f));
+                        rtcDualHead.PrimaryHeadBaseOffset = Vector3.Zero;
+                        rtcDualHead.SecondaryHeadBaseOffset = Vector3.Zero;
+                        rtcDualHead.PrimaryHeadUserOffset = Vector3.Zero;
+                        rtcDualHead.SecondaryHeadUserOffset = Vector3.Zero;
                         DrawCircle(laser, rtc);
-                        // revert, reset head offsets
-                        // 원복
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Primary, Vector3.Zero);
-                        rtcDualHead.CtlHeadOffset(ScannerHead.Secondary, Vector3.Zero);
                         break;
                     case ConsoleKey.E:
-                        // 2개의 오프셋 (base + user) 으로 지정 가능
-                        // 우선 base offset : 두개의 헤드를 하드웨어(기구적으로) 간에 평행하도록 개별 헤드의 위치를 보정
+                        // base offset : 두개의 헤드를 하드웨어(기구적으로) 간에 평행하도록 개별 헤드의 위치를 보정
+                        // 헤드에 적용되는 최종 global offset = base + user  
                         rtcDualHead.PrimaryHeadBaseOffset = new Vector3(10, 0, 0.1f);
                         rtcDualHead.SecondaryHeadBaseOffset = new Vector3(-10, 0, 0.1f);
                         DrawCircle(laser, rtc);
                         break;
                     case ConsoleKey.F:
-                        // 이후 자재(혹은 레시피)별로 사용자가 헤드의 중심 위치를 이동하고자 할 경우
-                        // user offset 을 각각 지정
-                        // 헤드에 적용되는 최종 오프셋은 global offset = base + user offset
+                        // user offset : 자재(혹은 레시피)별로 사용자가 헤드의 중심 위치를 이동하고자 할 경우
+                        // 헤드에 적용되는 최종 global offset = base + user 
                         rtcDualHead.PrimaryHeadUserOffset = new Vector3(-5, 0, 0);
                         rtcDualHead.SecondaryHeadUserOffset = new Vector3(5, 0, 0);
                         DrawCircle(laser, rtc);
                         break;
                 }
-                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3} s");
             } while (true);
 
             rtc.CtlAbort();
@@ -170,17 +177,15 @@ namespace SpiralLab.Sirius
         private static bool DrawCircle(ILaser laser, IRtc rtc)
         {
             bool success = true;
-            var rtcDualHead = rtc as IRtcDualHead;
-            Debug.Assert(rtcDualHead != null);
 
             // start list
             // 리스트 시작
             success &= rtc.ListBegin(laser);
-
             // translate and rotate at each head by list command if needed
             // 리스트 명령으로 오프셋 및 회전 처리 방법
             //success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
             //success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
+
             for (int i = 0; i < 10; i++)
             {
                 // draw line
@@ -194,11 +199,11 @@ namespace SpiralLab.Sirius
                 if (!success)
                     break;
             }
-
             // translate and rotate at each head by list command if needed
             // 리스트 명령으로 오프셋 및 회전 처리 방법
             // success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
             // success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
+
             //리스트 종료
             if (success)
             {

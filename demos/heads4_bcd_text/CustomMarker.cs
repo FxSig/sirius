@@ -47,13 +47,13 @@ namespace SpiralLab.Sirius
             // 가공 인자의 오프셋 정보 추출
             var offset = arg.Offsets[i];
             // 오프셋 tag 에 추가 정보 전달함
-            (string barcodeData, string textData)? tuple = ((string, string)?)offset.Tag;
+            (string barcodeData, string textData)? tuple = ((string, string)?)offset.UserData;
 
             // 바코드 개체 이름과 같을 경우
             if (0 == string.CompareOrdinal(CustomMarkArg.BarcodeEntityName, entity.Name.Trim()))
             {
                 // 변경해야 할 데이타를 지정 한 경우
-                if (tuple.HasValue)
+                if (null != tuple && tuple.HasValue)
                 {
                     // 바코드 객체를 복제하여 데이타 변경
                     var bcdEntityCloned = (IEntity)((ICloneable)entity).Clone();
@@ -77,7 +77,7 @@ namespace SpiralLab.Sirius
             else if (0 == string.CompareOrdinal(CustomMarkArg.TextEntityName, entity.Name.Trim()))
             {
                 // 변경해야 할 데이타를 지정 한 경우
-                if (tuple.HasValue)
+                if (null != tuple && tuple.HasValue)
                 {
                     // 텍스트 객체를 복제하여 데이타 변경
                     var textEntityCloned = (IEntity)((ICloneable)entity).Clone();

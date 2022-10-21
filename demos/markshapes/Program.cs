@@ -71,7 +71,7 @@ namespace SpiralLab.Sirius
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5"); //"cor_1to1.ctb" if RTC4
 
             // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
             // default frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);

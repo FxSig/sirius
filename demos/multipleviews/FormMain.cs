@@ -39,8 +39,8 @@ namespace SpiralLab.Sirius
             // k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc1.Initialize(kfactor, LaserMode.Yag1, correctionFile);
-            rtc2.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc1.Initialize(kfactor, LaserMode.Yag5, correctionFile);
+            rtc2.Initialize(kfactor, LaserMode.Yag5, correctionFile);
 
             //Laser 소스 객체 2개 생성
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)

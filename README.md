@@ -106,6 +106,9 @@
     - logs (output log files)
     - powermap (laser powermap files)
     - plot (measurement output files)
+       - to plot as chart, please download and copy gnuplot program into plot\gnuplot\ directory
+       - gnuplot download link : http://tmacchant33.starfree.jp/gnuplot_bin.html
+       - executed plot\gnuplot\wgnuplot.exe program by internally
     - scripts (csharp script files)
     - siriusfonts (cxf font files)
 	- syncaxis (xml config file, configurator and viewer)
@@ -128,6 +131,15 @@
 
 
 **5. Version history**
+
+* 2022.10.21 v1.122
+  - added) Program5.cs demo at motf_dualhead_ext project (motf_dualhead_ext  프로젝트에 Program5 예제 추가)
+     - powerful example use of Angular MOTF (강력한 회전 기반 MOTF 에제 제공됨)
+  - added) IRtcDualHead (IRtcDualHead 인터페이스 기능 추가)
+     - ListSelectCorrection function (리스트 명령 실행중 스캐너 보정 테이블 변경 지원)
+  - added) IRtcMotf interfaces (MOTF 인터페이스 기능 추가)
+     - ListMotfLimits function (영역침범 확인 기능 추가)
+     - CtlMotfOverflowClear function (영역침범시 리셋 기능 추가)
 
 * 2022.10.13 v1.121
   - fixed) speed up when open/import/clone sirius file (시리우스 파일 읽기 속도 향상)

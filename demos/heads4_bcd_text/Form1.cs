@@ -30,7 +30,6 @@ namespace SpiralLab.Sirius
 
         /// <summary>
         /// 스캐너 필드 크기 (mm)
-        /// K-Factor (bits/mm) = 2^20 / fov
         /// </summary>
         public float[] ScannerFieldSize { get; set; }
 
@@ -123,6 +122,7 @@ namespace SpiralLab.Sirius
                 #region RTC 초기화
                 // RTC 카드 생성
                 var rtc = new Rtc5(i);
+                // K-Factor (bits/mm) = 2^20 / ScannerFieldSize
                 float kfactor = (float)Math.Pow(2, 20) / ScannerFieldSize[i];
                 // 스캐너 보정파일 경로
                 var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, ScannerCorrectionFile[i]);
@@ -159,6 +159,7 @@ namespace SpiralLab.Sirius
                 // 마커 생성
                 var marker = new CustomMarker(i, $"MyMarker{i}");
                 marker.OnStarted += Marker_OnStarted;
+                marker.OnProgress += Marker_OnProgress;
                 marker.OnFailed += Marker_OnFailed;
                 marker.OnFinished += Marker_OnFinished;                
 
@@ -173,9 +174,9 @@ namespace SpiralLab.Sirius
                 SiriusEditor[i].Marker = marker;                
             }
 
-
             cbbIndex.SelectedIndex = 0;
         }
+
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -184,7 +185,6 @@ namespace SpiralLab.Sirius
                 Marker[i].OnStarted -= Marker_OnStarted;
                 Marker[i].OnFailed -= Marker_OnFailed;
                 Marker[i].OnFinished -= Marker_OnFinished;
-
                 //disposing
                 //Marker[i].Stop();
                 //Rtc[i].Dispose();
@@ -200,19 +200,29 @@ namespace SpiralLab.Sirius
         private void Marker_OnStarted(IMarker sender, IMarkerArg markerArg)
         {
             var index = sender.Index;
-
+            Logger.Log(Logger.Type.Info, $"[{index}]:{sender.Name} marker has started");
         }
         /// <summary>
         /// 가공 실패 이벤트
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="markerArg"></param>
-        /// <exception cref="NotImplementedException"></exception>
         private void Marker_OnFailed(IMarker sender, IMarkerArg markerArg)
         {
             var index = sender.Index;
-
+            Logger.Log(Logger.Type.Error, $"[{index}]:{sender.Name} marker has failed");
         }
+        /// <summary>
+        /// 가공 진행 이벤트
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="markerArg"></param>
+        private void Marker_OnProgress(IMarker sender, IMarkerArg markerArg)
+        {
+            var index = sender.Index;
+            Logger.Log(Logger.Type.Error, $"[{index}]:{sender.Name} marker has {markerArg.Progress} progressing...");
+        }
+
         /// <summary>
         /// 가공 완료 이벤트 
         /// </summary>
@@ -221,6 +231,7 @@ namespace SpiralLab.Sirius
         private void Marker_OnFinished(IMarker sender, IMarkerArg markerArg)
         {
             var index = sender.Index;
+            Logger.Log(Logger.Type.Info, $"[{index}]:{sender.Name} marker has finished");
 
         }
 
@@ -233,15 +244,23 @@ namespace SpiralLab.Sirius
         public bool RecipeChange(int index, string recipeFileName)
         {
             if (this.IsBusy(index))
+            {
+                Logger.Log(Logger.Type.Error, $"[{index}]: system is busy. fail to change target recipe");
                 return false;
+            }
             try
             {
                 var doc = DocumentSerializer.OpenSirius(recipeFileName);
                 SiriusEditor[index].Document = doc;
                 
                 //if you want to download recipe file by automatically
-                return this.Ready(index);
-                //return true;
+                bool success = this.Ready(index);
+                if (success)
+                    Logger.Log(Logger.Type.Info, $"[{index}]: success to change target recipe by {recipeFileName}");
+                else
+                    Logger.Log(Logger.Type.Error, $"[{index}]: system is busy. fail to change target recipe");
+                
+                return success;
             }
             catch (Exception ex)
             {
@@ -269,7 +288,6 @@ namespace SpiralLab.Sirius
             };
             arg.ViewTargets.Add(SiriusEditor[index].View);
             arg.Offsets.Clear();
-
             return Marker[index].Ready(arg);
         }
 
@@ -300,8 +318,9 @@ namespace SpiralLab.Sirius
             foreach (var info in infos)
             {
                 var offset = new Offset(info.X, info.Y, info.Angle);
-                offset.Tag = (info.BarcodeEntityData, info.TextData);
                 marker.MarkerArg.Offsets.Add(offset);
+
+                offset.UserData = (info.BarcodeEntityData, info.TextData);
             }
 
             return marker.Start();
@@ -383,6 +402,10 @@ namespace SpiralLab.Sirius
 
         private void button1_Click(object sender, EventArgs e)
         {
+            int index = cbbIndex.SelectedIndex;
+            if (DialogResult.Yes != MessageBox.Show($"Do you really want to start mark ?", $"[{index + 1}] Laser !!! ", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                return;
+
             // 4 offset with text/barcode array
             //
             //   1 (00)            2(01)
@@ -392,8 +415,7 @@ namespace SpiralLab.Sirius
             //   3 (10)            4(11)
             //
 
-            var infos = new List<CustomMarkArg>();
-
+            var infos = new List<CustomMarkArg>(4);
             infos.Add(new CustomMarkArg()
             {
                 X = -10,
@@ -426,10 +448,6 @@ namespace SpiralLab.Sirius
                 BarcodeEntityData = "11",
                 TextData = "11",
             });
-
-            int index = cbbIndex.SelectedIndex;
-            if (DialogResult.Yes != MessageBox.Show($"Do you really want to start mark ?", $"[{index+1}] Laser !!! ", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                return;
 
             this.Start(index, infos);
         }

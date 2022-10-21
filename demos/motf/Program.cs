@@ -18,7 +18,7 @@
  *
  * 
  * IRtc + IRtcMOTF 인터페이스를 직접 사용하는 방법
- * RTC5 + MOTF 카드를 초기화 하고 XY 엔코더 리셋, MOTF 마킹을 한다
+ * RTC5 + MOTF 카드를 초기화 하고 XY 엔코더 리셋, MOTF XY 마킹을 한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -61,7 +61,7 @@ namespace SpiralLab.Sirius
             // full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
@@ -108,7 +108,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'R' : encoder reset");
+                Console.WriteLine("'R' : Encoder reset");
                 Console.WriteLine("'N' : MOTF With Follow Only");
                 Console.WriteLine("'C' : MOTF With Circle And Wait Encoder");
                 Console.WriteLine("'Q' : quit");

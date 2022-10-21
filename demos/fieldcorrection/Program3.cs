@@ -51,7 +51,7 @@ namespace SpiralLab.Sirius
             float fov = 60.0f;    // scanner field of view : 60mm            
             float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // correction file (스캐너 보정 파일)
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);    // correction file (스캐너 보정 파일)
             #endregion
 
             // 헤더 정보를 조회할 보정 파일 RTC 내부 메모리 (테이블)로 로드

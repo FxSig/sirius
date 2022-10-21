@@ -12086,7 +12086,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.LaserMode">
             <summary>
-            레이저 모드(CO2, Yag1,2,3,4, ...)
+            레이저 모드(CO2, Yag1,2,3,5,Mode5,6,...)
             Laser1,2 출력핀의 타이밍 종류 선택
             </summary>
         </member>
@@ -12257,15 +12257,52 @@
             엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.EncCountsPerRevolution">
+            <summary>
+            MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
+            주의) 대상물체의 시계 방향 회전이 엔코더 증가 방향
+            |Resolution| > 100.0
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc4.EncSimulatedAngularSpeed">
             <summary>
             엔코더 회전 가상 속도 mm/s
+            0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.MotfAngularCenter">
-            <summary>
-            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
-            </summary>
+             <summary>
+             회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
+             주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
+             예를 들어 회전 중심을 -50, 0 으로 설정시 아래 좌표계로 전환됨
+            
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                 |--------|--------|                    
+                                            |                 |        |        |
+                                            |                 |        |        |       
+                                            |                 |        |        |    
+             ------------------------ Rotate Center --------------- Scanner ----|
+                                        -50 , 0               |     50 , 0      |    
+                                            |                 |        |        |      
+                                            |                 |        |        |
+                                            |                 |--------|--------|                    
+                                            |                          .          
+                                            |                         .           
+                                            |                        .            
+                                            |                      .             
+                                            |                    .                
+                                            |                 .                   
+                                            |   /          . 
+                                            |   --  Clock Wise = Angle + = Enc + 
+                                            |   \
+             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.IsDateTimeOffset">
             <summary>
@@ -12758,10 +12795,17 @@
             <param name="coefC"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMarkingInfo(SpiralLab.Sirius.IRtcMarkingInfo@)">
+            <summary>
+            RTC4는 미지원
+            </summary>
+            <param name="markingInfo"></param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlTrackingError(SpiralLab.Sirius.ScannerHead,System.UInt32,System.UInt32)">
             <summary>
             트래킹 에러 보상
-            (추천 : 스캔 헤드의 메뉴얼에 명기된 Tracking Error 시간을 지정)
+            RTC4 미지원
             </summary>
             <param name="head">스캔 헤드 (ScannerHead 열거형)</param>
             <param name="xyUsec">XY 축 보상 시간(usec)</param>
@@ -12889,6 +12933,14 @@
             </summary>
             <param name="head">primary or secondary</param>
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
+            </summary>
+            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
+            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMove(System.Numerics.Vector3)">
@@ -13051,18 +13103,45 @@
             <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfAngular(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfAngularCenter(System.Numerics.Vector2)">
             <summary>
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfEncoderAngularSpeed(System.Single)">
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(deg/s)</param>
+            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfTrackingError(System.UInt32,System.UInt32)">
@@ -13089,6 +13168,14 @@
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.CtlMotfOverflowClear">
+            <summary>
+            MOTF 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            RTC4 미지원
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListMotfBegin(System.Boolean)">
             <summary>
             리스트 명령 - MOTF 리스트 명령 시작
@@ -13103,9 +13190,60 @@
             <summary>
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            RTC4 미지원
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfLimitIf(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령 실행. 맞지 않으면 건너뜀
+            RTC4 미지원
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위를 설정
+            RTC4 는 미지원
+            </summary>
+            <param name="xRange">X 영역 크기</param>
+            <param name="yRange">Y 영역 크기</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -13580,6 +13718,11 @@
             초기화(Initialize) 시 적용됨
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.RtcMarkingInfo">
+            <summary>
+            get_marking_info 상태 구조체
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.RtcJumpMode">
             <summary>
             점프 튜닝 모드 
@@ -13770,15 +13913,52 @@
             엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.EncCountsPerRevolution">
+            <summary>
+            MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
+            주의) 대상물체의 시계 방향 회전이 엔코더 증가 방향
+            |Resolution| > 100.0
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.EncSimulatedAngularSpeed">
             <summary>
-            엔코더 회전 가상 속도 mm/s
+            MOTF Angular 사용시 엔코더 가상 각속도 (˚/sec)
+            0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.MotfAngularCenter">
-            <summary>
-            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
-            </summary>
+             <summary>
+             MOTF Angular 사용시 회전 중심 위치 상대 좌표 (스캐너 중심으로 부터 떨어진 거리값)
+             주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
+             예를 들어 회전 중심을 -50, 0 으로 설정시 아래 좌표계로 전환됨
+            
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                 |--------|--------|                    
+                                            |                 |        |        |
+                                            |                 |        |        |       
+                                            |                 |        |        |    
+             ------------------------ Rotate Center --------------- Scanner ----|
+                                        -50 , 0               |     50 , 0      |    
+                                            |                 |        |        |      
+                                            |                 |        |        |
+                                            |                 |--------|--------|                    
+                                            |                          .          
+                                            |                         .           
+                                            |                        .            
+                                            |                      .             
+                                            |                    .                
+                                            |                 .                   
+                                            |   /          . 
+                                            |   --  Clock Wise = Angle + = Enc + 
+                                            |   \
+             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.SerialStartNo">
             <summary>
@@ -14289,7 +14469,7 @@
             점프 튜닝 모드 
             RTC5/6 + intelli~ 스캐너 제품군 전용
             </summary>
-            <param name="jumpMode">Rtc5JumpMode , Rtc6JumpMode 클래스</param>
+            <param name="jumpMode">Rtc5JumpMode</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlLoadedCorrectionInfo(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionFileHeaderParam,System.Double@)">
@@ -14331,7 +14511,7 @@
         <member name="M:SpiralLab.Sirius.Rtc5.CtlTrackingError(SpiralLab.Sirius.ScannerHead,System.UInt32,System.UInt32)">
             <summary>
             트래킹 에러 보상
-            (추천 : 스캔 헤드의 메뉴얼에 명기된 Tracking Error 시간을 지정)
+            RTC5 미지원
             </summary>
             <param name="head">스캔 헤드 (ScannerHead 열거형)</param>
             <param name="xyUsec">XY 축 보상 시간(usec)</param>
@@ -14544,6 +14724,14 @@
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
+            </summary>
+            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
+            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
@@ -14669,24 +14857,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
-            입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
+            MOTF XY 사용시 입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
             <param name="offsetX">X 초기화 위치 (mm)</param>
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderSpeed(System.Single,System.Single)">
-            <summary>
-            외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
-            둘다 0,0 입력시 비활성화됨
-            </summary>
-            <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
-            <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
-            현재 엔코더 값/X,Y 위치 얻기
+            MOTF XY 사용시 현재 엔코더 값/X,Y 위치 얻기
             </summary>
             <param name="encX">X 엔코더 값 (counts)</param>
             <param name="encY">Y 엔코더 값 (counts)</param>
@@ -14694,101 +14873,175 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
-            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            MOTF XY 사용시 외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
+            가상 입력 엔코더 속도를 지정하면 내부 1MHz의 가상 엔코더가 활성화되어 외부 기구부가 이동하는 효과 발생
+            X,Y 모두 0 입력시 가상 엔코더 비활성화됨
             </summary>
-            <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (˚)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfAngular(System.Numerics.Vector2)">
-            <summary>
-            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
-            </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderAngularSpeed(System.Single)">
-            <summary>
-            가상 엔코더 각속도 설정
-            </summary>
-            <param name="encSimulatedSpeed">각속도(˚/s)</param>
+            <param name="encXSimulatedSpeed">가상 엔코더X 속도 (mm/s)</param>
+            <param name="encYSimulatedSpeed">가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfTrackingError(System.UInt32,System.UInt32)">
             <summary>
-            Motf 사용시 스캐너의 트래킹 에러 보상
+            MOTF XY 사용시 스캐너의 트래킹 에러 보상
             0, 0 으로 지정시 Disabled 됨
-            Tracking error compensation is a first-approximation correction:
+            스캐너 Spec 문서에 기재된 Tracking Error 시간값 설정
             EC = E + (E – EP ) * TrackingError,
-            E : current encoder value
-            EP : previous cycle and EC is the compensated encoder value(used for Processing-on-the-fly correction).
+            EC : 현재 사이클에서의 엔코더 보상값
+            E : 현재 엔코더 값
+            EP : 이전 사이클에서의 엔코더 보상값 
             </summary>
             <param name="xUsec">X 축 보상 시간(usec)</param>
             <param name="yUsec">Y 축 보상 시간(usec)</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfCompensateTable(System.String,System.UInt32)">
-            <summary>
-            엔코더 테이블 보정 파일 로드
-            보정 테이블0 번의 포맷 예 : 
-            [Fly2DTable0]
-            Encoder0 Encoder1 Encoder0_Delta Encoder1_Delta ;주석
-            ...
-            추신) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
-            추신) 모든 bits 값은 +-524288 을 초과하지 말것 
-            The first of the two tables is loaded with No = 0 and the second with No = 1 + 65,536.
-            </summary>
-            <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
-            <param name="tableNo">테이블 번호</param>
-            <returns></returns>
+             <summary>
+             MOTF XY 사용시 엔코더 테이블 보정 파일 로드
+             스테이지의 기구 왜곡을 해소하기 위해 통상 2D 매핑(Mapping) 을 진행하는데, 이 매핑값들을 RTC 에도 설정하여 사용한다. 
+             이는 기구부에서 발생시키는 엔코더는 매핑전 신호(펄스)가 전달되어 위치 왜곡이 발생하는데 이를 보정해주는 기능
+            
+             자세한 포맷은 RTC 메뉴얼 참고
+             보정 테이블0 번의 포맷 예 : 
+             [Fly2DTable0]
+             Encoder0 Encoder1 Encoder0_Delta Encoder1_Delta ;주석
+             ...
+             추신) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
+             추신) 모든 bits 값은 +-524288 을 초과하지 말것
+             
+             </summary>
+             <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
+             <param name="tableNo">테이블 번호</param>
+             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
-            외부 트리거 시작 (External Start) 사용시 지연 설정
+            MOTFXY / MOTF Angular 사용시 외부 트리거 시작 (External /START) 사용시 지연 설정
             </summary>
             <param name="enc">x/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            MOTF Angular 사용시 현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (˚)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfAngularCenter(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
+            </summary>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            MOTF Angular 사용시 가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfBegin(System.Boolean)">
             <summary>
-            리스트 명령 - MOTF 리스트 명령 시작
+            리스트 명령 - MOTF XY(직교) 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
             초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
-            <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
+            <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
-            리스트 명령 - 회전에 대한 MOTF 
+            리스트 명령 - MOTF Angular(회전)  
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfOverflowClear">
             <summary>
-            리스트 명령 - MOTF 사용시 해당 범위를 설정
-            범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
-            이를 회피하기 위해서 ListMOTFWaitLimitX 등의 조건을 통해 리스트 명령이 대기되도록 조치 필요
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
             </summary>
-            <param name="xRange">X 영역 크기</param>
-            <param name="yRange">Y 영역 크기</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfLimitIf(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
             <summary>
-            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령 실행. 맞지 않으면 건너뜀
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
-            리스트 명령 - 외부 트리거 시작 (External Start) 사용시 지연 설정
+            리스트 명령 - 외부 트리거 시작 (External /START) 사용시 지연 설정
             </summary>
             <param name="enc">X/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리</param>
@@ -14796,7 +15049,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF XY 사용시 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
             </summary>
             <param name="enc">엔코더 축 지정</param>
@@ -14806,35 +15059,48 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF Angular 사용시 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            기구 회전부가 시계 방향으로 회전시 엔코더 증가(각도 증가) 방향
             </summary>
-            <param name="angle">각도</param>
+            <param name="angle">각도 (°)</param>
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            리스트 명령 - MOTF XY 사용시 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
             <param name="positionX">X 축 위치 (mm)</param>
             <param name="rangeX">조건 범위 (mm)</param>
             <param name="positionY">Y 축 위치 (mm)</param>
-            <param name="rangeY">조건 범위(mm)</param>
+            <param name="rangeY">조건 범위 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF XY / MOTF Angular 사용시 해당 범위를 설정
+            범위를 벋어나면 RtcMarkingInfo 내부에 에러 비트가 설정됨
+            CtlMotfOverflowClear 사용해 RtcMarkingInfo 내부 에러 비트 리셋 지원
+            </summary>
+            <param name="xRange">X 영역 크기 (mm)</param>
+            <param name="yRange">Y 영역 크기 (mm)</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
-            리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
-            MOTF 종료시 스캐너를 지정된 위치로 점프 가능
+            리스트 명령 - MOTF XY / MOTF Angular 로 동작하는 리스트 명령 끝
+            XY MOTF / Angular MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListMotfCall(System.UInt32,System.UInt32)">
             <summary>
-            특정 리스트 주소(위치)로 점프하여 연속 가공
+            리스트 명령 - 특정 리스트 주소(위치)로 점프하여 연속 가공
+            주의) 리스트 타입을 단일(Single)로 사용해야 특정 리스트 명령 위치가 유효함
             </summary>
-            <param name="listPosition">리스트 위치 (0 ~ 2^20-1)</param>
-            <param name="repeats">반복 회수 (0은 무제한)</param>
+            <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1). 단 리스트 타입을 Single 로 사용해야 한다</param>
+            <param name="repeats">반복 회수(0 : 무제한, 1 이상 : 지정된 회수만큼 반복)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -15212,7 +15478,7 @@
             <summary>
             생성자
             </summary>
-            <param name="owner">대상 RTC5 객체</param>
+            <param name="owner">대상 RTC6 객체</param>
         </member>
         <member name="T:SpiralLab.Sirius.Rtc6MarkingInfo">
             <summary>
@@ -15396,9 +15662,14 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.InitLaserOnSignalLevel">
             <summary>
-            RTC5 카드의 15핀 레이저 커넥터 설정
+            RTC6 카드의 15핀 레이저 커넥터 설정
             LaserOn(Pin2) 출력 신호 레벨
             초기화(Initialize) 시 적용됨
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.RtcMarkingInfo">
+            <summary>
+            get_marking_info 상태 구조체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.RtcJumpMode">
@@ -15628,15 +15899,52 @@
             엔코더 Y 의 가상 속도 mm/s
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.EncCountsPerRevolution">
+            <summary>
+            MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
+            주의) 대상물체의 시계 방향 회전이 엔코더 증가 방향
+            |Resolution| > 100.0
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.EncSimulatedAngularSpeed">
             <summary>
-            엔코더 회전 가상 속도 mm/s
+            MOTF Angular 사용시 엔코더 가상 각속도 (˚/sec)
+            0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.MotfAngularCenter">
-            <summary>
-            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
-            </summary>
+             <summary>
+             MOTF Angular 사용시 회전 중심 위치 상대 좌표 (스캐너 중심으로 부터 떨어진 거리값)
+             주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
+             예를 들어 회전 중심을 -50, 0 으로 설정시 아래 좌표계로 전환됨
+            
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                                    
+                                            |                 |--------|--------|                    
+                                            |                 |        |        |
+                                            |                 |        |        |       
+                                            |                 |        |        |    
+             ------------------------ Rotate Center --------------- Scanner ----|
+                                        -50 , 0               |     50 , 0      |    
+                                            |                 |        |        |      
+                                            |                 |        |        |
+                                            |                 |--------|--------|                    
+                                            |                          .          
+                                            |                         .           
+                                            |                        .            
+                                            |                      .             
+                                            |                    .                
+                                            |                 .                   
+                                            |   /          . 
+                                            |   --  Clock Wise = Angle + = Enc + 
+                                            |   \
+             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialStartNo">
             <summary>
@@ -16440,6 +16748,14 @@
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
+            </summary>
+            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
+            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
@@ -16564,24 +16880,15 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
-            입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
+            MOTF XY 사용시 입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
             <param name="offsetX">X 초기화 위치 (mm)</param>
             <param name="offsetY">Y 초기화 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderSpeed(System.Single,System.Single)">
-            <summary>
-            외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 및 가상 입력 엔코더 속도 지정
-            둘다 0,0 입력시 비활성화됨
-            </summary>
-            <param name="encXSimulatedSpeed">RTC 내부 가상 엔코더X 속도 (mm/s)</param>
-            <param name="encYSimulatedSpeed">RTC 내부 가상 엔코더Y 속도 (mm/s)</param>
-            <returns></returns>
-        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
-            현재 엔코더 값 얻기
+            MOTF XY 사용시 현재 엔코더 값/X,Y 위치 얻기
             </summary>
             <param name="encX">X 엔코더 값 (counts)</param>
             <param name="encY">Y 엔코더 값 (counts)</param>
@@ -16589,117 +16896,183 @@
             <param name="encYmm">Y 엔코더의 위치 (mm)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
-            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            MOTF XY 사용시 외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
+            가상 입력 엔코더 속도를 지정하면 내부 1MHz의 가상 엔코더가 활성화되어 외부 기구부가 이동하는 효과 발생
+            X,Y 모두 0 입력시 가상 엔코더 비활성화됨
             </summary>
-            <param name="enc">엔코더 값 (counts)</param>
-            <param name="angle">각도 (˚)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfAngular(System.Numerics.Vector2)">
-            <summary>
-            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
-            </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderAngularSpeed(System.Single)">
-            <summary>
-            가상 엔코더 각속도 설정
-            </summary>
-            <param name="encSimulatedSpeed">각속도(˚/s)</param>
+            <param name="encXSimulatedSpeed">가상 엔코더X 속도 (mm/s)</param>
+            <param name="encYSimulatedSpeed">가상 엔코더Y 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfTrackingError(System.UInt32,System.UInt32)">
             <summary>
-            Motf 사용시 스캐너의 트래킹 에러 보상
+            MOTF XY 사용시 스캐너의 트래킹 에러 보상
             0, 0 으로 지정시 Disabled 됨
-            Tracking error compensation is a first-approximation correction:
+            스캐너 Spec 문서에 기재된 Tracking Error 시간값 설정
             EC = E + (E – EP ) * TrackingError,
-            E : current encoder value
-            EP : previous cycle and EC is the compensated encoder value(used for Processing-on-the-fly correction).
+            EC : 현재 사이클에서의 엔코더 보상값
+            E : 현재 엔코더 값
+            EP : 이전 사이클에서의 엔코더 보상값 
             </summary>
             <param name="xUsec">X 축 보상 시간(usec)</param>
             <param name="yUsec">Y 축 보상 시간(usec)</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfCompensateTable(System.String,System.UInt32)">
-            <summary>
-            엔코더 테이블 보정 파일 로드
-            보정 테이블0 번의 포맷 예 : 
-            [Fly2DTable0]
-            Encoder0 Encoder1 Encoder0_Delta Encoder1_Delta ;주석
-            ...
-            추신) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
-            추신) 모든 bits 값은 +-524288 을 초과하지 말것
-            </summary>
-            <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
-            <param name="tableNo">테이블 번호</param>
-            <returns></returns>
+             <summary>
+             MOTF XY 사용시 엔코더 테이블 보정 파일 로드
+             스테이지의 기구 왜곡을 해소하기 위해 통상 2D 매핑(Mapping) 을 진행하는데, 이 매핑값들을 RTC 에도 설정하여 사용한다. 
+             이는 기구부에서 발생시키는 엔코더는 매핑전 신호(펄스)가 전달되어 위치 왜곡이 발생하는데 이를 보정해주는 기능
+            
+             자세한 포맷은 RTC 메뉴얼 참고
+             보정 테이블0 번의 포맷 예 : 
+             [Fly2DTable0]
+             Encoder0 Encoder1 Encoder0_Delta Encoder1_Delta ;주석
+             ...
+             추신) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
+             추신) 모든 bits 값은 +-524288 을 초과하지 말것
+             
+             </summary>
+             <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
+             <param name="tableNo">테이블 번호</param>
+             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
-            외부 트리거 시작 (External Start) 사용시 지연 설정
+            MOTFXY / MOTF Angular 사용시 외부 트리거 시작 (External /START) 사용시 지연 설정
             </summary>
             <param name="enc">x/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
+            <summary>
+            MOTF Angular 사용시 현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            </summary>
+            <param name="enc">엔코더 값 (counts)</param>
+            <param name="angle">각도 (˚)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfAngularCenter(System.Numerics.Vector2)">
+            <summary>
+            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
+            </summary>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfEncoderAngularSpeed(System.Single)">
+            <summary>
+            MOTF Angular 사용시 가상 엔코더 각속도 설정
+            </summary>
+            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfBegin(System.Boolean)">
             <summary>
-            리스트 명령 - MOTF 리스트 명령 시작
+            리스트 명령 - MOTF XY(직교) 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
             초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
             </summary>
-            <param name="encoderReset">엔코더 X,Y 초기화 여부 (</param>
+            <param name="encoderReset">엔코더 X,Y 초기화 여부(</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
-            리스트 명령 - 회전에 대한 MOTF 
+            리스트 명령 - MOTF Angular(회전)  
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfRotateBegin(System.Numerics.Vector2,System.UInt32)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfOverflowClear">
             <summary>
-            리스트 명령 - 회전에 대한 MOTF 
-            기구 회전부의 엔코더가 (Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 위치값
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
             </summary>
-            <param name="vCenter">회전 중심 (x,y)</param>
-            <param name="pulsedPerRevolution">한 회전당 발생하는 엔코더 개수 (최소 100 이상)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfRange(System.Numerics.Vector2,System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfLimitIf(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
             <summary>
-            리스트 명령 - MOTF 사용시 해당 범위를 설정
-            범위를 벋어나면 get_marking_info 를 통해 에러 비트가 설정되며
-            이를 회피하기 위해서 ListMOTFWaitLimitX 등의 조건을 통해 리스트 명령이 대기되도록 조치 필요
-            </summary>
-            <param name="xRange">X 영역 크기</param>
-            <param name="yRange">Y 영역 크기</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfSkipIfRange(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
-            <summary>
-            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령을 건너뜀(!!!) 
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령 실행. 맞지 않으면 건너뜀
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
-            리스트 명령 - 외부 트리거 시작 (External Start) 사용시 지연 설정
+            리스트 명령 - 외부 트리거 시작 (External /START) 사용시 지연 설정
             </summary>
-            <param name="enc">x/Y 엔코더 종류</param>
+            <param name="enc">X/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 단축(X 혹은 Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF XY 사용시 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
             </summary>
             <param name="enc">엔코더 축 지정</param>
@@ -16709,35 +17082,48 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF Angular 사용시 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            기구 회전부가 시계 방향으로 회전시 엔코더 증가(각도 증가) 방향
             </summary>
-            <param name="angle">각도</param>
+            <param name="angle">각도 (°)</param>
             <param name="cond">대기 조건</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - 두개의 엔코더가 (X, Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            리스트 명령 - MOTF XY 사용시 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
             <param name="positionX">X 축 위치 (mm)</param>
             <param name="rangeX">조건 범위 (mm)</param>
             <param name="positionY">Y 축 위치 (mm)</param>
             <param name="rangeY">조건 범위 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF XY / MOTF Angular 사용시 해당 범위를 설정
+            범위를 벋어나면 RtcMarkingInfo 내부에 에러 비트가 설정됨
+            CtlMotfOverflowClear 사용해 RtcMarkingInfo 내부 에러 비트 리셋 지원
+            </summary>
+            <param name="xRange">X 영역 크기 (mm)</param>
+            <param name="yRange">Y 영역 크기 (mm)</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
-            리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
-            MOTF 종료시 스캐너를 지정된 위치로 점프 가능
+            리스트 명령 - MOTF XY / MOTF Angular 로 동작하는 리스트 명령 끝
+            XY MOTF / Angular MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListMotfCall(System.UInt32,System.UInt32)">
             <summary>
-            특정 리스트 주소(위치)로 점프하여 연속 가공
+            리스트 명령 - 특정 리스트 주소(위치)로 점프하여 연속 가공
+            주의) 리스트 타입을 단일(Single)로 사용해야 특정 리스트 명령 위치가 유효함
             </summary>
-            <param name="listPosition">리스트 위치(0 ~ 2^20-1)</param>
-            <param name="repeats">반복 회수(1~)</param>
+            <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1). 단 리스트 타입을 Single 로 사용해야 한다</param>
+            <param name="repeats">반복 회수(0 : 무제한, 1 이상 : 지정된 회수만큼 반복)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -18904,6 +19290,14 @@
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
+            </summary>
+            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
+            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
@@ -19053,18 +19447,18 @@
             <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfAngular(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfAngularCenter(System.Numerics.Vector2)">
             <summary>
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderAngularSpeed(System.Single)">
             <summary>
             가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(˚/s)</param>
+            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMotfEncoderSpeed(System.Single,System.Single)">
@@ -19127,8 +19521,21 @@
             리스트 명령 - 회전에 대한 MOTF 
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfLimitIf(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령 실행. 맞지 않으면 건너뜀
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -19155,6 +19562,16 @@
             </summary>
             <param name="angle">각도</param>
             <param name="cond">대기 조건</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위를 설정
+            범위를 벋어나면 RtcMarkingInfo 내부에 에러 비트가 설정됨
+            CtlMotfOverflowClear 사용해 RtcMarkingInfo 내부 에러 비트 리셋 지원
+            </summary>
+            <param name="xRange">X 영역 크기 (mm)</param>
+            <param name="yRange">Y 영역 크기 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
@@ -20892,6 +21309,14 @@
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcDualHead.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 듀얼 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
+            </summary>
+            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
+            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.CorrectionFileHeaderParam">
             <summary>
             보정 파일 헤더 파라메터 조회 항목
@@ -21540,7 +21965,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncX">
             <summary>
-            X 엔코더 (0)
+            X 엔코더 (0) / Angular 엔코더 (0)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncY">
@@ -21560,7 +21985,9 @@
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Auto">
             <summary>
-            자동 = 호출될 당시의 입력 엔코더 위치를 기준으로 자동으로 판단 (리스트 명령이 추후 실행되고, 이때의 기구 상태에 따라 가변적임)
+            자동 = 실행될 당시의 입력 엔코더 값을 기준으로 자동 판단 (리스트 명령이 실행되는 시점에서의 입력 엔코더값이 사용됨)
+            예) 입력 엔코더값 1000, 비교 위치 2000 -> Over 로 자동 판단
+            예) 입력 엔코더값 1000, 비교 위치 0 -> Under 로 자동 판단
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Over">
@@ -21601,7 +22028,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.MotfEncoderType.XY">
             <summary>
-            X/Y 엔코더 리스트 명령 구동중
+            XY 엔코더 리스트 명령 구동중
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotfEncoderType.Angular">
@@ -21646,24 +22073,52 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncCountsPerRevolution">
             <summary>
-            단위 회전당 엔코더 개수 (enc/rev)
+            MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
+            주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
             |Resolution| > 100.0
-            Resolution can be negative depending on the rotation direction of the workpiece. The restricted value range applies only to the absolute value.
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncSimulatedAngularSpeed">
             <summary>
-            엔코더 가상 각속도 (˚/sec)
+            MOTF Angular 사용시 엔코더 가상 각속도 (˚/sec)
+            주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.MotfAngularCenter">
             <summary>
-            회전 중심 좌표 (스캐너 중심 대비 가상 영역의 좌표)
+            MOTF Angular 사용시 회전 중심 위치 상대 좌표 (스캐너 중심으로 부터 떨어진 거리값)
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
-            입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
+            MOTF XY 사용시 입력 엔코더의 초기화 (오프셋값 Dx, Dy를 설정 가능)
             </summary>
             <param name="offsetX">X 초기화 위치 (mm)</param>
             <param name="offsetY">Y 초기화 위치 (mm)</param>
@@ -21671,7 +22126,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfGetEncoder(System.Int32@,System.Int32@,System.Single@,System.Single@)">
             <summary>
-            현재 엔코더 값/X,Y 위치 얻기
+            MOTF XY 사용시 현재 엔코더 값/X,Y 위치 얻기
             </summary>
             <param name="encX">X 엔코더 값 (counts)</param>
             <param name="encY">Y 엔코더 값 (counts)</param>
@@ -21681,7 +22136,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
-            외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
+            MOTF XY 사용시 외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
             가상 입력 엔코더 속도를 지정하면 내부 1MHz의 가상 엔코더가 활성화되어 외부 기구부가 이동하는 효과 발생
             X,Y 모두 0 입력시 가상 엔코더 비활성화됨
             </summary>
@@ -21691,10 +22146,9 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfTrackingError(System.UInt32,System.UInt32)">
             <summary>
-            Motf 사용시 스캐너의 트래킹 에러 보상
+            MOTF XY 사용시 스캐너의 트래킹 에러 보상
             0, 0 으로 지정시 Disabled 됨
             스캐너 Spec 문서에 기재된 Tracking Error 시간값 설정
-            
             EC = E + (E – EP ) * TrackingError,
             EC : 현재 사이클에서의 엔코더 보상값
             E : 현재 엔코더 값
@@ -21706,7 +22160,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfCompensateTable(System.String,System.UInt32)">
              <summary>
-             엔코더 테이블 보정 파일 로드
+             MOTF XY 사용시 엔코더 테이블 보정 파일 로드
              스테이지의 기구 왜곡을 해소하기 위해 통상 2D 매핑(Mapping) 을 진행하는데, 이 매핑값들을 RTC 에도 설정하여 사용한다. 
              이는 기구부에서 발생시키는 엔코더는 매핑전 신호(펄스)가 전달되어 위치 왜곡이 발생하는데 이를 보정해주는 기능
             
@@ -21725,7 +22179,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
             <summary>
-            외부 트리거 시작 (External /START) 사용시 지연 설정
+            MOTFXY / MOTF Angular 사용시 외부 트리거 시작 (External /START) 사용시 지연 설정
             </summary>
             <param name="enc">x/Y 엔코더 종류</param>
             <param name="distance">엔코더 지연 거리 (mm)</param>
@@ -21733,29 +22187,64 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfGetAngularEncoder(System.Int32@,System.Single@)">
             <summary>
-            현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
+            MOTF Angular 사용시 현재 엔코더 값/각도 얻기 (회전축 전용, Enc0 엔코더 입력 사용됨)
             </summary>
             <param name="enc">엔코더 값 (counts)</param>
             <param name="angle">각도 (˚)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfAngular(System.Numerics.Vector2)">
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfAngularCenter(System.Numerics.Vector2)">
             <summary>
-            기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            MOTF Angular 사용시 회전 중심의 위치
+            스캐너에서의 상대적인 회전 중심 x,y (mm) 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderAngularSpeed(System.Single)">
             <summary>
-            가상 엔코더 각속도 설정
+            MOTF Angular 사용시 가상 엔코더 각속도 설정
             </summary>
-            <param name="encSimulatedSpeed">각속도(˚/s)</param>
+            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfBegin(System.Boolean)">
             <summary>
-            리스트 명령 - MOTF 리스트 명령 시작
+            리스트 명령 - MOTF XY(직교) 리스트 명령 시작
             엔코더 값 초기화시에는 CtlEncoderReset에서 설정한 오프셋 값으로 초기화되며,
             초기화를 하지 않더라도 ListBegin 시에는 외부 트리거 (/START)를 사용가능하도록 설정하기 때문에
             해당 트리거 신호가 활성화(Closed)되면 엔코더가 자동으로 리셋(초기화) 되도록 설정됨
@@ -21765,11 +22254,51 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
-            리스트 명령 - 회전에 대한 MOTF 
+            리스트 명령 - MOTF Angular(회전)  
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
+            예를 들어 회전 중심위치가 -50, 0 일 경우
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                                    
+                                           |                 |--------|--------|                    
+                                           |                 |        |        |
+                                           |                 |        |        |       
+                                           |                 |        |        |    
+            ------------------------ Rotate Center --------------- Scanner ----|
+                                       -50 , 0               |     50 , 0      |    
+                                           |                 |        |        |      
+                                           |                 |        |        |
+                                           |                 |--------|--------|                    
+                                           |                          .          
+                                           |                         .           
+                                           |                        .            
+                                           |                      .             
+                                           |                    .                
+                                           |                 .                   
+                                           |   /          . 
+                                           |   --  Clock Wise = Angle + = Enc + 
+                                           |   \
             </summary>
-            <param name="vCenter">회전 중심 가상 X,Y 좌표 위치. 스캐너 중심으로 부터 상대적인 회전의 중심 위치</param>
+            <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfOverflowClear">
+            <summary>
+            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            오류 여부는 RtcMarkingInfo 에서 제공됨 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfLimitIf(SpiralLab.Sirius.RtcEncoder,SpiralLab.Sirius.EncoderRangeCondition)">
+            <summary>
+            리스트 명령 - MOTF 사용시 해당 범위 조건에 맞으면 다음 리스트 명령 실행. 맞지 않으면 건너뜀
+            </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListExternalControlDelay(SpiralLab.Sirius.RtcEncoder,System.Single)">
@@ -21782,7 +22311,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWait(SpiralLab.Sirius.RtcEncoder,System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF XY 사용시 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             (단축 동기화 용)
             </summary>
             <param name="enc">엔코더 축 지정</param>
@@ -21792,7 +22321,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularWait(System.Single,SpiralLab.Sirius.EncoderWaitCondition)">
             <summary>
-            리스트 명령 - 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            리스트 명령 - MOTF Angular 사용시 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
+            기구 회전부가 시계 방향으로 회전시 엔코더 증가(각도 증가) 방향
             </summary>
             <param name="angle">각도 (°)</param>
             <param name="cond">대기 조건</param>
@@ -21800,7 +22330,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            리스트 명령 - MOTF XY 사용시 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
             </summary>
             <param name="positionX">X 축 위치 (mm)</param>
             <param name="rangeX">조건 범위 (mm)</param>
@@ -21808,17 +22338,28 @@
             <param name="rangeY">조건 범위 (mm)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
+            <summary>
+            리스트 명령 - MOTF XY / MOTF Angular 사용시 해당 범위를 설정
+            범위를 벋어나면 RtcMarkingInfo 내부에 에러 비트가 설정됨
+            CtlMotfOverflowClear 사용해 RtcMarkingInfo 내부 에러 비트 리셋 지원
+            </summary>
+            <param name="xRange">X 영역 크기 (mm)</param>
+            <param name="yRange">Y 영역 크기 (mm)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfEnd(System.Numerics.Vector2)">
             <summary>
-            리스트 명령 - MOTF 로 동작하는 리스트 명령 끝
-            MOTF 종료시 스캐너를 지정된 위치로 점프 가능
+            리스트 명령 - MOTF XY / MOTF Angular 로 동작하는 리스트 명령 끝
+            XY MOTF / Angular MOTF 종료시 스캐너를 지정된 위치로 점프 가능
             </summary>
             <param name="vPosition">점프 위치 (x,y) (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfCall(System.UInt32,System.UInt32)">
             <summary>
-            특정 리스트 주소(위치)로 점프하여 연속 가공
+            리스트 명령 - 특정 리스트 주소(위치)로 점프하여 연속 가공
+            주의) 리스트 타입을 단일(Single)로 사용해야 특정 리스트 명령 위치가 유효함
             </summary>
             <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1). 단 리스트 타입을 Single 로 사용해야 한다</param>
             <param name="repeats">반복 회수(0 : 무제한, 1 이상 : 지정된 회수만큼 반복)</param>

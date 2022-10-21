@@ -40,5 +40,5 @@ using System.Windows;
 // É possível especificar todos os valores ou usar como padrão os Números de Build e da Revisão
 // utilizando o "*" como mostrado abaixo:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.118.0.0")]
-[assembly: AssemblyFileVersion("1.118.0.0")]
+[assembly: AssemblyVersion("1.120.0.0")]
+[assembly: AssemblyFileVersion("1.120.0.0")]

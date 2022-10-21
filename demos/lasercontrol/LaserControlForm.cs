@@ -184,7 +184,7 @@ namespace SpiralLab.Sirius
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
 
             bool success = true;
-            success &= rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);    // correction file (스캐너 보정 파일)
+            success &= rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);    // correction file (스캐너 보정 파일)
             success &= rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             success &= rtc.CtlSpeed(500, 500); // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             success &= rtc.CtlDelay(10, 100, 200, 200, 0); // scanner and laser delays (스캐너/레이저 지연값 설정)
