@@ -102,8 +102,8 @@ namespace SpiralLab.Sirius
             {
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine("");
-                Console.WriteLine("'S' : simulation mode enabled");
-                Console.WriteLine("'H' : hardware mode enabled");
+                Console.WriteLine("'S' : enable simulation mode");
+                Console.WriteLine("'H' : enable hardware mode");
                 Console.WriteLine("'V' : syncaxis viewer with simulation result");
                 Console.WriteLine("'F1' : draw square 2D with scanner only");
                 Console.WriteLine("'F2' : draw square 2D with stage only");
@@ -484,9 +484,10 @@ namespace SpiralLab.Sirius
         static void SyncAxisViewer(IRtcSyncAxis rtcSyncAxis)
         {
             var exeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer", "syncAXIS_Viewer.exe");
-            string simulatedFileName = Path.Combine(exeFileName, rtcSyncAxis.SimulationFileName);
+            string simulatedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", rtcSyncAxis.SimulationFileName);
             if (File.Exists(simulatedFileName))
             {
+                Console.WriteLine($"syncAXIS Viewer trying to open: {simulatedFileName}");
                 Task.Run(() =>
                 {
                     // Notice
@@ -535,10 +536,11 @@ namespace SpiralLab.Sirius
 
                 for (int i=0; i< rtc.StageCounts; i++)
                     Console.WriteLine($"Stage{i+1} Utilization: {lastJob.UtilizedStages[i]}");
-                Console.WriteLine($"Stage Position Nax: {lastJob.Characteristic.Stage.StagePosMax} mm");
+                Console.WriteLine($"Stage Position Max: {lastJob.Characteristic.Stage.StagePosMax} mm");
                 Console.WriteLine($"Stage Velocity Max: {lastJob.Characteristic.Stage.StageVelMax} mm/s");
                 Console.WriteLine($"Stage Accelation Max: {lastJob.Characteristic.Stage.StageAccMax} (mm/s²)");
                 Console.WriteLine($"Stage Jerk Max: {lastJob.Characteristic.Stage.StageJerkMax} (mm/s³)");
+                Console.WriteLine("");
             }
         }
     }
