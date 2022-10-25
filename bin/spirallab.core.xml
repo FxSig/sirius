@@ -409,6 +409,127 @@
             송수신 데이타를 기록한 모니터링용 폼
             </summary>
         </member>
+        <member name="M:SpiralLab.SerialPort.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.SerialPort.#ctor(System.String)">
+            <summary>
+            생성자
+            </summary>
+            <param name="portName"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.#ctor(System.String,System.Int32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="portName"></param>
+            <param name="baudRate"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity)">
+            <summary>
+            생성자
+            </summary>
+            <param name="portName"></param>
+            <param name="baudRate"></param>
+            <param name="parity"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32)">
+            <summary>
+            생성자
+            </summary>
+            <param name="portName"></param>
+            <param name="baudRate"></param>
+            <param name="parity"></param>
+            <param name="dataBits"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.#ctor(System.String,System.Int32,System.IO.Ports.Parity,System.Int32,System.IO.Ports.StopBits)">
+            <summary>
+            생성자
+            </summary>
+            <param name="portName"></param>
+            <param name="baudRate"></param>
+            <param name="parity"></param>
+            <param name="dataBits"></param>
+            <param name="stopBits"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Open">
+            <summary>
+            포트 오픈
+            </summary>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Read(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            버퍼 읽기
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.ReadChar">
+            <summary>
+            문자 읽기
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Read(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            문자 배열 읽기
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.ReadByte">
+            <summary>
+            바이트 읽기
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.ReadLine">
+            <summary>
+            문자열 읽기
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.ReadTo(System.String)">
+            <summary>
+            지정된 종결자까지 읽기
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Write(System.String)">
+            <summary>
+            쓰기
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Write(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            문자 배열 쓰기
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.Write(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            바이트 배열 쓰기
+            </summary>
+            <param name="buffer"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:SpiralLab.SerialPort.WriteLine(System.String)">
+            <summary>
+            문자열 쓰기
+            </summary>
+            <param name="text"></param>
+        </member>
         <member name="T:SpiralLab.IServiceAuxiliary">
             <summary>
             Aux 서비스 인터페이스

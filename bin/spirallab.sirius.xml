@@ -3448,6 +3448,11 @@
             Correction3DRtc 기반으로 동작
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcForm.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcForm.OnUserImportUpper">
             <summary>
             사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
@@ -3503,6 +3508,11 @@
             스캐너 3D 보정용 폼
             RTC4의 ctb 파일 포맷용 
             Correction3DRtcCtb 기반으로 동작
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCtbForm.Index">
+            <summary>
+            식별번호
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCtbForm.OnUserImportUpper">
@@ -3562,6 +3572,11 @@
             Correction2DRtcCtb 기반
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCtbForm.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCtbForm.OnUserImport">
             <summary>
             사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
@@ -3617,6 +3632,11 @@
             Correction2DRtcCt5 기반으로 동작
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Correction2DRtcCt5Form.Index">
+            <summary>
+            식별번호
+            </summary>
+        </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCt5Form.OnUserImport">
             <summary>
             사용자 포맷의 파일을 Import 할때 발생하는 이벤트 (외부 사용자용)
@@ -3670,6 +3690,11 @@
             스캐너 3D 보정용 폼
             RTC5/6의 ct5 파일 포맷용 
             Correction3DRtcCt5 기반으로 동작
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Correction3DRtcCt5Form.Index">
+            <summary>
+            식별번호
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCt5Form.OnUserImportUpper">

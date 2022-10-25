@@ -187,9 +187,6 @@
   <data name="play_48px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\play_48px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="laser_beam_26px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\i3\laser_beam_26px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="rotate_left_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotate_left_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -328,9 +325,6 @@
   <data name="tenkey" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tenkey.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="laser_beam_26px_RED" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\i3\laser_beam_26px_RED.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="stop_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\stop_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -357,9 +351,6 @@
   </data>
   <data name="small_lens_32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\small_lens_32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8_home_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\i3\icons8_home_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="spirallab" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\spirallab.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -546,8 +537,5 @@
   </data>
   <data name="rotate_right_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotate_right_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="icons8_vertical_line_24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\i3\icons8_vertical_line_24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

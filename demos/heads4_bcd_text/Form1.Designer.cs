@@ -37,9 +37,10 @@
             this.siriusEditorForm3 = new SpiralLab.Sirius.SiriusEditorForm();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.siriusEditorForm4 = new SpiralLab.Sirius.SiriusEditorForm();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTestMark = new System.Windows.Forms.Button();
             this.cbbIndex = new System.Windows.Forms.ComboBox();
             this.btnOpen = new System.Windows.Forms.Button();
+            this.btnReady = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -89,7 +90,7 @@
             this.siriusEditorForm1.FileName = "(Empty)";
             this.siriusEditorForm1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm1.HidePropertyGrid = false;
-            this.siriusEditorForm1.Index = ((uint)(0u));
+            this.siriusEditorForm1.Index = ((int)(0u));
             this.siriusEditorForm1.Laser = null;
             this.siriusEditorForm1.Location = new System.Drawing.Point(3, 4);
             this.siriusEditorForm1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -132,7 +133,7 @@
             this.siriusEditorForm2.FileName = "(Empty)";
             this.siriusEditorForm2.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm2.HidePropertyGrid = false;
-            this.siriusEditorForm2.Index = ((uint)(0u));
+            this.siriusEditorForm2.Index = ((int)(0u));
             this.siriusEditorForm2.Laser = null;
             this.siriusEditorForm2.Location = new System.Drawing.Point(3, 4);
             this.siriusEditorForm2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -174,7 +175,7 @@
             this.siriusEditorForm3.FileName = "(Empty)";
             this.siriusEditorForm3.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm3.HidePropertyGrid = false;
-            this.siriusEditorForm3.Index = ((uint)(0u));
+            this.siriusEditorForm3.Index = ((int)(0u));
             this.siriusEditorForm3.Laser = null;
             this.siriusEditorForm3.Location = new System.Drawing.Point(3, 3);
             this.siriusEditorForm3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -216,7 +217,7 @@
             this.siriusEditorForm4.FileName = "(Empty)";
             this.siriusEditorForm4.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.siriusEditorForm4.HidePropertyGrid = false;
-            this.siriusEditorForm4.Index = ((uint)(0u));
+            this.siriusEditorForm4.Index = ((int)(0u));
             this.siriusEditorForm4.Laser = null;
             this.siriusEditorForm4.Location = new System.Drawing.Point(3, 3);
             this.siriusEditorForm4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -236,16 +237,16 @@
             this.siriusEditorForm4.Size = new System.Drawing.Size(994, 717);
             this.siriusEditorForm4.TabIndex = 2;
             // 
-            // button1
+            // btnTestMark
             // 
-            this.button1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(550, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(80, 28);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Test Mark";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnTestMark.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTestMark.Location = new System.Drawing.Point(640, 3);
+            this.btnTestMark.Name = "btnTestMark";
+            this.btnTestMark.Size = new System.Drawing.Size(80, 28);
+            this.btnTestMark.TabIndex = 4;
+            this.btnTestMark.Text = "Test Mark";
+            this.btnTestMark.UseVisualStyleBackColor = true;
+            this.btnTestMark.Click += new System.EventHandler(this.btnTestMark_Click);
             // 
             // cbbIndex
             // 
@@ -272,14 +273,26 @@
             this.btnOpen.UseVisualStyleBackColor = true;
             this.btnOpen.Click += new System.EventHandler(this.btnOpen_Click);
             // 
+            // btnReady
+            // 
+            this.btnReady.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReady.Location = new System.Drawing.Point(550, 3);
+            this.btnReady.Name = "btnReady";
+            this.btnReady.Size = new System.Drawing.Size(80, 28);
+            this.btnReady.TabIndex = 7;
+            this.btnReady.Text = "Ready";
+            this.btnReady.UseVisualStyleBackColor = true;
+            this.btnReady.Click += new System.EventHandler(this.btnReady_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1008, 761);
+            this.Controls.Add(this.btnReady);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.cbbIndex);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnTestMark);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -306,9 +319,10 @@
         private SpiralLab.Sirius.SiriusEditorForm siriusEditorForm2;
         private SpiralLab.Sirius.SiriusEditorForm siriusEditorForm4;
         private SpiralLab.Sirius.SiriusEditorForm siriusEditorForm1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTestMark;
         private System.Windows.Forms.ComboBox cbbIndex;
         private System.Windows.Forms.Button btnOpen;
+        private System.Windows.Forms.Button btnReady;
     }
 }
 
