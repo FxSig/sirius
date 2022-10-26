@@ -40,7 +40,6 @@ namespace SpiralLab.Sirius
     /// </summary>
     class Program5
     {
-
         // rotate center position 
         // 스캐너 중심에서 회전 중심으로의 위치
         public static Vector2 RotateCenter = new Vector2(0, 0);
@@ -170,9 +169,9 @@ namespace SpiralLab.Sirius
             laser.Dispose();
         }
 
-        private static void TimerCallback(Object objecct)
+        private static void TimerCallback(Object arg)
         {
-            var rtc = objecct as IRtc;
+            var rtc = arg as IRtc;
             var rtcMotf = rtc as IRtcMOTF;
             if (rtcMotf.CtlMotfGetAngularEncoder(out int encoder, out float angle))
             {

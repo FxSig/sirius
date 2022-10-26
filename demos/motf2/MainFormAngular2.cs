@@ -20,7 +20,7 @@
  * 
  * 파일경로 : bin\recipes\motf_angular.sirius
  * 엔코더 리셋, 엔코더 시뮬레이션을 테스트 한다
- * 엔코더 대기 위치를 설정하고 원 형상을 가공한다
+ * 엔코더 대기 위치를 설정하고 가공 데이타를 동적 생성하여 가공한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -33,19 +33,28 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Numerics;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
     /// <summary>
-    /// 회전 엔코더 기반 MOTF #1
-    /// 미리 생성한 가공 데이타 사용
+    /// 회전 엔코더 기반 MOTF #2
+    /// 가공 데이타를 동적으로 생성 사용
     /// </summary>
-    public partial class MainFormAngular : Form
+    public partial class MainFormAngular2 : Form
     {
-        public MainFormAngular()
+
+        // rotate center position 
+        // 스캐너 중심에서 회전 중심으로의 위치
+        public static Vector2 RotateCenter = new Vector2(-50, 0);
+
+
+
+        public MainFormAngular2()
         {
             InitializeComponent();
 
@@ -144,55 +153,90 @@ namespace SpiralLab.Sirius
 
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
-            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "recipes", "motf_angular.sirius");
-            var doc = DocumentSerializer.OpenSirius(filename);
+            // 문서 생성
+            var doc = new DocumentDefault();
 
+            // create layer
+            // 레이어 생성
+            var layer = new Layer("Default");
+
+            // motf angular 시작 개체 추가
+            var motfAngularBegin = new MotfAngularBegin()
+            {
+                IsEncoderReset = true,
+                Center = RotateCenter,
+            };
+            layer.Add(motfAngularBegin);
+
+
+            // 45, 135, 225, 270 위치에 4개의 폴리라인 가공
+            for (float angle = 45; angle < 360; angle += 90)
+            {
+                // motf angular 대기 각도 개체 추가
+                var motfAngularWait = new MotfAngularWait()
+                {
+                    WaitAngle = angle,
+                    Condition = EncoderWaitCondition.Over,
+                };
+                layer.Add(motfAngularWait);
+
+                // 사각형 모양(임의의 폐곡선)의 폴리라인 개체 추가
+                var lwPolyline = new LwPolyline();
+                lwPolyline.Color2 = System.Drawing.Color.White;
+                lwPolyline.Add(new LwPolyLineVertex(-5f, 5f));
+                lwPolyline.Add(new LwPolyLineVertex(5f, 5f));
+                lwPolyline.Add(new LwPolyLineVertex(5f, -5f));
+                lwPolyline.Add(new LwPolyLineVertex(-5f, -5f));
+                lwPolyline.IsClosed = true;
+                // 내부 해치 생성
+                //lwPolyline.IsHatchable = true;
+                //lwPolyline.HatchMode = HatchMode.CrossLine;
+                //lwPolyline.HatchInterval = 0.2f;
+                //lwPolyline.HatchExclude = 0;
+                //lwPolyline.HatchAngle = 0;
+                //lwPolyline.HatchAngle2 = 90;
+                // transit rotate center to scanner center distance
+                // 회전 중심으로 부터 스캐너 중심위치 거리로 이동
+                lwPolyline.Transit(-RotateCenter);
+                // rotate figure by rotate center (CW direction =  encoder +)
+                // 회전 중심 기준으로 회전 (물체의 시계방향 회전이 엔코더 증가 방향)
+                lwPolyline.Rotate(-angle, Vector2.Zero);
+
+                // 폴리라인 개체를 레이어에 추가
+                layer.Add(lwPolyline);
+            }
+
+            // motf angular 끝 개체 추가
+            var motfAngularEnd = new MotfEnd()
+            {
+                  Location = Vector2.Zero,
+            };
+            layer.Add(motfAngularEnd);
+
+            // 내부 개체들의 데이타 재생성 
+            layer.Regen();
+
+            // 펜 파라메터 설정 (가공 조건 설정)
+            var pen = doc.Pens.ColorOf(System.Drawing.Color.White) as PenDefault;
+            pen.Frequency = 50 * 1000;
+            pen.PulseWidth = 2;
+            pen.JumpSpeed = 1000;
+            pen.MarkSpeed = 1000;
+            pen.LaserOnDelay = 0;
+            pen.LaserOffDelay = 0;
+            pen.ScannerJumpDelay = 200;
+            pen.ScannerMarkDelay = 50;
+            pen.ScannerPolygonDelay = 10;
+            pen.LaserQSwitchDelay = 0;
+
+            // 레이어를 문서에 추가
+            doc.Layers.Add(layer);
+
+            // 이 레이어를 활성 레이어로 지정
+            doc.Layers.Active = layer;
+
+            // 편집기에 문서 지정
             siriusEditorForm1.Document = doc;
-
-            string message =
-                @"
-1. 마커 창을 실행 (F1)
-2. (외부 엔코더 입력 결선이 준비되지 않은 경우) MOTF 탭으로 이동 (Angular 탭 이동): 엔코더 시뮬레이션 각속도 10 °/s 설정
-3. 옵션 탭으로 이동 : 리스트 버퍼 모드 Single 설정
-4. 오퍼레이션 탭으로 이동 : 가공 시작 
-5. 엔코더 리셋 -> 45 ° 위치에서 원 가공 시작 -> 360° 위치 대기를 반복함
-                ";
-
-            MessageBox.Show(message, "How to start");
-
-            //popup "marker" window (F1)
-            //마커 창을 실행 (F1)
-
-            //switch tab to "marking on the fly"
-            // MOTF 탭으로 이동
-
-            //input encoder simulation speed with angular : 10 °/s and set to start
-            // 외부 엔코더 입력 결선이 준비되지 않은 경우에 한함
-            // 회전 엔코더 시뮬레이션 각속도 입력 : 10 °/s 후 set 실행
-
-            // switch table to "option "
-            // 옵션 탭으로 이동
-            // list buffer handling to "single"
-            // 리스트 버퍼 모드 단일 로 설정
-
-            // switch tab to "operation"
-            // 오퍼레이션 탭으로 이동
-
-            // press "start" button
-            // 가공 시작 버튼 클릭
-
-            // marking process
-            // 실행 과정
-            // mark circle every 45 ° interval 
-            // 엔코더가 45° 각도에 도달하면 원 형상을 가공하고 360° 위치에 도달하면 이를 다시 반복
-            // -> 매 45 에서 원 모양 가공하고 다시 360° 을 회전함
-            //
-            // 1. motf angular begin with encoder reset : MOTF 시작 및 입력 엔코더 리셋
-            // 2. wait angular encoder until angle has over 45° : 엔코더 각도가 45° 가 넘을때 까지 대기
-            // 3. mark circle : 원 가공 형상
-            // 4. motf end : MOTF 끝
-            // 5. wait angular encoder until angle has over 360° : 엔코더 각도가 360° 가 넘을때 까지 대기
-            // 6. jump to start of list buffer to repeat : 처음 부터 반복
         }
     }
 }

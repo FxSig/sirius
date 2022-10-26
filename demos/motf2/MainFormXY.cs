@@ -39,6 +39,9 @@ using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
 {
+    /// <summary>
+    /// XY 엔코더 기반 MOTF
+    /// </summary>
     public partial class MainFormXY : Form
     {
         public MainFormXY()
