@@ -91,7 +91,7 @@
         <member name="T:SpiralLab.Sirius.ITextChangeable">
             <summary>
             ITextChangeable 인터페이스
-            변경 가능한 텍스트 데이타를 가지고 있는 엔티티를 위한 인터페이스
+            <para>변경 가능한 텍스트 데이타를 가지고 있는 엔티티를 위한 인터페이스</para>
             </summary>    
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.TextData">
@@ -208,10 +208,19 @@
             <param name="skipCount"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.TextChangeableHelper.OnDateTimeConverting(SpiralLab.Sirius.IRtcDateTimeOffset,System.String,System.String@)">
+            <summary>
+            이벤트 핸들러 호출
+            </summary>
+            <param name="rtcDateTimeOffset"></param>
+            <param name="text"></param>
+            <param name="converted"></param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.IScriptable">
             <summary>
             IScriptable 인터페이스
-            C# 스크립트를 통해 가공 데이타를 변환하는 기능
+            <para>C# 스크립트를 통해 내부 데이타를 변환하는 기능</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.IsScriptEnabled">
@@ -277,6 +286,16 @@
             ALC Begin 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.AlcBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcBegin.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.AlcBegin.AlcPercentage100">
             <summary>
             ALC 사용시 100% 출력값
@@ -305,14 +324,34 @@
         </member>
         <member name="M:SpiralLab.Sirius.AlcBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.AlcBegin.Regen">
+            <summary>
+            데이타 갱신
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.JumpMode">
             <summary>
             점프 튜닝 모드 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JumpMode.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JumpMode.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JumpMode.Flag">
+            <summary>
+            점프 모드
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.JumpMode.#ctor">
@@ -328,7 +367,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.JumpMode.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -338,16 +377,26 @@
             Motf Wait 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularWait.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularWait.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotfAngularWait.Signal">
             <summary>
             엔코더 신호 종류 
-            (X 엔코더, ENC0) 으로 고정됨
+            <para>(X 엔코더, ENC0) 으로 고정됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotfAngularWait.WaitAngle">
             <summary>
             대기할 각도 (˚)
-            주의) 대상물체의 시계방향 회전이 엔코더 증가방향
+            <para>주의) 대상물체의 시계방향 회전이 엔코더 증가방향</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotfAngularWait.Condition">
@@ -363,7 +412,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfAngularWait.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -371,6 +420,32 @@
         <member name="T:SpiralLab.Sirius.MotfAngularBegin">
             <summary>
             Motf Angular Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularBegin.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularBegin.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularBegin.IsEncoderReset">
+            <summary>
+            엔코더 리셋 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfAngularBegin.Center">
+            <summary>
+            회전 중심 x,y 위치 (mm) 
+            <para>스캐너로 부터 회전 중심까지의 거리값</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotfAngularBegin.Clone">
@@ -381,7 +456,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfAngularBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -389,7 +464,47 @@
         <member name="T:SpiralLab.Sirius.SyncAxisCalculationDynamics">
             <summary>
             SyncAXIS 스캔 장치의 계산 역학 제한값 설정용 
-            (점프, 마크의 가속도, 가가속도 역학 제한)
+            <para>(점프, 마크의 가속도, 가가속도 역학 제한)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.IsJumpDynamics">
+            <summary>
+            점프 계산 역학 제한값 사용 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.JumpAngularAcc">
+            <summary>
+            각 가속도 제한값 (rad/s²
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.JumpAngularJerk">
+            <summary>
+            각 가가속도 제한값 (rad/s³)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.IsMarkDynamics">
+            <summary>
+            마크 계산 역학 제한값 사용 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.MarkAngularAcc">
+            <summary>
+            각 가속도 제한값 (rad/s²)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SyncAxisCalculationDynamics.MarkAngularJerk">
+            <summary>
+            각 가가속도 제한값 (rad/s³)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.#ctor">
@@ -405,7 +520,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.SyncAxisCalculationDynamics.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -413,6 +528,16 @@
         <member name="T:SpiralLab.Sirius.AlcSyncAxisEnd">
             <summary>
             ALC by Vector Dependent End 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcSyncAxisEnd.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcSyncAxisEnd.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.#ctor">
@@ -428,14 +553,29 @@
         </member>
         <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisEnd.Regen">
+            <summary>
+            데이타 갱신
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.AlcSyncAxisBegin">
             <summary>
             ALC by Vector Dependent Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcSyncAxisBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AlcSyncAxisBegin.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AlcSyncAxisBegin.ContourDepSpeedControlDirection">
@@ -466,14 +606,20 @@
         </member>
         <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.AlcSyncAxisBegin.Regen">
+            <summary>
+            데이타 갱신
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.BarcodeDataMatrix">
             <summary>
             barcode datamatrix entity
+            <para>deprecated</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Clone">
@@ -484,14 +630,34 @@
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BarcodeDataMatrix2">
             <summary>
-            barcode datamatrix v2 entity
+            2D 바코드 (데이타매트릭스)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeDataMatrix2.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeDataMatrix2.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeDataMatrix2.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeDataMatrix2.Offsets">
+            <summary>
+            오프셋 배열
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Clone">
@@ -502,7 +668,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeDataMatrix2.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -528,6 +694,7 @@
         <member name="T:SpiralLab.Sirius.BarcodeQR">
             <summary>
             barcode qr code entity
+            <para>deprecated</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR.Clone">
@@ -538,14 +705,34 @@
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BarcodeQR2">
             <summary>
-            barcode qr code v2 entity
+            2D 바코드 QR 개체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeQR2.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeQR2.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeQR2.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.BarcodeQR2.Offsets">
+            <summary>
+            오프셋 배열
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR2.Clone">
@@ -556,7 +743,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.BarcodeQR2.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -624,6 +811,11 @@
             생성자
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.CellDots">
+            <summary>
+            도트 셀
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CellDots.DotFactor">
             <summary>
             개별 셀의 배열 (1x1, 2x2, 3x3,...)
@@ -642,13 +834,13 @@
         <member name="P:SpiralLab.Sirius.CellDots.PixelTime">
             <summary>
             픽셀 가공 시간 (usec) 
-            주의) 픽셀 가공 주기 시간 보다 작은값이어야 한다
+            <para>주의) 픽셀 가공 주기 시간 보다 작은값이어야 한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CellDots.PixelChannel">
             <summary>
             픽셀 아나로그 출력 채널
-            주의) 반드시 지정되어야 한다
+            <para>주의) 반드시 지정되어야 한다</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LineDirection.Horizontal">
@@ -659,6 +851,11 @@
         <member name="F:SpiralLab.Sirius.LineDirection.Vertical">
             <summary>
             수직
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.CellLines">
+            <summary>
+            라인 셀
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CellLines.DotFactor">
@@ -676,6 +873,11 @@
             지그 재그 가공 여부
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.CellOutLines">
+            <summary>
+            외곽선 셀
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CellHatches.DotFactor">
             <summary>
             개별 셀의 배열 (1x1, 2x2, 3x3,...
@@ -684,7 +886,7 @@
         <member name="P:SpiralLab.Sirius.CellHatches.HatchFactor">
             <summary>
             개별 셀의 비율 (스케일)
-            주의: 1 보다 작은값
+            <para>주의: 1 보다 작은값</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CellHatches.HatchMode">
@@ -717,6 +919,11 @@
             외곽 가공을 우선할지 여부
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.CellCircles">
+            <summary>
+            원형 셀
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CellCircles.DotFactor">
             <summary>
             개별 셀의 배열 (1x1, 2x2, 3x3,...)
@@ -725,7 +932,7 @@
         <member name="P:SpiralLab.Sirius.CellCircles.RadiusFactor">
             <summary>
             개별 셀의 비율 (스케일)
-            주의: 1 보다 작은값
+            <para>주의: 1 보다 작은값</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CellCircles.HatchInterval">
@@ -751,7 +958,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Circle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -759,6 +966,26 @@
         <member name="T:SpiralLab.Sirius.Fiducial">
             <summary>
             Fiducial 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Fiducial.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Fiducial.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Fiducial.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Fiducial.Location">
+            <summary>
+            기준 위치
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Fiducial.Clone">
@@ -772,6 +999,27 @@
             Motf Repeat 엔티티 객체 
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotfRepeat.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfRepeat.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfRepeat.ListPosition">
+            <summary>
+            점프 리스트 위치 
+            <para>리스트 타입을 Single 사용: 점프위치 0 추천</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfRepeat.ListRepeat">
+            <summary>
+            반복 호출 회수
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.MotfRepeat.Clone">
             <summary>
             복사본 생성
@@ -780,7 +1028,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfRepeat.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -798,7 +1046,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Triangle3D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -806,6 +1054,31 @@
         <member name="T:SpiralLab.Sirius.Triangle">
             <summary>
             삼각형 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Triangle.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Triangle.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Triangle.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Triangle.Base">
+            <summary>
+            밑변 길이 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Triangle.Height">
+            <summary>
+            높이 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Triangle.Clone">
@@ -816,7 +1089,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Triangle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -824,6 +1097,26 @@
         <member name="T:SpiralLab.Sirius.Jump">
             <summary>
             점프 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Jump.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Jump.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Jump.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Jump.Location">
+            <summary>
+            점프 위치
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Jump.#ctor">
@@ -839,7 +1132,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Jump.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -847,7 +1140,22 @@
         <member name="T:SpiralLab.Sirius.ZDefocus">
             <summary>
             Z Defocus 엔티티 
-            RTC 내의 리스트 명령에 의한 De-포커스 처리용 개체
+            <para>RTC 내의 리스트 명령에 의한 De-포커스 처리용 개체</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZDefocus.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZDefocus.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZDefocus.Offset">
+            <summary>
+            Z 디포커스 위치 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ZDefocus.Clone">
@@ -858,7 +1166,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.ZDefocus.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -866,7 +1174,22 @@
         <member name="T:SpiralLab.Sirius.ZOffset">
             <summary>
             Z Offset 엔티티 
-            RTC 내의 리스트 명령에 의한 오프셋 처리용 개체
+            <para>RTC 내의 리스트 명령에 의한 오프셋 처리용 개체</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZOffset.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZOffset.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ZOffset.Offset">
+            <summary>
+            Z 오프셋 거리 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ZOffset.Clone">
@@ -877,7 +1200,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.ZOffset.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -885,6 +1208,16 @@
         <member name="T:SpiralLab.Sirius.MeasurementEnd">
             <summary>
             Measurement End 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementEnd.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementEnd.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementEnd.Clone">
@@ -895,7 +1228,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -903,6 +1236,29 @@
         <member name="T:SpiralLab.Sirius.WaitDataExt16If">
             <summary>
             wait data ext16 if condition entity
+            <para>조건에 맞으면 확장포트로 출력</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WaitDataExt16If.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WaitDataExt16If.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WaitDataExt16If.InputHighBitMask">
+            <summary>
+            입력 High 조건 
+            <para>확장1 포트 입력신호 High 비트 마스크 (0: Don't Care)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WaitDataExt16If.InputLowBitMask">
+            <summary>
+            입력 Low 조건 
+            <para>확장1 포트 입력신호 Low 비트 마스크 (0: Don't Care)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.WaitDataExt16If.Clone">
@@ -913,7 +1269,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.WaitDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -921,6 +1277,40 @@
         <member name="T:SpiralLab.Sirius.WriteDataExt16If">
             <summary>
             write data ext16 if condition entity
+            <para>조건부 확장 포트 출력</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.InputHighBitMask">
+            <summary>
+            입력 High 조건
+            <para>확장1 포트 입력신호 High 비트 마스크 (0: Don't Care)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.InputLowBitMask">
+            <summary>
+            입력 Low 조건
+            <para>확장1 포트 입력신호 Low 비트 마스크 (0: Don't Care)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.OutputBitMask">
+            <summary>
+            출력 비트 조건
+            <para>확장1 포트 출력 비트 마스트</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16If.IsOutputBitOn">
+            <summary>
+            출력 비트 신호
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16If.Clone">
@@ -931,7 +1321,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16If.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -985,6 +1375,21 @@
             <summary>
             Pens 객체 저장/복원용
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PensSerializer.Open(System.String)">
+            <summary>
+            펜 파일 열기
+            </summary>
+            <param name="fileName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.PensSerializer.Save(SpiralLab.Sirius.IPens,System.String)">
+            <summary>
+            펜 파일 저장
+            </summary>
+            <param name="pens"></param>
+            <param name="fileName"></param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IPens">
             <summary>
@@ -1050,7 +1455,22 @@
         <member name="T:SpiralLab.Sirius.Pens">
             <summary>
             Pen 인터페이스 (레이저 가공 파라메터를 가지는 펜 인터페이스)
-            장비별로 프로젝트 별로 레이저 가공 기법이 다르므로, 펜(IPen)을 상속받아 Pen 객체를 구현
+            <para>장비별로 프로젝트 별로 레이저 가공 기법이 다르므로, 펜(IPen)을 상속받아 Pen 객체를 구현</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Pens.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Pens.FileName">
+            <summary>
+            파일 이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Pens.Items">
+            <summary>
+            펜 항목 배열
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Pens.NameOf(System.String,System.Boolean)">
@@ -1060,6 +1480,24 @@
             <param name="penName">검색할 펜 엔티티 이름</param>
             <param name="ignoreCase">대소문자 구분여부</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Pens.ColorOf(System.Drawing.Color)">
+            <summary>
+            펜 색상으로 검색 
+            </summary>
+            <param name="color"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Pens.CreateNew">
+            <summary>
+            신규 생성
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Pens.Clear">
+            <summary>
+            모두 삭제
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Stereolithography">
             <summary>
@@ -1075,6 +1513,21 @@
         <member name="T:SpiralLab.Sirius.RasterLine">
             <summary>
             레스터 선분 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RasterLine.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RasterLine.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RasterLine.Color2">
+            <summary>
+            펜 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RasterLine.IsReversable">
@@ -1100,19 +1553,19 @@
         <member name="P:SpiralLab.Sirius.RasterLine.PixelPeriod">
             <summary>
             레스터 픽셀 가공 주기 (usec)
-            예 : 100 usec -> 10KHz 주파수에 해당
+            <para>예 : 100 usec -> 10KHz 주파수에 해당</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RasterLine.PixelTime">
             <summary>
             레스터 개별 픽셀 가공 시간 (usec)
-            주의) PixelPeriod 보다 작은값이 설정되어야 한다
+            <para>주의) PixelPeriod 보다 작은값이 설정되어야 한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RasterLine.PixelChannel">
             <summary>
             레스터 개별 픽셀 출력 아나로그 채널
-            주의) 반드시 아나로그 출력 채널이 지정되어야 한다
+            <para>주의) 반드시 아나로그 출력 채널이 지정되어야 한다</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.RasterLine.Clone">
@@ -1123,7 +1576,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.RasterLine.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1138,6 +1591,35 @@
             Measurement Begin 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MeasurementBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementBegin.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementBegin.Frequency">
+            <summary>
+            샘플링 주파수 (Hz)
+            <para>~100_0000</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementBegin.Channels">
+            <summary>
+            대상 채널 배열
+            <para>(RTC4: 2개, RTC5/6: 최대 4개)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MeasurementBegin.IsRawData">
+            <summary>
+            데이타 변환 여부
+            <para>true : 미변환</para>
+            <para>false : 변환</para>
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.MeasurementBegin.Clone">
             <summary>
             복사본 생성
@@ -1145,7 +1627,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MeasurementBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1160,6 +1642,33 @@
         <member name="T:SpiralLab.Sirius.WriteDataExt16">
             <summary>
             write data ext16 entity
+            <para>확장 포트에 데이타 쓰기</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16.BitPosition">
+            <summary>
+            비트 위치 (0~15)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16.BitName">
+            <summary>
+            출력 비트 이름
+            <para>extio.ini 에서 추출됨</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteDataExt16.OutputValue">
+            <summary>
+            출력값
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16.Clone">
@@ -1170,7 +1679,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.WriteDataExt16.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1180,12 +1689,44 @@
             stitched entity
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.StitchedImage.Images">
             <summary>
             좌 상단 부터 인덱스 번호 시작 
-            0 1 2 3 4
-            5 6 7 8 9
-            ...
+            <para>0 1 2 3 4</para>
+            <para>5 6 7 8 9</para>
+            <para>...</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.ImageIndex">
+            <summary>
+            업데이트시 이미지의 인덱스 번호 
+            <para>좌상단이 0 으로 시작됨</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.ImageFileName">
+            <summary>
+            현재 인덱스 위치에 업데이트할 이미지 파일
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StitchedImage.IsImageFileSave">
+            <summary>
+            저장시 이미지 파일들을 모두 저장할지 여부
+            <para>주의) 파일크기가 매우 켜질 수 있음</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.StitchedImage.Clone">
@@ -1236,6 +1777,41 @@
             타원 (ellipse) 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Major">
+            <summary>
+            장축 길이
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Minor">
+            <summary>
+            단축 길이
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.Center">
+            <summary>
+            중심 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.AngleDelta">
+            <summary>
+            최소 분해 각도
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.Ellipse.Clone">
             <summary>
             복사본 생성
@@ -1244,7 +1820,79 @@
         </member>
         <member name="T:SpiralLab.Sirius.Barcode1D">
             <summary>
-            barcode 1d entity
+            1차원 바코드 개체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Format">
+            <summary>
+            바코드 포맷
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.DotFactor">
+            <summary>
+            개별 셀의 배열 
+            <para>1x1, 2x2, 3x3, ...</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.HatchFactor">
+            <summary>
+            셀 비율 (Cell Factor)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.ZigZag">
+            <summary>
+            지그 재그 가공 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.IsInvertCell">
+            <summary>
+            셀 반전 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.IsFixedAspectRatio">
+            <summary>
+            고정 비율 유지 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Width">
+            <summary>
+            가로 폭 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.Height">
+            <summary>
+            세로 높이 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.PixelPeriod">
+            <summary>
+            픽셀 출력 주기 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.PixelTime">
+            <summary>
+            픽셀 가공 시간 (usec)
+            <para>주의) 픽셀 가공 주기 보다 작은 시간값</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Barcode1D.PixelChannel">
+            <summary>
+            픽셀 출력 채널  
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Barcode1D.Clone">
@@ -1255,7 +1903,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Barcode1D.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1263,6 +1911,22 @@
         <member name="T:SpiralLab.Sirius.WriteData">
             <summary>
             write data entity
+            <para>데이타 쓰기</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteData.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteData.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.WriteData.OutputChannel">
+            <summary>
+            출력 채널
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.WriteData.OutputValue">
@@ -1278,14 +1942,24 @@
         </member>
         <member name="M:SpiralLab.Sirius.WriteData.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.VectorEnd">
             <summary>
-            VectorEndn 엔티티 객체
+            VectorEnd 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.VectorEnd.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.VectorEnd.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.VectorEnd.Clone">
@@ -1296,7 +1970,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.VectorEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1304,6 +1978,16 @@
         <member name="T:SpiralLab.Sirius.VectorBegin">
             <summary>
             Vector Begin 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.VectorBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.VectorBegin.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.VectorBegin.Signal">
@@ -1324,7 +2008,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.VectorBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1332,6 +2016,21 @@
         <member name="T:SpiralLab.Sirius.Raster">
             <summary>
             raster entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Raster.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Raster.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Raster.Color2">
+            <summary>
+            펜 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Raster.IsEnableFastRendering">
@@ -1402,7 +2101,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Raster.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1427,7 +2126,23 @@
         </member>
         <member name="T:SpiralLab.Sirius.HPGL">
             <summary>
-            group entity (container)
+            HPGL entity
+            like as group entity (container)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HPGL.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HPGL.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.HPGL.Color2">
+            <summary>
+            펜 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.HPGL.IsEnableFastRendering">
@@ -1445,7 +2160,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.HPGL.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1453,6 +2168,47 @@
         <member name="T:SpiralLab.Sirius.Bitmap">
             <summary>
             bitmap entity
+            비트맵 개체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.Direction">
+            <summary>
+            가공 방향
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.IsInvertColor">
+            <summary>
+            픽셀 반전 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.PixelPeriod">
+            <summary>
+            픽셀 출력 주기 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.PixelTime">
+            <summary>
+            픽셀 가공 시간 (usec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.PixelChannel">
+            <summary>
+            픽셀 출력 채널
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Bitmap.Clone">
@@ -1463,7 +2219,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Bitmap.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1482,6 +2238,21 @@
             Motf Begin 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotfBegin.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfBegin.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfBegin.IsEncoderReset">
+            <summary>
+            엔코더 리셋 여부
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.MotfBegin.Clone">
             <summary>
             복사본 생성
@@ -1490,7 +2261,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfBegin.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1498,6 +2269,21 @@
         <member name="T:SpiralLab.Sirius.MotfEnd">
             <summary>
             Motf End 엔티티 객체 
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfEnd.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfEnd.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfEnd.Location">
+            <summary>
+            MOTF 종료시 점프할 x,y 위치 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotfEnd.Clone">
@@ -1508,7 +2294,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfEnd.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1516,6 +2302,27 @@
         <member name="T:SpiralLab.Sirius.MotfExternalStartDelay">
             <summary>
             Motf Ext Start Delay 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfExternalStartDelay.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfExternalStartDelay.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfExternalStartDelay.Signal">
+            <summary>
+            엔코더 신호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfExternalStartDelay.Distance">
+            <summary>
+            지연 거리값 (mm)
+            <para>(0의 경우 비활성화)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotfExternalStartDelay.Clone">
@@ -1526,7 +2333,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfExternalStartDelay.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1534,6 +2341,31 @@
         <member name="T:SpiralLab.Sirius.MotfWait">
             <summary>
             Motf Wait 엔티티 객체
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfWait.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfWait.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfWait.Signal">
+            <summary>
+            엔코더 신호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfWait.Position">
+            <summary>
+            대기 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotfWait.Condition">
+            <summary>
+            대기 조건 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotfWait.Clone">
@@ -1544,16 +2376,12 @@
         </member>
         <member name="M:SpiralLab.Sirius.MotfWait.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.PenReturn">
-            <summary>
-            Pen Return 엔티티 객체
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "T:SpiralLab.Sirius.PenReturn" -->
         <member name="M:SpiralLab.Sirius.PenReturn.#ctor">
             <summary>
             생성자 (중복펜 파라메터 사용시 이전 설정 값으로 자동 전환되는 유틸리티 펜 개체)
@@ -1567,7 +2395,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.PenReturn.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1575,8 +2403,8 @@
         <member name="T:SpiralLab.Sirius.PenMotf">
             <summary>
             Pen Motf 엔티티 객체 (기본 버전에서 상속된 파생 펜)
-            entity 에 motf begin/end/wait 등이 추가되어 불필요해짐 !!!
-            deprecated version 
+            <para>미사용됨. entity 에 motf begin/end/wait 등이 추가되어 불필요해짐 !!!</para>
+            <para>deprecated</para> 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PenMotf.Clone">
@@ -1594,7 +2422,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.PenMotf.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1602,6 +2430,36 @@
         <member name="T:SpiralLab.Sirius.SiriusTextArc">
             <summary>
             sirius text arc entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.FontText">
+            <summary>
+            텍스트 데이타 내용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.Location">
+            <summary>
+            회전 기준 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.Radius">
+            <summary>
+            반지름 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.Direction">
+            <summary>
+            회전 방향
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextArc.StartAngle">
+            <summary>
+            시작 각도
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusTextArc.Clone">
@@ -1648,7 +2506,7 @@
         <member name="P:SpiralLab.Sirius.SiriusText.OffsetSerialNoIncrementStep">
             <summary>
             오프셋 배열 사용 + 일련번호 사용시
-            일련번호 증가값
+            <para>일련번호 증가값</para>
             </summary>
         </member>
         <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.SiriusText.ReverseMark" -->
@@ -1680,7 +2538,7 @@
         <member name="P:SpiralLab.Sirius.SiriusText.LetterSpace">
             <summary>
             문자간 간격 처리 방식
-            고정 / 가변 
+            <para>고정 / 가변 </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusText.WordSpacing">
@@ -1754,6 +2612,16 @@
             sirius text time entity
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextTime.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextTime.FontText">
+            <summary>
+            텍스트 데이타 내용
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusTextTime.TimeFormat">
             <summary>
             시간 포맷
@@ -1773,6 +2641,16 @@
         <member name="T:SpiralLab.Sirius.SiriusTextDate">
             <summary>
             sirius text date entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextDate.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextDate.FontText">
+            <summary>
+            텍스트 데이타 내용
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusTextDate.DateFormat">
@@ -1808,6 +2686,16 @@
             sirius text serial entity
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextSerial.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusTextSerial.FontText">
+            <summary>
+            텍스트 데이타 내용
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusTextSerial.NumOfDigits">
             <summary>
             자리수
@@ -1834,6 +2722,36 @@
             텍스트 Arc 엔티티 (TTF 폰트)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.TextArc.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextArc.FontText">
+            <summary>
+            텍스트 데이타 내용
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextArc.Location">
+            <summary>
+            중심 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextArc.Radius">
+            <summary>
+            반지름 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextArc.Direction">
+            <summary>
+            회전 방향
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextArc.StartAngle">
+            <summary>
+            시작 각도
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.TextArc.Clone">
             <summary>
             복사본 생성
@@ -1845,6 +2763,16 @@
             텍스트 Time 엔티티 (TTF 폰트)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.TextTime.TimeFormat">
+            <summary>
+            시간 포맷
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextTime.IsLeadingWithZero">
+            <summary>
+            앞을 0 으로 채울지 여부
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.TextTime.Clone">
             <summary>
             복사본 생성
@@ -1853,7 +2781,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.TextTime.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1861,6 +2789,26 @@
         <member name="T:SpiralLab.Sirius.TextSerial">
             <summary>
             텍스트 Serial 엔티티 (TTF 폰트)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextSerial.NumOfDigits">
+            <summary>
+            자리수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextSerial.SerialFormat">
+            <summary>
+            일련번호 포맷
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextSerial.SerialNo">
+            <summary>
+            일련 번호 (시작값)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextSerial.SerialNoIncrementStep">
+            <summary>
+            일련번호 증가값
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.TextSerial.Clone">
@@ -1871,7 +2819,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.TextSerial.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1879,6 +2827,16 @@
         <member name="T:SpiralLab.Sirius.TextDate">
             <summary>
             텍스트 Date 엔티티 (TTF 폰트)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextDate.DateFormat">
+            <summary>
+            날짜 포맷
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.TextDate.IsLeadingWithZero">
+            <summary>
+            앞을 0 으로 채울지 여부
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.TextDate.Clone">
@@ -1889,7 +2847,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.TextDate.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -1897,6 +2855,21 @@
         <member name="T:SpiralLab.Sirius.Trepan">
             <summary>
             circle entity
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Trepan.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Trepan.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Trepan.Color2">
+            <summary>
+            펜 색상
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Trepan.InnerDiameter">
@@ -1912,7 +2885,7 @@
         <member name="P:SpiralLab.Sirius.Trepan.Revolutions">
             <summary>
             회전 수 
-            바깥쪽 원의 반복 회수로 회전수 만큼 가공이 반복됨
+            <para>바깥쪽 원의 반복 회수로 회전수 만큼 가공이 반복됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Trepan.Center">
@@ -1928,7 +2901,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Trepan.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -2260,25 +3233,25 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsGuided">
             <summary>
             가이드 레이저를 이용한 가공시
-            (활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)
+            <para>(활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.RepeatSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
-            외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)
+            <para>외곽 영역을 반복 가공할 회수를 지정  (미지정시 1회만 가공됨)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.SpeedSelected">
             <summary>
             MarkTargets 을 SelectedButBoundRect 사용할 경우만 사용됨
-            외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)
+            <para>외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsExternalStart">
             <summary>
             External /START 사용여부
-            사용시 : 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
+            <para>사용시 : 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsJumpToOriginAfterFinished">
@@ -2289,7 +3262,7 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Offsets">
             <summary>
             중복적으로 가공할때의 위치 배열 정보
-            미 지정시 원점(0,0) 으로 자동 처리됨
+            <para>미 지정시 원점(0,0) 으로 자동 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.OffsetIndex">
@@ -2305,7 +3278,7 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.EndTime">
             <summary>
             가공 완료 시간
-            총 소요시간 (TimeSpan ts = EndTime - StartTime)
+            <para>총 소요시간 (TimeSpan ts = EndTime - StartTime)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Progress">
@@ -2328,24 +3301,18 @@
             계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.PenStack">
-            <summary>
-            가공중 복수개의 펜 개체를 사용시 스택 공간에 저장 관리된다
-            이때 스택에 삽입/삭제 하기 위한 자료구조
-            (내부에서 사용됨)
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.MarkerArgDefault.PenStack" -->
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsRegisteringFonts">
             <summary>
             현재 마킹이 폰트 다운로드를 위한 것인지 여부
-            (내부적으로 사용됨 : false 기본값으로 유지할것)
+            <para>(내부적으로 사용됨 : false 기본값으로 유지할것)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsEnablePens">
             <summary>
             펜 집합 사용 여부 
-            SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
-            (내부적으로 사용되며, 항상 True 로 사용할 것을 추천)
+            <para>SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도</para>
+            <para>(내부적으로 사용되며, 항상 True 로 사용할 것을 추천)</para>
             </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.Tag">
@@ -2398,7 +3365,7 @@
         <member name="F:SpiralLab.Sirius.MarkTargets.SelectedButBoundRect">
             <summary>
             선택된 엔티티의 외곽(사각) 영역만 가공
-            이때 반복회수는 별도로 지정 가능함
+            <para>이때 반복회수는 별도로 지정 가능함</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MarkTargets.Custom">
@@ -2450,25 +3417,25 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsGuided">
             <summary>
             가이드(Guide/Pilot/Red) 레이저를 이용한 가공 여부
-            (활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)
+            <para>(활성화시 해치 등의 내부 정보를 가공처리하지 않는등으로 활용됨)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.RepeatSelected">
             <summary>
             MarkTargets 을 Selected, SelectedButBoundRect 사용하고 + Guide Laser 가 활성화된 경우만 사용
-            반복 가공할 회수를 지정
+            <para>반복 가공할 회수를 지정</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.SpeedSelected">
             <summary>
             MarkTargets 을 Selected, SelectedButBoundRect 사용하고 + Guide Laser 가 활성화된 경우만 사용
-            외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)
+            <para>외곽 영역을 반복 가공할때 펜 속도를 Override 할 속도 (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsExternalStart">
             <summary>
             External /START 사용여부
-            사용시 : 리스트 타입은 Single 으로 변경 필요. 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다
+            <para>사용시 : 리스트 타입은 Single 으로 변경 필요. 레이어는 한개(단일)만 사용가능하며, 가공 시작시 데이타만 RTC 버퍼에 모두 저장된후 곧바로 OnFinished 이벤트가 호출된다. 이때 IRtcExtension 의 CtlExternalControl 함수 이용해 사용 옵션사항들을 설정해 주어야 한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsJumpToOriginAfterFinished">
@@ -2479,7 +3446,7 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.Offsets">
             <summary>
             중복적으로 가공할때의 위치 배열 정보
-            미 지정시 원점(0,0) 으로 자동 처리됨
+            <para>미 지정시 원점(0,0) 으로 자동 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.OffsetIndex">
@@ -2495,7 +3462,7 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.EndTime">
             <summary>
             가공 완료 시간
-            총 소요시간 (TimeSpan ts = EndTime - StartTime)
+            <para>총 소요시간 (TimeSpan ts = EndTime - StartTime)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Progress">
@@ -2516,28 +3483,28 @@
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsMeasurementToPolt">
             <summary>
             계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
-            계측 파일 경로 : bin\plot\measurement-이름.txt 
-            gnuplot 설정 파일 경로 :  bin\config\plot.cmd
+            <para>계측 파일 경로 : bin\plot\measurement-이름.txt </para>
+            <para>gnuplot 설정 파일 경로 : bin\config\plot.cmd</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">
             <summary>
             가공중 복수개의 펜 개체를 사용시 스택 공간에 저장 관리된다
-            이때 스택에 삽입/삭제 하기 위한 자료구조
-            (내부에서 사용됨)
+            <para>이때 스택에 삽입/삭제 하기 위한 자료구조</para>
+            <para>(내부에서 사용됨)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsRegisteringFonts">
             <summary>
             현재 마킹이 폰트 다운로드를 위한 것인지 여부
-            (내부적으로 사용됨 : false 기본값으로 유지할것)
+            <para>(내부적으로 사용됨 : false 기본값으로 유지할것)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.IsEnablePens">
             <summary>
             펜 집합 사용 여부 
-            SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도
-            (내부적으로 사용되며, 항상 True 로 사용할 것을 추천)
+            <para>SiriusEditorForm 의 펜 집합 사용 유무를 전달하는 용도</para>
+            <para>(내부적으로 사용되며, 항상 True 로 사용할 것을 추천)</para>
             </summary> 
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.Tag">
@@ -2568,6 +3535,16 @@
         <member name="T:SpiralLab.Sirius.ScriptEngineDefault">
             <summary>
             ScriptEngineDefault
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ScriptEngineDefault.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ScriptEngineDefault.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ScriptEngineDefault.#ctor">
@@ -4064,7 +5041,7 @@
         <member name="T:SpiralLab.Sirius.LwPolyLineVertex">
             <summary>
             LW(Light-Weighted) 폴리라인 엔티티용 정점(vertex) 객체
-            Autocad 의 LWPolyline 을 모사함
+            <para>Autocad 의 LWPolyline 을 모사함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyLineVertex.X">
@@ -4229,16 +5206,16 @@
             <summary>
             생성자
             </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <param name="angle"></param>
+            <param name="x">x (mm)</param>
+            <param name="y">y (mm)</param>
+            <param name="angle">angle (degree)</param>
         </member>
         <member name="M:SpiralLab.Sirius.Offset.#ctor(System.Numerics.Vector2,System.Single)">
             <summary>
             생성자
             </summary>
-            <param name="v"></param>
-            <param name="angle"></param>
+            <param name="v">x, y (mm)</param>
+            <param name="angle">angle (degree)</param>
         </member>
         <member name="M:SpiralLab.Sirius.Offset.Clone">
             <summary>
@@ -4248,7 +5225,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Offset.Translate(SpiralLab.Sirius.Offset,System.Single,System.Single)">
             <summary>
-            이동량
+            이동
             </summary>
             <param name="o"></param>
             <param name="dx"></param>
@@ -4768,8 +5745,8 @@
         </member>
         <member name="T:SpiralLab.Sirius.AciColor">
             <summary>
-            색상 객체
-            AutoCad 의 색상 객체를 표현 (ACI color - AutoCAD Color Index)
+            색상 객체 : AutoCad 의 색상 객체를 표현 (ACI color - AutoCAD Color Index)
+            (더이상 사용되지 않음)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AciColor.ByLayer">
@@ -5001,8 +5978,8 @@
         <member name="T:SpiralLab.Sirius.Vertex">
             <summary>
             vertex 구조체
-            (.NET의 Vector2를 propertygrid 에 출력하기 용이하지 않아, Vector2 와 유사한 기능의 구조체를 만듦
-            Points 엔티티 등 에서 사용
+            <para>(.NET의 Vector2를 propertygrid 에 출력하기 용이하지 않아, Vector2 와 유사한 기능의 구조체를 만듦</para>
+            <para>Points 엔티티 등 에서 사용</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Vertex.Location">
@@ -5160,8 +6137,8 @@
         <member name="T:SpiralLab.Sirius.IDocument">
             <summary>
             Document 인터페이스
-            엔티티, 레이어, 블럭 , 문서정보 등의 통합 데이타를 가지는 도큐먼트 데이타 (레이저 가공 레시피)
-            주의) Document 를 상속 구현하는 모든 문서 객체들은 SpiralLab.Sirius 네임스페이스 유지해야 함
+            <para>엔티티, 레이어, 블럭 , 문서정보 등의 통합 데이타를 가지는 도큐먼트 데이타 (레이저 가공 레시피)</para>
+            <para>주의) Document 를 상속 구현하는 모든 문서 객체들은 SpiralLab.Sirius 네임스페이스 유지해야 함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Version">
@@ -5255,7 +6232,7 @@
         <member name="T:SpiralLab.Sirius.DocumentDefault">
             <summary>
             IDocument 객체를 실제로 구현한 기본 문서 객체
-            주의) DocumentDefault 를 상속 구현하는 모든 문서 객체들은 SpiralLab.Sirius 네임스페이스 유지해야함
+            <para>주의) DocumentDefault 를 상속 구현하는 모든 문서 객체들은 SpiralLab.Sirius 네임스페이스 유지해야함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DocumentDefault.Version">
@@ -5307,7 +6284,7 @@
         <member name="P:SpiralLab.Sirius.DocumentDefault.UserRectangles">
             <summary>
             임의의 사용자 사각 영역을 지정해주면 뷰 화면에 렌더링 처리해주는 기능
-            (저장되지 않는 임시 객체)
+            <para>(저장되지 않는 임시 객체)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DocumentDefault.Tag">
@@ -5319,7 +6296,7 @@
         <member name="P:SpiralLab.Sirius.DocumentDefault.Views">
             <summary>
             문서(Doc) 에 연결된 뷰 목록 (다중 뷰어를 제공하기 위해 내부적으로 사용됨)
-            (저장되지 않는 임시 객체)
+            <para>(저장되지 않는 임시 객체)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DocumentDefault.Blocks">
@@ -5330,7 +6307,7 @@
         <member name="P:SpiralLab.Sirius.DocumentDefault.View">
             <summary>
             데이타 조작 표시용으로 임시 뷰 정보 
-            (미저장)
+            <para>(저장되지 않는 임시 객체)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.DocumentDefault.Layers">
@@ -5385,19 +6362,19 @@
         </member>
         <member name="T:SpiralLab.Sirius.DocumentSerializer">
             <summary>
-            시리우스 문서 저장/복원용
+            시리우스(*.sirius) 문서 저장/복원용
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.DocumentSerializer.OpenSirius(System.String)">
             <summary>
             sirius 파일 열기
             </summary>
-            <param name="fileName">sirius 파일경로</param>
+            <param name="fileName">시리우스(*.sirius) 파일경로</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.DocumentSerializer.OpenDxf(System.String)">
             <summary>
-            dxf 파일 열기
+            dxf 파일 열기 (블럭 등 내부 정보가 모두 Purge 된 상태의 dxf 파일로 준비)
             </summary>
             <param name="fileName">dxf 파일경로</param>
             <returns></returns>
@@ -5407,7 +6384,7 @@
             sirius 파일 저장
             </summary>
             <param name="doc">대상 문서</param>
-            <param name="fileName">sirius 파일 경로</param>
+            <param name="fileName">시리우스(*.sirius) 파일 경로</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.BlockInsert">
@@ -5429,7 +6406,6 @@
         <member name="T:SpiralLab.Sirius.IPen">
             <summary>
             Pen 인터페이스 (레이저 가공 파라메터를 가지는 펜 인터페이스)
-            장비별로 프로젝트 별로 레이저 가공 기법이 다르므로, 펜(IPen)을 상속받아 Pen 객체를 구현
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPen.Color">
@@ -5493,7 +6469,7 @@
         <member name="P:SpiralLab.Sirius.Layer.BoundRect">
             <summary>
             레이어의 외각 영역 정보
-            모든 엔티티의 외곽 영역 정보를 합친 정보
+            <para>모든 엔티티의 외곽 영역 정보를 합친 정보</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.Count">
@@ -5529,13 +6505,13 @@
         <member name="P:SpiralLab.Sirius.Layer.MotionType">
             <summary>
             SyncAxis 전용 옵션
-            레이어 별로 모션 타입을 지정
+            <para>레이어 별로 모션 타입을 지정</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.BandWidth">
             <summary>
             SyncAxis 전용 옵션
-            LPF 주파수 설정
+            <para>LPF 주파수 설정</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.Items">
@@ -5576,21 +6552,21 @@
         <member name="P:SpiralLab.Sirius.Layer.ZPosition">
             <summary>
             Z 축 모션 사용시
-            초점 거리 (mm) 설정
+            <para>초점 거리 (mm) 설정</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.ZPositionVel">
             <summary>
             Z 축 모션 사용시
-            이동 속도
+            <para>이동 속도 (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.ZIsPositionCheck">
             <summary>
             Z 축 모션 사용시
-            이동후 Actual Position 을 비교할지 여부
-            엔코더 피드백 모터의 경우 true
-            스텝 모터(피드백 없는)의 경우 false
+            <para>이동후 Actual Position 을 비교할지 여부</para>
+            <para>엔코더 피드백 모터의 경우 true</para>
+            <para>스텝 모터(피드백 없는)의 경우 false</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsALC">
@@ -5611,13 +6587,13 @@
         <member name="P:SpiralLab.Sirius.Layer.AlcPositionFileName">
             <summary>
             ALC (Automatic Laser Control)중 위치 의존적(Position Dep) 레이저 출력 사용시 보상 테이블 파일
-            파일 포맷은 RTC 세부 메뉴얼 참고
+            <para>파일 포맷은 RTC 세부 메뉴얼 참고</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.AlcPositionTableNo">
             <summary>
             ALC (Automatic Laser Control) 중 위치 의존적 (Position Dep) 레이저 출력 사용시 보상 테이블 파일내의 테이블 인덱스 번호
-            파일 포맷은 RTC 세부 메뉴얼 참고
+            <para>파일 포맷은 RTC 세부 메뉴얼 참고</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.AlcPercentage100">
@@ -5677,7 +6653,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Layer.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -5694,7 +6670,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Layers.Active">
             <summary>
-            activated layer
+            활성 레이어
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layers.Owner">
@@ -5732,6 +6708,15 @@
             </summary>
             <param name="entityName">엔티티 이름</param>
             <param name="parentLayer">발견된 엔티티가 포함된 레이어</param>
+            <param name="ignoreCase">대소문자 구분여부</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Layers.NameOf(System.String,SpiralLab.Sirius.Group,System.Boolean)">
+            <summary>
+            그룹내에 포함된 엔티티 검색
+            </summary>
+            <param name="entityName">엔티티 이름</param>
+            <param name="group">부모 그룹 개체</param>
             <param name="ignoreCase">대소문자 구분여부</param>
             <returns></returns>
         </member>
@@ -5895,12 +6880,13 @@
         <member name="P:SpiralLab.Sirius.PenDefault.Power">
             <summary>
             가공 파워 (W)
-            파워 맵 기능 사용시 지정된 카테고리를 검색하여 설정된 파워에 해당하는 X 값이 출력 처리됨
+            <para>파워 맵 기능 사용시 지정된 카테고리를 검색하여 설정된 파워에 해당하는 X 값이 출력 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.PowerMax">
             <summary>
             레이저 소스의 최대 파워값 (읽기 전용)
+            <para>레이저 객체(ILaser)에 설정된 MaxPower 값에 해당함</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PenDefault.powerMax">
@@ -5911,7 +6897,7 @@
         <member name="P:SpiralLab.Sirius.PenDefault.PowerMapCategory">
             <summary>
             파워맵 기능 사용시 대상 카테고리 이름
-            예: 주파수(Hz)
+            <para>예: 주파수(Hz)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.PowerMap">
@@ -5937,48 +6923,48 @@
         <member name="P:SpiralLab.Sirius.PenDefault.LaserFpk">
             <summary>
             FPK(First Pulse Killer) 신호 시간 (usec)
-            레이저 모드에 따라 처리 방식이 정해지며, 예를 들어 Yag1 사용시 LASER2 출력핀으로 설정된 시간만큼 신호가 활성화 됨
+            <para>레이저 모드에 따라 처리 방식이 정해지며, 예를 들어 Yag1 사용시 LASER2 출력핀으로 설정된 시간만큼 신호가 활성화 됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.LaserQSwitchDelay">
             <summary>
             Q스위치 지연시간 (usec)
-            예: 레이저 모드5 사용시
+            <para>예: Yag5 모드 사용시</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.LaserOnDelay">
             <summary>
             레이저 On 지연시간 (usec)
-            작을 경우 : 시작 지점 Burn in 효과 발생. 갈바노메터가 아직 위치에 도달하지 않았는데 LASER ON 신호가 발생됨
-            클 경우 : 시작 지점 가공이 밀림. LASER ON 신호가 이 너무 늦게 발생됨
+            <para>작을 경우 : 시작 지점 Burn in 효과 발생. 갈바노메터가 아직 위치에 도달하지 않았는데 LASER ON 신호가 발생됨</para>
+            <para>클 경우 : 시작 지점 가공이 밀림. LASER ON 신호가 이 너무 늦게 발생됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.LaserOffDelay">
             <summary>
             레이저 Off 지연시간 (usec)
-            작을 경우 : 끝 지점 가공이 빠짐. 끝 지점에 도달전에 LASER ON 신호가 꺼짐
-            클 경우 : 끝 지점 Burn in 효과 발생. 갈바노메터가 이미  위치에 도달했는데 LASER ON 신호가 늦게 꺼짐
+            <para>작을 경우 : 끝 지점 가공이 빠짐. 끝 지점에 도달전에 LASER ON 신호가 꺼짐</para>
+            <para>클 경우 : 끝 지점 Burn in 효과 발생. 갈바노메터가 이미  위치에 도달했는데 LASER ON 신호가 늦게 꺼짐</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.ScannerJumpDelay">
             <summary>
             점프 지연시간 (usec)
-            작을 경우 : 가공 시작 지점 진동 혹은 오버슛 발생
-            클 경우 : 품질 영향 없으나 전체 가공 시간 증가
+            <para>작을 경우 : 가공 시작 지점 진동 혹은 오버슛 발생</para>
+            <para>클 경우 : 품질 영향 없으나 전체 가공 시간 증가</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.ScannerMarkDelay">
             <summary>
             마크 지연시간 (usec)
-            작을 경우 : 가공 끝 과 점프 사이 흘림 발생
-            클 경우 : 품질 영향 없으나 전체 가공 시간 증가
+            <para>작을 경우 : 가공 끝 과 점프 사이 흘림 발생</para>
+            <para>클 경우 : 품질 영향 없으나 전체 가공 시간 증가</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.ScannerPolygonDelay">
             <summary>
             폴리곤(코너) 지연시간 (usec)
-            작을 경우 : 마크, 마크 사이에서 부드럽게(안전화 시간 부족) 블렌딩 처리됨
-            클 경우 : 마크, 마크 사이에서 지정된 시간만큼 유지됨. Burn in 효과 발생 가능
+            <para>작을 경우 : 마크, 마크 사이에서 부드럽게(안전화 시간 부족) 블렌딩 처리됨</para>
+            <para>클 경우 : 마크, 마크 사이에서 지정된 시간만큼 유지됨. Burn in 효과 발생 가능</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.JumpSpeed">
@@ -5999,9 +6985,9 @@
         <member name="P:SpiralLab.Sirius.PenDefault.SkyWritingMode">
             <summary>
             Skywriting 모드 
-            1: 양방향 가감속
-            2: 정방향 가감속
-            3: 정뱡향 가감속 + 활성화각도
+            <para>1: 양방향 가감속</para>
+            <para>2: 정방향 가감속</para>
+            <para>3: 정뱡향 가감속 + 활성화각도</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.LaserOnShift">
@@ -6017,20 +7003,20 @@
         <member name="P:SpiralLab.Sirius.PenDefault.AngularLimit">
             <summary>
             Skywriting 모드 3 사용시 활성화 제한 각도
-            설정된 각도 초과시 활성화 (예 : 90 로 설정시 91도 에서 활성화됨)
+            <para>설정된 각도 초과시 활성화 (예 : 90 로 설정시 91도 에서 활성화됨)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.MinMarkSpeed">
             <summary>
             SyncAxis 사용시
-            최소 마크 속도 (mm/s)
+            <para>최소 마크 속도 (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.ApproxBlendLimit">
             <summary>
             SyncAxis 사용시
-            모서리에서 곡선으로 블랜딩할 최대 반지름 거리 > 0 일 경우 활성화 
-            Approx. Blend Limit (mm)
+            <para>모서리에서 곡선으로 블랜딩할 최대 반지름 거리 > 0 일 경우 활성화</para>
+            <para>Approx. Blend Limit (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.IsWobbelEnabled">
@@ -6041,27 +7027,27 @@
         <member name="P:SpiralLab.Sirius.PenDefault.WobbelPerpendicular">
             <summary>
             와블(Wobbel) 기능 사용시
-            수직(Perpendicular) 방향 크기 (mm)
+            <para>수직(Perpendicular) 방향 크기 (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.WobbelParallel">
             <summary>
             와블(Wobbel) 기능 사용시
-            평행(Parallel) 방향 크기 (mm)
+            <para>평행(Parallel) 방향 크기 (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.WobbelFrequency">
             <summary>
             와블(Wobbel) 기능 사용시
-            반복 회수 (Hz)
-            0 보다 큰 경우 시계방향(CW)
-            0.1/TrackingErr 보다 작아야 함
+            <para>반복 회수 (Hz)</para>
+            <para>0 보다 큰 경우 시계방향(CW)</para>
+            <para>0.1/TrackingErr 보다 작아야 함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.WobbelShape">
             <summary>
             와블(Wobbel) 기능 사용시
-            타원 혹은 8자 모양 선택
+            <para>타원 혹은 8자 모양 선택</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PenDefault.Clone">
@@ -6079,7 +7065,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.PenDefault.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -6089,9 +7075,24 @@
             점 집합 엔티티
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Points.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Points.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Points.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Points.Items">
             <summary>
-            위치 배열 정보
+            점 위치 배열 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Points.Repeat">
@@ -6102,7 +7103,7 @@
         <member name="P:SpiralLab.Sirius.Points.Location">
             <summary>
             기준 위치 
-            변경시 모든 포인트 대상이 이동 처리됨
+            <para>변경시 모든 포인트 대상이 이동 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Points.DwellTime">
@@ -6118,7 +7119,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Points.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -7122,12 +8123,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.IView.Width">
             <summary>
-            clipping client 폭 (픽셀)
+            폭 (픽셀)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IView.Height">
             <summary>
-            clipping client 높이 (픽셀)
+            높이 (픽셀)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IView.CameraX">
@@ -7500,6 +8501,21 @@
             호 (arc) 엔티티 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Arc.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Arc.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Arc.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Arc.ToReverseWinding">
             <summary>
             가공 순서(방향) 뒤집기 (토글시 적용됨)
@@ -7523,7 +8539,7 @@
         <member name="P:SpiralLab.Sirius.Arc.SweepAngle">
             <summary>
             각도 변화량 (°) 
-            + : CCW 방향(반시계)
+            <para>+ : CCW 방향(반시계)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Arc.StartRampFactor">
@@ -7541,6 +8557,18 @@
             복사본 생성
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Arc.Mark(SpiralLab.Sirius.IMarkerArg)">
+            <summary>
+            가공
+            </summary>
+            <param name="markerArg"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Arc.Regen">
+            <summary>
+            데이타 갱신
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.BoundRect">
             <summary>
@@ -7722,7 +8750,38 @@
         </member>
         <member name="T:SpiralLab.Sirius.Circle">
             <summary>
+            circle entity
             원 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.Radius">
+            <summary>
+            반지름 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.Center">
+            <summary>
+            중심 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Circle.StartAngle">
+            <summary>
+            시작 각도
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Circle.Clone">
@@ -7733,7 +8792,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Circle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -7856,22 +8915,37 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor1">
             <summary>
-            레이저 가공 경로 시뮬레이션시 사용하는 색상1
+            레이저 가공 경로 시뮬레이션시 사용하는 십자 색상1
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor2">
+            <summary>
+            레이저 가공 경로 시뮬레이션시 사용하는 십자 색상2
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LaserSpotCircleColor1">
+            <summary>
+            레이저 가공 경로 시뮬레이션시 사용하는 원 색상1
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LaserSpotCircleColor2">
+            <summary>
+            레이저 가공 경로 시뮬레이션시 사용하는 원 색상2
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.AngleFactor">
             <summary>
-            호(Arc) 렌더링시 그리는 각도의 최소 단위 (속도 향상)
+            호(Arc) 렌더링시 그리는 각도의 최소 단위 (클 수록 속도 향상됨)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ClosedPathDistance">
             <summary>
-            폐곡선 판단 거리 상수값
+            폐곡선 판단 거리 (mm) 상수값
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.SplineControlPointFactor">
             <summary>
-            DXF 스플라인 분석시 제어점의 3배수로 분해
+            DXF 스플라인(곡선영역)을 라인으로 변환시 제어점 사이를 N개의 라인으로 분해
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
@@ -7886,12 +8960,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFontFamily">
             <summary>
-            트리뷰 노드의 기본 폰트 체
+            트리뷰 노드에 사용할 기본 폰트체
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFontSize">
             <summary>
-            트리뷰 노드의 기본 폰트 크기
+            트리뷰 노드에 사용할 폰트 크기
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFont">
@@ -7916,12 +8990,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.HitTestThreshold">
             <summary>
-            엔티티 선택시 해당 거리만큼 인접하면 선택 가능해짐
+            엔티티 선택시 해당 거리 만큼(mm) 인접하면 선택 가능해짐
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointSize">
             <summary>
-            Grip 사격형의 기본 크기 (픽셀)
+            Grip 사각형의 기본 크기 (픽셀)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointCursor">
@@ -7937,7 +9011,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.DefaultColor">
             <summary>
-            개체 생성 펜 기본 색상
+            개체 생성 펜 기본 색상 (흰색)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ResolvingTypeName">
@@ -7947,7 +9021,12 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigFontFilePath">
             <summary>
-            폰트 파일 경로
+            폰트 파일 경로 (TTF 와 같은 트루타입 폰트 종류)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigSiriusFontFilePath">
+            <summary>
+            폰트 파일 경로 (CXF 와 같은 폰트 종류)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigCorrectionFilePath">
@@ -7957,7 +9036,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigRtcExtIoFileName">
             <summary>
-            RTC 에서 사용되는 디지털 (확장1,2) 입출력 이름 목록
+            RTC 에서 사용되는 디지털 (확장 1,2) 입출력 이름 목록
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigHandlerIoFileName">
@@ -8003,7 +9082,7 @@
         <member name="T:SpiralLab.Sirius.IEntity">
             <summary>
             엔티티 인터페이스
-            
+            <para>
                                      IEntity
                                         |
               IDrawable  _____________  |  ___________ IScriptable
@@ -8017,7 +9096,8 @@
                             |  |  |  |  |  |  |  |  |
                             
                         [          E n t i t i y         ]
-            
+                        
+            </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IEntity.Owner">
@@ -8077,13 +9157,13 @@
         <member name="M:SpiralLab.Sirius.IEntity.Regen">
             <summary>
             데이타 변경시 혹은 내부 벡터및 외각(boundrect)영역 재 계산이 필요할 경우 등 
-            내부데이타 refresh 발생시 호출되어야 하는 함수 (regenerate)
+            <para>내부데이타 refresh 발생시 호출되어야 하는 함수 (regenerate)</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IExplodable">
             <summary>
             Explodable 인터페이스
-            분해가 가능한 엔티티가 상속 구현해야 하는 인터페이스
+            <para>분해가 가능한 엔티티가 상속 구현해야 하는 인터페이스</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IExplodable.Explode">
@@ -8095,6 +9175,26 @@
         <member name="T:SpiralLab.Sirius.Group">
             <summary>
             그룹 엔티티 (엔티티를 모아놓은 컨테이너롤 동작)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Group.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Group.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Group.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Group.Offsets">
+            <summary>
+            오프셋 배열 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Group.IsEnableFastRendering">
@@ -8112,7 +9212,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Group.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8120,7 +9220,7 @@
         <member name="T:SpiralLab.Sirius.InsertVertex">
             <summary>
             그룹(Group) 엔티티의 offset 처리용
-            그룹에서 여러개의 X,Y 위치 배열 정보 처리용
+            <para>그룹에서 여러개의 X,Y 위치 배열 정보 처리용</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.InsertVertex.Transit">
@@ -8186,6 +9286,36 @@
             선분 엔티티
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Line.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.ToReverseWinding">
+            <summary>
+            가공 순서 뒤집기 (토글시 적용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.Start">
+            <summary>
+            시작 위치
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.End">
+            <summary>
+            끝점
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.Line.#ctor">
             <summary>
             생성자
@@ -8219,7 +9349,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Line.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8234,9 +9364,24 @@
             점 엔티티
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Point.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Point.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Point.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Point.Location">
             <summary>
-            점프 위치 (mm)
+            가공 위치 (mm)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Point.DwellTime">
@@ -8252,7 +9397,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Point.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8260,7 +9405,37 @@
         <member name="T:SpiralLab.Sirius.LwPolyline">
             <summary>
             LW polyline (polyline vertex container)
-            임시 객체로 라인 + 호 조합의 Group 으로 최종 변환됨
+            <para>라인 + 호 조합의 개체들로 내부 처리됨</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.Items">
+            <summary>
+            정점 배열
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.IsClosed">
+            <summary>
+            폐곡선 여부
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.ToReverseWinding">
+            <summary>
+            정점 순서 뒤집기 (토글시)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LwPolyline.outlineList">
@@ -8289,7 +9464,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyline.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8297,6 +9472,21 @@
         <member name="T:SpiralLab.Sirius.Rectangle">
             <summary>
             사각형 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rectangle.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rectangle.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rectangle.Color2">
+            <summary>
+            펜 색상
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rectangle.Clone">
@@ -8307,7 +9497,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rectangle.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            markerable
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8315,6 +9505,42 @@
         <member name="T:SpiralLab.Sirius.Spiral">
             <summary>
             나선 엔티티
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.Description">
+            <summary>
+            설명
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.Color2">
+            <summary>
+            펜 색상
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.InnerDiameter">
+            <summary>
+            안쪽 원 지름 크기 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.OutterDiameter">
+            <summary>
+            바깥쪽 원 지름 크기 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.Revolutions">
+            <summary>
+            회전수
+            <para>바깥쪽 원의 반복 가공 회수</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Spiral.RadialPitch">
+            <summary>
+            회전간 간격 (mm)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Spiral.Clone">
@@ -8325,7 +9551,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Spiral.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8701,7 +9927,7 @@
         <member name="P:SpiralLab.Sirius.Text.OffsetSerialNoIncrementStep">
             <summary>
             오프셋 배열 사용 + 일련번호 사용시
-            일련번호 증가값
+            <para>일련번호 증가값</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Text.FontName">
@@ -8732,7 +9958,7 @@
         <member name="P:SpiralLab.Sirius.Text.LetterSpace">
             <summary>
             문자간 간격 처리 방식
-            고정 / 가변 
+            <para>고정 / 가변 </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Text.WordSpacing">
@@ -8858,7 +10084,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Text.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -8866,6 +10092,16 @@
         <member name="T:SpiralLab.Sirius.Timer">
             <summary>
             타이머 엔티티 (레이저 가공시 엔티티와 엔티티 사이에 삽입되어 시간을 지연하는 용도)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Timer.Name">
+            <summary>
+            이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Timer.Description">
+            <summary>
+            설명
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Timer.Delay">
@@ -8881,7 +10117,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.Timer.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            laser processing
+            가공
             </summary>
             <param name="markerArg"></param>
             <returns></returns>
@@ -9104,8 +10340,7 @@
         <member name="T:SpiralLab.Sirius.IMarker">
             <summary>
             마커 인터페이스
-            레이저, 스캐너 등의 하드웨어를 이용해 전달된 가공 데이타(Document) 기반으로 실제 출사를 위해 내부에 쓰레드를 생성하여
-            다양한 오프셋 위치에 레이저 가공을 수행하는 마커(Marker) 인터페이스
+            <para>레이저, 스캐너 등의 하드웨어를 이용해 전달된 가공 데이타(Document) 기반으로 실제 출사를 위해 내부에 쓰레드를 생성하여 다양한 오프셋 위치에 레이저 가공을 수행하는 마커(Marker) 인터페이스</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMarker.OnStarted">
@@ -9132,10 +10367,9 @@
         <member name="E:SpiralLab.Sirius.IMarker.OnMeasurement">
             <summary>
             계측 이벤트 핸들러
-            가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 
-            계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨
-            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능
-            실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨
+            <para>가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨</para>
+            <para>MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능</para>
+            <para>실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Index">
@@ -9171,7 +10405,7 @@
         <member name="P:SpiralLab.Sirius.IMarker.ScannerRotateAngle">
             <summary>
             스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
-            지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨
+            <para>지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarker.Document">
@@ -9196,10 +10430,9 @@
         </member>
         <member name="M:SpiralLab.Sirius.IMarker.Ready(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 
-            이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
-            때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. 
-            때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.
+            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
+            <para>때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. </para>
+            <para>때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.</para>
             </summary>
             <param name="markerArg">가공 인자</param>
             <returns></returns>
@@ -9231,7 +10464,7 @@
         <member name="M:SpiralLab.Sirius.IMarker.IsTargetLayer(SpiralLab.Sirius.Layer)">
             <summary>
             특정 레이어를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+            <para>내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단</para>
             </summary>
             <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
             <returns></returns>
@@ -9239,7 +10472,7 @@
         <member name="M:SpiralLab.Sirius.IMarker.IsTargetEntity(SpiralLab.Sirius.IEntity)">
             <summary>
             특정 개체를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+            <para>내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단</para>
             </summary>
             <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
             <returns></returns>
@@ -9350,10 +10583,9 @@
         <member name="E:SpiralLab.Sirius.MarkerDefault.OnMeasurement">
             <summary>
             계측 이벤트 핸들러
-            가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 
-            계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨
-            MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능
-            실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨
+            <para>가공완료후 개체내에 MeasurementBegin/End 가 존재할 경우 계측된 데이타를 전달하기위해 이벤트 핸들러 호출됨</para>
+            <para>MeasurementBegin 엔티티의 Save 를 통해 계측 데이타 저장하거나 GetMeasuredData 함수를 이용한 개별 데이타 직접 취득 가능</para>
+            <para>실행경로\plot\measurement-마커이름-날짜.txt 파일이름으로 계측 데이타가 생성된후 자동으로 그래프로 플롯(plot) 출력됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Index">
@@ -9394,7 +10626,7 @@
         <member name="P:SpiralLab.Sirius.MarkerDefault.ScannerRotateAngle">
             <summary>
             스캐너가 회전되어 장착되어 있는 경우 설정. 기본값 (0)
-            지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨
+            <para>지정된 각도만큼 내부에서 회전 행렬이 삽입되어 처리됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Document">
@@ -9410,7 +10642,7 @@
         <member name="P:SpiralLab.Sirius.MarkerDefault.IsEnablePens">
             <summary>
             펜 집한 기능 사용 유무 
-            편집기(SiriusEditorForm) 의 펜 집합 기능 사용유무 전달용
+            <para>편집기(SiriusEditorForm) 의 펜 집합 기능 사용유무 전달용</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerDefault.Tag">
@@ -9438,10 +10670,9 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.Ready(SpiralLab.Sirius.IMarkerArg)">
             <summary>
-            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 
-            이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
-            때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. 
-            때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.
+            마커는 내부 쓰레드에 의해 가공 데이타를 순회하면서 (Mark 호출) 가공 처리하게 되는데, 이때 가공 데이타(IDocument)는 크로스 쓰레드 상태에 놓이게 된다.
+            <para>때문에 준비(Prepare) 함수를 호출하면 원본 문서(Document)를 모두 복제(Clone)하여 가공시 이 복사본을 이용해 가공 처리를 하여 동기화 문제를 해소한다. </para>
+            <para>때문에 가공중 뷰(편집기 등)에 의해 원본 문서 데이타가 수정되더라도 가공 중인 데이타와는 상관이 없다.</para>
             </summary>
             <param name="markerArg">가공 인자</param>
             <returns></returns>
@@ -9449,7 +10680,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.RegisterFonts(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.IDocument)">
             <summary>
             문자 집합 RTC 내부 버퍼(리스트3)에 다운로드
-            (비활성화됨) 스크립트 컴파일및 실행
+            <para>(비활성화됨) 스크립트 컴파일및 실행</para>
             </summary>
             <param name="rtc"></param>
             <param name="doc"></param>
@@ -9488,8 +10719,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.IncrementSerialNoOrDateTime(SpiralLab.Sirius.IDocument,System.Int32)">
             <summary>
-            TextChangeable 인터페이스를 지원하는 개체들(문자, 바코드등)
-            에 대한 날짜, 시간 포맷변환, 알련번호 증가 등 처리
+            TextChangeable 인터페이스를 지원하는 개체들(문자, 바코드등) 에 대한 날짜, 시간 포맷변환, 알련번호 증가 등 처리
             </summary>
             <param name="doc"></param>
             <param name="layerIndex"></param>
@@ -9521,8 +10751,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.Start">
             <summary>
             가공 시작 
-            내부 함수 호출 순서 
-            WorkerThread : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+            <para>내부 함수 호출 순서 : WorkerThread : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
             </summary>
             <returns></returns>
         </member>
@@ -9552,7 +10781,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyProgressing">
             <summary>
             가공 진행률
-            (MarkerArg 의 Progress 값이 0~100 사이)
+            <para>(MarkerArg 의 Progress 값이 0~100 사이)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.NotifyFailed">
@@ -9575,13 +10804,13 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.PreWork">
             <summary>
             사전 작업
-            순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+            <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.MainWork">
             <summary>
             주 작업
-            순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+            <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.LayerWork(System.Int32,SpiralLab.Sirius.Layer)">
@@ -9595,7 +10824,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetLayer(SpiralLab.Sirius.Layer)">
             <summary>
             특정 레이어를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+            <para>내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단</para>
             </summary>
             <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
             <returns></returns>
@@ -9603,7 +10832,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.IsTargetEntity(SpiralLab.Sirius.IEntity)">
             <summary>
             특정 개체를 가공할지를 선택하기 위한 comparer
-            내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+            <para>내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단</para>
             </summary>
             <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
             <returns></returns>
@@ -9621,7 +10850,7 @@
         <member name="M:SpiralLab.Sirius.MarkerDefault.PostWork(System.Boolean)">
             <summary>
             마무리 작업
-            순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+            <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
             </summary>
             <returns></returns>
         </member>
@@ -9632,80 +10861,106 @@
         </member>
         <member name="T:SpiralLab.Sirius.MathHelper">
             <summary>
-            수학 유틸리티 
+            수학 처리용 유틸리티 
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MathHelper.DegToRad">
             <summary>
-            Constant to transform an angle between degrees and radians.
+            각도 라디안으로 변환
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MathHelper.RadToDeg">
             <summary>
-            Constant to transform an angle between degrees and radians.
+            라이안 각도 변환
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MathHelper.epsilon">
+            <summary>
+            부동 소수점 오차 상수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MathHelper.Epsilon">
             <summary>
-            Represents the smallest number used for comparison purposes.
+            부동 소수점 오차 처리용
             </summary>
-            <remarks>
-            The epsilon value must be a positive number greater than zero.
-            </remarks>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.Sign(System.Single)">
             <summary>
-            Returns a value indicating the sign of a double-precision floating-point number.
+            부호 추출 
             </summary>
-            <param name="number">Double precision number.
-            </param>
-            <returns>
-            A number that indicates the sign of value.
-            Return value Meaning -1 value is less than zero.
-            0 value is equal to zero.
-            1 value is greater than zero.
-            </returns>
-            <remarks>This method will test for values of numbers very close to zero.</remarks>
+            <param name="number"></param>
+            <returns>1 or -1</returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IsZero(System.Single)">
             <summary>
-            Checks if a number is close to zero.
+            0 인지 여부 (부동 소수점 오차 반영)
             </summary>
-            <param name="number">Double precision number.</param>
-            <returns>True if its close to one or false in any other case.</returns>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IsZero(System.Double)">
+            <summary>
+            0 인지 여부 (부동 소수점 오차 반영)
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IsZero(System.Single,System.Single)">
             <summary>
-            Checks if a number is close to zero.
+            0 인지 여부 (지정된 오차량 사용)
             </summary>
-            <param name="number">Double precision number.</param>
-            <param name="threshold">Tolerance.</param>
-            <returns>True if its close to one or false in any other case.</returns>
+            <param name="number"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IsZero(System.Double,System.Double)">
+            <summary>
+            0 인지 여부 (지정된 오차량 사용)
+            </summary>
+            <param name="number"></param>
+            <param name="threshold"></param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IsEqual(System.Single,System.Single)">
             <summary>
-            Checks if a number is equal to another.
+            부동 소수점 오차를 반영하여 값 비교
             </summary>
-            <param name="a">Double precision number.</param>
-            <param name="b">Double precision number.</param>
-            <returns>True if its close to one or false in any other case.</returns>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IsEqual(System.Double,System.Double)">
+            <summary>
+            부동 소수점 오차를 반영하여 값 비교
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.IsEqual(System.Single,System.Single,System.Single)">
             <summary>
-            Checks if a number is equal to another.
+            값 비교 (지정된 오차량 사용)
             </summary>
-            <param name="a">Double precision number.</param>
-            <param name="b">Double precision number.</param>
-            <param name="threshold">Tolerance.</param>
-            <returns>True if its close to one or false in any other case.</returns>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="threshold"></param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MathHelper.IsEqual(System.Double,System.Double,System.Double)">
+            <summary>
+            값 비교 (지정된 오차량 사용)
+            </summary>
+            <param name="a"></param>
+            <param name="b"></param>
+            <param name="threshold"></param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.NormalizeAngle(System.Single)">
             <summary>
-            Normalizes the value of an angle in degrees between [0, 360[.
+            각도 정규화
             </summary>
-            <param name="angle">Angle in degrees.</param>
-            <returns>The equivalent angle in the range [0, 360[.</returns>
-            <remarks>Negative angles will be converted to its positive equivalent.</remarks>
+            <param name="angle"></param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MathHelper.PointLength(System.Double,System.Double,System.Double,System.Double)">
             <summary>

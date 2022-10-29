@@ -53,7 +53,6 @@ namespace SpiralLab.Sirius
         public static Vector2 RotateCenter = new Vector2(-50, 0);
 
 
-
         public MainFormAngular2()
         {
             InitializeComponent();
@@ -168,9 +167,8 @@ namespace SpiralLab.Sirius
             };
             layer.Add(motfAngularBegin);
 
-
-            // 45, 135, 225, 270 위치에 4개의 폴리라인 가공
-            for (float angle = 45; angle < 360; angle += 90)
+            // 0, 45, 90, 125, 180, 225, 270, 315 에 8개의 위치에 폴리라인 가공
+            for (float angle = 0; angle < 360; angle += 45)
             {
                 // motf angular 대기 각도 개체 추가
                 var motfAngularWait = new MotfAngularWait()
@@ -195,12 +193,10 @@ namespace SpiralLab.Sirius
                 //lwPolyline.HatchExclude = 0;
                 //lwPolyline.HatchAngle = 0;
                 //lwPolyline.HatchAngle2 = 90;
-                // transit rotate center to scanner center distance
-                // 회전 중심으로 부터 스캐너 중심위치 거리로 이동
-                lwPolyline.Transit(-RotateCenter);
-                // rotate figure by rotate center (CW direction =  encoder +)
+
+                // rotate figure by rotate center 
                 // 회전 중심 기준으로 회전 (물체의 시계방향 회전이 엔코더 증가 방향)
-                lwPolyline.Rotate(-angle, Vector2.Zero);
+                lwPolyline.Rotate(angle, RotateCenter);
 
                 // 폴리라인 개체를 레이어에 추가
                 layer.Add(lwPolyline);
@@ -218,15 +214,15 @@ namespace SpiralLab.Sirius
 
             // 펜 파라메터 설정 (가공 조건 설정)
             var pen = doc.Pens.ColorOf(System.Drawing.Color.White) as PenDefault;
-            pen.Frequency = 50 * 1000;
-            pen.PulseWidth = 2;
-            pen.JumpSpeed = 1000;
-            pen.MarkSpeed = 1000;
+            pen.Frequency = 50 * 1000; //50khz
+            pen.PulseWidth = 2; //2us
+            pen.JumpSpeed = 1000; //1000mm/s
+            pen.MarkSpeed = 1000; //1000mm/s
             pen.LaserOnDelay = 0;
             pen.LaserOffDelay = 0;
-            pen.ScannerJumpDelay = 200;
-            pen.ScannerMarkDelay = 50;
-            pen.ScannerPolygonDelay = 10;
+            pen.ScannerJumpDelay = 200; //200us
+            pen.ScannerMarkDelay = 50; //50us
+            pen.ScannerPolygonDelay = 10; //10us
             pen.LaserQSwitchDelay = 0;
 
             // 레이어를 문서에 추가

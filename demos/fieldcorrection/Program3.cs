@@ -54,7 +54,7 @@ namespace SpiralLab.Sirius
             rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);    // correction file (스캐너 보정 파일)
             #endregion
 
-            // 헤더 정보를 조회할 보정 파일 RTC 내부 메모리 (테이블)로 로드
+            // 헤더 정보를 조회하기 위해 보정 파일을 RTC 내부 메모리 (테이블 3번 위치)로 로드
             var targetCorrectionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D2_1128.ct5");
             rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table3, targetCorrectionFile);
             var rtcExt = rtc as IRtcExtension;

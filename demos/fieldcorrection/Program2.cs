@@ -35,6 +35,7 @@ namespace SpiralLab.Sirius
     class Program2
     {
         static float kfactor = (float)Math.Pow(2, 20) / 60.0f;
+        static IRtc rtc = null;
 
         [STAThread]
         static void Main2(string[] args)
@@ -43,6 +44,18 @@ namespace SpiralLab.Sirius
             Application.SetCompatibleTextRenderingDefault(false);
 
             SpiralLab.Core.Initialize();
+
+            #region initialize RTC 
+            //var rtc = new RtcVirtual(0); //create Rtc for dummy (가상 RTC 카드)
+            rtc = new Rtc5(0); //create Rtc5 controller
+            //var rtc = new Rtc6(0); //create Rtc6 controller
+            //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); //Rtc6 Ethernet
+            //var rtc = new Rtc6SyncAxis(0, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncAxis", "syncAXISConfig.xml")); //Scanlab XLSCAN 
+            float fov = 60.0f;    // scanner field of view : 60mm            
+            float kfactor = (float)Math.Pow(2, 20) / fov; // k factor (bits/mm) = 2^20 / fov
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);    // correction file (스캐너 보정 파일)
+            #endregion
 
             ConsoleKeyInfo key;
             do
@@ -170,6 +183,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             var form = new Correction3DRtcForm(correction);
+            form.OnApply += Form3D_OnApply;
             form.ShowDialog();
         }
 
@@ -260,7 +274,36 @@ namespace SpiralLab.Sirius
             #endregion
 
             var form = new Correction3DRtcForm(correction);
+            form.OnApply += Form3D_OnApply;
             form.ShowDialog();
+        }
+        private static void Form3D_OnApply(object sender, EventArgs e)
+        {
+            var form = sender as Correction3DRtcForm;
+            var index = form.Index;
+            string ctFileName = form.RtcCorrection.TargetCorrectionFile;
+            if (!File.Exists(ctFileName))
+            {
+                Logger.Log(Logger.Type.Error, $"try to change correction3d file but not exist : {ctFileName}");
+                return;
+            }
+            if (DialogResult.Yes != MessageBox.Show($"Do you really want to apply new correction3d file {ctFileName} ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                return;
+
+            bool success = true;
+            //해당 보정파일을 RTC 제어기 메모리 안으로 로드후 선택
+            success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ctFileName);
+            success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
+            if (success)
+            {
+                // 권장) ctFileName 파일 정보를 외부 설정 파일에 저장
+                Logger.Log(Logger.Type.Warn, $"correction3d file has changed to {ctFileName}");
+                MessageBox.Show($"Success to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show($"Fail to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }

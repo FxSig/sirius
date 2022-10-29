@@ -132,9 +132,17 @@
 
 **5. Version history**
 
+* 2022.10.31 v1.123
+  - fixed) SiriusText/Text font register bug into RTC (RTC 카드에 폰트 등록 버그 수정)
+  - fixed) MOTF angular rotate direction way (시계 방향 = 엔코더 증가 방향 = 각도 증가 방향)
+  - fixed) IRtcDualHead renamed to IRtc2ndHead (IRtc2ndHead 으로 이름 변경)
+  - demos) 
+     - more MOTF anglar demo "MainFormAngular2" with rotate center (회전 중심 위치를 처리하는 강화된 MainFormAngular2 데모 추가)
+     - load/select correction file after finish to convert at field correction demo (스캐너 필드 보정후 이를 RTC 에 적용하는 기능 추가)
+
 * 2022.10.21 v1.122
   - added) Program5.cs demo at motf_dualhead_ext project (motf_dualhead_ext  프로젝트에 Program5 예제 추가)
-     - powerful example use of Angular MOTF (강력한 회전 기반 MOTF 에제 제공됨)
+     - powerful example demo codes use of Angular MOTF (강력한 회전 기반 MOTF 에제 제공됨)
   - added) IRtcDualHead (IRtcDualHead 인터페이스 기능 추가)
      - ListSelectCorrection function (리스트 명령 실행중 스캐너 보정 테이블 변경 지원)
   - added) IRtcMotf interfaces (MOTF 인터페이스 기능 추가)
@@ -154,7 +162,7 @@
   - fixed) invalid 2nd head offset (2nd 스캔 헤드에 적용된 오프셋값이 초기화되는 문제 수정)
   - fixed) exception of SiriusEditorForm/SIriusViewerForm usercontrol when create (사용자 컨트롤 생성시 예외 발생 버그)
   - fixed) Newport ESP301 (ESP301 모션 제어기 테스트 완료)
-    - motor status takes too much time (상태 업데이트에 시간이 많이 소요되는 문제 해결)
+    - update motor status takes too much time (상태 업데이트에 시간이 많이 소요되는 문제 해결)
     - defined home offset (사용자 지정 홈 오프셋 지원)
   
 * 2022.10.2 v1.120
@@ -201,7 +209,7 @@
 
 * 2022.8.31 v1.117
   - added) grid checker with crop ROI and save  (스캐너 보정용 이미지의 ROI 영역 자르기, 저장 기능 추가)
-  - added) IRtcDualHead with base/user offset (듀얼헤드사용시 헤드별 오프셋 확장 지원 :  base + user)
+  - added) IRtcDualHead with base/user offset (2nd헤드사용시 헤드별 오프셋 확장 지원 :  base + user)
   - fixed) IRtcMotf with Motf Repeat bug (MOTF 반복 가공시 무제한 및 회수 지정 가능)
   - fixed) powermeter/powermap/verify event handler with notification bugs (파워메터/파워맵/검증시 호출 버그 수정및 인자 통일)
 
@@ -305,7 +313,7 @@
    - fixed) fail to register characterset into RTC (문자집합을 RTC 메모리에 다운로드 실패하는 버그 수정)
 
 * 2022.5.13 v.1.107
-   - added) syncaxis demo for multiple instances (syncAXIS 기반의 듀얼헤드 데모 기능 추가)
+   - added) syncaxis demo for multiple instances (syncAXIS 기반의 2nd헤드 데모 기능 추가)
    - added) create group entity with offsets (옵셋을 가진 그룹 개체 생성 추가 : 마스터 개체 + 오프셋 배열 방식)
    - added) draw grids within view (뷰에 격자 렌더링 지원)
    - fixed) group entity's color rendering bug (그룹 개체및 오프셋 처리시 렌더링 색상이 바뀌지 않는 문제 해결)
@@ -711,7 +719,7 @@
       - IRtcAutoLaserControl (자동 레이저 제어 지원 인터페이스)
       - IRtcCharacterSet (문자 집합 지원 인터페이스)
       - IRtcDateTimeOffset (날짜시간 오프셋 지원 인터페이스)
-      - IRtcDualHead (듀얼 헤드 지원 인터페이스)
+      - IRtc2ndHead (2nd 헤드 지원 인터페이스)
       - IRtcExtension (확장 기능 지원 인터페이스)
       - IRtcMeasurement (계측 지원 인터페이스)
       - IRtcMOTF (Processing on the fly 지원 인터페이스)

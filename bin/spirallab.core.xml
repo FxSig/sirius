@@ -853,9 +853,9 @@
             라이센스 (MOTF) 인식 성공 여부
             </summary>
         </member>
-        <member name="P:SpiralLab.Rockey4ND.IsDualHeadLicensed">
+        <member name="P:SpiralLab.Rockey4ND.Is2ndHeadLicensed">
             <summary>
-            라이센스 (듀얼헤드 Master/Slave) 인식 성공 여부
+            라이센스 (Secondary Head : Master/Slave) 인식 성공 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.Is3DLicensed">

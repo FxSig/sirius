@@ -386,7 +386,7 @@ namespace SpiralLab.Sirius
         #endregion
 
         /// <summary>
-        /// laser processing
+        /// 가공
         /// </summary>
         /// <param name="markerArg"></param>
         /// <returns></returns>

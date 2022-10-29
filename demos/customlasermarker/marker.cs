@@ -233,9 +233,9 @@ namespace SpiralLab.Sirius
             this.clonedDoc = this.MarkerArg.Document;
             Debug.Assert(clonedDoc != null);
             this.originalDoc = markerArg.Document;
+
+            //MOTF 용 폰트 다운로드 & 스크립트 컴파일 
             /*
-             * MOTF 용 폰트 다운로드 & 스크립트 컴파일 
-             * 
             if (!this.RegisterFonts(this.MarkerArg.Rtc, this.clonedDoc))
             {
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to register characterset");
@@ -362,20 +362,17 @@ namespace SpiralLab.Sirius
             Debug.Assert(rtc != null);
             Debug.Assert(entity != null);
             bool success = true;
-            var siriusText = entity as SiriusText;
-            var text = entity as Text;
-            var group = entity as Group;
-            if (null != siriusText)
+            if (entity is SiriusText siriusText)
             {
                 success &= siriusText.RegisterCharacterSetIntoRtc(rtc);
                 return success;
             }
-            else if (null != text)
+            else if (entity is Text text)
             {
                 success &= text.RegisterCharacterSetIntoRtc(rtc);
                 return success;
             }
-            else if (null != group) //group 의 경우 하부 엔티티에 대해서도 동작
+            else if (entity is Group group) //group 의 경우 하부 엔티티에 대해서도 동작
             {
                 foreach (var subEntity in group)
                 {
@@ -403,11 +400,10 @@ namespace SpiralLab.Sirius
                 {
                     string fullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "scripts", scriptable.ScriptFileName);
                     if (File.Exists(fullPath))
-                    {
+                    { 
                         var lineOfCodes = File.ReadAllText(fullPath);
                         if (scriptable.ScriptCompile(lineOfCodes, out var compileErrorCollection))
                         {
-
                         }
                         else
                         {
@@ -450,9 +446,9 @@ namespace SpiralLab.Sirius
             if (Application.OpenForms.Count > 1)
                 form = Application.OpenForms[0];
             bool success = true;
-            form.Invoke(new MethodInvoker(delegate ()
+            if (null != form)
             {
-                //for (int i = 0; i < doc.Layers.Count; i++)
+                form.Invoke(new MethodInvoker(delegate ()
                 {
                     var layer = doc.Layers[layerIndex];
                     if (this.IsTargetLayer(layer))
@@ -465,9 +461,8 @@ namespace SpiralLab.Sirius
                             }
                         }
                     }
-                }
-            }));
-
+                }));
+            }
             return success;
         }
         /// <summary>
@@ -522,25 +517,27 @@ namespace SpiralLab.Sirius
             if (Application.OpenForms.Count > 1)
                 form = Application.OpenForms[0];
             bool success = true;
-            form.Invoke(new MethodInvoker(delegate ()
+            if (null != form)
             {
-                var layer = doc.Layers[layerIndex];
-                if (this.IsTargetLayer(layer))
+                form.Invoke(new MethodInvoker(delegate ()
                 {
-                    if (layer.IsMarkerable)
+                    var layer = doc.Layers[layerIndex];
+                    if (this.IsTargetLayer(layer))
                     {
-                        foreach (var entity in layer)
+                        if (layer.IsMarkerable)
                         {
-                            success &= this.ScriptCompile(entity);
-                            if (success)
+                            foreach (var entity in layer)
                             {
-                                this.ScriptExecute(entity, true);
+                                success &= this.ScriptCompile(entity);
+                                if (success)
+                                {
+                                    this.ScriptExecute(entity, true);
+                                }
                             }
                         }
                     }
-                }
-            }));
-            return success;
+                }));
+            }
         }
         */
 
@@ -858,8 +855,11 @@ namespace SpiralLab.Sirius
             // 3D 오프셋 값이 있으면 모두 리셋
             if (rtc is IRtc3D rtc3D)
             {
-                rtc3D.CtlZOffset(0);
-                rtc3D.CtlZDefocus(0);
+                if (rtc.Is3D)
+                {
+                    rtc3D.CtlZOffset(0);
+                    rtc3D.CtlZDefocus(0);
+                }
             }
             // 레이저 소스측 리스트 시작 통지
             var laser = this.MarkerArg.Laser;
@@ -1048,6 +1048,10 @@ namespace SpiralLab.Sirius
                     else
                     {
                         Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started");
+
+                        if (rtc is IRtcMOTF rtcMotf)
+                            rtcMotf.CtlMotfOverflowClear();
+
                         if (this.MarkerArg.IsExternalStart)
                             success &= rtc.ListBegin(laser, ListType.Single); //외부 트리거 사용시 강제로 단일 리스트로 고정
                         else
@@ -1064,6 +1068,7 @@ namespace SpiralLab.Sirius
                         rtc.MatrixStack.Push(scannerRotateAngle); // 3. 스캐너의 기구적 회전량
                         rtc.MatrixStack.Push(xyt.X + clonedDoc.RotateOffset.X, xyt.Y + clonedDoc.RotateOffset.Y); // 2. 오프셋 이동량
                         rtc.MatrixStack.Push(xyt.Angle + clonedDoc.RotateOffset.Angle);  // 1. 오프셋 회전량
+                        this.MarkerArg.OffsetIndex = (uint)i;
 
                         for (int l = 0; l < layer.Repeat; l++)
                         {
@@ -1129,15 +1134,17 @@ namespace SpiralLab.Sirius
                             Form form = null;
                             if (Application.OpenForms.Count > 1)
                                 form = Application.OpenForms[0];
-                            //property grid 도 refresh 되는게 좋은듯 한데 ....ㅡ.ㅡ
-                            form.BeginInvoke(new MethodInvoker(delegate ()
+                            if (null != form)
                             {
-                                if (null != this.MarkerArg.ViewTargets)
+                                form.BeginInvoke(new MethodInvoker(delegate ()
                                 {
-                                    foreach (var view in this.MarkerArg.ViewTargets)
-                                        view?.Render();
-                                }
-                            }));
+                                    if (null != this.MarkerArg.ViewTargets)
+                                    {
+                                        foreach (var view in this.MarkerArg.ViewTargets)
+                                            view?.Render();
+                                    }
+                                }));
+                            }
                         }
                     */
                     }
@@ -1167,7 +1174,7 @@ namespace SpiralLab.Sirius
                     {
                         if (!File.Exists(Config.ConfigSyncAxisViewerFileName))
                         {
-                            MessageBox.Show(null, "syncAxis viewer is not founded", "SyncAxis Viewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            //MessageBox.Show(null, "syncAxis viewer is not founded", "SyncAxis Viewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
                         else
                         {
@@ -1187,11 +1194,17 @@ namespace SpiralLab.Sirius
                                         startInfo.Arguments = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, simulatedFileName);
                                     try
                                     {
+                                        //Cursor.Current = Cursors.WaitCursor;
+                                        //using (var proc
                                         var proc = Process.Start(startInfo);
                                     }
                                     catch (Exception ex)
                                     {
                                         Logger.Log(Logger.Type.Error, ex.Message);
+                                    }
+                                    finally
+                                    {
+                                        //Cursor.Current = Cursors.Default;
                                     }
                                 });
                             }

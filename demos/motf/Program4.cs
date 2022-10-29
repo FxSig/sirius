@@ -192,7 +192,7 @@ namespace SpiralLab.Sirius
             {
                 // enable /START trigger at LASER connector on RTC card
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = new Rtc5ExternalControlMode();                
+                var extCtrl = Rtc5ExternalControlMode.Empty;
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.EncoderReset);
@@ -321,7 +321,7 @@ namespace SpiralLab.Sirius
             {
                 // enable / START trigger at LASER connector on RTC card
                 // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
-                var extCtrl = new Rtc5ExternalControlMode();
+                var extCtrl = Rtc5ExternalControlMode.Empty;
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
                 extCtrl.Add(Rtc5ExternalControlMode.Bit.EncoderReset);

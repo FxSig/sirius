@@ -17,8 +17,8 @@
  * 
  *
  * 
- * IRtc + IRtcDualHead 인터페이스를 직접 사용하는 방법
- * RTC5 + DualHead 카드를 초기화 하고 각 헤드별 오프셋을 처리한다
+ * IRtc + IRtc2ndHead 인터페이스를 직접 사용하는 방법
+ * RTC5 + 2nd Head 카드를 초기화 하고 각 헤드별 오프셋을 처리한다
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -123,7 +123,7 @@ namespace SpiralLab.Sirius
             laser.CtlPower(2);
             #endregion
 
-            var rtcDualHead = rtc as IRtcDualHead;
+            var rtc2ndHead = rtc as IRtc2ndHead;
 
             ConsoleKeyInfo key;
             do
@@ -146,24 +146,24 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.D:
-                        rtcDualHead.PrimaryHeadBaseOffset = Vector3.Zero;
-                        rtcDualHead.SecondaryHeadBaseOffset = Vector3.Zero;
-                        rtcDualHead.PrimaryHeadUserOffset = Vector3.Zero;
-                        rtcDualHead.SecondaryHeadUserOffset = Vector3.Zero;
+                        rtc2ndHead.PrimaryHeadBaseOffset = Vector3.Zero;
+                        rtc2ndHead.SecondaryHeadBaseOffset = Vector3.Zero;
+                        rtc2ndHead.PrimaryHeadUserOffset = Vector3.Zero;
+                        rtc2ndHead.SecondaryHeadUserOffset = Vector3.Zero;
                         DrawCircle(laser, rtc);
                         break;
                     case ConsoleKey.E:
                         // base offset : 두개의 헤드를 하드웨어(기구적으로) 간에 평행하도록 개별 헤드의 위치를 보정
                         // 헤드에 적용되는 최종 global offset = base + user  
-                        rtcDualHead.PrimaryHeadBaseOffset = new Vector3(10, 0, 0.1f);
-                        rtcDualHead.SecondaryHeadBaseOffset = new Vector3(-10, 0, 0.1f);
+                        rtc2ndHead.PrimaryHeadBaseOffset = new Vector3(10, 0, 0.1f);
+                        rtc2ndHead.SecondaryHeadBaseOffset = new Vector3(-10, 0, 0.1f);
                         DrawCircle(laser, rtc);
                         break;
                     case ConsoleKey.F:
                         // user offset : 자재(혹은 레시피)별로 사용자가 헤드의 중심 위치를 이동하고자 할 경우
                         // 헤드에 적용되는 최종 global offset = base + user 
-                        rtcDualHead.PrimaryHeadUserOffset = new Vector3(-5, 0, 0);
-                        rtcDualHead.SecondaryHeadUserOffset = new Vector3(5, 0, 0);
+                        rtc2ndHead.PrimaryHeadUserOffset = new Vector3(-5, 0, 0);
+                        rtc2ndHead.SecondaryHeadUserOffset = new Vector3(5, 0, 0);
                         DrawCircle(laser, rtc);
                         break;
                 }
@@ -183,8 +183,8 @@ namespace SpiralLab.Sirius
             success &= rtc.ListBegin(laser);
             // translate and rotate at each head by list command if needed
             // 리스트 명령으로 오프셋 및 회전 처리 방법
-            //success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
-            //success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
+            //success &= rtc2ndHead.ListHeadOffset(ScannerHead.Primary, new Vector2(5, 0), 0);
+            //success &= rtc2ndHead.ListHeadOffset(ScannerHead.Secondary, new Vector2(-5, 0), 0);
 
             for (int i = 0; i < 10; i++)
             {
@@ -201,8 +201,8 @@ namespace SpiralLab.Sirius
             }
             // translate and rotate at each head by list command if needed
             // 리스트 명령으로 오프셋 및 회전 처리 방법
-            // success &= rtcDualHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
-            // success &= rtcDualHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
+            // success &= rtc2ndHead.ListHeadOffset(ScannerHead.Primary, Vector2.Zero, 0);
+            // success &= rtc2ndHead.ListHeadOffset(ScannerHead.Secondary, Vector2.Zero, 0);
 
             //리스트 종료
             if (success)

@@ -55,12 +55,14 @@ namespace SpiralLab.Sirius
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            SpiralLab.Core.Initialize();
+            bool success = true;
+            success &= SpiralLab.Core.Initialize();
 
             #region initialize RTC 
+            // SCANLAB XL-SCAN by syncAXIS library
+            var rtc = new Rtc6SyncAxis(); 
+            // initialized by xml config file
             string configXmlFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml");
-            var rtc = new Rtc6SyncAxis(); // Scanlab XLSCAN 솔류션
-            bool success = true;
             success &= rtc.Initialize(configXmlFileName);
             // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
@@ -483,8 +485,8 @@ namespace SpiralLab.Sirius
         /// <param name="rtcSyncAxis"></param>
         static void SyncAxisViewer(IRtcSyncAxis rtcSyncAxis)
         {
-            var exeFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer", "syncAXIS_Viewer.exe");
-            string simulatedFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "logs", rtcSyncAxis.SimulationFileName);
+            var exeFileName = Config.ConfigSyncAxisViewerFileName;
+            string simulatedFileName = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, rtcSyncAxis.SimulationFileName);
             if (File.Exists(simulatedFileName))
             {
                 Console.WriteLine($"syncAXIS Viewer trying to open: {simulatedFileName}");

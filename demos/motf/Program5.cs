@@ -356,14 +356,14 @@ namespace SpiralLab.Sirius
 
             /* global coordinate system
              * 
-             *                                 |     <- Counter Clock Wise = Angle - = Enc -
-             *                                 |              .                      
-             *                                 |                  .                   
-             *                                 |                    .                
-             *                                 |                      .              
-             *                                 |                        .             
-             *                                 |                         .          
-             *                                 |                          .           
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
              *                                 |                 |--------|--------|                    
              *                                 |                 |        |        |
              *                                 |                 |        |        |       
@@ -390,14 +390,14 @@ namespace SpiralLab.Sirius
 
             /* new scanner coordinate system
              * 
-             *                                 |     <- Counter Clock Wise = Angle - = Enc -
-             *                                 |              .                      
-             *                                 |                  .                   
-             *                                 |                    .                
-             *                                 |                      .              
-             *                                 |                        .             
-             *                                 |                         .          
-             *                                 |                          .           
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
+             *                                 |     
              *                                 |                 |--------|--------|                    
              *                                 |                 |        |        |
              *                                 |                 |        |        |       
@@ -435,8 +435,8 @@ namespace SpiralLab.Sirius
 
                 // laser on during 200ms
                 success &= rtc.ListLaserOn(200);
+                
                 // or
-
                 /*
                 // create closed figure
                 // 폐곡선을 생성하고 (필요하면 내부 해치를 생성후) 가공 시작
@@ -455,12 +455,9 @@ namespace SpiralLab.Sirius
                 lwPolyline.HatchAngle = 0;
                 lwPolyline.HatchAngle2 = 90;
                 lwPolyline.Regen();
-                // transit rotate center to scanner center distance
-                // 회전 중심으로 부터 스캐너 중심위치 거리로 이동
-                lwPolyline.Transit(-RotateCenter);
-                // rotate figure by rotate center (CW direction =  encoder +)
+                // rotate by rotate-center
                 // 회전 중심 기준으로 회전 (물체의 시계방향 회전이 엔코더 증가 방향)
-                lwPolyline.Rotate(-angle, Vector2.Zero);
+                lwPolyline.Rotate(angle, RotateCenter);
                 // mark (가공)
                 success &= lwPolyline.Mark(markArg);
                 */
