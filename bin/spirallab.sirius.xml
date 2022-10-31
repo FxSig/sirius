@@ -1371,6 +1371,14 @@
             <param name="fileName">계측 데이타 파일 이름</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MeasurementHelper.Plot2(System.String)">
+            <summary>
+            미리 저장되어 있는 계측 데이타 파일을 열어 그래프로 플롯(Plot) 시키기
+            자재 그래프 처리용 윈폼을 출력
+            </summary>
+            <param name="fileName">계측 데이타 파일 이름</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PensSerializer">
             <summary>
             Pens 객체 저장/복원용
@@ -3301,6 +3309,13 @@
             계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.MeasurementPlotProgram">
+            <summary>
+            계측 데이타 그래프 출력 프로그램
+            0 = gnuplot
+            1 = internal plot
+            </summary>
+        </member>
         <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.MarkerArgDefault.PenStack" -->
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.IsRegisteringFonts">
             <summary>
@@ -3485,6 +3500,13 @@
             계측(Measurement)이 실행되었을때 결과 데이타를 자동 저장하고 이를 그래프로 플롯(Plot) 할지 여부
             <para>계측 파일 경로 : bin\plot\measurement-이름.txt </para>
             <para>gnuplot 설정 파일 경로 : bin\config\plot.cmd</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IMarkerArg.MeasurementPlotProgram">
+            <summary>
+            계측 데이타 그래프 출력 프로그램
+            0 = gnuplot
+            1 = internal plot
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.PenStack">

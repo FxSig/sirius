@@ -3461,49 +3461,31 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Categories">
-            <summary>
-            목표 카테고리 배열
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Steps">
-            <summary>
-            단계
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.PowerMeter">
-            <summary>
-            IPowerMeter 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Rtc">
-            <summary>
-            IRtc 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Laser">
-            <summary>
-            ILaser 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Location">
-            <summary>
-            스캐너 출사 위치 (기본값 : 0,0 원점)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.HoldTimeMsec">
-            <summary>
-            측정을 위한 레이저 출사 시간 (msec)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.ThresholdWatt">
-            <summary>
-            해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="T:SpiralLab.Sirius.IPowerVerifyArg">
             <summary>
@@ -3512,7 +3494,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.CategoryAndTargetWatts">
             <summary>
-            목표 카테고리, 출력 파워(W) 배열
+            목표 카테고리, 출력 파워(W), 측정 파워(W) 배열
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.PowerMeter">
@@ -3556,44 +3538,28 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.CategoryAndTargetWatts">
-            <summary>
-            목표 카테고리,출력밧(W) 배열
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.PowerMeter">
-            <summary>
-            IPowerMeter 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Rtc">
-            <summary>
-            IRtc 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Laser">
-            <summary>
-            ILaser 인터페이스 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Location">
-            <summary>
-            스캐너 출사시 이동 위치 (기본값: 0,0 원점)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.HoldTimeMsec">
-            <summary>
-            출사 유지시간 (msec)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.ThresholdWatt">
-            <summary>
-            오차로 처리할 출력값 범위 (W)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapVerifyDefaultArg.#ctor">
             <summary>
@@ -4707,6 +4673,22 @@
             복제
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.Properties.Resources">
+            <summary>
+              지역화된 문자열 등을 찾기 위한 강력한 형식의 리소스 클래스입니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.ResourceManager">
+            <summary>
+              이 클래스에서 사용하는 캐시된 ResourceManager 인스턴스를 반환합니다.
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Properties.Resources.Culture">
+            <summary>
+              이 강력한 형식의 리소스 클래스를 사용하여 모든 리소스 조회에 대해 현재 스레드의 CurrentUICulture 속성을
+              재정의합니다.
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionData3D">
             <summary>
@@ -18633,7 +18615,7 @@
             <summary>
             리스트 명령 - 샘플링 측정 시작
             </summary>
-            <param name="frequency">샘플링 주기 (Hz : ~ 100KHz) (최소 해상도 : *10usec) </param>
+            <param name="frequency">샘플링 주기 (Hz : ~ 100KHz)</param>
             <param name="channels">대상 채널 (RTC4: 2개, RTC5/6: 4개)</param>
             <returns></returns>
         </member>
@@ -18765,7 +18747,6 @@
             MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
             <para>
             주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임
-            |Resolution| > 100.0
             </para>
             </summary>
         </member>
@@ -20605,6 +20586,23 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.MeasurementForm.components">
+            <summary>
+            필수 디자이너 변수입니다.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementForm.Dispose(System.Boolean)">
+            <summary>
+            사용 중인 모든 리소스를 정리합니다.
+            </summary>
+            <param name="disposing">관리되는 리소스를 삭제해야 하면 true이고, 그렇지 않으면 false입니다.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MeasurementForm.InitializeComponent">
+            <summary>
+            디자이너 지원에 필요한 메서드입니다. 
+            이 메서드의 내용을 코드 편집기로 수정하지 마세요.
             </summary>
         </member>
         <member name="T:RTC4Import.RTC4Wrap">

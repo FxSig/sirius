@@ -204,7 +204,6 @@ namespace SpiralLab.Sirius
         {
             Console.WriteLine("Power mapping has finished");
         }
-
         private static void PowerMap_OnVerifyStarted(IPowerMap sender, IPowerVerifyArg arg)
         {
             Console.WriteLine("Power verification has started");
@@ -248,7 +247,7 @@ namespace SpiralLab.Sirius
 
             var arg = new PowerMapVerifyDefaultArg()
             {
-                CategoryAndTargetWatts = new (string category, float watt)[] { ("100000", targetWatt) },
+                CategoryAndTargetWatts = new (string category, float watt, float detectedWatt)[] { ("100000", targetWatt, 0) },
                 PowerMeter = powerMeter,
                 Laser = laser,
                 Rtc = rtc,

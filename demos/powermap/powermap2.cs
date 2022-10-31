@@ -208,8 +208,9 @@ namespace SpiralLab.Sirius
 
             this.IsBusy = true;
             this.NotifyVerifyStarted(arg);
-            foreach (var kv in arg.CategoryAndTargetWatts)
+            for (int i = 0; i < arg.CategoryAndTargetWatts.Length; i++)
             {
+                var kv = arg.CategoryAndTargetWatts[i];
                 float hz = float.Parse(kv.category);
                 float targetWatt = kv.watt;
                 if (powerControl.CtlPower(targetWatt, kv.category))
@@ -217,6 +218,8 @@ namespace SpiralLab.Sirius
                     //your codes ...
                     //
                     //
+                    //update detected watt
+                    //kv.detectedWatt = 
                 }
             }
             this.NotifyVerifyFinished(arg);

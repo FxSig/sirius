@@ -133,10 +133,14 @@
 **5. Version history**
 
 * 2022.10.31 v1.123
+  - added) plot measurement result with another program (계측 데이타 그래프 출력 프로그램 추가)
+     - 1st : gnuplot program
+	 - 2nd : internal winform program
   - fixed) improved XML documentation
   - fixed) SiriusText/Text font register bug into RTC (RTC 카드에 폰트 등록 버그 수정)
   - fixed) MOTF angular rotate direction way (시계 방향 = 엔코더 증가 방향 = 각도 증가 방향)
   - fixed) IRtcDualHead renamed to IRtc2ndHead (IRtc2ndHead 으로 이름 변경)
+  - fixed) powermap verification with detected watt (파워맵 검증시 측정 파워값도 기록)
   - demos) 
      - more MOTF anglar demo "MainFormAngular2" with rotate center (회전 중심 위치를 처리하는 강화된 MainFormAngular2 데모 추가)
      - load/select correction file after finish to convert at field correction demo (스캐너 필드 보정후 이를 RTC 에 적용하는 기능 추가)
