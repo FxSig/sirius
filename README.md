@@ -133,6 +133,7 @@
 **5. Version history**
 
 * 2022.10.31 v1.123
+  - fixed) improved XML documentation
   - fixed) SiriusText/Text font register bug into RTC (RTC 카드에 폰트 등록 버그 수정)
   - fixed) MOTF angular rotate direction way (시계 방향 = 엔코더 증가 방향 = 각도 증가 방향)
   - fixed) IRtcDualHead renamed to IRtc2ndHead (IRtc2ndHead 으로 이름 변경)

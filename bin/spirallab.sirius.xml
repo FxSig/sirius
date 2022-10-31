@@ -9071,7 +9071,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigSyncAxisSimulateFilePath">
             <summary>
-            SYNCAXIS 시뮬레이션 로그 파일 생성 경로
+            syncAXIS 시뮬레이션 로그 파일 생성 경로
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EType">
