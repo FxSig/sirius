@@ -559,17 +559,20 @@
         <member name="T:SpiralLab.ICore">
             <summary>
             코어 인터페이스
+            <para>Core Interface</para>
             </summary>
         </member>
         <member name="M:SpiralLab.ICore.InitializeEngine">
             <summary>
-            라이브러리 엔진 초기화
+            시리우스 라이브러리 초기화
+            <para>Initialize Sirius Library</para>
             </summary>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Core">
             <summary>
             스파이럴랩 코어 객체
+            <para>SpiralLAB Core</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Core.InitializeEngine">
@@ -582,21 +585,21 @@
         </member>
         <member name="P:SpiralLab.Core.IsRunningPlatform64">
             <summary>
-            실행중인 런타임 
-            true : x64
-            false : x32
+            실행중인 런타임 (true: x64, false: x32)
+            <para>Runtime (x32/x64)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Core.Initialize">
             <summary>
-            초기화 (로그 엔진등을 초기화)
-            <para>최초에 한번 호출되어야 함</para>
+            시리우스 라이브러리 초기화
+            <para>Initialize Sirius Library</para>
             </summary>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.Core.Version">
             <summary>
-            코어 버전 정보
+            시리우스 코어 라이브러리 버전 정보
+            <para>Version Information of Core Sirius Library</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Core.NativeMethods">
@@ -648,8 +651,8 @@
             <summary>
             로그 메시지 콜백 델리게이트 
             </summary>
-            <param name="type">로그 타입</param>
-            <param name="message">로그 메시지</param>
+            <param name="type">로그 타입 (Log Type)</param>
+            <param name="message">로그 메시지 (Log Message)</param>
         </member>
         <member name="T:SpiralLab.Logger">
             <summary>
@@ -658,106 +661,123 @@
         </member>
         <member name="T:SpiralLab.Logger.Type">
             <summary>
-            로그 타입
+            로그 타입 (Log Type)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Trace">
             <summary>
-            추적
+            추적 (Trace)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Debug">
             <summary>
-            디버그
+            디버그 (Debug)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Info">
             <summary>
-            정보 (기본)
+            정보 (Information)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Warn">
             <summary>
-            경고
+            경고 (Warn)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Error">
             <summary>
-            에러
+            에러 (Error)
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Fatal">
             <summary>
-            치명
+            치명 (Fatal)
             </summary>
         </member>
         <member name="E:SpiralLab.Logger.OnLogged">
             <summary>
             로그 메시지 이벤트 핸들러
+            <para>Log Message Event Handler</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="message"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="message">메시지 (Message)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="format"></param>
-            <param name="arg0"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="format">포맷 (Format)</param>
+            <param name="arg0">인자 (Argument)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object,System.Object)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="format"></param>
-            <param name="arg0"></param>
-            <param name="arg1"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="format">포맷 (Format)</param>
+            <param name="arg0">인자 (Argument)</param>
+            <param name="arg1">인자 (Argument)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object,System.Object,System.Object)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="format"></param>
-            <param name="arg0"></param>
-            <param name="arg1"></param>
-            <param name="arg2"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="format">포맷 (Format)</param>
+            <param name="arg0">인자 (Argument)</param>
+            <param name="arg1">인자 (Argument)</param>
+            <param name="arg2">인자 (Argument)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object[])">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="format"></param>
-            <param name="args"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="format">포맷 (Format)</param>
+            <param name="args">인자 배열 (Argument Array)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="ex"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="ex">예외 (Exception)</param>
         </member>
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception,System.String)">
             <summary>
             로그 메시지 기록
+            <para>Log Message</para>
             </summary>
-            <param name="type"></param>
-            <param name="ex"></param>
-            <param name="message"></param>
+            <param name="type">타입 (Type)</param>
+            <param name="ex">예외 (Exception)</param>
+            <param name="message">메시지 (Message)</param>
+        </member>
+        <member name="M:SpiralLab.Logger.NotifyLog(SpiralLab.Logger.Type,System.String)">
+            <summary>
+            로그 메시지 통지 
+            <para>Notify Log Message</para>
+            </summary>
+            <param name="type">타입 (Type)</param>
+            <param name="message">메시지 (Message)</param>
         </member>
         <member name="M:SpiralLab.Logger.ExceptionToString(System.Exception)">
             <summary>
-            예외 상황 호출스택등 부가 정보 얻기
+            예외 상태 부가 정보 얻기
+            <para>Additional Data When Exception</para>
             </summary>
-            <param name="ex"></param>
+            <param name="ex">예외 (Exception)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Properties.Resources">
@@ -808,7 +828,7 @@
         </member>
         <member name="T:SpiralLab.Rockey4ND">
             <summary>
-            Rockey 인증용 내부 객체
+            인증용 내부 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Rockey4ND.SerialNo">

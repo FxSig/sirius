@@ -4818,6 +4818,12 @@
         <member name="M:SpiralLab.Sirius.ICorrection3D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
             측정 데이타 입력 (절대 좌표 값)
+            <code>
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </code>
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
@@ -4828,7 +4834,13 @@
         <member name="M:SpiralLab.Sirius.ICorrection3D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
             측정 데이타 입력 (상대 좌표값) 
-            ex) 상대 좌표값 = 비전 오차량 만큼만 입력
+            <para>상대 좌표값 = 비전 오차량 만큼만 입력</para>
+            <code>
+            예 :
+            1 2 3
+            4 5 6
+            7 8 9
+            </code>
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
@@ -16306,12 +16318,12 @@
             <summary>
             측정 데이타 입력
             좌상단부터 우상단 방향으로 순서 
-            <example>
+            <code>
             예 :
             1 2 3
             4 5 6
             7 8 9
-            </example>
+            </code>
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
@@ -16323,12 +16335,12 @@
             <summary>
             측정 데이타 입력 
             좌상단부터 우상단 방향으로 순서 
-            <example>
+            <code>
             예 :
             1 2 3
             4 5 6
             7 8 9
-            </example>
+            </code>
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
@@ -16351,9 +16363,9 @@
             <summary>
             3x3 행렬 스택 인터페이스
             <para>
-            스택 자료구조에 3*3 행렬구조체를 push/pop 하여 저장하고, 스택내의 모든 행렬을 곱셈 연산하는등의 유틸리티 클래스
-            스택내에 있는 행렬들은 변경점이 있을때만 자동 연산된다
-            가장 마지막, 가장 최신의, 가장 상단의 행렬값부터 변환이 적용됨
+            스택 자료구조에 3*3 행렬구조체를 push/pop 하여 저장하고, 스택내의 모든 행렬을 곱셈 연산하는등의 유틸리티 클래스.
+            스택내에 있는 행렬들은 변경점이 있을때만 자동 연산된다.
+            가장 마지막, 가장 최신의, 가장 상단의 행렬값부터 변환이 적용됨.
             </para>
             </summary>
         </member>
@@ -17228,8 +17240,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtc2ndHead.BaseDistanceToSecondaryHead">
             <summary>
-            주(Primary)헤드에서 부(Secondary) 헤드까지 물리적인 Base 거리값
-            <para>이 거리값은 2nd헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset 를 조절한다</para>
+            주(Primary)헤드에서 부(Secondary)헤드까지 물리적인 X, Y 거리값 (mm)
+            <para>이 거리값은 2nd 헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset를 조절한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc2ndHead.PrimaryHeadBaseOffset">
@@ -17283,18 +17295,21 @@
         </member>
         <member name="T:SpiralLab.Sirius.IRtcSerialComm">
             <summary>
-            RTC 확장 기능 인터페이스
+            RTC 카드에 내장된 RS-232 통신 포트용 인터페이스
+            <para>
+            리스트 명령 실행중 시리얼 통신을 처리하는 제어 방식에 적합
+            </para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialConfig(System.UInt32)">
             <summary>
             시리얼 통신 환경 설정
-            <para>
-             Data bits: 8
-             Start bits: 1
-             Stop bits: 1
-             Parity: none
-            </para>
+            <code>
+            Data bits: 8
+            Start bits: 1
+            Stop bits: 1
+            Parity: none
+            </code>
             </summary>
             <param name="baudRate">9600, ...</param>
             <returns></returns>
@@ -17454,7 +17469,8 @@
         </member>
         <member name="T:SpiralLab.Sirius.IRtc3D">
             <summary>
-            RTC 의 3D 옵션 (VarioScan 혹은 excelliSHIFT 등의 장치에서 사용됨)
+            RTC의 3D 기능 확장
+            <para>VarioScan, excelliSHIFT 등의 추가 장치 사용시</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc3D.ZOffset">
@@ -17725,21 +17741,23 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionFileName">
-             <summary>
-             ALC(Automatic Laser Control 중 위치 의존적 방법으로 Scale 값이 외부 파일에서 제공됨
-             <para>
-             null (string.Empty) 지정후 CtlAutoLaserControl 호출하면 비활성화됨
-            
-             파일 포맷 (RTC 메뉴얼 참고)
-             [PositionCtrlTable No]
-             PositionNo = Value
-             ScaleNo = Value
-             ...
-              N 1-50
-             Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
-             Scale : 0- 4
-             </para>
-             </summary>
+            <summary>
+            ALC(Automatic Laser Control 중 위치 의존적 방법으로 Scale 값이 외부 파일에서 제공됨
+            <para>
+            null (string.Empty) 지정후 CtlAutoLaserControl 호출하면 비활성화됨
+            </para>
+            <code>
+            파일 포맷 (RTC 메뉴얼 참고)
+            [PositionCtrlTable No]
+            PositionNo = Value
+            ScaleNo = Value
+            ...
+            ...
+            N = 1-50
+            Position : 스캐너 중심으로 부터 떨어진 거리 (반지름) 의 퍼센트값: 100 % =  2^19 bits (RTC5 경우) 
+            Scale : 0- 4
+            </code>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcAutoLaserControl.AutoLaserControlByPositionTableNo">
             <summary>
@@ -17894,6 +17912,7 @@
             <summary>
             IRtcCharacterSet 인터페이스
             <para>리스트 버퍼3 영역이 존재하는 RTC5/6 전용 기능</para>
+            <para>폰트 데이타를 RTC 내부 메모리에 다운로드 하는 방식</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
@@ -17980,11 +17999,11 @@
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.FocalLengthOrWorkingDistance">
             <summary>
-            <para>
+            <code>
             For a configuration with a scan objective: the effective focal length of the objective [mm]. 
             For a configuration without a scan objective: the working distance A [mm]. 
             A = distance from the optical axis of the incident laser beam at the first deflection mirror to the image plane.
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.StretchFactorX">
@@ -18025,7 +18044,7 @@
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.DifferentiationFThetaObjective">
             <summary>
             Differentiation between correction with or without an F-Theta objective.
-            <para>
+            <code>
             The following applies: 
             Parameter = 10 * PObj + PTyp with
             – PObj = 0: Correction without F-Theta objective
@@ -18034,13 +18053,13 @@
               PTyp = 0.0: without distortion data
               PTyp = 1.0: with F-Theta’s F-stop progression condition
               PTyp = 2.0: with image height table
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.IndicatorFortheSourceOfTheCorrectionFile">
             <summary>
             Indicator for the source of the correction file.
-            <para>
+            <code>
             The following applies: Parameter = 1000 * POrig + PVer with
             • POrig = 10000: Originally calculated file
               POrig = 20000: converted from ctb file
@@ -18048,20 +18067,20 @@
               By manipulating a correction file using correction programs available from SCANLAB,
               POrig is increased by 1 in each case.
                – PVer = Version number of the program used to create the correction file
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.InverseTable">
             <summary>
             Information about the inverse table.
-            <para>
+            <code>
             The following applies: Parameter = PExist + 2 × PCalc with
             • PExist = 1.0: valid inverse table is present
               PExist = 0.0: no valid inverse table present
             • If valid inverse table is present:
               PCalc = 0: inverse table calculated ab initio
               PCalc = 1: inverse table numerically calculated
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.AngleCalibration">
@@ -18075,30 +18094,30 @@
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ScanHeadGeometry">
             <summary>
             Code for the scan head geometry used for the calculation (for internal use only), for example,
-            <para>
+            <code>
             • = –1.0: unknown geometry (for example, for a table converted from a ctb file)
             • = 0.0: standard geometry
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ProtectiveWindow">
             <summary>
             Indicator for whether an additional protective window has been taken into account.
-            <para>
+            <code>
             The following applies: Parameter = 1,000,000 × PT + 1,000 × PI with
             • PT = Protective window thickness in mm (max. 2 decimal places)
             • PI = Refraction index(max. 3 decimal places)
             Example: The value 3,521,450.0 corresponds to a protective window thickness of 3.52 mm and a refraction index of 1.450.
-            </para>
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionFileHeaderParam.ImageFieldSizeLimited">
             <summary>
             Indicator for whether the image field size has been limited in the correction file.
-            <para>
+            <code>
             • = 0.0: without field size limit
             • = 2.0: with field size limit
-            </para>
+            </code>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.WobbelShape">
@@ -18167,13 +18186,13 @@
         <member name="M:SpiralLab.Sirius.IRtcExtension.CtlQSwitchDelay(System.Single)">
             <summary>
             Q 스위치 지연 시간값 설정
-            <para>
+            <code>
             레이저 모드에 따라 다르게 적용됨
             Yag1 : 0
             Yag2 : FPK 로 설정
             Yag3 : 10usec 고정
             Yag5 : 이 함수로 설정된 값
-            </para>
+            </code>
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -18248,13 +18267,13 @@
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListQSwitchDelay(System.Single)">
             <summary>
             Q 스위치 지연 시간값 설정
-            <para>
+            <code>
             레이저 모드에 따라 다르게 적용됨
             Yag1 : 0
             Yag2 : FPK 로 설정
             Yag3 : 10usec 고정
             Yag5 : 이 함수로 설정된 값
-            </para>
+            </code>
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -18632,7 +18651,7 @@
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncX">
             <summary>
-            X 엔코더 (0) / Angular 엔코더 (0)
+            X 엔코더 (0) or Angular 엔코더 (0)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.RtcEncoder.EncY">
@@ -18653,10 +18672,10 @@
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Auto">
             <summary>
             자동 = 실행될 당시의 입력 엔코더 값을 기준으로 자동 판단 (리스트 명령이 실행되는 시점에서의 입력 엔코더값이 사용됨)
-            <para>
-            예) 입력 엔코더값 1000, 비교 위치 2000 -> Over 로 자동 판단
-            예) 입력 엔코더값 1000, 비교 위치 0 -> Under 로 자동 판단
-            </para>
+            <code>
+            예1) 입력된 엔코더값 1000 일 경우, 비교 위치 2000 -> Over 로 자동 판단
+            예2) 입력된 엔코더값 1000 일 경우, 비교 위치 0 -> Under 로 자동 판단
+            </code>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Over">
@@ -18713,24 +18732,26 @@
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncXCountsPerMm">
             <summary>
             mm 당 엔코더 X 의 펄스 개수 
+            <code>
             
                                   counts 
             EncXCountsPerMm =   -----------
                                     mm  
-            * 주의 사항 (한축의 엔코더만 사용할 경우에도 임의의 값을 설정하는것을 추천)               
+            * 주의 사항 (한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천)               
+            </code>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncYCountsPerMm">
-            <summary>
-            mm 당 엔코더 Y 의 펄스 개수
-            <example>
-            
-                                  counts 
-            EncYCountsPerMm =   -----------
-                                    mm  
-            * 주의 사항 (한축의 엔코더만 사용할 경우에도 임의의 값을 설정하는것을 추천)
-            </example>
-            </summary>
+             <summary>
+             mm 당 엔코더 Y 의 펄스 개수
+            <code>
+             
+                                   counts 
+             EncYCountsPerMm =   -----------
+                                     mm  
+             * 주의 사항 (한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천)
+             </code>
+             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncXSimulatedSpeed">
             <summary>
@@ -18759,7 +18780,7 @@
         <member name="P:SpiralLab.Sirius.IRtcMOTF.MotfAngularCenter">
             <summary>
             MOTF Angular 사용시 회전 중심 위치 상대 좌표 (스캐너 중심으로 부터 떨어진 거리값)
-            <example>
+            <code>
             예를 들어 회전 중심위치가 -50, 0 일 경우
                                            |                                    
                                            |                                    
@@ -18787,7 +18808,7 @@
                                            |   /          . 
                                            |   --  Clock Wise = Angle + = Enc + 
                                            |   \
-            </example>
+            </code>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderReset(System.Single,System.Single)">
@@ -18823,14 +18844,14 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfTrackingError(System.UInt32,System.UInt32)">
             <summary>
             MOTF XY 사용시 스캐너의 트래킹 에러 보상
-            0, 0 으로 지정시 Disabled 됨
-            <example>
+            <para>0, 0 으로 지정시 Disabled 됨</para>
+            <code>
             스캐너 Spec 문서에 기재된 Tracking Error 시간값 설정
             EC = E + (E – EP ) * TrackingError,
             EC : 현재 사이클에서의 엔코더 보상값
             E : 현재 엔코더 값
             EP : 이전 사이클에서의 엔코더 보상값 
-            </example>>
+            </code>
             </summary>
             <param name="xUsec">X 축 보상 시간(usec)</param>
             <param name="yUsec">Y 축 보상 시간(usec)</param>
@@ -18839,9 +18860,11 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfCompensateTable(System.String,System.UInt32)">
             <summary>
             MOTF XY 사용시 엔코더 테이블 보정 파일 로드
-            <example>>
+            <para>
             스테이지의 기구 왜곡을 해소하기 위해 통상 2D 매핑(Mapping) 을 진행하는데, 이 매핑값들을 RTC 에도 설정하여 사용한다. 
             이는 기구부에서 발생시키는 엔코더는 매핑전 신호(펄스)가 전달되어 위치 왜곡이 발생하는데 이를 보정해주는 기능
+            </para>
+            <code>
             자세한 포맷은 RTC 메뉴얼 참고
             보정 테이블0 번의 포맷 예 : 
             [Fly2DTable0]
@@ -18849,7 +18872,7 @@
             ...
             참고) 모든 위치값은 bits 이므로 mm * kFactor 하여 bits 값을 구할것. 
             참고) 모든 bits 값은 +-524288 을 초과하지 말것
-            </example>>
+            </code>
             </summary>
             <param name="fileName">보정 파일 이름 (경로포함), null 지정시 보정 리셋됨</param>
             <param name="tableNo">테이블 번호</param>
@@ -18874,7 +18897,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfAngularCenter(System.Numerics.Vector2)">
             <summary>
             MOTF Angular 사용시 회전 중심의 위치
-            <example>
+            <code>
             스캐너에서의 상대적인 회전 중심 x,y (mm) 위치값
             예를 들어 회전 중심위치가 -50, 0 일 경우
                                            |                                    
@@ -18903,7 +18926,7 @@
                                            |   /          . 
                                            |   --  Clock Wise = Angle + = Enc + 
                                            |   \
-            </example>>
+            </code>
             </summary>
             <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <returns></returns>
@@ -18937,7 +18960,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfAngularBegin(System.Numerics.Vector2,System.Boolean)">
             <summary>
             리스트 명령 - MOTF Angular(회전)  
-            <example>
+            <code>
             기구 회전부의 엔코더가 Enc0 으로 입력되고, 이때 회전 중심부분은 스캐너에서의 상대적인 가상 위치값
             예를 들어 회전 중심위치가 -50, 0 일 경우
                                            |                                    
@@ -18966,7 +18989,7 @@
                                            |   /          . 
                                            |   --  Clock Wise = Angle + = Enc + 
                                            |   \
-            </example>
+            </code>
             </summary>
             <param name="vCenter">스캐너 중심에서 회전 중심의 위치 x,y (mm)</param>
             <param name="encoderReset">엔코더 초기화 여부</param>
@@ -19053,7 +19076,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.MotionType">
             <summary>
-            모션 방식
+            모션 타입
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionType.Unknown">
@@ -19456,7 +19479,7 @@
             <summary>
             레이저 사전 트리거 시간 (usec)
             <para>
-            Time to trigger the laser signal in advance, if a Mark Segment is executed.Unit: usec.
+            Time to trigger the laser signal in advance, if a Mark Segment is executed.
             </para>
             </summary>
         </member>
@@ -19464,7 +19487,7 @@
             <summary>
             레이저 신호 오프셋 시간 (usec) 
             <para>
-            Time shift for the  laser signals output. Unit: usec.
+            Time shift for the  laser signals output. 
             </para>
             </summary>
         </member>
@@ -19472,7 +19495,7 @@
             <summary>
             레이저 신호 활성화 최소 시간 (usec)
             <para>
-            Shortest  “Laser Standby” Operation duration. Unit: usec.
+            Shortest “Laser Standby” Operation duration.
             </para>
             </summary>
         </member>
@@ -19492,16 +19515,17 @@
             복합 (스테이지 + 스캐너) 마크 속도 (mm/s)
             <para>
             The highest desired combined  marking speed(that is, combined scanner and positioning stage motion) during Job execution.
-            There may be cases with blending curves at corner points where the syncAXIS control instance must apply a lower speed.Then at least the value of MinimalMarkSpeed is used.
+            There may be cases with blending curves at corner points where the syncAXIS control instance must apply a lower speed.
+            Then at least the value of MinimalMarkSpeed is used.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.MinimalMarkSpeed">
             <summary>
             최소 마크 속도 (mm/s)
-            <para>블렌딩된 모서리 구간의 최소 마크 속도 (mm/s). 이 속도에 못미칠 경우 Sky writing이 실행됨</para>
+            <para>블렌딩된 모서리 구간의 최소 마크 속도 (mm/s). 이 속도에 못미칠 경우 Sky writing 삽입되어 실행됨</para>
             <para>
-            The lowest desired spot velocity that shall  be reached in corners of the contour.
+            The lowest desired spot velocity that shall be reached in corners of the contour.
             With blending curves at corner points – in order to make rounded edges possible 
             – the syncAXIS control instance is allowed to slow down to this speed.
             See MarkSpeed.  If a exact defined corner blending cannot be performed with the known scanner and positioning stage dynamics 
@@ -19588,7 +19612,7 @@
             <para>
             maximum  tolerable mathematical distance of the blending curve to the corner point. 
             If the values specified with MaxBlendRadius and/or ApproxBlendLimit cannot be adhered to, 
-            then the syncAXIS control instance executes a jump(similar but different as  with RTC-Sky Writing).
+            then the syncAXIS control instance executes a jump (similar but different as  with RTC-Sky Writing).
             </para>
             </summary>
         </member>
@@ -19596,14 +19620,27 @@
             <summary>
             최소 벡터 거리값 (mm)
             <para>
-            If the target points of two consecutive Mark functions (slsc_list_mark_abs, slsc_list_multi_para_mark_abs,
-            slsc_list_para_mark_abs) have a smaller distance than the VectorResolution value, 
+            If the target points of two consecutive Mark functions (slsc_list_mark_abs, slsc_list_multi_para_mark_abs, slsc_list_para_mark_abs) have a smaller distance than the VectorResolution value, 
             then these target points are regarded by the syncAXIS control instance as identical.
             That is, with Mark vector → Mark vector sequences, target points are dismissed under certain circumstances.
-            The intended use of VectorResolution is as  follows: users shall be able to specify target points with a certain input inaccuracy
-            (for example, with floating points or, if data is automatically read-in). 
+            The intended use of VectorResolution is as  follows: users shall be able to specify target points with a certain input inaccuracy (for example, with floating points or, if data is automatically read-in). 
             Therefore, reasonable values are in the micrometer range, for example 0.02 mm.
             </para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.GeometryConfig.AutoCyclicGeometry">
+            <summary>
+            deprecated
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.GeometryConfig.SplineConversionLengthLimit">
+            <summary>
+            deprecated
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.GeometryConfig.SplineMode">
+            <summary>
+            deprecated
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.GeometryConfig.#ctor">
@@ -19713,75 +19750,76 @@
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScanPosMax">
             <summary>
-            스캐너 X, Y 최대 구동 거리값
+            스캐너 X, Y 최대 구동 거리값 (mm)
             <para>
-            Max. distance of the scan head to zero position (without offset, see Chapter 8.3 ”About Transformations in  syncAXIS control V1.2.4 and Higher”, page 331). In x direction. In mm.
+            Max. distance of the scan head to zero position (without offset)
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScanVelMax">
             <summary>
-            스캐너 X, Y 최대 절대 속도
+            스캐너 X, Y 최대 절대 속도 (mm/s)
             <para>
-            Absolute value of the max. scan head velocity. In x direction.In mm/s.
+            Absolute value of the max. scan head velocity. 
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScanAccMax">
             <summary>
-            스캐너 X, Y 최대 절대 가속도
+            스캐너 X, Y 최대 절대 가속도 (mm/s²)
             <para>
-            Absolute value of the max. scan head acceleration. In x direction.In mm/s². 
+            Absolute value of the max. scan head acceleration.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScanPosLaserOnMax">
             <summary>
-            스캐너 X, Y 최대 절대 위치 + 레이저 신호 On
+            스캐너 X, Y 최대 절대 위치 + 레이저 신호 On (laser on/off + mm)
             <para>
-            Absolute value of the max. scan head position. In x direction.With laser switched on.In mm.
+            Absolute value of the max. scan head position. 
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScannerPosXMinMax">
             <summary>
-            스캐너 X 최대/최소 위치 
+            스캐너 X 최대/최소 위치 (mm)
             <para>
-            Min. scan head position. In x direction. In mm.
-            Max. scan head position. In x direction. In mm.
+            Min. Max. scan head position. In x direction. 
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScannerPosYMinMax">
             <summary>
-            스캐너 Y 최대/최소 위치 
+            스캐너 Y 최대/최소 위치 (mm)
             <para>
-            Min. scan head position. In y direction. In mm.
-            Max. scan head position. In y direction. In mm.
+            Min. Max. scan head position. In y direction.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScannerPosXLaserOnMinMax">
             <summary>
-            스캐너 X 최대/최소 위치 + Laser On 
+            스캐너 X 최대/최소 위치 + Laser On (laser on/off + mm)
             <para>
-            Min. scan head position. In x direction. In mm.
-            Max. scan head position. In x direction. In mm.
+            Min. Max. scan head position. In x direction.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScannerPosYLaserOnMinMax">
             <summary>
-            스캐너 Y 최대/최소 위치 + Laser On 
+            스캐너 Y 최대/최소 위치 + Laser On (laser on/off + mm)
             <para>
-            Min. scan head position. In y direction. In mm.
-            Max. scan head position. In y direction. In mm.
+            Min. Max. scan head position. In y direction.
             </para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ScannerJobCharacteristic.#ctor">
             <summary>
-            기본 생성자
+            생성자
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.StageJobCharacteristic">
@@ -19791,88 +19829,84 @@
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosMax">
             <summary>
-            스테이지 X, Y 최대 구동 거리값
+            스테이지 X, Y 최대 구동 거리값 (mm)
             <para>
-            Max. distance of the positioning stage to zero position (without offset, see Chapter 8.3 ”About Transformations in syncAXIS control V1.2.4 and Higher”, page 331). 
-            In x direction.In mm.
+            Max. distance of the positioning stage to zero position (without offset)
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StageVelMax">
             <summary>
-            스테이지 X, Y 최대 절대 속도
+            스테이지 X, Y 최대 절대 속도 (mm/s)
             <para>
             Absolute value of the max. positioning stage velocity. 
-            In x direction.In mm/s.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StageAccMax">
             <summary>
-            스테이지 X, Y 최대 절대 가속도
+            스테이지 X, Y 최대 절대 가속도 (mm/s²)
             <para>
             Absolute value of the max. positioning stage acceleration. 
-            In x direction.In mm/s².
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StageJerkMax">
             <summary>
-            스테이지 X, Y 최대 절대 가가속도
+            스테이지 X, Y 최대 절대 가가속도 (mm/s³)
             <para>
             Absolute value of the max. positioning stage jerk. 
-            In x direction.In mm/s³.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosLaserOnMax">
             <summary>
-            스테이지 X, Y 최대 절대 위치 + 레이저 신호 On
+            스테이지 X, Y 최대 절대 위치 + 레이저 신호 On (laser on/off + mm)
             <para>
             Absolute value of the max. positioning stage position. 
-            In x direction. With laser switched on. In mm.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosXMinMax">
             <summary>
-            스테이지 X 최대/최소 위치 
+            스테이지 X 최대/최소 위치 (mm)
             <para>
-            Min. scan head position. In x direction. In mm.
-            Max. scan head position. In x direction. In mm.
+            Min. Max. scan head position. In x direction. In mm.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosYMinMax">
             <summary>
-            스테이지 Y 최대/최소 위치 
+            스테이지 Y 최대/최소 위치 (mm)
             <para>
-            Min. scan head position. In x direction. In mm.
-            Max. scan head position. In x direction. In mm.
+            Min. Max. scan head position. In x direction.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosXLaserOnMinMax">
             <summary>
-            스테이지 X 최대/최소 위치 + Laser On 
+            스테이지 X 최대/최소 위치 + Laser On (laser on/off + mm)
             <para>
-            Min. stage position. In x direction. In mm.
-            Max. stage head position. In x direction. In mm.
+            Min. Max. stage position. In x direction.
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosYLaserOnMinMax">
             <summary>
-            스테이지 Y 최대/최소 위치 + Laser On 
+            스테이지 Y 최대/최소 위치 + Laser On (laser on/off + mm)
             <para>
-            Min. stage position. In y direction. In mm.
-            Max. stage head position. In y direction. In mm.
+            Min. Max. stage position. In y direction. 
             </para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.StageJobCharacteristic.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.StageJobCharacteristic.#ctor">
             <summary>
-            기본 생성자
+            생성자
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.JobCharacteristic">
@@ -19887,19 +19921,21 @@
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.Stage">
             <summary>
-            스캐이지 특성
+            스테이지 특성
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.MotionMicroSteps">
             <summary>
-            모션 마이크로 스텝 개수 (마이크로 스텝은 10usec 단위임)        
+            모션 마이크로 스텝 개수 
+            <para>마이크로 스텝은 10usec 단위</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.MarkSpeedMinMax">
             <summary>
             최소/최대 마크 속도 (mm/s)
             <para>
-            The minimum marking speed during the Job. Only those parts are taken into account in which the laser is switched on(laser spot speed). 
+            The minimum marking speed during the Job. 
+            Only those parts are taken into account in which the laser is switched on (laser spot speed). 
             </para>
             </summary>
         </member>
@@ -19907,9 +19943,14 @@
             <summary>
             삽입된 스카이 라이팅 모션 개수
             <para>
-            Number of successions in which a Sky Writing-like motion has been inserted
+            Number of successions in which a Sky Writing-like motion has been inserted.
             (because a direct crossing would violate the dynamic limits and also a blending cannot be implemented).
             </para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JobCharacteristic.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.JobCharacteristic.#ctor">
@@ -19924,7 +19965,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.UtilizedScanner.Position">
             <summary>
-            스캐너 X,y 영역 사용률 (%)
+            스캐너 X, Y 영역 사용률 (%)
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.UtilizedScanner.#ctor">
@@ -20008,7 +20049,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.Job.BandWidth">
             <summary>
-            LPF 주파수 (Hz) (스캐너+스테이지 사용시)
+            LPF 주파수 (Hz) 
+            <para>스캐너 + 스테이지 모션 타입 사용시 적용됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.MotionType">
@@ -20039,6 +20081,11 @@
         <member name="P:SpiralLab.Sirius.Job.ResultStatus">
             <summary>
             작업 결과 상태
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.ListTotalCounts">
+            <summary>
+            총 리스트 명령 개수 (Approx)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Characteristic">
@@ -20078,7 +20125,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Job.StageCounts">
             <summary>
-            헤드 개수
+            스테이지 개수
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage1">
@@ -20103,8 +20150,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStages">
             <summary>
-            스테이지 사용율 
-            <para>복수개의 스테이지 용</para>
+            스테이지 사용율 배열
+            <para>복수개의 스테이지 사용시</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.StartTime">
@@ -20119,7 +20166,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.Job.ExecutionTime">
             <summary>
-            가공 총 소요 시간(s)
+            가공 총 소요 시간 (s)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Tag">
@@ -20157,8 +20204,8 @@
             <para>
             SyncAXIS 최신 버전 v1.6 기반
             RTC6 + ExcelliSCAN + ACS 특화 제품
-            RTC6 : SCANa 옵션 활성화 필요 / SyncAxis 동글키 필요
-            ACS : SLEC 컨버터 필요 / ServoBoost 옵션 필요 / SyncAXIS (모션 업데이트 주기 향상) 옵션 필요)
+            RTC6 : SCANahead 옵션 필요 / syncA 옵션 필요 / SyncAxis 동글키 필요
+            ACS : SLEC 컨버터 필요 / ServoBoost 옵션 필요 / SyncAXIS 옵션 (모션 업데이트 주기 향상) 필요
             </para>
             </summary>
         </member>
@@ -20186,7 +20233,8 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.JobHistory">
             <summary>
             작업 완료 큐
-            <para>실행이 성공하여 특성(Characteristic) 이 계산된 마지막 50개의 작업 이력 저장용</para>
+            <para>실행이 성공하여 특성(Characteristic)이 계산된 작업 이력 저장용</para>
+            <para>최대 50개 임시 저장됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head1Offset">
@@ -20262,6 +20310,7 @@
             <summary>
             LPF (Low Pass Filter) 주파수 (Hz)
             <para>
+            스캐너 + 스테이지 모션 타입 사용시 적용됨
             높은값 : 스테이지쪽에 작업 부하를 상승
             낮은값 : 스캐너 쪽에 작업 부하를 상승
             (초기값 : XML 설정 파일에 있는 값)
@@ -20276,7 +20325,10 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.SimulationFileName">
             <summary>
             시뮬레이션 모드일때 현재 작업(Job Id) 결과가 저장되는 파일 이름
-            <para>저장 경로는 xml 파일에서 설정. <c>[BaseDirectoryPath]/Logs/</c></para>
+            <para>
+            저장 경로는 xml 파일에서 설정
+            <c>[BaseDirectoryPath]/Logs/</c>
+            </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeuristicIndex">
@@ -20298,13 +20350,14 @@
             <summary>
             syncAXIS 인스턴스 초기화
             </summary>
-            <param name="configXMLFile">SyncAxis 설정 XML 파일</param>
+            <param name="configXMLFile">syncAxis 설정 XML 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
             <summary>
             LPF(Low Pass Filter) 주파수를 설정한다 (Hz)
             <para>
+            스캐너 + 스테이지 모션 타입 사용시 적용됨
             높은값 : 스테이지쪽에 작업 부하를 상승
             낮은값 : 스캐너 쪽에 작업 부하를 상승
             (xml 설정 파일에 저장 되지 않음)
@@ -20323,9 +20376,11 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectHeuristic(System.UInt32)">
             <summary>
             휴리스틱 변경하기
-            (xml 설정 파일에서 미리 저장되어 있어야함)
+            <para>
+            XML 설정파일의 DynamicReductionFunction 항목 사용
+            </para>
             </summary>
-            <param name="heuristicIndex">XML 설정파일의 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호</param>
+            <param name="heuristicIndex"> 휴리스틱 사용 인덱스 번호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMotionMode(SpiralLab.Sirius.MotionMode)">
@@ -20551,7 +20606,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListAlcEnd">
             <summary>
-            리스트 명령 -  ALC(Automatic Laser Control) Linear Ramp 비활성화
+            리스트 명령 - ALC(Automatic Laser Control) Linear Ramp 비활성화
             </summary>
             <returns></returns>
         </member>

@@ -3,7 +3,7 @@
   "Version": "1.123.0.0",
   "Name": "",
   "Description": "",
-  "FileName": "D:\\git\\siriuslib\\bin\\recipes\\pixel_operation.sirius",
+  "FileName": "D:\\git\\siriuslib\\bin\\recipes\\barcode2d_offset_datetime_serialno.sirius",
   "ExtensionData": null,
   "ExtensionFilePath": null,
   "Dimension": {
@@ -40,7 +40,7 @@
       "$values": [
         {
           "$type": "Layer",
-          "Name": "NoName1",
+          "Name": "NoName0",
           "Description": null,
           "ExtensionData": null,
           "IsHighlighted": false,
@@ -56,11 +56,65 @@
             "$type": "IEntity[]",
             "$values": [
               {
-                "$type": "Raster",
-                "Name": "Raster",
+                "$type": "BarcodeDataMatrix2",
+                "Name": "DataMatrix2",
                 "Description": null,
                 "Color2": "White",
-                "IsSelected": false,
+                "Offsets": {
+                  "$type": "Offset[]",
+                  "$values": [
+                    {
+                      "$type": "Offset",
+                      "X": 10.0,
+                      "Y": 0.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 20.0,
+                      "Y": 0.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 0.0,
+                      "Y": 10.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 10.0,
+                      "Y": 10.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 20.0,
+                      "Y": 10.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 0.0,
+                      "Y": 20.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 10.0,
+                      "Y": 20.0,
+                      "Angle": 0.0
+                    },
+                    {
+                      "$type": "Offset",
+                      "X": 20.0,
+                      "Y": 20.0,
+                      "Angle": 0.0
+                    }
+                  ]
+                },
+                "OffsetSerialNoIncrementStep": 0,
+                "IsSelected": true,
                 "IsHighlighted": false,
                 "IsHitTest": true,
                 "IsVisible": true,
@@ -70,24 +124,79 @@
                 "Align": 6,
                 "Location": {
                   "$type": "Vector2",
-                  "X": -0.5,
-                  "Y": -0.5
+                  "X": 0.0,
+                  "Y": 0.0
                 },
-                "IsEnableFastRendering": true,
                 "Repeat": 1,
-                "Width": 1.0,
-                "Height": 1.0,
-                "Px": 100,
-                "Py": 100,
+                "QuiteZone": 0,
+                "Data": "{HH:mm:ss} {SERIALNO}",
+                "ConvertedTextData": "09:07:08 0001",
+                "ShapeHint": 1,
+                "IsInvertCell": false,
+                "IsFixedAspectRatio": true,
+                "ShapeType": 4,
+                "CellDot": {
+                  "$type": "CellDots",
+                  "DotFactor": 5,
+                  "ZigZag": false,
+                  "PixelPeriod": 500.0,
+                  "PixelTime": 50.0,
+                  "PixelChannel": 6
+                },
+                "CellLine": {
+                  "$type": "CellLines",
+                  "DotFactor": 5,
+                  "Direction": 0,
+                  "ZigZag": false
+                },
+                "CellOutLine": {
+                  "$type": "CellOutLines"
+                },
+                "CellHatch": {
+                  "$type": "CellHatches",
+                  "DotFactor": 1,
+                  "HatchFactor": 1.0,
+                  "HatchMode": 0,
+                  "ZigZag": false,
+                  "HatchAngle": 0.0,
+                  "HatchAngle2": 90.0,
+                  "HatchInterval": 0.1,
+                  "HatchShift": 0.0,
+                  "HatchExclude": 0.0,
+                  "HatchRepeat": 1,
+                  "IsHatchOutline": true,
+                  "IsHatchOutlineFirst": false
+                },
+                "CellCircle": {
+                  "$type": "CellCircles",
+                  "DotFactor": 1,
+                  "RadiusFactor": 1.0,
+                  "HatchInterval": 0.0,
+                  "HatchExclude": 0.05
+                },
+                "Width": 5.0,
+                "Height": 5.0,
+                "Px": 10,
+                "Py": 10,
                 "Angle": 0.0,
-                "PitchX": "0.010",
-                "PitchY": "0.010",
-                "Direction": 0,
-                "PixelPeriod": 100.0,
-                "XPixelSpeed": 101.01,
-                "YPixelSpeed": 101.01,
-                "PixelTime": 20.0,
-                "PixelChannel": 6
+                "IsTextDataDateTime": true,
+                "IsTextDataSerialNo": true,
+                "IsTextDataGS1": false,
+                "SerialNoFormat": 0,
+                "SerialNoDigits": 4,
+                "SerialNo": 1,
+                "SerialNoIncrementStep": 1,
+                "GS1Separator": "<GS>",
+                "IsScriptEnabled": false,
+                "ScriptFileName": "test.cs",
+                "ScriptInstanceName": "SpiralLab.Sirius.ScriptDemo",
+                "ScriptPropertyName": "CustomFormat1",
+                "ScriptArguments": {
+                  "$type": "String[]",
+                  "$values": [
+                    ""
+                  ]
+                }
               }
             ]
           },
@@ -98,13 +207,13 @@
           "ZPositionVel": 50.0,
           "ZIsPositionCheck": true,
           "IsALC": false,
-          "AlcSignal": 2,
+          "AlcSignal": 0,
           "AlcMode": 0,
           "AlcPositionFileName": "",
           "AlcPositionTableNo": 0,
-          "AlcPercentage100": 10.0,
+          "AlcPercentage100": 2.5,
           "AlcMinValue": 1.0,
-          "AlcMaxValue": 10.0,
+          "AlcMaxValue": 5.0,
           "Angle": 0.0
         }
       ]
