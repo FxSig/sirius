@@ -102,10 +102,13 @@ namespace SpiralLab.Sirius
             ConsoleKeyInfo key;
             do
             {
+                Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
-                Console.WriteLine("");
+                Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("'S' : enable simulation mode");
                 Console.WriteLine("'H' : enable hardware mode");
+                Console.WriteLine("'F' : following mode");
+                Console.WriteLine("'U' : unfollowing mode");
                 Console.WriteLine("'V' : syncaxis viewer with simulation result");
                 Console.WriteLine("'F1' : draw square 2D with scanner only");
                 Console.WriteLine("'F2' : draw square 2D with stage only");
@@ -115,13 +118,13 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'F6' : draw circle 2D with scanner and stage");
                 Console.WriteLine("'F7' : draw for optimize laser delays");
                 Console.WriteLine("'F8' : draw for optimize system delays");
-                Console.WriteLine("'F10' : get status");
-                Console.WriteLine("'F11' : reset");
-                Console.WriteLine("'F12' : abort");
+                Console.WriteLine("'F10' : get status with error(s)");
+                Console.WriteLine("'F11' : abort");
+                Console.WriteLine("'F12' : reset");
+                Console.WriteLine("'O' : move to origin position (scanner and stage");
                 Console.WriteLine("'C' : job characteristic");
-                Console.WriteLine("'M' : move stage x and y");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine(Environment.NewLine);
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
@@ -130,10 +133,16 @@ namespace SpiralLab.Sirius
                 switch (key.Key)
                 {
                     case ConsoleKey.S:
-                        rtc.IsSimulationMode = true;
+                        rtc.CtlSimulationMode(true);
                         break;
                     case ConsoleKey.H:
-                        rtc.IsSimulationMode = false;
+                        rtc.CtlSimulationMode(false);
+                        break;
+                    case ConsoleKey.F:
+                        rtc.CtlMotionMode( MotionMode.Follow);
+                        break;
+                    case ConsoleKey.U:
+                        rtc.CtlMotionMode(MotionMode.Unfollow);
                         break;
                     case ConsoleKey.V:
                         SyncAxisViewer(rtc);
@@ -145,7 +154,7 @@ namespace SpiralLab.Sirius
                         DrawSquare(rtc, laser, MotionType.StageOnly);
                         break;
                     case ConsoleKey.F3:
-                        //band width 변경 가능
+                        //필요시 bandwidth 주파수 변경 
                         //rtc.BandWidth = 2.0f;
                         //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
                         //rtc.Head1Offset = new Vector3(0.1f, 0.2f, 5);
@@ -159,7 +168,7 @@ namespace SpiralLab.Sirius
                         DrawCircle(rtc, laser, MotionType.StageOnly);
                         break;
                     case ConsoleKey.F6:
-                        //band width 변경 가능
+                        //필요시 bandwidth 주파수 변경 
                         //rtc.BandWidth = 2.0f;
                         //멀티헤드 사용시 개별 헤드별 오프셋 처리 가능
                         //rtc.Head1Offset = new Vector3(0.1f, 0.2f, 5);
@@ -177,28 +186,32 @@ namespace SpiralLab.Sirius
                             Console.WriteLine("rtc is busy now ...");
                         else
                             Console.WriteLine("rtc is not busy ...");
-
+                        if (!rtc.CtlGetStatus(RtcStatus.NoError))
+                            Console.WriteLine("rtc has error(s)");                        
                         rtc.CtlGetInternalErrMsg(out var errors);
                         foreach( var kv in errors)
-                            Console.WriteLine($"syncaxis error: [{kv.Item1}]: {kv.Item2}");
+                            Console.WriteLine($"syncaxis error: [{kv.Item1}]= {kv.Item2}");
                         break;
                     case ConsoleKey.F11:
-                        rtc.CtlReset();
-                        break;
-                    case ConsoleKey.F12:
                         rtc.CtlAbort();
                         break;
-                    case ConsoleKey.C:
-                        PrintJobCharacteristic(rtc);
+                    case ConsoleKey.F12:
+                        rtc.CtlReset();
                         break;
-                    case ConsoleKey.M:
-                        //스테이지및 스캐너 보정 테이블 선택
+                    case ConsoleKey.O:
+                        rtc.CtlSetScannerPosition(0, 0);
+                        //스테이지 및 스캐너 보정 테이블 선택
                         rtc.CtlSelectStage(Stage.Stage1, CorrectionTableIndex.Table1);
                         rtc.StageMoveSpeed = 10;
                         rtc.StageMoveTimeOut = 5;
                         rtc.CtlSetStagePosition(0, 0);
+                        //wait until motion has done ...
+                        break;
+                    case ConsoleKey.C:
+                        PrintJobCharacteristic(rtc);
                         break;
                 }
+                Console.WriteLine(Environment.NewLine);
             } while (true);
 
             rtc.CtlAbort();
@@ -265,15 +278,41 @@ namespace SpiralLab.Sirius
             return success;
         }
         /// <summary>
-        /// 레이저 지연시간 최적화 (CHECK_LASERDELAYS)
+        /// 레이저 지연시간의 최적화값을 찾기 (CHECK_LASERDELAYS)
+        /// <para>가공 후 최적화된 레이저 품질이 나오는 지연 시간값 (PreTrigger 및 Switch Offset time)을 찾기위해 적정 위치를 찾는다</para>
+        /// <code>
+        /// +
+        /// 
+        /// L       ---     ---     ---      ---  
+        /// a        |       |       |        |   
+        /// s        |       |       |        |   
+        /// e       ---     ---     ---      ---  
+        /// r       ---     ---     ---      ---  
+        /// P        |       |       |        |   
+        /// r        |       |       |        |   
+        /// e       ---     ---     ---      ---  
+        /// T       ---     ---     ---      ---  
+        /// r        |       |       |        |   
+        /// i        |       |       |        |   
+        /// g       ---     ---     ---      ---  
+        /// g       ---     ---     ---      ---  
+        /// e        |       |       |        |   
+        /// r        |       |       |        |   
+        /// T       ---     ---     ---      ---  
+        /// i                              
+        /// m      
+        /// e      -  Laser Switch Offset Time  +
+        /// 
+        /// -
+        /// </code>
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="laser"></param>
-        /// <param name="vScanner">200mm/s</param>
+        /// <param name="vScanner">scanner velocity (mm/s)</param>
         /// <param name="numberOfGridPositions">11x11</param>
-        /// <param name="gridFactor">2.5mm interval</param>
+        /// <param name="gridFactor">grid interval (mm)</param>
         /// <returns></returns>
-        static bool DrawOptimizeLaserDelay(IRtc rtc, ILaser laser, float vScanner=200, int numberOfGridPositions = 11, float gridFactor = 2.5f)
+        static bool DrawOptimizeLaserDelay(IRtc rtc, ILaser laser, float vScanner = 500, int numberOfGridPositions = 11, float gridFactor = 2.5f)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
@@ -368,20 +407,76 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 시스템 지연시간 최적화 (CHECK_SYSTEMDELAYS)
+        /// <code>
+        ///                       |   
+        ///                       |   
+        ///                   /   |   
+        ///                   ----------      
+        ///                   \   |   
+        ///          |            |          /|\
+        ///          |            |           | 
+        ///          |            |           | 
+        /// ---------|------------|-----------|------------
+        ///          |            |           |
+        ///         \|/           |           |
+        ///                       |
+        ///                       |   \
+        ///                   ----------    
+        ///                       |   /
+        ///                       |   
+        ///                       |    
+        ///                       |     
+        ///                       
+        /// 
+        ///                       +
+        /// 
+        /// 
+        ///                       |   
+        ///                       |   
+        ///                 ||||||||||||||
+        ///                 ||||||||||||||   
+        ///         ====          |          ====  
+        ///         ====          |          ====
+        ///         ====          |          ====
+        ///         ====          |          ====
+        /// ----------------------|-----------------------
+        ///         ====          |          ====
+        ///         ====          |          ====
+        ///         ====          |          ====
+        ///         ====          |          ====
+        ///                 ||||||||||||||
+        ///                 ||||||||||||||
+        ///                       |   
+        ///                       |    
+        ///                       |    
+        /// 
+        /// </code>
+        /// <para>
+        /// Two sets of lines will be marked with high stage velocity. 
+        /// The lines are marked perpendicular to the stage's motion direction.
+        /// If the positions of the lines do not match in stage motion direction, please contact SCANLAB. 
+        /// The test is repeated in 4 directions.
+        /// </para>
+        /// <para>
+        /// To mark rows of lines orthogonal to mechanical motion.The lines are executed in positive and negative directions, and then repeated for all 4 spatial directions.
+        /// The objective is to check whether the lines of both mechanical motion directions are collinear or whether an offset(in the direction of the mechanical motion) can be seen.
+        /// In case the lines are not collinear(offset in the direction of the mechanical motion), the positioning stage motion is not perfectly synchronized with the scan device motion. 
+        /// If this is the case, contact SCANLAB.An arrow indicates the mechanical direction of motion.
+        /// </para>
         /// </summary>
         /// <param name="rtc"></param>
         /// <param name="laser"></param>
-        /// <param name="vStage"></param>
-        /// <param name="rStage"></param>
+        /// <param name="vStage">stage velocity (mm/s)</param>
+        /// <param name="rStage">stage range (mm)</param>
         /// <returns></returns>
-        static bool DrawOptimizeSystemDelay(IRtc rtc, ILaser laser, float vStage=100, float rStage=200)
+        static bool DrawOptimizeSystemDelay(IRtc rtc, ILaser laser, float vStage = 100, float rStage = 100)
         {
             bool success = true;
             var rtcSyncAxis = rtc as IRtcSyncAxis;
             Debug.Assert(rtcSyncAxis != null);
 
             float v_aLimit = (float)Math.Sqrt(rStage / 2.0 * 0.42 * vStage * 10);
-            vStage = (vStage < v_aLimit ? vStage : v_aLimit);
+            vStage = vStage < v_aLimit ? vStage : v_aLimit;
             float jumpSpeed = 4 * vStage;
             float markSpeed = jumpSpeed;
             float lineLength = 3;
@@ -393,38 +488,72 @@ namespace SpiralLab.Sirius
             newTrajectory.Mark.MarkSpeed = markSpeed;
 
             success &= rtcSyncAxis.CtlSetTrajectory(newTrajectory);
-            float offsetsize = 5 * lineLength;
-
+            float offsetY = 0;
+            offsetY = 5 * lineLength - 2 * lineLength;
+            success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
             for (int i = 0; i < 4; ++i)
             {
-                success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
-                rtc.MatrixStack.Push(0, -offsetsize, i*90);
                 //arrow
-                success &= rtc.ListJump(-5, 0 + 2 * lineLength);
-                success &= rtc.ListMark(5, 0 + 2 * lineLength);
-                success &= rtc.ListJump(3, 2 + 2 * lineLength);
-                success &= rtc.ListMark(5, 0 + 2 * lineLength);
-                success &= rtc.ListMark(3, -2 + 2 * lineLength);
-                success &= rtc.ListJump(0, 0 + 2 * lineLength);
+                //                        . 
+                //                        .
+                //                        .
+                //                        .
+                //                        .                    \
+                //                        .                     \
+                //                        .                      \
+                //                        .                       \
+                //  ------------------------------------------------
+                //  -5                    0                       /  5
+                //                        .                      /
+                //                        .                     /
+                //                        .                    /
+                //                        .
+                //                        .
+                //                        .
+                //                        .
+                //
+                
+                float angle = i * 90;
+                rtc.MatrixStack.Push(angle);
+                rtc.MatrixStack.Push(0, -offsetY);
+                success &= rtc.ListJump(-5, 0);
+                success &= rtc.ListMark(5, 0);
+                success &= rtc.ListJump(3, 2);
+                success &= rtc.ListMark(5, 0);
+                success &= rtc.ListMark(3, -2);
+                success &= rtc.ListJump(0, 0);
+                rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 if (!success)
                     break;
-                else
-                {
-                    success &= rtc.ListJump(Vector2.Zero);
-                    success &= rtc.ListEnd();
-                    success &= rtc.ListExecute(true);
-                }
             }
+            if (success)
+            {
+                success &= rtc.ListJump(Vector2.Zero);
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
+            if (!success)
+                return false;
 
-            const uint totalNumberOfLines = 20;
+            offsetY = 5 * lineLength;
+            const int totalNumberOfLines = 20;
             const float increment = 1;
+            success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
             for (int i = 0; i < 4; ++i)
             {
-                success &= rtcSyncAxis.ListBegin(laser, MotionType.StageAndScanner);
-
-                rtc.MatrixStack.Push(0, -offsetsize, i * 90);
                 //line block
+                //
+                //
+                //              |   |    |   |    |   |    |   |    |   |
+                //              |   |    |   |    |   |    |   |    |   |   
+                //   ...        |   |    |   |    |   |    |   |    |   |   ...
+                //              |   |    |   |    |   |    |   |    |   |
+                // 
+                //
+                float angle = i * 90;
+                rtc.MatrixStack.Push(angle);
+                rtc.MatrixStack.Push(0, -offsetY);
                 success &= rtc.ListSpeed(vStage, markSpeed);
                 success &= rtc.ListJump(-rStage, 0);
                 success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
@@ -438,8 +567,8 @@ namespace SpiralLab.Sirius
                     success &= rtc.ListMark((lineNumber - totalNumberOfLines / 2.0f) * increment, 0.1f);
                     if (lineNumber + 1 <= totalNumberOfLines)
                     {
-                        success &= rtc.ListJump( (lineNumber + 1 - totalNumberOfLines / 2.0f) * increment, 0.1f);
-                        success &= rtc.ListMark( (lineNumber + 1 - totalNumberOfLines / 2.0f) * increment, lineLength);
+                        success &= rtc.ListJump((lineNumber + 1 - totalNumberOfLines / 2.0f) * increment, 0.1f);
+                        success &= rtc.ListMark((lineNumber + 1 - totalNumberOfLines / 2.0f) * increment, lineLength);
                     }
                 }
                 success &= rtc.ListSpeed(vStage, markSpeed);
@@ -449,7 +578,7 @@ namespace SpiralLab.Sirius
                 success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
                 success &= rtc.ListJump((totalNumberOfLines / 2.0f) * increment, -lineLength);
                 success &= rtc.ListSpeed(jumpSpeed, markSpeed);
-                for (int lineNumber = 0; lineNumber <= totalNumberOfLines; lineNumber -= 2)
+                for (int lineNumber = totalNumberOfLines; lineNumber >= 0; lineNumber -= 2)
                 {
                     success &= rtc.ListJump((lineNumber - totalNumberOfLines / 2.0f) * increment, -lineLength);
                     success &= rtc.ListMark((lineNumber - totalNumberOfLines / 2.0f) * increment, -0.1f);
@@ -462,23 +591,22 @@ namespace SpiralLab.Sirius
                 success &= rtc.ListSpeed(vStage, markSpeed);
                 success &= rtc.ListJump(-rStage, -lineLength);
                 success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
-                success &= rtc.ListJump(0, 0);
-
+                rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 if (!success)
                     break;
-                else
-                {
-                    success &= rtc.ListJump(Vector2.Zero);
-                    success &= rtc.ListEnd();
-                    success &= rtc.ListExecute(true);
-                }
             }
-
+            if (success)
+            {
+                success &= rtc.ListJump(Vector2.Zero);
+                success &= rtc.ListEnd();
+                success &= rtc.ListExecute(true);
+            }
             rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
             rtcSyncAxis.MotionMode = oldMode;
             return success;
         }
+     
         /// <summary>
         /// 시뮬레이션 로그 결과에 대한 뷰어 실행
         /// </summary>
@@ -524,25 +652,21 @@ namespace SpiralLab.Sirius
         /// <param name="rtc"></param>
         static void PrintJobCharacteristic(Rtc6SyncAxis rtc)
         {            
-            Console.WriteLine($"{rtc.Job.ToString()}");
-
             int counts = rtc.JobHistory.Length;
             if (counts > 0)
             {
                 var lastJob = rtc.JobHistory[counts - 1];
+                Console.WriteLine($"Job ID: [{lastJob.ID}]. Name= {lastJob.Name}. Result= {lastJob.ResultStatus}. Time={ lastJob.ExecutionTime}s. Started= {lastJob.StartTime}. Ended= {lastJob.EndTime}");
                 Console.WriteLine($"Scanner Utilization: {lastJob.UtilizedScanner}");
                 Console.WriteLine($"Scanner Position Max: {lastJob.Characteristic.Scanner.ScanPosMax} mm");
                 Console.WriteLine($"Scanner Velocity Max: {lastJob.Characteristic.Scanner.ScanVelMax} mm/s");
                 Console.WriteLine($"Scanner Accelation Max: {lastJob.Characteristic.Scanner.ScanAccMax} (mm/s²)");
-                Console.WriteLine("--------------------------------------------------------");
-
-                for (int i=0; i< rtc.StageCounts; i++)
-                    Console.WriteLine($"Stage{i+1} Utilization: {lastJob.UtilizedStages[i]}");
                 Console.WriteLine($"Stage Position Max: {lastJob.Characteristic.Stage.StagePosMax} mm");
                 Console.WriteLine($"Stage Velocity Max: {lastJob.Characteristic.Stage.StageVelMax} mm/s");
                 Console.WriteLine($"Stage Accelation Max: {lastJob.Characteristic.Stage.StageAccMax} (mm/s²)");
                 Console.WriteLine($"Stage Jerk Max: {lastJob.Characteristic.Stage.StageJerkMax} (mm/s³)");
-                Console.WriteLine("");
+                for (int i=0; i< rtc.StageCounts; i++)
+                    Console.WriteLine($"Stage{i+1} Utilization: {lastJob.UtilizedStages[i]}");
             }
         }
     }
