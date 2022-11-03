@@ -15097,9 +15097,6 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListWait(System.Single)">
             <summary>
             리스트 명령 - 시간 대기
-            <para>
-            (SyncAxis 에서는 지원되지 않음)
-            </para>
             </summary>
             <param name="msec">시간 (msec)</param>
             <returns></returns>

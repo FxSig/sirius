@@ -556,9 +556,10 @@ namespace SpiralLab.Sirius
                 rtc.MatrixStack.Push(0, -offsetY);
                 success &= rtc.ListSpeed(vStage, markSpeed);
                 success &= rtc.ListJump(-rStage, 0);
-                success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
+                double usec = newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0);
+                success &= rtc.ListWait((float)usec * 1000.0f);
                 success &= rtc.ListJump(-rStage, lineLength);
-                success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
+                success &= rtc.ListWait((float)usec * 1000.0f);
                 success &= rtc.ListJump(-(totalNumberOfLines / 2.0f) * increment, lineLength);
                 success &= rtc.ListSpeed(jumpSpeed, markSpeed);
                 for (int lineNumber = 0; lineNumber <= totalNumberOfLines; lineNumber += 2)
@@ -573,9 +574,9 @@ namespace SpiralLab.Sirius
                 }
                 success &= rtc.ListSpeed(vStage, markSpeed);
                 success &= rtc.ListJump(rStage, lineLength);
-                success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
+                success &= rtc.ListWait((float)usec * 1000.0f);
                 success &= rtc.ListJump(rStage, -lineLength);
-                success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
+                success &= rtc.ListWait((float)usec * 1000.0f);
                 success &= rtc.ListJump((totalNumberOfLines / 2.0f) * increment, -lineLength);
                 success &= rtc.ListSpeed(jumpSpeed, markSpeed);
                 for (int lineNumber = totalNumberOfLines; lineNumber >= 0; lineNumber -= 2)
@@ -590,7 +591,7 @@ namespace SpiralLab.Sirius
                 }
                 success &= rtc.ListSpeed(vStage, markSpeed);
                 success &= rtc.ListJump(-rStage, -lineLength);
-                success &= rtc.ListWait((float)(1.0e3 * newTrajectory.Mark.LaserMinOffTime + (newTrajectory.Mark.LaserPreTriggerTime > 0 ? newTrajectory.Mark.LaserPreTriggerTime : 0)));
+                success &= rtc.ListWait((float)usec * 1000.0f);
                 rtc.MatrixStack.Pop();
                 rtc.MatrixStack.Pop();
                 if (!success)
