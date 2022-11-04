@@ -8965,14 +8965,24 @@
             폐곡선 판단 거리 (mm) 상수값
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Config.SplineControlPointFactor">
+        <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
+            <summary>
+            FreeType 폰트 분석시 베지어 곡선 구간을 미분할 최소 거리값 (mm)
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.SplineControlPointPrecision">
             <summary>
             DXF 스플라인(곡선영역)을 라인으로 변환시 제어점 사이를 N개의 라인으로 분해
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
+        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgeToLines">
             <summary>
-            FreeType 폰트 분석시 베지어 곡선 구간을 미분할 최소 거리값 (mm)
+             DXF 파일 분석시 폴리라인의 Bulge 값 사용 구간을 호(Arc) 대신 선분(Line)으로 근사할지 여부
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgePrecision">
+            <summary>
+            DXF 파일 분석시 폴리라인의 Bulge 구간을 지정된 라인으로 분해
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.UndoStackSize">

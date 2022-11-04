@@ -132,15 +132,23 @@
 
 **5. Version history**
 
-* 2022.10.31 v1.123
+* 2022.11.4 v1.123
+  - fixed) improved XML documentation
   - added) plot measurement result with another program (계측 데이타 그래프 출력 프로그램 추가)
      - 1st : gnuplot program
 	 - 2nd : internal winform program
-  - fixed) improved XML documentation
   - fixed) SiriusText/Text font register bug into RTC (RTC 카드에 폰트 등록 버그 수정)
   - fixed) MOTF angular rotate direction way (시계 방향 = 엔코더 증가 방향 = 각도 증가 방향)
   - fixed) IRtcDualHead renamed to IRtc2ndHead (IRtc2ndHead 으로 이름 변경)
   - fixed) powermap verification with detected watt (파워맵 검증시 측정 파워값도 기록)
+  - fixed) hung up at syncAxis marker form (syncAxis 마커창 응답 없음 버그)
+  - fixed) lwpolyline to arc bug (폴리라인을 호 객체로 변환 버그)
+  - fixed) bulge vertex at lwpolyline when import dxf file into arc entity by default (폴리라인의 곡선 부분을 호 객체로 기본 변환)
+     - bulge to arc (default) (bulge 구간을 호 개체 변환시 : 기본값) 
+        - Config.LwPolylineBulgeToLines = false;
+     - bulge to lines (bulge 구간을 선분으로 변환시) 
+        - Config.LwPolylineBulgeToLines = true; 
+        - Config.LwPolylineBulgePrecision = resolution (분해 개수);
   - demos) 
      - more MOTF anglar demo "MainFormAngular2" with rotate center (회전 중심 위치를 처리하는 강화된 MainFormAngular2 데모 추가)
      - load/select correction file after finish to convert at field correction demo (스캐너 필드 보정후 이를 RTC 에 적용하는 기능 추가)
