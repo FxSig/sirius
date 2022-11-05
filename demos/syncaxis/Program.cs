@@ -241,12 +241,11 @@ namespace SpiralLab.Sirius
             success &= rtc.ListMark(new Vector2(size / 2.0f, -size / 2.0f));
             success &= rtc.ListMark(new Vector2(-size / 2.0f, -size / 2.0f));
             success &= rtc.ListMark(new Vector2(-size / 2.0f, size / 2.0f));
+            success &= rtc.ListJump(Vector2.Zero);
             if (success)
-            {
-                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
+            if (success)
                 success &= rtc.ListExecute(false);
-            }
             return success;
         }
         /// <summary>
@@ -270,11 +269,9 @@ namespace SpiralLab.Sirius
             success &= rtc.ListArc(Vector2.Zero, 360.0f);
             success &= rtc.ListJump(Vector2.Zero);
             if (success)
-            {
-                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
+            if (success)
                 success &= rtc.ListExecute(false);
-            }
             return success;
         }
         /// <summary>
@@ -389,14 +386,13 @@ namespace SpiralLab.Sirius
                     success &= rtc.ListJump(-size / 2 - 0.001f, size);
                     rtc.MatrixStack.Pop();
                     if (!success)
-                        break;
-                    else
-                    {
-                        gridCounter++;
-                        success &= rtc.ListJump(Vector2.Zero);
+                        break;                    
+                    success &= rtc.ListJump(Vector2.Zero);
+                    if (success)
                         success &= rtc.ListEnd();
-                        success &= rtc.ListExecute(true);
-                    }
+                    if (success)
+                        success &= rtc.ListExecute(false);
+                    gridCounter++;
                 }
                 if (!success)
                     break;
@@ -527,12 +523,11 @@ namespace SpiralLab.Sirius
                 if (!success)
                     break;
             }
+            success &= rtc.ListJump(Vector2.Zero);
             if (success)
-            {
-                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
-            }
+            if (success)
+                success &= rtc.ListExecute(false);            
             if (!success)
                 return false;
 
@@ -596,13 +591,12 @@ namespace SpiralLab.Sirius
                 rtc.MatrixStack.Pop();
                 if (!success)
                     break;
-            }
+            }            
+            success &= rtc.ListJump(Vector2.Zero);
             if (success)
-            {
-                success &= rtc.ListJump(Vector2.Zero);
                 success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
-            }
+            if (success)
+                success &= rtc.ListExecute(false);
             rtcSyncAxis.CtlSetTrajectory(oldTrajectory);
             rtcSyncAxis.MotionMode = oldMode;
             return success;

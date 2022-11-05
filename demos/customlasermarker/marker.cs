@@ -797,13 +797,7 @@ namespace SpiralLab.Sirius
         /// <param name="rtcMeasurement"></param>
         /// <param name="measurementBegin"></param>
         public virtual void NotifyMeasuring(IRtcMeasurement rtcMeasurement, MeasurementBegin measurementBegin)
-        {
-            if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
-            {
-                string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
-                MeasurementHelper.Save(plotFileFullPath, measurementBegin, rtcMeasurement as IRtc);
-                MeasurementHelper.Plot(plotFileFullPath);
-            }
+        {           
             var receivers = this.OnMeasurement?.GetInvocationList();
             if (null != receivers)
                 foreach (MeasureEventHandler receiver in receivers)
@@ -1169,7 +1163,52 @@ namespace SpiralLab.Sirius
                     }
                     #endregion
 
-                    /* syncaxis 시뮬레이션 모드 사용시 뷰어 실행
+                    if (rtc is IRtcMOTF rtcMotf2)
+                    {
+                        if (rtc.CtlGetStatus(RtcStatus.MotfOutOfRange))
+                        {
+                            if (rtc is Rtc5 rtc5)
+                            {
+                                var info = rtc5.RtcMarkingInfo;
+                                Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
+                            }
+                            else if (rtc is Rtc6 rtc6)
+                            {
+                                var info = rtc6.RtcMarkingInfo;
+                                Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
+                            }
+                        }
+                    }
+                    // rtc measurement 사용시
+                    if (success && null != this.entityMeasurementBegin && null != this.entityMeasurementEnd)
+                    {
+                        var rtcMeasurement = rtc as IRtcMeasurement;
+                        if (null != rtcMeasurement)
+                        {
+                            if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
+                            {
+                                string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
+                                if (MeasurementHelper.Save(plotFileFullPath, entityMeasurementBegin, rtcMeasurement as IRtc))
+                                {
+                                    switch (this.MarkerArg.MeasurementPlotProgram)
+                                    {
+                                        case 0:
+                                        default:
+                                            MeasurementHelper.Plot(plotFileFullPath);
+                                            break;
+                                        case 1:
+                                            MeasurementHelper.Plot2(plotFileFullPath);
+                                            break;
+                                    }
+                                    this.NotifyMeasuring(rtcMeasurement, this.entityMeasurementBegin);
+                                }
+                            }
+                        }
+                    }
+                    this.entityMeasurementBegin = null;
+                    this.entityMeasurementEnd = null;
+
+                    // syncaxis 시뮬레이션 모드 사용시 매 레이어 별로(모션 타입별로) 뷰어 실행
                     if (success && null != syncAxis && syncAxis.IsSimulationMode)
                     {
                         if (!File.Exists(Config.ConfigSyncAxisViewerFileName))
@@ -1197,6 +1236,7 @@ namespace SpiralLab.Sirius
                                         //Cursor.Current = Cursors.WaitCursor;
                                         //using (var proc
                                         var proc = Process.Start(startInfo);
+                                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: syncAxis viewer has opened {simulatedFileName}");
                                     }
                                     catch (Exception ex)
                                     {
@@ -1210,7 +1250,6 @@ namespace SpiralLab.Sirius
                             }
                         }
                     }
-                    */
                     Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has ended");
                     break;
             }//end of switch
@@ -1327,15 +1366,6 @@ namespace SpiralLab.Sirius
 
             if (success)
             {
-                if (null != this.entityMeasurementBegin && null != this.entityMeasurementEnd)
-                {
-                    var rtcMeasure = rtc as IRtcMeasurement;
-                    if (null != rtcMeasure)
-                    {
-                        this.NotifyMeasuring(rtcMeasure, this.entityMeasurementBegin);
-                    }
-                }
-
                 if (this.MarkerArg.IsExternalStart)
                 {
                     var rtcExt = rtc as IRtcExtension;
