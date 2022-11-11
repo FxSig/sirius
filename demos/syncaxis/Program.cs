@@ -200,8 +200,8 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.O:
                         rtc.CtlSetScannerPosition(0, 0);
-                        //스테이지 및 스캐너 보정 테이블 선택
-                        rtc.CtlSelectStage(Stage.Stage1, CorrectionTableIndex.Table1);
+                        //멀티 스테이지 사용시스캐너 보정 테이블 선택 (Multiple Stages option needed)
+                        //rtc.CtlSelectStage(Stage.Stage1, CorrectionTableIndex.Table1);
                         rtc.StageMoveSpeed = 10;
                         rtc.StageMoveTimeOut = 5;
                         rtc.CtlSetStagePosition(0, 0);

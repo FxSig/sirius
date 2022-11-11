@@ -92,7 +92,7 @@
 
 **3. How to use ?**
 
- - development environment : .NET dll library
+ - development environment : .NET framework 4.8
  - dll assemblies : spirallab.core.dll, spirallab.sirius.rtc.dll, spirallab.sirius.dll and spirallab.sirius.fieldcorrection.dll 
  - winforms user control : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
  - x64 Environment : copy files from bin\x64 to bin\
@@ -131,6 +131,11 @@
 
 
 **5. Version history**
+
+* 2022.11.11 v1.124
+  - updated) .net framework v4.8 (.NET 프레임워크 4.8 버전 적용)
+  - added) syncAxis      
+     - move stage to center of each layers with scanner only mode (레이어 옵션: 중심위치로 스테이지 이동 후 가공 - Scanner Only 전용)
 
 * 2022.11.4 v1.123
   - fixed) improved XML documentation

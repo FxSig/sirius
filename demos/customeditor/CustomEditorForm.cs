@@ -15,7 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
- * Copyright (C) 2010-2020 SpiralLab. All rights reserved. 
+ * Copyright (C) 2019-2023 SpiralLab. All rights reserved. 
  * CustomEditorForm
  * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
@@ -426,6 +426,8 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsStageAutoCenter", false);
+                    
 
                     btnRaster.Enabled = true;
                     btnImage.Enabled = true;
@@ -473,6 +475,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsStageAutoCenter", false);
 
                     btnRaster.Enabled = true;
                     btnImage.Enabled = true;
@@ -529,6 +532,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMaxValue", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsStageAutoCenter", true);
 
                     btnRaster.Enabled = false;
                     btnImage.Enabled = false;
@@ -2374,15 +2378,15 @@ namespace SpiralLab.Sirius
         }
         protected virtual void mnuSimulateSlow_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Slow);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.LaserPathSimSpped.Slow);
         }
         protected virtual void mnuSimulateNormal_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Normal);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.LaserPathSimSpped.Normal);
         }
         protected virtual void mnuSimulateFast_Click(object sender, EventArgs e)
         {
-            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.Action.LaserPathSimSpped.Fast);
+            Document.Action.ActEntityLaserPathSimulateStart(Document.Action.SelectedEntity, this.View, SpiralLab.Sirius.LaserPathSimSpped.Fast);
         }
         protected virtual void mnuSimulateStop_Click(object sender, EventArgs e)
         {

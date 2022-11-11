@@ -15,7 +15,7 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  * 
- * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
+ * Copyright (C) 2019-2023 SpiralLab. All rights reserved.
  * marker with x,y, angle offsets
  * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
@@ -120,9 +120,14 @@ namespace SpiralLab.Sirius
                     busy |= this.MarkerArg.Rtc.CtlGetStatus(RtcStatus.Busy);
                 if (null != this.MarkerArg && null != this.MarkerArg.Laser)
                     busy |= this.MarkerArg.Laser.IsBusy;
+                busy |= isThreadBusy;
                 return busy;
             }
         }
+        /// <summary>
+        /// 작업 쓰레드 동작중 여부 플래그
+        /// </summary>
+        protected bool isThreadBusy = false;
         /// <summary>
         /// 에러발생 여부
         /// </summary>
@@ -558,8 +563,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 가공 시작 
-        /// 내부 함수 호출 순서 
-        /// WorkerThread : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+        /// <para>내부 함수 호출 순서 : WorkerThread : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
         /// </summary>
         /// <returns></returns>
         public virtual bool Start()
@@ -580,7 +584,8 @@ namespace SpiralLab.Sirius
             var rtc = this.MarkerArg.Rtc;
             var laser = this.MarkerArg.Laser;
             var motorZ = this.MarkerArg.MotorZ;
-            this.MarkerArg.IsEnablePens = true;
+            // UI 의 설정상태를 전달
+            this.MarkerArg.IsEnablePens = this.IsEnablePens;
 
             if (rtc.CtlGetStatus(RtcStatus.Busy))
             {
@@ -641,6 +646,7 @@ namespace SpiralLab.Sirius
             }
             Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: total offset counts = {this.MarkerArg.Offsets.Count}");
 
+            //기존 pen 정보를 삭제하여 항상 최초에 펜 입력되도록
             this.MarkerArg.PenStack.Clear();
             this.isAborted = false;
             this.thread = new Thread(this.WorkerThread);
@@ -649,7 +655,6 @@ namespace SpiralLab.Sirius
             this.thread.Start();
             return true;
         }
-
         /// <summary>
         /// External /START 사용시 이를 해제
         /// </summary>
@@ -721,6 +726,7 @@ namespace SpiralLab.Sirius
                 success &= this.MarkerArg.Rtc.CtlAbort();
                 success &= this.MarkerArg.Rtc.CtlLaserOff();
             }
+            //this.MarkerArg.Laser?.CtlAbort();
             if (null != this.MarkerArg.MotorZ)
             {
                 if (this.MarkerArg.MotorZ.IsDriving)
@@ -728,10 +734,10 @@ namespace SpiralLab.Sirius
             }
             if (null != this.thread)
             {
-                if (this.thread.Join(100))
+                if (this.thread.Join(50))
                     this.thread = null;
-                else
-                    Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: thread is not joined yet");
+                //else
+                //    Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: thread is not joined yet");
             }
 
             if (this.MarkerArg.IsExternalStart)
@@ -741,7 +747,7 @@ namespace SpiralLab.Sirius
             {
                 this.MarkerArg.Rtc.CtlMove(0, 0);
                 if (this.MarkerArg.Rtc.CtlGetStatus(RtcStatus.Aborted))
-                    this.MarkerArg.Rtc.CtlReset(); 
+                    this.MarkerArg.Rtc.CtlReset(); //clear abort condition but alarm -_-;
             }
             return success;
         }
@@ -753,9 +759,17 @@ namespace SpiralLab.Sirius
         {
             if (null == this.MarkerArg)
                 return false;
+            //this.isAborted = false //이걸 할려면 작업 쓰레드가 join 될때까지 대기해야 하므로 생략
             this.MarkerArg.Rtc?.CtlReset();
+            //if (this.MarkerArg.Rtc is IRtcMOTF rtcMotf)
+            //    rtcMotf.CtlMotfOverflowClear();
             this.MarkerArg.Laser?.CtlReset();
             this.MarkerArg.MotorZ?.CtlReset();
+            if (!this.IsBusy && !this.MarkerArg.IsExternalStart)
+            {
+                this.MarkerArg.Progress = 0;
+                this.NotifyProgressing();
+            }
             return true;
         }
 
@@ -772,7 +786,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 가공 진행률
-        /// (MarkerArg 의 Progress 값이 0~100 사이)
+        /// <para>(MarkerArg 의 Progress 값이 0~100 사이)</para>
         /// </summary>
         public virtual void NotifyProgressing()
         {
@@ -797,7 +811,7 @@ namespace SpiralLab.Sirius
         /// <param name="rtcMeasurement"></param>
         /// <param name="measurementBegin"></param>
         public virtual void NotifyMeasuring(IRtcMeasurement rtcMeasurement, MeasurementBegin measurementBegin)
-        {           
+        {
             var receivers = this.OnMeasurement?.GetInvocationList();
             if (null != receivers)
                 foreach (MeasureEventHandler receiver in receivers)
@@ -819,11 +833,14 @@ namespace SpiralLab.Sirius
         protected virtual void WorkerThread()
         {
             this.NotifyStarted();
+            this.isThreadBusy = true;
             this.MarkerArg.StartTime = DateTime.Now;
+            //this.MarkerArg.EndTime = DateTime.Now; ??
             var rtc = this.MarkerArg.Rtc;
             bool success = PreWork() && MainWork();
             this.MarkerArg.IsSuccess = success;
             success &= PostWork(success);
+            this.isThreadBusy = false;
             if (success)
             {
                 if (!this.MarkerArg.IsExternalStart)
@@ -834,7 +851,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 사전 작업
-        /// 순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+        /// <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
         /// </summary>
         protected virtual bool PreWork()
         {
@@ -846,7 +863,7 @@ namespace SpiralLab.Sirius
             this.MarkerArg.IsSuccess = false;
             this.NotifyProgressing();
 
-            // 3D 오프셋 값이 있으면 모두 리셋
+            // 3D 오프셋 리셋            
             if (rtc is IRtc3D rtc3D)
             {
                 if (rtc.Is3D)
@@ -855,6 +872,7 @@ namespace SpiralLab.Sirius
                     rtc3D.CtlZDefocus(0);
                 }
             }
+
             // 레이저 소스측 리스트 시작 통지
             var laser = this.MarkerArg.Laser;
             if (laser.ListBegin())
@@ -867,7 +885,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 주 작업
-        /// 순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+        /// <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
         /// </summary>
         protected virtual bool MainWork()
         {
@@ -908,168 +926,237 @@ namespace SpiralLab.Sirius
             var rtcAlc = rtc as IRtcAutoLaserControl;
             var laser = this.MarkerArg.Laser;
             var motorZ = this.MarkerArg.MotorZ;
-            switch (layer.MotionType)
+
+            #region Z 축 모션 제어
+            if (null != motorZ && layer.IsZEnabled)
             {
-                case MotionType.ScannerOnly:
-                case MotionType.StageOnly:
-                case MotionType.StageAndScanner:
-                    #region Z 축 모션 제어
-                    if (null != motorZ && layer.IsZEnabled)
-                    {
-                        success &= motorZ.Update(); //현재 상태 강제 업데이트
-                        float actualPosition = motorZ.ActualPosition;
+                success &= motorZ.Update(); //현재 상태 강제 업데이트
+                float actualPosition = motorZ.ActualPosition;
 
-                        float cmdPosition = layer.ZPosition;
-                        float cmdVelocity = layer.ZPositionVel;
-                        bool isActualPositionCheck = layer.ZIsPositionCheck;
+                float cmdPosition = layer.ZPosition;
+                float cmdVelocity = layer.ZPositionVel;
+                bool isActualPositionCheck = layer.ZIsPositionCheck;
 
-                        if (!motorZ.IsReady)
-                        {
-                            success &= false;
-                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's not ready");
-                        }
-                        if (motorZ.IsBusy)
-                        {
-                            success &= false;
-                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's busy status");
-                        }
-                        if (motorZ.IsError)
-                        {
-                            success &= false;
-                            Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's alarm status");
-                        }
-                        if (!success)
-                            break;
+                if (!motorZ.IsReady)
+                {
+                    success &= false;
+                    Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's not ready");
+                }
+                if (motorZ.IsBusy)
+                {
+                    success &= false;
+                    Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's busy status");
+                }
+                if (motorZ.IsError)
+                {
+                    success &= false;
+                    Logger.Log(Logger.Type.Error, $"invalid motor z axis status. it's alarm status");
+                }
 
-                        switch (layer.ZMode)
-                        {
-                            case Layer.ZPositionMode.Absolute:
-                                success &= motorZ.CtlMoveAbs(cmdPosition, cmdVelocity);
-                                break;
-                            case Layer.ZPositionMode.Relative:
-                                success &= motorZ.CtlMoveRel(cmdPosition, cmdVelocity);
-                                cmdPosition += actualPosition;
-                                break;
-                        }
-                        if (!success)
-                            break;
-                        var sw = Stopwatch.StartNew();
-                        do
-                        {
-                            Thread.Sleep(50);
-                            motorZ.Update(); //현재 상태 강제 업데이트
-                            if (sw.ElapsedMilliseconds > 10 * 1000) //10s
-                            {
-                                Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis. timed out ?");
-                                success &= false;
-                                break;
-                            }
-                            if (motorZ.IsError)
-                            {
-                                success &= false;
-                                break;
-                            }
-                            if (this.isAborted)
-                            {
-                                success &= false; //marker trying to stop
-                                break;
-                            }
-                            if (isActualPositionCheck)
-                            {
-                                if (MathHelper.IsEqual(cmdPosition, motorZ.ActualPosition, 0.05f) && !motorZ.IsDriving) //inpos 50um 헌팅 무시 ?
-                                {
-                                    // succes to move
-                                    break;
-                                }
-                            }
-                            else
-                            {
-                                // busy (driving) 이 꺼지면 이동 성공으로 처리
-                                if (!motorZ.IsDriving)
-                                    break;
-                            }
-                        } while (success);
-                        if (!success)
-                        {
-                            Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis");
-                            break;
-                        }
-                    }
-                    #endregion
-                    if (!success)
+                switch (layer.ZMode)
+                {
+                    case ZPositionMode.Absolute:
+                        success &= motorZ.CtlMoveAbs(cmdPosition, cmdVelocity);
                         break;
-
-                    #region 레이어에 설정된 ALC 설정 적용 (스케일 보정 파일및 모드 설정)
-                    if (null != rtcAlc && layer.IsALC)
+                    case ZPositionMode.Relative:
+                        success &= motorZ.CtlMoveRel(cmdPosition, cmdVelocity);
+                        cmdPosition += actualPosition;
+                        break;
+                }
+                if (!success)
+                    return false;
+                var sw = Stopwatch.StartNew();
+                do
+                {
+                    Thread.Sleep(50);
+                    motorZ.Update(); //현재 상태 강제 업데이트
+                    if (sw.ElapsedMilliseconds > 10 * 1000) //10s
                     {
-                        rtcAlc.AutoLaserControlByPositionFileName = layer.AlcPositionFileName;
-                        rtcAlc.AutoLaserControlByPositionTableNo = layer.AlcPositionTableNo;
-                        switch (layer.AlcSignal)
-                        {
-                            case AutoLaserControlSignal.ExtDO16:
-                            case AutoLaserControlSignal.ExtDO8Bit:
-                                success &= rtcAlc.CtlAutoLaserControl<uint>(layer.AlcSignal, layer.AlcMode, (uint)layer.AlcPercentage100, (uint)layer.AlcMinValue, (uint)layer.AlcMaxValue);
-                                break;
-                            default:
-                                success &= rtcAlc.CtlAutoLaserControl<float>(layer.AlcSignal, layer.AlcMode, (uint)layer.AlcPercentage100, (uint)layer.AlcMinValue, (uint)layer.AlcMaxValue);
-                                break;
-                        }
+                        Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis. timed out ?");
+                        success &= false;
+                        break;
                     }
-                    #endregion
-
-                    #region 매 레이어마다 RTC 리스트 명령 실행
-                    var syncAxis = rtc as IRtcSyncAxis;
-                    if (null != syncAxis)
+                    if (motorZ.IsError)
                     {
-                        //success &= syncAxis.CtlSetStagePosition(0, 0);
-                        //success &= syncAxis.CtlSetScannerPosition(0,0);
-                        switch (layer.MotionType)
+                        success &= false;
+                        break;
+                    }
+                    if (this.isAborted)
+                    {
+                        success &= false; //marker trying to stop
+                        break;
+                    }
+                    if (isActualPositionCheck)
+                    {
+                        if (MathHelper.IsEqual(cmdPosition, motorZ.ActualPosition, 0.05f) && !motorZ.IsDriving) //inpos 50um 헌팅 무시 ?
                         {
-                            case MotionType.StageOnly:
-                                success &= syncAxis.CtlMotionType(MotionType.StageOnly);
-                                break;
-                            case MotionType.ScannerOnly:
-                                success &= syncAxis.CtlMotionType(MotionType.ScannerOnly);
-                                break;
-                            case MotionType.StageAndScanner:
-                                success &= syncAxis.CtlMotionType(MotionType.StageAndScanner);
-                                success &= syncAxis.CtlBandWidth(layer.BandWidth);
-                                break;
+                            // succes to move
+                            break;
                         }
-                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started with motion type= {layer.MotionType.ToString()}");
-                        success &= syncAxis.ListBegin(laser, layer.MotionType);
                     }
                     else
                     {
-                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started");
-
-                        if (rtc is IRtcMOTF rtcMotf)
-                            rtcMotf.CtlMotfOverflowClear();
-
-                        if (this.MarkerArg.IsExternalStart)
-                            success &= rtc.ListBegin(laser, ListType.Single); //외부 트리거 사용시 강제로 단일 리스트로 고정
-                        else
-                            success &= rtc.ListBegin(laser, this.MarkerArg.RtcListType);
+                        // busy (driving) 이 꺼지면 이동 성공으로 처리
+                        if (!motorZ.IsDriving)
+                            break;
                     }
-                    if (!success)
-                        break;
-                    var offsets = this.MarkerArg.Offsets;
-                    var scannerRotateAngle = this.ScannerRotateAngle;
-                    for (int i = 0; i < offsets.Count; i++)
-                    {
-                        var xyt = offsets[i];
-                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: offset [{i}] : {xyt}");
-                        rtc.MatrixStack.Push(scannerRotateAngle); // 3. 스캐너의 기구적 회전량
-                        rtc.MatrixStack.Push(xyt.X + clonedDoc.RotateOffset.X, xyt.Y + clonedDoc.RotateOffset.Y); // 2. 오프셋 이동량
-                        rtc.MatrixStack.Push(xyt.Angle + clonedDoc.RotateOffset.Angle);  // 1. 오프셋 회전량
-                        this.MarkerArg.OffsetIndex = (uint)i;
+                } while (success);
+                if (!success)
+                {
+                    Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to move motor z axis");
+                    return false;
+                }
+            }
+            #endregion
 
-                        for (int l = 0; l < layer.Repeat; l++)
+            #region 레이어에 설정된 ALC 설정 적용 (스케일 보정 파일및 모드 설정)
+            if (null != rtcAlc && layer.IsALC)
+            {
+                rtcAlc.AutoLaserControlByPositionFileName = layer.AlcPositionFileName;
+                rtcAlc.AutoLaserControlByPositionTableNo = layer.AlcPositionTableNo;
+                switch (layer.AlcSignal)
+                {
+                    case AutoLaserControlSignal.ExtDO16:
+                    case AutoLaserControlSignal.ExtDO8Bit:
+                        success &= rtcAlc.CtlAutoLaserControl<uint>(layer.AlcSignal, layer.AlcMode, (uint)layer.AlcPercentage100, (uint)layer.AlcMinValue, (uint)layer.AlcMaxValue);
+                        break;
+                    default:
+                        success &= rtcAlc.CtlAutoLaserControl<float>(layer.AlcSignal, layer.AlcMode, (uint)layer.AlcPercentage100, (uint)layer.AlcMinValue, (uint)layer.AlcMaxValue);
+                        break;
+                }
+                if (!success)
+                {
+                    Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to set automatic laser control");
+                    return false;
+                }
+            }
+            #endregion
+
+            #region 매 레이어마다 RTC 리스트 명령 실행
+            var syncAxis = rtc as IRtcSyncAxis;
+            if (null != syncAxis)
+            {
+                //success &= syncAxis.CtlSetStagePosition(0, 0);
+                //success &= syncAxis.CtlSetScannerPosition(0,0);
+                switch (layer.MotionType)
+                {
+                    case MotionType.StageOnly:
+                        success &= syncAxis.CtlMotionType(MotionType.StageOnly);
+                        break;
+                    case MotionType.ScannerOnly:
+                        success &= syncAxis.CtlMotionType(MotionType.ScannerOnly);
+                        //syncAxis.StageMoveSpeed = 10;
+                        //syncAxis.StageMoveTimeOut = 10;
+                        var br = layer.BoundRect;
+                        if (!syncAxis.IsSimulationMode)
                         {
-                            switch (this.MarkerArg.MarkTargets)
+                            if (layer.IsStageAutoCenter && !br.IsEmpty)
                             {
-                                case MarkTargets.All:
-                                case MarkTargets.Custom:
+                                success &= syncAxis.CtlSetStagePosition(br.Center.X, br.Center.Y);
+                                var sw = Stopwatch.StartNew();
+                                do
+                                {
+                                    Thread.Sleep(20);
+                                    success &= syncAxis.CtlGetStagePosition(out var actPosition);
+                                    if (!success)
+                                        break;
+                                    if (MathHelper.IsEqual(br.Center, actPosition, 0.001f))
+                                        break;
+                                    if (this.isAborted)
+                                    {
+                                        success &= false;
+                                        break;
+                                    }
+                                    if (sw.ElapsedMilliseconds > (syncAxis.StageMoveTimeOut * 1000 + 100))
+                                    {
+                                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: try to move stage at {br.Center} but timed out during {syncAxis.StageMoveTimeOut} s");
+                                        success = false;
+                                        break;
+                                    }
+
+                                }
+                                while (true);
+                            }
+                        }
+                        break;
+                    case MotionType.StageAndScanner:
+                        success &= syncAxis.CtlMotionType(MotionType.StageAndScanner);
+                        success &= syncAxis.CtlBandWidth(layer.BandWidth);
+                        break;
+                }
+
+                if (!success)
+                {
+                    Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: fail to prepare to begin");
+                    return false;
+                }
+                //if (syncAxis.HeuristicIndex > 0)
+                //    success &= syncAxis.CtlSelectHeuristic(syncAxis.HeuristicIndex);
+                //Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started with motion type= {layer.MotionType.ToString()}, heuristic= {layer.Heuristic}");
+                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started with motion type= {layer.MotionType.ToString()}");
+                success &= syncAxis.ListBegin(laser, layer.MotionType);
+            }
+            else
+            {
+                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has started");
+
+                if (rtc is IRtcMOTF rtcMotf)
+                    rtcMotf.CtlMotfOverflowClear();
+
+                if (this.MarkerArg.IsExternalStart)
+                    success &= rtc.ListBegin(laser, ListType.Single); //외부 트리거 사용시 강제로 단일 리스트로 고정
+                else
+                    success &= rtc.ListBegin(laser, this.MarkerArg.RtcListType);
+            }
+            if (!success)
+                return false;
+            var offsets = this.MarkerArg.Offsets;
+            var scannerRotateAngle = this.ScannerRotateAngle;
+            for (int i = 0; i < offsets.Count; i++)
+            {
+                var xyt = offsets[i];
+                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: offset [{i}] : {xyt.ToString()} {xyt.UserData?.ToString()}");
+                rtc.MatrixStack.Push(scannerRotateAngle); // 4. 스캐너의 기구적 회전량                
+                if (null != syncAxis)
+                {
+                    switch (layer.MotionType)
+                    {
+                        case MotionType.ScannerOnly:
+                            var br = layer.BoundRect;
+                            if (layer.IsStageAutoCenter && !br.IsEmpty)
+                            {
+                                rtc.MatrixStack.Push(-br.Center);  // 3. 스캐너 중심으로 이동시 (syncAXIS 의 scanner only 선택 및 auto center 사용시)
+                                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: stage auto center mode dx={br.Center.X}, dy= {br.Center.Y} mm");
+                            }
+                            break;
+                    }
+                }
+                rtc.MatrixStack.Push(xyt.X + clonedDoc.RotateOffset.X, xyt.Y + clonedDoc.RotateOffset.Y); // 2. 오프셋 이동량
+                rtc.MatrixStack.Push(xyt.Angle + clonedDoc.RotateOffset.Angle);  // 1. 오프셋 회전량
+
+
+                this.MarkerArg.OffsetIndex = (uint)i;
+
+                for (int l = 0; l < layer.Repeat; l++)
+                {
+                    switch (this.MarkerArg.MarkTargets)
+                    {
+                        case MarkTargets.All:
+                        case MarkTargets.Custom:
+                            for (int k = 0; k < layer.Count; k++)
+                            {
+                                var entity = layer[k];
+                                success &= this.EntityWork(i, j, k, entity);
+                                if (!success)
+                                    break;
+                            }
+                            break;
+                        case MarkTargets.Selected:
+                        case MarkTargets.SelectedButBoundRect:
+                            if (this.MarkerArg.IsGuided)
+                            {
+                                for (int r = 0; r < this.MarkerArg.RepeatSelected; r++)
+                                {
                                     for (int k = 0; k < layer.Count; k++)
                                     {
                                         var entity = layer[k];
@@ -1077,188 +1164,185 @@ namespace SpiralLab.Sirius
                                         if (!success)
                                             break;
                                     }
-                                    break;
-                                case MarkTargets.Selected:
-                                case MarkTargets.SelectedButBoundRect:
-                                    if (this.MarkerArg.IsGuided)
-                                    {
-                                        for (int r = 0; r < this.MarkerArg.RepeatSelected; r++)
-                                        {
-                                            for (int k = 0; k < layer.Count; k++)
-                                            {
-                                                var entity = layer[k];
-                                                success &= this.EntityWork(i, j, k, entity);
-                                                if (!success)
-                                                    break;
-                                            }
-                                            if (!success)
-                                                break;
-                                        }
-                                    }
-                                    else
-                                    {
-                                        for (int k = 0; k < layer.Count; k++)
-                                        {
-                                            var entity = layer[k];
-                                            success &= this.EntityWork(i, j, k, entity);
-                                            if (!success)
-                                                break;
-                                        }
-                                    }
-                                    break;
-                            }
-                            if (!success)
-                                break;
-                        }
-                        rtc.MatrixStack.Pop();
-                        rtc.MatrixStack.Pop();
-                        rtc.MatrixStack.Pop();
-                        if (!success)
-                            break;
-
-                        /*
-                         * 일련번호 가공시 증감 결과 대상 뷰에 반영 
-                        if (null != this.originalDoc)
-                        {
-
-                            if (!this.IncrementSerialNoOrDateTime(this.originalDoc, j))
-                                Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to update datetime/serial no");
-                            if (!this.ScriptCompileFeedBack(this.originalDoc, j))
-                                Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to recompile");
-                            Form form = null;
-                            if (Application.OpenForms.Count > 1)
-                                form = Application.OpenForms[0];
-                            if (null != form)
-                            {
-                                form.BeginInvoke(new MethodInvoker(delegate ()
-                                {
-                                    if (null != this.MarkerArg.ViewTargets)
-                                    {
-                                        foreach (var view in this.MarkerArg.ViewTargets)
-                                            view?.Render();
-                                    }
-                                }));
-                            }
-                        }
-                    */
-                    }
-
-                    if (success)
-                    {
-                        if (this.MarkerArg.IsJumpToOriginAfterFinished || null != syncAxis)
-                        {
-                            success &= rtc.ListJump(0, 0);
-                        }
-                        success &= rtc.ListEnd();
-                    }
-                    if (success && !this.MarkerArg.IsExternalStart)
-                        success &= rtc.ListExecute(true);
-                    #endregion
-
-                    #region 레이어에 설정된 ALC 설정 적용해제
-                    if (null != rtcAlc && layer.IsALC && !this.MarkerArg.IsExternalStart)
-                    {
-                        rtcAlc.AutoLaserControlByPositionFileName = string.Empty;
-                        rtcAlc.CtlAutoLaserControl<uint>(AutoLaserControlSignal.Disabled, AutoLaserControlMode.Disabled, 0, 0, 0);
-                    }
-                    #endregion
-
-                    if (rtc is IRtcMOTF rtcMotf2)
-                    {
-                        if (rtc.CtlGetStatus(RtcStatus.MotfOutOfRange))
-                        {
-                            if (rtc is Rtc5 rtc5)
-                            {
-                                var info = rtc5.RtcMarkingInfo;
-                                Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
-                            }
-                            else if (rtc is Rtc6 rtc6)
-                            {
-                                var info = rtc6.RtcMarkingInfo;
-                                Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
-                            }
-                        }
-                    }
-                    // rtc measurement 사용시
-                    if (success && null != this.entityMeasurementBegin && null != this.entityMeasurementEnd)
-                    {
-                        var rtcMeasurement = rtc as IRtcMeasurement;
-                        if (null != rtcMeasurement)
-                        {
-                            if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
-                            {
-                                string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
-                                if (MeasurementHelper.Save(plotFileFullPath, entityMeasurementBegin, rtcMeasurement as IRtc))
-                                {
-                                    switch (this.MarkerArg.MeasurementPlotProgram)
-                                    {
-                                        case 0:
-                                        default:
-                                            MeasurementHelper.Plot(plotFileFullPath);
-                                            break;
-                                        case 1:
-                                            MeasurementHelper.Plot2(plotFileFullPath);
-                                            break;
-                                    }
-                                    this.NotifyMeasuring(rtcMeasurement, this.entityMeasurementBegin);
+                                    if (!success)
+                                        break;
                                 }
                             }
-                        }
-                    }
-                    this.entityMeasurementBegin = null;
-                    this.entityMeasurementEnd = null;
-
-                    // syncaxis 시뮬레이션 모드 사용시 매 레이어 별로(모션 타입별로) 뷰어 실행
-                    if (success && null != syncAxis && syncAxis.IsSimulationMode)
-                    {
-                        if (!File.Exists(Config.ConfigSyncAxisViewerFileName))
-                        {
-                            //MessageBox.Show(null, "syncAxis viewer is not founded", "SyncAxis Viewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        }
-                        else
-                        {
-                            string simulatedFileName = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, syncAxis.SimulationFileName);
-                            if (File.Exists(simulatedFileName))
+                            else
                             {
-                                Task.Run(() =>
+                                for (int k = 0; k < layer.Count; k++)
                                 {
-                                    ProcessStartInfo startInfo = new ProcessStartInfo();
-                                    startInfo.WorkingDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer");
-                                    startInfo.CreateNoWindow = false;
-                                    startInfo.UseShellExecute = false;
-                                    startInfo.FileName = Config.ConfigSyncAxisViewerFileName;
-                                    startInfo.WindowStyle = ProcessWindowStyle.Normal;
-                                    startInfo.Arguments = "-a";//string.Empty;
-                                    if (!string.IsNullOrEmpty(simulatedFileName))
-                                        startInfo.Arguments = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, simulatedFileName);
-                                    try
-                                    {
-                                        //Cursor.Current = Cursors.WaitCursor;
-                                        //using (var proc
-                                        var proc = Process.Start(startInfo);
-                                        Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: syncAxis viewer has opened {simulatedFileName}");
-                                    }
-                                    catch (Exception ex)
-                                    {
-                                        Logger.Log(Logger.Type.Error, ex.Message);
-                                    }
-                                    finally
-                                    {
-                                        //Cursor.Current = Cursors.Default;
-                                    }
-                                });
+                                    var entity = layer[k];
+                                    success &= this.EntityWork(i, j, k, entity);
+                                    if (!success)
+                                        break;
+                                }
                             }
+                            break;
+                    }
+                    if (!success)
+                        break;
+                }
+
+                rtc.MatrixStack.Pop();
+                rtc.MatrixStack.Pop();
+                if (null != syncAxis)
+                {
+                    switch (layer.MotionType)
+                    {
+                        case MotionType.ScannerOnly:
+                            var br = layer.BoundRect;
+                            if (layer.IsStageAutoCenter && !br.IsEmpty)
+                                rtc.MatrixStack.Pop();
+                            break;
+                    }
+                }
+                rtc.MatrixStack.Pop();
+
+                if (!success)
+                    break;
+
+                if (null != this.originalDoc)
+                {
+                    //if (success)
+                    {
+                        //if (!this.IncrementSerialNoOrDateTime(this.originalDoc, j))
+                        //    Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to update datetime/serial no");
+                        //if (!this.ScriptCompileFeedBack(this.originalDoc, j))
+                        //    Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: fail to recompile");
+                        Form form = null;
+                        if (Application.OpenForms.Count > 1)
+                            form = Application.OpenForms[0];
+
+                        if (null != form)
+                        {
+                            form.BeginInvoke(new MethodInvoker(delegate ()
+                            {
+                                if (null != this.MarkerArg.ViewTargets)
+                                {
+                                    foreach (var view in this.MarkerArg.ViewTargets)
+                                        view?.Render();
+                                }
+                            }));
                         }
                     }
-                    Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has ended");
-                    break;
-            }//end of switch
+                }
+            }
+
+            if (success)
+            {
+                if (this.MarkerArg.IsJumpToOriginAfterFinished || null != syncAxis)
+                {
+                    success &= rtc.ListJump(0, 0);
+                }
+                success &= rtc.ListEnd();
+            }
+            if (success && !this.MarkerArg.IsExternalStart)
+                success &= rtc.ListExecute(true);
+            #endregion
+
+            #region 레이어에 설정된 ALC 설정 적용해제
+            if (null != rtcAlc && layer.IsALC && !this.MarkerArg.IsExternalStart)
+            {
+                rtcAlc.AutoLaserControlByPositionFileName = string.Empty;
+                rtcAlc.CtlAutoLaserControl<uint>(AutoLaserControlSignal.Disabled, AutoLaserControlMode.Disabled, 0, 0, 0);
+            }
+            #endregion
+
+            if (rtc is IRtcMOTF rtcMotf2)
+            {
+                if (rtc.CtlGetStatus(RtcStatus.MotfOutOfRange))
+                {
+                    if (rtc is Rtc5 rtc5)
+                    {
+                        var info = rtc5.RtcMarkingInfo;
+                        Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
+                    }
+                    else if (rtc is Rtc6 rtc6)
+                    {
+                        var info = rtc6.RtcMarkingInfo;
+                        Logger.Log(Logger.Type.Warn, $"marker [{this.Index}] {this.Name}: layer {layer.Name} motf out of range ? {info.Value}");
+                    }
+                }
+            }
+            // rtc measurement 사용시
+            if (success && null != this.entityMeasurementBegin && null != this.entityMeasurementEnd)
+            {
+                var rtcMeasurement = rtc as IRtcMeasurement;
+                if (null != rtcMeasurement)
+                {
+                    if (null != this.MarkerArg && this.MarkerArg.IsMeasurementToPolt && null != this.entityMeasurementBegin)
+                    {
+                        string plotFileFullPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "plot", $"measurement-{this.Name}-{DateTime.Now.ToString("MM-dd-hh-mm-ss")}.txt");
+                        if (MeasurementHelper.Save(plotFileFullPath, entityMeasurementBegin, rtcMeasurement as IRtc))
+                        {
+                            switch (this.MarkerArg.MeasurementPlotProgram)
+                            {
+                                case 0:
+                                default:
+                                    MeasurementHelper.Plot(plotFileFullPath);
+                                    break;
+                                case 1:
+                                    MeasurementHelper.Plot2(plotFileFullPath);
+                                    break;
+                            }
+                            this.NotifyMeasuring(rtcMeasurement, this.entityMeasurementBegin);
+                        }
+                    }
+                }
+            }
+            this.entityMeasurementBegin = null;
+            this.entityMeasurementEnd = null;
+
+            // syncaxis 시뮬레이션 모드 사용시 매 레이어 별로(모션 타입별로) 뷰어 실행
+            if (success && null != syncAxis && syncAxis.IsSimulationMode)
+            {
+                if (!File.Exists(Config.ConfigSyncAxisViewerFileName))
+                {
+                    //MessageBox.Show(null, "syncAxis viewer is not founded", "SyncAxis Viewer", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    string simulatedFileName = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, syncAxis.SimulationFileName);
+                    if (File.Exists(simulatedFileName))
+                    {
+                        Task.Run(() =>
+                        {
+                            ProcessStartInfo startInfo = new ProcessStartInfo();
+                            startInfo.WorkingDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer");
+                            startInfo.CreateNoWindow = false;
+                            startInfo.UseShellExecute = false;
+                            startInfo.FileName = Config.ConfigSyncAxisViewerFileName;
+                            startInfo.WindowStyle = ProcessWindowStyle.Normal;
+                            startInfo.Arguments = "-a";//string.Empty;
+                            if (!string.IsNullOrEmpty(simulatedFileName))
+                                startInfo.Arguments = Path.Combine(Config.ConfigSyncAxisSimulateFilePath, simulatedFileName);
+                            try
+                            {
+                                //Cursor.Current = Cursors.WaitCursor;
+                                //using (var proc
+                                var proc = Process.Start(startInfo);
+                                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: syncAxis viewer has opened {simulatedFileName}");
+                            }
+                            catch (Exception ex)
+                            {
+                                Logger.Log(Logger.Type.Error, ex.Message);
+                            }
+                            finally
+                            {
+                                //Cursor.Current = Cursors.Default;
+                            }
+                        });
+                    }
+                }
+            }
+            Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: layer {layer.Name} has ended");
 
             return success;
         }
         /// <summary>
         /// 특정 레이어를 가공할지를 선택하기 위한 comparer
-        /// 내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단
+        /// <para>내부 가공 쓰레드가 레이어를 순회하면서 가공대상인지 여부를 판단</para>
         /// </summary>
         /// <param name="layer">가공 대상인지 여부를 판단해야 하는 대상 레이어</param>
         /// <returns></returns>
@@ -1269,7 +1353,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 특정 개체를 가공할지를 선택하기 위한 comparer
-        /// 내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단
+        /// <para>내부 가공 쓰레드가 레이어내의 개체들를 순회하면서 가공대상인지 여부를 판단</para>
         /// </summary>
         /// <param name="entity">가공 대상인지 여부를 판단해야 하는 대상 개체</param>
         /// <returns></returns>
@@ -1298,7 +1382,6 @@ namespace SpiralLab.Sirius
                     case MarkTargets.Custom:
                         if (!this.IsTargetEntity(entity))
                             break;
-                        //스크립트 기능 사용시
                         //success &= this.ScriptExecute(entity);
                         if (!success)
                             break;
@@ -1307,30 +1390,83 @@ namespace SpiralLab.Sirius
                     case MarkTargets.Selected:
                         if (entity.IsSelected || entity is IPen || entity is PenReturn)
                         {
-                            //스크립트 기능 사용시
                             //success &= this.ScriptExecute(entity);
                             if (!success)
                                 break;
-                            success &= markerable.Mark(this.MarkerArg);
+                            if (entity is IPen)
+                            {
+                                if (this.MarkerArg.IsGuided)
+                                {
+                                    var pen = entity as IPen;
+                                    var oldJumpSpeed = pen.JumpSpeed;
+                                    var oldMarkSpeed = pen.MarkSpeed;
+                                    pen.JumpSpeed = this.MarkerArg.SpeedSelected;
+                                    pen.MarkSpeed = this.MarkerArg.SpeedSelected;
+                                    success &= markerable.Mark(this.MarkerArg);
+                                    pen.JumpSpeed = oldJumpSpeed;
+                                    pen.MarkSpeed = oldMarkSpeed;
+                                }
+                                else
+                                {
+                                    if (!this.IsTargetEntity(entity))
+                                        break;
+                                    success &= markerable.Mark(this.MarkerArg);
+                                }
+                            }
+                            else if (entity is PenReturn)
+                            {
+                                success &= markerable.Mark(this.MarkerArg);
+                            }
+                            else
+                            {
+                                success &= markerable.Mark(this.MarkerArg);
+                            }
                         }
                         break;
                     case MarkTargets.SelectedButBoundRect:
                         if (entity.IsSelected || entity is IPen || entity is PenReturn)
                         {
-                            //스크립트 기능 사용시
                             //success &= this.ScriptExecute(entity);
                             if (!success)
                                 break;
-                            if (!this.IsTargetEntity(entity))
-                                break;
-                            if (!entity.BoundRect.IsEmpty)
+
+                            if (entity is IPen)
                             {
-                                //entity 의 펜 적용은?
-                                var drawable = entity as IDrawable;
-                                if (null != drawable)
+                                if (this.MarkerArg.IsGuided)
                                 {
-                                    success &= PenDefault.MarkPen(MarkerArg, drawable.Color2, entity);
-                                    success &= entity.BoundRect.Mark(this.MarkerArg);
+                                    var pen = entity as IPen;
+                                    var oldJumpSpeed = pen.JumpSpeed;
+                                    var oldMarkSpeed = pen.MarkSpeed;
+                                    pen.JumpSpeed = this.MarkerArg.SpeedSelected;
+                                    pen.MarkSpeed = this.MarkerArg.SpeedSelected;
+                                    success &= markerable.Mark(this.MarkerArg);
+                                    pen.JumpSpeed = oldJumpSpeed;
+                                    pen.MarkSpeed = oldMarkSpeed;
+                                }
+                                else
+                                {
+                                    if (!this.IsTargetEntity(entity))
+                                        break;
+                                    success &= markerable.Mark(this.MarkerArg);
+                                }
+                            }
+                            else if (entity is PenReturn)
+                            {
+                                success &= markerable.Mark(this.MarkerArg);
+                            }
+                            else
+                            {
+                                if (!this.IsTargetEntity(entity))
+                                    break;
+                                if (!entity.BoundRect.IsEmpty)
+                                {
+                                    //entity 의 펜 적용은?
+                                    var drawable = entity as IDrawable;
+                                    if (null != drawable)
+                                    {
+                                        success &= PenDefault.MarkPen(MarkerArg, drawable.Color2, entity);
+                                        success &= entity.BoundRect.Mark(this.MarkerArg);
+                                    }
                                 }
                             }
                         }
@@ -1348,7 +1484,7 @@ namespace SpiralLab.Sirius
         }
         /// <summary>
         /// 마무리 작업
-        /// 순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork
+        /// <para>순서 : PreWork -> MainWork (LayerWork * N  -> EntityWork * N) -> PostWork</para>
         /// </summary>
         /// <returns></returns>
         protected virtual bool PostWork(bool success)
@@ -1359,6 +1495,7 @@ namespace SpiralLab.Sirius
             var timeSpan = this.MarkerArg.EndTime - this.MarkerArg.StartTime;
             this.MarkerArg.IsSuccess = success;
 
+            //레이저 소스측 리스트 시작 통지
             var laser = this.MarkerArg.Laser;
             success &= laser.ListEnd();
             if (!success)
@@ -1369,6 +1506,7 @@ namespace SpiralLab.Sirius
                 if (this.MarkerArg.IsExternalStart)
                 {
                     var rtcExt = rtc as IRtcExtension;
+                    //기본 설정 도우미
                     if (rtc is Rtc4)
                     {
                         var extMode = Rtc4ExternalControlMode.Empty;
@@ -1376,6 +1514,7 @@ namespace SpiralLab.Sirius
                         extMode.Add(Rtc4ExternalControlMode.Bit.ExternalStartAgain);
                         //track delay 가 없어 ext delay 항목을 에디터에서 disable 시킴
                         success &= rtcExt.CtlExternalControl(extMode);
+                        //serial current no 리셋됨
                     }
                     else if (rtc is Rtc5)
                     {
@@ -1386,6 +1525,7 @@ namespace SpiralLab.Sirius
                         //extMode.Add(Rtc5ExternalControlMode.Bit.EncoderReset);
                         extMode.Add(Rtc5ExternalControlMode.Bit.TrackDelay);
                         success &= rtcExt.CtlExternalControl(extMode);
+                        //serial current no 리셋됨
                     }
                     else if (rtc is Rtc6 || rtc is Rtc6Ethernet)
                     {
@@ -1396,6 +1536,7 @@ namespace SpiralLab.Sirius
                         //extMode.Add(Rtc6ExternalControlMode.Bit.EncoderReset);
                         extMode.Add(Rtc6ExternalControlMode.Bit.TrackDelay);
                         success &= rtcExt.CtlExternalControl(extMode);
+                        //serial current no 리셋됨
                     }
                 }
                 else
@@ -1412,8 +1553,6 @@ namespace SpiralLab.Sirius
             else
                 Logger.Log(Logger.Type.Error, $"marker [{this.Index}] {this.Name}: aborted or fail to mark");
 
-            this.entityMeasurementBegin = null;
-            this.entityMeasurementEnd = null;
             return true;
         }
         #endregion
