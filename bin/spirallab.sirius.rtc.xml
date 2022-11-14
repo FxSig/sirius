@@ -3494,7 +3494,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.CategoryAndTargetWatts">
             <summary>
-            목표 카테고리, 출력 파워(W), 측정 파워(W) 배열
+            목표 카테고리, 출력 파워(W), 측정 파워(W) 튜플(Typle) 배열
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.PowerMeter">
