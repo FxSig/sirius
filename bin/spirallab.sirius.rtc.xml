@@ -867,10 +867,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.CheckErrors">
             <summary>
@@ -1017,10 +1014,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.CheckErrors">
             <summary>
@@ -1246,10 +1240,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondJSeries.CheckErrors">
             <summary>
@@ -1661,10 +1652,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPN.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="F:SpiralLab.Sirius.IPGYLPN.Queries.DeviceStatus">
             <summary>
@@ -2090,10 +2078,7 @@
             <param name="comPort">통신 포트</param>
         </member>
         <member name="M:SpiralLab.Sirius.InnguGraceXSeries.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="F:SpiralLab.Sirius.InnguGraceXSeries.HoldingRegister.SetDiodeCurrent">
             <summary>
@@ -2427,10 +2412,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPULPN.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPULPN.CheckErrors">
             <summary>
@@ -2717,10 +2699,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.CheckErrors">
             <summary>
@@ -2882,10 +2861,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsHippo.CheckErrors">
             <summary>
@@ -3117,10 +3093,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.SpectraPhysicsTalon.CheckErrors">
             <summary>
@@ -3322,10 +3295,7 @@
             <param name="pulsePerMm">펄스와 사용자 단위(mm)간 비율값</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorFastechPlusE.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.MotorFastechPlusE.CtlHomeSearch">
             <summary>
@@ -3977,10 +3947,7 @@
             <param name="api"> ACS.SPiiPlusNET.Api 인스턴스</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorACS.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.MotorACS.CtlServo(System.Boolean)">
             <summary>
@@ -4172,10 +4139,7 @@
             <param name="esp">ESP 제어 인스턴스</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlHomeSearch">
             <summary>
@@ -5059,9 +5023,7 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.AdlinkDInput.Index">
             <inheritdoc/>  
@@ -5863,29 +5825,19 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.ChannelCount">
-            <summary>
-            채널 개수
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.RtcDInputExt1.Tag">
-            <summary>
-            사용자 정의 데이타
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.RtcDInputExt1.#ctor(SpiralLab.Sirius.IRtc,System.Int32,System.String)">
             <summary>
@@ -6611,10 +6563,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeE.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="F:SpiralLab.Sirius.IPGYLPTypeE.Queries.Device_Status">
             <summary>
@@ -7002,10 +6951,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.PhotonicsIndustryDX.CheckErrors">
             <summary>
@@ -7316,10 +7262,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.JPTTypeE.CheckErrors">
             <summary>
@@ -7620,10 +7563,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPGYLPTypeD.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="F:SpiralLab.Sirius.IPGYLPTypeD.Queries.Device_Status">
             <summary>
@@ -8091,10 +8031,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveFotia.CheckErrors">
             <summary>
@@ -8250,10 +8187,7 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.CheckErrors">
             <summary>
@@ -8744,10 +8678,7 @@
             <param name="maxPowerWatt"></param>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.Initialize">
-            <summary>
-            초기화
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.SPIG4.CheckErrors">
             <summary>
@@ -10381,10 +10312,7 @@
             <param name="pulsePerMm">펄스와 사용자 단위(mm)간 비율값</param>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.Initialize">
-            <summary>
-            초기화 
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.MotorAjinExtek.CtlServo(System.Boolean)">
             <summary>
@@ -15680,10 +15608,7 @@
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.Convert">
-            <summary>
-            변환 
-            </summary>
-            <returns></returns>
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.Correction2DRtcCtb.OnResultEvent(System.Boolean)">
             <summary>
