@@ -19218,6 +19218,7 @@
             <summary>
             리스트 명령 - MOTF XY 사용시 지정된 엔코더 단축(X/Y)의 위치가 특정 조건을 만족할때까지 리스트 명령 대기
             <para>(단축 동기화 용)</para>
+            <para>스캐너는 고정(Stationary) 위치에서 대기함</para>
             </summary>
             <param name="enc">엔코더 축 지정</param>
             <param name="position">위치값 (mm)</param>
@@ -19228,6 +19229,7 @@
             <summary>
             리스트 명령 - MOTF Angular 사용시 지정된 엔코더 회전축(Enc0)의 각도가 특정 조건을 만족할때까지 리스트 명령 대기
             <para>기구 회전부가 시계 방향으로 회전시 엔코더 증가(각도 증가) 방향</para>
+            <para>스캐너는 고정(Stationary) 위치에서 대기함</para>
             </summary>
             <param name="angle">각도 (°)</param>
             <param name="cond">대기 조건</param>
@@ -19236,6 +19238,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - MOTF XY 사용시 두개의 엔코더가 (X/Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
+            <para>스캐너는 고정(Stationary) 위치에서 대기함</para>
             </summary>
             <param name="positionX">X 축 위치 (mm)</param>
             <param name="rangeX">조건 범위 (mm)</param>
