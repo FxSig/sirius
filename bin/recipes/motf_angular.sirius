@@ -1,9 +1,9 @@
 {
   "$type": "DocumentDefault",
-  "Version": "1.122.0.0",
+  "Version": "1.124.0.0",
   "Name": "",
   "Description": "",
-  "FileName": "D:\\git\\siriuslib\\bin\\recipes\\motf_angular.sirius",
+  "FileName": "D:\\git\\sirius\\bin\\recipes\\motf_angular.sirius",
   "ExtensionData": null,
   "ExtensionFilePath": null,
   "Dimension": {
@@ -52,6 +52,7 @@
           "IsLocked": false,
           "MotionType": 0,
           "BandWidth": 2.0,
+          "IsStageAutoCenter": false,
           "Items": {
             "$type": "IEntity[]",
             "$values": [
@@ -59,9 +60,13 @@
                 "$type": "MotfAngularBegin",
                 "Name": "MOTF Angular Begin",
                 "Description": null,
+                "Color2": "White",
                 "IsSelected": false,
                 "IsHighlighted": false,
+                "IsHitTest": false,
+                "IsVisible": true,
                 "IsMarkerable": true,
+                "IsDrawPath": false,
                 "IsLocked": false,
                 "Repeat": 0,
                 "IsEncoderReset": true,
@@ -69,7 +74,8 @@
                   "$type": "Vector2",
                   "X": 0.0,
                   "Y": 0.0
-                }
+                },
+                "Angle": 0.0
               },
               {
                 "$type": "MotfAngularWait",
@@ -99,8 +105,8 @@
                 "Radius": 8.0,
                 "Center": {
                   "$type": "Vector2",
-                  "X": 20.0,
-                  "Y": -20.0
+                  "X": 18.5388947,
+                  "Y": 18.4757156
                 },
                 "StartAngle": 0.0,
                 "IsHatchable": false,
@@ -165,18 +171,18 @@
                 "LineSpacing": 0.0,
                 "Location": {
                   "$type": "Vector2",
-                  "X": 16.0,
-                  "Y": -21.0
+                  "X": 14.5388947,
+                  "Y": 17.4757156
                 },
                 "OriginLeftLocation": {
                   "$type": "Vector2",
-                  "X": 16.0,
-                  "Y": -21.0
+                  "X": 14.5388947,
+                  "Y": 17.4757156
                 },
                 "OriginRightLocation": {
                   "$type": "Vector2",
-                  "X": 24.8,
-                  "Y": -21.0
+                  "X": 23.3388939,
+                  "Y": 17.4757156
                 },
                 "Angle": 0.0,
                 "IsTextDataGS1": false,
@@ -231,12 +237,12 @@
           "ZIsPositionCheck": true,
           "IsALC": false,
           "AlcSignal": 0,
-          "AlcMode": 0,
-          "AlcPositionFileName": "",
-          "AlcPositionTableNo": 0,
           "AlcPercentage100": 2.5,
           "AlcMinValue": 1.0,
           "AlcMaxValue": 5.0,
+          "AlcMode": 0,
+          "AlcPositionFileName": "",
+          "AlcPositionTableNo": 0,
           "Angle": 0.0
         }
       ]
