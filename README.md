@@ -132,6 +132,13 @@
 
 **5. Version history**
 
+
+* 2022.12.2 v1.125
+  - added) new path optimizer with powerful TSP solver (신규 경로 최적화 알고리즘 추가)
+  - added) laser spot bite size at circle, rectangle, lwpolyline entities (원, 사각형, 폴리라인에 bitesize 크기 지원)
+  - fixed) powerverify but detected watt is 0 (파워 검증시 측정 데이타 오류 수정)
+  - fixed) result event at correciton form bug (스캐너 보정 폼 이벤트 핸들러 호출 오류 수정)
+
 * 2022.11.11 v1.124
   - updated) .net framework v4.8 (.NET 프레임워크 4.8 버전 적용)
   - added) syncAxis      

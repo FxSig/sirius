@@ -4125,6 +4125,11 @@
             사용자 정의 데이타
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.DOutput">
+            <summary>
+            외부 DIO 를 이용한 조그 제어 지원
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.#ctor">
             <summary>
             생성자
@@ -4187,6 +4192,23 @@
             <param name="vel">속도</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveJog(System.Single)">
+            <summary>
+            조그 속도 이동
+            <code>
+             Example 
+             RTC Extension1             ESP301
+             01 D.OUT0                  4 D.IN1 X 축 -
+             03 D.OUT1                  5 D.IN2 X 축 +
+             05 D.OUT2                  6 D.IN3 Y 축 -
+             07 D.OUT3                  7 D.IN4 Y 축 +
+             09 D.OUT4                  8 D.IN5 Z 축 -
+             11 D.OUT5                  9 D.IN6 Z 축 +
+            </code>
+            </summary>
+            <param name="vel">속도 (mm/s)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveStop">
             <summary>
             정지
@@ -4206,12 +4228,24 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlAssignDIOForJog(System.Int32,System.Int32)">
+        <member name="M:SpiralLab.Sirius.MotorESP301.CtlAssignDIOForJog(System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             특정 DIO 입력을 조그 이동용으로 활성화
+            <code>
+             Example 
+             RTC Extension1             ESP301
+             01 D.OUT0                  4 D.IN1 X 축 -
+             03 D.OUT1                  5 D.IN2 X 축 +
+             05 D.OUT2                  6 D.IN3 Y 축 -
+             07 D.OUT3                  7 D.IN4 Y 축 +
+             09 D.OUT4                  8 D.IN5 Z 축 -
+             11 D.OUT5                  9 D.IN6 Z 축 +
+            </code>
             </summary>
             <param name="negativeBitNo"></param>
+            <param name="negativeRtcExtBitNo">RTC Ext1 출력핀 (-)</param>
             <param name="positiveBitNo"></param>
+            <param name="positiveRtcExtBitNo">RTC Ext1 출력핀 (+)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.Update">

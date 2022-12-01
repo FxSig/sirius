@@ -906,6 +906,11 @@
             라이센스 (머신 비전 옵션) 인식 성공 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Rockey4ND.ExtensionLicenseText">
+            <summary>
+            라이센스 (확장 기능) 값
+            </summary>
+        </member>
         <member name="M:SpiralLab.Rockey4ND.#ctor">
             <summary>
             생성자

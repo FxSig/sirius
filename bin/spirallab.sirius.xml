@@ -3878,6 +3878,15 @@
         <member name="P:SpiralLab.Sirius.Ellipse.Angle">
             <inheritdoc/>
         </member>
+        <member name="P:SpiralLab.Sirius.Ellipse.BiteSize">
+            <summary>
+            Bite 크기 / 레이저 스팟 크기 (um)
+            <para>레이저 스팟으로 인해 실제 가공 대상의 크기 오차를 보상하기 위한 값</para>
+            <para>사각형, 원 등 단순한 경로의 비율(Scale) 변경 방식에 적합</para>
+            <para>0 보다 작은값 : 더 크게 가공됨</para>
+            <para>0 보다 큰값 : 더 작게 가공됨</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Ellipse.IsHatchable">
             <summary>
             해치 여부
@@ -10249,11 +10258,6 @@
         <member name="P:SpiralLab.Sirius.Layer.Description">
             <inheritdoc/>
         </member>
-        <member name="P:SpiralLab.Sirius.Layer.ExtensionData">
-            <summary>
-            사용자 부가 데이타
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.Layer.Color">
             <inheritdoc/>
         </member>
@@ -10317,6 +10321,11 @@
         </member>
         <member name="P:SpiralLab.Sirius.Layer.Repeat">
             <inheritdoc/>
+        </member>
+        <member name="P:SpiralLab.Sirius.Layer.ExtensionData">
+            <summary>
+            사용자 부가 데이타
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layer.IsZEnabled">
             <summary>
@@ -12849,6 +12858,15 @@
             시작 각도
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Circle.BiteSize">
+            <summary>
+            Bite 크기 / 레이저 스팟 크기 (um)
+            <para>레이저 스팟으로 인해 실제 가공 대상의 크기 오차를 보상하기 위한 값</para>
+            <para>사각형, 원 등 단순한 경로의 비율(Scale) 변경 방식에 적합</para>
+            <para>0 보다 작은값 : 더 크게 가공됨</para>
+            <para>0 보다 큰값 : 더 작게 가공됨</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Circle.IsHatchable">
             <summary>
             해치 여부
@@ -13113,6 +13131,11 @@
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCircleColor2">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 원 색상2
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.BiteColor">
+            <summary>
+            Bite 외곽 영역을 그리는데 사용하는 색상
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.AngleFactor">
@@ -14135,6 +14158,15 @@
             정점 순서 뒤집기 (토글시)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LwPolyline.BiteSize">
+            <summary>
+            Bite 크기 / 레이저 스팟 크기 (um)
+            <para>레이저 스팟으로 인해 실제 가공 대상의 크기 오차를 보상하기 위한 값</para>
+            <para>사각형, 원 등 단순한 경로의 비율(Scale) 변경 방식에 적합</para>
+            <para>0 보다 작은값 : 더 크게 가공됨</para>
+            <para>0 보다 큰값 : 더 작게 가공됨</para>
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.LwPolyline.outlineList">
             <summary>
             regen 시 polylinevertex 를 explode 하여 저장하는 방식
@@ -14160,7 +14192,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.LwPolyline.ToEntity(System.Boolean)">
             <summary>
-            폴리라인 구성 요소들을 선/호 개체로 변환
+            폴리라인 구성 요소들을 선/호(line/arc) 개체로 변환
             </summary>
             <param name="withHatch"></param>
             <returns></returns>
@@ -14316,6 +14348,15 @@
         <member name="P:SpiralLab.Sirius.Rectangle.IsReverseWinding">
             <summary>
             내부 정점들의 순서 뒤집기 (토글시 적용됨)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Rectangle.BiteSize">
+            <summary>
+            Bite 크기 / 레이저 스팟 크기 (um)
+            <para>레이저 스팟으로 인해 실제 가공 대상의 크기 오차를 보상하기 위한 값</para>
+            <para>사각형, 원 등 단순한 경로의 비율(Scale) 변경 방식에 적합</para>
+            <para>0 보다 작은값 : 더 크게 가공됨</para>
+            <para>0 보다 큰값 : 더 작게 가공됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rectangle.Angle">
@@ -16729,6 +16770,13 @@
             생성자
             </summary>
             <param name="xyPosition">X,Y 위치 데이타 리스트</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PathOptimizerForm.ComputeEuclideanDistanceMatrix(System.Int32[0:,0:]@)">
+            <summary>
+              Euclidean distance implemented as a callback. It uses an array of
+              positions and computes the Euclidean distance between the two
+              positions of two different indices.
+            </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PathOptimizerForm.NearestPoint(System.Numerics.Vector2,System.Collections.Generic.List{System.ValueTuple{System.Numerics.Vector2,System.Int32}})">
             <summary>
