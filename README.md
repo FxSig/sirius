@@ -132,7 +132,7 @@
 
 **5. Version history**
 
-*2022.12.23 v1.126
+* 2022.12.23 v1.126
   - updated) RTC6_Software_Package_Rev.1.15.2_2022_11_24 
 
 * 2022.12.2 v1.125
