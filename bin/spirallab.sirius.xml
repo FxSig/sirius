@@ -4636,7 +4636,12 @@
             레스터 가공 방향
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Raster.PixelPeriod" -->
+        <member name="P:SpiralLab.Sirius.Raster.PixelPeriod">
+            <summary>
+            레스터 픽셀 가공 주기 (usec)
+            <para>>예 : 100 usec -> 10KHz 주파수에 해당</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Raster.XPixelSpeed">
             <summary>
             가로 폭 가공 속도 (mm/s)
@@ -4647,8 +4652,18 @@
             세로 높이 가공 속도 (mm/s)
             </summary>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Raster.PixelTime" -->
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.Raster.PixelChannel" -->
+        <member name="P:SpiralLab.Sirius.Raster.PixelTime">
+            <summary>
+            레스터 개별 픽셀 가공 시간 (usec)
+            <para>주의) PixelPeriod 보다 작은값이 설정되어야 한다</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Raster.PixelChannel">
+            <summary>
+            레스터 개별 픽셀 출력 아나로그 채널
+            <para>주의) 반드시 아나로그 출력 채널이 지정되어야 한다</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Raster.Node">
             <inheritdoc/>
         </member>
@@ -5365,7 +5380,13 @@
         <member name="M:SpiralLab.Sirius.MotfWait.Regen">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "T:SpiralLab.Sirius.PenReturn" -->
+        <member name="T:SpiralLab.Sirius.PenReturn">
+            <summary>
+            Pen Return 엔티티 객체
+            <para>미사용됨. entity 에 color2 를 사용핸 펜 파라메터가 자동 적용되어 더이상 사용되지 않음</para>
+            <para>deprecated</para> 
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PenReturn.Owner">
             <inheritdoc/>
         </member>
@@ -5586,7 +5607,12 @@
         <member name="P:SpiralLab.Sirius.SiriusText.Repeat">
             <inheritdoc/>
         </member>
-        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.SiriusText.ReverseMark" -->
+        <member name="P:SpiralLab.Sirius.SiriusText.ReverseMark">
+            <summary>
+            역방향 가공 여부
+            <para>예: 좌 에서 우, 우 에서 좌</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusText.FontName">
             <summary>
             폰트 이름

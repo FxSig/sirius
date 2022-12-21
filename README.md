@@ -132,6 +132,8 @@
 
 **5. Version history**
 
+*2022.12.23 v1.126
+  - updated) RTC6_Software_Package_Rev.1.15.2_2022_11_24 
 
 * 2022.12.2 v1.125
   - added) new path optimizer with powerful TSP solver (신규 경로 최적화 알고리즘 추가)

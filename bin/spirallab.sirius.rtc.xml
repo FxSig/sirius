@@ -4040,16 +4040,6 @@
             모터 이름
             </summary>
         </member>
-        <member name="T:SpiralLab.Sirius.MotorESP301.ESP301HomeMode">
-            <summary>
-            홈 모드 종류
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorESP301.HomeMode">
-            <summary>
-            홈 모드
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.TargetPosition">
             <summary>
             위치 (mm)
@@ -4058,6 +4048,26 @@
         <member name="P:SpiralLab.Sirius.MotorESP301.ActualPosition">
             <summary>
             실제 위치 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.DeltaPosition">
+            <summary>
+            상대 이동량 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.TargetPositionVelocity">
+            <summary>
+            속도 (mm/s)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.Jog">
+            <summary>
+            조그 방향
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsStop">
+            <summary>
+            모션 정지
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.IsReady">
@@ -4075,17 +4085,17 @@
             알람 발생 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsServoAlarm">
+            <summary>
+            모터 서보 알람
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.IsInPos">
             <summary>
             명령 지점 도착 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.IsHomeSearched">
-            <summary>
-            원점 검색 여부
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorESP301.IsHomeSearching">
             <summary>
             원점 검색 여부
             </summary>
@@ -4110,6 +4120,11 @@
             CCW 센서 상태
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.IsAmpFault">
+            <summary>
+            앰프 에러
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.IsOrgSenOn">
             <summary>
             ORG 센서 상태
@@ -4120,14 +4135,19 @@
             최대 속도를 제한값 (mm/s)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.TerminalCommand">
+            <summary>
+            터미널 명령
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MotorESP301.TerminalResponse">
+            <summary>
+            터미널 응답
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.MotorESP301.Tag">
             <summary>
             사용자 정의 데이타
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.MotorESP301.DOutput">
-            <summary>
-            외부 DIO 를 이용한 조그 제어 지원
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.#ctor">
@@ -4150,13 +4170,6 @@
             <summary>
             홈(원점) 검색 시작
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlDefineHome(System.Single)">
-            <summary>
-            원점(홈) 으로 설정
-            </summary>
-            <param name="position">위치값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlResetCount(System.Single)">
@@ -4195,16 +4208,6 @@
         <member name="M:SpiralLab.Sirius.MotorESP301.CtlMoveJog(System.Single)">
             <summary>
             조그 속도 이동
-            <code>
-             Example 
-             RTC Extension1             ESP301
-             01 D.OUT0                  4 D.IN1 X 축 -
-             03 D.OUT1                  5 D.IN2 X 축 +
-             05 D.OUT2                  6 D.IN3 Y 축 -
-             07 D.OUT3                  7 D.IN4 Y 축 +
-             09 D.OUT4                  8 D.IN5 Z 축 -
-             11 D.OUT5                  9 D.IN6 Z 축 +
-            </code>
             </summary>
             <param name="vel">속도 (mm/s)</param>
             <returns></returns>
@@ -4213,39 +4216,6 @@
             <summary>
             정지
             </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlWaitForStop(System.Int32)">
-            <summary>
-            구동 완료시 까지 대기
-            </summary>
-            <param name="delay"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlReset">
-            <summary>
-            알람 해제
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.MotorESP301.CtlAssignDIOForJog(System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            특정 DIO 입력을 조그 이동용으로 활성화
-            <code>
-             Example 
-             RTC Extension1             ESP301
-             01 D.OUT0                  4 D.IN1 X 축 -
-             03 D.OUT1                  5 D.IN2 X 축 +
-             05 D.OUT2                  6 D.IN3 Y 축 -
-             07 D.OUT3                  7 D.IN4 Y 축 +
-             09 D.OUT4                  8 D.IN5 Z 축 -
-             11 D.OUT5                  9 D.IN6 Z 축 +
-            </code>
-            </summary>
-            <param name="negativeBitNo"></param>
-            <param name="negativeRtcExtBitNo">RTC Ext1 출력핀 (-)</param>
-            <param name="positiveBitNo"></param>
-            <param name="positiveRtcExtBitNo">RTC Ext1 출력핀 (+)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MotorESP301.Update">
@@ -27141,6 +27111,11 @@
              void n_eth_get_standalone_status(uint CardNo, out uint Status, out uint Error, out uint Mode);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_eth_config_waveform_streaming_ctrl">
+            <summary>
+             void n_eth_config_waveform_streaming_ctrl(uint CardNo, uint Size, uint Flags);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.eth_get_last_error">
             <summary>
              uint eth_get_last_error();
@@ -27244,6 +27219,11 @@
         <member name="F:RTC6Import.RTC6Wrap.eth_get_standalone_status">
             <summary>
              void eth_get_standalone_status(out uint Status, out uint Error, out uint Mode);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.eth_config_waveform_streaming_ctrl">
+            <summary>
+             void eth_config_waveform_streaming_ctrl(uint Size, uint Flags);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.read_abc_from_file">
@@ -28891,6 +28871,11 @@
              void n_get_transform(uint CardNo, uint Number, int[] Ptr1, int[] Ptr2, uint[] Ptr, uint Code);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_get_transform_offset">
+            <summary>
+             void n_get_transform_offset(uint CardNo, uint Channel1, uint Channel2, uint Offset, uint Number, int[] Ptr1, int[] Ptr2, uint[] Ptr, uint Code);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_stop_trigger">
             <summary>
              void n_stop_trigger(uint CardNo);
@@ -29074,6 +29059,11 @@
         <member name="F:RTC6Import.RTC6Wrap.get_transform">
             <summary>
              void get_transform(uint Number, int[] Ptr1, int[] Ptr2, uint[] Ptr, uint Code);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.get_transform_offset">
+            <summary>
+             void get_transform_offset(uint Channel1, uint Channel2, uint Offset, uint Number, int[] Ptr1, int[] Ptr2, uint[] Ptr, uint Code);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.stop_trigger">
@@ -31261,6 +31251,11 @@
              void n_set_trigger4(uint CardNo, uint Period, uint Signal1, uint Signal2, uint Signal3, uint Signal4);
             </summary>
         </member>
+        <member name="F:RTC6Import.RTC6Wrap.n_set_trigger8">
+            <summary>
+             void n_set_trigger8(uint CardNo, uint Period, uint Signal1, uint Signal2, uint Signal3, uint Signal4, uint Signal5, uint Signal6, uint Signal7, uint Signal8);
+            </summary>
+        </member>
         <member name="F:RTC6Import.RTC6Wrap.n_set_pixel_line_3d">
             <summary>
              void n_set_pixel_line_3d(uint CardNo, uint Channel, uint HalfPeriod, double dX, double dY, double dZ);
@@ -31434,6 +31429,11 @@
         <member name="F:RTC6Import.RTC6Wrap.set_trigger4">
             <summary>
              void set_trigger4(uint Period, uint Signal1, uint Signal2, uint Signal3, uint Signal4);
+            </summary>
+        </member>
+        <member name="F:RTC6Import.RTC6Wrap.set_trigger8">
+            <summary>
+             void set_trigger8(uint Period, uint Signal1, uint Signal2, uint Signal3, uint Signal4, uint Signal5, uint Signal6, uint Signal7, uint Signal8);
             </summary>
         </member>
         <member name="F:RTC6Import.RTC6Wrap.set_pixel_line_3d">
