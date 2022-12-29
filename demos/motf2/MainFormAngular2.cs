@@ -16,11 +16,11 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * MOTF 파일을 열어 가공 
+ * MOTF Angular Demo2 
+ * 가공 데이타를 동적으로 만들어 가공
  * 
- * 파일경로 : bin\recipes\motf_angular.sirius
- * 엔코더 리셋, 엔코더 시뮬레이션을 테스트 한다
- * 엔코더 대기 위치를 설정하고 가공 데이타를 동적 생성하여 가공한다
+ * Test Functions : Measurement + Simulate Encoder + Rotate Center + (Wait for Encoder
+ * 테스트 기능 : 계측 (Measurement) + 엔코더 시뮬레이션 (Simulate Encoder) + 회전 중심 오프셋 (Rotate Center) + 엔코더 대기 (Wait for Encoder)
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
@@ -57,11 +57,17 @@ namespace SpiralLab.Sirius
         {
             InitializeComponent();
 
-            //라이브러리 초기화
+            // initialize sirius library
+            // 라이브러리 초기화
             SpiralLab.Core.Initialize();
-            //문서 생성
+
+            // create document
+            // 문서 생성
             var doc = new DocumentDefault();
+            // assign document into sirius editor
             siriusEditorForm1.Document = doc;
+
+            // assign event handler
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
@@ -82,8 +88,8 @@ namespace SpiralLab.Sirius
 
             if (rtc is IRtcMOTF rtcMOTF)
             {
-                //엔코더 스케일 설정 
-                //한 바퀴 회전시 발생되는 엔코더 펄스의 수
+                // 엔코더 스케일 설정 
+                // 한 바퀴 회전시 발생되는 엔코더 펄스의 수
                 rtcMOTF.EncCountsPerRevolution = 3600;
             }
             #endregion
@@ -107,15 +113,20 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
             laser.Rtc = rtc;
+
             laser.Initialize();
+
+            // set output power to 2watt
             laser.CtlPower(2);
             #endregion
 
             this.siriusEditorForm1.Laser = laser;
 
             #region 마커 지정
+            // create marker
             var marker = new MarkerDefault(0);
             #endregion
+
             this.siriusEditorForm1.Marker =  marker;
 
             timer1.Enabled = true;
@@ -123,12 +134,14 @@ namespace SpiralLab.Sirius
 
         private void SiriusEditorForm1_OnDocumentSourceChanged(object sender, IDocument doc)
         {
+            //replace document at sirius editor
             siriusEditorForm1.Document = doc;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            //타이머가 지속적으로 현재 엔코더 펄스개수(cnt), 위치(mm)를 얻어온다
+            // query encoder counts and angle(degree)
+            // 타이머가 지속적으로 현재 엔코더 펄스개수(cnt), 위치(mm)를 얻어온다
             var rtc = this.siriusEditorForm1.Rtc;
             if (rtc is IRtcMOTF rtcMOTF)
             {
@@ -145,6 +158,7 @@ namespace SpiralLab.Sirius
 
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
+            // disposing
             this.siriusEditorForm1.Marker.Stop();
             this.siriusEditorForm1.Laser?.Dispose();
             this.siriusEditorForm1.Rtc?.Dispose();
@@ -152,33 +166,60 @@ namespace SpiralLab.Sirius
 
         private void toolStripStatusLabel2_Click(object sender, EventArgs e)
         {
+            // create document
             // 문서 생성
             var doc = new DocumentDefault();
 
-            // create layer
+            // create layer 
             // 레이어 생성
             var layer = new Layer("Default");
 
-            // motf angular 시작 개체 추가
+            // create measurement begin entity
+            // measurement begin 개체 생성
+            var measurementBegin = new MeasurementBegin()
+            {
+                Channels = new MeasurementChannel[4]
+                {
+                    MeasurementChannel.SampleX, //X commanded
+                    MeasurementChannel.SampleY, //Y commanded
+                    MeasurementChannel.LaserOn, //Gate signal 0/1
+                    MeasurementChannel.Enc0Counter, //Enc0
+                },
+                Frequency = 1000, // 계측 측정 주기 (Hz)
+            };
+            // add mesurement begin entity into layer
+            // measurement begin 개체 레이어에 추가
+            layer.Add(measurementBegin);
+
+            // create motf angular begin entity
+            // motf angular begin 개체 생성
             var motfAngularBegin = new MotfAngularBegin()
             {
-                IsEncoderReset = true,
-                Center = RotateCenter,
+                IsEncoderReset = true, // encoder reset 
+                Center = RotateCenter, // rotate center location from scanner
             };
+
+            // add motf angular begin entity into layer
+            // motf angular begin 개체 레이어에 추가
             layer.Add(motfAngularBegin);
 
-            // 0, 45, 90, 125, 180, 225, 270, 315 에 8개의 위치에 폴리라인 가공
+            // wait each degrees (0, 45, 90, 125, 180, 225, 270, 315) and then mark polyline 
+            // 0, 45, 90, 125, 180, 225, 270, 315 각도 도달을 대기하면서 폴리라인 가공
             for (float angle = 0; angle < 360; angle += 45)
             {
-                // motf angular 대기 각도 개체 추가
+                // create motf angular wait entity
+                // motf angular wait 개체 생성
                 var motfAngularWait = new MotfAngularWait()
                 {
-                    WaitAngle = angle,
-                    Condition = EncoderWaitCondition.Over,
+                    WaitAngle = angle, //wait angle (대기 각도)
+                    Condition = EncoderWaitCondition.Over, //wait condition (대기 조건)
                 };
+                // add motf angular wait entity into layer
+                // motf angular wait 개체 레이어에 추가
                 layer.Add(motfAngularWait);
 
-                // 사각형 모양(임의의 폐곡선)의 폴리라인 개체 추가
+                // create LWPolyline entity
+                // LW폴리라인 개체 생성 
                 var lwPolyline = new LwPolyline();
                 lwPolyline.Color2 = System.Drawing.Color.White;
                 lwPolyline.Add(new LwPolyLineVertex(-5f, 5f));
@@ -186,7 +227,9 @@ namespace SpiralLab.Sirius
                 lwPolyline.Add(new LwPolyLineVertex(5f, -5f));
                 lwPolyline.Add(new LwPolyLineVertex(-5f, -5f));
                 lwPolyline.IsClosed = true;
-                // 내부 해치 생성
+
+                // also, internal line hatch patterns 
+                // 내부 라인 해치를 추가할 경우
                 //lwPolyline.IsHatchable = true;
                 //lwPolyline.HatchMode = HatchMode.CrossLine;
                 //lwPolyline.HatchInterval = 0.2f;
@@ -194,44 +237,60 @@ namespace SpiralLab.Sirius
                 //lwPolyline.HatchAngle = 0;
                 //lwPolyline.HatchAngle2 = 90;
 
-                // rotate figure by rotate center 
+                // rotate LWPolyline entity by rotate center 
                 // 회전 중심 기준으로 회전 (물체의 시계방향 회전이 엔코더 증가 방향)
                 lwPolyline.Rotate(angle, RotateCenter);
 
-                // 폴리라인 개체를 레이어에 추가
+                // add LWPolyline entity into layer
+                // LW폴리라인 개체를 레이어에 추가
                 layer.Add(lwPolyline);
             }
 
-            // motf angular 끝 개체 추가
+            // create motf end entity
+            // motf end 개체 생성
             var motfAngularEnd = new MotfEnd()
             {
-                  Location = Vector2.Zero,
+                  Location = Vector2.Zero, // jump at orgin location (MOTF 종료시 원점으로 점프)
             };
+            // add motf end entity into layer
+            // motf end 개체 레이어에 추가
             layer.Add(motfAngularEnd);
 
-            // 내부 개체들의 데이타 재생성 
+            // create measurement end entity
+            // measurement end 개체 생성
+            var measurementEnd = new MeasurementEnd();
+            // add mesurement end entity into layer
+            // measurement end 개체 레이어에 추가
+            layer.Add(measurementEnd);
+
+            // regen entities within layer
+            // 레이어 내부의 개체들의 데이타 갱신 
             layer.Regen();
 
-            // 펜 파라메터 설정 (가공 조건 설정)
+            // query default(white) pen entity and configure it at document
+            // 문서에서 기본펜 (흰색) 파라메터 가져와 설정
             var pen = doc.Pens.ColorOf(System.Drawing.Color.White) as PenDefault;
-            pen.Frequency = 50 * 1000; //50khz
-            pen.PulseWidth = 2; //2us
-            pen.JumpSpeed = 1000; //1000mm/s
-            pen.MarkSpeed = 1000; //1000mm/s
-            pen.LaserOnDelay = 0;
-            pen.LaserOffDelay = 0;
-            pen.ScannerJumpDelay = 200; //200us
-            pen.ScannerMarkDelay = 50; //50us
-            pen.ScannerPolygonDelay = 10; //10us
-            pen.LaserQSwitchDelay = 0;
+            pen.Frequency = 50 * 1000; //KHz
+            pen.PulseWidth = 2; //usec
+            pen.JumpSpeed = 1000; //mm/s
+            pen.MarkSpeed = 1000; //mm/s
+            pen.LaserOnDelay = 0; //usec
+            pen.LaserOffDelay = 0; //usec
+            pen.ScannerJumpDelay = 200; //usec
+            pen.ScannerMarkDelay = 50; //usec
+            pen.ScannerPolygonDelay = 10; //us
+            pen.LaserQSwitchDelay = 0; //usec
 
-            // 레이어를 문서에 추가
+            // add layer into layers
+            // 레이어를 레이어 집합에 추가
             doc.Layers.Add(layer);
 
+            // activate layer as default
             // 이 레이어를 활성 레이어로 지정
             doc.Layers.Active = layer;
 
-            // 편집기에 문서 지정
+            // assing document at sirius editor
+            // 시리우스 편집기에 문서 객체를 지정
             siriusEditorForm1.Document = doc;
         }
     }
