@@ -14981,6 +14981,9 @@
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ActiveChannelCount">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.ActiveChannels">
+            <inheritdoc/>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.#ctor">
             <summary>
             생성자
@@ -15901,6 +15904,12 @@
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.DuplicatedLength">
             <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.SimulationStepDistance">
+            <summary>
+            시뮬레이션 동작시  Jump/Mark 구간 직선을 나누는 최소 길이 (mm)
+            기본값: 0.2 mm
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.CorrectionFiles">
             <inheritdoc/>  
@@ -20301,6 +20310,16 @@
         <member name="P:SpiralLab.Sirius.Job.HeadCounts">
             <summary>
             스캔 헤드 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.ActiveChannelCount">
+            <summary>
+            ALC(Automatic Laser Control) 에 사용하는 채널 개수
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Job.ActiveChannels">
+            <summary>
+            ALC(Automatic Laser Control) 에 사용하는 채널 목록
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Head1Offset">

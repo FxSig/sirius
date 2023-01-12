@@ -182,8 +182,10 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector3(20, -20, -5), new Vector3(0.01f, 0.01f, 0));
             #endregion
 
-            var form = new Correction3DRtcForm(correction);
-            form.OnApply += Form3D_OnApply;
+            var form = new Correction3DRtcForm(rtc, correction);
+            // or
+            //var form = new Correction3DRtcForm(correction);
+            //form.OnApply += Form3D_OnApply;
             form.ShowDialog();
         }
 
@@ -273,37 +275,39 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector3(20, -20, -5), new Vector3(0.01f, 0.01f, 0));
             #endregion
 
-            var form = new Correction3DRtcForm(correction);
-            form.OnApply += Form3D_OnApply;
+            var form = new Correction3DRtcForm(rtc, correction);
+            //or
+            //var form = new Correction3DRtcForm(correction);
+            //form.OnApply += Form3D_OnApply;
             form.ShowDialog();
         }
-        private static void Form3D_OnApply(object sender, EventArgs e)
-        {
-            var form = sender as Correction3DRtcForm;
-            var index = form.Index;
-            string ctFileName = form.RtcCorrection.TargetCorrectionFile;
-            if (!File.Exists(ctFileName))
-            {
-                Logger.Log(Logger.Type.Error, $"try to change correction3d file but not exist : {ctFileName}");
-                return;
-            }
-            if (DialogResult.Yes != MessageBox.Show($"Do you really want to apply new correction3d file {ctFileName} ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                return;
+        //private static void Form3D_OnApply(object sender, EventArgs e)
+        //{
+        //    var form = sender as Correction3DRtcForm;
+        //    var index = form.Index;
+        //    string ctFileName = form.RtcCorrection.TargetCorrectionFile;
+        //    if (!File.Exists(ctFileName))
+        //    {
+        //        Logger.Log(Logger.Type.Error, $"try to change correction3d file but not exist : {ctFileName}");
+        //        return;
+        //    }
+        //    if (DialogResult.Yes != MessageBox.Show($"Do you really want to apply new correction3d file {ctFileName} ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+        //        return;
 
-            bool success = true;
-            //해당 보정파일을 RTC 제어기 메모리 안으로 로드후 선택
-            success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ctFileName);
-            success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
-            if (success)
-            {
-                // 권장) ctFileName 파일 정보를 외부 설정 파일에 저장
-                Logger.Log(Logger.Type.Warn, $"correction3d file has changed to {ctFileName}");
-                MessageBox.Show($"Success to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show($"Fail to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
+        //    bool success = true;
+        //    //해당 보정파일을 RTC 제어기 메모리 안으로 로드후 선택
+        //    success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ctFileName);
+        //    success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1, CorrectionTableIndex.Table1);
+        //    if (success)
+        //    {
+        //        // 권장) ctFileName 파일 정보를 외부 설정 파일에 저장
+        //        Logger.Log(Logger.Type.Warn, $"correction3d file has changed to {ctFileName}");
+        //        MessageBox.Show($"Success to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show($"Fail to load and selected field correction3d file to {ctFileName}", "Scanner Field Correction 3D File", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    }
+        //}
     }
 }

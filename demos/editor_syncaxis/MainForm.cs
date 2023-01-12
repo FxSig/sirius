@@ -98,7 +98,6 @@ namespace SpiralLab.Sirius
             SpiralLab.Core.Initialize();
             // enable pens function
             siriusEditorForm1.EnablePens = true;
-
             // create document
             // 신규 문서 생성
             var doc = new DocumentDefault();

@@ -132,6 +132,13 @@
 
 **5. Version history**
 
+* 2023.1.13 v1.127
+  - fixed) apply button at scanner field correction (스캐너 필드 보정 윈폼에서 apply 버튼 동작시 보정 파일 자동 로딩 지원)
+  - fixed) adjust step distance at path simulator (가공 시뮬레이터에서 스텝거리값 변경 지원)
+  - fixed) move to end at entity's group editor (엔티티 아이템 배열 편집기에서 끝 위치로 이동 지원)
+  - fixed) list of active channels at syncaxis (syncAXIS 제어기에서 ALC 채널 목록 조회 지원)
+  - fixed) textdata(text/barcode entities) has changed by automatically when mark at each offsets (오프셋 위치에 텍스트/바코드 가공시 데이타 자동변환 지원)
+
 * 2022.12.23 v1.126
   - updated) RTC6_Software_Package_Rev.1.15.2_2022_11_24 
 

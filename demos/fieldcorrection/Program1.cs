@@ -234,38 +234,40 @@ namespace SpiralLab.Sirius
             correction.AddRelative(2, 2, new Vector2(20, -20), new Vector2(0.002f, -0.008f));
             #endregion
 
-            var form = new Correction2DRtcForm(correction);
-            form.OnApply += Form_OnApply;
+            var form = new Correction2DRtcForm(rtc, correction);
+            // or
+            //var form = new Correction2DRtcForm(correction);
+            //form.OnApply += Form_OnApply;
             form.ShowDialog();
         }
 
-        private static void Form_OnApply(object sender, EventArgs e)
-        {
-            var form = sender as Correction2DRtcForm;
-            var index = form.Index;
-            string ctFileName = form.RtcCorrection.TargetCorrectionFile;
-            if (!File.Exists(ctFileName))
-            {
-                Logger.Log(Logger.Type.Error, $"try to change correction file but not exist : {ctFileName}");
-                return;
-            }
-            if (DialogResult.Yes != MessageBox.Show($"Do you really want to apply new correction file {ctFileName} ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                return;
+        //private static void Form_OnApply(object sender, EventArgs e)
+        //{
+        //    var form = sender as Correction2DRtcForm;
+        //    var index = form.Index;
+        //    string ctFileName = form.RtcCorrection.TargetCorrectionFile;
+        //    if (!File.Exists(ctFileName))
+        //    {
+        //        Logger.Log(Logger.Type.Error, $"try to change correction file but not exist : {ctFileName}");
+        //        return;
+        //    }
+        //    if (DialogResult.Yes != MessageBox.Show($"Do you really want to apply new correction file {ctFileName} ?", "Warning !", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+        //        return;
 
-            bool success = true;
-            //해당 보정파일을 RTC 제어기 메모리 안으로 로드후 선택
-            success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ctFileName);
-            success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
-            if (success)
-            {
-                // 권장) ctFileName 파일 정보를 외부 설정 파일에 저장
-                Logger.Log(Logger.Type.Warn, $"correction file has changed to {ctFileName}");
-                MessageBox.Show($"Success to load and selected field correction file to {ctFileName}", "Scanner Field Correction File", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show($"Fail to load and selected field correction file to {ctFileName}", "Scanner Field Correction File", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-        }
+        //    bool success = true;
+        //    //해당 보정파일을 RTC 제어기 메모리 안으로 로드후 선택
+        //    success &= rtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, ctFileName);
+        //    success &= rtc.CtlSelectCorrection(CorrectionTableIndex.Table1);
+        //    if (success)
+        //    {
+        //        // 권장) ctFileName 파일 정보를 외부 설정 파일에 저장
+        //        Logger.Log(Logger.Type.Warn, $"correction file has changed to {ctFileName}");
+        //        MessageBox.Show($"Success to load and selected field correction file to {ctFileName}", "Scanner Field Correction File", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show($"Fail to load and selected field correction file to {ctFileName}", "Scanner Field Correction File", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        //    }
+        //}
     }
 }
