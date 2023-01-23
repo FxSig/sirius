@@ -1115,7 +1115,7 @@ namespace SpiralLab.Sirius
             for (int i = 0; i < offsets.Count; i++)
             {
                 var xyt = offsets[i];
-                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: offset [{i}] : {xyt.ToString()} {xyt.UserData?.ToString()}");
+                Logger.Log(Logger.Type.Debug, $"marker [{this.Index}] {this.Name}: offset [{i}] : {xyt.ToString()} with {xyt.UserData?.ToString()}");
                 rtc.MatrixStack.Push(scannerRotateAngle); // 4. 스캐너의 기구적 회전량                
                 if (null != syncAxis)
                 {

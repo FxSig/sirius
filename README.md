@@ -132,6 +132,15 @@
 
 **5. Version history**
 
+
+* 2023.1.25 v1.128
+  - migrated) SCANLAB syncaxis v1.8 
+     - release note : https://www.scanlab.de/sites/default/files/2023-01/Release_Notes_syncAXIS_1.8.0.pdf
+  - added) convert text entity when loading dxf file (DXF 파일 로딩시 텍스트 개체 변환 지원)
+     - converted ''Arial Unicode MS Font.ttf' if installed system font (Arial 트루타입 폰트로 변환됨)
+     - converted 'romans2.cxf' font if not installed system font (romans2 단선 폰트로 변환됨)
+  - fixed) too many nodes at treeview cause exception (대량의 트리뷰 노드 사용시 예외발생 해결)
+
 * 2023.1.13 v1.127
   - fixed) apply button at scanner field correction (스캐너 필드 보정 윈폼에서 apply 버튼 동작시 보정 파일 자동 로딩 지원)
   - fixed) adjust step distance at path simulator (가공 시뮬레이터에서 스텝거리값 변경 지원)

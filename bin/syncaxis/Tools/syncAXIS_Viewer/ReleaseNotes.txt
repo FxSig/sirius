@@ -1,7 +1,7 @@
 *******************************************************************************
 File: ReleaseNotes.txt
 
-SCANLAB syncAXIS Viewer Software Package Version 1.6.
+SCANLAB syncAXIS Viewer Software Package Version 1.8.0
 
 *******************************************************************************
 
@@ -28,6 +28,24 @@ Abbreviations
 B   Bugfix
 C   Change
 N   New feature
+
+********* syncAXIS Viewer changes in version 1.6.0 for version 1.8.0 ****
+-------------------------------------------------------------------------------
+N 	Added the ability to crop input simulation data	by way of command line arguments.
+		-b or --crop-startjob 	Crops by start job number.
+		-e or --crop-endjob     Crops by end job number.
+		-s or --crop-starttime  Crops by start time.
+		-f or --crop-endtime	Crops by end time.
+
+N	Added the ability to perform data reduction by way of command line arguments.
+		-d or --data-reduction <n>  Performs the data reduction step on the read in data using "n" as the tolerance.
+		Note: this method should not be used with -r
+
+-------------------------------------------------------------------------------
+B	Fixed: Very small sets of input data (ex: by cropping or data reduction) could cause the viewer to crash  
+
+B 	Fixed: -a and -l command line arguments were not being properly handled and could cause dynamic data information to be blank	
+-------------------------------------------------------------------------------   
 
 ********* syncAXIS Viewer changes in version 1.5.0 for version 1.6.0 ****
 -------------------------------------------------------------------------------
@@ -59,3 +77,4 @@ B   Fixed: Zooming by using a bounding box now works correctly for all sized box
     	
 
 -------------------------------------------------------------------------------   
+

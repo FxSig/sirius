@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<cfg:Configuration xmlns:cfg="syncAXIS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="cfg syncAXIS_1_6.xsd" Version="1.6">
+<cfg:Configuration xmlns:cfg="syncAXIS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="cfg syncAXIS_1_8.xsd" Version="1.8">
   <cfg:GeneralConfig>
     <cfg:ACSController></cfg:ACSController>
     <cfg:InitialOperationMode>ScannerAndStage</cfg:InitialOperationMode>

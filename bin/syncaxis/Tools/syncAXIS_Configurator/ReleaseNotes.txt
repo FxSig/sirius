@@ -1,7 +1,7 @@
 *******************************************************************************
 File: ReleaseNotes.txt
 
-SCANLAB syncAXIS Configurator Software Package Version 1.6.
+SCANLAB syncAXIS Configurator Software Package Version 1.8.0
 
 *******************************************************************************
 
@@ -29,6 +29,13 @@ B   Bugfix
 C   Change
 N   New feature
 
+********* syncAXIS Configurator changes in version 1.6.0 for version 1.8.0 ****
+-------------------------------------------------------------------------------
+B   Fixed: When using browse dialogs, trailing slashes where not being added automatically
+-------------------------------------------------------------------------------
+C   Updated controls to support 1.8 configuration schema
+-------------------------------------------------------------------------------
+
 ********* syncAXIS Configurator changes in version 1.5.0 for version 1.6.0 ****
 -------------------------------------------------------------------------------
 N 	Added Calculated Dynamics to stage configuration.
@@ -46,3 +53,4 @@ B 	Fixed: All hidable/closable sections will maintain their status when using
     the undo feature.
 
 -------------------------------------------------------------------------------   
+

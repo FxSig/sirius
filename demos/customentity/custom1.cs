@@ -15,7 +15,7 @@
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  * 
- * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
+ * Copyright (C) 2019-2023 SpiralLab. All rights reserved.
  * 
  * Create custom entity (사용자 정의 개체 만들기)
  * Description : 
@@ -388,7 +388,7 @@ namespace SpiralLab.Sirius
         public CustomLine()
         {
             this.Node = new TreeNode();
-            this.Node.NodeFont = Config.NodeFont;
+            //this.Node.NodeFont = Config.NodeFont;
             this.Name = "Custom Line";
             this.IsSelected = false;
             this.isVisible = true;

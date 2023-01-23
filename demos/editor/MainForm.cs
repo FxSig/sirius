@@ -258,9 +258,9 @@ namespace SpiralLab.Sirius
         }
         private void Marker_OnFinished(IMarker sender, IMarkerArg markerArg)
         {
-            Logger.Log(Logger.Type.Info, $"{sender.Name} marker has finished");
+            var timeSpan = markerArg.EndTime - markerArg.StartTime;
+            Logger.Log(Logger.Type.Info, $"{sender.Name} marker has finished. {timeSpan.TotalSeconds:F3}s");
         }
-
 
         /// <summary>
         /// 레시피 변경

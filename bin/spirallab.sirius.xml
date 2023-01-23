@@ -6879,7 +6879,7 @@
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.OffsetIndex">
             <inheritdoc/>
         </member>
-        <member name="P:SpiralLab.Sirius.MarkerArgDefault.OffsetAndUserDataTargetEntityName">
+        <member name="P:SpiralLab.Sirius.MarkerArgDefault.OffsetAndTextDataTargetEntityName">
             <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.MarkerArgDefault.StartTime">
@@ -7049,9 +7049,9 @@
             현재 가공 오프셋 위치
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMarkerArg.OffsetAndUserDataTargetEntityName">
+        <member name="P:SpiralLab.Sirius.IMarkerArg.OffsetAndTextDataTargetEntityName">
             <summary>
-            오프셋 + UserData 속성값을 이용해 TextChange 사용시 대상 개체 이름
+            오프셋 + TextData 값을 이용해 위치별 텍스트 데이타 변경시 이를 적용할 대상 개체 이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerArg.StartTime">
@@ -8864,9 +8864,14 @@
             회전량 (각도)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Offset.UserData">
+        <member name="P:SpiralLab.Sirius.Offset.TextData">
             <summary>
             사용자 정의 데이타
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Offset.UserData">
+            <summary>
+            사용자 데이타
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Offset.Tag">
@@ -13315,6 +13320,16 @@
             폰트 파일 경로 (CXF 와 같은 폰트 종류)
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigDxfTTFFont">
+            <summary>
+            DXF 파일내 트루타입 폰트 변환시 생성할 폰트 종류
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigDxfNonTTFFont">
+            <summary>
+            DXF 파일내 비 트루타입 폰트 변환시 생성할 폰트 종류 (CXF 단선 폰트)
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigCorrectionFilePath">
             <summary>
             ctb/ct5 보정 파일 경로 
@@ -16091,6 +16106,14 @@
             <param name="j">레이어 번호</param>
             <param name="k">엔티티 번호</param>
             <param name="entity">엔티티 객체</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MarkerDefault.DoEntityMark(SpiralLab.Sirius.IEntity,System.Int32)">
+            <summary>
+            실제 엔티티 + 오프셋 위치 처리시 TextData 변경이 필요하면 이를 처리
+            </summary>
+            <param name="entity"></param>
+            <param name="offsetIndex"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.MarkerDefault.PostWork(System.Boolean)">

@@ -1,7 +1,7 @@
 ***************************************************************************
 File: README.txt
 
-SCANLAB syncAXIS Configurator Software Package Version 1.6.
+SCANLAB syncAXIS Configurator Software Package Version 1.8.0
 
 ***************************************************************************
 
@@ -38,8 +38,8 @@ This package contains the following files:
 |   Scanlab.SyncAxisConfig.Model.dll
 |   syncAXIS_Configurator.exe
 |   syncAXIS_Configurator.exe.config
-|   syncAXIS_V1.6._Configurator_de-DE.pdf
-|   syncAXIS_V1.6._Configurator_en-US.pdf
+|   syncAXIS_V1.8.0_Configurator_de-DE.pdf
+|   syncAXIS_V1.8.0_Configurator_en-US.pdf
 |   Xceed.Wpf.AvalonDock.dll
 \---Xceed.Wpf.Toolkit.dll
 

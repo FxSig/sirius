@@ -15,7 +15,7 @@
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  * 
- * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
+ * Copyright (C) 2019-2023 SpiralLab. All rights reserved.
  * custom pen entity : 사용자가 특화시킨 펜 엔티티 
  * Description : 현재 버전에서는 10개의 기본 펜이 문서(Document) 안에 내장되는 방식을 사용하고 있어, 이 방식의 사용은 매우 제한적으로 사용됨. 추천하지 않음
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
@@ -334,7 +334,7 @@ namespace SpiralLab.Sirius
         public CustomPen()
         {
             this.Node = new TreeNode();
-            this.Node.NodeFont = new System.Drawing.Font("Arial", 10);
+            //this.Node.NodeFont = new System.Drawing.Font("Arial", 10);
             this.Name = "Custom";
             this.IsSelected = false;
             this.isMarkerable = true;
