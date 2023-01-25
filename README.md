@@ -140,6 +140,7 @@
      - converted ''Arial Unicode MS Font.ttf' if installed system font (Arial 트루타입 폰트로 변환됨)
      - converted 'romans2.cxf' font if not installed system font (romans2 단선 폰트로 변환됨)
   - fixed) too many nodes at treeview cause exception (대량의 트리뷰 노드 사용시 예외발생 해결)
+  - fixed) compare equality of pen color bug (펜 색상 비교 실패 버그)
 
 * 2023.1.13 v1.127
   - fixed) apply button at scanner field correction (스캐너 필드 보정 윈폼에서 apply 버튼 동작시 보정 파일 자동 로딩 지원)
