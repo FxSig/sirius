@@ -139,6 +139,7 @@
   - added) convert text entity when loading dxf file (DXF 파일 로딩시 텍스트 개체 변환 지원)
      - converted ''Arial Unicode MS Font.ttf' if installed system font (Arial 트루타입 폰트로 변환됨)
      - converted 'romans2.cxf' font if not installed system font (romans2 단선 폰트로 변환됨)
+  - added) editor offset demo
   - fixed) too many nodes at treeview cause exception (대량의 트리뷰 노드 사용시 예외발생 해결)
   - fixed) compare equality of pen color bug (펜 색상 비교 실패 버그)
 
