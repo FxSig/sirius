@@ -62,6 +62,8 @@ namespace SpiralLab.Sirius
 
             //create Rtc6 Ethernet (RTC6e 카드)
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
+            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
+            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;

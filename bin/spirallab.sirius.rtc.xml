@@ -14615,27 +14615,37 @@
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6Ethernet.IpAddress">
             <summary>
-            IP 주소
+            IP 주소(Address)
+            <para>like as 192.168.0.10</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6Ethernet.SubNetMask">
             <summary>
-            서브넷 마스크
+            서브넷 마스크 (Subnet Mask)
+            <para>like as 255.255.255.0</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6Ethernet.#ctor">
             <summary>
-            생성자
+            생성자 (constructor)
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.Finalize">
+            <summary>
+            종결자 (finalizer)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6Ethernet.Dispose(System.Boolean)">
+            <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6Ethernet.#ctor(System.Int32,System.String,System.String,System.String)">
             <summary>
-            생성자
+            생성자  (constructor)
             </summary>
-            <param name="index"></param>
-            <param name="ipAddress">IP 주소</param>
-            <param name="subNetMask">서브넷 마스크</param>
-            <param name="outputFileName">명령을 기록할 파일 이름</param>
+            <param name="index">카드 식별자. (Card Identifer and string from 0)</param>
+            <param name="ipAddress">카드 IP 주소 (IP address of RTC6ethernet controller)</param>
+            <param name="subNetMask">서브넷 마스크(Subnet mask of RTC6ethernet controller)</param>
+            <param name="outputFileName">명령을 기록할 파일 이름 (Command output file)</param>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6Ethernet.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
             <summary>
@@ -16867,6 +16877,11 @@
         <member name="F:SpiralLab.Sirius.RtcStatus.MotfOutOfRange">
             <summary>
             Processing On The Fly 사용시 스캐너의 허용(Limit) 영역을 벋어났는지 여부 
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.RtcStatus.EthernetOk">
+            <summary>
+            이더넷 연결 상태 확인용. RTC6e 제어기 전용
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ILaserControlSignal">
