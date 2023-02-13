@@ -22,9 +22,9 @@
  * 1. please copy dll files into working directory (absolute path of  ~\bin\)
  * 
  * copy C:\Program Files (x86)\ACS Motion Control\SPiiPlus Runtime Kit\Redist\x64 to ~\bin\
- * copy syncAxis-1.6.0\RTC6\ProgramFiles to  ~\bin\
- * copy syncAxis-1.6.0\syncAXIS_control\bin64\dll to ~\bin\
- * copy syncAxis-1.6.0\syncAXIS_control\bin64\Wrapper\C# to ~\bin\
+ * copy syncAxis-1.8.0\RTC6\ProgramFiles to  ~\bin\
+ * copy syncAxis-1.8.0\syncAXIS_control\bin64\dll to ~\bin\
+ * copy syncAxis-1.8.0\syncAXIS_control\bin64\Wrapper\C# to ~\bin\
  * 
  * 2. xml configuration file
  *  general configuration

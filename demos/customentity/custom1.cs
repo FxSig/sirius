@@ -395,7 +395,7 @@ namespace SpiralLab.Sirius
             this.isMarkerable = true;
             this.isLocked = false;
             this.isHitTest = true;
-            this.color = Config.DefaultColor;
+            this.color = Config.PenDefaultColor;
             this.BoundRect = BoundRect.Empty;
             this.Start = Vector2.Zero;
             this.End = new Vector2(10, 10);

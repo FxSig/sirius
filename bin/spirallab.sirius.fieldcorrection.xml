@@ -7,69 +7,80 @@
         <member name="T:SpiralLab.Sirius.FormGridChecker">
             <summary>
             스캐너 필드 보정용 이미지를 분석하여 오차 데이타를 추출
-            64비트 : bin\x64\OpenCvSharpExtern.dll 를 bin 으로 복사
-            32비트 : bin\x32\OpenCvSharpExtern.dll 를 bin 으로 복사
+            <para>Image Analyzer for Scanner Field Correction</para>
+            <para>64비트 : copy bin\x64\OpenCvSharpExtern.dll to bin</para>
+            <para>32비트 : copy bin\x32\OpenCvSharpExtern.dll to bin</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.AliasName">
             <summary>
-            별명 이름
+            이름
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.Dpi">
             <summary>
-            인치당 픽셀 수 (Dots/Inches)
+            인치당 픽셀 수 
+            <para>Dots/Inches</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.ResultMeasure">
             <summary>
-            측정 검사 결과 X, Y 값 (mm) 배열
-            좌상단부터 시작
+            측정 검사 결과 X, Y 값 (mm) 배열. 좌상단부터 시작
+            <para>Array of measured x, y location</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.ResultReference">
             <summary>
             절대 위치  X, Y 값 (mm) 배열
+            <para>Array of reference x, y location</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.IsSuccess">
             <summary>
-            성공 여부 (결과)
+            성공 여부 
+            <para>Success or not</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.Rows">
             <summary>
             행 개수
+            <para>Rows</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.RowPitch">
             <summary>
             행 간격
+            <para>Row Pitch (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.Cols">
             <summary>
             열 개수
+            <para>Cols</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.ColPitch">
             <summary>
             열 간격
+            <para>Col Pitch (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.CrosshairWidth">
             <summary>
             십자선 폭 크기(mm)
+            <para>Width of Cross '+' Pattern (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.CrosshairHeight">
             <summary>
             십자선 높이 크기 (mm)
+            <para>Height of Cross '+' Pattern (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.RectTracker">
             <summary>
             이미지  잘라내기 사각 트랙커
+            <para>ROI tracker</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.FormGridChecker.#ctor">

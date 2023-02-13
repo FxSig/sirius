@@ -15,7 +15,7 @@
  *              `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *                `---`            `---'                                                        `----'   
  * 
- * Copyright (C) 2010-2020 SpiralLab. All rights reserved.
+ * Copyright (C) 2019-2023 SpiralLab. All rights reserved.
  * custom laser source
  * Description : 
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
@@ -365,7 +365,7 @@ namespace SpiralLab.Sirius
                 //
                 //
                 if (success)
-                    Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: power to {watt:F3}->{compensatedWatt:F3} W");
+                    Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: power to {watt:F3} -> {compensatedWatt:F3} W");
                 return success;
             }
         }

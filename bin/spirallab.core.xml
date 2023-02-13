@@ -11,124 +11,141 @@
         </member>
         <member name="M:SpiralLab.StringCipher.Encrypt(System.String,System.String)">
             <summary>
-            암호화
+            암호화 (Encrypt)
             </summary>
-            <param name="plainText"></param>
-            <param name="passPhrase"></param>
+            <param name="plainText">평문</param>
+            <param name="passPhrase">암호</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.StringCipher.Decrypt(System.String,System.String)">
             <summary>
-            복호화
+            복호화 (Decrypt)
             </summary>
-            <param name="cipherText"></param>
-            <param name="passPhrase"></param>
+            <param name="cipherText">암호문</param>
+            <param name="passPhrase">암호</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.BitHelper`2">
             <summary>
-            비트 조작용 객체
+            비트 조작용 도우미
+            <para>Bit Manipulation</para>
             </summary>
-            <typeparam name="TEnum">각 비트 필드에 대한 설명을 가진 열거 데이타</typeparam>
+            <typeparam name="TEnum">각 비트 필드에 대한 설명을 가진 열거 데이타 (Enum)</typeparam>
             <typeparam name="TData">데이타 타입 : 최대 64비트 (byte, short, int32, int64 등)</typeparam>
         </member>
         <member name="P:SpiralLab.BitHelper`2.Data">
             <summary>
             데이타 접근용
+            <para>Data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.BitHelper`2.#ctor">
             <summary>
             생성자
+            <para>Constructor</para>
             </summary>
         </member>
         <member name="M:SpiralLab.BitHelper`2.#ctor(`1)">
             <summary>
             생성자 (데이타로 초기화)
+            <para>Constructor</para>
             </summary>
-            <param name="data"></param>
+            <param name="data">Data</param>
         </member>
         <member name="M:SpiralLab.BitHelper`2.Add(`0)">
             <summary>
             해당 비트 설정
+            <para>Set bit</para>
             </summary>
-            <param name="bit"></param>
+            <param name="bit">Enum</param>
         </member>
         <member name="M:SpiralLab.BitHelper`2.Remove(`0)">
             <summary>
             해당 비트 해제
+            <para>Unset bit</para>
             </summary>
-            <param name="bit"></param>
+            <param name="bit">Enum</param>
         </member>
         <member name="M:SpiralLab.BitHelper`2.Contain(`0)">
             <summary>
             해당 비트 설정 여부
+            <para>Check bit</para>
             </summary>
-            <param name="bit"></param>
+            <param name="bit">Enum</param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.BitHelper`2.Item(`0)">
             <summary>
             해당 비트 접근 및 조작
+            <para>Bit operation</para>
             </summary>
-            <param name="bit">플래그 비트 위치</param>
+            <param name="bit">플래그 비트 위치 (Enum)</param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.BitHelper`2.Item(`0[])">
             <summary>
             복합 비트 접근/조작
+            <para>Bits operation</para>
             </summary>
-            <param name="bits">비트 배열</param>
+            <param name="bits">비트 배열 (Array of Enum)</param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.BitHelper`2.Item(System.Int32)">
             <summary>
             해당 비트 접근/조작
+            <para>Bit operation</para>
             </summary>
-            <param name="bit">비트 위치</param>
+            <param name="bit">비트 위치 (index of bit)</param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.BitHelper`2.Item(System.Int32[])">
             <summary>
             복합 비트 인덱스들로 접근/조작
+            <para>Bits operation</para>
             </summary>
-            <param name="bits">비트 배열</param>
+            <param name="bits">비트 배열 (array of bit)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.BitHelper`1">
             <summary>
-            비트 조작
+            비트 조작용 도우미
+            <para>Bit Manipulation</para>
             </summary>
-            <typeparam name="TData">데이타 타입 : byte, short, int32, int64</typeparam>
+            <typeparam name="TData">데이타 타입 : 최대 64비트 (byte, short, int32, int64 등)</typeparam>
         </member>
         <member name="P:SpiralLab.BitHelper`1.Data">
             <summary>
-            데이타 접근요
+            데이타 접근용
+            <para>Data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.BitHelper`1.#ctor">
             <summary>
             생성자
+            <para>Constructor</para>
             </summary>
         </member>
         <member name="M:SpiralLab.BitHelper`1.#ctor(`0)">
             <summary>
-            생성자 (초기 데이타)
+            생성자 (데이타로 초기화)
+            <para>Constructor</para>
             </summary>
-            <param name="data"></param>
+            <param name="data">Data</param>
         </member>
         <member name="P:SpiralLab.BitHelper`1.Item(System.Int32)">
             <summary>
-            비트 인덱스로 접근/조작
+            해당 비트 접근/조작
+            <para>Bit operation</para>
             </summary>
-            <param name="bit">비트위치</param>
+            <param name="bit">비트 위치 (index of bit)</param>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.BitHelper`1.Item(System.Int32[])">
             <summary>
             복합 비트 인덱스들로 접근/조작
+            <para>Bits operation</para>
             </summary>
-            <param name="bits">비트 배열</param>
+            <param name="bits">비트 배열 (array of bit)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.IEquipment">
@@ -139,36 +156,43 @@
         <member name="P:SpiralLab.IEquipment.Name">
             <summary>
             장비 이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.SeqHandler">
             <summary>
             시퀀스 핸들러 
+            <para>Handler Sequence</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.SeqLaser">
             <summary>
             시퀀스 레이저
+            <para>Laser Sequence</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.SeqVision">
             <summary>
             시퀀스 비전
+            <para>Vision Sequence</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.SeqAux">
             <summary>
             시퀀스 확장
+            <para>Auxillary Sequence</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User Data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.IEquipment.Initialize">
             <summary>
             초기화
+            <para>Initialization</para>
             </summary>
             <returns>성공여부</returns>
         </member>
@@ -382,26 +406,28 @@
         </member>
         <member name="T:SpiralLab.ISerialPort">
             <summary>
-            시리우스 라이브러리 모니터링용
-            시리얼 포트 객체 인터페이스
+            시리우스 라이브러리 모니터링용 시리얼 포트 객체 인터페이스.
             이를 상속 구현하면 시리얼 포트에 대한 모니터링이 지원됨 (Hexa Dump 등)
+            <para>SerialPort Interface for Monitoring</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISerialPort.Serial">
             <summary>
             시리얼 포트 객체
+            <para>SpiralLab.SerialPort object</para>
             </summary>
         </member>
         <member name="T:SpiralLab.SerialPortUITypeEditor">
             <summary>
             시리얼 통신 모니터링 폼 편집기
+            <para>SerialPort UITypeEditor</para>
             </summary>
         </member>
         <member name="T:SpiralLab.SerialPort">
             <summary>
-            시리우스 라이브러리 내부에서 시리얼 포트를 모니터링하기 위해
-            System.IO.Ports.SerialPort 의 상속 구현 버전
+            시리우스 라이브러리 내부에서 시리얼 포트를 모니터링하기 위해 System.IO.Ports.SerialPort 의 상속 구현 버전
             송수신 데이타 덤프 (모니터링) 처리
+            <para>SpiralLab.SerialPort object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.SerialPort.SerialPortForm">
@@ -566,6 +592,7 @@
             <summary>
             시리우스 라이브러리 초기화
             <para>Initialize Sirius Library</para>
+            <para>NLog configuration file : your path\logs\NLogSpiralLab.config</para>
             </summary>
             <returns></returns>
         </member>
@@ -581,6 +608,7 @@
         <member name="P:SpiralLab.Core.IsInitialized">
             <summary>
             초기화 성공 여부
+            <para>Sirius library has initialized or not</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Core.IsRunningPlatform64">
@@ -591,15 +619,15 @@
         </member>
         <member name="M:SpiralLab.Core.Initialize">
             <summary>
-            시리우스 라이브러리 초기화
-            <para>Initialize Sirius Library</para>
+            시리우스 라이브러리 초기화 실제 구현부
+            <para>Implementation of initialization</para>
             </summary>
             <returns></returns>
         </member>
         <member name="P:SpiralLab.Core.Version">
             <summary>
             시리우스 코어 라이브러리 버전 정보
-            <para>Version Information of Core Sirius Library</para>
+            <para>Version Information of Sirius Library</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Core.NativeMethods">
@@ -609,26 +637,20 @@
         </member>
         <member name="T:SpiralLab.FormLicense">
             <summary>
-            라이센스 체크용 폼
+            라이센스 체크용 윈폼
+            <para>LicenseCheck winform</para>
             </summary>
         </member>
         <member name="M:SpiralLab.FormLicense.#ctor">
             <summary>
             생성자
+            <para>Constructor</para>
             </summary>
         </member>
         <member name="P:SpiralLab.FormLicense.CreateParams">
             <summary>
             Drop Shadow (그림자) 효과
             </summary>
-        </member>
-        <member name="M:SpiralLab.FormLicense.ProcessCmdKey(System.Windows.Forms.Message@,System.Windows.Forms.Keys)">
-            <summary>
-            오버라이드 ProcessCmdKey
-            </summary>
-            <param name="msg"></param>
-            <param name="keyData"></param>
-            <returns></returns>
         </member>
         <member name="F:SpiralLab.FormLicense.components">
             <summary>
@@ -650,6 +672,7 @@
         <member name="T:SpiralLab.LoggerMessage">
             <summary>
             로그 메시지 콜백 델리게이트 
+            <para>Log Callback</para>
             </summary>
             <param name="type">로그 타입 (Log Type)</param>
             <param name="message">로그 메시지 (Log Message)</param>
@@ -657,41 +680,49 @@
         <member name="T:SpiralLab.Logger">
             <summary>
             로그 엔진
+            <para>Logger</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Logger.Type">
             <summary>
-            로그 타입 (Log Type)
+            로그 타입 
+            <para>Log Type</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Trace">
             <summary>
-            추적 (Trace)
+            추적 
+            <para>Trace</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Debug">
             <summary>
-            디버그 (Debug)
+            디버그 
+            <para>Debug</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Info">
             <summary>
-            정보 (Information)
+            정보 
+            <para>Information</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Warn">
             <summary>
-            경고 (Warn)
+            경고 
+            <para>Warn</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Error">
             <summary>
-            에러 (Error)
+            에러 
+            <para>Error</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Logger.Type.Fatal">
             <summary>
-            치명 (Fatal)
+            치명 
+            <para>Fatal</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Logger.OnLogged">
@@ -703,7 +734,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="message">메시지 (Message)</param>
@@ -711,7 +742,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="format">포맷 (Format)</param>
@@ -720,7 +751,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object,System.Object)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="format">포맷 (Format)</param>
@@ -730,7 +761,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object,System.Object,System.Object)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="format">포맷 (Format)</param>
@@ -741,7 +772,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.String,System.Object[])">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="format">포맷 (Format)</param>
@@ -750,7 +781,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="ex">예외 (Exception)</param>
@@ -758,7 +789,7 @@
         <member name="M:SpiralLab.Logger.Log(SpiralLab.Logger.Type,System.Exception,System.String)">
             <summary>
             로그 메시지 기록
-            <para>Log Message</para>
+            <para>Write Log Message</para>
             </summary>
             <param name="type">타입 (Type)</param>
             <param name="ex">예외 (Exception)</param>
@@ -775,7 +806,7 @@
         <member name="M:SpiralLab.Logger.ExceptionToString(System.Exception)">
             <summary>
             예외 상태 부가 정보 얻기
-            <para>Additional Data When Exception</para>
+            <para>Additional Data With Exception</para>
             </summary>
             <param name="ex">예외 (Exception)</param>
             <returns></returns>
@@ -934,29 +965,33 @@
         </member>
         <member name="T:SpiralLab.CommunicationMonitorForm">
             <summary>
-            통신 모니터링 폼
-            Send/Recv 헥사 모니터
+            통신 16진수(Hexa) 데이타 모니터링 윈폼
+            <para>Communication Monitoring by Hexa</para>
             </summary>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.#ctor(SpiralLab.SerialPort)">
             <summary>
             생성자
+            <para>Constructor</para>
             </summary>
+            <param name="serialPort">SpiralLab.SerialPort 객체</param>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.SendBytesBuffer(System.Byte[])">
             <summary>
             송신 바이트 
+            <para>Send array of bytes</para>
             </summary>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.RecvBytesBuffer(System.Byte[])">
             <summary>
             수신 바이트 
+            <para>Receive array of bytes</para>
             </summary>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.ClearBuffer">
             <summary>
-            버퍼 삭제
-            UI 데이타도 모두 제거
+            버퍼 삭제. UI 데이타도 모두 제거
+            <para>Clear buffer and view data</para>
             </summary>
         </member>
         <member name="F:SpiralLab.CommunicationMonitorForm.components">

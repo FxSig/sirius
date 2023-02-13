@@ -6653,6 +6653,11 @@
             https://medium.com/edinbed/calarts-funds-of-graphic-design-w2-2-2-words-and-spacing-b0ce031a3c77
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.CxfHelper.AdvanceY">
+            <summary>
+            Advance Y
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CxfHelper.Author">
             <summary>
             폰트 파일에 지정된 저자
@@ -13152,6 +13157,11 @@
             외곽 사각형 색상 (사용자 지정)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Config.DocumentClearPensWithNew">
+            <summary>
+            문서(Document) New 시도시 펜 정보를 모두 삭제/초기화 할지 여부
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.Config.EntitySelectedColor">
             <summary>
             엔티티 선택 생상
@@ -13300,7 +13310,7 @@
             10 가지 Pen 집합의 색상 목록
             </summary>
         </member>
-        <member name="F:SpiralLab.Sirius.Config.DefaultColor">
+        <member name="F:SpiralLab.Sirius.Config.PenDefaultColor">
             <summary>
             개체 생성 펜 기본 색상 (흰색)
             </summary>
@@ -16127,6 +16137,14 @@
             <summary>
             TTF 폰트 헬퍼 (Freetype2 라이브러리 기반)
             </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.FreeTypeHelper.AdvancengInfo(System.Single@,System.Single@)">
+            <summary>
+            Glyph 의 Bearing 계산 수치 조회용
+            </summary>
+            <param name="advX"></param>
+            <param name="advY"></param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MathHelper">
             <summary>

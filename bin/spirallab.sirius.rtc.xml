@@ -10505,15 +10505,17 @@
         <member name="T:SpiralLab.Sirius.RtcHelper">
             <summary>
             RTC 헬퍼 클래스
+            <para>Rtc Helper</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.RtcHelper.DetectRtcCardCount(System.UInt32@,System.UInt32@,System.UInt32@)">
             <summary>
             장치관리자에 등록된 RTC 카드의 개수 정보 
+            <para>Detect Counts of RTC at Device controller</para>
             </summary>
-            <param name="rtc4Count">설치된 RTC 4 카드 개수</param>
-            <param name="rtc5Count">설치된 RTC 5 카드 개수</param>
-            <param name="rtc6Count">설치된 RTC 6 카드 개수</param>
+            <param name="rtc4Count">RTC 4 카드 개수</param>
+            <param name="rtc5Count">RTC 5 카드 개수</param>
+            <param name="rtc6Count">RTC 6 카드 개수</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DoubleDot12TypeConverter">
@@ -10539,7 +10541,7 @@
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionFileBrowser">
             <summary>
-            보정 파일 목록
+            스캐너 필드 보정 파일 목록
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.UiHelper">
@@ -16653,20 +16655,21 @@
         <member name="T:SpiralLab.Sirius.ListType">
             <summary>
             리스트 타입
+            <para>List Type</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ListType.Single">
             <summary>
-            single buffered list
+            Single Buffered 
             <para>단일한 리스트 버퍼 사용, RTC 의 내부 버퍼를 최대로 사용</para>
-            <para>RTC4 : 8000 개</para>
-            <para>RTC5 : 2^20 개</para>
-            <para>RTC6 : 2^23 개</para>
+            <para>RTC4: 8000 개</para>
+            <para>RTC5: 2^20 개</para>
+            <para>RTC6: 2^23 개</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ListType.Auto">
             <summary>
-            double buffered list (auto)
+            Double Buffered 
             <para>두개의 리스트 버퍼를 번갈아 가며 사용</para>
             <para>옵션: Fast Buffer 속성을 통해 초기 버퍼 크기 및 최대 버퍼 크기 설정 가능</para>
             </summary>
@@ -16675,7 +16678,7 @@
             <summary>
             LASER1, LASER2 출력신호의 역할 지정
             <para>Co2, YAG 1,2,3,4,...</para>
-            <para>rf. 스캔랩 메뉴얼 문서 참고</para>
+            <para>스캔랩 메뉴얼 문서 참고</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LaserMode.None">
@@ -16686,7 +16689,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Co2">
             <summary>
             CO2
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: 스위치 주파수, 펄스폭 출력됨 (펄스 짤림 보완 사용 여부 설정 가능)</para>
             <para>LASER2: 대기(StandBy) 주파수, 펄스폭이 Phase shift 되어 출력됨</para>
             </summary>
@@ -16694,7 +16697,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Yag1">
             <summary>
             YAG1
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: Q 스위치 주파수, 펄스폭 출력 + 대기 주파수 출력 (LASERON 과 중첩 않됨)</para>
             <para>LASER2: FPK 출력 (Q 스위치 출력과 중첩됨)</para>
             </summary>
@@ -16702,7 +16705,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Yag2">
             <summary>
             YAG2
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: Q 스위치 주파수, 펄스폭 출력 + 대기 주파수 출력 (LASERON 과 중첩 않됨)</para>
             <para>LASER2: FPK 출력 (Q 스위치 출력과 중첩 않됨)</para>
             </summary>
@@ -16710,7 +16713,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Yag3">
             <summary>
             YAG3 LASER
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: Q 스위치 주파수, 펄스폭 출력 (펄스 짤림 보완) + 대기 주파수 출력 (LASERON 과 중첩 않됨)</para>
             <para>LASER2: FPK 출력 (10 usec 지연후 스위치 출력과 중첩됨)</para>
             </summary>
@@ -16718,7 +16721,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Mode4">
             <summary>
             MODE4
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: 대기 주파수, 펄스폭 출력 </para>
             <para>LASER2: FPK 출력 (대기 주파수 출력과 중첩됨)</para>
             </summary>
@@ -16726,7 +16729,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Yag5">
             <summary>
             YAG5 LASER
-            <para>LASERON : 켜짐</para>
+            <para>LASERON: 켜짐</para>
             <para>LASER1: 주파수, 펄스폭 출력 (Q 스위치 지연시간 설정가능, 펄스 짤림 보완됨) + 대기 주파수 출력 (LASERON 과 중첩 않됨)</para>
             <para>LASER2: FPK 출력 (주파수 출력과 중첩됨)</para>
             <para>RTC5 이상 지원 </para>
@@ -16735,7 +16738,7 @@
         <member name="F:SpiralLab.Sirius.LaserMode.Mode6">
             <summary>
             MODE6
-            <para>LASERON : 켜짐 (대기 주파수과 시작, 끝 주기를 맞추기 위해 펄스 보완됨)</para>
+            <para>LASERON: 켜짐 (대기 주파수과 시작, 끝 주기를 맞추기 위해 펄스 보완됨)</para>
             <para>LASER1: 대기 주파수, 펄스폭 출력 </para>
             <para>LASER2: FPK 출력 (대기 주파수 출력과 중첩됨)</para>
             <para>RTC5 이상 지원 </para>
@@ -16788,37 +16791,37 @@
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDI2">
             <summary>
-            RTC5/6 Pin2 디지털 입력
+            RTC5/6 레이저(LASER) 커넥터 2비트 디지털 입력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDO2">
             <summary>
-            RTC5/6 Pin2 디지털 출력
+            RTC5/6 레이저(LASER) 커넥터 2비트 디지털 출력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDO8">
             <summary>
-            RTC4/5/6 확장2(Extension2) 포트 8비트 출력
+            RTC4/5/6 확장2(Extension2) 포트 8비트 디지털 출력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDO16">
             <summary>
-            RTC4/5/6 확장1(Extension1) 포트 16비트 출력
+            RTC4/5/6 확장1(Extension1) 포트 16비트 디지털 출력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtDI16">
             <summary>
-            RTC4/5/6 확장1(Extension1) 포트 16비트 입력
+            RTC4/5/6 확장1(Extension1) 포트 16비트 디지털 입력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtAO1">
             <summary>
-            RTC4/5/6 의 아나로그 1 출력
+            RTC4/5/6 의 아나로그1 포트 출력
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExtensionChannel.ExtAO2">
             <summary>
-             RTC4/5/6 의 아나로그 2 출력
+             RTC4/5/6 의 아나로그2 포트 출력
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.RtcStatus">
@@ -16902,9 +16905,9 @@
             <summary>
             RTC 외부 제어 모드 값 
             <para>RTC4/5/6 각각 비트 플래그가 다르므로 각 버전별로 구현된 객체 사용</para>
-            <para>RTC4 : Rtc4ExternalControlMode </para>
-            <para>RTC5 : Rtc5ExternalControlMode </para>
-            <para>RTC6 : Rtc6ExternalControlMode </para> 
+            <para>RTC4: Rtc4ExternalControlMode </para>
+            <para>RTC5: Rtc5ExternalControlMode </para>
+            <para>RTC6: Rtc6ExternalControlMode </para> 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
@@ -16916,9 +16919,14 @@
         <member name="T:SpiralLab.Sirius.IRtcJumpMode">
             <summary>
             RTC 점프 모드 설정용 인터페이스
-            <para>RTC4 : 미지원</para>
-            <para>RTC5 : Rtc5JumpMode </para>
-            <para>RTC6 : Rtc6JumpMode</para>
+            <para>RTC4: 미지원</para>
+            <para>RTC5: Rtc5JumpMode </para>
+            <para>RTC6: Rtc6JumpMode</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcJumpMode.Tag">
+            <summary>
+            사용자 정의 데이타
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.JumpModeFlag">
@@ -16969,9 +16977,9 @@
         <member name="P:SpiralLab.Sirius.IRtc.KFactor">
             <summary>
             스캐너의 bits/mm 비율값 (K-Factor)
-            <para>RTC4 : 16 bits</para>
-            <para>RTC5 : 20 bits</para>
-            <para>RTC6 : 20 bits</para>
+            <para>RTC4: 16 bits</para>
+            <para>RTC5: 20 bits</para>
+            <para>RTC6: 20 bits</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.EffectiveFieldSize">
@@ -16996,9 +17004,9 @@
         <member name="P:SpiralLab.Sirius.IRtc.CorrectionFiles">
             <summary>
             보정 파일 테이블 목록 
-            <para>RTC4 : 2개의 테이블 (0,1)</para>
-            <para>RTC5 : 4개의 테이블을 (0,1,2,3)</para>
-            <para>RTC6 : 4개의 테이블을 (0,1,2,3)</para>
+            <para>RTC4: 2개의 테이블 (0,1)</para>
+            <para>RTC5: 4개의 테이블을 (0,1,2,3)</para>
+            <para>RTC6: 4개의 테이블을 (0,1,2,3)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.PrimaryHeadTable">
@@ -17106,7 +17114,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlLoadCorrectionFile(SpiralLab.Sirius.CorrectionTableIndex,System.String)">
             <summary>
-            보정 파일(.ctb/.ct5)을 보정 테이블에 로딩
+            보정 파일(.ctb/.ct5)을 보정 테이블 메모리로 로딩
             </summary>
             <param name="tableIndex">CorrectionTableIndex 열거형 </param>
             <param name="ctFileName">ctb/ct5 스캐너 보정 파일</param>
@@ -17114,7 +17122,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
-            지정된 스캐너 헤드에 보정 테이블을 선택
+            스캐너 헤드에 지정된 보정 테이블을 선택
             </summary>
             <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
             <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
@@ -17386,7 +17394,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListConicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
-            Conic 베지어 곡선
+            리스트 명령 - Conic 베지어 곡선
             </summary>
             <param name="vStart">시작 위치</param>
             <param name="vControl">제어점 위치</param>
@@ -17396,7 +17404,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListCubicBezier(System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Numerics.Vector2,System.Single)">
             <summary>
-            Cubic 베지어 곡선
+            리스트 명령 - Cubic 베지어 곡선
             </summary>
             <param name="vStart">시작 위치</param>
             <param name="vControl1">제어점1 위치</param>
@@ -17416,7 +17424,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListWriteExtDO16(System.UInt16,System.Boolean)">
             <summary>
-            확장1 포트의 16비트 디지털 출력의 특정 비트값을 변경
+            리스트 명령 - 확장1 포트의 16비트 디지털 출력의 특정 비트값을 변경
             </summary>
             <param name="bitPosition">0~15</param>
             <param name="onOff">출력</param>
@@ -17424,7 +17432,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListWriteExtDO16If(System.UInt32,System.UInt32,System.UInt32,System.Boolean)">
             <summary>
-            확장1 포트의 16비트 디지털 입력이 조건에 맞으면, 확장1 포트의 16비트 디지털 출력의 지정된 비트에 출력
+            리스트 명령 - 확장1 포트의 16비트 디지털 입력이 조건에 맞으면, 확장1 포트의 16비트 디지털 출력의 지정된 비트에 출력
             </summary>
             <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
             <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
@@ -17434,7 +17442,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListReadExtDI16WaitUntil(System.UInt32,System.UInt32)">
             <summary>
-            확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
+            리스트 명령 - 확장1 포트의 16비트 디지털 입력이 조건에 맞을때까지 리스트 명령 수행을 대기
             </summary>
             <param name="inputHighBitMask">조건1 : 확장1포트 입력이 High(1) 인 비트 마스크 (0 = Don't Care)</param>
             <param name="inputLowBitMask">조건2 : 확장1포트 입력이 Low(0) 인 비트 마스크 (0 = Don't Care)</param>
@@ -17609,7 +17617,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSerialNo.ListSerial(System.UInt32,SpiralLab.Sirius.SerialFormat,SpiralLab.Sirius.CharacterSet)">
             <summary>
-            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시리얼 번호 마킹
+            리스트 명령 - 보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시리얼 번호 마킹
             </summary>
             <param name="numOfDigits">최대 자리수 (최대 15자)</param>
             <param name="serialFormat">SerialFormat 열거형</param>
@@ -18011,7 +18019,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAutoLaserControl``1(``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
-            ALC(Automatic Laser Control) 기능 변경
+            리스트 명령 - ALC(Automatic Laser Control) 기능 변경
             <para>CtlAutoLaserControl 호출에 의해 지정된 AutoLaserControlSignal 신호가 처리됨</para>
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
@@ -18023,7 +18031,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAlcByVectorBegin``1(SpiralLab.Sirius.AutoLaserControlSignal,``0,SpiralLab.Sirius.ICompensator{``0})">
             <summary>
-            ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
+            리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
             </summary>
             <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
@@ -18033,7 +18041,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAlcByVectorEnd">
             <summary>
-            ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 비활성화
+            리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 비활성화
             </summary>
             <returns></returns>
         </member>
@@ -18174,7 +18182,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.ListText(System.String,SpiralLab.Sirius.CharacterSet)">
             <summary>
-            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 문자열 마킹
+            리스트 명령 - 보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 문자열 마킹
             </summary>
             <param name="text">문자열</param>
             <param name="characterSet">CharacterSet 열거형</param>
@@ -18182,7 +18190,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.ListDate(SpiralLab.Sirius.DateFormat,System.Boolean,SpiralLab.Sirius.CharacterSet)">
             <summary>
-            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 날짜 마킹
+            리스트 명령 - 보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 날짜 마킹
             </summary>
             <param name="dateFormat">DateFormat 열거형</param>
             <param name="leadingWithZero">앞선 공간을 0 으로 채우기</param>
@@ -18191,8 +18199,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.ListTime(SpiralLab.Sirius.TimeFormat,System.Boolean,SpiralLab.Sirius.CharacterSet)">
             <summary>
-            보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시간 마킹
-            호출 시점의 윈도우즈 시스템 시간을 사용함
+            리스트 명령 - 보호된 리스트 버퍼(3) 영역에 색인된 문자를 이용해 시간 마킹
+            <para>호출 시점의 윈도우즈 시스템 시간을 사용함</para>
             </summary>
             <param name="timeFormat">TimeFormat 열거형</param>
             <param name="leadingWithZero">앞선 공간을 0 으로 채우기</param>
@@ -18485,20 +18493,20 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
             <summary>
-            FPK(First Pulse Killer) 시간값 설정
+            리스트 명령 - FPK(First Pulse Killer) 시간값 설정
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListQSwitchDelay(System.Single)">
             <summary>
-            Q 스위치 지연 시간값 설정
+            리스트 명령 - Q 스위치 지연 시간값 설정
             <code>
             레이저 모드에 따라 다르게 적용됨
-            Yag1 : 0
-            Yag2 : FPK 로 설정
-            Yag3 : 10usec 고정
-            Yag5 : 이 함수로 설정된 값
+            Yag1: 0
+            Yag2: FPK 로 설정
+            Yag3: 10usec 고정
+            Yag5: 이 함수로 설정된 값
             </code>
             </summary>
             <param name="usec">usec</param>
@@ -18506,7 +18514,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListSkyWritingBegin(System.UInt32,System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - sky-writing 모드 시작
+            리스트 명령 - Sky writing 모드 시작
             <para>레이저 가감속 구간의 모션 지연으로 인한 레이저 펄스의 중첩을 예방하기 위한 기능</para>
             <para>모드 3이 강제로 사용됨</para>
             </summary>
@@ -18518,7 +18526,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListSkyWritingEnd">
             <summary>
-            리스트 명령  - sky-writing 모드 중지
+            리스트 명령 - Sky writing 모드 중지
             </summary>
             <returns></returns>
         </member>
@@ -19223,7 +19231,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfOverflowClear">
             <summary>
-            MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
+            리스트 명령 - MOTF XY / MOTF Angular 영역 벋어남 오류 리셋
             <para>오류 여부는 RtcMarkingInfo 에서 제공됨 </para>
             </summary>
             <returns></returns>
@@ -19311,21 +19319,25 @@
         <member name="F:SpiralLab.Sirius.MotionType.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionType.ScannerOnly">
             <summary>
             스캐너 단독 
+            <para>Scanner Only</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionType.StageOnly">
             <summary>
             스태이지 단독 
+            <para>Stage Only</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionType.StageAndScanner">
             <summary>
             스캐너 + 스테이지 
+            <para>Stage + Scanner</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MotionMode">
@@ -19336,16 +19348,19 @@
         <member name="F:SpiralLab.Sirius.MotionMode.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionMode.Unfollow">
             <summary>
             외부 제어 모드 (syncAXIS 가 아닌 외부 프로그램)
+            <para>UnFollow Mode</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MotionMode.Follow">
             <summary>
             자체 제어 모드 (syncAXIS 제어 모드)
+            <para>Follow Mode</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScanDevice">
@@ -19356,21 +19371,25 @@
         <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice1">
             <summary>
             스캔 헤드 1
+            <para>Scan Device 1</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice2">
             <summary>
             스캔 헤드 2
+            <para>Scan Device 2</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice3">
             <summary>
             스캔 헤드 3
+            <para>Scan Device 3</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ScanDevice.ScanDevice4">
             <summary>
             스캔 헤드 4
+            <para>Scan Device 4</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Stage">
@@ -19381,46 +19400,55 @@
         <member name="F:SpiralLab.Sirius.Stage.Stage1">
             <summary>
             스테이지 1
+            <para>Stage 1</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Stage.Stage2">
             <summary>
             스테이지 2
+            <para>Stage 2</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Stage.Stage3">
             <summary>
             스테이지 3
+            <para>Stage 3</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Stage.Stage4">
             <summary>
             스테이지 4
+            <para>Stage 4</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.OperationStatus">
             <summary>
             SyncAxis 내부 인스턴스의 오퍼레이션 상태 색상
+            <para>Traffic Light Color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.OperationStatus.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.OperationStatus.Green">
             <summary>
             Green (정상 상태)
+            <para>syncAXIS Control Instance is running and no errors occurred</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.OperationStatus.Yellow">
             <summary>
             Yellow (경고 상태)
+            <para>syncAXIS Control Instance is not yet running because the initialization is still in progress</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.OperationStatus.Red">
             <summary>
             Red (에러 상태)
+            <para>syncAXIS Control Instance is not running and at least on error occurred</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ContourDependentSpeedDirection">
@@ -19432,7 +19460,7 @@
             <summary>
             속도 계산 기준 : 중점
             <para>
-            (기본값)
+            Default (middle)
             </para>
             </summary>
         </member>
@@ -19448,7 +19476,7 @@
             <summary>
             속도 계산 기준 : 좌
             <para>
-            Speeds are determined left of the curve mid-line.
+            Speeds are determined left of the curve mid-line
             </para>
             </summary>
         </member>
@@ -19461,7 +19489,7 @@
             <summary>
             경고
             <para>
-            Log a warning message.
+            Log a warning message
             </para>
             </summary>
         </member>
@@ -19469,7 +19497,7 @@
             <summary>
             즉시 정지
             <para>
-            Immediately abort job execution.
+            Immediately abort job execution
             </para>
             </summary>
         </member>
@@ -19477,7 +19505,7 @@
             <summary>
             즉시 정지후 보고
             <para>
-            End the job and do a controlled jump to home position.
+            End the job and do a controlled jump to home position
             </para>
             </summary>
         </member>
@@ -19489,26 +19517,31 @@
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Deactivated">
             <summary>
             비활성화
+            <para>Deactivated</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Position">
             <summary>
             위치 제한 영역 초과 모니터링
+            <para>Position</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Velocity">
             <summary>
             속도 제한 초과 모니터링
+            <para>Velocity</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Acceleration">
             <summary>
             가속도 제한 초과 모니터링
+            <para>Acceleration</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DynamicMonitoringLevel.Jerk">
             <summary>
             가가속도 제한 초과 모니터링
+            <para>Jerk</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MinMax">
@@ -19519,16 +19552,25 @@
         <member name="P:SpiralLab.Sirius.MinMax.Min">
             <summary>
             최소값
+            <para>Min</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MinMax.Max">
             <summary>
             최대값
+            <para>Max</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MinMax.Data">
+            <summary>
+            최대, 최소 데이타
+            <para>Min/Max</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.AxisXY">
             <summary>
             XY 데이타 표현용 객체
+            <para>Represent XY Data</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AxisXY.X">
@@ -19541,174 +19583,193 @@
             Y
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.AxisXY.Data">
+            <summary>
+            XY
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ScannerDynamic">
             <summary>
             스캐너 역학 객체
+            <para>Scanner Dynamic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerAngularVelLimit">
             <summary>
             스캐너 역학 각속도 제한값 (rad/s)
+            <para>Angular Velocity Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerAngularAccLimit">
             <summary>
             스캐너 역학 각가속도 제한값 (rad/s²)
+            <para>Angular Acc Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerAngularJerkLimit">
             <summary>
             스캐너 역학 각 가가속도 제한값 (rad/s³)
+            <para>Angular Jerk Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerFieldMinLimit">
             <summary>
             스캐너 작업 영역 최소 크기 X,Y 제한값 (mm)
+            <para>Position Min Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerFieldMaxLimit">
             <summary>
             스캐너 작업 영역 최대 크기 X,Y 제한값 (mm)
+            <para>Position Max Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerJumpAngularAcc">
             <summary>
             스캐너 계산 최대 역학 점프 각 가속도 (rad/s²)
+            <para>Calculation Max Jump Angular Acc</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerJumpAngularJerk">
             <summary>
             스캐너 계산 최대 역학 점프 각 가가속도 (rad/s²)
+            <para>Calculation Max Jump Angular Jerk</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerMarkAngularAcc">
             <summary>
             스캐너 계산 최대 역학 마크 각 가속도 (rad/s²)
+            <para>Calculation Max Mark Angular Acc</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerDynamic.ScannerMarkAngularJerk">
             <summary>
             스캐너 계산 최대 역학 마크 각 가가속도 (rad/s²)
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.ScannerDynamic.#ctor">
-            <summary>
-            생성자
+            <para>Calculation Max Mark Angular Jerk</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.StageDynamic">
             <summary>
             스테이지 역학 객체
+            <para>Stage Dynamic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageVelLimit">
             <summary>
             스테이지 역학 속도 제한 (mm/s)
+            <para>Velocity Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageAccLimit">
             <summary>
             스테이지 역학 가속도 제한 (mm/s²)
+            <para>Acc Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageJerkLimit">
             <summary>
             스테이지 역학 가가속도 제한 (mm/s³)
+            <para>Jerk Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageFieldMinLimit">
             <summary>
             스테이지 필드 최소 크기 X,Y 제한값 (mm)
+            <para>Position Min Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageFieldMaxLimit">
             <summary>
             스테이지 필드 최대 크기 X,Y 제한값 (mm)
+            <para>Position Max Limit</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageVel">
             <summary>
             스테이지 계산 최대 역학 속도 (mm/s) 
             <para>StageOnly 에서 유효 </para>
+            <para>Calculation Max Velocity (Stage Only Mode)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageAcc">
             <summary>
             스테이지 계산 최대 역학 가속도 (mm/s²)
             <para>StageOnly 에서 유효 </para>
+            <para>Calculation Max Acc (Stage Only Mode)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageDynamic.StageJerk">
             <summary>
             스테이지 계산 최대 역학 가가속도 (mm/s³)
             <para>StageOnly 에서 유효 </para>
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.StageDynamic.#ctor">
-            <summary>
-            생성자
+            <para>Calculation Max Jerk (Stage Only Mode)</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Dynamics">
             <summary>
             Dynamics (스캐너및 스테이지 역학) 설정 객체
+            <para>Dynamics</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Scanner">
             <summary>
             스캐너 역학 설정값
+            <para>Scanner Dynamic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.ScannerMonitoringLevel">
             <summary>
             스캐너 모니터링 레벨
+            <para>Scanner Monitoring Level</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Stage1">
             <summary>
             스테이지1 역학 설정값
+            <para>Stage1 Dynamics</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Stage2">
             <summary>
             스테이지2 역학 설정값
+            <para>Stage2 Dynamics</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Stage3">
             <summary>
             스테이지3 역학 설정값
+            <para>Stage3 Dynamics</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Stage4">
             <summary>
             스테이지4 역학 설정값
+            <para>Stage4 Dynamics</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.StageMonitoringLevel">
             <summary>
             스테이지 역학 모니터링 레벨
+            <para>Stage Monitoring Level</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Dynamics.Reaction">
             <summary>
             역학 침범 발생시 처리 방법
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Dynamics.#ctor">
-            <summary>
-            기본 생성자
+            <para>Violation Reaction</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.MarkConfig">
             <summary>
             Mark Config 설정 객체
+            <para>Mark Config</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.MarkConfig.LaserPreTriggerTime">
             <summary>
             레이저 사전 트리거 시간 (usec)
             <para>
-            Time to trigger the laser signal in advance, if a Mark Segment is executed.
+            Time to trigger the laser signal in advance, if a Mark Segment is executed
             </para>
             </summary>
         </member>
@@ -19716,7 +19777,7 @@
             <summary>
             레이저 신호 오프셋 시간 (usec) 
             <para>
-            Time shift for the  laser signals output. 
+            Time shift for the  laser signals output
             </para>
             </summary>
         </member>
@@ -19724,7 +19785,7 @@
             <summary>
             레이저 신호 활성화 최소 시간 (usec)
             <para>
-            Shortest “Laser Standby” Operation duration.
+            Shortest 'Laser Standby' Operation duration
             </para>
             </summary>
         </member>
@@ -19762,70 +19823,75 @@
             </para>
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.MarkConfig.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.BlendModes">
             <summary>
             블렝딩 모드 
+            <para>Blend Modes</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.BlendModes.Deactivated">
             <summary>
             비활성화
+            <para>Deactivated</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.BlendModes.VariableBlending">
             <summary>
             가변 블렌딩
+            <para>Variable</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.BlendModes.MinimalBlending">
             <summary>
             최소 블렌딩
+            <para>Minimal</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.BlendModes.FixedBlending">
             <summary>
             고정 블렌딩
+            <para>Fixed</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.SplineModes">
             <summary>
             스플라인 모드
+            <para>Spline Modes</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SplineModes.Deactivated">
             <summary>
             비활성화
+            <para>Deactivated</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SplineModes.Interpolating">
             <summary>
             보간
+            <para>Interpolating</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SplineModes.Approximating">
             <summary>
             근사
+            <para>Approximating</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.GeometryConfig">
             <summary>
             Geometry Config 설정 객체
+            <para>Geometry Config</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.GeometryConfig.BlendMode">
             <summary>
             블랜딩 모드 
-            <para>Blend Mode </para>
+            <para>Blend Mode</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.GeometryConfig.MaxBlendRadius">
             <summary>
-            블랜딩 활성화되는 모서리의 최대 거리값 : R (mm)
+            블랜딩 활성화되는 모서리의 최대 거리값: R (mm)
             <para>
             Radius of the circle around the corner point(between two vectors) in which the blending curve is to be positioned.
             In the marking result,  blending curves are also limited by the vector length: Ractual = min(R, l/2). 
@@ -19837,7 +19903,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.GeometryConfig.ApproxBlendLimit">
             <summary>
-            블랭딩이 활성화시 모서리와 경로간의 최대 거리값 : r (mm)
+            블랭딩이 활성화시 모서리와 경로간의 최대 거리값: r (mm)
             <para>
             maximum  tolerable mathematical distance of the blending curve to the corner point. 
             If the values specified with MaxBlendRadius and/or ApproxBlendLimit cannot be adhered to, 
@@ -19872,109 +19938,116 @@
             deprecated
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.GeometryConfig.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.Trajectory">
             <summary>
             경로(Trajectory) 설정 객체
+            <para>Trajectory: Mark + Geometry Config</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Trajectory.Mark">
             <summary>
-            Mark Configuration 정보
+            Mark Configuration 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Trajectory.Geometry">
             <summary>
-            Geometry Configuration 정보
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Trajectory.#ctor">
-            <summary>
-            생성자
+            Geometry Configuration 
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CalculationStatus">
             <summary>
             계산 상태 
+            <para>Calculation Status</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CalculationStatus.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CalculationStatus.Start">
             <summary>
             시작됨
+            <para>Started</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CalculationStatus.InProgress">
             <summary>
             진행중
+            <para>In Progress</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CalculationStatus.Finished">
             <summary>
             완료
+            <para>Finished</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CalculationStatus.Failed">
             <summary>
             실패
+            <para>Failed</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TransferStatus">
             <summary>
             전송 상태 
+            <para>Transfer Status</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.TransferStatus.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.TransferStatus.LoadedEnough">
             <summary>
             버퍼에 충분히 채워짐
+            <para>Loaded Enough</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ExecutionStatus">
             <summary>
             실행 상태 
+            <para>Execution Status</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExecutionStatus.Aborted">
             <summary>
             중지됨
+            <para>Aborted</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExecutionStatus.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExecutionStatus.Executing">
             <summary>
             실행중
+            <para>Executing</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExecutionStatus.Finished">
             <summary>
             완료
+            <para>Finished</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ExecutionStatus.Failed">
             <summary>
             실패
+            <para>Failed</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ScannerJobCharacteristic">
             <summary>
             스캐너 작업결과 특성 분석용 객체
+            <para>Scanner Job Characteristic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScannerJobCharacteristic.ScanPosMax">
@@ -20046,14 +20119,10 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.ScannerJobCharacteristic.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.StageJobCharacteristic">
             <summary>
             스테이지 작업결과 특성 분석용 객체
+            <para>Stage Job Characteristic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StageJobCharacteristic.StagePosMax">
@@ -20133,30 +20202,29 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.StageJobCharacteristic.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.JobCharacteristic">
             <summary>
             작업결과(스캐너/스테이지) 특성 분석용 객체
+            <para>Job Characteristic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.Scanner">
             <summary>
             스캐너 특성
+            <para>Scanner Job Characteristic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.Stage">
             <summary>
             스테이지 특성
+            <para>Stage Job Characteristic</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.MotionMicroSteps">
             <summary>
             모션 마이크로 스텝 개수 
-            <para>마이크로 스텝은 10usec 단위</para>
+            <para>마이크로 스텝은 매 10usec 단위</para>
+            <para>Motion Micro Steps</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JobCharacteristic.MarkSpeedMinMax">
@@ -20182,79 +20250,76 @@
             사용자 정의 데이타
             </summary>
         </member>
-        <member name="M:SpiralLab.Sirius.JobCharacteristic.#ctor">
-            <summary>
-            생성자
-            </summary>
-        </member>
         <member name="T:SpiralLab.Sirius.UtilizedScanner">
             <summary>
             스캐너 활용률
+            <para>Utilized Scanner</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.UtilizedScanner.Position">
             <summary>
             스캐너 X, Y 영역 사용률 (%)
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.UtilizedScanner.#ctor">
-            <summary>
-            생성자
+            <para>Utilized Scanner X,Y Position(Area)</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.UtilizedStage">
             <summary>
             스테이지 활용률
+            <para>Utilized Stage</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.UtilizedStage.Position">
             <summary>
             스테이지 X,Y 영역 사용률 (%)
+            <para>Utilized Stage X,Y Position(Area)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.UtilizedStage.Acc">
             <summary>
             스테이지 X,Y 가속도 사용률 (%)
+            <para>Utilized Stage X,Y Acceleration</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.UtilizedStage.Jerk">
             <summary>
             스테이지 X,Y 가가속도 사용률 (%)
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.UtilizedStage.#ctor">
-            <summary>
-            생성자
+            <para>Utilized Stage X,Y Jerk</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.JobResult">
             <summary>
             작업 결과
+            <para>Job Result</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.JobResult.Failed">
             <summary>
             실패
+            <para>Failed</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.JobResult.Aborted">
             <summary>
             중지
+            <para>Aborted</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.JobResult.Unknown">
             <summary>
             미설정
+            <para>Unknown</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.JobResult.Success">
             <summary>
             성공
+            <para>Success</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Job">
             <summary>
             SyncAxis 작업 상태 
+            <para>SyncAxis Job</para>
             <para>
             배열 0 = X, Min 의미함
             배열 1 = Y, Max 의미함
@@ -20264,160 +20329,188 @@
         <member name="P:SpiralLab.Sirius.Job.ID">
             <summary>
             작업 식별자
+            <para>Job ID</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Name">
             <summary>
             작업 이름
+            <para>Job Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Description">
             <summary>
             작업 설명
+            <para>Job Description</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.BandWidth">
             <summary>
             LPF 주파수 (Hz) 
             <para>스캐너 + 스테이지 모션 타입 사용시 적용됨</para>
+            <para>Low Pass Frequency (BandWidth For Scanner+Stage Mode)</para> 
+            <para> 
+            Lower than 0.23 are not allowed. 
+            Otherwise, the return value indicates that Bit #06 is set (UnplausibleOrUnknownParameter). 
+            Typical values are between 1…3 Hz, depending on the scan head working field and the dynamic range of the positioning stage.
+            </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.MotionType">
             <summary>
             모션 타입
+            <para>Motion Type</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.XmlConfigFileName">
             <summary>
             XML 설정 파일 이름
+            <para>XML Config File</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.CalcStatus">
             <summary>
             계산 상태
+            <para>Job Calculation Status</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.TransStatus">
             <summary>
             전송 상태
+            <para>Job Transfer Status</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ExecStatus">
             <summary>
             실행 상태
+            <para>Job Execution Status</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ResultStatus">
             <summary>
             작업 결과 상태
+            <para>Job Result</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ListTotalCounts">
             <summary>
-            총 리스트 명령 개수 (Approx)
+            총 리스트 명령 개수 (Approx.)
+            <para>Total List Command Counts (Approx.)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Characteristic">
             <summary>
             작업 특성 분석치
+            <para>Job Characteristic</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.HeadCounts">
             <summary>
             스캔 헤드 개수
+            <para>Stage Head Count(s)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ActiveChannelCount">
             <summary>
             ALC(Automatic Laser Control) 에 사용하는 채널 개수
+            <para>Active Channel Count(s)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ActiveChannels">
             <summary>
             ALC(Automatic Laser Control) 에 사용하는 채널 목록
+            <para>List of Active Channel(s)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Head1Offset">
             <summary>
             헤드1 X,Y 오프셋 및 회전각도
+            <para>Scan Head1 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Head2Offset">
             <summary>
             헤드2 X,Y 오프셋 및 회전각도
+            <para>Scan Head2 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Head3Offset">
             <summary>
             헤드3 X,Y 오프셋 및 회전각도
+            <para>Scan Head3 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Head4Offset">
             <summary>
             헤드4 X,Y 오프셋 및 회전각도
+            <para>Scan Head4 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedScanner">
             <summary>
             스캐너 사용률
+            <para>Utilized Scanner</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.StageCounts">
             <summary>
             스테이지 개수
+            <para>Stage Count(s)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage1">
             <summary>
             스테이지1 사용률 
+            <para>Utilized Stage 1</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage2">
             <summary>
             스테이지2 사용률 
+            <para>Utilized Stage 2</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage3">
             <summary>
             스테이지3 사용률 
+            <para>Utilized Stage 3</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStage4">
             <summary>
             스테이지4 사용률 
+            <para>Utilized Stage 4</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.UtilizedStages">
             <summary>
             스테이지 사용율 배열
             <para>복수개의 스테이지 사용시</para>
+            <para>Array of Utilized Stages</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.StartTime">
             <summary>
             가공 시작 시간
+            <para>Start Time</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.EndTime">
             <summary>
             가공 완료 시간
+            <para>End Time</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.ExecutionTime">
             <summary>
             가공 총 소요 시간 (s)
+            <para>Execution Time</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Job.Tag">
             <summary>
             사용자 정의 데이타
             </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.Job.ToString">
-            <summary>
-            상세 정보 출력
-            </summary>
-            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Job.#ctor">
             <summary>
@@ -20428,11 +20521,12 @@
             <summary>
             생성자
             </summary>
-            <param name="id">JOB id</param>
+            <param name="id">Job ID</param>
         </member>
         <member name="T:SpiralLab.Sirius.JobEventHandler">
             <summary>
             작업 상태 이벤트 통지용 
+            <para>Event Handler for Notify Job Status</para> 
             </summary>
             <param name="rtcSyncAxis">IRtcSyncAxis 인터페이스</param>
             <param name="jobCharacteristic">JobStatus 정보 객체</param>
@@ -20440,33 +20534,33 @@
         <member name="T:SpiralLab.Sirius.IRtcSyncAxis">
             <summary>
             IRtcSyncAxis 인터페이스
-            <para>
-            SyncAXIS 최신 버전 v1.6 기반
-            RTC6 + ExcelliSCAN + ACS 특화 제품
-            RTC6 : SCANahead 옵션 필요 / syncA 옵션 필요 / SyncAxis 동글키 필요
-            ACS : SLEC 컨버터 필요 / ServoBoost 옵션 필요 / SyncAXIS 옵션 (모션 업데이트 주기 향상) 필요
-            </para>
+            <para>Interface for IRtcSyncAxis</para> 
+            <para>syncAXIS v1.8 기반 (based on syncAXIS v1.8)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Handle">
             <summary>
             syncAXIS 인스턴스 핸들
+            <para>Handle for syncAXIS Instance</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.ConfigXMLFile">
             <summary>
             syncAXIS XML 설정파일
+            <para>XML Config File</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Job">
             <summary>
             현재 작업(Job) 상태 
+            <para>Current Job</para> 
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IRtcSyncAxis.OnJob">
             <summary>
             현재 작업 상태 업데이트 이벤트 핸들러
             <para>ExecStatus 상태가 ExecutionStatus.Finished 일떄 Characteristic 이 모두 계산되어 저장됨</para>
+            <para>Job Event</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.JobHistory">
@@ -20474,31 +20568,37 @@
             작업 완료 큐
             <para>실행이 성공하여 특성(Characteristic)이 계산된 작업 이력 저장용</para>
             <para>최대 50개 임시 저장됨</para>
+            <para>Job History Queue (Max 50 jobs)</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head1Offset">
             <summary>
             스캔 헤드1 에 설정된 X,Y, Angle(°) 오프셋
+            <para>Scan Head1 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head2Offset">
             <summary>
             스캔 헤드2 에 설정된 X,Y, Angle(°) 오프셋
+            <para>Scan Head2 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head3Offset">
             <summary>
             스캔 헤드3 에 설정된 X,Y, Angle(°) 오프셋
+            <para>Scan Head3 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Head4Offset">
             <summary>
             스캔 헤드4 에 설정된 X,Y, Angle(°) 오프셋
+            <para>Scan Head4 Offset</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Trajectory">
             <summary>
             Mark/Geometry 정보
+            <para>Trajectory</para> 
             <para>
             get : 복사본 객체가 리턴됨
             set : 객체가 복사되어 설정됨
@@ -20508,6 +20608,7 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.Dynamics">
             <summary>
             Dynamics 정보
+            <para>Dynamics</para> 
             <para>
             get : 복사본 객체가 리턴됨
             set : 객체가 복사되어 설정됨
@@ -20517,32 +20618,38 @@
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.OpStatus">
             <summary>
             SyncAxis 인스턴스의 내부 Operation Status 상태값
+            <para>Operation Status</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.MotionMode">
             <summary>
             모션 제어 모드
+            <para>Motion Mode</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.MotionType">
             <summary>
             모션 오퍼레이션 타입
+            <para>Motion Type</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.TargetStage">
             <summary>
             대상 스테이지
+            <para>Target Stage</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveSpeed">
             <summary>
             Stage 이동시 사용할 속도 (초기값 : 10mm/s)
+            <para>Stage Moving Speed</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageMoveTimeOut">
             <summary>
             Stage 이동시 적용될 시간 제한값 
             <para>초기값: 10sec</para>
+            <para>Stage Moving Timeout</para> 
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.BandWidth">
@@ -20554,16 +20661,19 @@
             낮은값 : 스캐너 쪽에 작업 부하를 상승
             (초기값 : XML 설정 파일에 있는 값)
             </para>
+            <para>Lower than 0.23 are not allowed. Otherwise, the return value indicates that Bit #06 is set (UnplausibleOrUnknownParameter). Typical values are between 1…3 Hz, depending on the scan head working field and the dynamic range of the positioning stage. </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.IsSimulationMode">
             <summary>
             시뮬레이션 모드 활성화 여부
+            <para>Simulation Mode Flag</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.SimulationFileName">
             <summary>
             시뮬레이션 모드일때 현재 작업(Job Id) 결과가 저장되는 파일 이름
+            <para>Simulation Output File</para>
             <para>
             저장 경로는 xml 파일에서 설정
             <c>[BaseDirectoryPath]/Logs/</c>
@@ -20572,35 +20682,45 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeuristicIndex">
             <summary>
-            XML 설정파일에 설정된 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호
+            Heuristic Index
+            <para>XML 설정파일에 설정된 DynamicReductionFunction 항목의 휴리스틱 사용 인덱스 번호 (시작번호: 0~ ...)</para>
+            <para>
+            Determines the spatial extent of each Segment = distance between starting point and end point(exception: diameter of the circle with circular Segments ([*] arc[*], [*] circle[*]) which sweep more than a semicircle).
+            Checks the characteristic(= DynamicReductionFunction) if there is a corresponding Velocity value for the result from(1) (= Length value).
+            Only if the Velocity value from(2) is smaller than the original marking speed: the Heuristic reduces the marking speed of the Segment to this Velocity value.
+            </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.StageCounts">
             <summary>
             XML 에 설정되어 있는 스테이지의 개수
+            <para>Stage Count(s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcSyncAxis.HeadCounts">
             <summary>
             XML 에 설정되어 있는 스캔 헤드 개수
+            <para>Scan Head Count(s)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.Initialize(System.String)">
             <summary>
             syncAXIS 인스턴스 초기화
+            <para>Initialize syncAXIS Instance</para>
             </summary>
             <param name="configXMLFile">syncAxis 설정 XML 파일</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlBandWidth(System.Single)">
             <summary>
-            LPF(Low Pass Filter) 주파수를 설정한다 (Hz)
+            LPF(Low Pass Filter) 주파수(Hz) 설정
             <para>
             스캐너 + 스테이지 모션 타입 사용시 적용됨
-            높은값 : 스테이지쪽에 작업 부하를 상승
-            낮은값 : 스캐너 쪽에 작업 부하를 상승
+            높은값 : 스테이지쪽에 작업 부하 상승
+            낮은값 : 스캐너 쪽에 작업 부하 상승
             (xml 설정 파일에 저장 되지 않음)
             </para>
+            <para>Lower than 0.23 are not allowed. Otherwise, the return value indicates that Bit #06 is set (UnplausibleOrUnknownParameter). Typical values are between 1…3 Hz, depending on the scan head working field and the dynamic range of the positioning stage. </para>
             </summary>
             <param name="filterBandWidth">LPF값 (Hz)</param>
             <returns></returns>
@@ -20608,6 +20728,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSimulationMode(System.Boolean)">
             <summary>
             시뮬레이션 모드/하드웨어 모드 설정
+            <para>Simulation/Hardware Mode</para>
             </summary>
             <param name="enable">시뮬레이션 모드 온/오프</param>
             <returns></returns>
@@ -20615,30 +20736,36 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectHeuristic(System.UInt32)">
             <summary>
             휴리스틱 변경하기
+            <para>Heuristic Index</para>
             <para>
+            스캐너 + 스테이지 모션 타입 사용시 적용됨
             XML 설정파일의 DynamicReductionFunction 항목 사용
+            (xml 설정 파일에 저장 되지 않음)
             </para>
             </summary>
-            <param name="heuristicIndex"> 휴리스틱 사용 인덱스 번호</param>
+            <param name="heuristicIndex"> 휴리스틱 사용 인덱스 번호 (시작 번호: 0)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMotionMode(SpiralLab.Sirius.MotionMode)">
             <summary>
             Follow/UnFollow 모드 전환
+            <para>Motion Mode</para>
             </summary>
-            <param name="motionMode"></param>
+            <param name="motionMode">Follow/UnFollow</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMotionType(SpiralLab.Sirius.MotionType)">
             <summary>
             모션 타입 (스캐너, 스테이지 혼용 여부)
+            <para>Motion Type</para>
             </summary>
-            <param name="mt"></param>
+            <param name="mt">Scanner/Stage</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSelectStage(SpiralLab.Sirius.Stage,SpiralLab.Sirius.CorrectionTableIndex)">
             <summary>
             대상 스테이지 변경및 스캐너 보정 테이블 선택
+            <para>Select Stage and Correction Table</para>
             </summary>
             <param name="stage">스테이지 번호 (1,2,3,4)</param>
             <param name="tableIndex">보정 테이블 (1,2,3,4) </param>
@@ -20647,6 +20774,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetScannerPosition(System.Numerics.Vector2)">
             <summary>
             스캐너 혹은 스테이지 이동
+            <para>Move Scanner Position</para>
             <para>
             (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
             </para>
@@ -20656,9 +20784,10 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetStagePosition(System.Numerics.Vector2)">
             <summary>
-            스캐너 혹은 스테이지 이동
+            스테이지 이동
+            <para>Move Stage Position</para>
             <para>
-            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
+            StageMoveSpeed 속도 및 StageMoveTimeOut 값이 사용됨
             </para>
             </summary>
             <param name="vPosition">X,Y 위치 (mm)</param>        
@@ -20666,10 +20795,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetScannerPosition(System.Single,System.Single)">
             <summary>
-            스캐너 혹은 스테이지 이동
-            <para>
-            (스테이지 이동일 경우 StageMoveSpeed / StageMoveTimeOut 값이 사용됨)
-            </para>
+            스캐너 이동
+            <para>Move Scanner Position</para>
             </summary>
             <param name="x">X 위치 (mm)</param>
             <param name="y">Y 위치 (mm) </param>
@@ -20678,6 +20805,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetStagePosition(System.Single,System.Single)">
             <summary>
             스테이지 이동
+            <para>Move Stage Position</para>
             <para>
             멀티 스테이지 사용시 CtlSelectStage 를 사전에 호출할 것
             StageMoveSpeed / StageMoveTimeOut 값이 사용됨
@@ -20690,6 +20818,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetScannerPosition(SpiralLab.Sirius.ScanDevice,System.Single@,System.Single@)">
             <summary>
             스캐너의 실제 위치
+            <para>Get Acutal Scanner Position</para>
             </summary>
             <param name="scanDevice">스캔헤드</param>
             <param name="x">mm</param>
@@ -20699,6 +20828,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetStagePosition(System.Single@,System.Single@)">
             <summary>
             스테이지의 실제 위치
+            <para>Get Actual Stage Position</para>
             </summary>
             <param name="x">mm</param>
             <param name="y">mm</param>
@@ -20707,6 +20837,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetStagePosition(System.Numerics.Vector2@)">
             <summary>
             스테이지의 실제 위치
+            <para>Get Actual Stage Position</para>
             </summary>
             <param name="position">mm, mm</param>
             <returns></returns>
@@ -20714,6 +20845,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
             <summary>
             멀티 헤드 사용시 개별 헤드에 대한 오프셋, 회전 처리
+            <para>Scan Head Offset (For Multiple Heads)</para>
             </summary>
             <param name="scanDevice">ScanDevice 열거형</param>
             <param name="offset">dx, dy 이동량 (mm)</param>
@@ -20723,6 +20855,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
             <summary>
             멀티 헤드 오프셋 적용
+            <para>Scan Head Offset (For Multiple Heads)</para>
             </summary>
             <param name="scanDevice">멀티헤드번호</param>
             <param name="dx">오프셋 X (mm)</param>
@@ -20733,6 +20866,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Double)">
             <summary>
             Contour Dependent Speed Direction Control 사용 유무
+            <para>Contour Dependent Speed Direction Control</para>
             </summary>
             <param name="direction">방향</param>
             <param name="spotRadius">반지름 크기 (mm)</param>
@@ -20740,14 +20874,16 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetDynamicsConfig(SpiralLab.Sirius.Dynamics)">
             <summary>
-            Calculation Dynamics 정보 설정 하기
+            Calculation Dynamics 정보 설정
+            <para>Calculation Dynamics</para>
             </summary>
             <param name="dynamics"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetTrajectory(SpiralLab.Sirius.Trajectory)">
             <summary>
-            Trajectory 설정 하기
+            Trajectory 정보 설정
+            <para>Trajectory</para>
             </summary>
             <param name="trajectory"></param>
             <returns></returns>
@@ -20755,6 +20891,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetJumpCalculationDynamics(System.Single@,System.Single@)">
             <summary>
             스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 
+            <para>Get Jump Calculation Dynamic</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
@@ -20763,6 +20900,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetJumpCalculationDynamics(System.Single,System.Single)">
             <summary>
             스캔 장치 점프시 각가속도, 각가가속도 계산 역학값 변경
+            <para>Set Jump Calculation Dynamic</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
@@ -20771,6 +20909,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetMarkCalculationDynamics(System.Single@,System.Single@)">
             <summary>
             스캔 장치 마크시 각가속도, 각가가속도 계산 역학값
+            <para>Get Mark Calculation Dynamic</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
@@ -20779,6 +20918,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlSetMarkCalculationDynamics(System.Single,System.Single)">
             <summary>
             스캔 장치 마크시 각가속도, 각가가속도 계산 역학값 변경
+            <para>Set Mark Calculation Dynamic</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
@@ -20787,6 +20927,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlGetInternalErrMsg(System.Collections.Generic.List{System.ValueTuple{System.UInt64,System.String}}@)">
             <summary>
             syncAXIS 인스턴스에서 제공하는 에러 개수및 목록
+            <para>Get errors at syncAXIS Instance</para>
             </summary>
             <param name="errors">(에러코드, 에러메시지) 튜플 리스트</param>
             <returns>에러 메시지를 모두 합쳐 제공</returns>
@@ -20794,13 +20935,14 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
             <summary>
             리스트 명령 시작 - 버퍼 준비
+            <para>List Begin</para>
             <para>
             syncAxis 는 버퍼 처리 방식이 다르므로 IRtc 인터페이스의 ListBegin 를 사용하지 않고, 전용의 ListBegin 을 지원한다
-            <para>
             내부적으로는 slsc_ListHandlingMode_RepeatWhileBufferFull 방식으로 고정된다.
+            </para>
+            <para>
             주의사항 : 버퍼가 고갈되지 않도록 지속적으로 리스트 명령을 삽입해야 주어야 한다. 그렇지 않으면 버퍼 고갈(buffer underrun) 이 발생된다.
             때문에 리스트 데이타를 넣는 동안 디버깅(디버깅 중지로 인한 가공 공급 중단과 같이) 을 병행 할때는 매우 주의해야 한다
-            </para>
             </para>
             </summary>
             <param name="laser">ILaser 인터페이스</param>
@@ -20810,13 +20952,15 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListSpeedMinMark(System.Single)">
             <summary>
             리스트 명령 - 최소 마크 속도
+            <para>Min. Mark Speed</para>
             </summary>
             <param name="mark">최소 마크 속도 (mm/s)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListApproxBlendLimit(System.Single)">
             <summary>
-            모션 블랜딩 반지름 근사값
+            리스트 명령 - 모션 블랜딩 반지름 근사값
+            <para>Approx. Blend Limit</para>
             <para>
             Maximum tolerable mathematical distance of the blending curve to the corner point. 
             </para>
@@ -20826,7 +20970,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListContourDependentSpeed(SpiralLab.Sirius.ContourDependentSpeedDirection,System.Single)">
             <summary>
-            윤곽 의존 속도 계산 사용 
+            리스트 명령 - 윤곽 의존 속도 계산 사용 
+            <para>Contour Dependent Speed Calculation</para>
             <para>
             Contour-dependent speed calculation 사용유무
             </para>
@@ -20837,7 +20982,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListSpotDistanceControl(System.Boolean,System.Single)">
             <summary>
-            Spot Distance Control 비활성화 유무
+            리스트 명령 - Spot Distance Control 비활성화 유무
+            <para>Spot Distance Control</para>
             </summary>
             <param name="supress">활성화 경우 (“Automatic Laser Control“ is active with SpotDistance as an “ActiveChannel”) </param>
             <param name="timeDelay"></param>
@@ -20846,6 +20992,7 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListAlcBegin(System.Single)">
             <summary>
             리스트 명령 - ALC(Automatic Laser Control) Linear Ramp 활성화 
+            <para>Start ALC(Automatic Laser Control) Linear Ramp</para>
             </summary>
             <param name="startingRamp">Ramp 비율값</param>
             <returns></returns>
@@ -20853,12 +21000,14 @@
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListAlcEnd">
             <summary>
             리스트 명령 - ALC(Automatic Laser Control) Linear Ramp 비활성화
+            <para>End ALC(Automatic Laser Control) Linear Ramp</para>
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListJumpCalculationDynamics(System.Single,System.Single)">
             <summary>
-            현재 대상 작업(JOB)에 스캔 장치 점프시 각가속도, 각가가속도 역학 제한값 변경
+            리스트 명령 - 현재 대상 작업(JOB)에 스캔 장치 점프시 각가속도, 각가가속도 역학 제한값 변경
+            <para>Set Jump Calculation Dynamics</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
@@ -20866,7 +21015,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListMarkCalculationDynamics(System.Single,System.Single)">
             <summary>
-            현재 대상 작업(JOB)에 스캔 장치 마크시 각가속도, 각가가속도 역학 제한값
+            리스트 명령 - 현재 대상 작업(JOB)에 스캔 장치 마크시 각가속도, 각가가속도 역학 제한값
+            <para>Set Mark Calculation Dynamics</para>
             </summary>
             <param name="angularAcc">excelliSCAN14: 1.1314e5, excelliSCAN20: 5.6e4</param>
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
