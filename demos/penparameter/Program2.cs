@@ -132,8 +132,8 @@ namespace SpiralLab.Sirius
             layer.Regen();
             // 문서에 레이어 추가
             doc.Layers.Add(layer);
+            doc.Layers.Active = layer;
 
-    
             // 문서를 지정된 파일에 저장
             DocumentSerializer.Save(doc, "test.sirius");
             #endregion

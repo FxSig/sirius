@@ -139,7 +139,7 @@ namespace SpiralLab.Sirius
             // add layer into document
             // 문서에 레이어 추가
             doc.Layers.Add(layer);
-
+            doc.Layers.Active = layer;
             // save document
             // 문서를 지정된 파일에 저장
             var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.sirius");

@@ -61,6 +61,7 @@ namespace SpiralLab.Sirius
             layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
             // 레이어를 문서에 추가
             doc1.Layers.Add(layer);
+            doc1.Layers.Active = layer;
             #endregion
 
             Console.WriteLine("press any key to save ...");

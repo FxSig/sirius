@@ -17223,40 +17223,47 @@
         </member>
         <member name="T:SpiralLab.Sirius.SiriusEditorForm">
             <summary>
+            SiriusEditorForm 사용자 컨트롤
+            <para>
             가공 데이타 (Document)를 화면에 출력및 사용자의 이벤트에 의해 데이타를 변경하는 등의 에디터및 뷰어 기능을 수행
             .NET Framework 의 WinForm 을 기반으로 하고 있으며, 사용자 정의 컨트롤로 제공되어진다.
             이 dll 은 사용자 정의 컨트롤로 제작되어 있으므로 이을 사용하기 위해서는 Visual Studio 의 도구상자에 등록한다.
             등록 방법 : 도구상자 -> 마우스 오른쪽 버튼 -> 항목선택 -> .NET FRAMEWORK 구성요소 -> 찾아보기 -> 해당 .dll 파일 선택 -> SiriusEditorForm 이 등록됨
+            </para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentSourceChanged">
             <summary>
-            문서(Document) 가 변경되었을때 발생하는 이벤트
+            문서(Document)가 변경되었을때 발생하는 이벤트
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentNew">
             <summary>
             문서(Document)를 신규로 생성할때 발생하는 이벤트
-            Document.Action.ActNew() 가 호출되어야 함
+            <para>Document.Action.ActNew() 가 호출되어야 함</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentOpen">
             <summary>
             문서(Document)가 로드될때 발생하는 이벤트
-            DocumentSerializer.OpenSirius(파일이름) 으로 불러들인후 Document 에 문서객체를 설정
+            <para>DocumentSerializer.OpenSirius(파일이름) 으로 불러들인후 Document 에 문서객체를 설정</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentSave">
             <summary>
             문서(Document)가 저장될때 발생하는 이벤트
+            <para>
             미리 지정된 파일이름(FileName)에 덮어쓰기 저장됨
             Document.Action.ActSave(파일이름) 가 호출되어야 함
+            </para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentSaveAs">
             문서(Document)가 다른이름으로 저장될때 발생하는 이벤트
+            <para>
             Document.Action.ActSave(파일이름) 가 호출되어야 함
             파일이름(FileName ) 속성 변경이 호출되어야 함
+            </para>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnDocumentPenNew">
             <summary>
@@ -17271,7 +17278,7 @@
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnMarker">
             <summary>
             문서(Document)에서 Marker 팝업 창을 띄울때 발생하는 이벤트
-            미 등록시 자체 Marker Form 이 팝업됨
+            <para>미 등록시 자체 Marker Form 이 팝업됨</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SiriusEditorForm.OnLaser">
@@ -17339,6 +17346,11 @@
             상태바에 출력되는 작업 파일이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.LabelMessage">
+            <summary>
+            녹색 레이블 객체 (사용자 텍스트 출력용)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.View">
             <summary>
             뷰 객체
@@ -17371,54 +17383,55 @@
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.Motors">
             <summary>
-            모터 집합을 제어하기 위한 객체
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Input">
-            <summary>
-            RTC Pin2 포트 2입력
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Output">
-            <summary>
-            RTC Pin2 포트 2출력
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Input">
-            <summary>
-            RTC 확장1 포트 16입력
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Output">
-            <summary>
-            RTC 확장1 포트 16출력
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension2Output">
-            <summary>
-            RTC 확장2 포트 8출력
+            모터 집합 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.PowerMeter">
             <summary>
-            파워메터
+            파워메터 객체
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.PowerMap">
             <summary>
-            파워맵
+            파워맵 객체
             </summary>
             
         </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Input">
+            <summary>
+            RTC Pin2 포트 디지털 2핀 입력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcPin2Output">
+            <summary>
+            RTC Pin2 포트 디지털 2핀 출력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Input">
+            <summary>
+            RTC 확장1 포트 디지털 16입력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension1Output">
+            <summary>
+            RTC 확장1 포트 디지털 16출력
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SiriusEditorForm.RtcExtension2Output">
+            <summary>
+            RTC 확장2 포트 디지털 8출력
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.HidePropertyGrid">
             <summary>
-            오른쪽 속성창 보여주기 여부
+            오른쪽 속성창(PropertyGrid) 보여주기 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusEditorForm.EnablePens">
             <summary>
-            True : 펜집합 사용
-            False : 개별 펜 사용
+            펜 집합 사용여부
+            <para>True: 펜 집합 사용 (기본값)</para>
+            <para>False: 개별 펜 사용 (구 버전 호환용)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.#ctor">
@@ -17433,40 +17446,29 @@
             <param name="doc"></param>
             <param name="list"></param>
         </member>
-        <member name="M:SpiralLab.Sirius.SiriusEditorForm.trvEntity_AfterSelect(System.Object,System.Windows.Forms.TreeViewEventArgs)">
-            <summary>
-            트리뷰에서 엔티티 선택시
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnNew">
             <summary>
             문서를 신규로 생성시 호출되는 내부 함수
-            OnDocumentNew 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
-            반드시 OnNew를 호출해 주어야 한다
+            <para>OnDocumentNew 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업 후 반드시 OnNew를 호출해 주어야 한다</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnOpen(System.String)">
             <summary>
-            OnDocumentOpen 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
-            반드시 OnOpen 호출해 주어야 한다
+            OnDocumentOpen 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업 후 반드시 OnOpen 호출해 주어야 한다
             </summary>
             <param name="fileName">파일 이름</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnSave(System.String)">
             <summary>
-            OnDocumentSave 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
-            반드시 OnSave 호출해 주어야 한다
+            OnDocumentSave 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업 후 반드시 OnSave 호출해 주어야 한다
             </summary>
             <param name="fileName">파일 이름</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.SiriusEditorForm.OnSaveAs(System.String)">
             <summary>
-            OnDocumentSaveAs 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업후
-            반드시 OnSaveAs 호출해 주어야 한다
+            OnDocumentSaveAs 이벤트 핸들러 사용시 사용자의 이벤트 함수내에서 특정 작업 후 반드시 OnSaveAs 호출해 주어야 한다
             </summary>
             <param name="fileName">파일 이름</param>
             <returns></returns>
@@ -17504,10 +17506,13 @@
         </member>
         <member name="T:SpiralLab.Sirius.SiriusViewerForm">
             <summary>
-            가공 데이타 (Document)를 화면에 출력하는 뷰어 기능 (편집 불가)
+            SiriusViewerForm 사용자 컨트롤
+            <para>
             .NET Framework 의 WinForm 을 기반으로 하고 있으며, 사용자 정의 컨트롤로 제공되어진다.
+            가공 데이타 (Document)를 화면에 출력하는 뷰어 기능 (편집 불가)
             이 dll 은 사용자 정의 컨트롤로 제작되어 있으므로 이을 사용하기 위해서는 Visual Studio 의 도구상자에 등록한다.
             등록 방법 : 도구상자 -> 마우스 오른쪽 버튼 -> 항목선택 -> .NET FRAMEWORK 구성요소 -> 찾아보기 -> 해당 .dll 파일 선택 -> SiriusViewerForm 이 등록됨
+            </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.Index">
@@ -17532,17 +17537,17 @@
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.LabelMessage">
             <summary>
-            좌상단 레이블
+            녹색 레이블 객체 (사용자 텍스트 출력용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.LabelMessage2">
             <summary>
-            좌상단 레이블2
+            녹색 레이블 객체 2 (사용자 텍스트 2 출력용)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.ProcessingTime">
             <summary>
-            가공 소요 시간  (sec)
+            가공 소요 시간 (sec)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SiriusViewerForm.View">

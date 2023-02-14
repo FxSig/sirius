@@ -85,6 +85,19 @@ namespace SpiralLab.Sirius
                     arg.ViewTargets.Add(Editor.View);
                     if (null != Viewer)
                         arg.ViewTargets.Add(Viewer.View);
+
+                    if (this.Marker!= null && this.Marker.MarkerArg != null)
+                    {
+                        arg.RtcListType = this.Marker.MarkerArg.RtcListType;
+                        arg.IsGuided = this.Marker.MarkerArg.IsGuided;
+                        arg.IsExternalStart = this.Marker.MarkerArg.IsExternalStart;
+                        arg.IsJumpToOriginAfterFinished = this.Marker.MarkerArg.IsJumpToOriginAfterFinished;
+                        arg.IsEnablePens = this.Marker.MarkerArg.IsEnablePens;
+                        arg.IsVerifyScannerPowerFault = this.Marker.MarkerArg.IsVerifyScannerPowerFault;
+                        arg.IsRegisteringFonts = this.Marker.MarkerArg.IsRegisteringFonts;
+                        arg.IsMeasurementToPolt = this.Marker.MarkerArg.IsMeasurementToPolt;
+                        arg.MeasurementPlotProgram = this.Marker.MarkerArg.MeasurementPlotProgram;
+                    }
                     this.Marker.Ready(arg);
                     this.timer1.Enabled = true;
                 }

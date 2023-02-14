@@ -24,7 +24,6 @@
 
 using System;
 using System.Windows.Forms;
-using SharpGL;
 using System.Text;
 using System.IO;
 using System.Collections.Generic;
@@ -37,6 +36,7 @@ using System.Numerics;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
+using SharpGL;
 
 namespace SpiralLab.Sirius
 {
@@ -109,7 +109,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 모터 창을 띄울때 발생하는 이벤트
         /// </summary>
-        public event EventHandler OnMotor;
+        public virtual event EventHandler OnMotor;
         /// <summary>
         /// 문서(Document)에서 파워측정(PowerMeter)창을 띄울때 발생하는 이벤트
         /// </summary>
@@ -407,13 +407,13 @@ namespace SpiralLab.Sirius
                 {
                     //지원되지 않는 기능에 대해 객체 속성을 가린다
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "IsSkyWritingEnabled", false);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", false); 
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "SkyWritingMode", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOnShift", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "TimeLag", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "AngularLimit", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "MinMarkSpeed", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", false);
-                    
+
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelShape", false);
 
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
@@ -427,7 +427,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "MotionType", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "BandWidth", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsStageAutoCenter", false);
-                    
+
 
                     btnRaster.Enabled = true;
                     btnImage.Enabled = true;
@@ -502,7 +502,6 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserOffDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserFpk", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "LaserQSwitchDelay", false);
-                    
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerJumpDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerMarkDelay", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ScannerPolygonDelay", false);
@@ -625,6 +624,7 @@ namespace SpiralLab.Sirius
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZIsPositionCheck", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", true);
                 }
@@ -632,6 +632,7 @@ namespace SpiralLab.Sirius
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZIsPositionCheck", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
                 }
@@ -752,9 +753,9 @@ namespace SpiralLab.Sirius
             }
 
             //지원되지 않는 기능에 대해 객체 속성을 가린다
-            //기본 false, MotorZ 지정시 보여주도록
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsZEnabled", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZMode", false);
+            UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZIsPositionCheck", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPosition", false);
             UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "ZPositionVel", false);
         }

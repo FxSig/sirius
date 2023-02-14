@@ -15,72 +15,65 @@
  *             `---'.|    '---'   |   |.'    `--''                              `--''          |   | ,'    
  *               `---`            `---'                                                        `----'   
  * 
+ *
+ * 지금까지 소개한 
+ * 1. 가공 데이타 (Document)
+ * 2. 레이저 소스 (Laser)
+ * 3. 벡터 가공 장치 (Rtc) 
+ * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
  * 
- * IRtc 인터페이스를 직접 사용하는 방법 (How to use IRtc interface)
- * RTC5 카드를 초기화 하고 원, 사각형, 도트 원 을 그린다 (Initialize RTC card and Draw Circle/Rectangle/Dotted Circle ...)
+ * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로
+ *  상태 (IsReady, IsBusy, IsError)및 오프셋 가공 (List<Offset>)을 처리할수있다.
+ *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
+ *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
+ *  
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
+
 using System;
 using System.Diagnostics;
 using System.IO;
-using System.Numerics;
-using System.Threading;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
-        static Stopwatch timer;
-
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-            //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
-            //log configuration file: working directory\logs\NLogSpiralLab.config
-            //로그 파일 설정은 작업 디렉토리\logs\NLogSpiralLab.config 파일이 사용됨
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
             //create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
-
-            //create Rtc5 controller (RTC5 카드)
+            //create Rtc5 controller
             var rtc = new Rtc5(0);
-            rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
-            rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
-
-            //create Rtc6 controller (RTC6 카드)
+            //create Rtc6 controller
             //var rtc = new Rtc6(0); 
-            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
-            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
-
-            //create Rtc6 Ethernet (RTC6e 카드)
+            //Rtc6 Ethernet
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
-            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
-            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;
-            // k factor (bits/mm) = 2^20 / fov (2^16 if RTC4)
-            float kfactor = (float)Math.Pow(2, 20) / fov; 
+            // k factor (bits/mm) = 2^20 / fov
+            float kfactor = (float)Math.Pow(2, 20) / fov;
             // full path of correction file
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5"); //"cor_1to1.ctb" if RTC4
-
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
             // initialize rtc controller
             rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
-            // default frequency and pulse width
+            // basic frequency and pulse width
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
-            // default speed
+            // basic sped
             // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
-            // default delays
+            // basic delays
             // scanner and laser delays (스캐너/레이저 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
@@ -111,315 +104,159 @@ namespace SpiralLab.Sirius
             laser.CtlPower(2);
             #endregion
 
+            #region create document/layer/and spiral entity 
+            // create document
+            // 문서 생성
+            var doc = new DocumentDefault("3x3 scanner field correction");
+            // create layer
+            // 레이어 생성
+            var layer = new Layer("default");
+            // create spiral entity
+            // 나선 개체 레이어에 추가
+            var spiral = new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true);
+            spiral.Color2 = System.Drawing.Color.White;
+
+            layer.Add(spiral);
+
+            // query white pen
+            // 펜 집합에서 흰색 펜 정보 변경
+            var pen = doc.Pens.ColorOf(System.Drawing.Color.White);
+            // 파라메터 값을 변경
+            // configure pen parameters
+            var penDefault = pen as PenDefault;
+            penDefault.Frequency = 100 * 1000; //주파수 Hz
+            penDefault.PulseWidth = 2; //펄스폭 usec
+            penDefault.LaserOnDelay = 0; // 레이저 시작 지연 usec
+            penDefault.LaserOffDelay = 0; // 레이저 끝 지연 usec
+            penDefault.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
+            penDefault.ScannerMarkDelay = 200; // 스캐너 마크 지연 usec
+            penDefault.ScannerPolygonDelay = 0; // 스캐너 폴리곤 지연 usec
+            penDefault.JumpSpeed = 500; // 스캐너 점프 속도 mm/s
+            penDefault.MarkSpeed = 500; // 스캐너 마크 속도 mm/s
+
+            // regen entities within layer
+            // 레이어의 모든 개채들 내부 데이타 계산및 갱신
+            layer.Regen();
+            // add layer into document
+            // 문서에 레이어 추가
+            doc.Layers.Add(layer);
+            doc.Layers.Active = layer;
+            // save document
+            // 문서 저장
+            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.sirius");
+            DocumentSerializer.Save(doc, filename);
+            #endregion
+
             ConsoleKeyInfo key;
             do
             {
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
-                Console.WriteLine($"----------------------------------------------------------------------------------------");
-                Console.WriteLine("'S' : get status");
-                Console.WriteLine("'L' : draw line");
-                Console.WriteLine("'C' : draw circle");
-                Console.WriteLine("'R' : draw rectangle");
-                Console.WriteLine("'D' : draw circle with dots");
-                Console.WriteLine("'P' : draw square area with pixel operation");
-                Console.WriteLine("'H' : draw heavy and slow job with thread");
-                Console.WriteLine("'A' : abort to mark and finish the thread");
-                Console.WriteLine("'F' : pop up laser source form");
-                Console.WriteLine("'Q' : quit");
-                Console.Write("Select your target : ");
-                key = Console.ReadKey(false);
                 Console.WriteLine($"{Environment.NewLine}");
+                Console.WriteLine("'M' : draw entities by marker");
+                Console.WriteLine("'O' : draw entities by marker with offsets");
+                Console.WriteLine("'Q' : quit");
+                Console.WriteLine($"{Environment.NewLine}");
+                Console.Write("select your target : ");
+                key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
+                Console.WriteLine($"{Environment.NewLine}");
                 switch (key.Key)
                 {
-                    case ConsoleKey.S:  //RTC's status (상태 확인)
-                        if (rtc.CtlGetStatus(RtcStatus.Busy))
-                            Console.WriteLine($"Rtc is busy!");
-                        if (!rtc.CtlGetStatus(RtcStatus.PowerOK))
-                            Console.WriteLine($"Scanner power is not ok");
-                        if (!rtc.CtlGetStatus(RtcStatus.PositionAckOK))
-                            Console.WriteLine($"Scanner position is not acked");
-                        if (!rtc.CtlGetStatus(RtcStatus.NoError))
-                            Console.WriteLine($"Rtc status has an error");                        
+                    case ConsoleKey.M:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DoMarkByMarker(doc, rtc, laser);
                         break;
-                    case ConsoleKey.L:  
-                        // draw line (선 모양 가공)
-                        DrawLine(laser, rtc, -10,-10, 10, 10);
-                        break;
-                    case ConsoleKey.C:  
-                        // draw circle (원 모양 가공)
-                        DrawCircle(laser, rtc, 10);
-                        break;
-                    case ConsoleKey.R:  
-                        // draw rectangle (사각형 모양 가공)
-                        DrawRectangle(laser, rtc, 10, 10);
-                        break;
-                    case ConsoleKey.D:  
-                        // draw dotted circle (점으로 이루어진 원 모양 가공)
-                        DrawCircleWithDots(laser, rtc, 10, 1.0f);
-                        break;
-                    case ConsoleKey.P:  
-                        // draw filled rectangle with raster (사각 영역을 픽셀(Raster)로 채우기
-                        DrawSquareAreaWithPixels(laser, rtc, 10, 0.2f);
-                        break;
-                    case ConsoleKey.H:  
-                        // draw with heavy works
-                        // 시간이 오래 걸리는 모양을 가공
-                        // 별도 가공 쓰레드 생성하여 처리
-                        DrawTooHeavyAndSlowJob(laser, rtc);
-                        break;
-                    case ConsoleKey.A:  
-                        // abort operation
-                        // 강제 가공 중지
-                        StopMarkAndReset(laser, rtc);
-                        break;
-                    case ConsoleKey.F:
-                        // popup winforms for control laser source
-                        // 레이저 소스 제어용 윈폼 팝업
-                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
-                        laerForm.ShowDialog();
+                    case ConsoleKey.O:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DrawByMarkerWithOffset(doc, rtc, laser);
                         break;
                 }
+
             } while (true);
-
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-            {
-                // abort marking operation
-                rtc.CtlAbort();
-                // wait until busy has finished
-                rtc.CtlBusyWait();
-            }
-
-            //wait for thread has finished
-            Program.thread?.Join();
-            Program.thread = null;
 
             rtc.Dispose();
             laser.Dispose();
         }
+        private static bool DoMarkByMarker(IDocument doc, IRtc rtc, ILaser laser)
+        {
+            if (rtc.CtlGetStatus(RtcStatus.Busy))
+                return false;
+            // create marker (has a internal worker thread)
+            // 마커 객체 생성 (내부 쓰레드에 의해 비동기 적으로 대량의 데이타를 가공 처리)
+            var marker = new MarkerDefault(0);            
+            marker.Name = "marker #1";
+            // register marker finish event handler
+            // 가공 완료 이벤트 핸들러 등록
+            marker.OnFinished += Marker_OnFinished;
 
-        /// <summary>
-        /// draw circle
-        /// </summary>
-        /// <param name="laser"></param>
-        /// <param name="rtc"></param>
-        /// <param name="radius"></param>
-        private static bool DrawCircle(ILaser laser, IRtc rtc, float radius)
-        {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return false;
-            Console.WriteLine("WARNING !!! LASER IS BUSY ... Draw Circle");
-            timer = Stopwatch.StartNew();
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            success &= rtc.ListJump(new Vector2(radius, 0));
-            success &= rtc.ListArc(new Vector2(0, 0), 360.0f);
-            success &= rtc.ListEnd();
-            if (success)
-                success &= rtc.ListExecute(true);
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
-            return success;
-        }
-        /// <summary>
-        /// draw line
-        /// </summary>
-        /// <param name="laser"></param>
-        /// <param name="rtc"></param>
-        /// <param name="x1"></param>
-        /// <param name="y1"></param>
-        /// <param name="x2"></param>
-        /// <param name="y2"></param>
-        private static bool DrawLine(ILaser laser, IRtc rtc, float x1, float y1, float x2, float y2)
-        {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return false;
-            Console.WriteLine("WARNING !!! LASER IS BUSY ... DrawLine");
-            timer = Stopwatch.StartNew();
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            success &= rtc.ListJump(new Vector2(x1, y1));
-            success &= rtc.ListMark(new Vector2(x2, y2));
-            success &= rtc.ListEnd();
-            if (success)
-                success &= rtc.ListExecute(true);
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
-            return success;
-        }
-        /// <summary>
-        /// draw rectangle
-        /// </summary>
-        /// <param name="laser"></param>
-        /// <param name="rtc"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        private static bool DrawRectangle(ILaser laser, IRtc rtc, float width, float height)
-        {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return false;
-            Console.WriteLine("WARNING !!! LASER IS BUSY ... DrawRectangle");
-            timer = Stopwatch.StartNew();
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            success &= rtc.ListJump(new Vector2(-width / 2, height / 2));
-            success &= rtc.ListMark(new Vector2(width / 2, height / 2));
-            success &= rtc.ListMark(new Vector2(width / 2, -height / 2));
-            success &= rtc.ListMark(new Vector2(-width / 2, -height / 2));
-            success &= rtc.ListMark(new Vector2(-width / 2, height / 2));
-            success &= rtc.ListEnd();
-            if (success)
-                success &= rtc.ListExecute(true);
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
-            return success;
-        }
-        /// <summary>
-        /// draw cicle with dots
-        /// </summary>
-        /// <param name="laser"></param>
-        /// <param name="rtc"></param>
-        /// <param name="radius"></param>
-        /// <param name="durationMsec"></param>
-        private static bool DrawCircleWithDots(ILaser laser, IRtc rtc, float radius, float durationMsec)
-        {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return false;
-            Console.WriteLine("WARNING !!! LASER IS BUSY ... DrawCircleWithDots");
-            timer = Stopwatch.StartNew();
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            for (float angle = 0; angle < 360; angle += 1)
+            var markerArg = new MarkerArgDefault()
             {
-                double x = radius * Math.Sin(angle * Math.PI / 180.0);
-                double y = radius * Math.Cos(angle * Math.PI / 180.0);
-                success &= rtc.ListJump(new Vector2((float)x, (float)y));
-                //laser signal on during specific time
-                //지정된 짧은 시간동안 레이저 출사
-                success &= rtc.ListLaserOn(durationMsec);
-                if (!success)
-                    break;
-            }
-            success &= rtc.ListEnd();
-            if (success)
-                success &= rtc.ListExecute(true);
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
-            return success;
-        }
-        /// <summary>
-        /// draw square area with pixels
-        /// </summary>
-        /// <param name="laser"></param>
-        /// <param name="rtc"></param>
-        /// <param name="length"></param>
-        /// <param name="gap"></param>
-        private static bool DrawSquareAreaWithPixels(ILaser laser, IRtc rtc, float length, float gap)
-        {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-                return false;
-            Console.WriteLine("WARNING !!! LASER IS BUSY ... DrawSquareAreaWithPixels");
-            timer = Stopwatch.StartNew();
-            // pixel operation 은 IRtcRaster 인터페이스에서 제공
-            var rtcRaster = rtc as IRtcRaster;
-            if (null == rtcRaster)
-                return false;
-            // pixel counts per line
-            uint counts = (uint)(length / gap);
-            //every 200 usec
-            float period = 200; 
-            // gap = distance from pixel to pixel
-            var delta = new Vector2(gap, 0); 
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+                IsEnablePens = true,
+            };
 
             bool success = true;
-            success &= rtc.ListBegin(laser);
-            for (int i = 0; i < counts; i++)
+            // prepare document for mark (cloned all data by internally)
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다
+            success &= marker.Ready(markerArg);
+            // start worker thread
+            // 가공을 시작한다
+            success &= marker.Start();
+            return success;
+        }
+        private static bool DrawByMarkerWithOffset(IDocument doc, IRtc rtc, ILaser laser)
+        {
+            if (rtc.CtlGetStatus(RtcStatus.Busy))
+                return false;
+            // create marker (has a internal worker thread)
+            // 마커 객체 생성 (내부 쓰레드에 의해 비동기 적으로 대량의 데이타를 가공 처리)
+            var marker = new MarkerDefault(0);
+            marker.Name = "marker #2";
+            // register marker finish event handler
+            //가공 완료 이벤트 핸들러 등록
+            marker.OnFinished += Marker_OnFinished;
+
+            var markerArg = new MarkerArgDefault()
             {
-                //jumtp to start position (줄의 시작위치로 점프)
-                success &= rtc.ListJump(new Vector2(0, i * gap));
-                // pixel period : 200us, intervael : gap, total pixel counts, output analog channel : analog 2
-                success &= rtcRaster.ListPixelLine(period, delta, counts, ExtensionChannel.ExtAO2);
-                // each pixels
-                for (int j = 0; j < counts; j++)
-                    success &= rtcRaster.ListPixel(50, 0.5f); // each pixel with 50usec, 5V
-                if (!success)
-                    break;
-            }
-            success &= rtc.ListEnd();
-            if (success)
-                success &= rtc.ListExecute(true);
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+                IsEnablePens = true,
+            };
+            // multiple 9 offsets 
+            // 9개의 오프셋 정보를 추가한다
+            markerArg.Offsets.Add(new Offset(-20.0f, 20.0f, -90f));
+            markerArg.Offsets.Add(new Offset(0.0f, 20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 20.0f, 90.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, 0.0f, -180.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, 0.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 0.0f, 180.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
+            bool success = true;
+            // prepare document for mark (cloned all data by internally)
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다
+            success &= marker.Ready(markerArg);
+            // start worker thread
+            // 가공을 시작한다
+            success &= marker.Start();
             return success;
         }
 
-        static Thread thread;
-        static ILaser laser;
-        static IRtc rtc;
-        private static void DrawTooHeavyAndSlowJob(ILaser laser, IRtc rtc)
+        /// <summary>
+        /// event has called when marker has finished 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="arg"></param>
+        private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
         {
-            if (rtc.CtlGetStatus(RtcStatus.Busy))
-            {
-                Console.WriteLine("Processing are working already !");
-                return;
-            }
-
-            Program.laser = laser;
-            Program.rtc = rtc;
-            //create worker thread
-            Program.thread = new Thread(DoHeavyWork); 
-            Program.thread.Start();
-        }
-        private static void DoHeavyWork()
-        {
-            bool success = true;
-            float width = 1;
-            float height = 1;
-
-            Console.WriteLine("WARNING !!! LASER IS BUSY... DoHeavyWork thread");
-            timer = Stopwatch.StartNew();
-            //auto list buffer handling (double buffered lists)
-            //대량의 데이타를 처리하기 위해 auto 리스트 버퍼 모드 사용
-            success &= rtc.ListBegin(laser, ListType.Auto); 
-            success &= rtc.ListJump(new Vector2(-width / 2, height / 2));
-            for (int i = 0; i < 1000 * 1000 * 10; i++)
-            {
-                //list commands = 4 * 1000*1000*10 = approx. 40M counts (약 4천 만개의 리스트 명령)
-                //warning!!! laser will be activated if buffer is enough to start (주의: 리스트 버퍼에 충분한 데이타가 쌓이면 자동 가공 시작됨)
-                success &= rtc.ListMark(new Vector2(width / 2, height / 2));
-                success &= rtc.ListMark(new Vector2(width / 2, -height / 2));
-                success &= rtc.ListMark(new Vector2(-width / 2, -height / 2));
-                success &= rtc.ListMark(new Vector2(-width / 2, height / 2));
-                if (!success)
-                    break;
-            }
-            if (success)
-            {
-                success &= rtc.ListEnd();
-                //wait until list commands has finished
-                success &= rtc.ListExecute(true);
-            }
-            if (success)
-                Console.WriteLine("Success to mark by DoHeavyWork thread");
-            else
-                Console.WriteLine("Fail to mark by DoHeavyWork thread !");
-            Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
-        }
-        private static void StopMarkAndReset(ILaser laser, IRtc rtc)
-        {
-            Console.WriteLine("Trying to abort ...");
-
-            //abort to mark
-            rtc.CtlAbort();
-
-            //wait for rtc busy off
-            rtc.CtlBusyWait();
-
-            //waiting to finish if thread has running ...
-            Program.thread?.Join();
-            Program.thread = null;
-
-            //reset rtc's status 
-            //Debug.Assert(rtc.CtlGetStatus(RtcStatus.Aborted));
-            rtc.CtlReset();
-            //Debug.Assert(rtc.CtlGetStatus(RtcStatus.NoError));
+            var span = arg.EndTime - arg.StartTime;
+            Console.WriteLine($"{Environment.NewLine}{sender.Name} finished. {span.TotalSeconds:F3} sec");
         }
     }
 }

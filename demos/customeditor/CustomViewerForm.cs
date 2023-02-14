@@ -31,8 +31,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SharpGL;
 using System.Diagnostics;
+using SharpGL;
 
 namespace SpiralLab.Sirius
 {
@@ -92,7 +92,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         public virtual float ProcessingTime
         {          
-            set { lblProcessingTime.Text = $"{value:F1} s"; ; }
+            set { lblProcessingTime.Text = $"{value:F1} s"; }
         }
         /// <summary>
         /// 뷰 객체
@@ -189,9 +189,7 @@ namespace SpiralLab.Sirius
         {
             if (null == this.view)
                 return;
-            var sw = Stopwatch.StartNew();
             this.view.OnDraw();
-            //lblRenderTime.Text = $"Render: {sw.ElapsedMilliseconds} ms";            
         }
         public override void Refresh()
         {
