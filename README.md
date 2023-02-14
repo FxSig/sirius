@@ -132,8 +132,11 @@
 
 **5. Version history**
 
-* 2023.2.13 v.129
+* 2023.2.14 v.129
   - added) support 8 measurement channels at RTC6
+  - added) syncaxis 
+     - job history at marker form
+     - list arc bug	 
 
 * 2023.1.25 v1.128
   - migrated) SCANLAB syncaxis v1.8 
