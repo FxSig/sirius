@@ -21,9 +21,9 @@
  * 1. please copy dll files into working directory (absolute path of  ~\bin\)
  * 
  * copy C:\Program Files (x86)\ACS Motion Control\SPiiPlus Runtime Kit\Redist\x64\ to ~\bin\
- * copy syncAxis-1.8.0\RTC6\ProgramFiles\ to  ~\bin\
- * copy syncAxis-1.8.0\syncAXIS_control\bin64\dll\ to ~\bin\
- * copy syncAxis-1.8.0\syncAXIS_control\bin64\Wrapper\C#\ to ~\bin\
+ * copy syncAxis-1.8.1\RTC6\ProgramFiles\ to  ~\bin\
+ * copy syncAxis-1.8.1\syncAXIS_control\bin64\dll\ to ~\bin\
+ * copy syncAxis-1.8.1\syncAXIS_control\bin64\Wrapper\C#\ to ~\bin\
  * 
  * 2. xml configuration file
  *  general configuration
@@ -113,7 +113,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'U' : unfollowing mode");
                 Console.WriteLine("'V' : syncaxis viewer with simulation result");
                 Console.WriteLine("'C' : job characteristic");
-                Console.WriteLine("'O' : move to origin position (scanner and stage");
+                Console.WriteLine("'O' : move to origin position (scanner and stage)");
                 Console.WriteLine("'F1' : draw square 2D with scanner only");
                 Console.WriteLine("'F2' : draw square 2D with stage only");
                 Console.WriteLine("'F3' : draw square 2D with scanner and stage");

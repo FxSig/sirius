@@ -1,7 +1,7 @@
 *******************************************************************************
 File: ReleaseNotes.txt
 
-SCANLAB syncAXIS Configurator Software Package Version 1.8.0
+SCANLAB syncAXIS Configurator Software Package Version 1.8.1
 
 *******************************************************************************
 

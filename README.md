@@ -132,6 +132,10 @@
 
 **5. Version history**
 
+* 2023.2.17 v1.130
+  - updated) SCANLAB syncaxis v1.8.1
+     - fixed) invalid secondary head option check 
+
 * 2023.2.14 v.129
   - added) support 8 measurement channels at RTC6
   - added) syncaxis 
