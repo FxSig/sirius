@@ -22,9 +22,9 @@
  * 1. please copy dll files into working directory (absolute path of  ~\bin\)
  * 
  * copy C:\Program Files (x86)\ACS Motion Control\SPiiPlus Runtime Kit\Redist\x64 to ~\bin\
- * copy syncAxis-1.8.1\RTC6\ProgramFiles to  ~\bin\
- * copy syncAxis-1.8.1\syncAXIS_control\bin64\dll to ~\bin\
- * copy syncAxis-1.8.1\syncAXIS_control\bin64\Wrapper\C# to ~\bin\
+ * copy syncAxis-1.8.0\RTC6\ProgramFiles to  ~\bin\
+ * copy syncAxis-1.8.0\syncAXIS_control\bin64\dll to ~\bin\
+ * copy syncAxis-1.8.0\syncAXIS_control\bin64\Wrapper\C# to ~\bin\
  * 
  * 2. xml configuration file
  *  general configuration
@@ -127,6 +127,11 @@ namespace SpiralLab.Sirius
             bool success = true;
             var rtc = new Rtc6SyncAxis();
             rtc.Name = "SyncAxis";
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            // assign k-factor for scanner field correction
+            rtc.KFactor = (float)Math.Pow(2, 20) / fov;
             success &= rtc.Initialize(xmlConfigFileName); // initialized by xml config file
             success &= rtc.CtlFrequency(50 * 1000, 2); // laser frequency : 50KHz, pulse width : 2usec
             success &= rtc.CtlSpeed(100, 100); // default scanner jump and mark speed : 100mm/s

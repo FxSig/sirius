@@ -60,7 +60,13 @@ namespace SpiralLab.Sirius
 
             #region initialize RTC 
             // create syncAxis instance
-            var rtc = new Rtc6SyncAxis(); 
+            var rtc = new Rtc6SyncAxis();
+            // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
+            float fov = 60.0f;
+            // k factor (bits/mm) = 2^20 / fov
+            // assign k-factor for scanner field correction
+            rtc.KFactor = (float)Math.Pow(2, 20) / fov;
+
             // config xml file
             string configXmlFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "syncAXISConfig.xml");
             // try to initialize
