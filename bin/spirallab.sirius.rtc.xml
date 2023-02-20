@@ -693,7 +693,13 @@
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.Name">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.LaserType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.MaxPowerWatt">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.Serial">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.IsReady">
@@ -916,64 +922,43 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsShutterOpen">
             <summary>
@@ -1086,69 +1071,46 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsShutterOpen">
-            <summary>
-            셔터(Shutter) 상태
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.StatusByte1.Value">
             <summary>
@@ -1312,64 +1274,52 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPN.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPN.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPN.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPN.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.DeviceStatus.Value">
             <summary>
@@ -1909,74 +1859,55 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsShutterOpen">
-            <summary>
-            Shutter 온오프
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsGuideOn">
-            <summary>
-            가이드 빔(Guide) On/Off 상태
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.IsDiodeOn">
             <summary>
@@ -2167,64 +2098,52 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="F:SpiralLab.Sirius.IPGYLPULPN.DeviceStatus.Bit.EmissionOn">
             <summary>
@@ -2484,34 +2403,28 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsError">
             <summary>
@@ -2519,14 +2432,16 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsShutterControl">
             <summary>
@@ -2535,14 +2450,10 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.IsSeedShutterOpen">
             <summary>
@@ -2776,64 +2687,54 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.StatusCodes">
             <summary>
             8개의 시스템 상태 이력 (첫번째가 가장 최근 이력)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerMap">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.IsTimedOut">
             <summary>
@@ -2933,69 +2834,55 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsShutterOpen">
-            <summary>
-            Shutter 온오프
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.TriggerEdge">
             <summary>
@@ -6228,64 +6115,49 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.DeviceStatus.Value">
             <summary>
@@ -6801,59 +6673,49 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.IsShutterOpen">
             <summary>
@@ -7027,64 +6889,52 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.OperatingPower">
             <summary>
@@ -7338,64 +7188,52 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.DeviceStatus.Value">
             <summary>
@@ -7795,64 +7633,54 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerMap">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsDiodeOn">
             <summary>
@@ -8107,64 +7935,49 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.Serial">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsReady">
-            <summary>
-            상태 (준비완료 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsBusy">
-            <summary>
-            상태 (출사중 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsError">
-            <summary>
-            상태 (에러 발생 여부)
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsGuideControl">
-            <summary>
-            Guide 레이저 빔 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.Tag">
-            <summary>
-            사용자 데이타
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsShutterOpen">
             <summary>
@@ -8386,6 +8199,11 @@
             이름
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.ILaser.LaserType">
+            <summary>
+            레이저 소스 종류
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.ILaser.MaxPowerWatt">
             <summary>
             최대 출력 파워 (Watt)
@@ -8515,6 +8333,9 @@
         <member name="P:SpiralLab.Sirius.LaserVirtual.Name">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.LaserType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.MaxPowerWatt">
             <inheritdoc/>  
         </member>
@@ -8623,43 +8444,61 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.SyncRoot">
-            <summary>
-            동기화 객체
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.Index">
-            <summary>
-            식별 번호
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.Name">
-            <summary>
-            이름
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.LaserType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.MaxPowerWatt">
-            <summary>
-            최대 파워 (W)
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.Serial">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.IsReady">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.IsBusy">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.IsError">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.Rtc">
-            <summary>
-            레이저 제어에 필요한 IRtc 인터페이스
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.IsShutterControl">
-            <summary>
-            셔터 제어를 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.IsGuideControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.Tag">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.Temperature">
             <summary>
-            Guide 레이저 빔 지원하는지 여부
+            Device Temp
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.OperationHrs">
+            <summary>
+            Operation Hours
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.SPIG4.SPIStatus">
@@ -10573,6 +10412,9 @@
         <member name="P:SpiralLab.Sirius.ScanMasterController.Name">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.ScanMasterController.RtcType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.ScanMasterController.MatrixStack">
             <inheritdoc/>  
         </member>
@@ -10856,6 +10698,9 @@
             <summary>
             이름
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.RtcGCode.RtcType">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.RtcGCode.MatrixStack">
             <summary>
@@ -11425,6 +11270,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.Name">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc4.RtcType">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc4.MatrixStack">
@@ -12509,6 +12357,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.Name">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.RtcType">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc5.MatrixStack">
@@ -13727,6 +13578,9 @@
         <member name="P:SpiralLab.Sirius.Rtc6.Name">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.RtcType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6.MatrixStack">
             <inheritdoc/>  
         </member>
@@ -14615,6 +14469,9 @@
             RTC6 이더넷 객체
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc6Ethernet.RtcType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc6Ethernet.IpAddress">
             <summary>
             IP 주소(Address)
@@ -14720,6 +14577,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.Name">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.RtcType">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6SyncAxis.MatrixStack">
@@ -15854,6 +15714,9 @@
         <member name="P:SpiralLab.Sirius.RtcVirtual.Name">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.RtcVirtual.RtcType">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.RtcVirtual.MatrixStack">
             <inheritdoc/>  
         </member>
@@ -16972,6 +16835,11 @@
         <member name="P:SpiralLab.Sirius.IRtc.Name">
             <summary>
             이름
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtc.RtcType">
+            <summary>
+            RTC 카드 종류
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc.KFactor">

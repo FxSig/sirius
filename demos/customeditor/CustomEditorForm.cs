@@ -1816,7 +1816,7 @@ namespace SpiralLab.Sirius
             ofd.Filter = "";
             ofd.Multiselect = false;
             ofd.Filter = "Supported image files (*.bmp, *.png, *.jpg, *.jpeg, *.gif, *.tif)|*.bmp;*.png;*.jpg;*.jpeg;*.gif;*.tif|All Files (*.*)|*.*";
-            ofd.DefaultExt = ".bmp"; 
+            ofd.DefaultExt = "bmp"; 
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
             DialogResult result = ofd.ShowDialog(this);
@@ -1852,7 +1852,7 @@ namespace SpiralLab.Sirius
                 sep = "|";
             }
             ofd.Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, "All Files", "*.*");
-            ofd.DefaultExt = ".bmp"; 
+            ofd.DefaultExt = "bmp"; 
             ofd.Title = "Import Image File";
             ofd.FileName = string.Empty;
             ofd.Multiselect = true;

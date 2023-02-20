@@ -79,7 +79,7 @@ namespace SpiralLab.Sirius
         /// </summary>
         [JsonIgnore]
         [Browsable(false)]
-        public virtual EType EntityType { get { return EType.UserCustom1; } }
+        public virtual EType EntityType { get { return EType.UserDefined1; } }
 
         /// <summary>
         /// 이름
@@ -471,7 +471,8 @@ namespace SpiralLab.Sirius
             // (필수) 폰트 다운로드중일 때는 펜 색상 처리를 하지 않는다
             if (!markerArg.IsRegisteringFonts)
                 success &= PenDefault.MarkPen(markerArg, Color2, this);
-
+            if (!success)
+                return false;
             // IRtc 인터페이스를 사용해 스캐너 제어
             var rtc = markerArg.Rtc;
             for (int i = 0; i < this.Repeat; i++)

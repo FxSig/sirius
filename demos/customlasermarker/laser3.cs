@@ -32,53 +32,44 @@ namespace SpiralLab.Sirius
             PropertyChanged?.BeginInvoke(this, new PropertyChangedEventArgs(propertyName), null, null);
         }
 
-        /// <summary>
-        /// 동기화 객체
-        /// </summary>
+        /// <inheritdoc/> 
         public object SyncRoot { get; set; }
-        /// <summary>
-        /// 식별 번호
-        /// </summary>
+        /// <inheritdoc/> 
         public int Index { get; set; }
-        /// <summary>
-        /// 이름
-        /// </summary>
+        /// <inheritdoc/> 
         public string Name { get; set; }
-        /// <summary>
-        /// 최대 출력 와트
-        /// </summary>
+        /// <inheritdoc/>  
+        public LaserType LaserType { get { return LaserType.UserDefined3; } }
+        /// <inheritdoc/> 
         public float MaxPowerWatt { get; set; }
 
-        /// <summary>
-        /// 준비 상태 
-        /// </summary>
+        /// <inheritdoc/> 
         public bool IsReady
         {
             get { return !this.IsError; }
         }
-        /// <summary>
-        /// 가공중 상태
-        /// </summary>
+        /// <inheritdoc/> 
         public bool IsBusy
         {
             get { return false; }
         }
-        /// <summary>
-        /// 에러 상태
-        /// </summary>
+        /// <inheritdoc/> 
         public bool IsError { get; set; }
         public bool IsTimedOut { get; protected set; }
         public bool IsProtocolError { get; protected set; }
-        // <summary>
-        /// IRtc 객체
-        /// </summary>
+        /// <inheritdoc/> 
         public IRtc Rtc { get; set; }
+        /// <inheritdoc/> 
         public bool IsPowerControl { get; set; }
+        /// <inheritdoc/> 
         public PowerControlMethod PowerControlMethod { get; set; }
+        /// <inheritdoc/> 
         public IPowerMap PowerMap { get; set; }
-
+        /// <inheritdoc/> 
         public bool IsShutterControl { get; set; }
+        /// <inheritdoc/> 
         public bool IsGuideControl { get; set; }
+        /// <inheritdoc/> 
         public object Tag { get; set; }
 
         private bool disposed = false;

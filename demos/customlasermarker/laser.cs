@@ -41,6 +41,10 @@ namespace SpiralLab.Sirius
         /// 이름
         /// </summary>
         public string Name { get; set; }
+
+        /// <inheritdoc/>  
+        public LaserType LaserType { get { return LaserType.UserDefined1; } }
+
         /// <summary>
         /// 최대 출력 와트
         /// </summary>

@@ -50,7 +50,7 @@ namespace SpiralLab.Sirius
 
         [JsonIgnore]
         [Browsable(false)]
-        public virtual EType EntityType { get { return EType.UserCustom1; } }
+        public virtual EType EntityType { get { return EType.UserDefined1; } }
 
         [JsonIgnore]
         [RefreshProperties(RefreshProperties.All)]

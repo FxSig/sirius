@@ -132,15 +132,16 @@
 
 **5. Version history**
 
-* 2023.2.17 v1.130
+* 2023.2.20 v1.130
   - updated) SCANLAB syncaxis v1.8.1
-     - fixed) invalid secondary head option check 
+     - fixed) invalid secondary head option check (syncAxis 초기화 실패 핫픽스 적용)
+  - added) create scanner field correction grids at editor (편집기 메뉴에서 스캐너 필드 보정용 격자 생성 지원됨)
 
 * 2023.2.14 v.129
-  - added) support 8 measurement channels at RTC6
+  - added) support 8 measurement channels at RTC6 (RTC6 에서 최대 8개 까지 계측 채널 지원)
   - added) syncaxis 
-     - job history at marker form
-     - list arc bug	 
+     - job history at marker form (마커창에서 작업 이력 조회 지원)
+     - list arc bug (원호 리스트 명령 버그 수정)
 
 * 2023.1.25 v1.128
   - migrated) SCANLAB syncaxis v1.8 

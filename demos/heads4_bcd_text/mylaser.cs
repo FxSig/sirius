@@ -83,6 +83,15 @@ namespace SpiralLab.Sirius
         [Description("소스 이름")]
         public virtual string Name { get; set; }
 
+        /// <inheritdoc/>  
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(true)]
+        [Category("Basic")]
+        [DisplayName("Type")]
+        [Description("소스 타입")]
+        public LaserType LaserType { get { return LaserType.UserDefined1; } }
+
         /// <summary>
         /// 최대 파워 (W)
         /// </summary>
