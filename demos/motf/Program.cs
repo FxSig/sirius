@@ -24,9 +24,11 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 
 namespace SpiralLab.Sirius
@@ -111,6 +113,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'R' : Encoder reset");
                 Console.WriteLine("'N' : MOTF With Follow Only");
                 Console.WriteLine("'C' : MOTF With Circle And Wait Encoder");
+                Console.WriteLine("'C' : MOTF With Circle And Encoder Compensate Table");
                 Console.WriteLine("'Q' : quit");
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
@@ -135,6 +138,9 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.C:
                         MotfWithCircleAndWaitEncoder(laser, rtc, false);
+                        break;
+                    case ConsoleKey.D:
+                        MotfWithCompensateTable(laser, rtc, false);
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
@@ -178,6 +184,72 @@ namespace SpiralLab.Sirius
 
             // laser off !
             //success &= rtc.ListLaserOff();
+
+            // motf end (from now ... stopped external x/y encoder iput values)
+            // MOTF 중지
+            success &= rtcMotf.ListMotfEnd(Vector2.Zero);
+            success &= rtc.ListEnd();
+            if (externalStart)
+            {
+                // enable /START trigger at LASER connector on RTC card
+                // RTC 15핀 커넥터에 있는 /START 을 리스트 시작 트리거로 사용합니다.
+                var extCtrl = Rtc5ExternalControlMode.Empty;
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStart);
+                extCtrl.Add(Rtc5ExternalControlMode.Bit.ExternalStartAgain);
+                rtcExtension.CtlExternalControl(extCtrl);
+            }
+            else
+            {
+                // execute at once
+                // 외부 트리거(/START)가 아닌 직접 execute 호출하여 실행
+                rtcExtension.CtlExternalControl(Rtc5ExternalControlMode.Empty);
+                if (success)
+                    success &= rtc.ListExecute();
+            }
+            return success;
+        }
+        /// <summary>
+        /// draw circle shape with 2d encoder compensate table
+        /// 엔코더 보상 테이블을 설정하고 스캐너로 원 모양을 가공한다. 
+        /// </summary>
+        /// <param name="laser"></param>
+        /// <param name="rtc"></param>
+        /// <param name="externalStart"></param>
+        private static bool MotfWithCompensateTable(ILaser laser, IRtc rtc, bool externalStart)
+        {
+            var rtcMotf = rtc as IRtcMOTF;
+            var rtcExtension = rtc as IRtcExtension;
+            Debug.Assert(rtcMotf != null);
+            Debug.Assert(rtcExtension != null);
+
+            bool success = true;
+            var encCompensate2DTable = new List<KeyValuePair<(float posX, float posY), (float deltaX, float deltaY)>>
+            {
+                new KeyValuePair<(float, float), (float, float)>((0, 0), (0, 0)),
+                new KeyValuePair<(float, float), (float, float)>((50, 0), (0.001f, 0.002f)),
+                new KeyValuePair<(float, float), (float, float)>((0, 50), (-0.001f, -0.001f)),
+                new KeyValuePair<(float, float), (float, float)>((50, 50), (0.005f, 0.008f))
+            };
+            // set 2d compensate table
+            // 2D 엔코더 보상 테이블 설정
+            success &= rtcMotf.CtlMotfCompensateTable(encCompensate2DTable.ToArray());
+            // clear 2d compensate table
+            // 2D 엔코더 보상 테이블 리셋
+            //success &= rtcMotf.CtlMotfCompensateTable(null); 
+
+            // start list buffer
+            // 리스트 시작 
+            success &= rtc.ListBegin(laser, ListType.Single);
+            // motf begin (from now ... adding external x/y encoder input values)
+            // ListMOTFBegin 부터 ListMOTFEnd 사이의 모든 list 명령어는 엔코더증감값이 적용됩니다
+            success &= rtcMotf.ListMotfBegin(true);
+            // goes to origin
+            // 0,0 으로 점프
+            success &= rtc.ListJump(new Vector2(20, 0));
+
+            // revolution 10 times
+            // 10 바퀴 원 반복
+            success &= rtc.ListArc(new Vector2(0, 0), 360 * 10);
 
             // motf end (from now ... stopped external x/y encoder iput values)
             // MOTF 중지

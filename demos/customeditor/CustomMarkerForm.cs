@@ -677,7 +677,7 @@ namespace SpiralLab.Sirius
             {
                 using (var stream = new StreamWriter(dlg.FileName))
                 {
-                    stream.WriteLine($"; 2020 copyright to spirallab.sirius");
+                    stream.WriteLine($"; 2023 copyright to spirallab.sirius");
                     stream.WriteLine($"; data format : x, y, angle");
                     foreach (var o in offsets)
                     {

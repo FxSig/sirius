@@ -2931,6 +2931,22 @@
         <member name="M:SpiralLab.Sirius.WriteDataExt16If.Regen">
             <inheritdoc/>
         </member>
+        <member name="T:SpiralLab.Sirius.ALCByPositionKeyValue">
+            <summary>
+            Position Dependent(위치 의존적) ALC 
+            Key/Value Pair
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ALCByPositionKeyValue.Distance">
+            <summary>
+            Distance (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.ALCByPositionKeyValue.Scale">
+            <summary>
+            Scale (0~4)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.MeasurementHelper">
             <summary>
             계측 데이타 유틸리티 
@@ -10489,16 +10505,9 @@
             <para>제어 모드</para>
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.Layer.AlcPositionFileName">
+        <member name="P:SpiralLab.Sirius.Layer.AlcByPositionTable">
             <summary>
             ALC (Automatic Laser Control): 위치 의존적(Position Dep) 레이저 출력 사용시 보상 테이블 파일 사용시
-            <para>파일 포맷은 RTC 세부 메뉴얼 참고</para>
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.Layer.AlcPositionTableNo">
-            <summary>
-            ALC (Automatic Laser Control): 위치 의존적 (Position Dep) 레이저 출력 사용시 보상 테이블 파일 사용시 
-            <para>보상 테이블 파일내의 테이블 인덱스 번호</para>
             <para>파일 포맷은 RTC 세부 메뉴얼 참고</para>
             </summary>
         </member>
@@ -10938,6 +10947,31 @@
             폴리곤(코너) 지연시간 (usec)
             <para>작을 경우 : 마크, 마크 사이에서 부드럽게(안전화 시간 부족) 블렌딩 처리됨</para>
             <para>클 경우 : 마크, 마크 사이에서 지정된 시간만큼 유지됨. Burn in 효과 발생 가능</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.IsScannerVariablePolygonDelay">
+            <summary>
+            가변 폴리곤 지연 시간 사용 여부
+            <para>각도별 시간값 계산식: scale(angle) = 1 – cos(angle)</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.IsScannerVariableJumpDelay">
+            <summary>
+            가변 점프 지연 시간 사용 여부
+            <para>점프 거리에 따라 지연 시간을 개별 설정</para>
+            <para>단거리 점프에서는 지연 시간을 작게 설정하여 전체 가공 시간을 단축 가능</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.ScannerVariableJumpDelayMin">
+            <summary>
+            최소 점프 지연 시간 (usec)
+            <para>가변 점프 지연 시용시 유효</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.ScannerVariableJumpLength">
+            <summary>
+            가변 점프 지연 거리
+            <para>가변 점프 지연 시용시 유효</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.JumpSpeed">

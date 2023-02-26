@@ -417,8 +417,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "WobbelShape", false);
 
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", false);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcByPositionTable", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", false);
@@ -466,8 +465,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", false);
 
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", true);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", true);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", true);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcByPositionTable", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", true);
@@ -522,8 +520,7 @@ namespace SpiralLab.Sirius
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "ApproxBlendLimit", true);
 
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "IsALC", false);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionFileName", false);
-                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPositionTableNo", false);
+                    UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcByPositionTable", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcSignal", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcMode", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.Layer), "AlcPercentage100", false);

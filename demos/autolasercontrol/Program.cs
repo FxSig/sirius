@@ -24,6 +24,8 @@
  */
 
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
@@ -175,7 +177,7 @@ namespace SpiralLab.Sirius
                 return false;
             bool success = true;
             // 위치 의존 ALC 파일 포맷은 RTC 메뉴얼 참고
-            alc.AutoLaserControlByPositionFileName = string.Empty;
+            alc.CtlAutoLaserControlByPositionTable(null);
             success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
@@ -198,10 +200,14 @@ namespace SpiralLab.Sirius
             if (null == alc)
                 return false;
             bool success = true;
-            // 위치 의존 ALC 파일 포맷은 RTC 메뉴얼 참고
-            alc.AutoLaserControlByPositionFileName = "your power scale file.txt";
-            alc.AutoLaserControlByPositionTableNo = 1;
-
+            // 위치 의존(스캐너 중심으로 부터 거리에 따른) ALC 활성화
+            float fov = 60.0f;
+            //tuple with distance(mm), scale(0~4)
+            var kvList = new KeyValuePair<float, float>[3];
+            kvList[0] = new KeyValuePair<float, float>(5, 1);
+            kvList[1] = new KeyValuePair<float, float>(10, 1.5f);
+            kvList[2] = new KeyValuePair<float, float>(fov/2, 2);
+            success &= alc.CtlAutoLaserControlByPositionTable(kvList);
             success &= alc.CtlAutoLaserControl<float>(AutoLaserControlSignal.Analog1, AutoLaserControlMode.SetVelocity, 5, 4, 6);
             success &= rtc.ListBegin(laser);
             success &= rtc.ListJump(new Vector2(x1, y1));
@@ -225,8 +231,8 @@ namespace SpiralLab.Sirius
             if (null == alc)
                 return false;
             bool success = true;
-            // 위치 의존 ALC 파일 포맷은 RTC 메뉴얼 참고
-            alc.AutoLaserControlByPositionFileName = string.Empty;
+            // 위치 의존 ALC 비활성화
+            success &= alc.CtlAutoLaserControlByPositionTable(null);
             //target frequency : 100KHz
             //lower cut off frequency : 50KHz
             //upper cut off frequency : 120KHz

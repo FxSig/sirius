@@ -698,8 +698,7 @@ namespace SpiralLab.Sirius
                 }
                 if (rtc is IRtcAutoLaserControl rtcAlc)
                 {
-                    rtcAlc.AutoLaserControlByPositionFileName = string.Empty;
-                    //rtcAlc.AutoLaserControlByPositionTableNo = 
+                    rtcAlc.CtlAutoLaserControlByPositionTable(null);
                     rtcAlc.CtlAutoLaserControl<uint>(AutoLaserControlSignal.Disabled, AutoLaserControlMode.Disabled, 0, 0, 0);
                 }
                 Logger.Log(Logger.Type.Info, $"marker [{this.Index}] {this.Name}: job finished");
@@ -1012,8 +1011,11 @@ namespace SpiralLab.Sirius
             #region 레이어에 설정된 ALC 설정 적용 (스케일 보정 파일및 모드 설정)
             if (null != rtcAlc && layer.IsALC)
             {
-                rtcAlc.AutoLaserControlByPositionFileName = layer.AlcPositionFileName;
-                rtcAlc.AutoLaserControlByPositionTableNo = layer.AlcPositionTableNo;
+                var kv = new List<KeyValuePair<float, float>>();
+                if (null != layer.AlcByPositionTable)
+                    foreach (var item in layer.AlcByPositionTable)
+                        kv.Add(new KeyValuePair<float, float>(item.Distance, item.Scale));
+                rtcAlc.CtlAutoLaserControlByPositionTable(kv.ToArray());
                 switch (layer.AlcSignal)
                 {
                     case AutoLaserControlSignal.ExtDO16:
@@ -1244,7 +1246,7 @@ namespace SpiralLab.Sirius
             #region 레이어에 설정된 ALC 설정 적용해제
             if (null != rtcAlc && layer.IsALC && !this.MarkerArg.IsExternalStart)
             {
-                rtcAlc.AutoLaserControlByPositionFileName = string.Empty;
+                rtcAlc.CtlAutoLaserControlByPositionTable(null);
                 rtcAlc.CtlAutoLaserControl<uint>(AutoLaserControlSignal.Disabled, AutoLaserControlMode.Disabled, 0, 0, 0);
             }
             #endregion
