@@ -134,14 +134,13 @@
 
 * 2023.3.1 v1.131
   - added) variable polygon delay at pen (각도에 따른 가변 폴리곤 지연 시간 설정 펜에서 지원)
-     - default (기본 방식) : Scale(°) = 1 - Cos(°)
-     - user (사용자 구현 방식) : Angle(0~180°), Scale(0~2) 
+     - scale(°) = 1 - cosine(°)
   - added) variable polygon delay with max edge level (각도에 따른 가변 폴리곤 지연 시간사용시 최대 활성화 시간 지원)
   - added) variable jump delay at pen (점프 거리에 따른 가변 점프 지연 시간 설정 펜에서 지원)
      - min. jump delay time (usec)
      - jump limit length (mm)
   - fixed) automatic laser control by position at layer (위치에 따른 자동 레이저 출력 설정 변경)
-     - Distance (mm), Scale (0~4) 
+     - distance and scale  (mm, 0~4) 
   - fixed) motf compensate table (MOTF 엔코더 보상 테이블 설정 지원)
      - x, y, delta x, delta y (mm)
   - fixed) text/siriustext with multi-line textdata (텍스트 개체에서 여러줄의 텍스트 데이타 지원)
