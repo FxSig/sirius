@@ -136,6 +136,7 @@
   - added) variable polygon delay at pen (각도에 따른 가변 폴리곤 지연 시간 설정 펜에서 지원)
      - default (기본 방식) : Scale(°) = 1 - Cos(°)
      - user (사용자 구현 방식) : Angle(0~180°), Scale(0~2) 
+  - added) variable polygon delay with max edge level (각도에 따른 가변 폴리곤 지연 시간사용시 최대 활성화 시간 지원)
   - added) variable jump delay at pen (점프 거리에 따른 가변 점프 지연 시간 설정 펜에서 지원)
      - min. jump delay time (usec)
      - jump limit length (mm)

@@ -10955,6 +10955,12 @@
             <para>각도별 시간값 계산식: scale(angle) = 1 – cos(angle)</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.PenDefault.ScannerVariablePolygonDelayEdgeLevel">
+            <summary>
+            가변 폴리곤 지연 시간 사용시 최대 허용 시간 (usec)
+            <para>Variable polygon delay edge level (usec)</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PenDefault.IsScannerVariableJumpDelay">
             <summary>
             가변 점프 지연 시간 사용 여부

@@ -28,7 +28,7 @@
         <member name="T:SpiralLab.BitHelper`2">
             <summary>
             비트 조작용 도우미
-            <para>Bit Manipulation</para>
+            <para>Bit manipulate helper</para>
             </summary>
             <typeparam name="TEnum">각 비트 필드에 대한 설명을 가진 열거 데이타 (Enum)</typeparam>
             <typeparam name="TData">데이타 타입 : 최대 64비트 (byte, short, int32, int64 등)</typeparam>
@@ -151,6 +151,7 @@
         <member name="T:SpiralLab.IEquipment">
             <summary>
             Equipment 인터페이스
+            <para>Equipment interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IEquipment.Name">
@@ -199,6 +200,7 @@
         <member name="T:SpiralLab.IMemory">
             <summary>
             메모리 인터페이스 
+            <para>Memory interface</para>
             데이타의 변경을 화면/혹은 DB에 통지해야 할 경우 PropertyChanged 이벤트 핸들러를 등록하여 사용한다
             메모리 정보를 DB 에 저장하는 경우 속성 정보가 변경될때마다 DB와 동기화 된다. 
             만약 DB 저장이 필요하지 않은 속성의 경우에는 [JsonIgnore] Attribute 를 지정해 준다
@@ -218,6 +220,7 @@
         <member name="T:SpiralLab.MemoryDB">
             <summary>
             메모리 데이터 베이스
+            <para>Memory by database</para>
             </summary>
         </member>
         <member name="M:SpiralLab.MemoryDB.#ctor(SpiralLab.IMemory,System.String,System.UInt32)">
@@ -278,6 +281,7 @@
         <member name="T:SpiralLab.ISequenceAuxiliary">
             <summary>
             Aux 시퀀스 인터페이스
+            <para>Sequence for auxiliary module</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequenceAuxiliary.Service">
@@ -299,6 +303,7 @@
         <member name="T:SpiralLab.ISequenceHandler">
             <summary>
             핸들러 시퀀스 인터페이스
+            <para>Sequence for handler module</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequenceHandler.Service">
@@ -330,6 +335,7 @@
         <member name="T:SpiralLab.ISequenceLaser">
             <summary>
             레이저 시퀀스 인터페이스
+            <para>Sequence for laser module</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequenceLaser.Service">
@@ -351,26 +357,31 @@
         <member name="T:SpiralLab.ISequence">
             <summary>
             시퀀스 인터페이스
+            <para>Sequence interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequence.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequence.SyncRoot">
             <summary>
             시퀀스 쓰레드 동기화 객체 
+            <para>Object for synchronization</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequence.Tag">
             <summary>
             사용자 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.ISequenceVision">
             <summary>
             비전 시퀀스 인터페이스
+            <para>Sequence for vision module</para>
             </summary>
         </member>
         <member name="P:SpiralLab.ISequenceVision.Service">
@@ -392,21 +403,25 @@
         <member name="T:SpiralLab.IService">
             <summary>
             서비스 인터페이스
+            <para>Service interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IService.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.IService.Tag">
             <summary>
             사용자 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.ISerialPort">
             <summary>
-            시리우스 라이브러리 모니터링용 시리얼 포트 객체 인터페이스.
+            시리우스 라이브러리 모니터링용 시리얼 포트 객체 인터페이스
+            <para>SerialPort interface</para>
             이를 상속 구현하면 시리얼 포트에 대한 모니터링이 지원됨 (Hexa Dump 등)
             <para>SerialPort Interface for Monitoring</para>
             </summary>
@@ -565,21 +580,25 @@
         <member name="T:SpiralLab.IServiceAuxiliary">
             <summary>
             Aux 서비스 인터페이스
+            <para>Service for auxiliary module</para>
             </summary>
         </member>
         <member name="T:SpiralLab.IServiceHandler">
             <summary>
             핸들러 서비스 인터페이스
+            <para>Service for handler module</para>
             </summary>
         </member>
         <member name="T:SpiralLab.IServiceLaser">
             <summary>
             레이저 서비스 인터페이스
+            <para>Service for laser module</para>
             </summary>
         </member>
         <member name="T:SpiralLab.IServiceVision">
             <summary>
             비전 서비스 인터페이스
+            <para>Service for vision module</para>
             </summary>
         </member>
         <member name="T:SpiralLab.ICore">
@@ -958,7 +977,7 @@
             인식 실패시 평가판 실행중 팝업후 종료
             </summary>
         </member>
-        <member name="M:SpiralLab.Rockey4ND.MaxLicense">
+        <member name="M:SpiralLab.Rockey4ND.InvalidMaxLicense">
             <summary>
             라이센스 개수 초과 
             </summary>
@@ -966,7 +985,7 @@
         <member name="T:SpiralLab.CommunicationMonitorForm">
             <summary>
             통신 16진수(Hexa) 데이타 모니터링 윈폼
-            <para>Communication Monitoring by Hexa</para>
+            <para>Communication monitoring by hexa data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.#ctor(SpiralLab.SerialPort)">
