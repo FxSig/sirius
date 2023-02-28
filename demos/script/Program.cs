@@ -192,17 +192,17 @@ namespace SpiralLab.Sirius
 
         static void BarcodeData()
         {
-            var qr = new BarcodeQR()
+            var qr = new BarcodeQR2()
             {
-                IsFixedAspectRatio = false,
                 Width = 5,
                 Height = 5,
                 Align = Alignment.LeftBottom,
                 Location = new System.Numerics.Vector2(0, 0),
                 ShapeType = BarcodeShapeType.Hatch,
-                HatchInterval = 0.2f,
-                HatchAngle = 90,
             };
+            qr.CellHatch.HatchInterval = 0.1f;
+            qr.CellHatch.HatchMode = HatchMode.CrossLine;
+
             qr.Data = "HELLO SPIRALLAB SIRIUS LIBRARY";
             qr.Regen();
 

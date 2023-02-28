@@ -4557,17 +4557,19 @@
             <summary>
             3차원 보정 데이타 구조체
             <para>Correction data for 3D</para>
+            <para>스캐너로 들어오는 입사 레이저빔 방향이 Y+ 방향임</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData3D.Reference">
             <summary>
-            이론상의 좌표값 x,y (mm)
+            절대 좌표값 x,y (mm)
             <para>Reference position</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData3D.Measured">
             <summary>
             실제 측정된 좌표값 x,y (mm)
+            <para>Measured position</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData3D.Delta">
@@ -4580,18 +4582,18 @@
             <summary>
             생성자
             </summary>
-            <param name="reference">이론상의 좌표값</param>
+            <param name="reference">절대 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData3D.ToReferenceString">
             <summary>
-            이론값 좌표 문자열 출력
+            절대 좌표 문자열 출력
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData3D.ToMeasuredString">
             <summary>
-            실측값 문자열 출력
+            실제 측정된 좌표값 문자열 출력
             </summary>
             <returns></returns>
         </member>
@@ -4670,25 +4672,25 @@
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.DataLower">
             <summary>
-            Z 하부의 계측 데이타 :  "절대위치, 측정위치" (mm) 배열
+            Z 하부의 계측 데이타:  "절대위치, 측정위치" (mm) 배열
             <para>2D array of CorrectionData3D at lower plane </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.DataUpper">
             <summary>
-            Z 상부의 계측 데이타 : "절대위치, 측정위치" (mm) 배열 
+            Z 상부의 계측 데이타: "절대위치, 측정위치" (mm) 배열 
             <para>2D array of CorrectionData3D at upper plane </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.ResultMessage">
             <summary>
             변환 결과 로그 메시지
-            <para>Result</para>
+            <para>Result messages</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection3D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
-            측정 데이타 입력 (절대 좌표 값)
+            측정 데이타 입력 (X,Y 절대 좌표값)
             <para>좌상단부터 우상단 방향으로 순서</para>
             <code>
             예 :
@@ -4699,15 +4701,15 @@
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
-            <param name="reference">기준 좌표(mm)</param>
-            <param name="measured">측정 절대 좌표 (mm)</param>
+            <param name="reference">X,Y,Z 절대좌표</param>
+            <param name="measured">X,Y,Z 상대좌표</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection3D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector3,System.Numerics.Vector3)">
             <summary>
-            측정 데이타 입력 (상대 좌표값) 
+            측정 데이타 입력 (X,Y,Z  에러량) 
             <para>좌상단부터 우상단 방향으로 순서</para>
-            <para>상대 좌표값 = 비전 오차량 만큼만 입력</para>
+            <para>에러량 = 이미지(머신비전) 오차량 입력</para>
             <code>
             예 :
             1 2 3
@@ -4717,8 +4719,8 @@
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
-            <param name="reference">기준 좌표값 (mm)</param>
-            <param name="error">측정 상대 좌표 (mm)</param>
+            <param name="reference">X,Y,Z 절대좌표</param>
+            <param name="error">X,Y,Z 에러량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection3D.Clear(SpiralLab.Sirius.Plane)">
@@ -4729,7 +4731,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection3D.Convert">
             <summary>
-            변환 시작
+            변환 시도
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -8133,14 +8135,14 @@
         <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경 (즉시 명령)
-            <para>파워 맵 카테고리 <c>>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
-            <example>
+            <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
+            <code>
             
-                               사용자가 지정한 출력 파워 (W)
-            출력 비율(%) =   ---------------------------------------  X 100
-                                    최대 출력 파워 (W)
+                              사용자가 지정한 출력 파워 (W)
+            출력 비율(%) =  ---------------------------------  X 100
+                                  최대 출력 파워 (W)
                               
-            </example>
+            </code>
             </summary>
             <param name="watt">출력 에너지(Watt)</param>
             <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
@@ -8152,14 +8154,14 @@
             <para>마커의 내부 작업 쓰레드에 의해 리스트 명령으로 호출되므로, RTC 카드의 리스트 버퍼를 통해 레이저 파워를 변경하는 방식으로 처리 필요</para>
             <para>만약 리스트 명령으로 처리가 불가능한 파워 변경 방식의 경우, 현재까지 다운로드된 모든 리스트 명령을 닫고(List End/List Execute) 실행을 완료시킨 이후</para>
             <para>파워 변경 을 수행 완료하고 신규로 리스트(List Begin)를 만들어 이후 리스트 명령들에 영향을 주는 안는 방식으로 구현 가능</para>
-            <para>파워 맵 카테고리 <c>>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
-            <example>
+            <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
+            <code>
             
-                               사용자가 지정한 출력 파워 (W)
-            출력 비율(%) =   ---------------------------------------  X 100
-                                    최대 출력 파워 (W)
+                              사용자가 지정한 출력 파워 (W)
+            출력 비율(%) =  ---------------------------------  X 100
+                                  최대 출력 파워 (W)
                               
-            </example>
+            </code>
             </summary>
             <param name="watt">출력 에너지(Watt)</param>
             <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
@@ -8378,7 +8380,16 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.PowerControlMethod">
-            <inheritdoc/>  
+            <summary>
+            파워 변경 방식
+            <para>
+            LaserViritual 의 경우 PowerControlMethod 에 따라
+            Duty:  1~99% 의 펄스폭 출력 지원
+            Analog: 아나로그1 포트로 0~10V 출력 지원
+            DigitalBits: 확장2 포트로 0~65535 (8비트) 출력 지원
+            기타: 구현없음 (ListEnd/Execute -> (사용자 구현필요) -> ListBegin 처리됨)
+            </para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.PowerMap">
             <inheritdoc/>  
@@ -14029,7 +14040,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayScanAheadByAuto(System.Boolean)">
             <summary>
-            RTC6 SCANahead 기능을 활성화 (excelliSCAN 스캐너 전용)
+            RTC6 + SCANahead 옵션 기능을 활성화 
+            <para>excelliSCAN 스캐너 전용</para>
             </summary>
             <returns></returns>
         </member>
@@ -14967,9 +14979,9 @@
             초기화 
             (미사용)
             </summary>
-            <param name="unUsed_kFactor">사용되지 않음</param>
-            <param name="unUsed_laserMode">사용되지 않음</param>
-            <param name="unused_Ct5FileName">사용되지 않음</param>
+            <param name="kFactor">사용되지 않음</param>
+            <param name="laserMode">사용되지 않음</param>
+            <param name="ctFileName">사용되지 않음</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ReInitialize">
@@ -16434,11 +16446,12 @@
             <summary>
             2차원 보정 데이타 구조체
             <para>Correction data for 2D</para>
+            <para>스캐너로 들어오는 입사 레이저빔 방향이 Y+ 방향임</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.CorrectionData2D.Reference">
             <summary>
-            이론상의 좌표값 (mm)
+            절대 좌표값 x,y (mm)
             <para>Reference position</para>
             </summary>
         </member>
@@ -16458,18 +16471,18 @@
             <summary>
             생성자
             </summary>
-            <param name="reference">이론상의 좌표값</param>
+            <param name="reference">절대 좌표값</param>
             <param name="measured">실제 측정된 좌표값</param>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData2D.ToReferenceString">
             <summary>
-            이론값 문자열 출력
+            절대 좌표 문자열 출력
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.CorrectionData2D.ToMeasuredString">
             <summary>
-            실측값 문자열 출력
+            실제 측정된 좌표값 문자열 출력
             </summary>
             <returns></returns>
         </member>
@@ -16523,19 +16536,19 @@
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.Data">
             <summary>
-            계측 데이타 2차원 배열
+            데이타 2차원 배열
             <para>2D array of CorrectionData2D</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.ResultMessage">
             <summary>
             변환 결과 문자열
-            <para>Result</para>
+            <para>Result messages</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection2D.AddAbsolute(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
-            측정 데이타 입력 (절대 좌표 값)
+            측정 데이타 입력 (X,Y 절대 좌표값)
             <para>좌상단부터 우상단 방향으로 순서</para>
             <code>
             예 :
@@ -16546,15 +16559,15 @@
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
-            <param name="reference">절대좌표</param>
-            <param name="measured">측정좌표</param>
+            <param name="reference">X,Y 절대좌표</param>
+            <param name="measured">X,Y 상대좌표</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection2D.AddRelative(System.Int32,System.Int32,System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
-            측정 데이타 입력  (상대 좌표값) 
+            측정 데이타 입력 (X,Y 에러량) 
             <para>좌상단부터 우상단 방향으로 순서</para>
-            <para>상대 좌표값 = 비전 오차량 만큼만 입력</para>
+            <para>에러량 = 이미지(머신비전) 오차량 입력</para>
             <code>
             예 :
             1 2 3
@@ -16564,8 +16577,8 @@
             </summary>
             <param name="row">행</param>
             <param name="col">열</param>
-            <param name="reference">논리적인 좌표</param>
-            <param name="error">에러량</param>
+            <param name="reference">X,Y 절대좌표</param>
+            <param name="error">X,Y 에러량</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection2D.Clear">
@@ -16575,7 +16588,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection2D.Convert">
             <summary>
-            변환 시작
+            변환 시도
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -16606,40 +16619,40 @@
         <member name="M:SpiralLab.Sirius.IMatrixStack.Clear">
             <summary>
             스택에 모든 행렬을 초기화 하고 단위행렬로 설정
-            <para>Reset to identity matrix</para>
+            <para>Reset as identity matrix</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Numerics.Matrix3x2)">
             <summary>
             스택에 행렬 Push
-            <para>Push to matrix stack</para>
+            <para>Push into stack</para>
             </summary>
             <param name="m">3x3 행렬</param>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Pop(System.Numerics.Matrix3x2@)">
             <summary>
             스택에서 행렬 Pop
-            <para>Pop from matrix stack</para>
+            <para>Pop from stack</para>
             </summary>
             <param name="m">3x3 행렬</param>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Pop">
             <summary>
             스택에서 행렬 Pop
-            <para>Pop from matrix stack</para>
+            <para>Pop from stack</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Double)">
             <summary>
             스택에 행렬 Push : 회전 
-            <para>Push roate matrix to matrix stack</para>
+            <para>Push roate matrix into stack</para>
             </summary>
             <param name="angle">회전 각도 (˚)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Double,System.Double)">
             <summary>
             스택에 행렬 Push : 이동
-            <para>Push translate matrix to matrix stack</para>
+            <para>Push translate matrix into stack</para>
             </summary>
             <param name="dx">X 이동량 (mm)</param>
             <param name="dy">Y 이동량 (mm)</param>
@@ -16647,14 +16660,14 @@
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Numerics.Vector2)">
             <summary>
             스택에 행렬 Push : 이동
-            <para>Push translate matrix to matrix stack</para>
+            <para>Push translate matrix into stack</para>
             </summary>
             <param name="translate">x,y 이동량 (mm)</param>
         </member>
         <member name="M:SpiralLab.Sirius.IMatrixStack.Push(System.Double,System.Double,System.Double)">
             <summary>
             스택에 행렬 Push : 회전후 이동
-            <para>Push rotate and translate matrix to matrix stack</para>
+            <para>Push rotate and translate matries into stack</para>
             </summary>
             <param name="dx">이동량 dX (mm)</param>
             <param name="dy">이동량 dY (mm)</param>
@@ -16686,7 +16699,6 @@
             <summary>
             LASER1, LASER2 출력신호의 역할 지정
             <para>Co2, YAG 1,2,3,4,...</para>
-            <para>스캔랩 메뉴얼 문서 참고</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LaserMode.None">
@@ -18130,7 +18142,7 @@
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="mode">AutoLaserControlMode 열거형</param>
             <param name="percentage100">100% 일때의 출력값</param>
-            <param name="min">최소 출력값 (RTC6 + SpotDistance 의 경우 거리값(mm) </param>
+            <param name="min">최소 출력값 [RTC6 + SpotDistance 조합: 거리값(mm)] </param>
             <param name="max">최대 출력값</param>
             <param name="compensator">출력값 보정기 사용시 지정</param>
             <returns></returns>
@@ -18140,7 +18152,7 @@
             위치 의존적 ALC(Automatic Laser Control) 테이블 설정
             <para>Position dependent ALC table</para>
             </summary>
-            <param name="kvList">[거리 (mm), 스케일 (0~4)] 리스트</param>
+            <param name="kvList">[거리(= 반지름) (mm), 스케일 (0~4)] 리스트</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcAutoLaserControl.ListAutoLaserControl``1(``0,``0,``0,SpiralLab.Sirius.ICompensator{``0})">
@@ -18235,21 +18247,25 @@
         <member name="F:SpiralLab.Sirius.TimeFormat.Hours24">
             <summary>
             24시간제 표기
+            <para>24 Hours</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.TimeFormat.Minutes">
             <summary>
             분 표기
+            <para>Minutes</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.TimeFormat.Seconds">
             <summary>
             초 표기
+            <para>Seconds</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.TimeFormat.Hours12">
             <summary>
             12시간제 표기
+            <para>12 Hours</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.SerialFormat">
@@ -18260,16 +18276,19 @@
         <member name="F:SpiralLab.Sirius.SerialFormat.LeadingWithZero">
             <summary>
             앞을 0 으로 채우기 + 오른쪽 정렬
+            <para>Leading with zero</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SerialFormat.NoLeadingAndLeftAligned">
             <summary>
             앞 채우기 없음 + 왼쪽 정렬
+            <para>No leading and left aligned</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SerialFormat.LeadingWithBlank">
             <summary>
             앞을 공백으로 채우기 + 오른쪽 정렬
+            <para>Leading with blank</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcCharacterSet">
@@ -18283,6 +18302,7 @@
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterBegin(System.UInt32,SpiralLab.Sirius.CharacterSet)">
             <summary>
             특정 색인 문자 좌표 정보 저장 시작 
+            <para>character-set ready to download into RTC controller</para>
             <para>이 명령 이후 해당 문자(character)에 대한 리스트 명령 (jump, mark, arc) 명령 호출 필요</para>
             </summary>
             <param name="asciiCode">아스키 코드 (0~255)</param>
@@ -18292,6 +18312,7 @@
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterEnd">
             <summary>
             보호된 리스트 버퍼(3) 영역에 색인 문자 저장 완료
+            <para>character-set end of download into RTC controller</para>
             <para>CtlCharacterSetBegin 함수와 짝이 되어 문자 리스트 명령 기록 완료시 호출</para>
             </summary>
             <returns></returns>
@@ -18299,6 +18320,7 @@
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterSetIsExist(System.UInt32,SpiralLab.Sirius.CharacterSet)">
             <summary>
             보호된 리스트 버퍼(3) 영역에 색인된 문자가 있는지 여부
+            <para>check character-set is exist(downloaded) or not</para>
             </summary>
             <param name="asciiCode">아스키 코드 (0~255)</param>
             <param name="characterSet">CharacterSet 열거형</param>
@@ -18307,6 +18329,7 @@
         <member name="M:SpiralLab.Sirius.IRtcCharacterSet.CtlCharacterSetClear(SpiralLab.Sirius.CharacterSet)">
             <summary>
             지정된 색인 문자열 집합을 삭제합니다
+            <para>clear specific character-set family at RTC controller</para>
             </summary>
             <param name="characterSet">CharacterSet 열거형</param>
             <returns></returns>
@@ -18760,259 +18783,261 @@
             <summary>
             계측 (Measurement) 채널 목록
             <para>Measurement channel</para>
-            <para>RTC4 는 최대 2개, RTC5 최대 4개, RTC5/6 는 최대 8개의 채널을 동시 계측 가능</para>
+            <para>RTC4는 최대 2개, RTC5 최대 4개, RTC6는 최대 8개의 채널 동시 계측 가능</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.LaserOn">
             <summary>
-            LASERON signal (1 = laser signal on, 0 = laser signal off.
+            LASERON signal (1 = laser signal on, 0 = laser signal off
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAX">
             <summary>
-            StatusAX (X-axis status signal of the primary scan head connector).
+            StatusAX (X-axis status signal of the primary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAY">
             <summary>
-            StatusAY (Y-axis status signal of the primary scan head connector).
+            StatusAY (Y-axis status signal of the primary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBX">
             <summary>
-            StatusBX (X-axis status signal of the secondary scan head connector).
+            StatusBX (X-axis status signal of the secondary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBY">
             <summary>
-            StatusBY (Y-axis status signal of the secondary scan head connector).
+            StatusBY (Y-axis status signal of the secondary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleX">
             <summary>
-            SampleX (X-axis cartesian control value).
+            SampleX (X-axis cartesian control value)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleY">
             <summary>
-            SampleY (Y-axis cartesian control value).
+            SampleY (Y-axis cartesian control value)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleZ">
             <summary>
-            SampleZ (Z-axis cartesian control value).
+            SampleZ (Z-axis cartesian control value)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAX_Coor">
             <summary>
-            SampleAX_Corr (corrected X-axis control value for the primary scan head connector).
+            SampleAX_Corr (corrected X-axis control value for the primary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAY_Coor">
             <summary>
-            SampleAY_Corr (corrected Y-axis control value for the primary scan head connector).
+            SampleAY_Corr (corrected Y-axis control value for the primary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAZ_Coor">
             <summary>
-            SampleAZ_Corr (corrected Z-axis control value, if XY are connected to the primary scan head connector; identical to the effective output value for the Z axis).
+            SampleAZ_Corr (corrected Z-axis control value, if XY are connected to the primary scan head connector; identical to the effective output value for the Z axis)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBX_Coor">
             <summary>
-            SampleBX_Corr (corrected X-axis control value for the secondary scan head connector).
+            SampleBX_Corr (corrected X-axis control value for the secondary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBY_Coor">
             <summary>
-            SampleBY_Corr (corrected Y-axis control value for the secondary scan head connector).
+            SampleBY_Corr (corrected Y-axis control value for the secondary scan head connector)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBZ_Coor">
             <summary>
-            SampleBZ_Corr (corrected Z-axis control value, if XY are connected to the secondary scan head connector; identical to the effective output value for the Z axis).
+            SampleBZ_Corr (corrected Z-axis control value, if XY are connected to the secondary scan head connector; identical to the effective output value for the Z axis)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAX_LaserOn">
             <summary>
-            StatusAX+LASERON (StatusAX for laser signal on, –524288 for laser signal off).
+            StatusAX+LASERON (StatusAX for laser signal on, –524288 for laser signal off)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusAY_LaserOn">
             <summary>
-            StatusAY+LASERON (StatusAY for laser signal on, –524288 for laser signal off).
+            StatusAY+LASERON (StatusAY for laser signal on, –524288 for laser signal off)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBX_LaserOn">
             <summary>
-            StatusBX+LASERON (StatusBX for laser signal on, –524288 for laser signal off).
+            StatusBX+LASERON (StatusBX for laser signal on, –524288 for laser signal off)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.StatusBY_LaserOn">
             <summary>
-            StatusBY+LASERON (StatusBY for laser signal on, –524288 for laser signal off).
+            StatusBY+LASERON (StatusBY for laser signal on, –524288 for laser signal off)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAX_Out">
             <summary>
-            SampleAX_Out (effective X-axis output value for the primary scan head connector; if applicable incl. any scanner offset and gain compensation, see comments; not usable for measuring Z-axis output values).
+            SampleAX_Out (effective X-axis output value for the primary scan head connector; if applicable incl. any scanner offset and gain compensation, see comments; not usable for measuring Z-axis output values)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAY_Out">
             <summary>
-            SampleAY_Out (effective Y-axis output value for the primary scan head connector; not usable for measuring Z-axis output values).
+            SampleAY_Out (effective Y-axis output value for the primary scan head connector; not usable for measuring Z-axis output values)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBX_Out">
             <summary>
-            SampleBX_Out (effective X-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values).
+            SampleBX_Out (effective X-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBY_Out">
             <summary>
-            SampleBY_Out (effective Y-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values).
+            SampleBY_Out (effective Y-axis output value for the secondary scan head connector; not usable for measuring Z-axis output values)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.AutomaticLaserControlParam">
             <summary>
-            Laser control parameter of automatic laser control (see set_auto_laser_control).
+            Laser control parameter of automatic laser control (see set_auto_laser_control)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAX_Trans">
             <summary>
-            SampleAX_Trans (transformed X-axis control value for the primary scan head connector).
+            SampleAX_Trans (transformed X-axis control value for the primary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAY_Trans">
             <summary>
-            SampleAY_Trans (transformed Y-axis control value for the primary scan head connector).
+            SampleAY_Trans (transformed Y-axis control value for the primary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleAZ_Trans">
             <summary>
-            SampleAZ_Trans (transformed Z-axis control value, if XY are connected to the primary scan head connector).
+            SampleAZ_Trans (transformed Z-axis control value, if XY are connected to the primary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBX_Trans">
             <summary>
-            SampleBX_Trans (transformed X-axis control value for the secondary scan head connector).
+            SampleBX_Trans (transformed X-axis control value for the secondary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBY_Trans">
             <summary>
-            SampleBY_Trans (transformed Y-axis control value for the secondary scan head connector).
+            SampleBY_Trans (transformed Y-axis control value for the secondary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.SampleBZ_Trans">
             <summary>
-            SampleBZ_Trans (transformed Z-axis control value, if XY are connected to the secondary scan head connector).
+            SampleBZ_Trans (transformed Z-axis control value, if XY are connected to the secondary scan head connector)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.AutomaticLaserControlByVectorParam">
             <summary>
-            Laser control parameter of vector-defined laser control (see set_vector_control).
+            Laser control parameter of vector-defined laser control (see set_vector_control)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.FocusShift">
             <summary>
-            Focus shift (see set_vector_control, set_defocus, set_defocus_list).
+            Focus shift (see set_vector_control, set_defocus, set_defocus_list)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAO1">
             <summary>
-            12-bit output value at the ANALOG OUT1 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”).
+            12-bit output value at the ANALOG OUT1 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAO2">
             <summary>
-            12-bit output value at the ANALOG OUT2 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”). /// </summary>
+            12-bit output value at the ANALOG OUT2 output port (see set_auto_laser_control, set_vector_control and chapter 9.1.4 ”12- Bit Analog Output Ports”) 
             RTC5 이상만 지원
+            </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDO16">
             <summary>
-            Output value at the 16-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.1 ”16- Bit Digital Output Port”) /// </summary>
+            Output value at the 16-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.1 ”16- Bit Digital Output Port”)
             RTC5 이상만 지원
+            </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDO8">
             <summary>
-            Output value at the 8-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.2 ”8- Bit Digital Output Port”).
+            Output value at the 8-bit digital output port (see set_auto_laser_control, set_vector_control and chapter 9.1.2 ”8- Bit Digital Output Port”)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.PulseLength">
             <summary>
-            Pulse length (PulseLength) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control).
+            Pulse length (PulseLength) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control)
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.OutputPeriod">
             <summary>
-            Output period (HalfPeriod) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control).
+            Output period (HalfPeriod) of the LASER1 and LASER2 laser signals (see set_auto_laser_control, set_vector_control)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.Enc0Counter">
             <summary>
-            Counter value of encoder counter Encoder0.
+            Counter value of encoder counter Encoder0
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.Enc1Counter">
             <summary>
-            Counter value of encoder counter Encoder1.
+            Counter value of encoder counter Encoder1
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.MarkSpeed">
             <summary>
-            Marking speed (from set_mark_speed, set_mark_speed_ctrl).
+            Marking speed (from set_mark_speed, set_mark_speed_ctrl)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtDI16">
             <summary>
-            16-bit digital input (EXTENSION 1).
+            16-bit digital input (EXTENSION 1)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ZoomValueForIntelliWeld">
             <summary>
-            Zoom value (only for intelliWELD II).
+            Zoom value (only for intelliWELD II)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.TimeStampCounter">
             <summary>
-            Time stamp counter (see chapter 8.13 ”Time Measurements”, page 231).
+            Time stamp counter (see chapter 8.13 ”Time Measurements”, page 231)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.WobbelAmplitude">
             <summary>
-            Wobbel amplitude (see set_wobbel, set_wobbel_mode and chapter 8.4 ”Wobbel Mode”, page 189).
+            Wobbel amplitude (see set_wobbel, set_wobbel_mode and chapter 8.4 ”Wobbel Mode”, page 189)
             RTC5 이상만 지원
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementChannel.ExtAI">
             <summary>
-            ReadAnalogIn (see read_analog_in).
+            ReadAnalogIn (see read_analog_in)
             RTC5 이상만 지원
             </summary>
         </member>

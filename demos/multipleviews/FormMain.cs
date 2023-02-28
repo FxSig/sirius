@@ -25,7 +25,7 @@ namespace SpiralLab.Sirius
 
             SpiralLab.Core.Initialize();
 
-            //Rtc 제어기 객체 2개 생성
+            //Rtc 제어기 (가상) 객체 2개 생성
             var rtc1 = new RtcVirtual(0, "output1.txt");
             var rtc2 = new RtcVirtual(1, "output2.txt");
             //var rtc = new Rtc5(0); //create Rtc5 controller

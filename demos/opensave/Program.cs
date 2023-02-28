@@ -134,8 +134,6 @@ namespace SpiralLab.Sirius
             laser.CtlPower(2);
             #endregion
 
-
-
             ConsoleKeyInfo key;
             do
             {

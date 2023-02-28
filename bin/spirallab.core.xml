@@ -610,8 +610,8 @@
         <member name="M:SpiralLab.ICore.InitializeEngine">
             <summary>
             시리우스 라이브러리 초기화
-            <para>Initialize Sirius Library</para>
-            <para>NLog configuration file : your path\logs\NLogSpiralLab.config</para>
+            <para>Initialize sirius library</para>
+            <para>NLog configuration file: your path\logs\NLogSpiralLab.config</para>
             </summary>
             <returns></returns>
         </member>
@@ -638,8 +638,8 @@
         </member>
         <member name="M:SpiralLab.Core.Initialize">
             <summary>
-            시리우스 라이브러리 초기화 실제 구현부
-            <para>Implementation of initialization</para>
+            시리우스 라이브러리 초기화
+            <para>Initialization sirius library</para>
             </summary>
             <returns></returns>
         </member>
