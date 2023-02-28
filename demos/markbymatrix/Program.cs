@@ -137,8 +137,8 @@ namespace SpiralLab.Sirius
                     case ConsoleKey.F:
                         // popup winforms for control laser source
                         // 레이저 소스 제어용 윈폼 팝업
-                        SpiralLab.Sirius.Laser.LaserForm laerForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
-                        laerForm.ShowDialog();
+                        SpiralLab.Sirius.Laser.LaserForm laserForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
+                        laserForm.ShowDialog();
                         break;
                 }
                 Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
