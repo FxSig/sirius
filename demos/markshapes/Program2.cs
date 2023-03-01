@@ -16,41 +16,40 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * Using 3x3 matrix stack 
- * 행렬을 사용하여 회전하면서 직선, 사각형의 가공을 실시한다.
+ * Initialize sirius library and mark large amount of shapes
+ * Also, abort marking process and reset error status
+ * 시리우스 라이브러리를 초기화 하고 대량의 도형을 마킹하는 예제
+ * 가공 중단 및 에러 상태 리셋 처리
+ *  
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
+
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
-using System.Numerics;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
-    class Program
+    class Program2
     {
         [STAThread]
-        static void Main(string[] args)
+        static void Main2()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             // initialize sirius library
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            // RTC 제어기의 동작 로그를 기록할 파일을 지정
-            var rtcOutputFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rtcOutput.txt");
             // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
             // create Rtc5 controller
-            var rtc = new Rtc5(0, rtcOutputFile);
-            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
-            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+            var rtc = new Rtc5(0);
             // create Rtc6 controller
             //var rtc = new Rtc6(0); 
             // create Rtc6 Ethernet controller
@@ -62,13 +61,14 @@ namespace SpiralLab.Sirius
             //float kfactor = (float)Math.Pow(2, 16) / fov;
             // RTC5/6: k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
+
             // RTC4: full path of correction file
             //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
             // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize rtc controller
+            // initialize RTC controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
-            // laser frequency: 50KHz, pulse width : 2usec(주파수 50KHz, 펄스폭 2usec)
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
             // scanner jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
@@ -95,7 +95,7 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
-            // assign RTC instance at laser 
+            //a ssign RTC controller at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
@@ -109,109 +109,76 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'R' : draw rectangle with rotate");
-                Console.WriteLine("'L' : draw lines with rotate");
-                Console.WriteLine("'F' : pop up laser source form");
+                Console.WriteLine("'F1' : draw circles");
+                Console.WriteLine("'F2' : draw rectangles");
+                Console.WriteLine("'A' : abort");
+                Console.WriteLine("'R' : reset");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("WARNING !!! LASER IS BUSY ...");
-                Console.WriteLine($"{Environment.NewLine}");
-                var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
-                    case ConsoleKey.R:  
-                        // 회전하는 사각형 모양 가공
-                        // 가로 10, 세로 10 크기, 0 ~360 각도의 회전 형상
-                        DrawRectangle(laser, rtc, 10, 10, 0, 360);
+                    case ConsoleKey.F1:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DrawCircles(rtc, laser);
                         break;
-                    case ConsoleKey.L:  
-                        // 회전하는 직선 모양 가공
-                        DrawLinesWithRotate(laser, rtc, 0, 360);
+                    case ConsoleKey.F2:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DrawRectangles(rtc, laser);
                         break;
-                    case ConsoleKey.F:
-                        // popup winforms for control laser source
-                        // 레이저 소스 제어용 윈폼 팝업
-                        SpiralLab.Sirius.Laser.LaserForm laserForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
-                        laserForm.ShowDialog();
+                    case ConsoleKey.A:
+                        Console.WriteLine("Aborting...");
+                        rtc.CtlAbort();
+                        break;
+                    case ConsoleKey.R:
+                        rtc.CtlReset();
                         break;
                 }
-                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
             } while (true);
 
-            rtc.CtlAbort();
             rtc.Dispose();
             laser.Dispose();
         }
-       
-        /// <summary>
-        /// 지정된 크기의 직사각형 그리기
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        private static bool DrawRectangle(ILaser laser, IRtc rtc, double width, double height, double angleStart, double angleEnd)
-        {
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
-            {
-                // push rotate matrix into stack
-                // 회전 행렬 스택에 삽입
-                rtc.MatrixStack.Push(angle);
-                success &= rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
-                success &= rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
-                success &= rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
-                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
-                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
-                // pop rotate matrix from stack
-                //회전 행렬 스택에서 제거
-                rtc.MatrixStack.Pop();
-            }
-            if (success)
-            {
-                success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
-            }
-            return success;
-        }       
-        /// <summary>
-        /// 행렬을 이용해 직선을 그릴때 1도마다 직선을 회전시켜 그리기
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="angleStart"></param>
-        /// <param name="angleEnd"></param>
-        private static bool DrawLinesWithRotate(ILaser laser, IRtc rtc, double angleStart, double angleEnd)
-        {
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            // push transit matrix into stack
-            // 이동 행렬 스택에 삽입
-            rtc.MatrixStack.Push(2, 4); // dx =2, dy=4 만큼 이동
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
-            {
-                // push rotate matrix into stack
-                // 회전 행렬 스택에 삽입
-                rtc.MatrixStack.Push(angle);
-                success &= rtc.ListJump(new Vector2(-10, 0));
-                success &= rtc.ListMark(new Vector2(10, 0));
-                // pop rotate matrix from stack
-                // 회전 행렬 스택에서 제거
-                rtc.MatrixStack.Pop();
-            }
-            // pop transit matrix from stack
-            // 이동 행렬 스택에서 제거
-            rtc.MatrixStack.Pop();
 
-            if (success)
+        private static bool DrawRectangles(IRtc rtc, ILaser laser, float width = 20, float height = 20, uint repeat = 20)
+        {
+            bool success = true;
+            // list begin with double buffered list
+            // limitation: none
+            success &= rtc.ListBegin(laser, ListType.Auto);
+            for (int i = 0; i < repeat; i++)
             {
-                success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
+                success &= rtc.ListJump(-width / 2, height / 2);
+                success &= rtc.ListMark(width / 2, height / 2);
+                success &= rtc.ListMark(width / 2, height / 2);
+                success &= rtc.ListMark(width / 2, -height / 2);
+                success &= rtc.ListMark(-width / 2, -height / 2);
+                success &= rtc.ListMark(-width / 2, height / 2);
             }
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(false);
+            return success;
+        }
+
+        private static bool DrawCircles(IRtc rtc, ILaser laser, float radius = 10, uint repeat = 20)
+        {
+            bool success = true;
+            // list begin with sing buffered list
+            // limitation: none
+            success &= rtc.ListBegin(laser, ListType.Auto);
+            for (int i = 0; i < repeat; i++)
+            {
+                success &= rtc.ListJump(-radius, 0);
+                success &= rtc.ListArc(0, 0, 360);
+            }
+            success &= rtc.ListEnd();
+            if (success)
+                success &= rtc.ListExecute(false);
             return success;
         }
     }

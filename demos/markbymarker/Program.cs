@@ -21,11 +21,11 @@
  * 2. 레이저 소스 (Laser)
  * 3. 벡터 가공 장치 (Rtc) 
  * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
+ * Create marker and how to manage it
  * 
- * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로
- *  상태 (IsReady, IsBusy, IsError)및 오프셋 가공 (List<Offset>)을 처리할수있다.
- *  또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
- *  가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
+ * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로 상태 (IsReady, IsBusy, IsError)및 오프셋 가공 (List<Offset>)을 처리할수있다.
+ * 또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
+ * 가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
  *  
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
@@ -47,40 +47,45 @@ namespace SpiralLab.Sirius
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            // initialize sirius library
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            //create Rtc for dummy (가상 RTC 카드)
+            // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
-            //create Rtc5 controller
+            // create Rtc5 controller
             var rtc = new Rtc5(0);
-            //create Rtc6 controller
+            // create Rtc6 controller
             //var rtc = new Rtc6(0); 
-            //Rtc6 Ethernet
+            // create Rtc6 Ethernet controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;
-            // k factor (bits/mm) = 2^20 / fov
+            // RTC4: k factor (bits/mm) = 2^16 / fov
+            //float kfactor = (float)Math.Pow(2, 16) / fov;
+            // RTC5/6: k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
-            // full path of correction file
+
+            // RTC4: full path of correction file
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
+            // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
-            // basic frequency and pulse width
+            // initialize RTC controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
-            // basic sped
-            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            // scanner jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
-            // basic delays
-            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            // laser and scanner delays (레이저/스캐너 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
             var laser = new LaserVirtual(0, "virtual", 20);
+            laser.PowerControlMethod = PowerControlMethod.Unknown;
             //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
@@ -96,7 +101,7 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
-            // assign RTC instance at laser 
+            // assign RTC controller at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
@@ -105,7 +110,7 @@ namespace SpiralLab.Sirius
             #endregion
 
             #region create document/layer/and spiral entity 
-            // create document
+            // create sirius document
             // 문서 생성
             var doc = new DocumentDefault("3x3 scanner field correction");
             // create layer
@@ -134,14 +139,14 @@ namespace SpiralLab.Sirius
             penDefault.JumpSpeed = 500; // 스캐너 점프 속도 mm/s
             penDefault.MarkSpeed = 500; // 스캐너 마크 속도 mm/s
 
-            // regen entities within layer
+            // regenerate
             // 레이어의 모든 개채들 내부 데이타 계산및 갱신
             layer.Regen();
             // add layer into document
             // 문서에 레이어 추가
             doc.Layers.Add(layer);
             doc.Layers.Active = layer;
-            // save document
+            // save sirius document
             // 문서 저장
             var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.sirius");
             DocumentSerializer.Save(doc, filename);

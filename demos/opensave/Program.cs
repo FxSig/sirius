@@ -17,6 +17,7 @@
  * 
  *
  * Document 문서 (가공 데이타) 저장, 열기
+ * How to manage sirius document
  * 
  * 문서(document) 는 레이어, 블럭 , 환경 설정 및 가공에 필요한 다양한 객체(Entity : 선, 호, 원, 폴리라인, 레이저 파라메터 등) 정보를 가지고 있다.
  * 이 가공 개체(Entity)를 생성하고, 저장이 가능하며 또한 레이저 가공을 시도한다.
@@ -26,7 +27,6 @@
  */
 
 
-using SpiralLab.Sirius.Laser;
 using System;
 using System.Diagnostics;
 using System.IO;
@@ -42,7 +42,8 @@ namespace SpiralLab.Sirius
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //initializing spirallab.sirius library engine (시리우스 라이브러리 초기화)
+            
+            // initialize sirius library
             SpiralLab.Core.Initialize();
 
             Console.WriteLine($"{Environment.NewLine}");
@@ -50,18 +51,25 @@ namespace SpiralLab.Sirius
             Console.WriteLine($"{Environment.NewLine}");
 
             #region create entities 
-            // 신규 문서 (Create document) 생성
+            // 신규 문서 생성
+            // create sirius document
             var doc1 = new DocumentDefault("Unnamed");
             // 레이어(Layer) 생성
+            // create layer
             var layer = new Layer("default");
-            //레이어에 선 형상 개체(Line entity) 생성및 추가
+            // 레이어에 선 형상 개체(Line entity) 생성및 추가
+            // create line entity and add into layer
             layer.Add(new Line(0, 10, 20,20));
             //레이어에 원 형상 개체(Circle entity) 생성및 추가
+            // create ciricle entity and add into layer
             layer.Add(new Circle(0, 0, 10));
             //레이어에 나선 형상 개체(Spiral entity) 생성및 추가
+            // create spiral entity and add into layer
             layer.Add(new Spiral(-20.0f, 0.0f, 0.5f, 2.0f, 5, true));
             // 레이어를 문서에 추가
+            // add layer into doc's layers container
             doc1.Layers.Add(layer);
+            // set active layer
             doc1.Layers.Active = layer;
             #endregion
 
@@ -69,49 +77,54 @@ namespace SpiralLab.Sirius
             Console.ReadKey(false);
             var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "default.sirius");
 
-            // 문서(Save document) 저장하기
+            // 문서 저장하기
+            // save sirius document
             DocumentSerializer.Save(doc1, filename);
 
             Console.WriteLine("press any key to open ...");
             Console.ReadKey(false);
-            // 문서(Open document) 불러오기
+            // 문서 불러오기
+            // open sirius document
             var doc2 = DocumentSerializer.OpenSirius(filename);
 
             Console.WriteLine("press any key to rtc initialize ...");
             Console.ReadKey(false);
 
             #region initialize RTC 
-            //create Rtc for dummy (가상 RTC 카드)
+            // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
-            //create Rtc5 controller
+            // create Rtc5 controller
             var rtc = new Rtc5(0);
-            //create Rtc6 controller
+            // create Rtc6 controller
             //var rtc = new Rtc6(0); 
-            //Rtc6 Ethernet
+            // create Rtc6 Ethernet controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
             float fov = 60.0f;
-            // k factor (bits/mm) = 2^20 / fov
+            // RTC4: k factor (bits/mm) = 2^16 / fov
+            //float kfactor = (float)Math.Pow(2, 16) / fov;
+            // RTC5/6: k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
-            // full path of correction file
+
+            // RTC4: full path of correction file
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
+            // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
-            // basic frequency and pulse width
+            // initialize RTC controller
+            rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
-            // basic sped
-            // jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
+            // scanner jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
-            // basic delays
-            // scanner and laser delays (스캐너/레이저 지연값 설정)
+            // laser and scanner delays (레이저/스캐너 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
             #endregion
 
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
             var laser = new LaserVirtual(0, "virtual", 20);
+            laser.PowerControlMethod = PowerControlMethod.Unknown;
             //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
@@ -127,7 +140,7 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
-            // assign RTC instance at laser 
+            // assign RTC controller at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
@@ -154,7 +167,8 @@ namespace SpiralLab.Sirius
                     break;
                 switch (key.Key)
                 {
-                    case ConsoleKey.S:  //RTC's status (상태 확인)
+                    case ConsoleKey.S:  
+                        // get RTC's status (상태 확인)
                         if (rtc.CtlGetStatus(RtcStatus.Busy))
                             Console.WriteLine($"Rtc is busy!");
                         if (!rtc.CtlGetStatus(RtcStatus.PowerOK))

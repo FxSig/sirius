@@ -57,8 +57,9 @@ namespace SpiralLab.Sirius
             InitializeComponent();
             FormClosing += MainForm_FormClosing;
 
-            // initialize core engine
+            // initialize sirius library
             SpiralLab.Core.Initialize();
+
             // enable pens function
             siriusEditorForm1.EnablePens = true;
 
@@ -73,33 +74,36 @@ namespace SpiralLab.Sirius
             // 내부 데이타(IDocument) 가 변경될경우 이를 이벤트 통지를 받는 핸들러 등록
             siriusEditorForm1.OnDocumentSourceChanged += SiriusEditorForm1_OnDocumentSourceChanged;
 
-            #region RTC 초기화
-            //create Rtc for dummy (가상 RTC 카드)
+            #region initialize RTC 
+            // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
-            //create Rtc5 controller
+            // create Rtc5 controller
             var rtc = new Rtc5(0);
-            //create Rtc6 controller
+            // create Rtc6 controller
             //var rtc = new Rtc6(0); 
-            //Rtc6 Ethernet
+            // create Rtc6 Ethernet controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
             // theoretically size of scanner field of view (이론적인 FOV 크기) : 60mm
-            float fov = ScannerFieldSize;
-            // k factor (bits/mm)
-            // 2^20 bits / fov(mm)
+            float fov = 60.0f;
+            // RTC4: k factor (bits/mm) = 2^16 / fov
+            //float kfactor = (float)Math.Pow(2, 16) / fov;
+            // RTC5/6: k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
-            // initialize rtc controller
-            rtc.Initialize(kfactor, LaserMode.Yag5, ScannerCorrectionFile);
-            // laser frequency : 50KHz, pulse width : 2usec
-            // 주파수 50KHz, 펄스폭 2usec
+
+            // RTC4: full path of correction file
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
+            // RTC5/6: full path of correction file
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
+            // initialize RTC controller
+            rtc.Initialize(kfactor, LaserMode.Yag5, correctionFile);
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
-            // jump and mark speed : 500mm/s
-            // 점프, 마크 속도 500mm/s
+            // scanner jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
-            // scanner and laser delays
-            // 스캐너/레이저 지연값 설정
+            // laser and scanner delays (레이저/스캐너 지연값 설정)
             rtc.CtlDelay(10, 100, 200, 200, 0);
-            
+
             // processing on the fly (xy용) 스케일 설정
             // enc counts / mm
             rtc.EncYCountsPerMm = 2000;
@@ -114,7 +118,8 @@ namespace SpiralLab.Sirius
 
             #region 레이저 소스 초기화
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
-            var laser = new LaserVirtual(0, "virtual", LaserMaxPowerWatt);
+            var laser = new LaserVirtual(0, "virtual", 20);
+            laser.PowerControlMethod = PowerControlMethod.Unknown;
             //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
@@ -130,12 +135,13 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 20);
 
-            // assign RTC instance at laser 
+            // assign RTC controller at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
             // 10% output 
             laser.CtlPower(LaserMaxPowerWatt * 0.1f);
+
             Laser = laser;
             siriusEditorForm1.Laser = laser;
             #endregion

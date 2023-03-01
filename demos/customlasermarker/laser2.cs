@@ -22,9 +22,7 @@ namespace SpiralLab.Sirius
         //, SpiralLab.Sirius.IShutterControl
         //, SpiralLab.Sirius.IGuideControl
     {
-        /// <summary>
-        /// 속성 변경 이벤트 핸들러
-        /// </summary>
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -36,20 +34,14 @@ namespace SpiralLab.Sirius
         /// 동기화 객체
         /// </summary>
         public object SyncRoot { get; set; }
-        /// <summary>
-        /// 식별 번호
-        /// </summary>
+        /// <inheritdoc/>
         public int Index { get; set; }
-        /// <summary>
-        /// 이름
-        /// </summary>
+        /// <inheritdoc/>
         public string Name { get; set; }
 
         /// <inheritdoc/>  
         public LaserType LaserType { get { return LaserType.UserDefined2; } }
-        /// <summary>
-        /// 최대 출력 와트
-        /// </summary>
+        /// <inheritdoc/>
         public float MaxPowerWatt { get; set; }
 
         /// <summary>
@@ -94,7 +86,7 @@ namespace SpiralLab.Sirius
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
             this.IsPowerControl = true;
-            this.PowerControlMethod = PowerControlMethod.Rs232;
+            this.PowerControlMethod = PowerControlMethod.Custom;
             this.IsShutterControl = false;
             this.IsGuideControl = false;
             this.serialPort = new SerialPort($"COM{comPort}");
@@ -124,10 +116,7 @@ namespace SpiralLab.Sirius
             this.disposed = true;
         }
 
-        /// <summary>
-        /// 초기화
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool Initialize()
         {
             try
@@ -142,10 +131,7 @@ namespace SpiralLab.Sirius
             }
             return true;
         }
-        /// <summary>
-        /// 가공 중지
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool CtlAbort()
         {
             lock (this.SyncRoot)
@@ -154,10 +140,7 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
-        /// <summary>
-        /// 에러 해제 시도
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool CtlReset()
         {
             lock (this.SyncRoot)

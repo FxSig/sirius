@@ -144,6 +144,7 @@
   - fixed) motf compensate table (MOTF 엔코더 보상 테이블 설정 지원)
      - x, y, delta x, delta y (mm)
   - fixed) text/siriustext with multi-line textdata (텍스트 개체에서 여러줄의 텍스트 데이타 지원)
+  - fixed) laser power control method (레이저 소스 파워 제어 종류 정리)
 
 * 2023.2.20 v1.130
   - updated) SCANLAB syncaxis v1.8.1

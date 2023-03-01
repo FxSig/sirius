@@ -19,9 +19,7 @@ namespace SpiralLab.Sirius
         //, SpiralLab.Sirius.IShutterControl
         //, SpiralLab.Sirius.IGuideControl
     {
-        /// <summary>
-        /// 속성 변경 이벤트 핸들러
-        /// </summary>
+        /// <inheritdoc/>
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
@@ -33,21 +31,15 @@ namespace SpiralLab.Sirius
         /// 동기화 객체
         /// </summary>
         public object SyncRoot { get; set; }
-        /// <summary>
-        /// 식별 번호
-        /// </summary>
+        /// <inheritdoc/>
         public int Index { get; set; }
-        /// <summary>
-        /// 이름
-        /// </summary>
+        /// <inheritdoc/>
         public string Name { get; set; }
 
         /// <inheritdoc/>  
         public LaserType LaserType { get { return LaserType.UserDefined1; } }
 
-        /// <summary>
-        /// 최대 출력 와트
-        /// </summary>
+        /// <inheritdoc/>
         public float MaxPowerWatt { get; set; }
 
         /// <summary>
@@ -98,7 +90,7 @@ namespace SpiralLab.Sirius
             this.Name = name;
             this.MaxPowerWatt = maxPowerWatt;
             this.IsPowerControl = true;
-            this.PowerControlMethod = PowerControlMethod.Analog;
+            this.PowerControlMethod = PowerControlMethod.Analog2;
             this.IsShutterControl = false;
             this.IsGuideControl = false;
         }
@@ -121,20 +113,14 @@ namespace SpiralLab.Sirius
             this.disposed = true;
         }
 
-        /// <summary>
-        /// 초기화
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool Initialize()
         {
             //rs-232 or tcp/ip communcation for you laser source
             return true;
         }
 
-        /// <summary>
-        /// 가공 중지
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool CtlAbort()
         {
             lock (this.SyncRoot)
@@ -142,10 +128,7 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
-        /// <summary>
-        /// 에러 해제 시도
-        /// </summary>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool CtlReset()
         {
             lock (this.SyncRoot)
@@ -155,13 +138,7 @@ namespace SpiralLab.Sirius
                 return true;
             }
         }
-        /// <summary>
-        /// 지정된 출력(watt)으로 레이저 파워 변경
-        /// 컨트롤 명령 (즉시 명령)
-        /// </summary>
-        /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool CtlPower(float watt, string powerMapCategory = "")
         {
             lock (this.SyncRoot)
@@ -189,22 +166,18 @@ namespace SpiralLab.Sirius
                 return success;
             }
         }
+        /// <inheritdoc/>
         public bool ListBegin()
         {
             return true;
         }
+        /// <inheritdoc/>
         public bool ListEnd()
         {
             return true;
         }
 
-        /// <summary>
-        /// 지정된 출력(watt)으로 레이저 파워 변경
-        /// 리스트 명령 (RTC 버퍼에 삽입되는 명령)
-        /// </summary>
-        /// <param name="watt">Watt</param>
-        /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
-        /// <returns></returns>
+        /// <inheritdoc/>
         public bool ListPower(float watt, string powerMapCategory = "")
         {
             lock (this.SyncRoot)

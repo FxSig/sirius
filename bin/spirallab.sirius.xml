@@ -11205,7 +11205,7 @@
             <summary>
             Skywriting 모드 3 사용시 활성화 제한 각도
             <para>설정된 각도 초과시 활성화</para>
-            <para>예 : 90로 설정시 90초과 각도(예 91도)에서 활성화됨)</para>
+            <para>예: 90로 설정시 90초과 각도에서 활성화됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.MinMarkSpeed">
