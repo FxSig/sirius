@@ -158,6 +158,8 @@ namespace SpiralLab.Sirius
                 success &= rtc.ListMark(width / 2, -height / 2);
                 success &= rtc.ListMark(-width / 2, -height / 2);
                 success &= rtc.ListMark(-width / 2, height / 2);
+                if (!success)
+                    break;
             }
             success &= rtc.ListEnd();
             if (success)
@@ -175,6 +177,8 @@ namespace SpiralLab.Sirius
             {
                 success &= rtc.ListJump(-radius, 0);
                 success &= rtc.ListArc(0, 0, 360);
+                if (!success)
+                    break;
             }
             success &= rtc.ListEnd();
             if (success)
