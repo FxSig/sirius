@@ -192,13 +192,13 @@ namespace SpiralLab.Sirius
             editor.Invoke(new MethodInvoker(delegate ()
             {
                 var doc = editor.Document as DocumentDefault;
-                var entity = doc.Layers.NameOf(name, out Layer parentLayer);
-                if (null == entity)
+                var entities = doc.Layers.NameOf(name, out Layer parentLayer);
+                if (0 == entities.Length)
                 {
                     this.Send(NG);
                     return;
                 }
-
+                var entity = entities[0];
                 Type type = entity.GetType();
                 var propInfo = type.GetProperty(propOrMethodName, BindingFlags.Public | BindingFlags.Instance);
                 if (null == propInfo || !propInfo.CanWrite)

@@ -139,51 +139,66 @@
         <member name="M:SpiralLab.Sirius.AltechnaWattPilot.CtlReset">
             <inheritdoc/>  
         </member>
+        <member name="T:SpiralLab.Sirius.IAttenuator">
+            <summary>
+            감쇄기 인터페이스
+            <para>IAttenuator interface</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.SyncRoot">
             <summary>
             동기화 객체
-            데이타 처리시 크로스 쓰레드 방지용으로 사용
+            <para>Synchronization object</para>
+            <para>데이타 처리시 크로스 쓰레드 방지용으로 사용</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.Index">
             <summary>
             식별 번호
+            <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.IsReady">
             <summary>
             준비 상태
+            <para>Ready status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.IsBusy">
             <summary>
             구동중 여부
+            <para>Busy status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.IsError">
             <summary>
             알람 발생 여부
+            <para>Error status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IAttenuator.Tag">
             <summary>
             사용자 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IAttenuator.Initialize">
             <summary>
             초기화 
+            <para>Initialize</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IAttenuator.CtlMoveRatio(System.Single)">
             <summary>
             구동
+            <para>Move to specific ratio position</para>
             </summary>
             <param name="ratio">비율 (0~1)</param>
             <returns></returns>
@@ -191,12 +206,14 @@
         <member name="M:SpiralLab.Sirius.IAttenuator.CtlReset">
             <summary>
             에러 리셋
+            <para>Reset</para>
             </summary>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.ICompensator`1">
             <summary>
-            Compensator 인터페이스
+            ICompensator 인터페이스
+            <para>ICompensator interface</para>
             <para>입력값에 대해 변환된 출력값을 연산해주는 기능 (사용자 보간 알고리즘 직접 구현)</para>
             </summary>
             <typeparam name="T">제네릭 타입</typeparam>
@@ -204,21 +221,25 @@
         <member name="P:SpiralLab.Sirius.ICompensator`1.SyncRoot">
             <summary>
             동기화 객체
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICompensator`1.Index">
             <summary>
             식별자 (0, 1, 2, ...)
+             <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICompensator`1.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ICompensator`1.Interpolate(`0,`0@)">
             <summary>
             보간 연산하기
+            <para>Interpolate input value to output value</para>
             </summary>
             <param name="input">입력값</param>
             <param name="output">보간된 출력값</param>
@@ -227,6 +248,7 @@
         <member name="M:SpiralLab.Sirius.ICompensator`1.Reset">
             <summary>
             초기화
+            <para>Reset to default</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CompensatorDefault`1">
@@ -3425,12 +3447,14 @@
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapSerializer">
             <summary>
-            파워맵 시리얼라이저
+            파워맵 파일 저장용
+            <para>Powermap serializer</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapSerializer.Open(SpiralLab.Sirius.IPowerMap,System.String)">
             <summary>
             파워맵 파일 열기
+            <para>Open powermap file</para>
             </summary>
             <param name="powerMap">IPowerMap 인스턴스</param>
             <param name="mapFileName">파일이름</param>
@@ -3439,6 +3463,7 @@
         <member name="M:SpiralLab.Sirius.PowerMapSerializer.Save(SpiralLab.Sirius.IPowerMap,System.String)">
             <summary>
             파워맵 파일 저장
+            <para>Save powermap file</para>
             </summary>
             <param name="powerMap">저장할 IPowerMap 인스턴스</param>
             <param name="mapFileName">파일이름 (powermap\*.map)</param>
@@ -4355,58 +4380,63 @@
         <member name="T:SpiralLab.Sirius.IMotors">
             <summary>
             모터 집합용 인터페이스
+            <para>IMotors interface</para>
             <para>여러개의 모터들을 모아 관리하는 일종의 모턴 그룹 객체</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.SyncRoot">
             <summary>
             동기화 객체
-            <para>데이타 처리시 크로스 쓰레드 방지용으로 사용</para>
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.Motors">
             <summary>
             모터 목록
+            <para>Array of IMotor</para>
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.IMotors.Name">
-            <summary>
-            이름
-            </summary>
-        </member>
+        <!-- Badly formed XML comment ignored for member "P:SpiralLab.Sirius.IMotors.Name" -->
         <member name="P:SpiralLab.Sirius.IMotors.IsHomeSearched">
             <summary>
             원점 검색 여부
+            <para>Home status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.IsInPos">
             <summary>
-            InPosition 여부
+            명령 지점 도착 여부
+            <para>In-Pos status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.IsReady">
             <summary>
-            준비상태 여부
+            준비 상태 여부
+            <para>Ready status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.IsBusy">
             <summary>
             구동중 여부
+            <para>Busy(Driving) status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.IsError">
             <summary>
             알람 발생 여부
+            <para>Error(Alarm) status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotors.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(SpiralLab.Sirius.PosVel[])">
             <summary>
             절대 위치 이동 (다축)
+            <para>Move to positions absolutely</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="posVel">위치값 (mm), 속도 (mm/s) 배열</param>
@@ -4415,6 +4445,7 @@
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveAbs(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             절대 위치 이동 (단축)
+            <para>Move to position index absolutely</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
@@ -4424,6 +4455,7 @@
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (다축)
+            <para>Move to distances relatively</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="distVel">위치값 (mm), 속도 (mm/s)</param>
@@ -4432,6 +4464,7 @@
         <member name="M:SpiralLab.Sirius.IMotors.CtlMoveRel(System.Int32,SpiralLab.Sirius.PosVel)">
             <summary>
             상대 위치 이동 (단축)
+            <para>Move to distance index relatively</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="index">모터 배열 인덱스 번호</param>
@@ -4441,6 +4474,7 @@
         <member name="M:SpiralLab.Sirius.IMotors.Update">
             <summary>
             상태 업데이트
+            <para>Update</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -5492,37 +5526,45 @@
         <member name="T:SpiralLab.Sirius.IDOutput">
             <summary>
             디지털 출력 인터페이스    
-            하나의 채널은 16개의 접점으로 구성됨
+            <para>IDOutput interface</para>
+            <para>하나의 채널은 16개의 접점으로 구성됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.SyncRoot">
             <summary>
             동기화 객체
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.Index">
             <summary>
             식별 번호
+            <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.ChannelCount">
             <summary>
             채널 개수
+            <para>Channel count</para>
+            <para>1 Channel = 16 bits</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDOutput.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDOutput.Initialize">
             <summary>
             초기화
+            <para>Initialize</para>
             </summary>
             <returns>성공여부</returns>
         </member>
@@ -5605,6 +5647,7 @@
         <member name="M:SpiralLab.Sirius.IDOutput.Update">
             <summary>
             출력 채널값을 모두 출력에 반영
+            <para>Update</para>
             <para>채널 메모리 -> 하드웨어 출력 </para>
             </summary>
             <returns>성공여부</returns>
@@ -5612,37 +5655,45 @@
         <member name="T:SpiralLab.Sirius.IDInput">
             <summary>
             디지털 입력 인터페이스    
+            <para>IDInput interface</para>
             <para>하나의 채널은 16개의 접점으로 구성됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.SyncRoot">
             <summary>
             동기화 객체
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.Index">
             <summary>
             식별 번호
+            <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.ChannelCount">
             <summary>
             채널 개수
+            <para>Channel count</para>
+            <para>1 Channel = 16 bits</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDInput.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDInput.Initialize">
             <summary>
             초기화
+            <para>Initialize</para>
             </summary>
             <returns>성공여부</returns>
         </member>
@@ -5717,6 +5768,7 @@
         <member name="M:SpiralLab.Sirius.IDInput.Update">
             <summary>
             입력 값들을 채널 메모리로 반영 (업데이트)
+            <para>Update</para>
             <para>하드웨어 입력 상태 -> 메모리</para>
             </summary>
             <returns>성공여부</returns>
@@ -8080,7 +8132,7 @@
         <member name="T:SpiralLab.Sirius.PowerControlMethod">
             <summary>
             레이저 소스의 출력 파워를 제어하는 방식들
-            <para>Control output laser power methods</para>
+            <para>Output laser power control methods</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Unknown">
@@ -8146,7 +8198,7 @@
         <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경 (즉시 명령)
-            <para>vary output laser power at immediately</para>
+            <para>Vary output laser power at immediately</para>
             <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
             <code>
             
@@ -8163,7 +8215,7 @@
         <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single,System.String)">
             <summary>
             파워 변경 
-            <para>List vary power</para> 
+            <para>List vary laser output power</para> 
             <para>마커의 내부 작업 쓰레드에 의해 리스트 명령으로 호출되므로, RTC 카드의 리스트 버퍼를 통해 레이저 파워를 변경하는 방식으로 처리 필요</para>
             <para>만약 리스트 명령으로 처리가 불가능한 파워 변경 방식의 경우, 현재까지 다운로드된 모든 리스트 명령을 닫고(List End/List Execute) 실행을 완료시킨 이후</para>
             <para>파워 변경 을 수행 완료하고 신규로 리스트(List Begin)를 만들어 이후 리스트 명령들에 영향을 주는 안는 방식으로 구현 가능</para>
@@ -8183,28 +8235,32 @@
         <member name="T:SpiralLab.Sirius.IGuideControl">
             <summary>
             레이저 소스 IGuide 인터페이스 
+            <para>IGuideControl interface</para>
             지시용(Guide/Pilot) 레이저 빔의 출력을 지원하는 레이저 소스의 경우 이 인터페이스를 상속 구현
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IGuideControl.IsGuideOn">
             <summary>
             지시용 레이저 빔(Guide/Pilot) On/Off 상태 제어
+            <para>Guide(pilot/red) beam on/off</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IShutterControl">
             <summary>
             레이저 소스 IShutter 인터페이스 (셔터 제어를 지원하는 레이저 소스의 경우 상속 구현)
+            <para>IShutterControl interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IShutterControl.IsShutterOpen">
             <summary>
             셔터(Shutter) 상태 (open/close) 제어
+            <para>Shutter open/close control</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.LaserType">
             <summary>
             레이저 소스 종류
-            laser source type
+            <para>laser source type</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ILaser">
@@ -8218,27 +8274,32 @@
         <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
             <summary>
             동기화 객체
+            <para>Synchronization object</para>
             <para>데이타 처리시 크로스 쓰레드 방지용으로 사용</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Index">
             <summary>
             식별 번호
+            <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.LaserType">
             <summary>
             레이저 소스 종류
+            <para>Layer type</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.MaxPowerWatt">
             <summary>
             최대 출력 파워 (Watt)
+            <para>Max power (W)</para>
             <example>
             
                              사용자가 지정한 출력 파워 (W)
@@ -8252,6 +8313,7 @@
         <member name="P:SpiralLab.Sirius.ILaser.IsReady">
             <summary>
             준비 상태
+            <para>Ready status</para>
             <para>레이저 소스의 제어 상태가 가공 준비가 완료되었는지 여부를 나타내며 시스템에서 가공 준비가 완료되었는지 여부를 판단하는 여러 조건들중 하나로 사용됨</para>
             <para>CheckReady 상속 구현부에서 오버라이딩 가능</para>
             </summary>
@@ -8259,6 +8321,7 @@
         <member name="P:SpiralLab.Sirius.ILaser.IsBusy">
             <summary>
             출사중 여부
+            <para>Busy status</para>
             <para>레이저 소스의 제어 상태가 출사중인지 여부 나타내며 시스템에서 출사중인지 여부를 판단하는 여러 조건들중 하나로 사용됨</para>
             <para>CheckBusy 상속 구현부에서 오버라이딩 가능</para>
             </summary>
@@ -8266,6 +8329,7 @@
         <member name="P:SpiralLab.Sirius.ILaser.IsError">
             <summary>
             알람 발생 여부
+            <para>Error status</para>
             <para>시스템에서 에러가 발생했는지 여부를 판단하는 여러 조건들중 하나로 사용됨</para>
             <para>CheckErrors 상속 구현부에서 오버라이딩 가능</para>
             </summary>
@@ -8273,46 +8337,54 @@
         <member name="P:SpiralLab.Sirius.ILaser.Rtc">
             <summary>
             레이저 제어에 필요한 IRtc 인터페이스 연결용
+            <para>IRtc interface</para>
             <para>RTC 카드를 이용한 레이저 출력 제어를 위해 사용됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsPowerControl">
             <summary>
             파워 변경을 지원하는지 여부 
+            <para>Is laser source support vary power control</para>
             <para>레이저 소스의 출력 파워를 제어가능하면 true 로 설정하고 IPowerControl 인터페이스를 상속 구현함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsShutterControl">
             <summary>
             셔터 제어를 지원하는지 여부
+            <para>Is laser source support shutter control</para>
             <para>레이저 소스내에 셔터(Shutter) Open/Close 제어가능하면 true 로 설정하고 IShutterControl 인터페이스를 상속 구현함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsGuideControl">
             <summary>
             Guide 레이저 빔 지원하는지 여부 (IGuideControl 인터페이스로 접근)
+            <para>Is laser source support guide(pilot/red) beam control</para>
             <para>레이저 소스에서 지시용 레이저 빔 출력을 제어가능하면 true 로 설정하고 IGuideControl 인터페이스를 상속 구현함</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsTimedOut">
             <summary>
             통신 타입아웃 여부
+            <para>Is communication timed out</para>
             <para>레이저 소스와의 통신중 다양한 이유로 통신 실패(타임아웃 등) 발생시 설정됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsProtocolError">
             <summary>
             레이저 소스와의 통신중 다양한 이유로 송수신 데이타의 부적합등 프로토콜 오류가 발생시 설정됨
+            <para>Is communication protocol error</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.Initialize">
             <summary>
             초기화 
+            <para>Initialize</para>
             <para>통신 연결 및 내부 초기화</para>
             </summary>
             <returns>성공 여부</returns>
@@ -8320,19 +8392,23 @@
         <member name="M:SpiralLab.Sirius.ILaser.CtlAbort">
             <summary>
             출사 중지
-            긴급정지등의 용도
+            <para>Abort</para>
+            <para>긴급정지등의 용도</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.CtlReset">
             <summary>
             내부에 발생된 여러가지의 에러 상태의 해제를 시도하는 리셋 기능
+            <para>Reset</para>
+            <para>에러 해제 용도</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ILaser.ListBegin">
             <summary>
             리스트 시작 통지용
+            <para>List begin</para>
             <para>마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼를 개방(begin) 한 후 각종 데이타가 다운로드되는데, 이 리스트 버퍼가 개방되는 시점을 통지하는 역할</para>
             <para>(가공 시작시 출력 파워를 초기값등으로 전환하는 용도로도 활용됨)</para>
             </summary>
@@ -8341,6 +8417,7 @@
         <member name="M:SpiralLab.Sirius.ILaser.ListEnd">
             <summary>
             리스트 명령 끝 통지용
+            <para>List end</para>
             <para>마커(IMarker) 에서 리스트 명령 처리를 위한 작업쓰레드가 생성되고 이때 RTC 내의 리스트 버퍼에 모든 데이타가 다운로드된 이후 리스트가 닫히는 시점을 통지하는 역할</para>
             <para>(가공 마무리시 이를 통지하는 용도)</para>
             </summary>
@@ -8753,6 +8830,7 @@
         <member name="T:SpiralLab.Sirius.PowerMapEvent">
             <summary>
             파워 매핑 시작 통지용
+            <para>power map event notify handler</para>
             </summary>
             <param name="powerMap">파워맵</param>
             <param name="arg">인자</param>
@@ -8760,6 +8838,7 @@
         <member name="T:SpiralLab.Sirius.PowerVerifyEvent">
             <summary>
             파워 검증 시작 통지용
+            <para>power verity event handler</para>
             </summary>
             <param name="powerMap">파워맵</param>
             <param name="arg">인자</param>
@@ -8773,108 +8852,129 @@
         <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingStarted">
             <summary>
             파워 매핑 시작
+            <para>OnMappingStarted event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingProgress">
             <summary>
             카테고리 개수 * 매 Step 진행완료 개수만큼 발생
+            <para>OnMappingProgress event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingFailed">
             <summary>
             파워 매핑 실패
+            <para>OnMappingFailed event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnMappingFinished">
             <summary>
             파워 매핑 종료
+            <para>OnMappingFinished event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyStarted">
             <summary>
             파워 검증 시작
+            <para>OnVerifyStarted event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyProgress">
             <summary>
             파워 검증시 : 카테고리 + 목표 출력(W) 개수만큼 발생
+            <para>OnVerifyProgress event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyFailed">
             <summary>
             파워 검증 실패
+            <para>OnVerifyFailed event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnVerifyFinished">
             <summary>
             파워 검증 완료
+            <para>OnVerifyFinished event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnOpen">
             <summary>
             파워맵 파일 열기
+            <para>OnOpen event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnSave">
             <summary>
             파워맵 파일 저장
+            <para>OnSave event handler</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsReady">
             <summary>
             파뭐 매핑/검증 진행 가능 여부
+            <para>Ready status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsBusy">
             <summary>
             파뭐 매핑/검증 진행중 여부
+            <para>Busy status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsError">
             <summary>
             파워 매핑/검증 에러 발생 여부
+            <para>Error status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.Index">
             <summary>
             식별자
+            <para>Identifier</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.Name">
             <summary>
             파워맵 이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.FileName">
             <summary>
             파워맵 파일 이름
+            <para>Filename</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.XName">
             <summary>
             파라메터 X 이름
-            <para>watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) </para>
+            <para>X Name</para>
+            <para>watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.XGap">
             <summary>
             파라메터 X 간격
+            <para>X Gap</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.SyncRoot">
             <summary>
             동기화 객체
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.Data">
             <summary>
-            카테고리/시리즈, (X값, 측정값) 데이타
+            카테고리/시리즈 (X값, 측정값) 데이타
+            <para>Category/Series (x value, detected value)</para>
             <para>실제 파일에 저장되는 데이타 값들</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMap.IsInterpolateEnabled">
             <summary>
             매핑(룩업) 테이블 기반의 근사 연산을 할지 여부
+            <para>Interpolate enable/disable</para>
             <para>기본값 true </para>
             <para>false 일 경우 입력값과 동일한 값이 출력됨 (1:1)</para>
             </summary>
@@ -8882,29 +8982,34 @@
         <member name="P:SpiralLab.Sirius.IPowerMap.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Initialize">
             <summary>
             초기화
+            <para>Initialize</para>
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Categories(System.String[]@)">
             <summary>
             카테고리/시리즈 목록 얻기
+            <para>Query categories(or series)</para>
             </summary>
             <param name="categories">카테고리/시리즈 목록</param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Clear(System.String)">
             <summary>
             카테고리/시리즈/ 룩업테이블 삭제
+            <para>Clear category(or series)</para>
             </summary>
             <param name="category">카테고리 이름 (미지정일 대상은 전체) </param>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.Update(System.String,System.Single,System.Single)">
             <summary>
             룩업 테이블 업데이트 
+            <para>Update lookup table (category, x value, detected value)</para>
             <para>설정값 : 시리즈 이름과 의존값(x)</para>
             <para>측정값 : 에너지 (Watt)</para>
             </summary>
@@ -8916,6 +9021,7 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.Query(System.String,System.Single,System.Single@)">
             <summary>
             룩업 테이블 실제값 조회
+            <para>Query lookup table (category, x value, detected value)</para>
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="x">watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) 가변인자</param>
@@ -8925,6 +9031,7 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.MaxDetectedPower(System.String,System.Single@)">
             <summary>
             룩업 테이블내의 지정된 시리즈에서의 실제 최대 에너지(W)값
+            <para>Query max detected value</para>
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="maxWatt">측정된 최대 에너지(W)</param>
@@ -8933,6 +9040,7 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.MinMaxX(System.String,System.Single@,System.Single@)">
             <summary>
             룩업 테이블내의 지정된 시리즈에서의 X 의 최대, 최소값
+            <para>Query min/max x value</para>
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="minX">최소값(watt(W), frequency(Hz), current(A), pulse width(um), voltage(V), duty width(%) )</param>
@@ -8942,6 +9050,7 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.Interpolate(System.String,System.Single,System.Single@)">
             <summary>
             룩업 테이블을 이용해 지정된 시리즈에서 지정된 에너지(watt)가 출력되기 위한 x 값 추출 (선형방식)
+            <para>Query interpolated x value from target value at specific category</para>
             </summary>
             <param name="category">카테고리/시리즈 이름</param>
             <param name="targetWatt">출력을 원하는 에너지(W)</param>
@@ -8951,6 +9060,7 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.CtlStart(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워매핑 시작
+            <para>Start power mapping</para>
             </summary>
             <param name="powerMapStartArg">IPowerMapStartArg 인자</param>
             <returns></returns>
@@ -8958,18 +9068,21 @@
         <member name="M:SpiralLab.Sirius.IPowerMap.CtlStop">
             <summary>
             파워 매핑 중지
+            <para>Stop power mapping</para>
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.CtlReset">
             <summary>
             에러 초기화
+            <para>Reset</para>
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.CtlVerify(SpiralLab.Sirius.IPowerVerifyArg)">
             <summary>
             보정된 출력 파워 검증 시작
+            <para>Start power verifying</para>
             <para>파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고 오차(threshold Watt)값 이내에서 측정이 되는지 여부를 시도한다</para>
             </summary>
             <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
@@ -9886,6 +9999,7 @@
         <member name="T:SpiralLab.Sirius.MotorEvent">
             <summary>
             모터 이벤트 통지 핸들러
+            <para>Motor notify event</para>
             </summary>
             <param name="motor">모터</param>
             <param name="arg">인자</param>
@@ -9893,7 +10007,8 @@
         <member name="T:SpiralLab.Sirius.IMotor">
             <summary>
             모터 인터페이스
-            단축용
+            <para>IMotor interface</para>
+            <para>단축용</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IMotor.MotorHomed">
@@ -9904,109 +10019,129 @@
         <member name="P:SpiralLab.Sirius.IMotor.SyncRoot">
             <summary>
             동기화 객체
-            데이타 처리시 크로스 쓰레드 방지용으로 사용
+            <para>Synchronization object</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.No">
             <summary>
-            모터 번호
+            모터 축 번호
+            <para>Axis no</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.Name">
             <summary>
-            모터 이름
+            이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.TargetPosition">
             <summary>
             절대 위치 (mm)
+            <para>Target position (mm)</para>
             <para>설정시 이동됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.ActualPosition">
             <summary>
             실제 위치값 (mm)
+            <para>Actual position (mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.DeltaPosition">
             <summary>
             상대 위치 (mm)
+            <para>Delta position (mm)</para>
             <para>설정시 이동됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.TargetPositionVelocity">
             <summary>
             위치 이동 속도 (mm/s)
+            <para>Target position velocicy (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsReady">
             <summary>
             준비 상태 여부
+            <para>Ready status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsBusy">
             <summary>
             구동중 여부
+            <para>Busy(Driving) status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsError">
             <summary>
             알람 발생 여부
+            <para>Error(Alarm) status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsServoAlarm">
             <summary>
             서보 알람 여부
+            <para>Servo alarm status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsHomeSearched">
             <summary>
             원점 검색 여부
+            <para>Home status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsInPos">
             <summary>
             명령 지점 도착 여부
+            <para>In-Pos status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsServoOn">
             <summary>
             서보 온오프 상태
+            <para>Servo status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsDriving">
             <summary>
             구동중 여부
+            <para>Driving(Busy) status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsCwSenOn">
             <summary>
             Cw 리미트 센서 
+            <para>CW limit status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsCCwSenOn">
             <summary>
             CCw 리미트 센서 
+            <para>CCW limit status</para>
              </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.IsOrgSenOn">
             <summary>
             Origin(Home) 센서 
+            <para>ORG status</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.MaxVelocity">
             <summary>
             최대 속도 제한값 (mm/s)
+            <para>Max limit velocity (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMotor.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.Initialize">
             <summary>
             초기화
+            <para>Initialize</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -10020,6 +10155,7 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlHomeSearch">
             <summary>
             홈(원점) 검색 시작
+            <para>Search home</para>
             <para>비동기 함수 (완료전에 리턴됨)</para>
             </summary>
             <returns>성공 여부</returns>
@@ -10027,6 +10163,7 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlResetCount(System.Single)">
             <summary>
             엔코더 카운터 리셋
+            <para>Reset encoder count</para>
             </summary>
             <param name="position">오프셋 값</param>
             <returns>성공 여부</returns>
@@ -10034,6 +10171,7 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveAbs(System.Single,System.Single)">
             <summary>
             절대 위치 이동
+            <para>Move to position absolutely</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="position">위치값 (mm)</param>
@@ -10043,6 +10181,7 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveRel(System.Single,System.Single)">
             <summary>
             상대 위치 이동
+            <para>Move to position relatively</para>
             <para>비동기 함수 (이동 완료전에 리턴됨)</para>
             </summary>
             <param name="distance">거리값 (mm)</param>
@@ -10052,6 +10191,7 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlMoveStop">
             <summary>
             정지
+            <para>Stop</para>
             <para>비동기 함수 (완료전에 리턴됨)</para>
             </summary>
             <returns>성공 여부</returns>
@@ -10059,12 +10199,14 @@
         <member name="M:SpiralLab.Sirius.IMotor.CtlReset">
             <summary>
             알람 해제
+            <para>Reset for error</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.IMotor.Update">
             <summary>
             모터 상태 업데이트
+            <para>Update</para>
             <para>하드웨어 상태 -> 내부 상태 메모리</para>
             </summary>
             <returns>성공 여부</returns>
@@ -21298,6 +21440,12 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MeasurementForm">
+            <summary>
+            계측 결과 출력용 윈폼
+            <para>Measurement plot result winform</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementForm.components">

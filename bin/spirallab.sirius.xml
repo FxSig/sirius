@@ -10814,11 +10814,13 @@
         <member name="T:SpiralLab.Sirius.Layers">
             <summary>
             레이어의 집합 객체 (레이어의 리스트 컨테이너로 동작)
+            <para>Layers</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layers.Items">
             <summary>
             레이어들의 배열
+            <para>Array of layer</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layers.Active">
@@ -10830,11 +10832,13 @@
         <member name="P:SpiralLab.Sirius.Layers.Owner">
             <summary>
             부모 문서
+            <para>Parent document</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Layers.BoundRect">
             <summary>
             레이어 내의 최대 외곽 영역
+            <para>Bound rectangle</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Layers.#ctor">
@@ -10850,7 +10854,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Layers.NameOf(System.String,System.Boolean)">
             <summary>
-            레이어 이름으로 레이어 검색
+            레이어 이름으로 검색
+            <para>find layers by name within document</para>
             </summary>
             <param name="layerName">레이어 이름</param>
             <param name="ignoreCase">대소문자 구분여부</param>
@@ -10859,6 +10864,7 @@
         <member name="M:SpiralLab.Sirius.Layers.NameOf(System.String,SpiralLab.Sirius.Layer@,System.Boolean)">
             <summary>
             엔티티 이름으로 모든 레이어 검색
+            <para>find entities by name within layer</para>
             </summary>
             <param name="entityName">엔티티 이름</param>
             <param name="parentLayer">발견된 엔티티가 포함된 레이어</param>
@@ -10868,30 +10874,25 @@
         <member name="M:SpiralLab.Sirius.Layers.NameOf(System.String,SpiralLab.Sirius.Group,System.Boolean)">
             <summary>
             그룹내에 포함된 엔티티 검색
+            <para>find entities by name within group</para>
             </summary>
             <param name="entityName">엔티티 이름</param>
             <param name="group">부모 그룹 개체</param>
             <param name="ignoreCase">대소문자 구분여부</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Layers.Fiducials(System.Collections.Generic.List{SpiralLab.Sirius.Fiducial}@)">
+        <member name="M:SpiralLab.Sirius.Layers.TypeOf(SpiralLab.Sirius.EType)">
             <summary>
-            특정 개체(Fiducial) 을 모든 레이어 에서 검색
+            엔티티 타입으로 검색
+            <para>find entities by type within document</para>
             </summary>
-            <param name="fiducials"></param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.Layers.Fiducials(SpiralLab.Sirius.Group,System.Collections.Generic.List{SpiralLab.Sirius.Fiducial}@)">
-            <summary>
-            그룹 내에서 특정 개체(Fiducial) 검색
-            </summary>
-            <param name="group"></param>
-            <param name="fiducials"></param>
+            <param name="entityType"></param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Layers.Clone">
             <summary>
             레이어들을 모두 복제
+            <para>Clone layers</para>
             </summary>
             <returns></returns>
         </member>
