@@ -71,17 +71,20 @@
         <member name="T:SpiralLab.Sirius.IOffsetable">
             <summary>
             IOffsetable 인터페이스
+            <para>IOffsetable interface</para>
             <para>엔티티가 오프셋 배열을 지원할 경우 상속 구현 해야 하는 인터페이스</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IOffsetable.Offsets">
             <summary>
             위치 배열을 구성하는 배열 목록
+            <para>Array of offset</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IOffsetable.OffsetCounts">
             <summary>
             오프셋 배열 개수
+            <para>Counts of offset</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IOffsetable.BoundRectWithoutOffset">
@@ -92,70 +95,82 @@
         <member name="T:SpiralLab.Sirius.ITextChangeable">
             <summary>
             ITextChangeable 인터페이스
+            <para>ITextChangeable interface</para>
             <para>변경 가능한 텍스트 데이타를 가지고 있는 경우 상속 구현 해야 하는 인터페이스</para>
             </summary>    
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.TextData">
             <summary>
             텍스트 내용
+            <para>Text data</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataDateTime">
             <summary>
             텍스트 내용이 자동 변경되는 날짜 시간 관련 데이타일 경우 활성화 한다.
             마킹시 자동 변환이 되며, 포맷은 yyyyDDhhmmtt 와 같은 DataTime 포맷을 사용된다
+            <para>Convert date and time</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataSerialNo">
             <summary>
-            텍스트 내용의 일부가 일련번호로 사용될 경우         
+            텍스트 내용의 일부가 일련번호로 사용될 경우      
+            <para>Convert serial no</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.IsTextDataGS1">
             <summary>
             텍스트 내용을 분석하여 GS1 포맷으로 변환할지 여부
+            <para>Convert GS1 format</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.ConvertedTextData">
             <summary>
             텍스트 내용을 날짜 시간/일련번호/GS1 포맷으로 변환을 시도하여 결과를 리턴한다
+            <para>Converted text data</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.GS1Separator">
             <summary>
             GS1 구분 문자열
+            <para>GS1 separator</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNo">
             <summary>
             일련번호
+            <para>Current serial no</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoFormat">
             <summary>
             일련번호 포맷
+            <para>Serial no format</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoIncrementStep">
             <summary>
             일련번호 증가값
+            <para>Serial no increment step</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.OffsetSerialNoIncrementStep">
             <summary>
             오프셋 배열을 가질 경우 일련번호 증가값
+            <para>Offset serial no increment step</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ITextChangeable.SerialNoDigits">
             <summary>
             일련번호 자리수
+            <para>Digits of serial no</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TextChangeableHelper">
             <summary>
             포맷된 텍스트를 분석해서 
-            시간날짜 / 일련번호 / GS1 코드 등을
-            변환 처리
+            <para>TextChangeable Helper</para>
+            시간날짜 / 일련번호 / GS1 코드 등을 변환 처리
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.TextChangeableHelper.DateTimeConvertHandler">
@@ -221,42 +236,50 @@
         <member name="T:SpiralLab.Sirius.IScriptable">
             <summary>
             IScriptable 인터페이스
+            <para>IScriptable interface</para>
             <para>C# 스크립트를 통해 내부 데이타를 변환해야 하는 경우 상속 구현 해야 하는 인터페이스</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.IsScriptEnabled">
             <summary>
             스크립트 사용 유무
+            <para>Enable/Disiable script</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.ScriptFileName">
             <summary>
             스크립트 소스 파일 이름 (.cs)
+            <para>Script filename</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.ScriptInstanceName">
             <summary>
             스크립트내 생성할 객체의 이름 (네임스페이스.클래스 이름)
+            <para>Script instance name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.ScriptPropertyName">
             <summary>
             스크립트내 생성된 객체에서 값을 얻어올 속성 이름
+            <para>Script property name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.ScriptArguments">
             <summary>
             스크립트내 생성된 객체에서 전달할 인자 목록
+            <para>Script array of arguments</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IScriptable.ScriptResult">
             <summary>
-             스크립트내 생성된 객체에서 값을 얻어온 속성의 결과
+            스크립트내 생성된 객체에서 값을 얻어온 속성의 결과
+            <para>Script result</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IScriptable.ScriptCompile(System.String,System.CodeDom.Compiler.CompilerErrorCollection@)">
             <summary>
             지정된 소스코드로 컴파일
+            <para>Comiple script</para>
             </summary>
             <param name="lineOfCodes">컴파일 코드</param>
             <param name="compileErrorCollection">실패시 컴파일 오류 목록</param>
@@ -265,6 +288,7 @@
         <member name="M:SpiralLab.Sirius.IScriptable.ScriptCompile(System.CodeDom.Compiler.CompilerErrorCollection@)">
             <summary>
             스크립트 컴파일 (ScriptFileName 파일을 찾아 열고 컴파일 진행)
+            <para>Comiple script</para>
             </summary>
             <param name="compileErrorCollection">실패시 컴파일 오류 목록</param>
             <returns></returns>
@@ -272,6 +296,7 @@
         <member name="M:SpiralLab.Sirius.IScriptable.ScriptExecute(System.String@,System.Boolean)">
             <summary>
             스크립트 실행
+            <para>Execute script</para>
             </summary>
             <param name="result">실행 결과 리턴</param>
             <param name="applyIntoData">실행 성공시 그 결과를 엔티티의 데이타에 즉시 반영 여부</param>
@@ -8908,6 +8933,7 @@
         <member name="T:SpiralLab.Sirius.HatchMode">
             <summary>
             해치 모드
+            <para>Hatch mode</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.HatchMode.Line">
@@ -8923,6 +8949,7 @@
         <member name="T:SpiralLab.Sirius.IHatchable">
             <summary>
             Hatchable 인터페이스
+            <para>IHatchable interface</para>
             <para>
             해치 기능을 제공해야 하는 엔티티가 상속 구현해야 하는 인터페이스
             폐(댣힌) 영역을 가진 엔티티에 대해서만 동작
@@ -8932,6 +8959,7 @@
         <member name="M:SpiralLab.Sirius.IHatchable.Hatch(SpiralLab.Sirius.HatchMode,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             해치 인자를 통해 해칭된 그룹 객체를 얻는다
+            <para>Do hatch</para>
             </summary>
             <param name="mode">해치 모드</param>
             <param name="zigZag">지그재그 사용여부</param>
@@ -9079,6 +9107,7 @@
         <member name="T:SpiralLab.Sirius.Offset">
             <summary>
             오프셋 (X, Y, 회전각도) 정보를 가지는 구조체
+            <para>Offset struct</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Offset.X">
@@ -9188,6 +9217,7 @@
         <member name="P:SpiralLab.Sirius.Offset.ToMatrix">
             <summary>
             3x3 행렬값으로 계산 (X, Y, 회전성분 포함)
+            <para>Calcuate matrices</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Offset.ToString">
@@ -9199,6 +9229,7 @@
         <member name="T:SpiralLab.Sirius.EntityAlign">
             <summary>
             엔티티 정렬(위치) 기준
+            <para>Entity alignment</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EntityAlign.Left">
@@ -9229,6 +9260,7 @@
         <member name="T:SpiralLab.Sirius.EntitySort">
             <summary>
             엔티티 정렬(순서) 기준
+            <para>Entity sort</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EntitySort.TopToBottom">
@@ -9254,6 +9286,7 @@
         <member name="T:SpiralLab.Sirius.SortMethod">
             <summary>
             정렬 기준점
+            <para>Sort methods</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.SortMethod.ByCenter">
@@ -9269,12 +9302,14 @@
         <member name="T:SpiralLab.Sirius.LaserPathSimSpped">
             <summary>
             가공 경로 시뮬레이션 속도
+            <para>Laser path simulation speed</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Action">
             <summary>
             액션 객체 (사용자의 모든 이벤트를 기록하여 undo/redo 처리하기 위한 행위 객체)
             모든 사용자 명령이 Action 내의 Undo / Redo 스택에서 관리되는 방식
+            <para>Action</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Action.EntitySelectedChangedEvent">
@@ -9292,26 +9327,31 @@
         <member name="P:SpiralLab.Sirius.Action.SelectedEntity">
             <summary>
             선택된 엔티티 리스트
+            <para>List of selected entities</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Action.ClipBoard">
             <summary>
             클립보드 (복사, 잘라내기, 붙혀넣기를 위한 임시 공간)
+            <para>Clipboard for copy/cut/paste</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Action.UndoRedoEnable">
             <summary>
             Undo/Redo 사용 여부
+            <para>enable/disable of undo/redo</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Action.NewLayerIndex">
             <summary>
             새로운 레이어 생성시 증가되는 전역 레이어 번호
+            <para>New layer index no</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Action.#ctor(SpiralLab.Sirius.IDocument)">
             <summary>
             생성자
+            <para>Constructor</para>
             </summary>
             <param name="owner">부모 문서(document)</param>
         </member>
@@ -9323,33 +9363,39 @@
         <member name="M:SpiralLab.Sirius.Action.Insert(SpiralLab.Sirius.IUndoRedo)">
             <summary>
             Undo/Redo 스택에 명령 삽입 (UndoRedoEnable 으로 삽입 여부 처리가능)
+            <para>Insert into action stack</para>
             </summary>
             <param name="ur"></param>
         </member>
         <member name="M:SpiralLab.Sirius.Action.UndoRedoClear">
             <summary>
             Undo/Redo 스택 정리
+            <para>Clean up action stack</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActUndo">
             <summary>
             Undo 명령
+            <para>Pop action from action stack</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActRedo">
             <summary>
             Redo 명령
+            <para>Pop/Push action from/into action stack</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActNew">
             <summary>
             신규 문서(Doc) 생성
+            <para>Create new document</para>
             </summary>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActSave(System.String)">
             <summary>
             문서(Doc) 저장
+            <para>Save sirius document into file</para>
             </summary>
             <param name="fileName">파일이름</param>
             <returns></returns>
@@ -9357,6 +9403,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActImportDxf(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             dxf 파일 가져오기
+            <para>Import dxf file into document</para>
             </summary>
             <param name="fileName">파일이름</param>
             <param name="importedEntity">생성된 개체</param>
@@ -9365,6 +9412,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActImportSirius(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             sirius 파일 가져오기
+            <para>Import sirius file into document</para>
             </summary>
             <param name="fileName">파일이름</param>
             <param name="importedEntity">생성된 개체</param>
@@ -9373,6 +9421,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActImportHPGL(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             HPGL 파일 가져오기
+            <para>Import hpgl file into document (deprecated)</para>
             </summary>
             <param name="fileName"></param>
             <param name="importedEntity">생성된 개체</param>
@@ -9381,6 +9430,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActImportHPGLByCpp(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
             HPGL 파일 가져오기 (신규 버전)
+            <para>Import hpgl file into document (new)</para>
             </summary>
             <param name="fileName"></param>
             <param name="importedEntity">생성된 개체</param>
@@ -9388,7 +9438,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActImportSTL(System.String,SpiralLab.Sirius.IEntity@)">
             <summary>
-            STL 파일 가져오기 (개발 미완료)
+            STL 파일 가져오기 (experimental)
+            <para>Import stl file into document (experimental)</para>
             </summary>
             <param name="fileName"></param>
             <param name="importedEntity"></param>
@@ -9397,6 +9448,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActDocumentPropertyChanged(SpiralLab.Sirius.IDocument,System.String,System.Object,System.Object)">
             <summary>
             DOC 의 속성 변경 명령
+            <para>Document property changed</para>
             </summary>
             <param name="doc">문서</param>
             <param name="propName">속성이름</param>
@@ -9407,6 +9459,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActLayerActive(SpiralLab.Sirius.Layer)">
             <summary>
             활성화 레이어 변경 명령
+            <para>Active layer changed</para>
             </summary>
             <param name="layer">대상 레이어</param>
             <returns></returns>
@@ -9414,6 +9467,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActLayerDragMove(SpiralLab.Sirius.Layer,SpiralLab.Sirius.Layer,System.Int32)">
             <summary>
             레이어의 순서를 변경 명령
+            <para>Order of layer changed</para>
             </summary>
             <param name="layer">현재 레이어</param>
             <param name="targetLayer">대상 레이어</param>
@@ -9423,6 +9477,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityAdd(SpiralLab.Sirius.IEntity,SpiralLab.Sirius.Layer)">
             <summary>
             단일 엔티티 추가 명령
+            <para>Add entity into layer</para>
             </summary>
             <param name="entity">선택 엔티티</param>
             <param name="layer">대상 레이어</param>
@@ -9431,6 +9486,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityAdd(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer)">
             <summary>
             다중 엔티티 추가 명령
+            <para>Add entities into layer</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="layer">대상 레이어</param>
@@ -9439,6 +9495,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntitySelect(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
             <summary>
             엔티티 선택 명령
+            <para>Select entities</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <returns></returns>
@@ -9446,6 +9503,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntitySelect(SpiralLab.Sirius.IEntity)">
             <summary>
             엔티티 선택 명령
+            <para>Select entity</para>
             </summary>
             <param name="entitiy">선택 엔티티</param>
             <returns></returns>
@@ -9453,6 +9511,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityGroup(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,System.Boolean)">
             <summary>
             지정된 엔티티들을 그룹으로 변환 명령
+            <para>Create array of entities into group</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="layer">대상 레이어</param>
@@ -9462,6 +9521,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityGroupWithOffsets(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer)">
             <summary>
             지정된 엔티티들을 그룹 + 오프셋으로 변환
+            <para>Create array of entities into group and offsets</para>
             <para>첫번째 엔티티가 대표 그룹 엔티티가 되고 나머지 엔티티들의 위치를 추출하여 이를 오프셋 배열로 처리함</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
@@ -9471,6 +9531,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityUngroup(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer)">
             <summary>
             지정된 그룹들을 개별 엔티티로 변환 명령
+            <para>Ungroup entity</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="layer">대상 레이어</param>
@@ -9479,6 +9540,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityDelete(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
             <summary>
             지정된 복수개의 엔티티 삭제 명령
+            <para>Delete entities</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <returns></returns>
@@ -9486,6 +9548,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityDelete(SpiralLab.Sirius.IEntity)">
             <summary>
             지정된 엔티티 삭제 명령
+            <para>Delete entity</para>
             </summary>
             <param name="entitity">선택 엔티티</param>
             <returns></returns>
@@ -9493,6 +9556,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityAlign(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.EntityAlign)">
             <summary>
             지정된 엔티티 위치 이동 명령
+            <para>Align entity</para>
             복수의 객체의 경우 해당 객체들을 둘러싸는 영역(BoundRect)을 기준으로 동작
             하나의 객체의 경우 Document 의 가로 세로 크기를 기준으로 동작
             </summary>
@@ -9503,6 +9567,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntitySort(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,SpiralLab.Sirius.EntitySort)">
             <summary>
             엔티티 정렬하기
+            <para>Sort entities</para>
             </summary>
             <param name="entities">대상 엔티티 리스트</param>
             <param name="layer">레이어</param>
@@ -9512,6 +9577,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityTransit(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Single,System.Single)">
             <summary>
             지정된 엔티티의 위치를 특정한 양 만큼 이동 명령
+            <para>Transit(Move) entities</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="dx">X 이동량 </param>
@@ -9521,6 +9587,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityTransitGrip(SpiralLab.Sirius.IEntity,System.Int32,System.Single,System.Single)">
             <summary>
             지정된 엔티티의 그립(Grip) 위치를 특정한 양만큼 이동
+            <para>Transit(Move) entities by grip location</para>
             </summary>
             <param name="entity">대상 엔티티</param>
             <param name="gripId">그립 포인트 식별 번호</param>
@@ -9531,6 +9598,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityDragMove(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer,System.Int32)">
             <summary>
             지정된 엔티티의 순서를 변경하는 명령
+            <para>Order of entities</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="targetLayer">대상 레이어</param>
@@ -9540,6 +9608,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityExplode(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.Layer)">
             <summary>
             지정된 엔티티를 분해하여 추가하고 원본 엔티티는 삭제함
+            <para>Explode entities</para>
             </summary>
             <param name="entities">선택 엔티티 리스트</param>
             <param name="layer">대상 레이어</param>
@@ -9547,7 +9616,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityHatch(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.HatchMode,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single,SpiralLab.Sirius.Layer)">
             <summary>
-            지정된 엔티티가 닫힌 형태라면 해치 패턴을 추가하고 이를 신규 그룹 개체로 생성한다. 
+            지정된 엔티티가 닫힌 형태라면 해치 패턴을 추가하고 이를 신규 그룹 개체로 생성한다
+            <para>Hatch entities</para>
             </summary>
             <param name="entities">엔티티 리스트</param>
             <param name="mode">해치 모드</param>
@@ -9563,6 +9633,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityRotate(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Single,System.Single,System.Single)">
             <summary>
             선택된 엔티티들을 cx, cy 를 중심으로 회전한다
+            <para>Rotate entity</para>
             </summary>
             <param name="entities">엔티티 리스트</param>
             <param name="angle">각도</param>
@@ -9573,13 +9644,15 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityCut(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
             <summary>
             지정된 엔티티들을 Cut 하는 명령 (삭제후 클립보드로 복사됨)
+            <para>Cut entities</para>
             </summary>
             <param name="entities">엔티티 리스트</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityCopy(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
             <summary>
-            지정된 엔티티들을 Copy 하는 명령(삭제되지 않고 클립보드로 복사됨)
+            지정된 엔티티들을 Copy 하는 명령 (삭제되지 않고 클립보드로 복사됨)
+            <para>Copy entities</para>
             </summary>
             <param name="entities">엔티티 리스트</param>
             <returns></returns>
@@ -9587,6 +9660,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityPaste(SpiralLab.Sirius.Layer,System.Single,System.Single)">
             <summary>
             클립보드에 있는 엔티티 를 복제하여 붙여넣기 함 (신규 엔티티가 생성됨)
+            <para>Paste entities at specific location</para>
             </summary>
             <param name="layer">레이어</param>
             <param name="x">X 위치</param>
@@ -9595,7 +9669,8 @@
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityPasteClone(SpiralLab.Sirius.Layer)">
             <summary>
-            클립보드에 있는 엔티티 를 복제하여 위치를 변경하지 않고 같은 위치에 붙여넣기 함 (신규 엔티티가 생성됨)
+            클립보드에 있는 엔티티를 복제하여 위치를 변경하지 않고 같은 위치에 붙여넣기 함 (신규 엔티티가 생성됨)
+            <para>Paste(Clone) entities</para>
             </summary>
             <param name="layer">레이어</param>
             <returns></returns>
@@ -9603,6 +9678,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityPasteArray(SpiralLab.Sirius.Layer,System.Collections.Generic.List{System.Numerics.Vector2})">
             <summary>
             클립보드에 있는 엔티티를 복제하여 배열 붙혀넣기 (신규 엔티티가 생성됨)
+            <para>Paste entities at specific locations</para>
             </summary>
             <param name="layer">레이어</param>
             <param name="targetLocations">대상 위치 목록</param>
@@ -9611,6 +9687,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityPropertyChanged(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.String,System.Object,System.Object)">
             <summary>
             지정된 엔티티의 속성을 변경하는 명령
+            <para>Entity property has changed</para>
             </summary>
             <param name="entities">엔티티 리스트</param>
             <param name="propName">속성 이름</param>
@@ -9621,6 +9698,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityReplace(SpiralLab.Sirius.Layer,SpiralLab.Sirius.IEntity,SpiralLab.Sirius.IEntity)">
             <summary>
             대상 레이어에 있는 엔티티를 신규 엔티티로 대체한다
+            <para>Replace entity</para>
             </summary>
             <param name="targetLayer">대상 레이어</param>
             <param name="targetEntity">대상 엔티티</param>
@@ -9630,7 +9708,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityDivide(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Collections.Generic.List{SpiralLab.Sirius.BoundRect},System.Single)">
             <summary>
             지정된 그룹 엔티티를 지정된 사각영역에 포함되어 있는 엔티티들로 골라 분해 복제하고, 대상 그룹은 삭제한다
-            (experimental)
+            <para>Divide entity</para>
             </summary>
             <param name="targets">대상 엔티티 </param>
             <param name="rects">사각 영역 집합</param>
@@ -9640,6 +9718,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityLWPolylineToArc(SpiralLab.Sirius.LwPolyline)">
             <summary>
             지정된 LW 폴리라인을 Arc 로 변환을 시도한다
+            <para>Extract 3-points from lwpolyline and create new arc entity</para>
             </summary>
             <param name="lwPolyline"></param>
             <returns></returns>
@@ -9647,6 +9726,7 @@
         <member name="M:SpiralLab.Sirius.Action.HitTest(System.Windows.Forms.Keys,System.Single,System.Single,System.Single)">
             <summary>
             마우스 클릭등의 한점을 지정하여 엔티티 선택 명령 (Undo/Redo 스택에 처리 않됨)
+            <para>Hit test by point</para>
             </summary>
             <param name="keys">특수키(ctrl, alt, shift, ...)</param>
             <param name="x">X 위치</param>
@@ -9657,6 +9737,7 @@
         <member name="M:SpiralLab.Sirius.Action.HitTest(System.Windows.Forms.Keys,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             마우스를 이용해 사각 영역(Rubber Band)을 지정하여 엔티티 선택 명령 (Undo/Redo 스택에 처리 않됨)
+            <para>Hit test by rubber band area</para>
             </summary>
             <param name="keys">특수키(ctrl, alt, shift, ...)</param>
             <param name="downX">시작 영역 X</param>
@@ -9669,6 +9750,7 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityLaserPathSimulateStart(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},SpiralLab.Sirius.IView,SpiralLab.Sirius.LaserPathSimSpped)">
             <summary>
             가공 경로 시뮬레이션 시작
+            <para>Start laser path simulation</para>
             </summary>
             <param name="list"></param>
             <param name="targetView"></param>
@@ -9678,13 +9760,15 @@
         <member name="M:SpiralLab.Sirius.Action.ActEntityLaserPathSimulateStop">
             <summary>
             가공 경로 시뮬레이션 중지
+            <para>Stop laser path simulation</para>
             </summary>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.AciColor">
             <summary>
-            색상 객체 : AutoCad 의 색상 객체를 표현 (ACI color - AutoCAD Color Index)
-            (더이상 사용되지 않음)
+            색상 객체
+            <para>AutoCad 의 색상 객체를 표현 (ACI color - AutoCAD Color Index)</para>
+            <para>더이상 사용되지 않음 (Deprecated)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AciColor.ByLayer">
@@ -9917,8 +10001,7 @@
             <summary>
             Vertex 구조체
             <para>
-            .NET의 Numeric.Vector2 를 PropertyGrid 에 출력하기 용이하지 않아, Numeric.Vector2 와 유사한 기능의 구조체를 만들어 사용
-            Points 엔티티 등 에 사용중
+            .NET의 Numeric.Vector2 를 PropertyGrid 에 출력하기 용이하지 않아, Numeric.Vector2 와 유사한 기능의 구조체를 만들어 사용. Points 엔티티등 에 사용됨
             </para>
             </summary>
         </member>
@@ -10112,6 +10195,7 @@
         <member name="T:SpiralLab.Sirius.IDocument">
             <summary>
             Document 인터페이스
+            <para>IDocument interface</para>
             <para>엔티티, 레이어, 블럭, 문서정보 등의 통합 데이타를 가지는 데이타 (일종의 가공 레시피)</para>
             <para>모든 데이타는 JSON 포맷으로 저장됨</para>
             <para>주의) Document 를 상속 구현하는 모든 문서 객체들은 SpiralLab.Sirius 네임스페이스 유지해야 함</para>
@@ -10120,89 +10204,103 @@
         <member name="P:SpiralLab.Sirius.IDocument.Version">
             <summary>
             문서 버전 정보
+            <para>Version info</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Name">
             <summary>
             이름
+            <para>Name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Description">
             <summary>
             설명
+            <para>Description</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.FileName">
             <summary>
             파일이름
+            <para>File name</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.ExtensionData">
             <summary>
             사용자 정의 확장 데이타
+            <para>User(Custom) extension data</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.ExtensionFilePath">
             <summary>
             사용자 정의 외부 확장용 파일의 경로
+            <para>User(Custom) extension file</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Action">
             <summary>
             사용자 명령 및 이벤트 액션 객체
-            (저장되지 않는 임시 객체)
+            <para>Action</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Dimension">
             <summary>
             문서의 중심 위치, 가로 및 세로 크기 정보
+            <para>Dimension</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.RotateOffset">
             <summary>
             X, Y 오프셋(mm) 및 회전각도
+            <para>Rotate offset</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.UserRectangles">
             <summary>
             임의의 사용자 사각 영역을 지정해주면 뷰 화면에 렌더링 처리해주는 기능
+            <para>Temporary user(custom) rectagles for draw</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Views">
             <summary>
             문서(Doc) 에 연결된 뷰 목록 (다중 뷰어를 제공하기 위해 내부적으로 사용됨)
-            (저장되지 않는 임시 객체)
+            <para>Array of view</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Blocks">
             <summary>
             블럭 컨테이너 (내부에 복수개의 Block 가 있고, Block 안에 복수개의 Entity 가 있음)
+            <para>Blocks</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Layers">
             <summary>
             레이어 컨테이너 (내부에 복수개의 Layer 가 있고, Layer 안에 복수개의 Entity 가 있음)
+            <para>Layers</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Pens">
             <summary>
             펜 엔티티의 집합으로 레이저 가공 파라메터의 모음
+            <para>Pens</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.IsEditorLock">
             <summary>
             편집기 화면에서 Lock 처리를 지원
+            <para>Lock(Editable) or not</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDocument.Tag">
             <summary>
             사용자 정의 데이타
-            (저장되지 않는 임시 객체)
+            <para>User data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IDocument.New">
             <summary>
             새로운 문서의 초기 상태로 변경
+            <para>New document</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.DocumentDefault">
@@ -13002,6 +13100,7 @@
         <member name="T:SpiralLab.Sirius.BoundRect">
             <summary>
             사각형 객체 (엔티티의 외곽 영역 정보 처리)
+            <para>Bound rectangle</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.BoundRect.Empty">
@@ -13383,77 +13482,91 @@
         <member name="P:SpiralLab.Sirius.Config.DocumentVersion">
             <summary>
             문서 버전 정보
+            <para>Document version</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentClearColor">
             <summary>
             문서 배경 색상
+            <para>Document background color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentAxesColor">
             <summary>
             XY Axis 색상
+            <para>Document xy axis color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.IsDocumentDrawAxes">
             <summary>
             XY Axis 렌더링 여부
+            <para>Visible xy axis</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentGridColor">
             <summary>
             Grid 선 색상
+            <para>Document grids color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentGridInterval">
             <summary>
-            Grid 간격
-            기본 10 mm
+            Grid 간격. 기본 10 mm
+            <para>Document grids interval (mm)</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.IsDocumentDrawGrids">
             <summary>
             Grid 렌더링 여부
+            <para>Visible grids</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentRubberBandRectColor">
             <summary>
             선택 사각 박스(Rubber band) 색상
+            <para>Rubber band rectangle color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentSelectedBoundRectColor">
             <summary>
             선택된 외곽 사각형의 색상
+            <para>Selected rectangle color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentSelectedInternalRectColor">
             <summary>
             선택된 내부 사각형의 색상 
+            <para>Selected internal rectangle color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentSelectedBoundRectGripColor">
             <summary>
             선택된 외곽 사각형의 Grip 색상
+            <para>Selected grip color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentSelectedBoundRectCenterColor">
             <summary>
             선택된 외곽 사각형의 중심 색상
+            <para>Selected bound center color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentRotateOriginColor">
             <summary>
             회전 중심 색상
+            <para>Document ratate origin(center) color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentOriginColor">
             <summary>
             기준점 색상
+            <para>Document origin(center) color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentBoundRectColor">
             <summary>
             외곽 사각형 색상
+            <para>Document bound(edge) color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DocumentUserRectColor">
@@ -13464,111 +13577,133 @@
         <member name="P:SpiralLab.Sirius.Config.DocumentClearPensWithNew">
             <summary>
             문서(Document) New 시도시 펜 정보를 모두 삭제/초기화 할지 여부
+            <para>Reset pen data when document new or not</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.EntitySelectedColor">
             <summary>
             엔티티 선택 생상
+            <para>Selected entity color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.EntityCenterColor">
             <summary>
             엔티티 중심 색상
+            <para>Selected entity center color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.EntityGroupOffsetNormalColor">
             <summary>
             그룹 엔티티 오프셋 색상
+            <para>Group offset color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.EntityGroupOffsetSelectedColor">
             <summary>
             그룹 엔티티 오프셋 선택시 색상
+            <para>Selected group offset color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.EntityArrowColor">
             <summary>
             엔티티 화살표 색상
+            <para>Arrow color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.DivideRectColor">
             <summary>
             개체 Divide시 미리보기용 사각형들의 색상
+            <para>Divide preview rectangle color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor1">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 십자 색상1
+            <para>Laser path simulation color - spot cross</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCrossColor2">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 십자 색상2
+            <para>Laser path simulation color - spot cross</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCircleColor1">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 원 색상1
+            <para>Laser path simulation color - circle</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.LaserSpotCircleColor2">
             <summary>
             레이저 가공 경로 시뮬레이션시 사용하는 원 색상2
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.BiteColor">
-            <summary>
-            Bite 외곽 영역을 그리는데 사용하는 색상
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.AngleFactor">
-            <summary>
-            호(Arc) 렌더링시 그리는 각도의 최소 단위 (클 수록 속도 향상됨)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.ClosedPathDistance">
-            <summary>
-            폐곡선 판단 거리 (mm) 상수값
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
-            <summary>
-            FreeType 폰트 분석시 베지어 곡선 구간을 미분할 최소 거리값 (mm)
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.SplineControlPointPrecision">
-            <summary>
-            DXF 스플라인(곡선영역)을 라인으로 변환시 제어점 사이를 N개의 라인으로 분해
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgeToLines">
-            <summary>
-             DXF 파일 분석시 폴리라인의 Bulge 값 사용 구간을 호(Arc) 대신 선분(Line)으로 근사할지 여부
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgePrecision">
-            <summary>
-            DXF 파일 분석시 폴리라인의 Bulge 구간을 지정된 라인으로 분해
+            <para>Laser path simulation color - circle</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Config.SimulationStepDistance">
             <summary>
             시뮬레이션 동작시 점프, 마크 구간을 이 거리값으로 나누어 출력. 초기값: 0.2 mm
+            <para>Step distace at laser path simulation</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.BiteColor">
+            <summary>
+            Bite 외곽 영역을 그리는데 사용하는 색상
+            <para>Bite size preview color at closed figure</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.AngleFactor">
+            <summary>
+            호(Arc) 렌더링시 그리는 각도의 최소 단위 (클 수록 속도 향상됨)
+            <para>Draw angle factor</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ClosedPathDistance">
+            <summary>
+            폐곡선 판단 거리 (mm) 상수값
+            <para>Distance(threshold) for closed path or not (mm)</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.BezierSplineMicroStepDistance">
+            <summary>
+            FreeType 폰트 분석시 베지어 곡선 구간을 미분할 최소 거리값 (mm)
+            <para>Length(min. distance) of bezier spline at freetype font</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.SplineControlPointPrecision">
+            <summary>
+            DXF 스플라인(곡선영역)을 라인으로 변환시 제어점 사이를 N개의 라인으로 분해
+            <para>Line counts when convert DXF spline to lines</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgeToLines">
+            <summary>
+            DXF 파일 분석시 폴리라인의 Bulge 값 사용 구간을 호(Arc) 대신 선분(Line)으로 근사할지 여부
+            <para>Convert bulge to lines at LWpolyline or not</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.LwPolylineBulgePrecision">
+            <summary>
+            DXF 파일 분석시 폴리라인의 Bulge 구간을 지정된 라인으로 분해
+            <para>Line counts when convert bulge to lines at LWpolyline</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.UndoStackSize">
             <summary>
             언두(Undo) 스택 최대 개수 제한 (메모리 절약을 위해)
+            <para>Action undo stack max size</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFontFamily">
             <summary>
-            트리뷰 노드에 사용할 기본 폰트체
+            트리뷰 노드에 사용할 기본 폰트
+            <para>Font family at treeview node</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFontSize">
             <summary>
             트리뷰 노드에 사용할 폰트 크기
+            <para>Font size at treeview node</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.NodeFont">
@@ -13594,11 +13729,13 @@
         <member name="F:SpiralLab.Sirius.Config.HitTestThreshold">
             <summary>
             엔티티 선택시 해당 거리 만큼(mm) 인접하면 선택 가능해짐
+            <para>Threshold distance at hit test (mm)</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointSize">
             <summary>
             Grip 사각형의 기본 크기 (픽셀)
+            <para>Grip rectangle size (pixel)</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.GripPointCursor">
@@ -13617,82 +13754,97 @@
         <member name="F:SpiralLab.Sirius.Config.PenDefaultColor">
             <summary>
             개체 생성 펜 기본 색상 (흰색)
+            <para>Default pen color</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ResolvingTypeName">
             <summary>
             JSON 포맷 Deserialize 시 사용되는 이름 공간
+            <para>Reference namespace</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigFontFilePath">
             <summary>
             폰트 파일 경로 (TTF 와 같은 트루타입 폰트 종류)
+            <para>Font file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigSiriusFontFilePath">
             <summary>
             폰트 파일 경로 (CXF 와 같은 폰트 종류)
+            <para>Sirius Font file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigDxfTTFFont">
             <summary>
             DXF 파일내 트루타입 폰트 변환시 생성할 폰트 종류
+            <para>DXF Default font file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigDxfNonTTFFont">
             <summary>
             DXF 파일내 비 트루타입 폰트 변환시 생성할 폰트 종류 (CXF 단선 폰트)
+            <para>CXF Default font file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigCorrectionFilePath">
             <summary>
             ctb/ct5 보정 파일 경로 
+            <para>Scanner field correction file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigRtcExtIoFileName">
             <summary>
             RTC 에서 사용되는 디지털 (확장 1,2) 입출력 이름 목록
+            <para>Extension io name file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigHandlerIoFileName">
             <summary>
             핸들러 에서 사용되는 디지털 입출력 이름 목록
+            <para>Handler io name file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigPenDefaultFileName">
             <summary>
             펜 객체 생성시 초기값에 사용되는 값
+            <para>Pen default value file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigMarkerFileName">
             <summary>
             마커 창에서 설정된 마지막 설정값 저장용 파일
+            <para>Marker saved file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigMotorFileName">
             <summary>
             모터(조그)창에서 마지막 설정값 저장용 파일
+            <para>Motor saved file</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigPlotFilePath">
             <summary>
-            계측 PLOT 파일 생성 경로
+            계측(Measurement) 파일 생성 경로
+            <para>Measurement output file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigSyncAxisViewerFileName">
             <summary>
             SYNCAXIS 뷰어 파일 경로
+            <para>SyncAxis viewer file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigSyncAxisSimulateFilePath">
             <summary>
             syncAXIS 시뮬레이션 로그 파일 생성 경로
+            <para>SyncAxis simulation log file path</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.MeasurementLaserOnFactor">
             <summary>
-            계측(Measurement) 채널 중 Laser On 에 대한 스케일 값
-            (기본값 1.0)
+            계측(Measurement) 채널 중 Laser On 에 대한 스케일 값 (기본값 1.0)
+            <para>Measurement laser on scale factor</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EType">
@@ -13792,12 +13944,14 @@
         <member name="T:SpiralLab.Sirius.IExplodable">
             <summary>
             Explodable 인터페이스
+            <para>IExplodable interface</para>
             <para>분해가 가능한 엔티티가 상속 구현해야 하는 인터페이스</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IExplodable.Explode">
             <summary>
             분해
+            <para>Explode</para>
             </summary>
             <returns>분해된 엔티티의 리스트</returns>
         </member>
@@ -15069,6 +15223,7 @@
         <member name="T:SpiralLab.Sirius.Alignment">
             <summary>
             정렬 기준
+            <para>Alignment</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Alignment.LeftTop">
@@ -15119,6 +15274,7 @@
         <member name="T:SpiralLab.Sirius.GripPoints">
             <summary>
             Grip 위치에 대한 정의
+            <para>Grip points</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.GripPoints.LeftTop">
@@ -15174,6 +15330,7 @@
         <member name="T:SpiralLab.Sirius.LetterSpaceWay">
             <summary>
             자간 간격 
+            <para>Letter space</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.LetterSpaceWay.Variable">
@@ -15189,6 +15346,7 @@
         <member name="T:SpiralLab.Sirius.DirectionWay">
             <summary>
             회전 방향
+            <para>Direction</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.DirectionWay.ClockWise">
@@ -15239,6 +15397,7 @@
         <member name="T:SpiralLab.Sirius.IDrawable">
             <summary>
             화면에 출력(렌더)이 가능한 엔티티(Entity)에 대한 인터페이스
+            <para>IDrawable interface</para>
             <para>
             주요기능 : 그리기(렌더링) 및 변환 (이동, 회전, 크기 변환 등), 선택
             </para>
@@ -15247,26 +15406,26 @@
         <member name="P:SpiralLab.Sirius.IDrawable.IsHitTest">
             <summary>
             마우스를 이용한 선택 (HitTest)을 처리할 지 여부
-            enable/disable hit test
+            <para>Enable/disable hit test</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsDrawPath">
             <summary>
             가공 경로를 나타내는 경로 표시 여부 (엔티티 선택 상태일때 그려짐)
-            <para>visibility mark path</para>
+            <para>Visibility mark path</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsVisible">
             <summary>
             화면에 표시 여부
-            <para>visible or not</para>
+            <para>Visible or not</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.Color">
             <summary>
             엔티티 색상 (Deprecated ! Use Color2 instead)
             <para>
-            entity ACI(Autocad Color Index) color (Deprecated ! Use Color2 instead)
+            Entity ACI(Autocad Color Index) color (Deprecated ! Use Color2 instead)
             </para>
             </summary>
         </member>
@@ -15274,7 +15433,7 @@
             <summary>
             엔티티 색상 (펜 가공 정보의 색상과 연계 동작됨)
             <para>
-            entity color = pen color
+            Entity color = pen color
             </para>
             </summary>
         </member>
@@ -15282,15 +15441,15 @@
             <summary>
             회전량
             <para>
-            angle of degree
+            Angle of degree
             </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IDrawable.IsHighlighted">
             <summary>
-            마우스 over 등에 의한 시각 효과 (현재 미지원)
+            마우스 over 등에 의한 시각 효과 (Experimental)
             <para>
-            not implemented yet
+            (Experimental) Not implemented yet
             </para>
             </summary>
         </member>
@@ -15298,7 +15457,7 @@
             <summary>
             엔티티 렌더링 (by OpenGL)
             <para>
-            draw into target view
+            Draw into target view
             </para>
             </summary>
             <param name="view">대상 뷰(IView)</param>
@@ -16242,22 +16401,26 @@
         <member name="T:SpiralLab.Sirius.IMarkerable">
             <summary>
             Markerable 인터페이스
+            <para>IMarkerable interface</para>
             <para>레이저 가공이 가능한 엔티티들이 상속구현 해야 하는 인터페이스</para>
             </summary>    
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerable.IsMarkerable">
             <summary>
             레이저 가공 유무
+            <para>Mark or not</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IMarkerable.Repeat">
             <summary>
             반복 가공 회수 (기본값 1)
+            <para>Repeat (default: 1)</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IMarkerable.Mark(SpiralLab.Sirius.IMarkerArg)">
             <summary>
             지정된 Rtc 인터페이스와 Laser 인터페이스를 이용한 엔티티 가공
+            <para>Do mark</para>
             </summary>
             <param name="markerArg">IMarkerArg 인터페이스</param>
             <returns></returns>

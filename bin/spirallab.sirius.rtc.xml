@@ -3267,19 +3267,28 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.IMotorArg">
+            <summary>
+            모터 인자
+            <para>IMotorArg interface</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IMotorArg.Tag">
             <summary>
             사용자 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IJogControl">
             <summary>
             레이저 소스 IShutter 인터페이스 (셔터 제어를 지원하는 레이저 소스의 경우 상속 구현)
+            <para>IJogControl interface</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IJogControl.CtlMoveJog(System.Single)">
             <summary>
             조그 속도 이동
+            <para>Jog to move</para>
             </summary>
             <param name="vel">속도 (mm/s)</param>
             <returns>성공 여부</returns>
@@ -3287,51 +3296,61 @@
         <member name="T:SpiralLab.Sirius.IPowerMapArg">
             <summary>
             파워맵 구동 인자 인터페이스
+            <para>IPowerMapArg interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Categories">
             <summary>
             목표 카테고리 배열
+            <para>Array of category</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Steps">
             <summary>
             단계
+            <para>Steps</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.PowerMeter">
             <summary>
             IPowerMeter 인터페이스 객체
+            <para>IPowerMeter interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Rtc">
             <summary>
             IRtc 인터페이스 객체
+            <para>IRtc interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Laser">
             <summary>
             ILaser 인터페이스 객체
+            <para>ILaser interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Location">
             <summary>
             스캐너 출사 위치 (기본값 : 0,0 원점)
+            <para>X,Y location of scanner when power mapping</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.HoldTimeMsec">
             <summary>
             측정을 위한 레이저 출사 시간 (msec)
+            <para>Hold time(msec) when power mapping</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.ThresholdWatt">
             <summary>
             해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            <para>Max error threshold watt(W) when power mapping</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapStartDefaultArg">
@@ -3374,41 +3393,49 @@
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.CategoryAndTargetWatts">
             <summary>
             목표 카테고리, 출력 파워(W), 측정 파워(W) 튜플(Typle) 배열
+            <para>Tuple of category, watt, detected watt</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.PowerMeter">
             <summary>
             IPowerMeter 인터페이스 객체
+            <para>IPowerMeter interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Rtc">
             <summary>
             IRtc 인터페이스 객체
+            <para>IRtc interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Laser">
             <summary>
             ILaser 인터페이스 객체
+            <para>ILaser interface</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Location">
             <summary>
-            스캐너 출사시 이동 위치 (기본값: 0,0 원점)
+            스캐너 출사 위치 (기본값 : 0,0 원점)
+            <para>X,Y location of scanner when power verifying</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.HoldTimeMsec">
             <summary>
-            출사 유지시간 (msec)
+            측정을 위한 레이저 출사 시간 (msec)
+            <para>Hold time(msec) when power mapping</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.ThresholdWatt">
             <summary>
-            오차로 처리할 출력값 범위 (W)
+            해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            <para>Max error threshold watt(W) when power mapping</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapVerifyDefaultArg">
@@ -4239,6 +4266,7 @@
         <member name="T:SpiralLab.Sirius.MotorHelper">
             <summary>
             3rd Party 모터/IO 제품에 대한 헬퍼 클래스
+            <para>Motor helper</para>
             <para>아래 제품군을 사용시에는 프로그램 초기화 시작시점에 생성(Create)하고, 종료시점에 자원해제(Dispose)를 실시한다</para>
             </summary>
         </member>
@@ -17809,7 +17837,7 @@
             Parity: none
             </code>
             </summary>
-            <param name="baudRate">9600, ...</param>
+            <param name="baudRate">ex) 9600, ...</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialWrite(System.Byte[])">
@@ -17938,7 +17966,7 @@
         <member name="T:SpiralLab.Sirius.IRtcRaster">
             <summary>
             IRtcRaster 인터페이스
-            <para>RTC 의 Raster(Bitmap Pixel) Operation 을 지원하기 위해 </para>
+            <para>RTC 의 Raster(Bitmap Pixel) operation 지원하기 위해 </para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcRaster.ListPixelLine(System.Single,System.Numerics.Vector2,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
@@ -17967,7 +17995,7 @@
             <summary>
             리스트 명령 - 위 ListPixelLine + ListPixel * n 을 통합한 편이용 함수
             <para>(Expemental) List pixel line with each pixels data</para>
-            <para>(현재는 지원되지 않는 기능입니다)</para>
+            <para>(Deprecated) 현재는 지원되지 않는 기능입니다</para>
             </summary>
             <param name="vStart">가공 시작점</param>
             <param name="vEnd">가공 끝점</param>
@@ -18094,7 +18122,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListJump3D(System.Numerics.Vector3,System.Single)">
             <summary>
-            리스트 명령 - 점프 
+            리스트 명령 - 점프
             <para>List jump 3d</para>
             </summary>
             <param name="vPosition">x,y,z 위치 (mm)</param>
@@ -18917,7 +18945,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.Single)">
             <summary>
-            리스트 명령 - (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            리스트 명령 - 점프 + 드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             <para>(Experimental) List jump drill</para>
             </summary>
             <param name="vPosition">x,y 위치 (mm)</param>
@@ -18926,7 +18954,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.Single)">
             <summary>
-            리스트 명령 - (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
+            리스트 명령 - 점프 + 드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             <para>(Experimental) List jump drill</para>
             </summary>
             <param name="x">x 위치 (mm)</param>
@@ -21365,7 +21393,7 @@
             리스트 명령 - 모션 블랜딩 반지름 근사값
             <para>List approx. blend limit</para>
             <para>
-            Maximum tolerable mathematical distance of the blending curve to the corner point. 
+            Maximum tolerable mathematical distance of the blending curve to the corner point
             </para>
             </summary>
             <param name="approxBlendLimit">반지름 거리값 (mm)</param>
