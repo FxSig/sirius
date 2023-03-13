@@ -132,6 +132,17 @@
 
 **5. Version history**
 
+* 2023.3.15 v1.132
+  - updated) SCANLAB syncAxis v1.8.2 (스캔랩 syncAxis 제품 v1.8.2 핫픽스 적용)
+     - bug) unintended suppression of laser control signals when automatic laser control was active (ALC 버그 수정)
+  - added) scanner calibration for 3D surface points cloud (STL 개체의 정점 추출후 3D 보정 파일 생성 지원)
+  - added) line entity with raster pixel operation (선분 개체에 픽셀 가공법 추가)
+  - added) IReversable interface at entity (가공 순서 반전 인터페이스 추가)
+  - added) find entity by type at layers (개체 타입으로 검색 기능 추가)
+  - added) more sort methods (개체 정렬 방식 추가)
+  - fixed) laservirtual (가상 레이저 소스 객체)
+     - min/max duty cycle (Duty cycle 사용시 최대/최소 비율 설정 지원)
+
 * 2023.3.1 v1.131
   - added) variable polygon delay at pen (각도에 따른 가변 폴리곤 지연 시간 설정 펜에서 지원)
      - scale(°) = 1 - cosine(°)

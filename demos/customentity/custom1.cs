@@ -447,7 +447,7 @@ namespace SpiralLab.Sirius
                 {
                     Text = Node.Text,
                     Tag = Node.Tag,
-                    NodeFont = Node.NodeFont,
+                    //NodeFont = Node.NodeFont,
                 },
             };
             return line;

@@ -43,6 +43,11 @@
             엔티티 교체하기
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.UndoRedoEntityReverse">
+            <summary>
+            엔티티 반전 (내부 경로)
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.UndoRedoEntitySort">
             <summary>
             엔티티 정렬 (순서)
@@ -67,6 +72,19 @@
             <summary>
             엔티티 의 Grip 포인트 이동
             </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.IReversable">
+            <summary>
+            IReversable 인터페이스
+            <para>IReversable interface</para>
+            <para>역방향 가공을 지원하는 인터페이스</para>
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IReversable.ReverseWinding">
+            <summary>
+            경로 역전 (inverse/reverse winding)
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IOffsetable">
             <summary>
@@ -3284,6 +3302,16 @@
             비율 (내부사용)
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.Stereolithography._TranslateAuto">
+            <summary>
+            이동 (내부사용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Stereolithography.ZPositive">
+            <summary>
+            Z 양의 영역(+) 거리값
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Stereolithography._Translate">
             <summary>
             이동 (내부사용)
@@ -3302,6 +3330,11 @@
         </member>
         <member name="P:SpiralLab.Sirius.Stereolithography.Tag">
             <inheritdoc/>
+        </member>
+        <member name="P:SpiralLab.Sirius.Stereolithography.Transparancy">
+            <summary>
+            투명도 (10~255)
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Stereolithography.Angle">
             <inheritdoc/>
@@ -3520,6 +3553,9 @@
             <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.RasterLine.HitTest(SpiralLab.Sirius.BoundRect,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.RasterLine.ReverseWinding">
             <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.RasterLine.HitTestGrip(System.Single,System.Single,System.Single,System.Int32@,System.Windows.Forms.Cursor@)">
@@ -3777,7 +3813,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.StitchedImage.Transparancy">
             <summary>
-            투명도 (0~255)
+            투명도 (10~255)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.StitchedImage.Angle">
@@ -5133,6 +5169,11 @@
         <member name="P:SpiralLab.Sirius.Bitmap.Py">
             <summary>
             높이 (픽셀)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Bitmap.Transparancy">
+            <summary>
+            투명도 (10~255)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Bitmap.Angle">
@@ -9572,6 +9613,13 @@
             <param name="entities">대상 엔티티 리스트</param>
             <param name="layer">레이어</param>
             <param name="sort">정렬 방법</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Action.ActEntityReverse(System.Collections.Generic.List{SpiralLab.Sirius.IEntity})">
+            <summary>
+            엔티티 내부 경로 반전(Reverse) 시키기
+            </summary>
+            <param name="entities">대상 엔티티 리스트</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Action.ActEntityTransit(System.Collections.Generic.List{SpiralLab.Sirius.IEntity},System.Single,System.Single)">
@@ -14319,6 +14367,21 @@
         <member name="P:SpiralLab.Sirius.Line.Repeat">
             <inheritdoc/>
         </member>
+        <member name="T:SpiralLab.Sirius.Line.LineType">
+            <summary>
+            라인 타입
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Line.LineType.Solid">
+            <summary>
+            단일 선분
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Line.LineType.Raster">
+            <summary>
+            레스터 선분
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.Line.IsReversable">
             <summary>
             반복 가공시 역방향으로 전환 가공 여부
@@ -14352,6 +14415,29 @@
         <member name="P:SpiralLab.Sirius.Line.EndRampFactor">
             <summary>
             ALC (자동 레이저 출력: Vector Defined) 사용시의 끝점 비율값 (기본값: 1.0)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.PixelPitch">
+            <summary>
+            레스터 픽셀 간격 거리 (mm)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.PixelPeriod">
+            <summary>
+            레스터 픽셀 가공 주기 (usec)
+            <para>예 : 100 usec -> 10KHz 주파수에 해당</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.PixelTime">
+            <summary>
+            레스터 개별 픽셀 가공 시간 (usec)
+            <para>주의) PixelPeriod 보다 작은값이 설정되어야 한다</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.Line.PixelChannel">
+            <summary>
+            레스터 개별 픽셀 출력 아나로그 채널
+            <para>주의) 반드시 아나로그 출력 채널이 지정되어야 한다</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Line.Angle">
@@ -14436,6 +14522,9 @@
             <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.Line.HitTest(SpiralLab.Sirius.BoundRect,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.Line.ReverseWinding">
             <inheritdoc/>
         </member>
         <member name="M:SpiralLab.Sirius.Line.HitTestGrip(System.Single,System.Single,System.Single,System.Int32@,System.Windows.Forms.Cursor@)">
@@ -14770,7 +14859,7 @@
         <member name="M:SpiralLab.Sirius.LwPolyline.Hatch(SpiralLab.Sirius.HatchMode,System.Boolean,System.Single,System.Single,System.Single,System.Single,System.Single)">
             <inheritdoc/>
         </member>
-        <member name="M:SpiralLab.Sirius.LwPolyline.Reverse">
+        <member name="M:SpiralLab.Sirius.LwPolyline.ReverseWinding">
             <summary>
             정점의 순서 뒤집기 (Bulge 값 내부에서 다시 계산됨)
             </summary>

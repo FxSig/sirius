@@ -1024,8 +1024,8 @@ namespace SpiralLab.Sirius
                 else
                     trvEntity.SelectedNodes = null;
                 if (nodes.Count > 0)
-                    nodes[nodes.Count - 1].EnsureVisible();
                 trvEntity.EndUpdate();
+                nodes[nodes.Count - 1].EnsureVisible();
                 trvEntity.Refresh();
 
                 lblEntityCount.Text = $"Selected: {list.Count.ToString()}";

@@ -1134,6 +1134,18 @@
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsShutterOpen">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.MinDutyCycle">
+            <summary>
+            최소 Duty 비율 (%)
+            <para>Default: 1</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.MaxDutyCycle">
+            <summary>
+            최대 Duty 비율 (%)
+            <para>Default: 40</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.StatusByte1.Value">
             <summary>
             4바이트 값
@@ -7774,6 +7786,18 @@
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Tag">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MinDutyCycle">
+            <summary>
+            최소 Duty 비율 (%)
+            <para>Default: 1</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.MaxDutyCycle">
+            <summary>
+            최대 Duty 비율 (%)
+            <para>Default: 40</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsDiodeOn">
             <summary>
             다이오드 온오프
@@ -8517,6 +8541,18 @@
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsGuideControl">
             <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.MinDutyCycle">
+            <summary>
+            펄스폭 제어 사용시 최소 Duty 비율 (%)
+            <para>Default: 1</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.MaxDutyCycle">
+            <summary>
+            펄스폭 제어 사용시 최대 Duty 비율 (%)
+            <para>Default: 99</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterOpen">
             <inheritdoc/>  
@@ -10590,6 +10626,25 @@
             <param name="rtc4Count">RTC 4 카드 개수</param>
             <param name="rtc5Count">RTC 5 카드 개수</param>
             <param name="rtc6Count">RTC 6 카드 개수</param>
+            <returns></returns>
+        </member>
+        <member name="T:SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode">
+            <summary>
+            Calibraion Library Return codes
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcHelper.FreeFormPointCloud(System.UInt32,System.Double[],System.Double[],System.Double[],System.String,System.String,System.String,SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode@)">
+            <summary>
+            3D 공간의 점 집합(Point cloud) 를 이용해 새로운 스캐너 필드 보정 파일을 생성
+            </summary>
+            <param name="counts">개수</param>
+            <param name="xMM">x 배열</param>
+            <param name="yMM">y 배열</param>
+            <param name="zMM">z 배열</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일 README (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.DoubleDot12TypeConverter">

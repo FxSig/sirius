@@ -1,7 +1,7 @@
 ***************************************************************************
 File: README.txt
 
-SCANLAB syncAXIS Viewer Software Package Version 1.8.1
+SCANLAB syncAXIS Viewer Software Package Version 1.8.2
 
 ***************************************************************************
 
@@ -47,8 +47,8 @@ This package contains the following files:
 |   sharpdx_direct3d11_1_effects_x64.dll
 |   sharpdx_direct3d11_1_effects_x86.dll
 |   syncAXIS_Viewer.exe
-|   syncAXIS_V1.8.1_Viewer_de-DE.pdf
-|   syncAXIS_V1.8.1_Viewer_en-US.pdf
+|   syncAXIS_V1.8.2_Viewer_de-DE.pdf
+|   syncAXIS_V1.8.2_Viewer_en-US.pdf
 |   Xceed.Wpf.AvalonDock.dll
 \---Xceed.Wpf.Toolkit.dll
 	
