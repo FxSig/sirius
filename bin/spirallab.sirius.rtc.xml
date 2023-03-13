@@ -10891,6 +10891,9 @@
         <member name="M:SpiralLab.Sirius.ScanMasterController.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.ScanMasterController.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.ScanMasterController.ListFrequency(System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -11316,6 +11319,9 @@
             <param name="laser">레이저 소스</param>
             <param name="listType">리스트 타입 (하나의 거대한 리스트 : single, 더블 버퍼링되는 두개의 리스트 : double)</param>
             <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcGCode.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcGCode.ListFrequency(System.Single,System.Single)">
             <summary>
@@ -11861,6 +11867,9 @@
         <member name="M:SpiralLab.Sirius.Rtc4.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc4.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListFrequency(System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -12061,9 +12070,6 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
-            <inheritdoc/>  
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc4.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc4.CtlMove(System.Numerics.Vector3)">
@@ -13035,6 +13041,9 @@
         <member name="M:SpiralLab.Sirius.Rtc5.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListFrequency(System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -13316,9 +13325,6 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
-            <inheritdoc/>  
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlMove(System.Numerics.Vector3)">
@@ -14331,6 +14337,9 @@
         <member name="M:SpiralLab.Sirius.Rtc6.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListFrequency(System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -14625,9 +14634,6 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
-            <inheritdoc/>  
-        </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlMove(System.Numerics.Vector3)">
@@ -15065,7 +15071,7 @@
             <summary>
             스캐너 보정 파일 목록 
             <para>
-            (syncAXIS 는 미사용. xml 파일에서 설정할것)
+            syncAXIS XML 파일에서 수동 설정후 사용
             </para>
             </summary>
         </member>
@@ -15073,7 +15079,7 @@
             <summary>
             주 스캐너 헤드 보정 테이블 번호 (1~4)
             <para>
-            (xml 파일에서 미리 설정된 최대 4개의 보정 파일 선택용으로 사용)
+            (xml 파일에서 미리 설정된 4개의 보정 파일 선택용. 다른 파일 로드 불가)
             </para>
             </summary>
         </member>
@@ -15499,6 +15505,9 @@
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListFrequency(System.Single,System.Single)">
@@ -16434,6 +16443,9 @@
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.ListType)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListFrequency(System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -16543,9 +16555,6 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListHeadOffset(SpiralLab.Sirius.ScannerHead,System.Numerics.Vector3)">
-            <inheritdoc/>  
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMove(System.Numerics.Vector3)">
@@ -17019,7 +17028,10 @@
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionTableIndex">
             <summary>
-            RTC 카드 내에는 4개의 스캐너 보정 테이블을 로드한후 선택하여 사용
+            RTC 카드 내부 메모리에의 보정 테이블을 영역
+            <para>RTC4: 2개</para>
+            <para>RTC5: 4개</para>
+            <para>RTC6: 8개</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table1">
@@ -17035,11 +17047,37 @@
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table3">
             <summary>
             스캐너 보정 테이블 3
+            <para>RTC5 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table4">
             <summary>
             스캐너 보정 테이블 4
+            <para>RTC5 이상</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table5">
+            <summary>
+            스캐너 보정 테이블 5
+            <para>RTC6 이상</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table6">
+            <summary>
+            스캐너 보정 테이블 6
+            <para>RTC6 이상</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table7">
+            <summary>
+            스캐너 보정 테이블 7
+            <para>RTC6 이상</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table8">
+            <summary>
+            스캐너 보정 테이블 8
+            <para>RTC6 이상</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.ExtensionChannel">
@@ -17584,6 +17622,15 @@
             <param name="listType">리스트 타입 (Single: 하나의 거대한 리스트, Auto: 더블 버퍼링되는 두개의 리스트)</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtc.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
+            <summary>
+            리스트 명령 - 스캐너 헤드에 지정된 보정 테이블 선택
+            <para>List select correction table at specific scan head</para>
+            </summary>
+            <param name="primaryHeadTableIndex">CorrectionTableIndex 열거형 (Primary)</param>
+            <param name="secondaryHeadTableIndex">CorrectionTableIndex 열거형 (Secondary)</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListFrequency(System.Single,System.Single)">
             <summary>
             리스트 명령 - 주파수, 펄스폭
@@ -17862,15 +17909,6 @@
             </summary>
             <param name="head">primary or secondary</param>
             <param name="offset">dx, dy (mm), angle (회전 각도) (°)</param>
-            <returns></returns>
-        </member>
-        <member name="M:SpiralLab.Sirius.IRtc2ndHead.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
-            <summary>
-            리스트 명령 - 2nd 헤드 사용시 개별 헤드에 스캐너 보정 파일을 변경
-            <para>List select correction table at specific scan head</para>
-            </summary>
-            <param name="primaryHeadTableIndex">primary 헤드에 선택할 보정 테이블</param>
-            <param name="secondaryHeadTableIndex">secondary 헤드에 선택할 보정 테이블</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IRtcSerialComm">
