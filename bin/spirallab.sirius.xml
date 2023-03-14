@@ -9812,6 +9812,16 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.Action.Act3DCalibrationPointsCloud(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.Stereolithography,System.String@,SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode@)">
+            <summary>
+            STL 개체의 Points cloud 를 추출하고 이를 기반한 새로운 스캐너 보정 파일을 생성후 특정 Table 에 load/select 실시
+            </summary>
+            <param name="rtc">IRtc 인터페이스</param>
+            <param name="stlEntity">STL 개체</param>
+            <param name="newCtFileName">생성된 스캐너 보정파일</param>
+            <param name="returnCode">실패시 에러 코드</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.AciColor">
             <summary>
             색상 객체
