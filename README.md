@@ -142,6 +142,7 @@
   - added) more sort methods (개체 정렬 방식 추가)
   - fixed) laservirtual (가상 레이저 소스 객체)
      - min/max duty cycle (Duty cycle 사용시 최대/최소 비율 설정 지원)
+  - fixed) dxf entity ByLayer color (ByLayer 색상이 잘못 출력되는 문제 수정)
 
 * 2023.3.1 v1.131
   - added) variable polygon delay at pen (각도에 따른 가변 폴리곤 지연 시간 설정 펜에서 지원)
