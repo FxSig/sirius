@@ -132,6 +132,9 @@
 
 **5. Version history**
 
+* 2023.3.24 v1.133
+  - fixed) render line bug (선분 렌더링 버그)
+
 * 2023.3.15 v1.132
   - updated) SCANLAB syncAxis v1.8.2 (스캔랩 syncAxis 제품 v1.8.2 핫픽스 적용)
      - bug) unintended suppression of laser control signals when automatic laser control was active (ALC 버그 수정)

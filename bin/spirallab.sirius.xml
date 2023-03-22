@@ -14745,7 +14745,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.IsHatchable">
             <summary>
-            해치 여부 (폐곡선:Closed 만 유효함)"
+            해치 여부 (폐곡선일 경우만 유효함: IsClosed 가 true 인 경우)"
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.HatchZigZag">
@@ -14765,7 +14765,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.HatchAngle2">
             <summary>
-            해치 각도2
+            해치 각도 2 (해치모드가 Cross Line 인 경우 유효)
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.HatchInterval">
@@ -14795,7 +14795,7 @@
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.IsHatchOutlineFirst">
             <summary>
-            외곽 가공을 우선할지 여부
+            해치 외곽 가공을 우선할지 여부
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LwPolyline.Angle">

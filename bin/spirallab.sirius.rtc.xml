@@ -13271,28 +13271,11 @@
             <param name="flag">-1 : Disabled, 0 : Enabled but Diactived, 1: Enabled and Activated</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Numerics.Vector2,System.Single)">
-            <summary>
-            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
-            <para>
-            intelli~ 제품군
-            </para>
-            </summary>
-            <param name="vPosition">x,y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
-            <returns></returns>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Numerics.Vector2,System.UInt32)">
+            <inheritdoc/>  
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Single,System.Single,System.Single)">
-            <summary>
-            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
-            <para>
-            intelli~ 제품군
-            </para>
-            </summary>
-            <param name="x">x 위치 (mm)</param>
-            <param name="y">y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
-            <returns></returns>
+        <member name="M:SpiralLab.Sirius.Rtc5.ListJumpDrill(System.Single,System.Single,System.UInt32)">
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
             <inheritdoc/>  
@@ -14586,22 +14569,11 @@
             <param name="flag">-1 : Disabled, 0 : Enabled but Diactived, 1: Enabled and Activated</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Numerics.Vector2,System.Single)">
-            <summary>
-            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
-            </summary>
-            <param name="vPosition">x,y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
-            <returns></returns>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Numerics.Vector2,System.UInt32)">
+            <inheritdoc/>  
         </member>
-        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Single,System.Single,System.Single)">
-            <summary>
-            리스트 명령 - 점프+드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
-            </summary>
-            <param name="x">x 위치 (mm)</param>
-            <param name="y">y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
-            <returns></returns>
+        <member name="M:SpiralLab.Sirius.Rtc6.ListJumpDrill(System.Single,System.Single,System.UInt32)">
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlGetMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32[]@)">
             <inheritdoc/>  
@@ -16539,10 +16511,10 @@
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListJumpMode(SpiralLab.Sirius.JumpModeFlag)">
             <inheritdoc/>  
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListJumpDrill(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListJumpDrill(System.Numerics.Vector2,System.UInt32)">
             <inheritdoc/>  
         </member>
-        <member name="M:SpiralLab.Sirius.RtcVirtual.ListJumpDrill(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.RtcVirtual.ListJumpDrill(System.Single,System.Single,System.UInt32)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.ListEnd">
@@ -19036,23 +19008,23 @@
             <param name="flag">점프 모드 선택</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Numerics.Vector2,System.UInt32)">
             <summary>
             리스트 명령 - 점프 + 드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             <para>(Experimental) List jump drill</para>
             </summary>
             <param name="vPosition">x,y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
+            <param name="pulses">샷 개수 (ShotCounts)</param>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.Single)">
+        <member name="M:SpiralLab.Sirius.IRtcExtension.ListJumpDrill(System.Single,System.Single,System.UInt32)">
             <summary>
             리스트 명령 - 점프 + 드릴 (intelli~ 제품군 기반으로 Vector/Jump 튜닝 지원시)
             <para>(Experimental) List jump drill</para>
             </summary>
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
-            <param name="msec">시간 (msec)</param>
+            <param name="pulses">샷 개수 (ShotCounts)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.MeasurementChannel">
