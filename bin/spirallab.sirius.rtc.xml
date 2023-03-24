@@ -699,6 +699,7 @@
         <member name="T:SpiralLab.Sirius.AdvancedOptoWaveAOPico">
             <summary>
             레이저 소스 (Advanced OptoWave AOPico)
+            <para>외부 통신(RS-232)을 통한 PowerFactor 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.AdvancedOptoWaveAOPico.PropertyChanged">
@@ -740,6 +741,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPico.PowerMap">
@@ -933,9 +937,75 @@
         <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPico.ListPower(System.Single,System.String)">
             <inheritdoc/>  
         </member>
+        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision">
+            <summary>
+            레이저 소스 (Advanced OptoWave AOPico Precision)
+            <para>외부 통신(RS-232)을 통한 PowerFactor 값을 변경하는 제어방식</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.LaserType">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Diode1Current">
+            <summary>
+            다이오드1 커런트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Diode2Current">
+            <summary>
+            다이오드2 커런트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Diode3Current">
+            <summary>
+            다이오드3 커런트
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.PulseRepRate">
+            <inheritdoc/>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.GateLevel">
+            <summary>
+            Gate 레벨 
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.PulseOutput">
+            <summary>
+            펄스 출력 모드
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Hours">
+            <summary>
+            사용시간
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.#ctor(System.Int32,System.String,System.Int32,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="comPort">COM 포트</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Finalize">
+            <summary>
+            종결자 (finalizer)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.AdvancedOptoWaveAOPicoPrecision.Dispose(System.Boolean)">
+            <inheritdoc/>
+        </member>
         <member name="T:SpiralLab.Sirius.CoherentDiamondCSeries">
             <summary>
             레이저 소스 (코히런트 Diamond C Series)
+            <para>설정된 주파수에 맞게 펄스폭의 비율을 변경하는 제어방식</para>
+            <para>MinDutyCycle, MaxDutyCycle 비율값으로 조절</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.CoherentDiamondCSeries.PropertyChanged">
@@ -987,6 +1057,18 @@
             셔터(Shutter) 상태
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.MinDutyCycle">
+            <summary>
+            최소 Duty 비율 (%)
+            <para>Default: 1</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.MaxDutyCycle">
+            <summary>
+            최대 Duty 비율 (%)
+            <para>Default: 98</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.IsLaserOk">
             <summary>
             PIN3 Laser OK
@@ -1006,6 +1088,15 @@
             <summary>
             PIN7 Control Enable
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.PowerControlDelayTime">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondCSeries.PowerMap">
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.CoherentDiamondCSeries.#ctor">
             <summary>
@@ -1085,6 +1176,8 @@
         <member name="T:SpiralLab.Sirius.CoherentDiamondJSeries">
             <summary>
             레이저 소스 (코히런트 Diamond J Series)
+            <para>설정된 주파수에 맞게 펄스폭의 비율을 변경하는 제어방식</para>
+            <para>MinDutyCycle, MaxDutyCycle 비율값으로 조절</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.CoherentDiamondJSeries.PropertyChanged">
@@ -1120,6 +1213,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsPowerControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentDiamondJSeries.IsShutterControl">
@@ -1300,6 +1396,7 @@
         <member name="T:SpiralLab.Sirius.IPGYLPN">
             <summary>
             레이저 소스 (IPG YLPN)
+            <para>RTC 카드의 아나로그1 포트를 통한 0~10V 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPGYLPN.PropertyChanged">
@@ -1341,6 +1438,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPN.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPN.PowerMap">
@@ -1885,6 +1985,7 @@
         <member name="T:SpiralLab.Sirius.InnguGraceXSeries">
             <summary>
             INNGU LASER / Grace X Series 레이저 소스
+            <para>외부 통신(ModBus)을 통한 DiodeCurrent 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.InnguGraceXSeries.PropertyChanged">
@@ -1923,6 +2024,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.InnguGraceXSeries.PowerMap">
@@ -2124,6 +2228,7 @@
         <member name="T:SpiralLab.Sirius.IPGYLPULPN">
             <summary>
             레이저 소스 (IPG YLP ULPN)
+            <para>외부 통신(RS-232)을 통한 SetPoint 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPGYLPULPN.PropertyChanged">
@@ -2165,6 +2270,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPULPN.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPULPN.PowerMap">
@@ -2426,9 +2534,286 @@
              <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.MaxPhotonicsCWFiber">
+            <summary>
+            레이저 소스 (MAX Photonics Fiber)
+            <para>PowerControlMethod 에서 2가지 방식들(Analog1, Analog2)중 선택</para>
+            <para>RTC LASER ON -> MODULATION</para>
+            <para>RTC LASER1 -> ENABLE</para>
+            <para>RTC ANALOG1 -> DA INPUT (POWER CONTROL SIGNAL: 0~10V)</para>
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.MaxPhotonicsCWFiber.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.SyncRoot">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.Index">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.Name">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.LaserType">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.MaxPowerWatt">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsReady">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsBusy">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsError">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.Rtc">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsPowerControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.PowerControlDelayTime">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.PowerMap">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsShutterControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsGuideControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.Tag">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsGuideOn">
+            <summary>
+            Guide Laser온오프
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.#ctor(System.Int32,System.String,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CheckErrors">
+            <summary>
+            에러(IsError) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CheckReady">
+            <summary>
+            준비(IsReady) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CheckBusy">
+            <summary>
+            출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.CtlPower(System.Single,System.String)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.ListBegin">
+            <summary>
+            리스트 시작 통지용
+            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.ListEnd">
+            <summary>
+            리스트 명령 끝 통지용
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.ListPower(System.Single,System.String)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "T:SpiralLab.Sirius.JPTCWFiber" -->
+        <member name="E:SpiralLab.Sirius.JPTCWFiber.PropertyChanged">
+            <summary>
+            속성 변경 이벤트 핸들러
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.SyncRoot">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.Index">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.Name">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.LaserType">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.MaxPowerWatt">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsReady">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsBusy">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsError">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.Rtc">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsPowerControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.PowerControlDelayTime">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.PowerMap">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsShutterControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsGuideControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.Tag">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsGuideOn">
+            <summary>
+            Guide Laser온오프
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.#ctor(System.Int32,System.String,System.Single)">
+            <summary>
+            생성자
+            </summary>
+            <param name="index">식별번호</param>
+            <param name="name">이름</param>
+            <param name="maxPowerWatt">최대 파워 (W)</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.Initialize">
+            <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CheckErrors">
+            <summary>
+            에러(IsError) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CheckReady">
+            <summary>
+            준비(IsReady) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CheckBusy">
+            <summary>
+            출사중(IsBusy) 조건 설정
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CtlAbort">
+            <summary>
+            강제 출사 정지
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CtlReset">
+            <summary>
+            리셋 (에러 상태 해제 시도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.CtlPower(System.Single,System.String)">
+            <summary>
+            파워 변경
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.ListBegin">
+            <summary>
+            리스트 시작 통지용
+            (가공 시작시 출력 파워를 초기값등으로 전환하는 용도)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.ListEnd">
+            <summary>
+            리스트 명령 끝 통지용
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.JPTCWFiber.ListPower(System.Single,System.String)">
+            <summary>
+            파워 변경 (RTC의 리스트 명령으로 처리시)
+            </summary>
+            <param name="watt">파워 (W)</param>
+            <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
+            <returns></returns>
+        </member>
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryRGHAIO">
             <summary>
             레이저 소스 (Photonics Industry RGH AIO)    
+            <para>외부 통신(RS-232)을 통한 DiodeCurrent 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PropertyChanged">
@@ -2472,6 +2857,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryRGHAIO.PowerMap">
@@ -2708,6 +3096,8 @@
         <member name="T:SpiralLab.Sirius.SpectraPhysicsHippo">
             <summary>
             레이저 소스 (SpectraPhysics Hippo)
+            <para>방법1: 아나로그 전압 출력 제어 방식 (Analog1, Analog2 중 선택)</para>
+            <para>방법2 : Custom (RS-232 경우): Diode1Current, Diode2Current 값이 통신으로 처리됨</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SpectraPhysicsHippo.PropertyChanged">
@@ -2756,6 +3146,9 @@
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsHippo.PowerMap">
@@ -2860,6 +3253,7 @@
         <member name="T:SpiralLab.Sirius.SpectraPhysicsTalon">
             <summary>
             레이저 소스 (SpectraPhysics Talon)
+            <para>외부 통신(RS-232)을 통한 DiodeCurrent 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SpectraPhysicsTalon.PropertyChanged">
@@ -2885,6 +3279,31 @@
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Serial">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Manufacturer">
+            <summary>
+            제조
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.Model">
+            <summary>
+            모델
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.SerialNo">
+            <summary>
+            장치 일련번호
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.FirmwareVer">
+            <summary>
+            펌웨어 버전
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.FPGAVer">
+            <summary>
+            FPGA 버전
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.IsReady">
             <inheritdoc/>  
         </member>
@@ -2901,6 +3320,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SpectraPhysicsTalon.PowerMap">
@@ -3482,6 +3904,49 @@
         <member name="M:SpiralLab.Sirius.PowerMapVerifyDefaultArg.#ctor">
             <summary>
             생성자
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.PowerMapViewerForm">
+            <summary>
+            파워맵 뷰어 윈폼
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapViewerForm.PowerMap">
+            <summary>
+            파워맵 객체
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapViewerForm.isTerminated">
+            <summary>
+            파워매핑이 종료되어야 하는지 여부
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapViewerForm.#ctor(SpiralLab.Sirius.IPowerMap)">
+            <summary>
+            생성자
+            </summary>
+            <param name="powerMap">대상 파워맵</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapViewerForm.RefreshChart">
+            <summary>
+            차트 다시 그리기
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapViewerForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapViewerForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapViewerForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.PowerMapSerializer">
@@ -6211,6 +6676,7 @@
         <member name="T:SpiralLab.Sirius.IPGYLPTypeE">
             <summary>
             레이저 소스 (IPG YLP Type E)
+            <para>외부 통신(RS-232)을 통한 Operating Power 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPGYLPTypeE.PropertyChanged">
@@ -6249,6 +6715,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.IsPowerControl">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeE.PowerMap">
@@ -6763,7 +7232,8 @@
         <member name="T:SpiralLab.Sirius.PhotonicsIndustryDX">
             <summary>
             레이저 소스 (Photonics Industry DX)
-            Guide On/Off 는 Thermal Gate On/Off 로 에뮬레이션 동작됨
+            <para>Guide On/Off 는 Thermal Gate On/Off 로 에뮬레이션 동작됨</para>
+            <para>외부 통신(RS-232)을 통한 DiodeCurrent 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.PhotonicsIndustryDX.PropertyChanged">
@@ -6807,6 +7277,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PhotonicsIndustryDX.PowerMap">
@@ -6985,6 +7458,7 @@
         <member name="T:SpiralLab.Sirius.JPTTypeE">
             <summary>
             레이저 소스 (JPT TypeE)
+            <para>외부 통신(RS-232)을 통한 OperatingPower 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.JPTTypeE.PropertyChanged">
@@ -7026,6 +7500,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.JPTTypeE.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.JPTTypeE.PowerMap">
@@ -7284,6 +7761,7 @@
         <member name="T:SpiralLab.Sirius.IPGYLPTypeD">
             <summary>
             레이저 소스 (IPG YLP Type D)
+            <para>외부 통신(RS-232)을 통한 Operating Power 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPGYLPTypeD.PropertyChanged">
@@ -7325,6 +7803,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.IPGYLPTypeD.PowerMap">
@@ -7729,6 +8210,8 @@
         <member name="T:SpiralLab.Sirius.AdvancedOptoWaveFotia">
             <summary>
             레이저 소스 (OptoWave Fotia)
+            <para>설정된 주파수에 맞게 펄스폭의 비율을 변경하는 제어방식</para>
+            <para>MinDutyCycle, MaxDutyCycle 비율값으로 출력 조절</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.AdvancedOptoWaveFotia.PropertyChanged">
@@ -7767,11 +8250,12 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.IsPowerControl">
-            <summary>
-            파워 변경을 지원하는지 여부
-            </summary>
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.PowerMap">
@@ -8043,6 +8527,7 @@
         <member name="T:SpiralLab.Sirius.CoherentAviaLX">
             <summary>
             레이저 소스 (코히런트 AVIA LX)
+            <para>외부 통신(RS-232)을 통한 DiodeCurrent 값을 변경하는 제어방식</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.CoherentAviaLX.PropertyChanged">
@@ -8096,14 +8581,24 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsShutterOpen">
-            <summary>
-            셔터(Shutter) 상태
-            </summary>
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsTimedOut">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.IsProtocolError">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.CoherentAviaLX.ComPort">
             <summary>
             통신 포트 번호
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.CoherentAviaLX.PowerControlDelayTime">
+            <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.CoherentAviaLX.#ctor">
             <summary>
@@ -8195,38 +8690,38 @@
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Custom">
             <summary>
-            사용자 수동 제어
+            사용자 수동 제어 (외부 통신 등)
             <para>Totally cutomized control by user</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Duty">
             <summary>
             RTC Laser Port 통한 (주파수 대비) 펄스폭 비율 제어
-            <para>Output pulse duty cycle at RTC laser port</para>
+            <para>Control output pulse duty cycle at RTC laser port</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Analog1">
             <summary>
             RTC Analog Port 1 통한 전압 제어
-            <para>Output voltage at RTC analog 1 port</para>
+            <para>Control output voltage at RTC analog 1 port</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Analog2">
             <summary>
             RTC Analog Port 2 통한 전압 제어
-            <para>Output voltage at RTC analog 2 port</para>
+            <para>Control output voltage at RTC analog 2 port</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Digital8Bits">
             <summary>
-            RTC Extension2 Port 를 이용한 8비트 (0~255) 디지털 출력 제어
-            <para>Output digital 8 bits at RTC extension2 port</para>
+            RTC Extension2 Port를 이용한 8비트(0~255) 디지털 출력 제어
+            <para>Control output digital 8bits at RTC extension2 port</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Rs232">
             <summary>
-            RTC 카드에서 제공되는 RS232 포트를 이용한 시리얼 통신 방식
-            <para>Communicate by RTC RS232 port</para>
+            RTC 카드에서 제공되는 RS-232 포트를 이용한 시리얼 통신 방식
+            <para>Control specific commands by communicate at RTC's RS-232 port</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerControl">
@@ -8241,6 +8736,12 @@
             <para>Power control method</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerControl.PowerControlDelayTime">
+            <summary>
+            파워 변경에 필요한 지연시간 (msec)
+            <para>파워 변경이 완료될때까지 대기할 최대 시간</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerControl.PowerMap">
             <summary>
             파워 매핑 테이블
@@ -8250,18 +8751,16 @@
         <member name="M:SpiralLab.Sirius.IPowerControl.CtlPower(System.Single,System.String)">
             <summary>
             파워 변경 (즉시 명령)
-            <para>Vary output laser power at immediately</para>
+            <para>Vary laser output power at immediately</para>
             <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
             <code>
-            
                                               사용자가 지정한 출력 파워 (Target power)(W)
             출력 비율 (output ratio) (%) =  ----------------------------------------------  X 100
                                                    최대 출력 파워 (Max power)(W)
-                              
             </code>
             </summary>
-            <param name="targetWatt">출력 파워(W)</param>
-            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
+            <param name="targetWatt">출력 파워 (W)</param>
+            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름 (category name)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IPowerControl.ListPower(System.Single,System.String)">
@@ -8273,22 +8772,20 @@
             <para>파워 변경 을 수행 완료하고 신규로 리스트(List Begin)를 만들어 이후 리스트 명령들에 영향을 주는 안는 방식으로 구현 가능</para>
             <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
             <code>
-            
-                                              사용자가 지정한 출력 파워 (Target power)(W)
-            출력 비율 (output ratio) (%) =  ----------------------------------------------  X 100
-                                                   최대 출력 파워 (Max power)(W)
-                              
+                                             사용자가 지정한 출력 파워 (Target power) (W)
+            출력 비율 (output ratio) (%) =  ---------------------------------------------  X 100
+                                                  최대 출력 파워 (Max power) (W)
             </code>
             </summary>
-            <param name="targetWatt">출력 에너지(W)</param>
-            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름</param>
+            <param name="targetWatt">출력 파워 (W)</param>
+            <param name="powerMapCategory">파워맵 사용시 검색할 카테고리 이름 (category name)</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IGuideControl">
             <summary>
             레이저 소스 IGuide 인터페이스 
             <para>IGuideControl interface</para>
-            지시용(Guide/Pilot) 레이저 빔의 출력을 지원하는 레이저 소스의 경우 이 인터페이스를 상속 구현
+            <para>지시용(Guide/Pilot) 레이저 빔의 출력을 지원하는 레이저 소스의 경우 이 인터페이스를 상속 구현</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IGuideControl.IsGuideOn">
@@ -8305,8 +8802,8 @@
         </member>
         <member name="P:SpiralLab.Sirius.IShutterControl.IsShutterOpen">
             <summary>
-            셔터(Shutter) 상태 (open/close) 제어
-            <para>Shutter open/close control</para>
+            셔터(Shutter) 상태(open/close) 제어
+            <para>Control open/close shutter</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.LaserType">
@@ -8315,12 +8812,111 @@
             <para>laser source type</para>
             </summary>
         </member>
+        <member name="F:SpiralLab.Sirius.LaserType.Virtual">
+            <summary>
+            가상 레이저 소스
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.AdvancedOptoWaveAOPico">
+            <summary>
+            Advanced OptoWave AOPico
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.AdvancedOptoWaveAOPicoPrecision">
+            <summary>
+            Advanced OptoWave AOPico Precision
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.AdvancedOptoWaveFotia">
+            <summary>
+            Advanced OptoWave Fotia
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.CoherentAviaLX">
+            <summary>
+            Coherent AVIA LX
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.CoherentDiamondCSeries">
+            <summary>
+            Coherent Diamonc C-Series
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.CoherentDiamondJSeries">
+            <summary>
+            Coherent Diamonc J-Series
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.IPGYLPTypeD">
+            <summary>
+            IPG YLP Type D
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.IPGYLPTypeE">
+            <summary>
+            IPG YLP Type E
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.IPGYLPULPN">
+            <summary>
+            IPG YLP ULPN
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.IPGYLPN">
+            <summary>
+            IPG YLP N
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.JPTTypeE">
+            <summary>
+            JPT Type E
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.JPTCWFiber">
+            <summary>
+            JPT CW Fiber
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.PhotonicsIndustryDX">
+            <summary>
+            Photonics Industry DX
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.PhotonicsIndustryRGHAIO">
+            <summary>
+            Photonics Industry RGH AIO
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.SpectraPhysicsHippo">
+            <summary>
+            Spectra Physics Hippo
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.SpectraPhysicsTalon">
+            <summary>
+            Spectra Physics Talon
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.SPIG4">
+            <summary>
+            SPI G3/G4 Fiber 레이저 소스
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.InnguGraceXSeries">
+            <summary>
+            Inngu GraceX Series
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.LaserType.MaxPhotonicsCWFiber">
+            <summary>
+            MaxPhotonics CW Fiber
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.ILaser">
             <summary>
             레이저 소스 인터페이스
             <para>ILaser interface</para>
             <para>INotifyPropertyChanged 인터페이스는 내부 속성의 값이 변경되는 시점을 통지해주기 위해 지원됨</para>
-            <para>IDisposable 인터페이스는 레이저 소스의 자원해제 시점에 자원 반납을 위해 지원됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.SyncRoot">
@@ -8352,14 +8948,11 @@
             <summary>
             최대 출력 파워 (Watt)
             <para>Max power (W)</para>
-            <example>
-            
-                             사용자가 지정한 출력 파워 (W)
-            출력 비율(%) =   -----------------------------  * 100
-                                 최대 출력 파워 (W)
-                              
-            사용자의 출력 파워값은 통상 IPen 의 Watt 항목에서 설정됨
-            </example>
+            <code>
+                                             사용자가 지정한 출력 파워 (Target power) (W)
+            출력 비율 (output ratio) (%) =  ---------------------------------------------  X 100
+                                                  최대 출력 파워 (Max power) (W)
+            </code>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ILaser.IsReady">
@@ -8478,6 +9071,7 @@
         <member name="T:SpiralLab.Sirius.LaserVirtual">
             <summary>
             레이저 소스 (가상)
+            <para>PowerControlMethod 에서 제어 방식들중 선택</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.LaserVirtual.PropertyChanged">
@@ -8526,12 +9120,15 @@
             파워 변경 방식
             <para>
             LaserViritual 의 경우 PowerControlMethod 에 따라
-            Duty:  1~99% 의 펄스폭 출력 지원
-            Analog: 아나로그1 포트로 0~10V 출력 지원
+            Duty:  MinDuty~MaxDuty 의 펄스폭 출력 지원
+            Analog: 아나로그1 포트로 MinVoltage~MaxVoltage 출력 지원
             DigitalBits: 확장2 포트로 0~65535 (8비트) 출력 지원
             기타: 구현없음 (ListEnd/Execute -> (사용자 구현필요) -> ListBegin 처리됨)
             </para>
             </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.PowerControlDelayTime">
+            <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.PowerMap">
             <inheritdoc/>  
@@ -8551,6 +9148,12 @@
         <member name="P:SpiralLab.Sirius.LaserVirtual.MaxDutyCycle">
             <summary>
             펄스폭 제어 사용시 최대 Duty 비율 (%)
+            <para>Default: 99</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.MaxVoltage">
+            <summary>
+            아나로그 전압 제어 사용시 최대 전압값 (V)
             <para>Default: 99</para>
             </summary>
         </member>
@@ -8577,22 +9180,13 @@
             <param name="maxPowerWatt">최대 파워 (W)</param>
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.CheckErrors">
-            <summary>
-            에러(IsError) 조건 설정
-            </summary>
-            <returns></returns>
+            <inheritdoc/> 
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.CheckReady">
-            <summary>
-            준비(IsReady) 조건 설정
-            </summary>
-            <returns></returns>
+            <inheritdoc/> 
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.CheckBusy">
-            <summary>
-            출사중(IsBusy) 조건 설정
-            </summary>
-            <returns></returns>
+            <inheritdoc/> 
         </member>
         <member name="M:SpiralLab.Sirius.LaserVirtual.Initialize">
             <inheritdoc/>  
@@ -8617,7 +9211,10 @@
         </member>
         <member name="T:SpiralLab.Sirius.SPIG4">
             <summary>
-            SPI - G3/G3 IR 파이버 레이저 소스 객체
+            SPI G4(or G3) IR Fiber Laser
+            <para>아나로그1 전압 출력 제어 방식 (Analog1)</para>
+            <para>RTC Anglog1 Output: 0~10V 실제(Acutal) 출력 파워</para>
+            <para>RTC Anglog2 Output: 0~10V 대기(Simmer) 출력 파워</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SPIG4.PropertyChanged">
@@ -8659,6 +9256,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.PowerControlMethod">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.SPIG4.PowerControlDelayTime">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.SPIG4.PowerMap">

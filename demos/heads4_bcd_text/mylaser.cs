@@ -25,6 +25,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Drawing.Design;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
@@ -188,6 +189,17 @@ namespace SpiralLab.Sirius
         public PowerControlMethod PowerControlMethod { get; protected set; }
 
         /// <summary>
+        /// 파워 변경에 필요한 지연 시간 (msec)
+        /// </summary>
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Control")]
+        [DisplayName("Power Control Delay")]
+        [Description("파워 변경에 필요한 지연 시간 (msec)")]
+        public virtual float PowerControlDelayTime { get; set; }
+
+        /// <summary>
         /// 파워 매핑 테이블
         /// </summary>
         [RefreshProperties(RefreshProperties.All)]
@@ -215,6 +227,7 @@ namespace SpiralLab.Sirius
         /// <summary>
         /// 셔터(Shutter) 상태
         /// </summary>
+        [Browsable(false)]
         public virtual bool IsShutterOpen { get; set; }
         #endregion
 

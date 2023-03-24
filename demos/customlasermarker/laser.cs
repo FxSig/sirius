@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using SpiralLab.Sirius;
@@ -71,6 +72,8 @@ namespace SpiralLab.Sirius
         public bool IsPowerControl { get; set; }
 
         public PowerControlMethod PowerControlMethod { get; set; }
+
+        public float PowerControlDelayTime { get; set; }
         public IPowerMap PowerMap { get; set; }
         public bool IsShutterControl { get; set; }
         public bool IsGuideControl { get; set; }
@@ -91,6 +94,7 @@ namespace SpiralLab.Sirius
             this.MaxPowerWatt = maxPowerWatt;
             this.IsPowerControl = true;
             this.PowerControlMethod = PowerControlMethod.Analog2;
+            this.PowerControlDelayTime = 1; //1ms
             this.IsShutterControl = false;
             this.IsGuideControl = false;
         }
@@ -159,6 +163,7 @@ namespace SpiralLab.Sirius
                 bool success = true;
                 float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
                 success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, analogV); // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                Thread.Sleep((int)this.PowerControlDelayTime);
                 if (success)
                 {
                     Logger.Log(Logger.Type.Warn, $"laser [{this.Index}]: power to {compensatedWatt:F3} W");
@@ -195,7 +200,7 @@ namespace SpiralLab.Sirius
                 bool success = true;
                 float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
                 success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, analogV);   // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
-                success &= this.Rtc.ListWait(0.5f); //500 usec for delay
+                success &= this.Rtc.ListWait(this.PowerControlDelayTime); 
                 return success;
             }
         }

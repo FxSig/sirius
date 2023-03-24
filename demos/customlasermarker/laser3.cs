@@ -63,6 +63,8 @@ namespace SpiralLab.Sirius
         /// <inheritdoc/> 
         public PowerControlMethod PowerControlMethod { get; set; }
         /// <inheritdoc/> 
+        public float PowerControlDelayTime { get; set; }
+        /// <inheritdoc/> 
         public IPowerMap PowerMap { get; set; }
         /// <inheritdoc/> 
         public bool IsShutterControl { get; set; }
@@ -81,6 +83,7 @@ namespace SpiralLab.Sirius
             this.MaxPowerWatt = maxPowerWatt;
             this.IsPowerControl = true;
             this.PowerControlMethod = PowerControlMethod.Rs232;
+            this.PowerControlDelayTime = 2000;
             this.IsShutterControl = false;
             this.IsGuideControl = false;
         }
@@ -164,7 +167,8 @@ namespace SpiralLab.Sirius
             }
             //통신을 통한 파워 변경 시도
             var serial = Rtc as IRtcSerialComm;
-            success &= serial.CtlSerialWrite($"{watt:F1}"); 
+            success &= serial.CtlSerialWrite($"{watt:F1}");
+            Thread.Sleep((int)this.PowerControlDelayTime);
             return success;
         }
         public bool ListBegin()
@@ -184,7 +188,7 @@ namespace SpiralLab.Sirius
         /// <param name="watt">Watt</param>
         /// <param name="powerMapCategory">파워맵 룩업 대상 카테고리</param>
         /// <returns></returns>
-        public bool ListPower( float watt, string powerMapCategory = "")
+        public bool ListPower(float watt, string powerMapCategory = "")
         {
             if (null == this.Rtc)
                 return false;
@@ -200,7 +204,7 @@ namespace SpiralLab.Sirius
             var serial = Rtc as IRtcSerialComm;
             success &= serial.ListSerialWrite($"{compensatedWatt:F1}");
             //레이저 파워 변경 대기를 위한 2초 지연
-            success &= Rtc.ListWait(2 * 1000);
+            success &= Rtc.ListWait(this.PowerControlDelayTime);
             return success;
         }
         public bool ListEnd()

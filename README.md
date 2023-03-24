@@ -134,6 +134,9 @@
 
 * 2023.3.24 v1.133
   - fixed) render line bug (¼±ºÐ ·»´õ¸µ ¹ö±×)
+  - added) laser source for Advanced OptoWave AOPico Precision (preliminary)
+  - added) laser source for Max Photonics CW (preliminary)
+  - added) laser source for JPT CW (preliminary) 
 
 * 2023.3.15 v1.132
   - updated) SCANLAB syncAxis v1.8.2 (½ºÄµ·¦ syncAxis Á¦Ç° v1.8.2 ÇÖÇÈ½º Àû¿ë)

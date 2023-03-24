@@ -70,6 +70,7 @@ namespace SpiralLab.Sirius
         public IRtc Rtc { get; set; }
         public bool IsPowerControl { get; set; }
         public PowerControlMethod PowerControlMethod { get; set; }
+        public float PowerControlDelayTime { get; set; }
         public IPowerMap PowerMap { get; set; }
 
         public bool IsShutterControl { get; set; }
@@ -87,6 +88,7 @@ namespace SpiralLab.Sirius
             this.MaxPowerWatt = maxPowerWatt;
             this.IsPowerControl = true;
             this.PowerControlMethod = PowerControlMethod.Custom;
+            this.PowerControlDelayTime = 1000; //1sec
             this.IsShutterControl = false;
             this.IsGuideControl = false;
             this.serialPort = new SerialPort($"COM{comPort}");
@@ -238,8 +240,8 @@ namespace SpiralLab.Sirius
                 this.serialPort.Write($"{watt:F1}");
 
                 //통신 이후 실제 파워가 변경되었는지를 확인하는 추가적인 통신이 필요할 수 있음
-                //여기에서는 0.5초 지연을 통해 통신을 통한 레이저 파워 변경이 완료되었다고 가정 
-                Thread.Sleep(500);
+                //여기에서는 PowerControlDelayTime 지연을 통해 통신을 통한 레이저 파워 변경이 완료되었다고 가정 
+                Thread.Sleep((int)this.PowerControlDelayTime);
             }
             if (success)
                 Logger.Log(Logger.Type.Warn, $"set laser power to {watt:F3}W");
