@@ -64,7 +64,7 @@ namespace SpiralLab.Sirius
             //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
             // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize RTC controller
+            // initialize RTC controller with laser mode YAG1
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
@@ -82,9 +82,12 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new JPTCWFiber(0, "JPT CW Fiber", 150);
+            //var laser = new MaxPhotonicsCWFiber(0, "Max CW Fiber", 100);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
             //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPicoPrecision(0, "AOPicoPrecision", 1, 15);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
@@ -97,7 +100,7 @@ namespace SpiralLab.Sirius
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
-            // set basic power output to 2W
+            // set power output to 2W as default
             laser.CtlPower(2);
             #endregion
 
@@ -136,11 +139,11 @@ namespace SpiralLab.Sirius
         private static bool DrawRectangles(IRtc rtc, ILaser laser, float width = 20, float height = 20)
         {
             bool success = true;
-            // list begin with sing buffered list
-            // limitation: single giant list buffer
-            // RTC4: 8000
-            // RTC5: approx. 2^20
-            // RTC6: approx. 2^23
+            // list begin with single buffered list
+            // max list commands limitation at single buffered list
+            // RTC4: 8000 counts
+            // RTC5: approx. 2^20 counts
+            // RTC6: approx. 2^23 counts
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(-width / 2, height / 2);
             success &= rtc.ListMark(width / 2, height / 2);
@@ -157,11 +160,11 @@ namespace SpiralLab.Sirius
         private static bool DrawCircles(IRtc rtc, ILaser laser, float radius = 10)
         {
             bool success = true;
-            // list begin with sing buffered list
-            // limitation: single giant list buffer
-            // RTC4: 8000
-            // RTC5: approx. 2^20
-            // RTC6: approx. 2^23
+            // list begin with single buffered list
+            // max list commands limitation at single buffered list
+            // RTC4: 8000 counts
+            // RTC5: approx. 2^20 counts
+            // RTC6: approx. 2^23 counts
             success &= rtc.ListBegin(laser, ListType.Single);
             success &= rtc.ListJump(-radius, 0);
             success &= rtc.ListArc(0, 0, 360);

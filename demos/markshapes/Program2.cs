@@ -18,7 +18,7 @@
  *
  * Initialize sirius library and mark large amount of shapes
  * Also, abort marking process and reset error status
- * 시리우스 라이브러리를 초기화 하고 대량의 도형을 마킹하는 예제
+ * 시리우스 라이브러리를 초기화 하고 대량의 도형 데이타를 마킹하는 예제
  * 가공 중단 및 에러 상태 리셋 처리
  *  
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
@@ -66,7 +66,7 @@ namespace SpiralLab.Sirius
             //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
             // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize RTC controller
+            // initialize RTC controller with laser mode YAG1
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
@@ -84,9 +84,12 @@ namespace SpiralLab.Sirius
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
             //var laser = new JPTTypeE(0, "JPT Type E", 1, 20);
+            //var laser = new JPTCWFiber(0, "JPT CW Fiber", 150);
+            //var laser = new MaxPhotonicsCWFiber(0, "Max CW Fiber", 100);
             //var laser = new SPIG4(0, "SPI G3/4", 1, 20);
             //var laser = new PhotonicsIndustryDX(0, "DX", 1, 20);
             //var laser = new PhotonicsIndustryRGHAIO(0, "RGHAIO", 1, 20);
+            //var laser = new AdvancedOptoWaveAOPicoPrecision(0, "AOPicoPrecision", 1, 15);
             //var laser = new AdvancedOptoWaveFotia(0, "Fotia", 1, 20);
             //var laser = new AdvancedOptoWaveAOPico(0, "AOPico", 1, 20);
             //var laser = new CoherentAviaLX(0, "Avia LX", 1, 20);
@@ -148,7 +151,8 @@ namespace SpiralLab.Sirius
         {
             bool success = true;
             // list begin with double buffered list
-            // limitation: none
+            // max list commands limitation at single buffered list : none
+            // list commands start running automatically when the buffer is full enough
             success &= rtc.ListBegin(laser, ListType.Auto);
             for (int i = 0; i < repeat; i++)
             {
@@ -170,8 +174,9 @@ namespace SpiralLab.Sirius
         private static bool DrawCircles(IRtc rtc, ILaser laser, float radius = 10, uint repeat = 20)
         {
             bool success = true;
-            // list begin with sing buffered list
-            // limitation: none
+            // list begin with double buffered list
+            // max list commands limitation at single buffered list : none
+            // list commands start running automatically when the buffer is full enough
             success &= rtc.ListBegin(laser, ListType.Auto);
             for (int i = 0; i < repeat; i++)
             {

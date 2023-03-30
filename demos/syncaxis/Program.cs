@@ -81,6 +81,7 @@ namespace SpiralLab.Sirius
             #region initialize Laser (virtual)
             // virtual laser source with max 20W power (최대 출력 20W 의 가상 레이저 소스 생성)
             var laser = new LaserVirtual(0, "virtual", 20);
+            laser.PowerControlMethod = PowerControlMethod.Custom;
             //var laser = new IPGYLPTypeD(0, "IPG YLP D", 1, 20);
             //var laser = new IPGYLPTypeE(0, "IPG YLP E", 1, 20);
             //var laser = new IPGYLPN(0, "IPG YLP N", 1, 100);
@@ -110,13 +111,13 @@ namespace SpiralLab.Sirius
             {
                 Console.WriteLine(Environment.NewLine);
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
-                Console.WriteLine("'ESC' : abort");
+                Console.WriteLine("'ESC' : abort (stop)");
                 Console.WriteLine("'E' : get status");
                 Console.WriteLine("'R' : reset");
                 Console.WriteLine("'S' : enable simulation mode");
                 Console.WriteLine("'H' : enable hardware mode");
-                Console.WriteLine("'F' : following mode");
-                Console.WriteLine("'U' : unfollowing mode");
+                Console.WriteLine("'F' : follow mode");
+                Console.WriteLine("'U' : unfollow mode");
                 Console.WriteLine("'V' : syncaxis viewer with simulation result");
                 Console.WriteLine("'C' : job characteristic");
                 Console.WriteLine("'O' : move to origin position (scanner and stage)");
@@ -140,7 +141,10 @@ namespace SpiralLab.Sirius
                 {
                     case ConsoleKey.Escape:
                         Console.WriteLine("Aborting ... ");
+                        //emergency stop
                         rtc.CtlAbort();
+                        //soft stop 
+                        //rtc.CtlStop();
                         break;
                     case ConsoleKey.E:
                         if (rtc.CtlGetStatus(RtcStatus.Busy))
@@ -234,6 +238,7 @@ namespace SpiralLab.Sirius
 
             Console.WriteLine("Terminating ... ");
             rtc.CtlAbort();
+            //rtc.CtlStop();
             laser.Dispose();
             rtc.Dispose();
         }
@@ -792,9 +797,6 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"Trying to open syncAXIS Viewer: {simulatedFileName}");
                 Task.Run(() =>
                 {
-                    // Notice
-                    // syncAxisViewer v1.6 의 버그로 인해 아래와 같이 외부에서 파일을 인자로 하여 뷰어 프로세스를 생성하면 일부 데이타 누락이 발생되기도 함
-                    // 이때는 재차 open 을 하면 해결되며, SCANLAB 에 버그 리포트 된 사항임
                     ProcessStartInfo startInfo = new ProcessStartInfo();
                     startInfo.WorkingDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "syncaxis", "Tools", "syncAXIS_Viewer");
                     startInfo.CreateNoWindow = false;

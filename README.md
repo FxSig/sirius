@@ -67,6 +67,7 @@
  - support many kinds of laser sources
     - Advanced Optowave Fotia
     - Advanced Optowave AOPico 
+    - Advanced OptoWave AOPico Precision (preliminary)
     - Coherent Avia LX (preliminary)
     - Coherent Diamond C-Series
     - Coherent Diamond J-Series (preliminary)
@@ -77,10 +78,12 @@
     - IPG YLP N Series (preliminary)
 	- IPG ULPN Series 
     - JPT Type E
+    - JPT CW (preliminary) 
     - SPI G3/G4 (preliminary)
     - Spectra Physics Talon (preliminary)
     - Spectra Physics Hippo 
     - Inngu GraceX Series (preliminary)
+    - Max Photonics CW (preliminary)
  - support many kinds of motion controllers
     - AJINExtek AXL
     - ACS SPiiPlusNET (preliminary)
@@ -99,16 +102,15 @@
  - x32 Environment : copy files from bin\x32 to bin\
  - additional dll files : freetype6.dll, NLog.dll, ... (MS VC++ redistributable package)
  - subdirectory hierarchy
-    - config (ini config files)
+    - config (ini files)
     - correction (ctb/ct5 files and converter programs)
     - fonts (ttf fonts)
-    - logo (hpgl, plt, dxf, stl files)
+    - logo (hpgl, plt, dxf and stl files)
     - logs (output log files)
-    - powermap (laser powermap files)
-    - plot (measurement output files)
-       - to plot as chart, please download and copy gnuplot program into plot\gnuplot\ directory
-       - gnuplot download link : http://tmacchant33.starfree.jp/gnuplot_bin.html
-       - executed plot\gnuplot\wgnuplot.exe program by internally
+    - powermap (power map files)
+    - plot (measurement files)
+       - to plot as gnuplot : download and copy gnuplot program into plot\gnuplot\ directory
+       - download gnuplot link : http://tmacchant33.starfree.jp/gnuplot_bin.html       
     - scripts (csharp script files)
     - siriusfonts (cxf font files)
 	- syncaxis (xml config file, configurator and viewer)
@@ -131,6 +133,12 @@
 
 
 **5. Version history**
+
+* 2023.3.31 v1.134
+  - added) scanner field correction by external *.dat file (외부 dat 파일을 이용한 스캐너 필드 보정 지원)
+  - added) IRtcSyncAxis
+     - IsSoftStop (감속 정지 속성 추가) / CtlStop (지원 함수)
+     - IsRelativeCoordinateSystem (가공 시작시 원점에 대해 상대 좌표계 사용 속성 추가)
 
 * 2023.3.24 v1.133
   - fixed) render line bug (선분 렌더링 버그)
