@@ -74,6 +74,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "39.heads4_bcd_text", "demos
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "38.editor_offset", "demos\editor_offset\38.editor_offset.csproj", "{FDCEBE2A-798D-4CB1-AD2F-060D07538722}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12.3d", "demos\3d\12.3d.csproj", "{B0B45E21-315B-4A07-82A6-315C6A003CB9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -663,6 +665,24 @@ Global
 		{FDCEBE2A-798D-4CB1-AD2F-060D07538722}.Remote|x64.Build.0 = Remote|Any CPU
 		{FDCEBE2A-798D-4CB1-AD2F-060D07538722}.Remote|x86.ActiveCfg = Remote|Any CPU
 		{FDCEBE2A-798D-4CB1-AD2F-060D07538722}.Remote|x86.Build.0 = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|x64.Build.0 = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Debug|x86.Build.0 = Debug|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|x64.ActiveCfg = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|x64.Build.0 = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|x86.ActiveCfg = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Release|x86.Build.0 = Release|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|Any CPU.ActiveCfg = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|Any CPU.Build.0 = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|x64.ActiveCfg = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|x64.Build.0 = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|x86.ActiveCfg = Remote|Any CPU
+		{B0B45E21-315B-4A07-82A6-315C6A003CB9}.Remote|x86.Build.0 = Remote|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

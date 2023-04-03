@@ -143,11 +143,21 @@ namespace SpiralLab.Sirius
             // 신규로 생성할 스캐너 보정 파일
             var targetFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", $"newfile.ct5");
 
-            // 우선 Z= 0 (2D) 영역에 대한 정밀 보정을 진행한후 3D 보정이 진행되어야 한다 !
+            // 우선 Z= 0 (2D) 영역에 대한 정밀 2D 보정을 완료한 이후 3D 보정이 진행되어야 한다 !
             float fieldSize = 60;
             float interval = 20;
             int row = 3;
             int col = 3;
+
+            //
+            //   Z = +5 mm  -------------- Z Upper ------------------- 
+            //
+            //
+            //   Z = 0      -------------- Z  =  0-------------------
+            //
+            //
+            //   Z = -5 mm  -------------- Z Lower ------------------- 
+            //
             float zUpper = 5;
             float zLower = -5;
             float kfactor = (float)Math.Pow(2, 20) / fieldSize;

@@ -54,6 +54,8 @@
         <member name="T:SpiralLab.Sirius.AltechnaWattPilot">
             <summary>
             ALTECHNA WATT PILOT 감쇄기
+            <para>Altechna Watt Pilot Attenuator </para>
+            <para>Experimental !</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.AltechnaWattPilot.PropertyChanged">
@@ -241,8 +243,8 @@
             보간 연산하기
             <para>Interpolate input value to output value</para>
             </summary>
-            <param name="input">입력값</param>
-            <param name="output">보간된 출력값</param>
+            <param name="input">입력값 (input value)</param>
+            <param name="output">보간된 출력값 (compensated output value)</param>
             <returns>성공여부</returns>
         </member>
         <member name="M:SpiralLab.Sirius.ICompensator`1.Reset">
@@ -255,6 +257,7 @@
             <summary>
             CompensatorDefault 기본 버전
             <para>입력값과 동일한 출력(1:1) 제공</para>
+            <para>1:1 (Zero) Compensator</para>
             </summary>
             <typeparam name="T">제네릭 타입</typeparam>
         </member>
@@ -3906,16 +3909,12 @@
         <member name="T:SpiralLab.Sirius.PowerMapViewerForm">
             <summary>
             파워맵 뷰어 윈폼
+            <para>Powermap viewer winforms</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapViewerForm.PowerMap">
             <summary>
             파워맵 객체
-            </summary>
-        </member>
-        <member name="F:SpiralLab.Sirius.PowerMapViewerForm.isTerminated">
-            <summary>
-            파워매핑이 종료되어야 하는지 여부
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapViewerForm.#ctor(SpiralLab.Sirius.IPowerMap)">
@@ -5136,6 +5135,7 @@
         <member name="T:SpiralLab.Sirius.Correction3DResultEventHandler">
             <summary>
             스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
+            <para>correction 3D nofify event handler</para>
             </summary>
             <param name="correction3D">IRtcCorrection 인터페이스</param>
             <param name="success">변환 성공 여부</param>
@@ -5159,13 +5159,14 @@
         <member name="T:SpiralLab.Sirius.ICorrection3D">
             <summary>
             3D Correction (스캐너 보정) 인터페이스
-            <para>Correction 3d interface</para>
-            <para>실행파일\correction\stretchcorreXion5.exe (for 3D) 가 경로상에 존재해야 한다</para>
+            <para>Correction 3D interface</para>
+            <para>path\correction\stretchcorreXion5.exe (for 3D) 가 경로상에 존재해야 한다</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.ICorrection3D.OnResult">
             <summary>
             결과 통보용 이벤트 핸들러
+            <para>Notify result event handler</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.Rows">
@@ -5182,28 +5183,32 @@
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.KFactor">
             <summary>
-            K 값 (bits/mm)
-            <para>K-Factor</para>
+            K 스케일 값 (bits/mm)
+            <para>K-Factor (bits/mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.SourceCorrectionFile">
             <summary>
-            입력 보정 파일 (correction 폴더에서의 상대적 경로)
+            입력 보정 파일
+            <para>Source(Input) correction file</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.TargetCorrectionFile">
             <summary>
-            출력 보정 파일 (correction 폴더에서의 상대적 경로)
+            출력 보정 파일 
+            <para>Target(Output) correction file</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.ZLower">
             <summary>
             Z 보정 위치 최하단값 (mm)
+            <para>Z lower plane</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.ZUpper">
             <summary>
             Z 보정 위치 최상단값 (mm)
+            <para>Z upper plane</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection3D.DataLower">
@@ -5228,11 +5233,12 @@
             <summary>
             측정 데이타 입력 (X,Y 절대 좌표값)
             <para>좌상단부터 우상단 방향으로 순서</para>
+            <para>Absoulte X, Y data from Left/Top to Right order</para>
             <code>
             예 :
-            1 2 3
-            4 5 6
-            7 8 9
+            1[R:0,C:0] 2[R:0,C:1] 3[R:0,C:2]
+            4[R:1,C:0] 5[R:1,C:1] 6[R:1,C:2]
+            7[R:2,C:0] 8[R:2,C:1] 9[R:2,C:2]
             </code>
             </summary>
             <param name="row">행</param>
@@ -5246,11 +5252,13 @@
             측정 데이타 입력 (X,Y,Z  에러량) 
             <para>좌상단부터 우상단 방향으로 순서</para>
             <para>에러량 = 이미지(머신비전) 오차량 입력</para>
+            <para>Relative X, Y data from Left/Top to Right order</para>
+            <para>Relative = Error(Machine vision deviation) value</para>
             <code>
             예 :
-            1 2 3
-            4 5 6
-            7 8 9
+            1[R:0,C:0] 2[R:0,C:1] 3[R:0,C:2]
+            4[R:1,C:0] 5[R:1,C:1] 6[R:1,C:2]
+            7[R:2,C:0] 8[R:2,C:1] 9[R:2,C:2]
             </code>
             </summary>
             <param name="row">행</param>
@@ -5262,12 +5270,14 @@
         <member name="M:SpiralLab.Sirius.ICorrection3D.Clear(SpiralLab.Sirius.Plane)">
             <summary>
             입력 데이타 삭제
+            <para>Clear data</para>
             </summary>
             <param name="plane">삭제할 대상 평면</param>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection3D.Convert">
             <summary>
             변환 시도
+            <para>Convert</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -5355,6 +5365,11 @@
             이벤트 핸들러 호출 (상속 확장 구현용)
             </summary>
             <param name="success">변환 성공 여부</param>
+        </member>
+        <member name="T:SpiralLab.Sirius.Calibration3DReturnCode">
+            <summary>
+            Calibraion Library Return codes
+            </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Correction3DRtc">
             <summary>
@@ -5468,6 +5483,21 @@
             이벤트 핸들러 호출 (상속 확장 구현용)
             </summary>
             <param name="success">변환 성공 여부</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.FreeFormPointCloud(System.UInt32,System.Double[],System.Double[],System.Double[],System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            3D 공간의 점 집합(points cloud) 를 이용해 새로운 스캐너 필드 보정 파일을 생성
+            <para>Create new calibrated 3d field correction file by points cloud</para>
+            </summary>
+            <param name="counts">개수</param>
+            <param name="xMM">x 배열</param>
+            <param name="yMM">y 배열</param>
+            <param name="zMM">z 배열</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일 README (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.AdlinkDInput">
             <summary>
@@ -11240,25 +11270,6 @@
             <param name="rtc6Count">RTC 6 카드 개수</param>
             <returns></returns>
         </member>
-        <member name="T:SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode">
-            <summary>
-            Calibraion Library Return codes
-            </summary>
-        </member>
-        <member name="M:SpiralLab.Sirius.RtcHelper.FreeFormPointCloud(System.UInt32,System.Double[],System.Double[],System.Double[],System.String,System.String,System.String,SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode@)">
-            <summary>
-            3D 공간의 점 집합(Point cloud) 를 이용해 새로운 스캐너 필드 보정 파일을 생성
-            </summary>
-            <param name="counts">개수</param>
-            <param name="xMM">x 배열</param>
-            <param name="yMM">y 배열</param>
-            <param name="zMM">z 배열</param>
-            <param name="inputCtFileName">입력 보정 파일 이름</param>
-            <param name="inputCtReadMeFileName">입력 보정 파일 README (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
-            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
-            <param name="returnCode">실패시 내부 에러코드</param>
-            <returns></returns>
-        </member>
         <member name="T:SpiralLab.Sirius.DoubleDot12TypeConverter">
             <summary>
             부동소수점 변환기
@@ -11301,6 +11312,7 @@
         <member name="T:SpiralLab.Sirius.ScanMasterController">
             <summary>
             ScanMaster Controller 객체
+            <para>Experimental !</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ScanMasterController.Count">
@@ -11585,6 +11597,7 @@
         <member name="T:SpiralLab.Sirius.RtcGCode">
             <summary>
             RTC GCode 객체
+            <para>Experimental !</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.RtcGCode.Count">
@@ -11903,7 +11916,7 @@
             <summary>
             RTC 카드의 상태 확인
             </summary>
-            <param name="status">RtcStatus 열거형</param>
+            <param name="rtcStatus">RtcStatus 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.RtcGCode.CtlBusyWait">
@@ -15446,7 +15459,7 @@
             <summary>
             RTC 카드의 상태 확인
             </summary>
-            <param name="status">RtcStatus 열거형</param>
+            <param name="rtcStatus">RtcStatus 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6Ethernet.CtlReset">
@@ -15982,7 +15995,7 @@
             <summary>
             리스트 명령이 완료될 때(busy 가 해제될때) 까지 대기하는 함수
             <para>
-            함수 호출후 2초 이내에 실행시 시작되지 않으면 타임아웃됨 (호출시 최대 2초간 대기할수도 있음)
+            함수 호출후 2초 이내에 실행이 시작되지 않으면 타임아웃 처리됨 (호출시 최소 2초 이상 대기할 수 있음)
             </para>
             </summary>
             <returns></returns>
@@ -16272,9 +16285,10 @@
         </member>
         <member name="T:SpiralLab.Sirius.Correction3DRtcCtb">
             <summary>
-            scanner correction for 3D 
-            RTC4의 ctb 포맷용
-            StretchCorreXion5.exe + CorrectionFileConverter.exe 기반
+            스캐너 필드 보정 for 3D plane 
+            <para>RTC4의 ctb 포맷용, StretchCorreXion5.exe + CorrectionFileConverter.exe 기반</para>
+            <para>Correction3DRtc 으로 대체됨</para>
+            <para>Use Correction3DRtc instead</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCtb.OnResult">
@@ -16373,8 +16387,9 @@
         <member name="T:SpiralLab.Sirius.Correction2DRtcCtb">
             <summary>
             스캐너 필드 보정 for 2D plane (Z=0)
-            RTC4의 ctb 포맷용
-            CFMP.exe 기반
+            <para>RTC4의 ctb 포맷용 / CFMP.exe 기반</para>
+            <para>Correction2DRtc 으로 대체됨</para>
+            <para>Use Correction2DRtc instead</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCtb.OnResult">
@@ -16473,8 +16488,9 @@
         <member name="T:SpiralLab.Sirius.Correction2DRtcCt5">
             <summary>
             스캐너 필드 보정 for 2D plane (Z=0)
-            RTC5/6의 ct5 포맷용
-            CorreXion5.exe 기반
+            <para>RTC5/6의 ct5 포맷용, CorreXion5.exe 기반</para>
+            <para>Correction2DRtc 으로 대체됨</para>
+            <para>Use Correction2DRtc instead</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction2DRtcCt5.OnResult">
@@ -16550,9 +16566,10 @@
         </member>
         <member name="T:SpiralLab.Sirius.Correction3DRtcCt5">
             <summary>
-            scanner correction for 3D 
-            RTC5/6의 ct5 포맷용
-            StretchCorreXion5.exe 기반
+            스캐너 필드 보정 for 3D plane 
+            <para>RTC5/6의 ct5 포맷용, StretchCorreXion5.exe 기반</para>
+            <para>Correction3DRtc 으로 대체됨</para>
+            <para>Use Correction3DRtc instead</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.Correction3DRtcCt5.OnResult">
@@ -16671,6 +16688,7 @@
         <member name="T:SpiralLab.Sirius.RtcVirtual">
             <summary>
             RTC 가상 객체
+            <para>Rtc Virtual</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.RtcVirtual.OnJumpTo">
@@ -17337,6 +17355,7 @@
         <member name="T:SpiralLab.Sirius.Correction2DResultEventHandler">
             <summary>
             스캐너 필드 보정에 대한 결과 이벤트 통지용 델리게이트
+            <para>correction 2D nofify event handler</para>
             </summary>
             <param name="correction2D">IRtcCorrection 인터페이스</param>
             <param name="success">변환 성공 여부</param>
@@ -17345,13 +17364,14 @@
         <member name="T:SpiralLab.Sirius.ICorrection2D">
             <summary>
             2D Correction (스캐너 보정) 인터페이스
-            <para>Correction 2d interface</para>
-            <para>실행파일\correction\correXionPro.exe (for 2D)가 경로상에 존재해야 한다</para>
+            <para>Correction 2D interface</para>
+            <para>path\correction\correXionPro.exe (for 2D)가 경로상에 존재해야 한다</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.ICorrection2D.OnResult">
             <summary>
             결과 통보용 이벤트 핸들러
+            <para>Notify result event handler</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.Rows">
@@ -17368,24 +17388,26 @@
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.KFactor">
             <summary>
-            K 값 (bits/mm)
-            <para>K-Factor</para>
+            K 스케일 값 (bits/mm)
+            <para>K-Factor (bits/mm)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.SourceCorrectionFile">
             <summary>
-            입력 보정 파일 (correction 폴더에서의 상대적 경로)
+            입력 보정 파일 
+            <para>Source(Input) correction file</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.TargetCorrectionFile">
             <summary>
-            출력 보정 파일 (correction 폴더에서의 상대적 경로)
+            출력 보정 파일
+            <para>Target(Output) correction file</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.Data">
             <summary>
             데이타 2차원 배열
-            <para>2D array of CorrectionData2D</para>
+            <para>2D array of CorrectionData2D (Z = 0 plane)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.ICorrection2D.ResultMessage">
@@ -17398,11 +17420,12 @@
             <summary>
             측정 데이타 입력 (X,Y 절대 좌표값)
             <para>좌상단부터 우상단 방향으로 순서</para>
+            <para>Absoulte X, Y data from Left/Top to Right order</para>
             <code>
             예 :
-            1 2 3
-            4 5 6
-            7 8 9
+            1[R:0,C:0] 2[R:0,C:1] 3[R:0,C:2]
+            4[R:1,C:0] 5[R:1,C:1] 6[R:1,C:2]
+            7[R:2,C:0] 8[R:2,C:1] 9[R:2,C:2]
             </code>
             </summary>
             <param name="row">행</param>
@@ -17416,11 +17439,13 @@
             측정 데이타 입력 (X,Y 에러량) 
             <para>좌상단부터 우상단 방향으로 순서</para>
             <para>에러량 = 이미지(머신비전) 오차량 입력</para>
+            <para>Relative X, Y data from Left/Top to Right order</para>
+            <para>Relative = Error(Machine vision deviation) value</para>
             <code>
             예 :
-            1 2 3
-            4 5 6
-            7 8 9
+            1[R:0,C:0] 2[R:0,C:1] 3[R:0,C:2]
+            4[R:1,C:0] 5[R:1,C:1] 6[R:1,C:2]
+            7[R:2,C:0] 8[R:2,C:1] 9[R:2,C:2]
             </code>
             </summary>
             <param name="row">행</param>
@@ -17432,11 +17457,13 @@
         <member name="M:SpiralLab.Sirius.ICorrection2D.Clear">
             <summary>
             입력 데이타 삭제
+            <para>Clear data</para>
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.ICorrection2D.Convert">
             <summary>
             변환 시도
+            <para>Convert</para>
             </summary>
             <returns>성공 여부</returns>
         </member>
@@ -17800,10 +17827,10 @@
         <member name="T:SpiralLab.Sirius.IRtcExternalControlMode">
             <summary>
             RTC 외부 제어 모드 값 
-            <para>RTC4/5/6 각각 비트 플래그가 다르므로 각 버전별로 구현된 객체 사용</para>
-            <para>RTC4: Rtc4ExternalControlMode </para>
-            <para>RTC5: Rtc5ExternalControlMode </para>
-            <para>RTC6: Rtc6ExternalControlMode </para> 
+            <para>RTC 4,5,6 각각 비트 플래그가 다르므로 각 버전별로 구현된 객체 사용</para>
+            <para>RTC4: Rtc4ExternalControlMode</para>
+            <para>RTC5: Rtc5ExternalControlMode</para>
+            <para>RTC6: Rtc6ExternalControlMode</para> 
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
@@ -18190,7 +18217,7 @@
             RTC 카드의 상태 확인
             <para>Status of RTC controller</para>
             </summary>
-            <param name="status">RtcStatus 열거형</param>
+            <param name="rtcStatus">RtcStatus 열거형</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.CtlBusyWait">
@@ -18661,6 +18688,7 @@
         <member name="T:SpiralLab.Sirius.IRtcRaster">
             <summary>
             IRtcRaster 인터페이스
+            <para>IRtcRaster interface</para>
             <para>RTC 의 Raster(Bitmap/Pixel) operation 지원</para>
             </summary>
         </member>
@@ -18677,7 +18705,7 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtcRaster.ListPixel(System.Single,System.Single,SpiralLab.Sirius.ICompensator{System.Single})">
             <summary>
-            리스트 명령 - 개별 픽셀 명령
+            리스트 명령 - 개별 픽셀 명령 (Each Pixels)
             <para>List each pixel data</para>
             <para>반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 <c>ListPixel</c> 함수가 호출되어야 함</para>
             </summary>
@@ -18882,9 +18910,9 @@
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListPixelLine3D(System.Single,System.Numerics.Vector3,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
             <summary>
-            리스트 명령 - 레스터 처리 (Pixel Raster Operation)
+            리스트 명령 - 레스터 처리 (Pixel Raster Operation) 3D
             <para>(Expemental) List prepare pixel line 3d</para>
-            <para>(현재는 제공되지 않는 기능)</para>
+            <para>(Deprecated) 현재는 지원되지 않는 기능입니다</para>
             </summary>
             <param name="usec">매 픽셀의 주기 시간 (usec): 가공 속도를 결정</param>
             <param name="vDelta">픽셀간 간격 (dx, dy, dz) (mm)</param>
@@ -19426,7 +19454,7 @@
         <member name="T:SpiralLab.Sirius.RtcSignalLevel">
             <summary>
             RTC 카드의 출력및 LASER1,2 및 ON 의 활성화시 신호 레벨
-            <para>RTC signal(LASER1,2,ON pin out) level</para>
+            <para>RTC signal(LASER1,2,ON pin-out) level</para>
             <para>RTC5,6 설정 전용</para>
             </summary>
         </member>
@@ -22254,7 +22282,7 @@
         <member name="T:SpiralLab.Sirius.MeasurementForm">
             <summary>
             계측 결과 출력용 윈폼
-            <para>Measurement plot result winform</para>
+            <para>Measurement plot result winforms</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementForm.components">

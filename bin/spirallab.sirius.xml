@@ -3275,6 +3275,7 @@
         <member name="P:SpiralLab.Sirius.Stereolithography.Faces">
             <summary>
             Face 배열
+            <para><c>STLHelper.ReadFile</c> 을 이용해 데이타 로드</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Stereolithography.Vertices">
@@ -3371,6 +3372,17 @@
         </member>
         <member name="M:SpiralLab.Sirius.Stereolithography.Draw(SpiralLab.Sirius.IView)">
             <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.Stereolithography.GetPointsCloud(System.Double[]@,System.Double[]@,System.Double[]@)">
+            <summary>
+            STL 모델에서 Points cloud 정보 추출하기
+            <para>STL 모델에 적용된 변환 행렬 (이동, 회전, 크기 변환) 연산 적용된후 Points cloud 데이타 추출됨</para>
+            <para>Extract points cloud data after transform translate, rotate and scale matrix</para>
+            </summary>
+            <param name="x">X array</param>
+            <param name="y">Y array</param>
+            <param name="z">Z array</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Stereolithography.Transit(System.Numerics.Vector2)">
             <inheritdoc/>
@@ -9812,7 +9824,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:SpiralLab.Sirius.Action.Act3DCalibrationPointsCloud(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.Stereolithography,System.String@,SpiralLab.Sirius.RtcHelper.Calibration3DReturnCode@)">
+        <member name="M:SpiralLab.Sirius.Action.Act3DCalibrationPointsCloud(SpiralLab.Sirius.IRtc,SpiralLab.Sirius.Stereolithography,System.String@,SpiralLab.Sirius.Calibration3DReturnCode@)">
             <summary>
             STL 개체의 Points cloud 를 추출하고 이를 기반한 새로운 스캐너 보정 파일을 생성후 특정 Table 에 load/select 실시
             </summary>
@@ -13879,6 +13891,12 @@
             <summary>
             모터(조그)창에서 마지막 설정값 저장용 파일
             <para>Motor saved file</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.Config.ConfigLogoFilePath">
+            <summary>
+            로고(모델) 파일 경로
+            <para>HPGL, PLT, DXF, STL 파일등의 경로</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.Config.ConfigPlotFilePath">
