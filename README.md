@@ -44,22 +44,22 @@
 
 **2. Features**
 
- - support SCANLAB's multiples RTC4, RTC5, RTC6 products.
- - support SCANLAB's SyncAxis(XL-SCAN) with multiple heads/stages combination.
- - support powerful 3x3 matrix operations with stack.
- - support processing unlimited vector data by internally.
- - support MOTF(marking on the fly), dual head, 3d (like as VarioSCAN) features.
- - support 2D/3D field correction with easy to use and with powerful image analyzer.
- - support profile scanner motion and signals with plotted graph.
- - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and customizable entities with layers.
- - support 2D barcodes with various cell type like as dots, lines, outlines, hatch and generated data with formatted datetime, serial no by automatically.
- - support rendering 3D STL(StereoLithography) file.
+ - support SCANLAB's multiples RTC 4,5,6 controllers.
+ - support SCANLAB's XL-SCAN(SyncAxis) with multiple heads and stages.
+ - support powerful 3x3 matrix operations.
+ - support processing unlimited vector data by automatically.
+ - support MOTF(marking on the fly), secondary scan head, 3d (like as VarioSCAN) functions.
+ - support 2D/3D scanner field correction converter with powerful image analyzer.
+ - support profile scanner motion and output signals with plotted graph.
+ - support point, line, arc, LW polyline, rectangle, circle, true type font, cxf font, 1D/2D barcodes, spiral, trepan, dxf, hpgl(plt) and customizable entities.
+ - support 2D barcodes with various cell type like as dot, line, outline, hatches.
+ - support 3D STL(StereoLithography) file and extract points cloud to mark on 3D surface.
  - support powerful undo/redo actions and single document data with multiple view targets.
- - support laser beam path visualizer (simulator) and path optimizer algorithm.
- - support vary output laser power with PoD(pulse on demand by analog, 8/16bits digital, frequency, pulse width modulation) and sky-writing.
+ - support laser beam path visualizer (simulator) and powerful path optimizer to reduce processing time.
+ - support vary output laser power with PoD(pulse on demand by analog, digital output, frequency, pulse width) and sky-writing.
  - support vary scanner/laser parameters with 'Pen' (frequency, pulse width, power, speeds, laser delays, ...)
  - support customizable and extensible marker interface.
- - support many kinds of powermeters.
+ - support many kinds of powermeters
     - Thorlab PM series
     - Ophir products
     - Coherent PowerMax (USB/RS) series 
@@ -100,7 +100,8 @@
  - winforms user control : SpiralLab.Sirius.EditorForm, SpiralLab.Sirius.ViewerForm
  - x64 Environment : copy files from bin\x64 to bin\
  - x32 Environment : copy files from bin\x32 to bin\
- - additional dll files : freetype6.dll, NLog.dll, ... (MS VC++ redistributable package)
+ - install MS VC++ redistributable packages
+ - additional dll files : freetype6.dll, NLog.dll, ... 
  - subdirectory hierarchy
     - config (ini files)
     - correction (ctb/ct5 files and converter programs)
@@ -113,20 +114,20 @@
        - download gnuplot link : http://tmacchant33.starfree.jp/gnuplot_bin.html       
     - scripts (csharp script files)
     - siriusfonts (cxf font files)
-	- syncaxis (xml config file, configurator and viewer)
+	- syncaxis (config xml file, configurator and viewer)
 
- *The program running about 30 mins in evalution copy mode !*
+ *The program running 30 mins with basic features in evalution copy mode !*
  
  
  ----
 
 
 **4. Author**
-
+ 
+ - hong chan, choi (mailto:hcchoi@spirallab.co.kr)
+ - home page : http://spirallab.co.kr                
  - developer page : http://www.spirallab.co.kr/?page_id=229
  - git repository : https://github.com/labspiral/sirius.git
- - e-mail : hcchoi@spirallab.co.kr
- - homepage : http://spirallab.co.kr                        
 
 
 ----
@@ -134,11 +135,19 @@
 
 **5. Version history**
 
+* 2023.4.8 v1.135
+   - fixed) Correction2DRtc
+      - added) beam tilt calibration (원점 이동 보정 지원)
+   - fixed) Correction3DRtc 
+      - added) cone, cylinder, plane calibration (원뿔, 원통, 평면에 대한 3D 보정 추가 지원)
+      - added) z focus table, ABC coefficient calibration (Z 초점 테이블, 계수 보정 지원)
+
 * 2023.3.31 v1.134
   - added) scanner field correction by external *.dat file (외부 dat 파일을 이용한 스캐너 필드 보정 지원)
-  - added) IRtcSyncAxis
-     - IsSoftStop (감속 정지 속성 추가) / CtlStop (지원 함수)
-     - IsRelativeCoordinateSystem (가공 시작시 원점에 대해 상대 좌표계 사용 속성 추가)
+  - fixed) IRtcSyncAxis
+     - added) IsSoftStop (감속 정지 속성 추가) / CtlStop (지원 함수)
+     - added) IsRelativeCoordinateSystem (가공 시작시 원점에 대해 상대 좌표계 사용 속성 추가)
+  - added) more 3d demo project (3D 데모 프로젝트 추가)
 
 * 2023.3.24 v1.133
   - fixed) render line bug (선분 렌더링 버그)
@@ -188,7 +197,7 @@
      - release note : https://www.scanlab.de/sites/default/files/2023-01/Release_Notes_syncAXIS_1.8.0.pdf
   - updated) RTC6_Software_Package_Rev.1.15.4 
   - added) convert text entity when loading dxf file (DXF 파일 로딩시 텍스트 개체 변환 지원)
-     - converted ''Arial Unicode MS Font.ttf' if installed system font (Arial 트루타입 폰트로 변환됨)
+     - converted 'Arial Unicode MS Font.ttf' if installed system font (Arial 트루타입 폰트로 변환됨)
      - converted 'romans2.cxf' font if not installed system font (romans2 단선 폰트로 변환됨)
   - fixed) too many nodes at treeview cause exception (대량의 트리뷰 노드 사용시 예외발생 해결)
   - fixed) compare equality of pen color bug (펜 색상 비교 실패 버그)
@@ -819,6 +828,7 @@
       - IRtcMeasurement (계측 지원 인터페이스)
       - IRtcMOTF (Processing on the fly 지원 인터페이스)
       - IRtcRaster (레스터 픽셀 가공 지원 인터페이스)
+      - IRtcSerialComm (RTC 내장 RS-232 포트 통신 지원 인터페이스
       - IRtcSerialNo (일련번호 가공 지원 인터페이스)
       - IRtcSyncAxis (syncAXIS/XLSCAN 가공 지원 인터페이스)
          - RtcVirtual (RTC 제어기 가상)
@@ -937,25 +947,24 @@
          - BarcodeDataMatrix2 (DataMatrix 바코드)
          - BarcodeQR2 (QR 바코드)
          - Bitmap (비트맵)
-         - BlockInsert 
          - Circle (원)
-         - Circle3D
          - Ellipse (타원)
          - Fiducial (기준점)
          - Group (그룹)
          - HPGL (HPGL 로고)
          - Jump (점프)
+         - JumpMode (점프 모드)
          - Layer (레이어)
          - Line (선분)
          - LwPolyline (폴리라인)
          - MeasurementBegin / MeasurementEnd (계측 시작/종료)
          - MotfAngularBegin (MOTF 회전 기반 시작)
          - MotfAngularWait (MOTF 회전 엔코더 각도 대기)
-         - MotfBegin (MOTF 시작)
+         - MotfBegin (MOTF XY 기반 시작)
          - MotfEnd (MOTF 종료)
          - MotfExternalStartDelay (MOTF 지연)
          - MotfRepeat (MOTF 데이타 반복 가공)
-         - MotfWait (MOTF 엔코더 위치 대기)
+         - MotfWait (MOTF XY 엔코더 위치 대기)
          - Point (점)
          - Points (점 복수개)
          - Raster (레스터 면적)
@@ -966,7 +975,7 @@
             - SiriusTextDate (시리우스 텍스트 날짜)
             - SiriusTextSerial (시리우스 텍스트 일련번호)
             - SiriusTextTime (시리우스 텍스트 시간)
-         - Spiral  (나선)
+         - Spiral (나선)
          - StitchedImage (머신비전 이미지)
          - Stereolithography (STL 파일)
          - SyncAxisCalculationDynamics (syncAXIS 역학 제한값)
@@ -978,7 +987,6 @@
          - Timer (대기 타이머)
          - Trepan (트리팬)
          - Triangle (삼각형)
-         - Triangle3D
          - VectorBegin / VectorEnd (벡터 의존 자동 레이저 제어 시작/종료)
          - WaitDataExt16If (확장1 포트 16비트 조건에 따른 대기)
          - WriteData (확장포트/아나로그 등 데이타 출력)

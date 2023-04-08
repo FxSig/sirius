@@ -16,9 +16,9 @@ namespace SpiralLab.Sirius
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            
             // initialize spirallab core engine 
             SpiralLab.Core.Initialize();
-
 
             try
             {

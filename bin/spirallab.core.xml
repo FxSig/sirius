@@ -657,7 +657,7 @@
         <member name="T:SpiralLab.FormLicense">
             <summary>
             라이센스 체크용 윈폼
-            <para>LicenseCheck winform</para>
+            <para>License (for check) winforms</para>
             </summary>
         </member>
         <member name="M:SpiralLab.FormLicense.#ctor">
@@ -985,7 +985,7 @@
         <member name="T:SpiralLab.CommunicationMonitorForm">
             <summary>
             통신 16진수(Hexa) 데이타 모니터링 윈폼
-            <para>Communication monitoring by hexa data</para>
+            <para>Communication monitoring by hexa data winforms</para>
             </summary>
         </member>
         <member name="M:SpiralLab.CommunicationMonitorForm.#ctor(SpiralLab.SerialPort)">

@@ -115,7 +115,7 @@ namespace SpiralLab.Sirius
             var penDefault1 = pen1 as PenDefault;
             penDefault1.Frequency = 100 * 1000; //주파수 Hz
             penDefault1.PulseWidth = 2; //펄스폭 usec
-            penDefault1. LaserOnDelay = 0; // 레이저 시작 지연 usec
+            penDefault1.LaserOnDelay = 0; // 레이저 시작 지연 usec
             penDefault1.LaserOffDelay = 0; // 레이저 끝 지연 usec
             penDefault1.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
             penDefault1.ScannerMarkDelay = 200; // 스캐너 마크 지연 usec

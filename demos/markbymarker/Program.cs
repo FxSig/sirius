@@ -16,41 +16,46 @@
  *               `---`            `---'                                                        `----'   
  * 
  *
- * Using 3x3 matrix stack 
- * 행렬을 사용하여 회전하면서 직선, 사각형의 가공을 실시한다.
+ * 지금까지 소개한 
+ * 1. 가공 데이타 (Document)
+ * 2. 레이저 소스 (Laser)
+ * 3. 벡터 가공 장치 (Rtc) 
+ * 를 가지고 실제 가공을 실시하는 관리 객체를 마커(Marker) 라 한다.
+ * Create marker and how to manage it
+ * 
+ * 마커는 RTC, 레이저, 데이타(IDocument)를 모아 이를 가공하는 절차를 가지고 있는 객체로 상태 (IsReady, IsBusy, IsError)및 오프셋 가공 (List<Offset>)을 처리할수있다.
+ * 또한 가공을 위해 소스 문서(Document)를 복제(Clone)하고 내부 처리 쓰레드에서 이 복제본을 가지고 가공이 시작된다. 
+ * 가공데이타를 복제하고 시작 방식이기 때문에 엔티티의 화면(View) 편집과는 영향이 없다
+ *  
  * Author : hong chan, choi / hcchoi@spirallab.co.kr (http://spirallab.co.kr)
  * 
  */
 
+
 using System;
-using System.Data;
 using System.Diagnostics;
 using System.IO;
-using System.Numerics;
 using System.Windows.Forms;
+using SpiralLab.Sirius;
 
 namespace SpiralLab.Sirius
 {
     class Program
     {
         [STAThread]
-        static void Main(string[] args)
+        static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            
+
             // initialize sirius library
             SpiralLab.Core.Initialize();
 
             #region initialize RTC 
-            // RTC 제어기의 동작 로그를 기록할 파일을 지정
-            var rtcOutputFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "rtcOutput.txt");
             // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
             // create Rtc5 controller
-            var rtc = new Rtc5(0, rtcOutputFile);
-            //rtc.InitLaser12SignalLevel = RtcSignalLevel.ActiveHigh;
-            //rtc.InitLaserOnSignalLevel = RtcSignalLevel.ActiveHigh;
+            var rtc = new Rtc5(0);
             // create Rtc6 controller
             //var rtc = new Rtc6(0); 
             // create Rtc6 Ethernet controller
@@ -62,13 +67,14 @@ namespace SpiralLab.Sirius
             //float kfactor = (float)Math.Pow(2, 16) / fov;
             // RTC5/6: k factor (bits/mm) = 2^20 / fov
             float kfactor = (float)Math.Pow(2, 20) / fov;
+
             // RTC4: full path of correction file
             //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");
             // RTC5/6: full path of correction file
             var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5");
-            // initialize rtc controller
+            // initialize RTC controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
-            // laser frequency: 50KHz, pulse width : 2usec(주파수 50KHz, 펄스폭 2usec)
+            // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
             rtc.CtlFrequency(50 * 1000, 2);
             // scanner jump and mark speed : 500mm/s (점프, 마크 속도 500mm/s)
             rtc.CtlSpeed(500, 500);
@@ -95,12 +101,55 @@ namespace SpiralLab.Sirius
             //var laser = new SpectraPhysicsHippo(0, "Hippo", 1, 30);
             //var laser = new SpectraPhysicsTalon(0, "Talon", 1, 30);
 
-            // assign RTC instance at laser 
+            // assign RTC controller at laser 
             laser.Rtc = rtc;
             // initialize laser source
             laser.Initialize();
             // set basic power output to 2W
             laser.CtlPower(2);
+            #endregion
+
+            #region create document/layer/and spiral entity 
+            // create sirius document
+            // 문서 생성
+            var doc = new DocumentDefault("3x3 scanner field correction");
+            // create layer
+            // 레이어 생성
+            var layer = new Layer("default");
+            // create spiral entity
+            // 나선 개체 레이어에 추가
+            var spiral = new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true);
+            spiral.Color2 = System.Drawing.Color.White;
+
+            layer.Add(spiral);
+
+            // query white pen
+            // 펜 집합에서 흰색 펜 정보 변경
+            var pen = doc.Pens.ColorOf(System.Drawing.Color.White);
+            // 파라메터 값을 변경
+            // configure pen parameters
+            var penDefault = pen as PenDefault;
+            penDefault.Frequency = 100 * 1000; //주파수 Hz
+            penDefault.PulseWidth = 2; //펄스폭 usec
+            penDefault.LaserOnDelay = 0; // 레이저 시작 지연 usec
+            penDefault.LaserOffDelay = 0; // 레이저 끝 지연 usec
+            penDefault.ScannerJumpDelay = 100; // 스캐너 점프 지연 usec
+            penDefault.ScannerMarkDelay = 200; // 스캐너 마크 지연 usec
+            penDefault.ScannerPolygonDelay = 0; // 스캐너 폴리곤 지연 usec
+            penDefault.JumpSpeed = 500; // 스캐너 점프 속도 mm/s
+            penDefault.MarkSpeed = 500; // 스캐너 마크 속도 mm/s
+
+            // regenerate
+            // 레이어의 모든 개채들 내부 데이타 계산및 갱신
+            layer.Regen();
+            // add layer into document
+            // 문서에 레이어 추가
+            doc.Layers.Add(layer);
+            doc.Layers.Active = layer;
+            // save sirius document
+            // 문서 저장
+            var filename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "test.sirius");
+            DocumentSerializer.Save(doc, filename);
             #endregion
 
             ConsoleKeyInfo key;
@@ -109,111 +158,108 @@ namespace SpiralLab.Sirius
                 Console.WriteLine($"{Environment.NewLine}");
                 Console.WriteLine("Testcase for spirallab.sirius. powered by hcchoi@spirallab.co.kr (http://spirallab.co.kr)");
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("'R' : draw rectangle with rotate");
-                Console.WriteLine("'L' : draw lines with rotate");
-                Console.WriteLine("'F' : pop up laser source form");
+                Console.WriteLine("'M' : draw entities by marker");
+                Console.WriteLine("'O' : draw entities by marker with offsets");
                 Console.WriteLine("'Q' : quit");
-                Console.WriteLine("");
+                Console.WriteLine($"{Environment.NewLine}");
                 Console.Write("select your target : ");
                 key = Console.ReadKey(false);
                 if (key.Key == ConsoleKey.Q)
                     break;
                 Console.WriteLine($"{Environment.NewLine}");
-                Console.WriteLine("WARNING !!! LASER IS BUSY ...");
-                Console.WriteLine($"{Environment.NewLine}");
-                var timer = Stopwatch.StartNew();
                 switch (key.Key)
                 {
-                    case ConsoleKey.R:  
-                        // 회전하는 사각형 모양 가공
-                        // 가로 10, 세로 10 크기, 0 ~360 각도의 회전 형상
-                        DrawRectangle(laser, rtc, 10, 10, 0, 360);
+                    case ConsoleKey.M:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DoMarkByMarker(doc, rtc, laser);
                         break;
-                    case ConsoleKey.L:  
-                        // 회전하는 직선 모양 가공
-                        DrawLinesWithRotate(laser, rtc, 0, 360);
-                        break;
-                    case ConsoleKey.F:
-                        // popup winforms for control laser source
-                        // 레이저 소스 제어용 윈폼 팝업
-                        SpiralLab.Sirius.Laser.LaserForm laserForm = new SpiralLab.Sirius.Laser.LaserForm(laser);
-                        laserForm.ShowDialog();
+                    case ConsoleKey.O:
+                        Console.WriteLine("WARNING !!! LASER IS BUSY ...");
+                        DrawByMarkerWithOffset(doc, rtc, laser);
                         break;
                 }
-                Console.WriteLine($"Processing time = {timer.ElapsedMilliseconds / 1000.0:F3}s");
+
             } while (true);
 
-            rtc.CtlAbort();
             rtc.Dispose();
             laser.Dispose();
         }
-       
-        /// <summary>
-        /// 지정된 크기의 직사각형 그리기
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="width"></param>
-        /// <param name="height"></param>
-        private static bool DrawRectangle(ILaser laser, IRtc rtc, double width, double height, double angleStart, double angleEnd)
+        private static bool DoMarkByMarker(IDocument doc, IRtc rtc, ILaser laser)
         {
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
-            {
-                // push rotate matrix into stack
-                // 회전 행렬 스택에 삽입
-                rtc.MatrixStack.Push(angle);
-                success &= rtc.ListJump(new Vector2((float)-width / 2, (float)height / 2));
-                success &= rtc.ListMark(new Vector2((float)width / 2, (float)height / 2));
-                success &= rtc.ListMark(new Vector2((float)width / 2, (float)-height / 2));
-                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)-height / 2));
-                success &= rtc.ListMark(new Vector2((float)-width / 2, (float)height / 2));
-                // pop rotate matrix from stack
-                //회전 행렬 스택에서 제거
-                rtc.MatrixStack.Pop();
-            }
-            if (success)
-            {
-                success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
-            }
-            return success;
-        }       
-        /// <summary>
-        /// 행렬을 이용해 직선을 그릴때 1도마다 직선을 회전시켜 그리기
-        /// </summary>
-        /// <param name="rtc"></param>
-        /// <param name="angleStart"></param>
-        /// <param name="angleEnd"></param>
-        private static bool DrawLinesWithRotate(ILaser laser, IRtc rtc, double angleStart, double angleEnd)
-        {
-            bool success = true;
-            success &= rtc.ListBegin(laser);
-            // push transit matrix into stack
-            // 이동 행렬 스택에 삽입
-            // dx= 2mm, dy= 4mm 만큼 이동
-            rtc.MatrixStack.Push(2, 4);
-            for (double angle = angleStart; angle <= angleEnd; angle += 1)
-            {
-                // push rotate matrix into stack
-                // 회전 행렬 스택에 삽입
-                rtc.MatrixStack.Push(angle);
-                success &= rtc.ListJump(new Vector2(-10, 0));
-                success &= rtc.ListMark(new Vector2(10, 0));
-                // pop rotate matrix from stack
-                // 회전 행렬 스택에서 제거
-                rtc.MatrixStack.Pop();
-            }
-            // pop transit matrix from stack
-            // 이동 행렬 스택에서 제거
-            rtc.MatrixStack.Pop();
+            if (rtc.CtlGetStatus(RtcStatus.Busy))
+                return false;
+            // create marker (has a internal worker thread)
+            // 마커 객체 생성 (내부 쓰레드에 의해 비동기 적으로 대량의 데이타를 가공 처리)
+            var marker = new MarkerDefault(0);            
+            marker.Name = "marker #1";
+            // register marker finish event handler
+            // 가공 완료 이벤트 핸들러 등록
+            marker.OnFinished += Marker_OnFinished;
 
-            if (success)
+            var markerArg = new MarkerArgDefault()
             {
-                success &= rtc.ListEnd();
-                success &= rtc.ListExecute(true);
-            }
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
+
+            bool success = true;
+            // prepare document for mark (cloned all data by internally)
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다
+            success &= marker.Ready(markerArg);
+            // start worker thread
+            // 가공을 시작한다
+            success &= marker.Start();
             return success;
+        }
+        private static bool DrawByMarkerWithOffset(IDocument doc, IRtc rtc, ILaser laser)
+        {
+            if (rtc.CtlGetStatus(RtcStatus.Busy))
+                return false;
+            // create marker (has a internal worker thread)
+            // 마커 객체 생성 (내부 쓰레드에 의해 비동기 적으로 대량의 데이타를 가공 처리)
+            var marker = new MarkerDefault(0);
+            marker.Name = "marker #2";
+            // register marker finish event handler
+            //가공 완료 이벤트 핸들러 등록
+            marker.OnFinished += Marker_OnFinished;
+
+            var markerArg = new MarkerArgDefault()
+            {
+                Document = doc,
+                Rtc = rtc,
+                Laser = laser,
+            };
+            // multiple 9 offsets 
+            // 9개의 오프셋 정보를 추가한다
+            markerArg.Offsets.Add(new Offset(-20.0f, 20.0f, -90f));
+            markerArg.Offsets.Add(new Offset(0.0f, 20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 20.0f, 90.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, 0.0f, -180.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, 0.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, 0.0f, 180.0f));
+            markerArg.Offsets.Add(new Offset(-20.0f, -20.0f, -270.0f));
+            markerArg.Offsets.Add(new Offset(0.0f, -20.0f, 0.0f));
+            markerArg.Offsets.Add(new Offset(20.0f, -20.0f, 270.0f));
+            bool success = true;
+            // prepare document for mark (cloned all data by internally)
+            // 마커에 가공 문서(doc)및 rtc, laser 정보를 전달하고 가공 준비를 실시한다
+            success &= marker.Ready(markerArg);
+            // start worker thread
+            // 가공을 시작한다
+            success &= marker.Start();
+            return success;
+        }
+
+        /// <summary>
+        /// event has called when marker has finished 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="arg"></param>
+        private static void Marker_OnFinished(IMarker sender, IMarkerArg arg)
+        {
+            var span = arg.EndTime - arg.StartTime;
+            Console.WriteLine($"{Environment.NewLine}{sender.Name} finished. {span.TotalSeconds:F3} sec");
         }
     }
 }

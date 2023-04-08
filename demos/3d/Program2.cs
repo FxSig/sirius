@@ -65,9 +65,9 @@ namespace SpiralLab.Sirius
             float kfactor = (float)Math.Pow(2, 20) / fov;
 
             // RTC4: full path of correction file
-            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");   //"D3_1128.ctb");
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ctb");
             // RTC5/6: full path of correction file
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5"); //"D3_1128.ct5");
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ct5"); 
             // initialize RTC controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
@@ -121,8 +121,11 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'R' : reset");
                 Console.WriteLine("'A' : abort");
                 Console.WriteLine("'O' : open stereo-lithography file");
-                Console.WriteLine("'C' : convert correction file");
-                Console.WriteLine("'D' : reset correction file");
+                Console.WriteLine("'X' : reset/revert correction file");
+                Console.WriteLine("'C' : convert correction file by points cloud");
+                Console.WriteLine("'D' : convert correction file by cylinder");
+                Console.WriteLine("'E' : convert correction file by cone");
+                Console.WriteLine("'F' : convert correction file by plane");
                 Console.WriteLine("'F1' : mark square");
                 Console.WriteLine("'F2' : mark circle");
                 Console.WriteLine("'Q' : quit");
@@ -170,61 +173,7 @@ namespace SpiralLab.Sirius
                         //                        Z -
                         //
                         break;
-                    case ConsoleKey.C:
-                        if (null == stlEntity)
-                            return;
-                        var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
-                        var newCtFileName = string.Empty;
-                        // Extract points cloud data after transform translate, rotate and scale matrix
-                        // STL 모델에 적용된 변환 행렬 (이동, 회전, 크기 변환) 연산 적용된후 Points cloud 데이타 추출됨
-                        if (!stlEntity.GetPointsCloud(out double[] x, out double[] y, out double[] z))
-                        {
-                            Logger.Log(Logger.Type.Error, $"fail to get points cloud from stl model");
-                        }
-                        else
-                        {
-                            string ext = Path.GetExtension(inputCtFileName);
-                            switch (ext.ToLower())
-                            {
-                                case ".ctb":
-                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
-                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cal3d.ctb";
-                                    break;
-                                case ".ct5":
-                                default:
-                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
-                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cal3d.ct5";
-                                    break;
-                            }
-                            if (File.Exists(newCtFileName))
-                                File.Delete(newCtFileName);
-                            if (Correction3DRtc.FreeFormPointCloud((uint)x.Length, x, y, z, inputCtFileName, null, newCtFileName, out var returnCode))
-                            {
-                                CorrectionTableIndex targetTable = CorrectionTableIndex.None;
-                                switch (rtc.RtcType)
-                                {
-                                    default:
-                                    case RtcType.Rtc4:
-                                        targetTable = CorrectionTableIndex.Table2;
-                                        success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
-                                        success &= rtc.CtlSelectCorrection(targetTable, targetTable);
-                                        break;
-                                    case RtcType.Rtc5:
-                                        targetTable = CorrectionTableIndex.Table4;
-                                        success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
-                                        success &= rtc.CtlSelectCorrection(targetTable, targetTable);
-                                        break;
-                                    case RtcType.Rtc6:
-                                        targetTable = CorrectionTableIndex.Table8;
-                                        success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
-                                        success &= rtc.CtlSelectCorrection(targetTable, targetTable);
-                                        break;
-                                }
-                                Logger.Log(Logger.Type.Info, $"new 3D calibration has applied: {newCtFileName}");
-                            }
-                        }
-                        break;
-                    case ConsoleKey.D:
+                    case ConsoleKey.X:
                         switch (rtc.RtcType)
                         {
                             default:
@@ -239,6 +188,121 @@ namespace SpiralLab.Sirius
                                 break;
                         }
                         Logger.Log(Logger.Type.Info, $"3D calibration has reset as original correction table");
+                        break;
+                    case ConsoleKey.C:
+                        if (null == stlEntity)
+                            return;
+                        {
+                            var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
+                            var newCtFileName = string.Empty;
+                            // Extract points cloud data after transform translate, rotate and scale matrix
+                            // STL 모델에 적용된 변환 행렬 (이동, 회전, 크기 변환) 연산 적용된후 Points cloud 데이타 추출됨
+                            if (!stlEntity.GetPointsCloud(out Vector3[] xyz))
+                            {
+                                Logger.Log(Logger.Type.Error, $"fail to get points cloud from stl model");
+                            }
+                            else
+                            {
+                                string ext = Path.GetExtension(inputCtFileName);
+                                switch (ext.ToLower())
+                                {
+                                    case ".ctb":
+                                        newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                            Path.GetFileNameWithoutExtension(inputCtFileName)) + "_points_cloud.ctb";
+                                        break;
+                                    case ".ct5":
+                                    default:
+                                        newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                            Path.GetFileNameWithoutExtension(inputCtFileName)) + "_points_cloud.ct5";
+                                        break;
+                                }
+                                if (File.Exists(newCtFileName))
+                                    File.Delete(newCtFileName);
+                                if (Correction3DRtc.PointCloudCalibration(xyz, inputCtFileName, string.Empty, newCtFileName, out var returnCode))
+                                {
+                                    LoadAndSelectCorrection(rtc, newCtFileName);
+                                }
+                            }
+                        }
+                        break;
+                    case ConsoleKey.D:
+                        {
+                            var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
+                            var newCtFileName = string.Empty;
+                            string ext = Path.GetExtension(inputCtFileName);
+                            switch (ext.ToLower())
+                            {
+                                case ".ctb":
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cylinder.ctb";
+                                    break;
+                                case ".ct5":
+                                default:
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cylinder.ct5";
+                                    break;
+                            }
+                            if (File.Exists(newCtFileName))
+                                File.Delete(newCtFileName);
+                            if (Correction3DRtc.CylinderCalibration(Vector3.Zero, Vector3.UnitX, 10, inputCtFileName, null, newCtFileName, out var returnCode))
+                            {
+                                LoadAndSelectCorrection(rtc, newCtFileName);
+                            }
+                        }
+                        break;
+                    case ConsoleKey.E:
+                        {
+                            var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
+                            var newCtFileName = string.Empty;
+                            string ext = Path.GetExtension(inputCtFileName);
+                            switch (ext.ToLower())
+                            {
+                                case ".ctb":
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cone.ctb";
+                                    break;
+                                case ".ct5":
+                                default:
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_cone.ct5";
+                                    break;
+                            }
+                            if (File.Exists(newCtFileName))
+                                File.Delete(newCtFileName);
+                            if (Correction3DRtc.ConeCalibration(Vector3.Zero, Vector3.UnitX, 20, 45, inputCtFileName, null, newCtFileName, out var returnCode))
+                            {
+                                LoadAndSelectCorrection(rtc, newCtFileName);
+                            }
+                        }
+                        break;
+                    case ConsoleKey.F:
+                        {
+                            var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
+                            var newCtFileName = string.Empty;
+                            string ext = Path.GetExtension(inputCtFileName);
+                            switch (ext.ToLower())
+                            {
+                                case ".ctb":
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_plane.ctb";
+                                    break;
+                                case ".ct5":
+                                default:
+                                    newCtFileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction",
+                                        Path.GetFileNameWithoutExtension(inputCtFileName)) + "_plane.ct5";
+                                    break;
+                            }
+                            if (File.Exists(newCtFileName))
+                                File.Delete(newCtFileName);
+                            //10 deg at x axis
+                            var radian = 10 * MathHelper.DegToRad;
+                            var dirX = Vector3.Transform(Vector3.UnitX, Matrix4x4.CreateRotationX(radian));
+                            var dirY = Vector3.Transform(Vector3.UnitY, Matrix4x4.CreateRotationX(radian));
+                            if (Correction3DRtc.PlaneCalibration(Vector3.Zero, dirX, dirY, inputCtFileName, null, newCtFileName, out var returnCode))
+                            {
+                                LoadAndSelectCorrection(rtc, newCtFileName);
+                            }
+                        }
                         break;
                     case ConsoleKey.F1:                       
                         float halfSquareSize = 10;
@@ -276,6 +340,36 @@ namespace SpiralLab.Sirius
             }
             rtc.Dispose();
             laser.Dispose();
+        }
+
+        private static bool LoadAndSelectCorrection(IRtc rtc, string newCtFileName)
+        {
+            bool success = true;
+            CorrectionTableIndex targetTable = CorrectionTableIndex.None;
+            switch (rtc.RtcType)
+            {
+                default:
+                case RtcType.Rtc4:
+                    targetTable = CorrectionTableIndex.Table2;
+                    success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
+                    success &= rtc.CtlSelectCorrection(targetTable, targetTable);
+                    break;
+                case RtcType.Rtc5:
+                    targetTable = CorrectionTableIndex.Table4;
+                    success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
+                    success &= rtc.CtlSelectCorrection(targetTable, targetTable);
+                    break;
+                case RtcType.Rtc6:
+                    targetTable = CorrectionTableIndex.Table8;
+                    success &= rtc.CtlLoadCorrectionFile(targetTable, newCtFileName);
+                    success &= rtc.CtlSelectCorrection(targetTable, targetTable);
+                    break;
+            }
+            if (success)
+                Logger.Log(Logger.Type.Info, $"new 3D calibration has applied: {newCtFileName}");
+            else
+                Logger.Log(Logger.Type.Error, $"fail to load/select 3D calibration: {newCtFileName}");
+            return success;
         }
 
     }

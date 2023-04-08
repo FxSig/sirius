@@ -161,8 +161,10 @@ namespace SpiralLab.Sirius
                     }
                 }
                 bool success = true;
-                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
-                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, analogV); // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                // max 10V
+                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f;
+                // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                success = this.Rtc.CtlWriteData<float>(ExtensionChannel.ExtAO2, analogV); 
                 Thread.Sleep((int)this.PowerControlDelayTime);
                 if (success)
                 {
@@ -198,8 +200,10 @@ namespace SpiralLab.Sirius
                         return false;
                 }
                 bool success = true;
-                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f; //max 10V
-                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, analogV);   // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                // max ~10V
+                float analogV = compensatedWatt / this.MaxPowerWatt * 10.0f;
+                // 아나로그로 출력이 제어되는 레이저 소스 (RTC 의 아나로그 2번 포트로 연결되었을 경우)
+                success &= this.Rtc.ListWriteData<float>(ExtensionChannel.ExtAO2, analogV);   
                 success &= this.Rtc.ListWait(this.PowerControlDelayTime); 
                 return success;
             }

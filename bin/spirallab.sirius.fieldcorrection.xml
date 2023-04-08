@@ -7,9 +7,9 @@
         <member name="T:SpiralLab.Sirius.FormGridChecker">
             <summary>
             스캐너 필드 보정용 이미지를 분석하여 오차 데이타를 추출
-            <para>Image Analyzer for Scanner Field Correction</para>
-            <para>64비트 : copy bin\x64\OpenCvSharpExtern.dll to bin</para>
-            <para>32비트 : copy bin\x32\OpenCvSharpExtern.dll to bin</para>
+            <para>Image analyzer for scanner field correction winforms</para>
+            <para>x64: copy bin\x64\OpenCvSharpExtern.dll to bin</para>
+            <para>x32: copy bin\x32\OpenCvSharpExtern.dll to bin</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.FormGridChecker.AliasName">

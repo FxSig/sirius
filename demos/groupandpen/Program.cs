@@ -243,7 +243,6 @@ namespace SpiralLab.Sirius
                 Document = doc,
                 Rtc = rtc,
                 Laser = laser,
-                IsEnablePens = true,
             };
             bool success = true;
             success &= rtc.ListBegin(laser);

@@ -166,9 +166,11 @@ namespace SpiralLab.Sirius
                 }
             }
             //통신을 통한 파워 변경 시도
-            var serial = Rtc as IRtcSerialComm;
-            success &= serial.CtlSerialWrite($"{watt:F1}");
-            Thread.Sleep((int)this.PowerControlDelayTime);
+            if (this.Rtc is IRtcSerialComm serial)
+            {
+                success &= serial.CtlSerialWrite($"{watt:F1}");
+                Thread.Sleep((int)this.PowerControlDelayTime);
+            }
             return success;
         }
         public bool ListBegin()
@@ -201,10 +203,12 @@ namespace SpiralLab.Sirius
                     return false;
             }
             bool success = true;
-            var serial = Rtc as IRtcSerialComm;
-            success &= serial.ListSerialWrite($"{compensatedWatt:F1}");
-            //레이저 파워 변경 대기를 위한 2초 지연
-            success &= Rtc.ListWait(this.PowerControlDelayTime);
+            if (this.Rtc is IRtcSerialComm serial)
+            {
+                success &= serial.ListSerialWrite($"{compensatedWatt:F1}");
+                //레이저 파워 변경 대기를 위한 2초 지연
+                success &= this.Rtc.ListWait(this.PowerControlDelayTime);
+            }
             return success;
         }
         public bool ListEnd()

@@ -3097,7 +3097,7 @@
             <summary>
             레이저 소스 (SpectraPhysics Hippo)
             <para>방법1: 아나로그 전압 출력 제어 방식 (Analog1, Analog2 중 선택)</para>
-            <para>방법2 : Custom (RS-232 경우): Diode1Current, Diode2Current 값이 통신으로 처리됨</para>
+            <para>방법2: Custom (RS-232 경우): Diode1Current, Diode2Current 값이 통신으로 처리됨</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.SpectraPhysicsHippo.PropertyChanged">
@@ -3909,7 +3909,7 @@
         <member name="T:SpiralLab.Sirius.PowerMapViewerForm">
             <summary>
             파워맵 뷰어 윈폼
-            <para>Powermap viewer winforms</para>
+            <para>Powermap (for view) winforms</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapViewerForm.PowerMap">
@@ -5298,10 +5298,16 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.RowInterval">
-            <inheritdoc/>  
+            <summary>
+            행 간격 (mm)
+            <para>Row interval (mm)</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.ColInterval">
-            <inheritdoc/>  
+            <summary>
+            열 간격 (mm)
+            <para>Col interval (mm)</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.KFactor">
             <inheritdoc/>  
@@ -5313,10 +5319,16 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.IsAutoCenterOffset">
-            <inheritdoc/>  
+            <summary>
+            측정 데이타의 중심 위치값을 0,0 가 되도록 전체 이동 처리 여부
+            <para>Do translate measured position to make center as 0,0 or not</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.IsDeleteDatFile">
-            <inheritdoc/>  
+            <summary>
+            임시 생성되는 DAT 파일 삭제 여부
+            <para>Delete temporary created dat file or not</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction2DRtc.ResultMessage">
             <inheritdoc/>  
@@ -5353,6 +5365,7 @@
         <member name="M:SpiralLab.Sirius.Correction2DRtc.ConvertFromDatFile(System.String)">
             <summary>
             DAT 파일을 직접 전달하여 변환 시도
+            <para>Convert correction file by dat file</para>
             </summary>
             <param name="datFileFullPath">DAT 파일</param>
             <returns></returns>
@@ -5365,6 +5378,19 @@
             이벤트 핸들러 호출 (상속 확장 구현용)
             </summary>
             <param name="success">변환 성공 여부</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction2DRtc.BeamTiltCalibration(System.Single,System.Single,System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            갈바노메터 스캐너 각도가 0인 경우 측정된 오프셋 값을 사용하여 보정 테이블을 재 계산
+            <para>Recalculates the Correction table using offset values measured for galvanometer scanner angles of 0</para>
+            </summary>
+            <param name="dx">offset dx (mm)</param>
+            <param name="dy">offset dy (mm)</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.Calibration3DReturnCode">
             <summary>
@@ -5394,7 +5420,10 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtc.Interval">
-            <inheritdoc/>  
+            <summary>
+            간격 (mm)
+            <para>Interval (mm)</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtc.KFactor">
             <inheritdoc/>  
@@ -5412,7 +5441,10 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtc.IsDeleteDatFile">
-            <inheritdoc/>  
+            <summary>
+            임시 생성되는 DAT 파일 삭제 여부
+            <para>Delete temporary created dat file or not</para>
+            </summary>
         </member>
         <member name="P:SpiralLab.Sirius.Correction3DRtc.ResultMessage">
             <inheritdoc/>  
@@ -5438,7 +5470,10 @@
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.Correction3DRtc.ExitCode">
-            process exit code ref : stretch correction.pdf by scanlab
+            <summary>
+            exit code 
+            ref : stretch correction.pdf by SCANLAB
+            </summary>
         </member>
         <member name="M:SpiralLab.Sirius.Correction3DRtc.#ctor(System.Single,System.Int32,System.Int32,System.Single,System.Single,System.Single,System.String,System.String)">
             <summary>
@@ -5468,6 +5503,7 @@
         <member name="M:SpiralLab.Sirius.Correction3DRtc.ConvertFromDatFile(System.String)">
             <summary>
             DAT 파일을 직접 전달하여 변환 시도
+            <para>Convert correction file by dat file</para>
             </summary>
             <param name="datFileFullPath">DAT 파일</param>
             <returns></returns>
@@ -5484,17 +5520,187 @@
             </summary>
             <param name="success">변환 성공 여부</param>
         </member>
-        <member name="M:SpiralLab.Sirius.Correction3DRtc.FreeFormPointCloud(System.UInt32,System.Double[],System.Double[],System.Double[],System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.PointCloudCalibration(System.Numerics.Vector3[],System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
             <summary>
-            3D 공간의 점 집합(points cloud) 를 이용해 새로운 스캐너 필드 보정 파일을 생성
-            <para>Create new calibrated 3d field correction file by points cloud</para>
+            3D 공간의 표면에 대한 점집합(points cloud)을 이용한 새로운 보정 파일 생성
+            <para>Recalculates a 3D-Correction file for a user-defined free-form target surface that is defined by a point cloud</para>
+            <para>
+            The target surface must be provided as a reference point, a direction vector, and a radius.
+            The reference point is a point on the cylinder mantle and represents the new coordinate origin of the target surface.
+            In the cylinder cross-section it is the point with the largest Z-coordinate.
+            The given direction is the direction of the cylinder axis, which will represent the X-coordinate in the new coordinate system.
+            The new Y-coordinate is the arc length distance on the cylinder mantle from the axis parallel to the cylinder direction going through the reference point.
+            </para>
             </summary>
-            <param name="counts">개수</param>
-            <param name="xMM">x 배열</param>
-            <param name="yMM">y 배열</param>
-            <param name="zMM">z 배열</param>
+            <param name="pointsCloud">표면 위치 (x,y,z) 배열</param>
             <param name="inputCtFileName">입력 보정 파일 이름</param>
-            <param name="inputCtReadMeFileName">입력 보정 파일 README (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.CylinderCalibration(System.Numerics.Vector3,System.Numerics.Vector3,System.Single,System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            (Experimental) 3D 원통(Cylinder) 모양에 대한 새로운 보정 파일 생성
+            <para>Recalculates a 3D-Correction file for a user-defined cylindrical target surface that can be shifted, tilted, and rotated</para>
+            <para>
+            The target surface must be provided as a reference point, a direction vector, and a radius.
+            The reference point is a point on the cylinder mantle and represents the new coordinate origin of the target surface.
+            In the cylinder cross-section it is the point with the largest Z-coordinate.
+            The given direction is the direction of the cylinder axis, which will represent the X-coordinate in the new coordinate system.
+            The new Y-coordinate is the arc length distance on the cylinder mantle from the axis parallel to the cylinder direction going through the reference point.
+            The new file should not be used for points outside the provided target surface.
+            </para>
+            <code>
+                         Y+   
+                         |  
+                         |       .............Reference...........       
+                         |     .   .                           .   .     
+                         |    .     .                         .     .    
+                         |    .     .                         .     .   ---> Direction
+                         |    .     .                         .     .   
+                         |     .   .                           .   .
+                         |       .................................
+                         |  
+                         +----------------------------------------------  X+
+                        /    
+                       /   
+                      /
+                     / 
+                   Z+
+            </code>
+            </summary>
+            <param name="reference">참조 위치 벡터 (mm): reference point on the cylinder</param>
+            <param name="direction">방향 벡터: direction of the cylinder axis</param>
+            <param name="radius">반지름 크기 (mm): radius of the cylinder</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.ConeCalibration(System.Numerics.Vector3,System.Numerics.Vector3,System.Single,System.Single,System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            (Experimental) 3D 원뿔(Cone) 모양에 대한 새로운 보정 파일 생성
+            <para>
+            The target surface must be provided as a reference point, a direction vector, the radius at the reference point and the inclination angle of the cone.
+            The reference point is a point on the lateral surface of the cone and represents the new coordinate origin of the target surface.
+            In the cross-section of the cone that is perpendicular to the direction of the cone it is the point with the largest Z-coordinate.
+            The given direction is the direction of the cone axis, which will represent the X-coordinate in the new coordinate system.
+            The new Y-coordinate is the angular offset from the surface line going through the reference point multiplied by the radius of the cone at the reference point.
+            This means that the same y-coordinate describes a shorter distance at a more narrow part of the cone and a larger distance at a wider part of the cone.
+            The inclination angle is provided in radians and must positive if the cone widens for larger values of X, and negative if it becomes more narrow.
+            </para>
+            <code>
+                         Y+   
+                         |  
+                         |       . 
+                         |     .   .  .       
+                         |    .     .      .   
+                         |    .     .            .        ---> Direction
+                         |    .     .      .   
+                         |     .   .  .       
+                         |       .
+                         |  
+                         +----------------------------------------------  X+
+                        /    
+                       /   
+                      /
+                     / 
+                   Z+     
+            
+            </code>
+            </summary>
+            <param name="reference">참조 위치 벡터 (mm): reference point on the cone</param>
+            <param name="direction">방향 벡터: direction of the cone axis</param>
+            <param name="radius">기준점에서의 반지름 크기 (mm): radius of the cone at the reference point</param>
+            <param name="inclinationAngle">경사 각도 (°): inclination angle of the cone</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.PlaneCalibration(System.Numerics.Vector3,System.Numerics.Vector3,System.Numerics.Vector3,System.String,System.String,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            (Experimental) 3D 평면(Plane)에 대한 새로운 보정 파일 생성
+            <para>Recalculates a 3D-Correction table for a new user-defined target plane that may be shifted, tilted, and rotated</para>
+            <para>
+            The new target plane must be provided in parameter form with a reference point and two direction vectors.
+            The reference point represents the new origin of the target plane, while the direction vectors represent the new X- and Y- directions in the target plane.
+            The direction vectors must be perpendicular.
+            Depending on how much shifted and tilted the new target plane is compared to the original target plane, 
+            the Correction file may not be useful anymore for 3d-points that are not in the target plane.This cannot be remedied through further 3d-correction.
+            </para>
+            <code>
+                         Y+   
+                         |  
+                         |
+                         |                   Normal
+                         |                     .
+                         |                    /|\
+                         |                     |
+                         |         /-----------|--------------/
+                         |        /            .             /
+                         |       /                          /
+                         +------/........................../----------  X+
+                        /      /__________________________/
+                       /      
+                      /
+                     / 
+                   Z+     
+            </code>
+            </summary>
+            <param name="reference">참조 위치 벡터 (mm): reference point on the plane</param>
+            <param name="directionX">X 방향 벡터: x direction of the target plane</param>
+            <param name="directionY">Y 방향 벡터: y direction of the target plane</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.FocusCalibration(System.Tuple{System.Single,System.Single,System.Single}[],System.String,System.String,System.Single,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            (Experimental) 3D 초점에 대한 새로운 보정 파일 생성
+            <para>Re-adjusts the 3d calibration based on measurements in the Z=0 plane</para>
+            <code>
+            The suggested RTC command procedure to find the values in the array above looks like this 
+             
+            load 3d correction file
+            IRtc.CtlLoadCorrectionFile(CorrectionTableIndex.Table1, OriginalFilename);
+            
+            For all grid points X = XTargetedPositions[i], Y = XTargetedPositions[i]
+            
+                changes A value in the ABC correction and therefore the focus position offset
+                IRtc3D.CtlZTable(MeasuredOptimalZBits[i], 0, 0);       
+                applies the new A value
+                IRtc.CtlSelectCorrection(CorrectionTableIndex.Table1);  
+                moves spot to the targeted X and Y position at Z=0(!) with modified Z offset
+                IRtc3D.CtlMove(new Vector3(X, Y, 0));                   
+                
+            Repeat the above while varying MeasuredOptimalZBits[i] until focal position is OK
+            </code>
+            </summary>
+            <param name="xyAndMeasuredOptZ">대상 x, y 위치(mm)에 따른 최적 Z거리 (mm)</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="kFactor">K-Factor (bits/mm)</param>
+            <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
+            <param name="returnCode">실패시 내부 에러코드</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Correction3DRtc.CoefABCCalibration(System.Collections.Generic.KeyValuePair{System.Single,System.Single}[],System.String,System.String,System.Single,System.String,SpiralLab.Sirius.Calibration3DReturnCode@)">
+            <summary>
+            (Experimental) 3D Z 위치에 대한 새로운 계수(A,B,C)용 보정 파일 생성
+            <para>초점(F) 거리, CtlZTable 에 따른 ABC 계수를 재 계산</para>
+            <para>Zout = A + Bl + Cl²</para>
+            <para>Calculates the ABC coefficients for the selected table for a given set of measurements for the focal length and the Z-control bit</para>
+            </summary>
+            <param name="mesuredFocalLengthAndZOut">초점 측정 거리 (mm), Z 측정 거리 (mm)</param>
+            <param name="inputCtFileName">입력 보정 파일 이름</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="kFactor">K-Factor (bits/mm)</param>
             <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
             <param name="returnCode">실패시 내부 에러코드</param>
             <returns></returns>
@@ -8732,7 +8938,7 @@
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Custom">
             <summary>
             사용자 수동 제어 (외부 통신 등)
-            <para>Control by user (cutomizable communication like as TCP/IP or RS-232)</para>
+            <para>Control by user-defined communication like as TCP/IP or RS-232</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Duty">
@@ -8755,14 +8961,20 @@
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Digital8Bits">
             <summary>
-            RTC Extension2 Port 를 이용한 8비트(0~255) 디지털 출력 제어
+            RTC Extension2 Port 통한 8비트 (0~255) 디지털 출력 제어
             <para>Control output digital 8bits at RTC extension2 port</para>
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerControlMethod.Digital16Bits">
+            <summary>
+            RTC Extension1 Port 통한 16비트 (0~65535) 디지털 출력 제어
+            <para>Control output digital 16bits at RTC extension1 port</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.PowerControlMethod.Rs232">
             <summary>
-            RTC RS-232 Port 를 이용한 시리얼 통신 방식
-            <para>Control specific commands by communicate at RTC RS-232 port</para>
+            RTC 내장된 RS-232 Port 통한 시리얼 통신 방식
+            <para>Control specific commands by communicate at RTC's RS-232 port</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.IPowerControl">
@@ -8781,6 +8993,7 @@
             <summary>
             파워 변경에 필요한 지연시간 (msec)
             <para>파워 변경이 완료될때까지 대기할 최대 시간</para>
+            <para>Time to wait until vary output power has applied</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerControl.PowerMap">
@@ -8793,11 +9006,10 @@
             <summary>
             파워 변경 (즉시 명령)
             <para>Vary laser output power at immediately</para>
-            <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
             <code>
-                                              사용자가 지정한 출력 파워 (Target power)(W)
-            출력 비율 (output ratio) (%) =  ----------------------------------------------  X 100
-                                                   최대 출력 파워 (Max power)(W)
+                                            사용자가 지정한 출력 파워 (Target power)(W)
+            출력 비율 (output ratio) (%) = -------------------------------------------- X 100
+                                                  최대 출력 파워 (Max power)(W)
             </code>
             </summary>
             <param name="targetWatt">출력 파워 (W)</param>
@@ -8811,11 +9023,10 @@
             <para>마커의 내부 작업 쓰레드에 의해 리스트 명령으로 호출되므로, RTC 카드의 리스트 버퍼를 통해 레이저 파워를 변경하는 방식으로 처리 필요</para>
             <para>만약 리스트 명령으로 처리가 불가능한 파워 변경 방식의 경우, 현재까지 다운로드된 모든 리스트 명령을 닫고(List End/List Execute) 실행을 완료시킨 이후</para>
             <para>파워 변경 을 수행 완료하고 신규로 리스트(List Begin)를 만들어 이후 리스트 명령들에 영향을 주는 안는 방식으로 구현 가능</para>
-            <para>파워 맵 카테고리 <c>powerMapCategory</c> 지정시 watt 에 해당하는 보정 값을 조회후 사용함</para>
             <code>
-                                             사용자가 지정한 출력 파워 (Target power) (W)
-            출력 비율 (output ratio) (%) =  ---------------------------------------------  X 100
-                                                  최대 출력 파워 (Max power) (W)
+                                           사용자가 지정한 출력 파워 (Target power) (W)
+            출력 비율 (output ratio) (%) = ------------------------------------------- X 100
+                                                 최대 출력 파워 (Max power) (W)
             </code>
             </summary>
             <param name="targetWatt">출력 파워 (W)</param>
@@ -8989,9 +9200,9 @@
             최대 출력 파워 (W)
             <para>Max power (W)</para>
             <code>
-                                             사용자가 지정한 출력 파워 (target power) (W)
-            출력 비율 (output ratio) (%) =  ---------------------------------------------  X 100
-                                                  최대 출력 파워 (max power) (W)
+                                           사용자가 지정한 출력 파워 (target power) (W)
+            출력 비율 (output ratio) (%) = ------------------------------------------- X 100
+                                                 최대 출력 파워 (max power) (W)
                                                   
             </code>
             </summary>
@@ -9158,14 +9369,14 @@
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.PowerControlMethod">
             <summary>
-            파워 변경 방식
-            <para>
-            LaserViritual 의 경우 PowerControlMethod 에 따라
-            Duty:  MinDuty~MaxDuty 의 펄스폭 출력 지원
-            Analog: 아나로그1 포트로 MinVoltage~MaxVoltage 출력 지원
-            DigitalBits: 확장2 포트로 0~65535 (8비트) 출력 지원
-            기타: 구현없음 (ListEnd/Execute -> (사용자 구현필요) -> ListBegin 처리됨)
-            </para>
+            파워 변경 방식 (PowerControlMethod)
+            <para>LaserViritual only !</para>
+            <para>Duty          : MinDuty ~ MaxDuty 의 펄스폭 (설정 주파수에 따라 가변) 출력 지원</para>
+            <para>Analog1/2     : MinVoltage ~ MaxVoltage 의 전압 (~10V) 출력 지원</para>
+            <para>Digital8Bits  : 확장2 포트로 0 ~ 255 (8비트) 출력 지원</para>
+            <para>Digital16Bits : 확장1 포트로 0 ~ 65535 (16비트) 출력 지원</para>
+            <para>RS-232        : RS-232 포트로 Rs232StringFormat 데이타 전송 지원</para>
+            <para>기타           : 없음 </para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.PowerControlDelayTime">
@@ -9192,10 +9403,22 @@
             <para>Default: 99</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.MinVoltage">
+            <summary>
+            아나로그 전압 제어 사용시 최소 전압값 (V)
+            <para>Default: 0</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.MaxVoltage">
             <summary>
             아나로그 전압 제어 사용시 최대 전압값 (V)
-            <para>Default: 99</para>
+            <para>Default: 10</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.LaserVirtual.Rs232StringFormat">
+            <summary>
+            내장된 RS-232 통신으로 문자열(ASCII) 기반 통신 사용시 문자열 포맷
+            <para>string.Format 사용됨</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.LaserVirtual.IsShutterOpen">
@@ -13629,7 +13852,13 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlDelayVariableJumpTable(System.Collections.Generic.KeyValuePair{System.Single,System.Single}[])">
-            <inheritdoc/>  
+            <summary>
+            스캐너 가변 점프 지연 테이블 설정
+            <para>Variable scanner jump delay table</para>
+            <para>점프 모드 사용시 유효</para>
+            </summary>
+            <param name="kvList">[거리 (mm), 지연시간 (usec)] 배열</param>
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlDelayVariable(System.Boolean,System.Boolean,System.Single,System.Single)">
             <inheritdoc/>  
@@ -14079,6 +14308,9 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialRead(System.Byte[]@)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc5.CtlSerialRead(System.String@)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc5.ListSerialWrite(System.Byte[])">
@@ -14914,6 +15146,15 @@
         <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayVariablePolygonTable(System.Collections.Generic.KeyValuePair{System.Single,System.Single}[])">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayVariableJumpTable(System.Collections.Generic.KeyValuePair{System.Single,System.Single}[])">
+            <summary>
+            스캐너 가변 점프 지연 테이블 설정
+            <para>Variable scanner jump delay table</para>
+            <para>점프 모드 사용시 유효</para>
+            </summary>
+            <param name="kvList">[거리 (mm), 지연시간 (usec)] 배열</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlDelayVariable(System.Boolean,System.Boolean,System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -15375,6 +15616,9 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialConfig(System.UInt32)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialRead(System.String@)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6.CtlSerialWrite(System.Byte[])">
@@ -17558,9 +17802,9 @@
             <summary>
             Single Buffered 
             <para>단일한 리스트 버퍼 사용, RTC 의 내부 버퍼를 최대로 사용</para>
-            <para>RTC4: 8000 개</para>
-            <para>RTC5: 2^20 개</para>
-            <para>RTC6: 2^23 개</para>
+            <para>RTC4: 8000</para>
+            <para>RTC5: 2^20</para>
+            <para>RTC6: 2^23</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.ListType.Auto">
@@ -17664,46 +17908,54 @@
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table1">
             <summary>
             스캐너 보정 테이블 1
+            <para>Table 1</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table2">
             <summary>
             스캐너 보정 테이블 2
+            <para>Table 2</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table3">
             <summary>
             스캐너 보정 테이블 3
+            <para>Table 3</para>
             <para>RTC5 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table4">
             <summary>
             스캐너 보정 테이블 4
+            <para>Table 4</para>
             <para>RTC5 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table5">
             <summary>
             스캐너 보정 테이블 5
+            <para>Table 5</para>
             <para>RTC6 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table6">
             <summary>
             스캐너 보정 테이블 6
+            <para>Table 6</para>
             <para>RTC6 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table7">
             <summary>
             스캐너 보정 테이블 7
+            <para>Table 7</para>
             <para>RTC6 이상</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.CorrectionTableIndex.Table8">
             <summary>
             스캐너 보정 테이블 8
+            <para>Table 8</para>
             <para>RTC6 이상</para>
             </summary>
         </member>
@@ -17821,6 +18073,7 @@
         <member name="M:SpiralLab.Sirius.ILaserControlSignal.ToUInt">
             <summary>
             비트 구조체를 32비트 값으로 변환
+            <para>32bits uint data</para>
             </summary>
             <returns></returns>
         </member>
@@ -17836,6 +18089,7 @@
         <member name="M:SpiralLab.Sirius.IRtcExternalControlMode.ToUInt">
             <summary>
             비트 구조체를 32 비트값으로 변환
+            <para>32bits uint data</para>
             </summary>
             <returns></returns>
         </member>
@@ -17850,6 +18104,7 @@
         <member name="P:SpiralLab.Sirius.IRtcJumpMode.Tag">
             <summary>
             사용자 정의 데이타
+            <para>User data</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.JumpModeFlag">
@@ -18062,7 +18317,7 @@
         <member name="M:SpiralLab.Sirius.IRtc.Initialize(System.Single,SpiralLab.Sirius.LaserMode,System.String)">
             <summary>
             RTC 카드 초기화
-            <para>initialize RTC controller</para>
+            <para>Initialize RTC controller</para>
             </summary>
             <param name="kFactor">K-Scale Factor (bits/mm). RTC4= 16bits, RTC5/6= 20 bits</param>
             <param name="laserMode">LaserMode 열거형</param>
@@ -18161,9 +18416,9 @@
         <member name="M:SpiralLab.Sirius.IRtc.CtlDelay(System.Single,System.Single,System.Single,System.Single,System.Single)">
             <summary>
             스캐너/레이저 지연값 설정
-            <para>scanner delays, laser delays</para>
-            <para>scanner 지연값 : 스캐너 갈바노메터(미러+모터)의 관성(inertia)에 의한 응답 지연 (tracking error) 시간을 보상하기 위한 시간값</para>
-            <para>laser 지연값 : 레이저 소스의 on/off 반응 시간 지연을 보상하기 위한 시간값</para>
+            <para>Scanner and Laser delays</para>
+            <para>Scanner 지연값 : 스캐너 갈바노메터의 관성(inertia)에 대한 응답 지연 (tracking error 시간을 보상하기 위해) 시간값</para>
+            <para>Laser 지연값 : 레이저 소스의 on/off 반응 시간 지연을 보상하기 위한 시간값</para>
             </summary>
             <param name="laserOn">레이저 온 지연 (usec)</param>
             <param name="laserOff">레이저 오프 지연 (usec)</param>
@@ -18459,14 +18714,14 @@
             리스트 명령 끝 - 버퍼 닫기
             <para>List end</para>
             </summary>
-            <returns></returns>s
+            <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc.ListExecute(System.Boolean)">
             <summary>
             리스트 명령 실행
             <para>List execute</para>
             </summary>
-            <param name="busyWait">리스트 명령이 실행 완료(busy 상태가 false 전환) 될 때까지 대기 여부 (true 시 blocking 상태로 대기됨)</param>
+            <param name="busyWait">리스트 명령이 실행 완료(busy 상태가 false 전환)될 때까지 대기(Blocking)할지 여부</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.IRtc2ndHead">
@@ -18474,8 +18729,8 @@
             IRtc2ndHead 2nd 헤드 인터페이스
             <para>IRtc2ndHead interface</para>
             <para>
-            여기에서 제공되는 Offset/Angle 은 행렬스택과 무관하게 적용됨. 
-            즉 스캐너의 HW 적인 장착 방향에 대한 오프셋 처리용으로 사용 권장함.
+            여기에서 제공되는 Offset/Angle 은 행렬스택처리후 RTC 내부의 행렬처리(로우레벨)에 의해 적용됨 
+            주의사항: 스캐너의 하드웨어적인 장착 방향(혹은 오프셋)에 대한 처리용으로 사용 권장함
             </para>
             </summary>
         </member>
@@ -18490,6 +18745,16 @@
             주(Primary)헤드에서 부(Secondary)헤드까지 물리적인 X, Y 거리값 (mm)
             <para>Distance from primary head to secondary head</para>
             <para>이 거리값은 2nd 헤드 시스템의 고정된 값으로, 이 거리값이 되도록 PrimaryHeadBaseOffset, SecondaryHeadBaseOffset를 조절한다</para>
+            <code>
+            
+                       Primary Head                Secondary Head
+                       
+                            |                             |
+                            |                             |
+                            |                             |
+                            | --------- Distance -------> |
+            
+            </code>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc2ndHead.PrimaryHeadBaseOffset">
@@ -18553,10 +18818,10 @@
             시리얼 통신 환경 설정
             <para>Config serial port</para>
             <code>
-            Data bits: 8
-            Start bits: 1
-            Stop bits: 1
-            Parity: none
+            Data bits  : 8
+            Start bits : 1
+            Stop bits  : 1
+            Parity     : none
             </code>
             </summary>
             <param name="baudRate">ex) 9600, ...</param>
@@ -18584,6 +18849,14 @@
             <para>Read data by array of bytes</para>
             </summary>
             <param name="bytes">읽은 바이트 배열</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSerialComm.CtlSerialRead(System.String@)">
+            <summary>
+            시리얼 통신 읽기
+            <para>Read data by string (converted bytes array to ASCII)</para>
+            </summary>
+            <param name="data">읽은 문자열</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSerialComm.ListSerialWrite(System.Byte[])">
@@ -18707,7 +18980,7 @@
             <summary>
             리스트 명령 - 개별 픽셀 명령 (Each Pixels)
             <para>List each pixel data</para>
-            <para>반드시 ListPixelLine 명령이 호출된후에 픽셀 개수만큼의 <c>ListPixel</c> 함수가 호출되어야 함</para>
+            <para>반드시 <c>ListPixelLine</c> 명령이 호출된후에 픽셀 개수만큼의 <c>ListPixel</c> 함수가 호출되어야 함</para>
             </summary>
             <param name="usec">현재 픽셀의 출력 주기 (lower than usec in <c>ListPixelLine</c>) </param>
             <param name="weight">ExtensionChannel 출력의 가중치 값 (0~1)</param>
@@ -18718,7 +18991,6 @@
             <summary>
             리스트 명령 - <c>ListPixelLine</c> + <c>ListPixel</c> * N개 을 통합한 명령
             <para>(Expemental) List pixel line with each pixels data</para>
-            <para>(Deprecated) 현재는 지원되지 않는 기능입니다</para>
             </summary>
             <param name="vStart">가공 시작점</param>
             <param name="vEnd">가공 끝점</param>
@@ -18734,7 +19006,7 @@
             <summary>
             RTC의 3D 기능 확장
             <para>IRtc3D interface</para>
-            <para>VarioScan, excelliSHIFT 등의 추가 장치 사용시</para>
+            <para>VarioScan, excelliSHIFT 등의 3D 기능 사용시</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc3D.ZOffset">
@@ -18755,18 +19027,21 @@
             <summary>
             3D 보정 파일내의 포물선 계수 A
             <para>Zout = A + Bl + Cl²</para>
+            <para>주의: bits 단위계</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc3D.CoefB">
             <summary>
             3D 보정 파일내의 포물선 계수 B
             <para>Zout = A + Bl + Cl²</para>
+            <para>주의: bits 단위계</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc3D.CoefC">
             <summary>
             3D 보정 파일내의 포물선 계수 C
             <para>Zout = A + Bl + Cl²</para>
+            <para>주의: bits 단위계</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtc3D.FLength">
@@ -18790,6 +19065,7 @@
         <member name="M:SpiralLab.Sirius.IRtc3D.CtlMove(System.Numerics.Vector3)">
             <summary>
             스캐너 이동
+            <para>Move scanner position to x,y,z </para>
             </summary>
             <param name="vPosition">x, y, z (mm)</param>
             <returns></returns>
@@ -18797,6 +19073,7 @@
         <member name="M:SpiralLab.Sirius.IRtc3D.CtlZOffset(System.Single)">
             <summary>
             Z 오프셋 
+            <para>Z offset</para>
             </summary>
             <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
             <returns></returns>
@@ -18804,23 +19081,38 @@
         <member name="M:SpiralLab.Sirius.IRtc3D.CtlZDefocus(System.Single)">
             <summary>
             Z 디포커스
+            <para>Z defocus</para>
             </summary>
             <param name="zDefocus">디포커스 Z 이동량 (mm)</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtc3D.CtlLoadZTable(System.Single,System.Single,System.Single)">
+            <summary>
+            Z 테이블 계수 설정
+            <para>Load z table</para>
+            <para>Z (out) = A + Bl + Cl²</para>
+            <para>주의: bits 단위</para>
+            </summary>
+            <param name="coefA">coefficient a</param>
+            <param name="coefB">coefficient b</param>
+            <param name="coefC">coefficient c</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.CtlCorrectionReadABC(System.String,System.Double@,System.Double@,System.Double@)">
             <summary>
             3D 보정 파일에서 A,B,C 계수 읽기
+            <para>Read a,b,c coefficient from correction file</para>
             </summary>
-            <param name="fileName"></param>
-            <param name="coefA"></param>
-            <param name="coefB"></param>
-            <param name="coefC"></param>
+            <param name="ctFilename">보정 파일명</param>
+            <param name="coefA">coefficient a</param>
+            <param name="coefB">coefficient b</param>
+            <param name="coefC">coefficient c</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.CtlCorrectionWriteABC(System.String,System.Double,System.Double,System.Double)">
             <summary>
             3D 보정 파일에 A,B,C 계수 쓰기
+            <para>Write a,b,c coefficient at correction file</para>
             </summary>
             <param name="fileName"></param>
             <param name="coefA"></param>
@@ -18833,7 +19125,7 @@
             리스트 명령 - Z 오프셋 
             <para>List z offset</para>
             </summary>
-            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm))</param>
+            <param name="zOffset">포커스 Z 이동 오프셋 량 (mm)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListZDefocus(System.Single)">
@@ -18850,7 +19142,7 @@
             <para>List jump 3d</para>
             </summary>
             <param name="vPosition">x,y,z 위치 (mm)</param>
-            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <param name="rampFactor">자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListJump3D(System.Single,System.Single,System.Single,System.Single)">
@@ -18861,7 +19153,7 @@
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
             <param name="z">z 위치 (mm)</param>
-            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <param name="rampFactor">자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListMark3D(System.Numerics.Vector3,System.Single)">
@@ -18870,7 +19162,7 @@
             <para>List mark 3d</para>
             </summary>
             <param name="vPosition">x,y,z 위치 (mm)</param>
-            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <param name="rampFactor">자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListMark3D(System.Single,System.Single,System.Single,System.Single)">
@@ -18881,7 +19173,7 @@
             <param name="x">x 위치 (mm)</param>
             <param name="y">y 위치 (mm)</param>
             <param name="z">z 위치 (mm)</param>
-            <param name="rampFactor">자동 레이저 제어시의 비율값</param>
+            <param name="rampFactor">자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListArc3D(System.Numerics.Vector3,System.Single,System.Single)">
@@ -18892,7 +19184,7 @@
             </summary>
             <param name="vCenter">중심 위치 (cx, cy, cz) (mm)</param>
             <param name="sweepAngleZ">회전 각도 (°) (+ : 반시계방향)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
+            <param name="rampFactor">Vector Defined 자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListArc3D(System.Single,System.Single,System.Single,System.Single,System.Single)">
@@ -18905,19 +19197,18 @@
             <param name="cy">중심 위치 (cy) (mm)</param>
             <param name="cz">중심 위치 (cz) (mm)</param>
             <param name="sweepAngleZ">회전 각도 (+ : 반시계방향)</param>
-            <param name="rampFactor">ALC(Automatic Laser Control) Vector Defined 사용시 비율값</param>
+            <param name="rampFactor">Vector Defined 자동 레이저 제어(ALC) 사용시 비율값</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtc3D.ListPixelLine3D(System.Single,System.Numerics.Vector3,System.UInt32,SpiralLab.Sirius.ExtensionChannel)">
             <summary>
             리스트 명령 - 레스터 처리 (Pixel Raster Operation) 3D
             <para>(Expemental) List prepare pixel line 3d</para>
-            <para>(Deprecated) 현재는 지원되지 않는 기능입니다</para>
             </summary>
             <param name="usec">매 픽셀의 주기 시간 (usec): 가공 속도를 결정</param>
-            <param name="vDelta">픽셀간 간격 (dx, dy, dz) (mm)</param>
-            <param name="pixelCount">한줄을 구성하는 픽셀의 개수</param>
-            <param name="ext">아나로그 1 or 2 반드시 선택</param>
+            <param name="vDelta">픽셀 간격 (dx, dy, dz) (mm)</param>
+            <param name="pixelCount">한 줄을 구성하는 픽셀의 개수</param>
+            <param name="ext">아나로그 1 or 2 중 선택</param>
             <returns></returns>
         </member>
         <member name="T:SpiralLab.Sirius.AutoLaserControlMode">
@@ -19051,7 +19342,7 @@
             ALC(Automatic Laser Control) 기능 전역 설정
             <para>Output automatic laser control values</para>
             </summary>
-            <typeparam name="T">AutoLaserControlSignal 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
+            <typeparam name="T">AutoLaserControlSignal 열거형중 DIO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="mode">AutoLaserControlMode 열거형</param>
             <param name="percentage100">100% 일때의 출력값</param>
@@ -19086,7 +19377,7 @@
             리스트 명령 - ALC(Automatic Laser Control) 기능중 Vector Dependent 기능을 활성화
             <para>List vector defined ALC begin</para>
             </summary>
-            <typeparam name="T"><c>AutoLaserControlSignal</c> 열거형중 ExtDO 는 uint, 그외는 float</typeparam>
+            <typeparam name="T"><c>AutoLaserControlSignal</c> 열거형중 DIO 는 uint, 그외는 float</typeparam>
             <param name="ctrl">AutoLaserControlSignal 열거형</param>
             <param name="startingValue">시작 출력값</param>
             <param name="compensator">출력값 보정기 사용시 지정</param>
@@ -19216,7 +19507,7 @@
             <summary>
             특정 색인 문자 좌표 정보 저장 시작 
             <para>character-set ready to download into RTC controller</para>
-            <para>이 명령 이후 해당 문자(character)에 대한 리스트 명령 (jump, mark, arc) 명령 호출 필요</para>
+            <para>이 명령 이후 해당 문자(character)에 대한 리스트 명령(jump, mark, arc) 호출 필요</para>
             </summary>
             <param name="asciiCode">ASCII 코드 (0~255)</param>
             <param name="characterSet">CharacterSet 열거형</param>
@@ -19280,7 +19571,7 @@
         <member name="T:SpiralLab.Sirius.IRtcDualHead">
             <summary>
             IRtcDualHead 이름이 IRtc2ndHead 으로 변경됨. 구버전 하위호환을 위해 남겨짐.
-            (Deprecated)
+            <para>(Deprecated) User IRtc2ndHead instead</para>
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.CorrectionFileHeaderParam">
@@ -19601,7 +19892,7 @@
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListFirstPulseKiller(System.Single)">
             <summary>
             리스트 명령 - FPK(First Pulse Killer) 시간값 설정
-            <para>LIst first pulse killer (usec)</para>
+            <para>List first pulse killer (usec)</para>
             </summary>
             <param name="usec">usec</param>
             <returns></returns>
@@ -19994,17 +20285,17 @@
             측정된(샘플링된) 계측 데이타 가져오기
             <para>Get measured data</para>
             </summary>
-            <param name="channel">채널</param>
+            <param name="channel">대상 채널</param>
             <param name="rawData">데이타 배열</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.CtlConvertMeasurement(SpiralLab.Sirius.MeasurementChannel,System.Int32,System.Double@)">
             <summary>
             계측으로 취득된 Raw 데이타를 친숙한 사용자 단위계로 변환
-            <para>Convert measured raw data to readable(friendly) format</para>
+            <para>Convert measured raw data to human readable format</para>
             </summary>
-            <param name="channel">MeasurementChannel 채널</param>
-            <param name="rawData">Raw 입력 데이타</param>
+            <param name="channel">대상 채널</param>
+            <param name="rawData">Raw 데이타</param>
             <param name="convertedData">변환된 데이타</param>
             <returns></returns>
         </member>
@@ -20014,7 +20305,7 @@
             <para>List measurement begin</para>
             </summary>
             <param name="frequency">샘플링 주기 (Hz : ~ 100KHz)</param>
-            <param name="channels">대상 채널 (RTC4: 2개, RTC5: 4개, RTC6: 8개)</param>
+            <param name="channels">대상 채널 목록 (RTC4: 2개, RTC5: 4개, RTC6: 8개)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMeasurement.ListMeasurementEnd">
@@ -20071,14 +20362,14 @@
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Under">
             <summary>
-            입력 엔코더 값이 지정된 값보다 작아질 때까지 대기
             <para>Under</para>
+            입력 엔코더 값이 지정된 값보다 작아질 때까지 대기
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Auto">
             <summary>
-            자동 = 실행될 당시의 입력 엔코더 값을 기준으로 자동 판단 (리스트 명령이 실행되는 시점에서의 입력 엔코더값이 사용됨)
             <para>Auto</para>
+            자동 = 실행될 당시의 입력 엔코더 값을 기준으로 자동 판단 (리스트 명령이 실행되는 시점에서의 입력 엔코더값이 사용됨)
             <code>
             예1) 입력된 엔코더값 1000 일 경우, 비교 위치 2000 -> Over 로 자동 판단
             예2) 입력된 엔코더값 1000 일 경우, 비교 위치 0 -> Under 로 자동 판단
@@ -20087,8 +20378,8 @@
         </member>
         <member name="F:SpiralLab.Sirius.EncoderWaitCondition.Over">
             <summary>
-            입력 엔코더 값이 지정된 값 보다 커질 때까지 대기
             <para>Over</para>
+            입력 엔코더 값이 지정된 값 보다 커질 때까지 대기
             </summary>
         </member>
         <member name="T:SpiralLab.Sirius.EncoderRangeCondition">
@@ -20120,62 +20411,69 @@
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncXCountsPerMm">
             <summary>
-            mm 당 엔코더 X 의 펄스 개수 
-            <para>Encoder X(0) counts/mm</para>
+            단위 mm 당 엔코더 X 의 펄스 개수 
+            <para>Encoder x(0) counts/mm</para>
             <code>
             
                                   counts 
             EncXCountsPerMm =   -----------
                                     mm  
                                     
-            주의 사항: 한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천
+            주의사항: 한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천
             </code>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncYCountsPerMm">
             <summary>
-            mm 당 엔코더 Y 의 펄스 개수
-            <para>Encoder Y(1) counts/mm</para>
+            단위 mm 당 엔코더 Y 의 펄스 개수
+            <para>Encoder y(1) counts/mm</para>
             <code>
             
                                   counts 
             EncYCountsPerMm =   -----------
                                     mm  
                                     
-            주의 사항: 한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천
+            주의사항: 한축의 엔코더만 사용할 경우에도 양축 모두 값을 설정하는것을 추천
             </code>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncXSimulatedSpeed">
             <summary>
             엔코더 X 의 가상 속도 mm/s
-            <para>Encoder X(ENC0) simulation speed (mm/s)</para>
+            <para>Simulated encoder x(ENC0) speed (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncYSimulatedSpeed">
             <summary>
             엔코더 Y 의 가상 속도 mm/s
-            <para>Encoder Y(ENC1) simulation speed (mm/s)</para>
+            <para>Simulated encoder y(ENC1) speed (mm/s)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncCountsPerRevolution">
             <summary>
             MOTF Angular 사용시 단위 회전당 엔코더 개수 (enc/rev)
             <para>Encoder X(ENC0) counts/rev</para>
-            <para>주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임 (CW: +)</para>
+            <code>
+            
+                                          counts 
+            EncCountsPerRevolution =  -------------
+                                            ˚ 
+                                    
+            </code>
+            <para>주의사항: 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임 (CW: +)</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.EncSimulatedAngularSpeed">
             <summary>
-            MOTF Angular 사용시 엔코더 가상 각속도 (˚/sec)
-            <para>Encoder X(ENC0) simulation angular speed (˚/sec)</para>
-            <para>주의) 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임</para>
+            MOTF Angular 사용시 엔코더 가상 각속도 (˚/s)
+            <para>Simulated encoder x(ENC0) angular speed (˚/s)</para>
+            <para>주의사항: 회전체가 시계방향으로 회전시 엔코더가 증가하는 방향임</para>
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IRtcMOTF.MotfAngularCenter">
             <summary>
             MOTF Angular 사용시 회전 중심 위치 상대 좌표 (스캐너 중심으로 부터 떨어진 거리값)
-            <para>Rotate center position</para>
+            <para>Rotate center x,y position</para>
             <code>
             예를 들어 회전 중심위치가 -50, 0 일 경우
                                            |                                    
@@ -20211,7 +20509,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderReset(System.Single,System.Single)">
             <summary>
             MOTF XY 사용시 입력 엔코더의 초기화 (오프셋값 dx, dy를 설정 가능)
-            <para>Encoder reset</para>
+            <para>Reset encoder</para>
             </summary>
             <param name="offsetX">X 초기화 위치 (mm)</param>
             <param name="offsetY">Y 초기화 위치 (mm)</param>
@@ -20231,7 +20529,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderSpeed(System.Single,System.Single)">
             <summary>
             MOTF XY 사용시 외부 엔코더 입력 대신 내부 가상 엔코더를 활성화 
-            <para>Enable/Disable simulate x,y encoders</para>
+            <para>Enable/Disable simulated x,y encoders</para>
             <para>
             가상 입력 엔코더 속도를 지정하면 내부 1MHz의 가상 엔코더가 활성화되어 외부 기구부가 이동하는 효과 발생
             X,Y 모두 0 입력시 가상 엔코더 비활성화됨
@@ -20247,15 +20545,15 @@
             <para>Compensate tracking error at MOTF</para>
             <para>0, 0 으로 지정시 Disabled 됨</para>
             <code>
-            스캐너 Spec 문서에 기재된 Tracking Error 시간값 설정
-            EC = E + (E – EP ) * TrackingError
+            스캐너 사양서에 기재된 Tracking Error 시간값 설정
+            EC = E + (E – EP) * TrackingError
             EC : 현재 사이클에서의 엔코더 보상값
-            E : 현재 엔코더 값
+            E  : 현재 엔코더 값
             EP : 이전 사이클에서의 엔코더 보상값 
             </code>
             </summary>
-            <param name="xUsec">X 축 보상 시간(usec)</param>
-            <param name="yUsec">Y 축 보상 시간(usec)</param>
+            <param name="xUsec">X 축 보상 시간 (usec)</param>
+            <param name="yUsec">Y 축 보상 시간 (usec)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfCompensateTable(System.Collections.Generic.KeyValuePair{System.ValueTuple{System.Single,System.Single},System.ValueTuple{System.Single,System.Single}}[])">
@@ -20329,9 +20627,9 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfEncoderAngularSpeed(System.Single)">
             <summary>
             MOTF Angular 사용시 가상 엔코더 각속도 설정
-            <para>Enable/Disable simulate roate(x,0) encoders</para>
+            <para>Enable/Disable simulated rotate(x/0) encoder</para>
             </summary>
-            <param name="encSimulatedSpeed">각속도 (˚/sec) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
+            <param name="encSimulatedSpeed">각속도 (˚/s) (0: Disable, +: 물체가 시계(CW) 방향으로 회전, -: 물체가 반시계(CCW) 방향으로 회전)</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcMOTF.CtlMotfOverflowClear">
@@ -20444,7 +20742,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfWaitRange(System.Single,System.Single,System.Single,System.Single)">
             <summary>
             리스트 명령 - MOTF XY 사용시 두개의 엔코더가 (X,Y)가 특정 조건이 될때 까지 대기 (다축 동기화 용)
-            <para>List wait until x,y encoder has in-range</para>
+            <para>List wait until x,y encoders reached in-range</para>
             <para>스캐너는 위치가 고정(Stationary)된 상태에서 대기함</para>
             </summary>
             <param name="positionX">X 축 위치 (mm)</param>
@@ -20456,7 +20754,7 @@
         <member name="M:SpiralLab.Sirius.IRtcMOTF.ListMotfLimits(System.Numerics.Vector2,System.Numerics.Vector2)">
             <summary>
             리스트 명령 - MOTF X,Y / MOTF Angular 사용시 해당 범위를 설정
-            <para>List wait until x,y encoder has in-range</para>
+            <para>List wait until x,y encoders reached in-range</para>
             <para>
             범위를 벋어나면 RtcMarkingInfo 내부에 에러 비트가 설정됨
             CtlMotfOverflowClear 사용해 RtcMarkingInfo 내부 에러 비트 리셋 지원
@@ -20479,9 +20777,9 @@
             <summary>
             리스트 명령 - 특정 리스트 주소(위치)로 점프하여 연속 가공
             <para>List call/jump to begin of list (to repeat)</para>
-            <para>주의) 리스트 타입을 단일(Single)로 사용해야 특정 리스트 명령 위치가 유효함</para>
+            <para>주의사항: 리스트 타입을 단일(single)로 사용 필요</para>
             </summary>
-            <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1). (리스트 타입을 Single 로 사용)</param>
+            <param name="listPosition">리스트 위치 (RTC4: ~8000, RTC5: ~2^20-1, RTC6: ~2^23-1)</param>
             <param name="repeats">반복 회수(0: 무제한, 1 이상: 지정된 회수만큼 반복)</param>
             <returns></returns>
         </member>
@@ -22181,8 +22479,8 @@
             내부적으로는 <c>slsc_ListHandlingMode_RepeatWhileBufferFull</c> 방식으로 고정된다.
             </para>
             <para>
-            주의사항 : 버퍼가 고갈되지 않도록 지속적으로 리스트 명령을 삽입해야 주어야 한다. 그렇지 않으면 버퍼 고갈 (buffer underrun) 이 발생된다.
-            때문에 리스트 데이타를 넣는 동안 디버깅(디버깅 중지로 인한 가공 공급 중단과 같이) 을 병행 할때는 매우 주의해야 한다
+            주의사항 : 버퍼가 고갈되지 않도록 지속적으로 리스트 명령을 삽입해야 주어야 한다. 그렇지 않으면 버퍼 고갈 (buffer underrun)이 발생된다.
+            때문에 리스트 데이타를 넣는 동안 디버깅 (BreakPoint 등으로 인한 데이타 공급 중단)을 시도할때는 매우 주의해야 한다
             </para>
             </summary>
             <param name="laser">ILaser 인터페이스</param>
@@ -22225,7 +22523,7 @@
             리스트 명령 - Spot Distance Control 비활성화 유무
             <para>List spot distance control</para>
             </summary>
-            <param name="suppress">비활성화 여부 (ALC(Automatic Laser Control) is active with SpotDistance as an <c>ActiveChannel</c>) </param>
+            <param name="suppress">비활성화 여부: ALC(Automatic Laser Control) is active with SpotDistance as an <c>ActiveChannel</c></param>
             <param name="timeDelay">지연 시간 (sec)</param>
             <returns></returns>
         </member>
@@ -22262,6 +22560,16 @@
             <param name="angularJerk">excelliSCAN14: 4e9, excelliSCAN20: 1e9</param>
             <returns></returns>
         </member>
+        <member name="T:SpiralLab.Sirius.FlagCheckedListBox">
+            <summary>
+            Checkable List box
+            </summary>
+        </member>
+        <member name="T:SpiralLab.Sirius.MainForm">
+            <summary>
+            spirallab.sirius.rtc 단독 테스트를 위한 메인 폼
+            </summary>
+        </member>
         <member name="F:SpiralLab.Sirius.MainForm.components">
             <summary>
             Required designer variable.
@@ -22282,7 +22590,7 @@
         <member name="T:SpiralLab.Sirius.MeasurementForm">
             <summary>
             계측 결과 출력용 윈폼
-            <para>Measurement plot result winforms</para>
+            <para>Measurement (for plot result) winforms</para>
             </summary>
         </member>
         <member name="F:SpiralLab.Sirius.MeasurementForm.components">

@@ -59,9 +59,9 @@ namespace SpiralLab.Sirius
             float kfactor = (float)Math.Pow(2, 20) / fov;
 
             // RTC4: full path of correction file
-            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ctb");   //"D3_1128.ctb");
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ctb");
             // RTC5/6: full path of correction file
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "cor_1to1.ct5"); //"D3_1128.ct5");
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ct5");
             // initialize RTC controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
