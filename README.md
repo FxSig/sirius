@@ -135,6 +135,10 @@
 
 **5. Version history**
 
+* 2023.4.21 v1.136
+   - updated) RTC6_Software_Package_Rev.1.15.5
+      - fixed) wait_for_encoder, activate_fly_2d (회전기반 MoF 사용시 발생 버그 패치)
+
 * 2023.4.8 v1.135
    - fixed) Correction2DRtc
       - added) beam tilt calibration (원점 이동 보정 지원)

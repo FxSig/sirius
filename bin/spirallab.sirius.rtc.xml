@@ -19941,7 +19941,7 @@
              <param name="mode">1,2,3</param>
              <param name="laserOnShift">usec</param>
              <param name="timeLag">usec</param>
-             <param name="angularLimit">활성화될 각도 설정 (모드3 전용)</param>
+             <param name="angularLimit">활성화될 절대 각도 설정 (모드3 전용)</param>
              <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcExtension.ListSkyWritingEnd">
