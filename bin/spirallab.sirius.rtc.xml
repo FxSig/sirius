@@ -2596,11 +2596,6 @@
         <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.Tag">
             <inheritdoc/>  
         </member>
-        <member name="P:SpiralLab.Sirius.MaxPhotonicsCWFiber.IsGuideOn">
-            <summary>
-            Guide Laser온오프
-            </summary>
-        </member>
         <member name="M:SpiralLab.Sirius.MaxPhotonicsCWFiber.#ctor">
             <summary>
             생성자
@@ -2729,11 +2724,6 @@
         </member>
         <member name="P:SpiralLab.Sirius.JPTCWFiber.Tag">
             <inheritdoc/>  
-        </member>
-        <member name="P:SpiralLab.Sirius.JPTCWFiber.IsGuideOn">
-            <summary>
-            Guide Laser온오프
-            </summary>
         </member>
         <member name="M:SpiralLab.Sirius.JPTCWFiber.#ctor">
             <summary>

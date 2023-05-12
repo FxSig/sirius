@@ -135,6 +135,10 @@
 
 **5. Version history**
 
+* 2023.5.12 v1.137
+   - fixed) wobbel frequency (와블 주파수 입력 버그)
+   - added) import dxf with override circle (DXF 원 객체 데이타 조작 지원)
+
 * 2023.4.21 v1.136
    - updated) RTC6_Software_Package_Rev.1.15.5
       - fixed) wait_for_encoder, activate_fly_2d (회전기반 MoF 사용시 발생 버그 패치)
