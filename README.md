@@ -135,6 +135,9 @@
 
 **5. Version history**
 
+* 2023.5.18 v1.138
+   - fixed) stack overflow when initializing (초기화시 스택 오버플로우 에러 해결)
+ 
 * 2023.5.12 v1.137
    - fixed) wobbel frequency (와블 주파수 입력 버그)
    - added) import dxf with override circle (DXF 원 객체 데이타 조작 지원)
