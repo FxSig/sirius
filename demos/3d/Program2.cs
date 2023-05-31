@@ -65,9 +65,9 @@ namespace SpiralLab.Sirius
             float kfactor = (float)Math.Pow(2, 20) / fov;
 
             // RTC4: full path of correction file
-            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ctb");
+            //var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_2982.ctb");
             // RTC5/6: full path of correction file
-            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_721.ct5"); 
+            var correctionFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "correction", "D3_2982.ct5"); 
             // initialize RTC controller
             rtc.Initialize(kfactor, LaserMode.Yag1, correctionFile);
             // laser frequency : 50KHz, pulse width : 2usec (주파수 50KHz, 펄스폭 2usec)
@@ -122,7 +122,7 @@ namespace SpiralLab.Sirius
                 Console.WriteLine("'A' : abort");
                 Console.WriteLine("'O' : open stereo-lithography file");
                 Console.WriteLine("'X' : reset/revert correction file");
-                Console.WriteLine("'C' : convert correction file by points cloud");
+                Console.WriteLine("'C' : convert correction file by stl's points clouds");
                 Console.WriteLine("'D' : convert correction file by cylinder");
                 Console.WriteLine("'E' : convert correction file by cone");
                 Console.WriteLine("'F' : convert correction file by plane");
@@ -149,6 +149,7 @@ namespace SpiralLab.Sirius
                         dlg.Filter = "stl model files (*.stl)|*.stl|All Files (*.*)|*.*";
                         dlg.Title = "Open STL Model File";
                         dlg.InitialDirectory = Config.ConfigLogoFilePath;
+                        dlg.FileName = "geneva.stl";
                         DialogResult result = dlg.ShowDialog();
                         if (result != DialogResult.OK)
                             return;
@@ -191,7 +192,7 @@ namespace SpiralLab.Sirius
                         break;
                     case ConsoleKey.C:
                         if (null == stlEntity)
-                            return;
+                            break;
                         {
                             var inputCtFileName = rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName;
                             var newCtFileName = string.Empty;
@@ -203,6 +204,8 @@ namespace SpiralLab.Sirius
                             }
                             else
                             {
+                                Logger.Log(Logger.Type.Info, $"extracted point counts: {xyz.Length}");
+                        
                                 string ext = Path.GetExtension(inputCtFileName);
                                 switch (ext.ToLower())
                                 {
@@ -218,6 +221,7 @@ namespace SpiralLab.Sirius
                                 }
                                 if (File.Exists(newCtFileName))
                                     File.Delete(newCtFileName);
+
                                 if (Correction3DRtc.PointCloudCalibration(xyz, inputCtFileName, string.Empty, newCtFileName, out var returnCode))
                                 {
                                     LoadAndSelectCorrection(rtc, newCtFileName);
@@ -344,6 +348,7 @@ namespace SpiralLab.Sirius
 
         private static bool LoadAndSelectCorrection(IRtc rtc, string newCtFileName)
         {
+            
             bool success = true;
             CorrectionTableIndex targetTable = CorrectionTableIndex.None;
             switch (rtc.RtcType)
@@ -365,6 +370,7 @@ namespace SpiralLab.Sirius
                     success &= rtc.CtlSelectCorrection(targetTable, targetTable);
                     break;
             }
+            //Table1에는 초기 보정 파일이 지속됨
             if (success)
                 Logger.Log(Logger.Type.Info, $"new 3D calibration has applied: {newCtFileName}");
             else

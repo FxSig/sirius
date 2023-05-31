@@ -3396,7 +3396,7 @@
             <summary>
             STL 모델 표면상의 Points cloud 정점 추출
             <para>STL 모델에 적용된 변환 행렬 (이동, 회전, 크기 변환) 연산 적용된 후 Points cloud 데이타 추출</para>
-            <para>법선 벡터의 방향이 Z+ 인 정점들만 추출됨</para>
+            <para>법선 벡터와의 각도가 90도 이내인 정점들만 추출됨</para>
             <para>Extract points cloud data after transform translate, rotate and scale matrix</para>
             </summary>
             <param name="xyz">X,Y,Z surface array</param>

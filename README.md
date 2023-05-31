@@ -135,6 +135,9 @@
 
 **5. Version history**
 
+* 2023.5.31 v.1.139
+   - fixed) extract point clouds for 3d calibration (3D 보정용 포인트 추출 알고리즘 개선)
+
 * 2023.5.18 v1.138
    - fixed) stack overflow when initializing (초기화시 스택 오버플로우 에러 해결)
  

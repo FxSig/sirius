@@ -5524,7 +5524,7 @@
             </summary>
             <param name="pointsCloud">표면 위치 (x,y,z) 배열</param>
             <param name="inputCtFileName">입력 보정 파일 이름</param>
-            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt)</param>
+            <param name="inputCtReadMeFileName">입력 보정 파일에 대한 README 파일 (ctbName_ReadMe.txt or ct5Name_ct5_ReadMe.txt) (if assigned to null, searching by automatically)</param>
             <param name="outputCtFileName">출력(생성) 보정 파일 이름</param>
             <param name="returnCode">실패시 내부 에러코드</param>
             <returns></returns>
