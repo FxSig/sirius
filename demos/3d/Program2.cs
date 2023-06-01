@@ -149,7 +149,7 @@ namespace SpiralLab.Sirius
                         dlg.Filter = "stl model files (*.stl)|*.stl|All Files (*.*)|*.*";
                         dlg.Title = "Open STL Model File";
                         dlg.InitialDirectory = Config.ConfigLogoFilePath;
-                        dlg.FileName = "geneva.stl";
+                        dlg.FileName = "Nefertiti_face.stl";
                         DialogResult result = dlg.ShowDialog();
                         if (result != DialogResult.OK)
                             return;
