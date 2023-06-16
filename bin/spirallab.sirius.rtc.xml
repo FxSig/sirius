@@ -8575,11 +8575,6 @@
             다이오드1 커런트 상한값 (Amp)
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.Diode2CurrentHightLimitAmp">
-            <summary>
-            다이오드2 커런트 상한값 (Amp)
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.LaserTime">
             <summary>
             레이저 사용 시간 (hrs)

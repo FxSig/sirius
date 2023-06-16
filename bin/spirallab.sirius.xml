@@ -5972,6 +5972,13 @@
         <member name="P:SpiralLab.Sirius.SiriusText.Tag">
             <inheritdoc/>
         </member>
+        <member name="M:SpiralLab.Sirius.SiriusText.ToOutlineGlyph">
+            <summary>
+            Get glyph array of <c>IEntity</c>
+            </summary>
+            <remarks><c>Point</c> for Start, End Trail and <c>Group</c> for each glyphs</remarks>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.SiriusText.#ctor">
             <summary>
             생성자
@@ -16180,6 +16187,26 @@
         </member>
         <member name="P:SpiralLab.Sirius.Text.ScriptResult">
             <inheritdoc/>
+        </member>
+        <member name="M:SpiralLab.Sirius.Text.ToOutlineGlyph">
+            <summary>
+            Get glyph array of <c>IEntity</c>
+            </summary>
+            <remarks><c>Point</c> for Start, End Trail and <c>Group</c> for each glyphs</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Text.ToHatchGlyph">
+            <summary>
+            Get hatch of <c>Group</c>
+            </summary>
+            <remarks><c>Group</c> for each hatches</remarks>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.Text.ToArray">
+            <summary>
+            Get array of <c>IEntity</c>
+            </summary>
+            <returns></returns>
         </member>
         <member name="P:SpiralLab.Sirius.Text.Node">
             <inheritdoc/>

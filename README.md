@@ -135,6 +135,10 @@
 
 **5. Version history**
 
+* 2023.6.16 v.1.140
+   - added) get glyphs from siriustext, text entity (텍스트 개체 내부 데이타 접근 지원)
+   - fixed) removed diode2 at spectraphysics fotia laser (Fotia 레이저 다이오드2 삭제)
+
 * 2023.5.31 v.1.139
    - fixed) extract point clouds for 3d calibration (3D 보정용 포인트 추출 알고리즘 개선)
 
