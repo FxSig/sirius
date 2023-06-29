@@ -10875,6 +10875,13 @@
             <para>Power (W)</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPen.PowerMax">
+            <summary>
+            레이저 소스의 최대 파워값 (읽기 전용)
+            <para>레이저 객체(ILaser)에 설정된 MaxPower 값에 해당함</para>
+            <para>Max laser power (W)</para>
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPen.Frequency">
             <summary>
             주파수 (Hz)
@@ -11435,11 +11442,7 @@
             <inheritdoc/>
         </member>
         <member name="P:SpiralLab.Sirius.PenDefault.PowerMax">
-            <summary>
-            레이저 소스의 최대 파워값 (읽기 전용)
-            <para>레이저 객체(ILaser)에 설정된 MaxPower 값에 해당함</para>
-            <para>Max laser power (W)</para>
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="F:SpiralLab.Sirius.PenDefault.powerMax">
             <summary>

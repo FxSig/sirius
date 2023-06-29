@@ -570,13 +570,20 @@ namespace SpiralLab.Sirius
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", true);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "PowerMax", true);
-                    SpiralLab.Sirius.PenDefault.powerMax = laser.MaxPowerWatt;
                 }
                 else
                 {
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "Power", false);
                     UiHelper.PropertyBrowsable(typeof(SpiralLab.Sirius.PenDefault), "PowerMax", false);
-                    SpiralLab.Sirius.PenDefault.powerMax = 0;
+                }
+                if (null != doc)
+                {
+                    foreach (var pen in doc.Pens.Items)
+                    {
+                        var penDefault = pen as PenDefault;
+                        if (null != penDefault)
+                            penDefault.PowerMax = laser.MaxPowerWatt;
+                    }
                 }
             }
         }
@@ -1024,10 +1031,9 @@ namespace SpiralLab.Sirius
                 else
                     trvEntity.SelectedNodes = null;
                 if (nodes.Count > 0)
-                trvEntity.EndUpdate();
+                //trvEntity.Refresh();
                 nodes[nodes.Count - 1].EnsureVisible();
-                trvEntity.Refresh();
-
+                trvEntity.EndUpdate();
                 lblEntityCount.Text = $"Selected: {list.Count.ToString()}";
                 if (0 == list.Count)
                     this.ppgEntity.SelectedObjects = null;
@@ -2178,7 +2184,7 @@ namespace SpiralLab.Sirius
                     int rows = 5;
                     int cols = 5;
                     float interval = 10.0f;
-                    var correction2D = new Correction2DRtc(this.Rtc.KFactor, rows, cols, interval, interval, this.Rtc.CorrectionFiles[0].FileName, string.Empty);
+                    var correction2D = new Correction2DRtc(this.Rtc.KFactor, rows, cols, interval, interval, this.Rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName, string.Empty);
                     float left = -interval * (float)(int)(cols / 2);
                     float top = interval * (float)(int)(rows / 2);
                     var rand = new Random();
@@ -2222,7 +2228,7 @@ namespace SpiralLab.Sirius
                     float interval = 30;
                     float upper = 0;
                     float lower = -20;
-                    var correction3D = new Correction3DRtc(this.Rtc.KFactor, rows, cols, interval, upper, lower, this.Rtc.CorrectionFiles[0].FileName, string.Empty);
+                    var correction3D = new Correction3DRtc(this.Rtc.KFactor, rows, cols, interval, upper, lower, this.Rtc.CorrectionFiles[(int)rtc.PrimaryHeadTable].FileName, string.Empty);
                     float left = -interval * (float)(int)(cols / 2);
                     float top = interval * (float)(int)(rows / 2);
                     var rand = new Random();

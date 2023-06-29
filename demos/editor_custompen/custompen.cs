@@ -173,6 +173,19 @@ namespace SpiralLab.Sirius
         }
         protected float power;
 
+        [RefreshProperties(RefreshProperties.All)]
+        [Browsable(true)]
+        [ReadOnly(false)]
+        [Category("Laser")]
+        [DisplayName("Power (Max)")]
+        [Description("설정 가능한 최대 파워 (Watt)")]
+        public virtual float PowerMax
+        {
+            get { return powerMax; }
+            set { powerMax = value; }
+        }
+        protected float powerMax;
+
         [Browsable(true)]
         [ReadOnly(false)]
         [Category("Laser")]
