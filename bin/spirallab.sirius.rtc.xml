@@ -16295,6 +16295,9 @@
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
             <inheritdoc/>  
         </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlMatrix(System.Numerics.Matrix3x2)">
+            <inheritdoc/>  
+        </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
             <inheritdoc/>  
         </member>
@@ -16345,6 +16348,9 @@
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListBegin(SpiralLab.Sirius.ILaser,SpiralLab.Sirius.MotionType)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListMatrix(System.Numerics.Matrix3x2)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.Rtc6SyncAxis.ListSelectCorrection(SpiralLab.Sirius.CorrectionTableIndex,SpiralLab.Sirius.CorrectionTableIndex)">
@@ -17253,6 +17259,9 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Numerics.Vector2,System.Single)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.RtcVirtual.CtlMatrix(System.Numerics.Matrix3x2)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.RtcVirtual.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
@@ -22357,6 +22366,17 @@
             <param name="angle">회전량 각도 (°) (+: CCW, -: CW) </param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlMatrix(System.Numerics.Matrix3x2)">
+            <summary>
+            전역 행렬 및 오프셋 설정
+            <para><c>slsc_cfg_set_matrix_and_offset</c> 사용됨</para>
+            </summary>
+            <remarks>
+            최종 좌표 = (2x2 matrix * 사용자 좌표) + 오프셋 
+            </remarks>
+            <param name="matrix">2x2 matrix and offset</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.CtlHeadOffset(SpiralLab.Sirius.ScanDevice,System.Single,System.Single,System.Single)">
             <summary>
             멀티 헤드 오프셋 적용
@@ -22470,6 +22490,17 @@
             </summary>
             <param name="laser">ILaser 인터페이스</param>
             <param name="motionType">MotionType 열거형</param>
+            <returns></returns>
+        </member>
+        <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListMatrix(System.Numerics.Matrix3x2)">
+            <summary>
+            리스트 명령 - 전역 행렬 및 오프셋 설정
+            <para><c>slsc_cfg_set_matrix_and_offset</c> 사용됨</para>
+            </summary>
+            <remarks>
+            최종 좌표 = (2x2 matrix * 사용자 좌표) + 오프셋 
+            </remarks>
+            <param name="matrix">2x2 matrix and offset</param>
             <returns></returns>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSyncAxis.ListSpeedMinMark(System.Single)">

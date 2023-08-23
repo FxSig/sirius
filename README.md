@@ -135,6 +135,11 @@
 
 **5. Version history**
 
+* 2023.8.23 v.1.141
+   - added) CtlMatrix/ListMatrix at IRtcSyncAxis (3x3 행렬 설정 기능 추가)
+   - fixed) analog output at LaserVirtual (LaserVirtual 객체의 파워 출력 변환 버그 수정)
+   - fixed) change pen color for multiple entities (다수의 개체 펜 색상 변경 지원)
+
 * 2023.6.30 v.1.140
    - fixed) laser max power for multiple instances (다수의 레이저 소스사용시 최대 파워값 표시 개선)
   
