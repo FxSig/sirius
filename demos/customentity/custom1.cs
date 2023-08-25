@@ -283,7 +283,6 @@ namespace SpiralLab.Sirius
         [Category("Data")]
         [DisplayName("Start")]
         [Description("시작점 좌표값")]
-        [TypeConverter(typeof(Vector2Converter))]
         public virtual System.Numerics.Vector2 Start {
             get { return start; }
             set {
@@ -305,7 +304,6 @@ namespace SpiralLab.Sirius
         [Category("Data")]
         [DisplayName("End")]
         [Description("끝점 좌표값")]
-        [TypeConverter(typeof(Vector2Converter))]
         public virtual System.Numerics.Vector2 End {
             get { return end; }
             set {

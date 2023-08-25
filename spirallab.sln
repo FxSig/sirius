@@ -33,8 +33,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "13.motf2", "demos\motf2\13.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "15.characterset", "demos\characterset\15.characterset.csproj", "{C19F3493-AC05-46F6-A748-2C6F6B4F6F0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "24.editor_wpf", "demos\editor_wpf\24.editor_wpf.csproj", "{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2EAB30E8-DE1F-4D08-9A34-24E8312DC2A9}"
 	ProjectSection(SolutionItems) = preProject
 		License.txt = License.txt
@@ -359,24 +357,6 @@ Global
 		{C19F3493-AC05-46F6-A748-2C6F6B4F6F0C}.Remote|x64.Build.0 = Release|Any CPU
 		{C19F3493-AC05-46F6-A748-2C6F6B4F6F0C}.Remote|x86.ActiveCfg = Release|Any CPU
 		{C19F3493-AC05-46F6-A748-2C6F6B4F6F0C}.Remote|x86.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|x64.Build.0 = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Debug|x86.Build.0 = Debug|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|x64.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|x64.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|x86.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Release|x86.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|Any CPU.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|Any CPU.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|x64.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|x64.Build.0 = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|x86.ActiveCfg = Release|Any CPU
-		{D781C528-2B18-43FC-B7FC-5F2ED6656E4D}.Remote|x86.Build.0 = Release|Any CPU
 		{DC232EFB-EEC0-4FB6-A8D8-1DE4E0B05EF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DC232EFB-EEC0-4FB6-A8D8-1DE4E0B05EF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC232EFB-EEC0-4FB6-A8D8-1DE4E0B05EF0}.Debug|x64.ActiveCfg = Debug|Any CPU
