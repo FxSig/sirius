@@ -135,11 +135,15 @@
 
 **5. Version history**
 
-* 2023.8.25 v.1.141
+* 2023.9.21 v.1.142
+   - added) PowerPercentage at laser (레이저 파워 비율값으로 변경)
+   - fixed) freetype exception (TTF 폰트 생성시 예외 처리)
+   - added) OnMarkPen at pen default entity (pen default 개체에 이벤트 추가)
+
+* 2023.8.23 v.1.141
    - added) CtlMatrix/ListMatrix at IRtcSyncAxis (3x3 행렬 설정 기능 추가)
    - fixed) analog output at LaserVirtual (LaserVirtual 객체의 파워 출력 변환 버그 수정)
    - fixed) change pen color for multiple entities (다수의 개체 펜 색상 변경 지원)
-   - removed) editor_wpf demo (데모 삭제)
 
 * 2023.6.30 v.1.140
    - fixed) laser max power for multiple instances (다수의 레이저 소스사용시 최대 파워값 표시 개선)

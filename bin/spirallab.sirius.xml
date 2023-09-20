@@ -11396,6 +11396,72 @@
             Pen 엔티티 객체 (기본 버전)
             </summary>
         </member>
+        <member name="E:SpiralLab.Sirius.PenDefault.OnMarkPen">
+             <summary>
+             PenDefault 의 Mark 기능을 오버라이드 하기 위한 이벤트
+             <code>
+             PenDefault.OnMarkPen += MyOnMarkPen;
+             ...
+             bool MyOnMarkPen(IMarkerArg markerArg, PenDefault pen)
+             {
+                 var rtc = markerArg.Rtc;
+                 var rtcExtension = rtc as IRtcExtension;
+                 var rtcSyncAxis = rtc as IRtcSyncAxis;
+                 var laser = markerArg.Laser;
+                 bool success = true;
+                 bool isDutyControlled = false;
+                 if (null != laser)
+                 {
+                     if (laser is IPowerControl powerControl)
+                     {
+                         if (powerControl.PowerControlMethod == PowerControlMethod.Duty)
+                         {
+                             rtc.Frequency = pen.Frequency;
+                             isDutyControlled = true;
+                         }
+                         success &amp;= powerControl.ListPower(pen.Power, pen.PowerMapCategory);
+                      }
+                 }
+                 if (!isDutyControlled)
+                     success &amp;= rtc.ListFrequency(pen.Frequency, pen.PulseWidth);
+                  
+                 success &amp;= rtc.ListDelay(pen.LaserOnDelay, pen.LaserOffDelay, pen.ScannerJumpDelay, pen.ScannerMarkDelay, this.ScannerPolygonDelay);   
+                 if (null != rtcExtension)
+                 {
+                     if (pen.IsScannerVariablePolygonDelay || pen.IsScannerVariableJumpDelay)
+                         success &amp;= rtcExtension.ListDelayVariable(pen.IsScannerVariablePolygonDelay, pen.ScannerVariablePolygonDelayEdgeLevel, pen.IsScannerVariableJumpDelay, pen.ScannerVariableJumpDelayMin, pen.ScannerVariableJumpLength);
+                     else
+                         success &amp;= rtcExtension.ListDelayVariable(false, 0, false, 0, 0);
+                 }
+                 // 자세한 내용은 생략
+                 //switch (markerArg.MarkTargets)
+            
+                 if (null != rtcExtension)
+                 {
+                     success &amp;= rtcExt.ListFirstPulseKiller(pen.LaserFpk);
+                     success &amp;= rtcExt.ListQSwitchDelay(pen.LaserQSwitchDelay);
+                     
+                     if (pen.IsSkyWritingEnabled)
+                         success &amp;= rtcExt.ListSkyWritingBegin(pen.SkyWritingMode, pen.LaserOnShift, pen.TimeLag, pen.AngularLimit);
+                     else
+                         success &amp;= rtcExt.ListSkyWritingEnd();
+                        
+                     if (pen.IsWobbelEnabled)
+                         success &amp;= rtcExt.ListWobbel(pen.WobbelParallel, pen.WobbelPerpendicular, pen.WobbelFrequency, pen.WobbelShape);
+                     else
+                         success &amp;= rtcExt.ListWobbel(0, 0, 0);
+                 }
+                 if (null != rtcSyncAxis)
+                 {
+                     // 자세한 내용은 생략
+                 }
+                 if (success)
+                     markerArg.PenStack.Push(pen);
+                 return success;
+             }
+             </code>
+             </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.PenDefault.Owner">
             <inheritdoc/>
         </member>
