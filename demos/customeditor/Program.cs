@@ -93,8 +93,8 @@ namespace CustomEditor
             // create spiral entity
             // 나선 개체 레이어에 추가
             var spiral = new Spiral(0.0f, 0.0f, 0.5f, 2.0f, 5, true);
-            spiral.Color2 = System.Drawing.Color.White;
             spiral.Repeat = 5;
+            spiral.Color2 = System.Drawing.Color.White;
             layer.Add(spiral);
             layer.Regen();
             doc.Layers.Add(layer);

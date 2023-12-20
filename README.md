@@ -135,6 +135,10 @@
 
 **5. Version history**
 
+* 2023.12.20 v.1.144
+   - fixed) slow rendering issue
+   - fixed) invalid pen color at some entities
+
 * 2023.9.21 v.1.142
    - added) PowerPercentage at laser (레이저 파워 비율값으로 변경)
    - fixed) freetype exception (TTF 폰트 생성시 예외 처리)

@@ -133,7 +133,8 @@ namespace SpiralLab.Sirius
                     EditorMode = false,
                 };
                 this.doc.Views.Add(this.view);
-                this.doc.Views.AddRange(oldViews);
+                foreach (var v in oldViews)
+                    this.doc.Views.Add(v);                
                 this.view.Render();
                 this.view.OnZoomFit();
             }

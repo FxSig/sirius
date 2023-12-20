@@ -8143,6 +8143,56 @@
             the contents of this method with the code editor.
             </summary>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerMapCompensateForm">
+            <summary>
+            파뭐 보정 인자 편집용 윈폼
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCompensateForm.CategoryWattValue.#ctor(System.String,System.Single,System.Boolean)">
+            <summary>
+            생성자
+            </summary>
+            <param name="category">카테고리</param>
+            <param name="watt">목표 파워</param>
+            <param name="enable">활성화 여부</param>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateForm.CategoryWatts">
+            <summary>
+            카테고리/파워 리스트 (바인딩 용)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateForm.HoldTimeMs">
+            <summary>
+            유지시간 (msec)
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateForm.Threshold">
+            <summary>
+            오차값(W)
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCompensateForm.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="F:SpiralLab.Sirius.PowerMapCompensateForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCompensateForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCompensateForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:SpiralLab.Sirius.PowerMapVerifyForm">
             <summary>
             파뭐 검증 인자 편집용 윈폼

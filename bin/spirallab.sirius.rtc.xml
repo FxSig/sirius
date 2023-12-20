@@ -3759,6 +3759,11 @@
             <para>X,Y location of scanner when power mapping</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.MaxWatt">
+            <summary>
+            최대 출력(W)
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.HoldTimeMsec">
             <summary>
             측정을 위한 레이저 출사 시간 (msec)
@@ -3769,6 +3774,12 @@
             <summary>
             해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
             <para>Max error threshold watt(W) when power mapping</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerMapArg.ThresholdPercentage">
+            <summary>
+            해당 출력 차이(%) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            범위 : 0~100
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.IPowerMapArg.Tag">
@@ -3800,11 +3811,17 @@
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Location">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.MaxWatt">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.HoldTimeMsec">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.ThresholdWatt">
             <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.ThresholdPercentage">
+            <inheritdoc/> 
         </member>
         <member name="P:SpiralLab.Sirius.PowerMapStartDefaultArg.Tag">
             <inheritdoc/>  
@@ -3856,6 +3873,12 @@
             <para>Max error threshold watt(W) when power mapping</para>
             </summary>
         </member>
+        <member name="P:SpiralLab.Sirius.IPowerVerifyArg.ThresholdPercentage">
+            <summary>
+            해당 출력 차이(%) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            범위 : 0~100
+            </summary>
+        </member>
         <member name="P:SpiralLab.Sirius.IPowerVerifyArg.Tag">
             <summary>
             사용자 정의 데이타
@@ -3888,10 +3911,108 @@
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.ThresholdWatt">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.ThresholdPercentage">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.PowerMapVerifyDefaultArg.Tag">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapVerifyDefaultArg.#ctor">
+            <summary>
+            생성자
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.CategoryAndTargetWatts">
+            <summary>
+            목표 카테고리, 출력 파워(W), 측정 파워(W) 튜플(Typle) 배열
+            <para>Tuple of category, watt, detected watt</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.PowerMeter">
+            <summary>
+            IPowerMeter 인터페이스 객체
+            <para>IPowerMeter interface</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.Rtc">
+            <summary>
+            IRtc 인터페이스 객체
+            <para>IRtc interface</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.Laser">
+            <summary>
+            ILaser 인터페이스 객체
+            <para>ILaser interface</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.Location">
+            <summary>
+            스캐너 출사 위치 (기본값 : 0,0 원점)
+            <para>X,Y location of scanner when power verifying</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.PreHeatTimeMsec">
+            <summary>
+            측정을 위한 레이저 출사 예열 시간 (msec)
+            <para>Preheat time(msec) when power mapping</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.HoldTimeMsec">
+            <summary>
+            매 단계 측정을 위한 레이저 출사 시간 (msec)
+            <para>Hold time(msec) when power mapping</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.ThresholdWatt">
+            <summary>
+            해당 출력 차이(W) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            <para>Max error threshold watt(W) when power mapping</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.ThresholdInPercentage">
+            <summary>
+            해당 출력 차이(%) 보다 클 경우 에러 처리 (0 일 경우 비교 처리 없음)
+            범위 : 0~100
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IPowerCompensateArg.Tag">
+            <summary>
+            사용자 정의 데이타
+            <para>User data</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.CategoryAndTargetWatts">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.PowerMeter">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.Rtc">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.Laser">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.Location">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.HoldTimeMsec">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.ThresholdWatt">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.ThresholdInPercentage">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.ThresholdOutPercentage">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.PowerMapCompensateDefaultArg.Tag">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapCompensateDefaultArg.#ctor">
             <summary>
             생성자
             </summary>
@@ -8590,19 +8711,9 @@
             크리스털1 온도
             </summary>
         </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.TargetCrystal2Temperature">
-            <summary>
-            크리스털2 온도
-            </summary>
-        </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal1Temperature">
             <summary>
             크리스털 1 실제 온도
-            </summary>
-        </member>
-        <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualCrystal2Temperature">
-            <summary>
-            크리스털 2 실제 온도
             </summary>
         </member>
         <member name="P:SpiralLab.Sirius.AdvancedOptoWaveFotia.ActualLaserHeadTemperature">
@@ -9757,6 +9868,14 @@
             <param name="powerMap">파워맵</param>
             <param name="arg">인자</param>
         </member>
+        <member name="T:SpiralLab.Sirius.PowerCompensateEvent">
+            <summary>
+            파워 보정 시작 통지용
+            <para>power compensate event handler</para>
+            </summary>
+            <param name="powerMap">파워맵</param>
+            <param name="arg">인자</param>
+        </member>
         <member name="T:SpiralLab.Sirius.IPowerMap">
             <summary>
             파워맵 인터페이스
@@ -9809,6 +9928,30 @@
             <summary>
             파워 검증 완료
             <para>OnVerifyFinished event handler</para>
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnCompensateStarted">
+            <summary>
+            파워 보정 시작
+            <para>OnCompensateStarted event handler</para>
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnCompensateProgress">
+            <summary>
+            파워 보정시 : 카테고리 + 목표 출력(W) 개수만큼 발생
+            <para>OnCompensateProgress event handler</para>
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnCompensateFailed">
+            <summary>
+            파워 보정 실패
+            <para>OnCompensateFailed event handler</para>
+            </summary>
+        </member>
+        <member name="E:SpiralLab.Sirius.IPowerMap.OnCompensateFinished">
+            <summary>
+            파워 보정 완료
+            <para>OnCompensateFinished event handler</para>
             </summary>
         </member>
         <member name="E:SpiralLab.Sirius.IPowerMap.OnOpen">
@@ -10002,6 +10145,15 @@
             <param name="powerMapVerifyArg">IPowerMapVerifyArg 인자</param>
             <returns></returns>
         </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.CtlCompensate(SpiralLab.Sirius.IPowerCompensateArg)">
+            <summary>
+            보정된 출력 파워 검증후 재보정 시작
+            <para>Start power compensate</para>
+            <para>파워 매핑 테이블을 참고해 지정된 레이저 목표 파워(Target Watt)로 출시를 시도하고 오차(threshold Watt)값 이내에서 측정이 되는지 여부를 시도하고 범위를 벋어나면 재시도 한다</para>
+            </summary>
+            <param name="powerMapCompensateArg">IPowerCompensateArg 인자</param>
+            <returns></returns>
+        </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyMappingStarted(SpiralLab.Sirius.IPowerMapArg)">
             <summary>
             파워 매핑 시작
@@ -10046,6 +10198,28 @@
             파워 검증 완료 이벤트 통지
             </summary>
         </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyCompensateStarted(SpiralLab.Sirius.IPowerCompensateArg)">
+            <summary>
+            파워 보정 완료 이벤트 통지
+            </summary>
+            <param name="arg">IPowerCompensateArg 인자</param>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyCompensateProgress(SpiralLab.Sirius.IPowerCompensateArg)">
+            <summary>
+            파워 보정 진행중
+            매 (카테고리,목표파워) 진행 완료시 발생
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyCompensateFailed(SpiralLab.Sirius.IPowerCompensateArg)">
+            <summary>
+            파워 보정 실패
+            </summary>
+        </member>
+        <member name="M:SpiralLab.Sirius.IPowerMap.NotifyCompensateFinished(SpiralLab.Sirius.IPowerCompensateArg)">
+            <summary>
+            파워 보정 완료 이벤트 통지
+            </summary>
+        </member>
         <member name="M:SpiralLab.Sirius.IPowerMap.NotifyOpening">
             <summary>
             매핑 파일 열기 이벤트 통지
@@ -10083,6 +10257,18 @@
             <inheritdoc/>  
         </member>
         <member name="E:SpiralLab.Sirius.PowerMapDefault.OnVerifyFinished">
+            <inheritdoc/>  
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnCompensateStarted">
+            <inheritdoc/>  
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnCompensateProgress">
+            <inheritdoc/>  
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnCompensateFailed">
+            <inheritdoc/>  
+        </member>
+        <member name="E:SpiralLab.Sirius.PowerMapDefault.OnCompensateFinished">
             <inheritdoc/>  
         </member>
         <member name="E:SpiralLab.Sirius.PowerMapDefault.OnOpen">
@@ -10212,6 +10398,18 @@
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyVerifyFinished(SpiralLab.Sirius.IPowerVerifyArg)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyCompensateStarted(SpiralLab.Sirius.IPowerCompensateArg)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyCompensateProgress(SpiralLab.Sirius.IPowerCompensateArg)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyCompensateFailed(SpiralLab.Sirius.IPowerCompensateArg)">
+            <inheritdoc/>  
+        </member>
+        <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyCompensateFinished(SpiralLab.Sirius.IPowerCompensateArg)">
             <inheritdoc/>  
         </member>
         <member name="M:SpiralLab.Sirius.PowerMapDefault.NotifyOpening">
@@ -13752,6 +13950,9 @@
         <member name="P:SpiralLab.Sirius.Rtc5.SerialExternalNo">
             <inheritdoc/>  
         </member>
+        <member name="P:SpiralLab.Sirius.Rtc5.SerialCurrentNo">
+            <inheritdoc/>  
+        </member>
         <member name="P:SpiralLab.Sirius.Rtc5.IsDateTimeOffset">
             <inheritdoc/>  
         </member>
@@ -15021,6 +15222,9 @@
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.SerialExternalNo">
+            <inheritdoc/>  
+        </member>
+        <member name="P:SpiralLab.Sirius.Rtc6.SerialCurrentNo">
             <inheritdoc/>  
         </member>
         <member name="P:SpiralLab.Sirius.Rtc6.IsDateTimeOffset">
@@ -18894,6 +19098,11 @@
             <summary>
             현재 시리얼 번호값 (외부 /START 에 의해 증가된 값)
             <para>Current serial no by external /START</para>
+            </summary>
+        </member>
+        <member name="P:SpiralLab.Sirius.IRtcSerialNo.SerialCurrentNo">
+            <summary>
+            현재 시리얼 번호
             </summary>
         </member>
         <member name="M:SpiralLab.Sirius.IRtcSerialNo.CtlSerialReset(System.UInt32,System.UInt32)">

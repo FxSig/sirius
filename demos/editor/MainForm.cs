@@ -78,9 +78,9 @@ namespace SpiralLab.Sirius
             // create Rtc for dummy (가상 RTC 카드)
             //var rtc = new RtcVirtual(0); 
             // create Rtc5 controller
-            var rtc = new Rtc5(0);
+            //var rtc = new Rtc5(0);
             // create Rtc6 controller
-            //var rtc = new Rtc6(0); 
+            var rtc = new Rtc6(0); 
             // create Rtc6 Ethernet controller
             //var rtc = new Rtc6Ethernet(0, "192.168.0.100", "255.255.255.0"); 
 
